@@ -1,0 +1,93 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "source_cell": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent",
+ "building_seeds": [
+  1,
+  2,
+  3
+ ],
+ "building_trajectories": [
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+ ],
+ "translations_reused": true,
+ "attempts": [
+  {
+   "attempt": 1,
+   "family": "SimpleCalendarAddOneEvent",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.290998968876,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 26600,
+    "cached_tokens": 0,
+    "completion_tokens": 407725,
+    "total_tokens": 0,
+    "cost_usd": 0.290998968876
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 0,
+     "total": 5
+    },
+    "k2": {
+     "passed": 0,
+     "total": 5
+    },
+    "k3": {
+     "passed": 0,
+     "total": 5
+    }
+   },
+   "error": "RuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 868, in call_builder\n    text = extract_python_source(reply)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 790, in extract_python_source\n    raise ValueError(\"empty model reply\")\nValueError: empty model reply\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/expa/repeated_compile.py\", line 228, in run_cell\n    verify = verify_and_repair(\n             ^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/verify_runner.py\", line 473, in verify_and_repair\n    refined = refine_artifact(\n              ^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 938, in refine_artifact\n    result = call_builder(\n             ^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 878, in call_builder\n    raise RuntimeError(\nRuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply\n",
+   "wall_s": 5402.5
+  },
+  {
+   "attempt": 2,
+   "family": "SimpleCalendarAddOneEvent",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.163821565512,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 21500,
+    "cached_tokens": 256,
+    "completion_tokens": 134833,
+    "total_tokens": 0,
+    "cost_usd": 0.163821565512
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 0,
+     "total": 5
+    },
+    "k2": {
+     "passed": 0,
+     "total": 5
+    },
+    "k3": {
+     "passed": 0,
+     "total": 5
+    }
+   },
+   "error": "RuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 868, in call_builder\n    text = extract_python_source(reply)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 790, in extract_python_source\n    raise ValueError(\"empty model reply\")\nValueError: empty model reply\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/expa/repeated_compile.py\", line 228, in run_cell\n    verify = verify_and_repair(\n             ^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/verify_runner.py\", line 473, in verify_and_repair\n    refined = refine_artifact(\n              ^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 938, in refine_artifact\n    result = call_builder(\n             ^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 878, in call_builder\n    raise RuntimeError(\nRuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply\n",
+   "wall_s": 3628.9
+  }
+ ],
+ "wall_s_total": 9031.4
+}

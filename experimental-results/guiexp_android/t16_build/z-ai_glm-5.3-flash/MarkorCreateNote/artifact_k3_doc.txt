@@ -1,0 +1,20 @@
+OPERATION: Create a new Markor note named {file_name} whose content is {text}
+
+1. Open the Markor app and wait for the main note-list screen.
+2. Tap the floating button described as "Create a new file or folder"; the new-file dialog opens.
+3. In the dialog, find the Name field, which arrives pre-filled with a placeholder, and clear it completely.
+4. Split {file_name} at its last dot: everything before the dot is the base name, the dot plus what follows is the extension.
+5. Type the base name into the Name field.
+6. Type the extension, including the leading dot, into the small separate extension field next to the Name field.
+7. Press the dialog's OK button; Markor creates the file and opens the note editor.
+8. In the editor, tap the large editable note-content field and type {text} into it.
+9. Press Back once to dismiss the keyboard if it is covering the screen.
+10. Press Back again to leave the editor and return to the main list; the note is saved automatically on exit.
+11. Verify the list shows a row titled {file_name}; only then finish.
+
+TRAPS:
+- {file_name} is split across two fields: base name in Name, extension with its dot in the small extension field; typing the whole {file_name} into Name creates a wrongly named file.
+- The Name field's pre-filled placeholder must be removed, not appended to.
+- The dialog only creates the file after OK is pressed.
+- There is no save button: the text is persisted only by backing out of the editor.
+- Match the result in the list by its exact title {file_name}.

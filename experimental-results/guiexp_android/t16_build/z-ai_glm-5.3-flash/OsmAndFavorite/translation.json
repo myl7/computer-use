@@ -1,0 +1,482 @@
+{
+ "1": {
+  "family": "OsmAndFavorite",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s1_a2/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This action depends only on the OsmAnd app being installed and launchable; it touches no element, so index drift is irrelevant. It can fail if the app is missing or slow to reach MapActivity, so verify the map screen appeared before proceeding.",
+    "snippet": "if not device.open_app(\"OsmAnd\"):\n    raise RuntimeError(\"Failed to launch OsmAnd; is it installed?\")\ndevice.settle(3)\nif device.find(description=\"Configure map\") is None and \\\n   device.find(description=\"Search\") is None:\n    raise RuntimeError(\"OsmAnd launched but MapActivity (map controls) not visible\")",
+    "usage": {
+     "prompt_tokens": 773,
+     "completion_tokens": 383,
+     "cached_tokens": 0,
+     "cost_usd": 0.00026785044
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This click depends on the map screen's floating \"Search\" ImageButton (identified by its accessibility description), which opens the search UI needed to locate {location}. It can fail if the description is localized/differs, or the map screen hasn't finished loading, so look it up semantically and error out clearly if absent.",
+    "snippet": "idx = device.find(description='Search', clickable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd 'Search' button not found on map screen; cannot open search for location %r\" % binding.get('location'))\ndevice.click(idx)\ndevice.settle(1.5)",
+    "usage": {
+     "prompt_tokens": 854,
+     "completion_tokens": 368,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002780811
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Malbun"
+    },
+    "field": null,
+    "analysis": "This action depends only on locating the search EditText by its stable hint \"Type to search all\" (editable, unique on the search screen); it can fail if the hint is localized/absent, if the field already contains stale text, or if the screen is the map view rather than the search UI.",
+    "snippet": "target = binding[\"location\"] if isinstance(binding, dict) else binding.location\nidx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    idx = device.find(hint=\"search\", contains=True, editable=True, clickable=True)\nif idx is None:\n    raise LookupError(\"Search input (hint 'Type to search all') not found on screen\")\ndevice.input_text(target, index=idx)\ndevice.keyboard_enter()",
+    "usage": {
+     "prompt_tokens": 935,
+     "completion_tokens": 369,
+     "cached_tokens": 0,
+     "cost_usd": 0.00028935225
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The click depends on a fixed UI affordance\u2014the \"INCREASE SEARCH RADIUS\" TextView shown when a location search returns nothing\u2014so it can fail if the search already succeeded (button absent) or if the label's casing/wording differs slightly across instances.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\", contains=True)\nif idx is None:\n    raise RuntimeError(\"No 'INCREASE SEARCH RADIUS' control found; search may have succeeded already\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 414,
+     "cached_tokens": 0,
+     "cost_usd": 0.00024188868
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This click only makes sense in the \"Could not find anything\" failed-search state \u2014 it depends on the fixed 'INCREASE SEARCH RADIUS' control being present (clickability flag is not reliable). On another instance it fails when the search succeeds (button absent) or the label differs, so the lookup must be by text and raise if missing.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\")\nif idx is None:\n    idx = device.find(text=\"SEARCH RADIUS\", contains=True)\nif idx is None:\n    raise RuntimeError(\"Expected 'INCREASE SEARCH RADIUS' button (failed-search state) not found; cannot widen search radius\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 608,
+     "cached_tokens": 0,
+     "cost_usd": 0.00033381315
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The action depends solely on the static label 'INCREASE SEARCH RADIUS'; only its index varies between instances (it appears after a failed search, and is not clickable by class). Looking it up by text and raising if absent makes it portable.",
+    "snippet": "idx = device.find(text='INCREASE SEARCH RADIUS')\nif idx is None:\n    raise RuntimeError(\"Search-radius button 'INCREASE SEARCH RADIUS' not found on screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 267,
+     "cached_tokens": 0,
+     "cost_usd": 0.00018189765
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This click depends only on the \"no results\" retry row labeled 'INCREASE SEARCH RADIUS' existing on the search screen; indexes vary per instance and the label is a fixed app string (not a task value), so nothing from `binding` is needed. It can fail if the screen is still showing results (row absent) or the label is localized/worded differently.",
+    "snippet": "idx = device.find(text='INCREASE SEARCH RADIUS')\nif idx is None:\n    idx = device.find(text='SEARCH RADIUS', contains=True)\nif idx is None:\n    raise RuntimeError(\"'INCREASE SEARCH RADIUS' row not found on search screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 436,
+     "cached_tokens": 0,
+     "cost_usd": 0.00014288175
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "The recorded index 0 happened to be the app-bar \"up\" ImageButton; the only stable identity is its accessibility description 'Navigate up' (plus clickable ImageButton), so on another instance the index may differ and must be looked up semantically. It fails if the screen is already top-level (no up button) or the button isn't clickable-exposed, in which case we raise.",
+    "snippet": "idx = device.find(description='Navigate up', clickable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd 'Navigate up' button not found on search screen; cannot back out of search results\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 672,
+     "completion_tokens": 719,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002278485
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 12
+    },
+    "field": null,
+    "analysis": "The recorded click hit the search-result row for the target location via its distance label ('519 ft'), which is device-specific (depends on current GPS position) and may not exist on another instance; the row is robustly identified by the location name from `binding` (rendered as e.g. 'Country <location>'). It can fail if the result isn't on screen yet or the title prefix differs, so fall back to a substring match and raise if nothing is found.",
+    "snippet": "loc = binding[\"location\"]\nidx = device.find(text=\"Country {}\".format(loc))\nif idx is None:\n    idx = device.find(contains=loc)\nif idx is None:\n    raise LookupError(\"OsmAnd search result row for location '%s' not found on screen\" % loc)\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 844,
+     "completion_tokens": 1203,
+     "cached_tokens": 64,
+     "cost_usd": 0.0003566079
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "The action is a global back press (no element), used to leave the map/context-menu screen after interacting with the chosen location. It depends only on the device being on that MapActivity screen; on other instances indexes are irrelevant, but back could mis-fire (dismissing the wrong layer or exiting the app) if the flow is on a different screen.",
+    "snippet": "# Global action: dismiss the map context menu / return from MapActivity.\n# Sanity-check we are on the expected map/context screen (index-independent).\nif (device.find(text=\"Actions\") is None\n        and device.find(description=\"Map\") is None\n        and device.find(description=\"Zoom in\") is None):\n    raise RuntimeError(\"Not on the OsmAnd map/context-menu screen; skipping back press\")\ndevice.navigate_back()\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 702,
+     "completion_tokens": 1020,
+     "cached_tokens": 64,
+     "cost_usd": 0.0003007719
+    }
+   }
+  ],
+  "effective_actions": 10,
+  "recorded_actions": 13,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 10,
+   "prompt_tokens": 6664,
+   "cached_tokens": 128,
+   "completion_tokens": 5787,
+   "total_tokens": 12451,
+   "cost_usd": 0.00262099
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "OsmAndFavorite",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This is a global launch of the OsmAnd app and depends only on the app's name/package, not on any on-screen element. It can fail if the installed variant has a different display name (e.g., \"OsmAnd+\"), so verify the map screen actually appeared rather than trusting the call.",
+    "snippet": "app = binding.get(\"app\", \"OsmAnd\")\ndevice.open_app(app)\ndevice.settle(2)\n# confirm the map UI came up (indices differ per instance, so look up semantically)\nif device.find(description=\"Configure map\") is None:\n    raise RuntimeError(f\"OsmAnd map screen not detected after launching '{app}'\")",
+    "usage": {
+     "prompt_tokens": 773,
+     "completion_tokens": 391,
+     "cached_tokens": 0,
+     "cost_usd": 0.00027133524
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends solely on the map screen's Search toolbar button, identified by its content description \"Search\" (a clickable ImageButton); a recorded index would break on any instance whose toolbar layout differs, and the button may be absent if the map hasn't finished loading or a drawer overlays it.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise LookupError(\"Search button not found on the OsmAnd map screen\")\ndevice.click(idx)\ndevice.settle(1.5)",
+    "usage": {
+     "prompt_tokens": 853,
+     "completion_tokens": 260,
+     "cached_tokens": 0,
+     "cost_usd": 0.00022472604
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "47.0688832, 9.5061564"
+    },
+    "field": "location",
+    "analysis": "The action depends only on the OsmAnd search box (an editable EditText with hint \"Type to search all\"); the recorded index 2 is screen-specific, and localized hint text or layout changes can shift it, so the field must be found semantically with a fallback, and a location string must come from binding.",
+    "snippet": "idx = device.find(hint='Type to search all', editable=True)\nif idx is None:\n    idx = device.find(hint='Type to search all', contains=True, editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd search field ('Type to search all') not found on screen\")\ndevice.click(idx)\ndevice.input_text(binding['location'], idx)",
+    "usage": {
+     "prompt_tokens": 900,
+     "completion_tokens": 440,
+     "cached_tokens": 0,
+     "cost_usd": 0.000316305
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "The click selects the coordinate search-result row for {location} so the map/context menu (\"Add\" favorite) opens. It depends on the row being present on the search screen and its displayed text matching the binding location \u2014 which fails across instances because indexes differ and the coordinate is rendered reformatted/rounded (\"47.06888\u00b0 N, 9.50616\u00b0 E\" vs the typed \"47.0688832, 9.5061564\").",
+    "snippet": "loc = str(binding[\"location\"]).strip()\n# Build a degree-formatted needle from the binding coordinate, e.g. '47.06888\u00b0'\nneedle = None\nparts = [p.strip() for p in loc.split(\",\") if p.strip()]\nif parts:\n    try:\n        needle = f\"{float(parts[0].rstrip('NSEWnsew\u00b0 ')):.5f}\u00b0\"\n    except ValueError:\n        needle = parts[0]\nidx = device.find(text=needle, contains=True) if needle else None\nif idx is None:  # fallback: raw coordinate or plain name text\n    idx = device.find(text=loc, contains=True)\nif idx is None:\n    raise LookupError(f\"Search result for location '{loc}' not found on screen\")\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 896,
+     "completion_tokens": 1134,
+     "cached_tokens": 0,
+     "cost_usd": 0.00061105968
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The click targets the transient \"Downloading list of available regions\u2026\" status TextView (part of OsmAnd's region-download overlay), not any task-specific {location}; it can fail if the download already finished, the overlay text is localized/varies, or the element is simply absent on another instance.",
+    "snippet": "idx = device.find(text=\"Downloading list of available regions\", contains=True)\nif idx is None:\n    raise LookupError(\n        \"Region-download status element ('Downloading list of available regions\u2026') \"\n        \"not found on the current MapActivity screen\"\n    )\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 476,
+     "completion_tokens": 629,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003438369
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 3898,
+   "cached_tokens": 0,
+   "completion_tokens": 2854,
+   "total_tokens": 6752,
+   "cost_usd": 0.00176726
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "OsmAndFavorite",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s3_a2/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This is a global app-launch (no element dependency); it only depends on OsmAnd starting and its MapActivity appearing. It can fail if the launch is slow, the app is already in the foreground/backgrounded, or the launcher path differs \u2014 so the rewrite should launch, verify via a semantic marker of the OsmAnd map UI, and retry if the expected UI is absent.",
+    "snippet": "def open_osmand_map(device, attempts=3):\n    \"\"\"Open OsmAnd and wait until its MapActivity UI is actually up.\"\"\"\n    last_found = False\n    for attempt in range(attempts):\n        device.open_app(\"OsmAnd\")\n        device.settle(2.5)\n        # Semantic markers unique to the OsmAnd map screen\n        found = (\n            device.find(description=\"Configure map\") is not None\n            or (device.find(description=\"Search\") is not None\n                and device.find(description=\"Zoom in\") is not None)\n        )\n        if found:\n            return\n        last_found = False\n        if attempt < attempts - 1:\n            device.navigate_home()\n            device.settle(1)\n    raise RuntimeError(\n        \"Failed to launch OsmAnd: expected MapActivity controls \"\n        f\"('Configure map' / 'Zoom in') not found after {attempts} attempts\"\n    )\n\nopen_osmand_map(device)",
+    "usage": {
+     "prompt_tokens": 777,
+     "completion_tokens": 615,
+     "cached_tokens": 0,
+     "cost_usd": 0.00037782855
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends solely on the map screen's Search ImageButton, identified stably by its content description \"Search\"; recorded index 4 is irrelevant and will break on any other instance. It can fail if the search entry point has a different description, is a text-based button, or the app isn't on the map screen.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise LookupError(\"OsmAnd Search button (description='Search') not found on current screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 857,
+     "completion_tokens": 304,
+     "cached_tokens": 0,
+     "cost_usd": 0.00024997005
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln"
+    },
+    "field": null,
+    "analysis": "The action depends only on the search EditText identified by its hint \"Type to search all\" (editable), not on index 2; on another instance the hint may be localized or the field may already contain text, so fall back to an editable text-field lookup and fail loudly if neither matches.",
+    "snippet": "location = binding[\"location\"]  # e.g. \"Nendeln\"\nidx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    idx = device.find(contains=\"search\", editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd search input field not found on screen\")\ndevice.input_text(location, index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 936,
+     "completion_tokens": 399,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001682505
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The action taps the \"INCREASE SEARCH RADIUS\" control shown when a favorite search finds nothing; it depends only on that label being present, not on the current radius or indexes. It can fail if the screen already found a result (no button) or the label differs slightly, so match on text with a substring fallback and error out if absent.",
+    "snippet": "idx = device.find(text='INCREASE SEARCH RADIUS')\nif idx is None:\n    idx = device.find(text='INCREASE SEARCH RADIUS', contains=True)\nif idx is None:\n    raise LookupError(\"'INCREASE SEARCH RADIUS' button not found on current screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 493,
+     "cached_tokens": 0,
+     "cost_usd": 0.00028258065
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The action clicks the \"INCREASE SEARCH RADIUS\" TextView to broaden a failed POI search (e.g. for a location to favorite). It depends on that exact text label appearing; it fails if no prior empty search result is present or the label differs.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\", clickable=False)\nif idx is None:\n    raise RuntimeError(\"INCREASE SEARCH RADIUS button not found on screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 102,
+     "cached_tokens": 0,
+     "cost_usd": 8.1972e-05
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The click targets the non-clickable TextView labeled 'INCREASE SEARCH RADIUS', which appears in OsmAnd's search UI when no results were found within the current radius (20 mi) and tapping it widens the search (to 50 mi). On another instance it fails if the search already returned results (button absent) or if the radius message/label changed, so look the label up by text instead of index.",
+    "snippet": "idx = device.find(contains='INCREASE SEARCH RADIUS')\nif idx is None:\n    raise LookupError(\n        \"'INCREASE SEARCH RADIUS' option not found; \"\n        \"search likely returned results or is not in the no-results state\"\n    )\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 491,
+     "completion_tokens": 515,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003278385
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The action taps the \"INCREASE SEARCH RADIUS\" TextView that appears after a failed place search (\"Could not find anything: \u2026\"), relying only on its fixed label rather than index. It fails on other instances if the search succeeds (no such TextView exists) or the label is rendered differently, so we must look it up by text and raise if absent.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\")\nif idx is None:\n    raise RuntimeError(\"Search did not fail as expected: 'INCREASE SEARCH RADIUS' control not found\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 471,
+     "completion_tokens": 359,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002476485
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "The action depends only on the OsmAnd search field being findable by its semantic identity (editable EditText with hint 'Type to search all'); recorded index 2 may point elsewhere on another screen, and the field must exist before typing. Failures: missing field (different screen state) or shifted indexes \u2014 solved by lookup, with a fallback to any editable field and a clear error.",
+    "snippet": "idx = device.find(hint='Type to search all', editable=True)\nif idx is None:\n    idx = device.find(editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd favorite search field (hint 'Type to search all') not found\")\ndevice.input_text(binding['location'], index=idx)",
+    "usage": {
+     "prompt_tokens": 556,
+     "completion_tokens": 627,
+     "cached_tokens": 64,
+     "cost_usd": 0.0001926639
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The click clears the active search query in OsmAnd's search bar (the prefilled \"Nendeln\" query), resetting the search field. It depends on an active query being present so the Clear button exists; it fails if the field is already empty (button absent), indexes shift, or the content description is localized/different.",
+    "snippet": "clear_btn = device.find(description='Clear', clickable=True)\nif clear_btn is None:\n    raise RuntimeError(\"Search 'Clear' button not found - no active query to clear on search screen\")\ndevice.click(clear_btn)",
+    "usage": {
+     "prompt_tokens": 678,
+     "completion_tokens": 429,
+     "cached_tokens": 0,
+     "cost_usd": 0.000313038
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "The action types the target location into OsmAnd's search EditText, identified only by its stable hint \"Type to search all\" \u2014 the recorded index 2 is meaningless on other screens. It can fail if the hint is localized/different, so a fallback to any editable EditText is used, and it raises if no such field exists.",
+    "snippet": "idx = device.find(hint='Type to search all', editable=True)\nif idx is None:\n    idx = device.find(editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd search input field not found on screen\")\ndevice.input_text(binding['location'], index=idx)\ndevice.keyboard_enter()",
+    "usage": {
+     "prompt_tokens": 673,
+     "completion_tokens": 315,
+     "cached_tokens": 64,
+     "cost_usd": 0.00012413115
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "The click targets the search result for the location (e.g. 'Liechtenstein'), which depends on the task's location text appearing in a result list; indexes vary, so look it up by text derived from the binding rather than a fixed index.",
+    "snippet": "loc = binding[\"location\"]\nidx = device.find(text=loc, contains=True)\nif idx is None:\n    raise LookupError(f\"No search result matching location '{loc}'\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 846,
+     "completion_tokens": 101,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001187505
+    }
+   }
+  ],
+  "effective_actions": 11,
+  "recorded_actions": 13,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 11,
+   "prompt_tokens": 7227,
+   "cached_tokens": 128,
+   "completion_tokens": 4259,
+   "total_tokens": 11486,
+   "cost_usd": 0.00248467
+  },
+  "record_type": "translation"
+ }
+}

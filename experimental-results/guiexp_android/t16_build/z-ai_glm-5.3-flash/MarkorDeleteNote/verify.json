@@ -1,0 +1,94 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 6,
+ "unautomatable": false,
+ "final_artifact": "import os\n\nPARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n    stem = os.path.splitext(file_name)[0]\n\n    # ------------------------------------------------------------------\n    # Step 1: launch Markor and make sure its main screen is showing.\n    # ------------------------------------------------------------------\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    def on_main_screen():\n        return (device.find(text=\"Markor\") is not None\n                or device.find(description=\"Create a new file or folder\") is not None)\n\n    if not on_main_screen():\n        # Launch may have been slow or the app was in a weird state: retry\n        # from the home screen.\n        device.navigate_home()\n        device.settle(1)\n        device.open_app(\"Markor\")\n        device.settle(3)\n        if not on_main_screen():\n            raise RuntimeError(\n                \"Markor did not launch: app missing or main screen not detected\"\n            )\n\n    # ------------------------------------------------------------------\n    # Step 2: locate the target note row by its exact name and long-press\n    # it to enter selection mode. Never rely on row position.\n    # ------------------------------------------------------------------\n    def find_target_row():\n        # Markor names file list items via content description \"File <name>\".\n        row = device.find(description=\"File %s\" % file_name, clickable=True)\n        if row is None:\n            row = device.find(description=\"File %s\" % file_name,\n                              contains=True, clickable=True)\n        if row is None:\n            # Fallbacks: plain text of the row, or description equal to name.\n            row = device.find(text=file_name, clickable=True)\n        if row is None:\n            row = device.find(description=file_name, contains=True, clickable=True)\n        return row\n\n    target = find_target_row()\n    if target is None:\n        # The row may be off-screen: scroll down and look again.\n        device.scroll(\"down\")\n        device.settle(1)\n        target = find_target_row()\n    if target is None:\n        raise LookupError(\n            \"Note item for '%s' not found on screen (tried scrolling)\" % file_name\n        )\n\n    device.long_press(target)\n    device.settle(1)\n\n    # ------------------------------------------------------------------\n    # Step 3: tap the Delete action shown in the selection top bar.\n    # It only acts on the currently selected note, so verify the target\n    # is still present/selected first.\n    # ------------------------------------------------------------------\n    def find_delete_button():\n        btn = device.find(description=\"Delete\", clickable=True)\n        if btn is None:\n            btn = device.find(text=\"Delete\", clickable=True)\n        return btn\n\n    delete_btn = find_delete_button()\n    if delete_btn is None:\n        # Selection may not have taken effect: retry the long-press once.\n        target = find_target_row()\n        if target is not None:\n            device.long_press(target)\n            device.settle(1)\n        delete_btn = find_delete_button()\n    if delete_btn is None:\n        raise RuntimeError(\n            \"Delete button not found - ensure the target note (%s) is \"\n            \"selected first\" % file_name\n        )\n    device.click(delete_btn)\n    device.settle(1)  # wait for the \"Confirm Delete\" dialog\n\n    # ------------------------------------------------------------------\n    # Step 4: confirm the deletion in the dialog.\n    # ------------------------------------------------------------------\n    dialog_ok = (device.find(text=\"Confirm Delete\") is not None\n                 or device.find(contains=file_name) is not None\n                 or (stem and device.find(contains=stem) is not None))\n    if not dialog_ok:\n        raise LookupError(\n            \"Delete confirmation dialog for note '%s' not on screen\" % file_name\n        )\n\n    ok_btn = device.find(text=\"OK\", clickable=True)\n    if ok_btn is None:\n        raise LookupError(\n            \"No clickable 'OK' confirmation button found in delete dialog\"\n        )\n    device.click(ok_btn)\n    device.settle(2)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 6,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 4,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "hot_sun_4RHp"
+    },
+    "passed": false,
+    "error": "LookupError: Note item for 'hot_sun_4RHp' not found on screen (tried scrolling)"
+   },
+   {
+    "binding": {
+     "file_name": "eager_zebra_2023_07_18"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "final_happy_penguin"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "happy_vase_SixC"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "backup_alert_xylophone"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

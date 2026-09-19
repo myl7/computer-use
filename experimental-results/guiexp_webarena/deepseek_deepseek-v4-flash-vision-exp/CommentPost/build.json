@@ -1,0 +1,2481 @@
+{
+ "family": "CommentPost",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 20,
+ "price_weights": {
+  "r_c": 0.032,
+  "r_o": 3.0
+ },
+ "cache_ratio_r": 0.032,
+ "record_type": "build",
+ "floor": {
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 4551,
+    "cached_tokens": 0,
+    "completion_tokens": 50,
+    "cost_usd": 0.0010034
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 4881,
+    "cached_tokens": 0,
+    "completion_tokens": 15,
+    "cost_usd": 0.00214577
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 4349,
+    "cached_tokens": 0,
+    "completion_tokens": 145,
+    "cost_usd": 0.00102112
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 4498,
+    "cached_tokens": 0,
+    "completion_tokens": 61,
+    "cost_usd": 0.00099913
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 4347,
+    "cached_tokens": 0,
+    "completion_tokens": 55,
+    "cost_usd": 0.00096306
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 4378,
+    "cached_tokens": 0,
+    "completion_tokens": 58,
+    "cost_usd": 0.00099143
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 5457,
+    "cached_tokens": 0,
+    "completion_tokens": 41,
+    "cost_usd": 0.00243065
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 4851,
+    "cached_tokens": 0,
+    "completion_tokens": 27,
+    "cost_usd": 0.00214838
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 4347,
+    "cached_tokens": 512,
+    "completion_tokens": 57,
+    "cost_usd": 0.00085853
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 4782,
+    "cached_tokens": 0,
+    "completion_tokens": 40,
+    "cost_usd": 0.00213531
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1617,
+    "cached_tokens": 0,
+    "completion_tokens": 58,
+    "cost_usd": 0.00039008
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 4374,
+    "cached_tokens": 0,
+    "completion_tokens": 60,
+    "cost_usd": 0.00099186
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 4326,
+    "cached_tokens": 512,
+    "completion_tokens": 59,
+    "cost_usd": 0.00085533
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 4935,
+    "cached_tokens": 0,
+    "completion_tokens": 33,
+    "cost_usd": 0.00219281
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 4156,
+    "cached_tokens": 0,
+    "completion_tokens": 60,
+    "cost_usd": 0.00094438
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 4340,
+    "cached_tokens": 512,
+    "completion_tokens": 76,
+    "cost_usd": 0.00086921
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1619,
+    "cached_tokens": 512,
+    "completion_tokens": 77,
+    "cost_usd": 0.00028907
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 4205,
+    "cached_tokens": 512,
+    "completion_tokens": 58,
+    "cost_usd": 0.00082887
+   }
+  ],
+  "unit_tokens_per_run": [
+   4701,
+   4926,
+   4784,
+   4681,
+   4512,
+   4552,
+   5580,
+   4932,
+   4022,
+   4902,
+   1791,
+   4554,
+   4007,
+   5034,
+   4336,
+   4072,
+   1354,
+   3883
+  ],
+  "floor_unit_mean": 4256.8,
+  "cost_usd_mean": 0.00122547,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 2288.1,
+ "exploration": {
+  "family": "CommentPost",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 20,
+  "instances": [
+   {
+    "family": "CommentPost",
+    "seed": 1,
+    "goal": "Leave a comment on the post titled \"Boston to Manchester, N.H., Rail Service Could Cost $782M to Build : CEG\" in the newhampshire forum, saying \"guiexp-1-c2bf6cce\".",
+    "step_cap": 20,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s1_a0/trajectory.jsonl",
+      "reused": false,
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 137022,
+       "cached_tokens": 70144,
+       "completion_tokens": 1242,
+       "total_tokens": 138264,
+       "cost_usd": 0.01554638,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4415,
+         "cached_tokens": 512,
+         "completion_tokens": 178,
+         "cost_usd": 0.0009505282248
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 7262,
+         "cached_tokens": 0,
+         "completion_tokens": 274,
+         "cost_usd": 0.001725481296
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 10945,
+         "cached_tokens": 512,
+         "completion_tokens": 149,
+         "cost_usd": 0.0023257479168
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 13790,
+         "cached_tokens": 512,
+         "completion_tokens": 164,
+         "cost_usd": 0.0029426010768
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 17473,
+         "cached_tokens": 13568,
+         "completion_tokens": 120,
+         "cost_usd": 0.0010024843752
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 18641,
+         "cached_tokens": 7168,
+         "completion_tokens": 142,
+         "cost_usd": 0.0025884509112
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 19825,
+         "cached_tokens": 10752,
+         "completion_tokens": 42,
+         "cost_usd": 0.0020364924888
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 21667,
+         "cached_tokens": 19712,
+         "completion_tokens": 123,
+         "cost_usd": 0.0006299159328
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 23004,
+         "cached_tokens": 17408,
+         "completion_tokens": 50,
+         "cost_usd": 0.0013446739152
+        }
+       ]
+      },
+      "unit_floored": 25624.2
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s1_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CommentPost",
+    "seed": 2,
+    "goal": "Leave a comment on the post titled \"Time for spring cleaning in Jersey City! My office has partnered with the Van Vorst Neighborhood Association to host a community clean-up in the Van Vorst neighborhood. All cleaning supplies will be provided, just bring yourself and your friends! Hope to see you there!\" in the jerseycity forum, saying \"guiexp-2-7c22a7d7\".",
+    "step_cap": 20,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s2_a0/trajectory.jsonl",
+      "reused": false,
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 114395,
+       "cached_tokens": 92770,
+       "completion_tokens": 1035,
+       "total_tokens": 115430,
+       "cost_usd": 0.00602909,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4520,
+         "cached_tokens": 0,
+         "completion_tokens": 142,
+         "cost_usd": 0.0010772388
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 4923,
+         "cached_tokens": 4519,
+         "completion_tokens": 75,
+         "cost_usd": 0.00016831287
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 8680,
+         "cached_tokens": 4922,
+         "completion_tokens": 72,
+         "cost_usd": 0.00089964666
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 9083,
+         "cached_tokens": 8679,
+         "completion_tokens": 89,
+         "cost_usd": 0.00020628927
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 12840,
+         "cached_tokens": 9082,
+         "completion_tokens": 358,
+         "cost_usd": 0.00111534786
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 15090,
+         "cached_tokens": 12839,
+         "completion_tokens": 109,
+         "cost_usd": 0.00065046267
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 17358,
+         "cached_tokens": 15089,
+         "completion_tokens": 66,
+         "cost_usd": 0.00064187937
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 20284,
+         "cached_tokens": 17357,
+         "completion_tokens": 47,
+         "cost_usd": 0.00078849441
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 21617,
+         "cached_tokens": 20283,
+         "completion_tokens": 77,
+         "cost_usd": 0.00048141819
+        }
+       ]
+      },
+      "unit_floored": 23435.2
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CommentPost",
+    "seed": 3,
+    "goal": "Leave a comment on the post titled \"Italy orders ChatGPT blocked citing data protection concerns\" in the singularity forum, saying \"guiexp-3-19134b3a\".",
+    "step_cap": 20,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s3_a0/trajectory.jsonl",
+      "reused": false,
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 154808,
+       "cached_tokens": 129323,
+       "completion_tokens": 919,
+       "total_tokens": 155727,
+       "cost_usd": 0.00704732,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4433,
+         "cached_tokens": 0,
+         "completion_tokens": 112,
+         "cost_usd": 0.0010386882
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 8575,
+         "cached_tokens": 4432,
+         "completion_tokens": 112,
+         "cost_usd": 0.00100623996
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 12289,
+         "cached_tokens": 8574,
+         "completion_tokens": 55,
+         "cost_usd": 0.00090448182
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 16317,
+         "cached_tokens": 12288,
+         "completion_tokens": 193,
+         "cost_usd": 0.00108877824
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 20033,
+         "cached_tokens": 16316,
+         "completion_tokens": 166,
+         "cost_usd": 0.00103109688
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 21178,
+         "cached_tokens": 20032,
+         "completion_tokens": 92,
+         "cost_usd": 0.00044853336
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 22342,
+         "cached_tokens": 21177,
+         "completion_tokens": 29,
+         "cost_usd": 0.00041944221
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 24164,
+         "cached_tokens": 22341,
+         "completion_tokens": 62,
+         "cost_usd": 0.00059238333
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 25477,
+         "cached_tokens": 24163,
+         "completion_tokens": 98,
+         "cost_usd": 0.00051767199
+        }
+       ]
+      },
+      "unit_floored": 28115.2
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "experimental-results/guiexp_webarena/deepseek_deepseek-v4-flash-vision-exp/CommentPost/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 3,
+   "retry_episodes": 0,
+   "reused_episodes": 0,
+   "reflection_calls": 0,
+   "prompt_tokens": 406225,
+   "cached_tokens": 292237,
+   "completion_tokens": 3196,
+   "total_tokens": 409421,
+   "cost_usd": 0.02862279
+  },
+  "record_type": "exploration"
+ },
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 8,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 8,
+     "prompt_tokens": 8072,
+     "cached_tokens": 1062,
+     "completion_tokens": 8146,
+     "total_tokens": 16218,
+     "cost_usd": 0.00892079
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 8,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 8,
+     "prompt_tokens": 7060,
+     "cached_tokens": 0,
+     "completion_tokens": 16626,
+     "total_tokens": 23686,
+     "cost_usd": 0.01782693
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 8,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 8,
+     "prompt_tokens": 8298,
+     "cached_tokens": 0,
+     "completion_tokens": 5154,
+     "total_tokens": 13452,
+     "cost_usd": 0.00693064
+    }
+   }
+  ],
+  "totals": {
+   "calls": 24,
+   "prompt_tokens": 23430,
+   "cached_tokens": 1062,
+   "completion_tokens": 29926,
+   "total_tokens": 53356,
+   "cost_usd": 0.03367836
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1331,
+     "cached_tokens": 0,
+     "completion_tokens": 7130,
+     "total_tokens": 8461,
+     "cost_usd": 0.00484966
+    },
+    "cost_usd": 0.00484966,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1331,
+      "cached_tokens": 0,
+      "completion_tokens": 7130,
+      "total_tokens": 8461,
+      "cost_usd": 0.004849661124,
+      "usage": {
+       "prompt_tokens": 1331,
+       "completion_tokens": 7130,
+       "cached_tokens": 0,
+       "cost_usd": 0.004849661124
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1170,
+     "cached_tokens": 0,
+     "completion_tokens": 2966,
+     "total_tokens": 4136,
+     "cost_usd": 0.00214895
+    },
+    "cost_usd": 0.00214895,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1170,
+      "cached_tokens": 0,
+      "completion_tokens": 2966,
+      "total_tokens": 4136,
+      "cost_usd": 0.002148954192,
+      "usage": {
+       "prompt_tokens": 1170,
+       "completion_tokens": 2966,
+       "cached_tokens": 0,
+       "cost_usd": 0.002148954192
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2143,
+     "cached_tokens": 0,
+     "completion_tokens": 6294,
+     "total_tokens": 8437,
+     "cost_usd": 0.00457925
+    },
+    "cost_usd": 0.00457925,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2143,
+      "cached_tokens": 0,
+      "completion_tokens": 6294,
+      "total_tokens": 8437,
+      "cost_usd": 0.004579245,
+      "usage": {
+       "prompt_tokens": 2143,
+       "completion_tokens": 6294,
+       "cached_tokens": 0,
+       "cost_usd": 0.004579245
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1982,
+     "cached_tokens": 0,
+     "completion_tokens": 5572,
+     "total_tokens": 7554,
+     "cost_usd": 0.00399098
+    },
+    "cost_usd": 0.00399098,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1982,
+      "cached_tokens": 0,
+      "completion_tokens": 5572,
+      "total_tokens": 7554,
+      "cost_usd": 0.003990975912,
+      "usage": {
+       "prompt_tokens": 1982,
+       "completion_tokens": 5572,
+       "cached_tokens": 0,
+       "cost_usd": 0.003990975912
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2757,
+     "cached_tokens": 0,
+     "completion_tokens": 11586,
+     "total_tokens": 14343,
+     "cost_usd": 0.01634153
+    },
+    "cost_usd": 0.01634153,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2757,
+      "cached_tokens": 0,
+      "completion_tokens": 11586,
+      "total_tokens": 14343,
+      "cost_usd": 0.016341534,
+      "usage": {
+       "prompt_tokens": 2757,
+       "completion_tokens": 11586,
+       "cached_tokens": 0,
+       "cost_usd": 0.016341534
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2649,
+     "cached_tokens": 256,
+     "completion_tokens": 4968,
+     "total_tokens": 7617,
+     "cost_usd": 0.00369368
+    },
+    "cost_usd": 0.00369368,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2649,
+      "cached_tokens": 256,
+      "completion_tokens": 4968,
+      "total_tokens": 7617,
+      "cost_usd": 0.0036936794664,
+      "usage": {
+       "prompt_tokens": 2649,
+       "completion_tokens": 4968,
+       "cached_tokens": 256,
+       "cost_usd": 0.0036936794664
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 9229,
+    "cached_tokens": 0,
+    "completion_tokens": 41819,
+    "total_tokens": 51048,
+    "cost_usd": 0.0370821
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 3,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "forum": "lakewood",
+      "title": "dry cleaning",
+      "text": "guiexp-18186196782894070694-3cadbdb4"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "WritingPrompts",
+      "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+      "text": "guiexp-18186196782894070695-7b33d971"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find the comments link for post titled '[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they\\'re always warm and friendly. One afternoon however they se"
+    },
+    {
+     "binding": {
+      "forum": "Washington",
+      "title": "bald eagle perched on a cow in central washington",
+      "text": "guiexp-18186196782894070696-123b0e74"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "IPS vs TN in 2023",
+      "text": "guiexp-18186196782894070697-7ca40616"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "Why do my monitors look so completely different?",
+      "text": "guiexp-18186196782894070698-5097d22f"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 4,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "forum": "lakewood",
+      "title": "dry cleaning",
+      "text": "guiexp-18186196782894070694-3cadbdb4"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "WritingPrompts",
+      "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+      "text": "guiexp-18186196782894070695-7b33d971"
+     },
+     "passed": false,
+     "error": "LookupError: Could not find post titled '[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they\\'re always warm and friendly. One afternoon however they see the messages with a "
+    },
+    {
+     "binding": {
+      "forum": "Washington",
+      "title": "bald eagle perched on a cow in central washington",
+      "text": "guiexp-18186196782894070696-123b0e74"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "IPS vs TN in 2023",
+      "text": "guiexp-18186196782894070697-7ca40616"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "Why do my monitors look so completely different?",
+      "text": "guiexp-18186196782894070698-5097d22f"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 2,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "forum": "lakewood",
+      "title": "dry cleaning",
+      "text": "guiexp-18186196782894070694-3cadbdb4"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "WritingPrompts",
+      "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+      "text": "guiexp-18186196782894070695-7b33d971"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find post titled '[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they\\'re always warm and friendly. One afternoon however they see the messages with a "
+    },
+    {
+     "binding": {
+      "forum": "Washington",
+      "title": "bald eagle perched on a cow in central washington",
+      "text": "guiexp-18186196782894070696-123b0e74"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "IPS vs TN in 2023",
+      "text": "guiexp-18186196782894070697-7ca40616"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "Why do my monitors look so completely different?",
+      "text": "guiexp-18186196782894070698-5097d22f"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "family": "CommentPost",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "artifact": "code",
+  "m_max": 3,
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "rounds": [
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": null,
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": null
+     }
+    ],
+    "analysis": {
+     "cause": "The click at index 35 missed the \"Post\" button because the page updated (preview rendered) after the button was found, shifting element indices; it hit the \"Formatting help\" label instead, so the comment was never submitted.",
+     "done": "Navigated to /f/newhampshire, opened the correct post, located the comment textarea, and entered \"guiexp-1-c2bf6cce\". Comment not submitted.",
+     "plan": "Re-find the submit button (button with text \"Post\" in the reply form), click it, wait for the page to update, and verify the comment appears.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1507,
+     "cached_tokens": 0,
+     "completion_tokens": 9560,
+     "total_tokens": 11067,
+     "cost_usd": 0.0131494572,
+     "usage": {
+      "prompt_tokens": 1507,
+      "completion_tokens": 9560,
+      "cached_tokens": 0,
+      "cost_usd": 0.0131494572
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 2,
+     "success": true,
+     "calls": 2,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2785,
+       "cached_tokens": 0,
+       "completion_tokens": 185,
+       "total_tokens": 2970,
+       "cost_usd": 0.000727452,
+       "usage": {
+        "prompt_tokens": 2785,
+        "completion_tokens": 185,
+        "cached_tokens": 0,
+        "cost_usd": 0.000727452
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 81}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 4879,
+       "cached_tokens": 384,
+       "completion_tokens": 55,
+       "total_tokens": 4934,
+       "cost_usd": 0.00203521824,
+       "usage": {
+        "prompt_tokens": 4879,
+        "completion_tokens": 55,
+        "cached_tokens": 384,
+        "cost_usd": 0.00203521824
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"status\", \"goal_status\": \"complete\"}"
+      }
+     ]
+    },
+    "refinement": 1,
+    "gate": {
+     "passed": 4,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3092,
+     "cached_tokens": 0,
+     "completion_tokens": 11992,
+     "total_tokens": 15084,
+     "cost_usd": 0.00833883,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 3092,
+      "cached_tokens": 0,
+      "completion_tokens": 11992,
+      "total_tokens": 15084,
+      "cost_usd": 0.00833883
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3092,
+       "cached_tokens": 0,
+       "completion_tokens": 11992,
+       "total_tokens": 15084,
+       "cost_usd": 0.008338830192,
+       "usage": {
+        "prompt_tokens": 3092,
+        "completion_tokens": 11992,
+        "cached_tokens": 0,
+        "cost_usd": 0.008338830192
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   },
+   {
+    "seed_added": 2,
+    "seen_seeds": [
+     1,
+     2
+    ],
+    "failure_seed": 2,
+    "error": "RuntimeError: Could not find post titled 'Time for spring cleaning in Jersey City! My office has partnered with the Van Vorst Neighborhood Association to host a community clean-up in the Van Vorst neighborhood. All",
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": true,
+      "error": null
+     },
+     {
+      "seed": 2,
+      "passed": false,
+      "error": "RuntimeError: Could not find post titled 'Time for spring cleaning in Jersey City! My office has partnered with the Van Vorst Neighborhood Association to host a community clean-up in the Van Vorst neighborhood. All"
+     }
+    ],
+    "analysis": {
+     "cause": "It looked for the post on /f/jerseycity/new, but the target post is not in that New-sorted listing, so the post lookup failed.",
+     "done": "Navigated to /f/jerseycity and /f/jerseycity/new, waited for page load; post not found and no comment submitted.",
+     "plan": "Use the search box on the current page to search for the exact title, click the matching post link, then find the comment textarea and enter \"guiexp-2-7c22a7d7\", submit the comment, and verify it appears.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1399,
+     "cached_tokens": 0,
+     "completion_tokens": 1563,
+     "total_tokens": 2962,
+     "cost_usd": 0.001299447072,
+     "usage": {
+      "prompt_tokens": 1399,
+      "completion_tokens": 1563,
+      "cached_tokens": 0,
+      "cost_usd": 0.001299447072
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 7,
+     "success": true,
+     "calls": 7,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5075,
+       "cached_tokens": 0,
+       "completion_tokens": 41,
+       "total_tokens": 5116,
+       "cost_usd": 0.0022642488,
+       "usage": {
+        "prompt_tokens": 5075,
+        "completion_tokens": 41,
+        "cached_tokens": 0,
+        "cost_usd": 0.0022642488
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 52}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 5885,
+       "cached_tokens": 384,
+       "completion_tokens": 39,
+       "total_tokens": 5924,
+       "cost_usd": 0.00245252304,
+       "usage": {
+        "prompt_tokens": 5885,
+        "completion_tokens": 39,
+        "cached_tokens": 384,
+        "cost_usd": 0.00245252304
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"navigate_back\"}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 10043,
+       "cached_tokens": 5760,
+       "completion_tokens": 306,
+       "total_tokens": 10349,
+       "cost_usd": 0.0023453892,
+       "usage": {
+        "prompt_tokens": 10043,
+        "completion_tokens": 306,
+        "cached_tokens": 5760,
+        "cost_usd": 0.0023453892
+       },
+       "stage": "react_resume",
+       "action": "The post is visible here. Let me open it via the comments link.\n\naction: {\"action_type\": \"click\", \"index\": 57}"
+      },
+      {
+       "step": 4,
+       "call": 4,
+       "first_call": false,
+       "prompt_tokens": 12713,
+       "cached_tokens": 384,
+       "completion_tokens": 71,
+       "total_tokens": 12784,
+       "cost_usd": 0.00546861744,
+       "usage": {
+        "prompt_tokens": 12713,
+        "completion_tokens": 71,
+        "cached_tokens": 384,
+        "cost_usd": 0.00546861744
+       },
+       "stage": "react_resume",
+       "action": "We're on the post page. Entering the comment text now.\n\naction: {\"action_type\": \"input_text\", \"text\": \"guiexp-2-7c22a7d7\", \"index\": 32}"
+      },
+      {
+       "step": 5,
+       "call": 5,
+       "first_call": false,
+       "prompt_tokens": 15401,
+       "cached_tokens": 9984,
+       "completion_tokens": 25,
+       "total_tokens": 15426,
+       "cost_usd": 0.00253069344,
+       "usage": {
+        "prompt_tokens": 15401,
+        "completion_tokens": 25,
+        "cached_tokens": 9984,
+        "cost_usd": 0.00253069344
+       },
+       "stage": "react_resume",
+       "action": "The text is entered. Now clicking Post.\n\naction: {\"action_type\": \"click\", \"index\": 36}"
+      },
+      {
+       "step": 6,
+       "call": 6,
+       "first_call": false,
+       "prompt_tokens": 18743,
+       "cached_tokens": 15360,
+       "completion_tokens": 74,
+       "total_tokens": 18817,
+       "cost_usd": 0.0017832276,
+       "usage": {
+        "prompt_tokens": 18743,
+        "completion_tokens": 74,
+        "cached_tokens": 15360,
+        "cost_usd": 0.0017832276
+       },
+       "stage": "react_resume",
+       "action": "A preview appeared. Clicking the Post button now.\n\naction: {\"action_type\": \"click\", \"index\": 82}"
+      },
+      {
+       "step": 7,
+       "call": 7,
+       "first_call": false,
+       "prompt_tokens": 20492,
+       "cached_tokens": 18688,
+       "completion_tokens": 45,
+       "total_tokens": 20537,
+       "cost_usd": 0.00110364408,
+       "usage": {
+        "prompt_tokens": 20492,
+        "completion_tokens": 45,
+        "cached_tokens": 18688,
+        "cost_usd": 0.00110364408
+       },
+       "stage": "react_resume",
+       "action": "The comment \"guiexp-2-7c22a7d7\" was posted successfully and is now visible on the post.\n\naction: {\"action_type\": \"status\", \"goal_status\": \"complete\"}"
+      }
+     ]
+    },
+    "refinement": 2,
+    "gate": {
+     "passed": 5,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3380,
+     "cached_tokens": 0,
+     "completion_tokens": 18241,
+     "total_tokens": 21621,
+     "cost_usd": 0.01240174,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 3380,
+      "cached_tokens": 0,
+      "completion_tokens": 18241,
+      "total_tokens": 21621,
+      "cost_usd": 0.01240174
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3380,
+       "cached_tokens": 0,
+       "completion_tokens": 18241,
+       "total_tokens": 21621,
+       "cost_usd": 0.012401736732,
+       "usage": {
+        "prompt_tokens": 3380,
+        "completion_tokens": 18241,
+        "cached_tokens": 0,
+        "cost_usd": 0.012401736732
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   }
+  ],
+  "refinements": 2,
+  "replays": 4,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "refine2",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 3,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 4,
+    "total": 5
+   },
+   {
+    "version": "refine2",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "final_artifact": "def program(device, binding: dict) -> bool:\n    from urllib.parse import urlparse\n\n    forum = binding[\"forum\"]\n    title = binding[\"title\"]\n    text = binding[\"text\"]\n    title_norm = title.strip()\n\n    def base_url():\n        cur = device.current_url() or \"\"\n        p = urlparse(cur)\n        if p.scheme and p.netloc and \"localhost\" not in p.netloc and \"127.0.0.1\" not in p.netloc:\n            return \"http://localhost:9999\"\n        if p.scheme and p.netloc:\n            return f\"{p.scheme}://{p.netloc}\"\n        return \"http://localhost:9999\"\n\n    def is_title_match(t):\n        if not t:\n            return False\n        t_clean = t.strip().rstrip('\u2026').rstrip('.').strip()\n        if not t_clean:\n            return False\n        if t_clean == title_norm:\n            return True\n        # Listings may truncate long titles.  A truncated title is a\n        # non-trivial substring/prefix of the full title.\n        if len(t_clean) >= 10 and t_clean in title_norm:\n            return True\n        return False\n\n    def find_comments_link():\n        els = device.elements()\n        best_idx = None\n        best_len = -1\n\n        # Find the best title-link match (prefer the longest matching text).\n        for i, e in enumerate(els):\n            if e.get(\"tag\") != \"a\":\n                continue\n            t = (e.get(\"text\") or \"\").strip()\n            if is_title_match(t):\n                if len(t) > best_len:\n                    best_len = len(t)\n                    best_idx = i\n\n        if best_idx is None:\n            return None\n\n        # The row's title link may open the image/external URL. The comments\n        # link after it opens the post page with the comment box.\n        for i in range(best_idx, len(els)):\n            e = els[i]\n            if e.get(\"tag\") == \"a\":\n                t = (e.get(\"text\") or \"\").lower()\n                href = e.get(\"href\") or \"\"\n                if \"comment\" in t and (href.startswith(\"/f/\") or f\"/f/{forum}/\" in href):\n                    return e.get(\"index\", i)\n\n        return None\n\n    base = base_url()\n    comments_idx = None\n\n    # Try the forum's default page, then its /new listing.\n    for path in (f\"/f/{forum}\", f\"/f/{forum}/new\"):\n        device.goto(f\"{base}{path}\")\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is not None:\n            break\n\n    # If the post isn't in the listings, search for it using the site's search box.\n    if comments_idx is None:\n        search_idx = device.find(tag=\"input\", aria=\"Search query\")\n        if search_idx is None:\n            search_idx = device.find(tag=\"input\", name=\"q\")\n        if search_idx is None:\n            raise RuntimeError(\"Could not find search box to search for the post\")\n        device.input_text(title, index=search_idx)\n        device.keyboard_enter()\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is None:\n            raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    if comments_idx is None:\n        raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    device.click(index=comments_idx)\n    device.wait()\n    device.settle(1)\n\n    textarea_idx = device.find(tag=\"textarea\", aria=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", placeholder=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", editable=True)\n    if textarea_idx is None:\n        raise RuntimeError(\"Could not find the comment textarea on the post page\")\n\n    device.input_text(text, index=textarea_idx)\n\n    # The live preview re-renders as you type, shifting element indices.\n    # Wait for it to settle before locating the submit button so the index\n    # we click is not stale.\n    device.settle(1)\n\n    post_idx = device.find(tag=\"button\", text=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(tag=\"button\", contains=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(text=\"Post\")\n    if post_idx is None:\n        raise RuntimeError(\"Could not find the 'Post' button to submit the comment\")\n\n    device.click(index=post_idx)\n    device.wait()\n    device.settle(1)\n\n    return True\n",
+  "last_artifact": "def program(device, binding: dict) -> bool:\n    from urllib.parse import urlparse\n\n    forum = binding[\"forum\"]\n    title = binding[\"title\"]\n    text = binding[\"text\"]\n    title_norm = title.strip()\n\n    def base_url():\n        cur = device.current_url() or \"\"\n        p = urlparse(cur)\n        if p.scheme and p.netloc and \"localhost\" not in p.netloc and \"127.0.0.1\" not in p.netloc:\n            return \"http://localhost:9999\"\n        if p.scheme and p.netloc:\n            return f\"{p.scheme}://{p.netloc}\"\n        return \"http://localhost:9999\"\n\n    def is_title_match(t):\n        if not t:\n            return False\n        t_clean = t.strip().rstrip('\u2026').rstrip('.').strip()\n        if not t_clean:\n            return False\n        if t_clean == title_norm:\n            return True\n        # Listings may truncate long titles.  A truncated title is a\n        # non-trivial substring/prefix of the full title.\n        if len(t_clean) >= 10 and t_clean in title_norm:\n            return True\n        return False\n\n    def find_comments_link():\n        els = device.elements()\n        best_idx = None\n        best_len = -1\n\n        # Find the best title-link match (prefer the longest matching text).\n        for i, e in enumerate(els):\n            if e.get(\"tag\") != \"a\":\n                continue\n            t = (e.get(\"text\") or \"\").strip()\n            if is_title_match(t):\n                if len(t) > best_len:\n                    best_len = len(t)\n                    best_idx = i\n\n        if best_idx is None:\n            return None\n\n        # The row's title link may open the image/external URL. The comments\n        # link after it opens the post page with the comment box.\n        for i in range(best_idx, len(els)):\n            e = els[i]\n            if e.get(\"tag\") == \"a\":\n                t = (e.get(\"text\") or \"\").lower()\n                href = e.get(\"href\") or \"\"\n                if \"comment\" in t and (href.startswith(\"/f/\") or f\"/f/{forum}/\" in href):\n                    return e.get(\"index\", i)\n\n        return None\n\n    base = base_url()\n    comments_idx = None\n\n    # Try the forum's default page, then its /new listing.\n    for path in (f\"/f/{forum}\", f\"/f/{forum}/new\"):\n        device.goto(f\"{base}{path}\")\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is not None:\n            break\n\n    # If the post isn't in the listings, search for it using the site's search box.\n    if comments_idx is None:\n        search_idx = device.find(tag=\"input\", aria=\"Search query\")\n        if search_idx is None:\n            search_idx = device.find(tag=\"input\", name=\"q\")\n        if search_idx is None:\n            raise RuntimeError(\"Could not find search box to search for the post\")\n        device.input_text(title, index=search_idx)\n        device.keyboard_enter()\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is None:\n            raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    if comments_idx is None:\n        raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    device.click(index=comments_idx)\n    device.wait()\n    device.settle(1)\n\n    textarea_idx = device.find(tag=\"textarea\", aria=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", placeholder=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", editable=True)\n    if textarea_idx is None:\n        raise RuntimeError(\"Could not find the comment textarea on the post page\")\n\n    device.input_text(text, index=textarea_idx)\n\n    # The live preview re-renders as you type, shifting element indices.\n    # Wait for it to settle before locating the submit button so the index\n    # we click is not stale.\n    device.settle(1)\n\n    post_idx = device.find(tag=\"button\", text=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(tag=\"button\", contains=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(text=\"Post\")\n    if post_idx is None:\n        raise RuntimeError(\"Could not find the 'Post' button to submit the comment\")\n\n    device.click(index=post_idx)\n    device.wait()\n    device.settle(1)\n\n    return True\n",
+  "conclusions": [
+   "seed 1: The click at index 35 missed the \"Post\" button because the page updated (preview rendered) after the button was found, shifting element indices; it hit the \"Formatting help\" label instead, so the comment was never submitted.",
+   "seed 2: It looked for the post on /f/jerseycity/new, but the target post is not in that New-sorted listing, so the post lookup failed."
+  ],
+  "totals": {
+   "analyzer": {
+    "calls": 2,
+    "prompt_tokens": 2906,
+    "cached_tokens": 0,
+    "completion_tokens": 11123,
+    "total_tokens": 14029,
+    "cost_usd": 0.01444891
+   },
+   "resume_episodes": {
+    "calls": 9,
+    "prompt_tokens": 96016,
+    "cached_tokens": 50944,
+    "completion_tokens": 841,
+    "total_tokens": 96857,
+    "cost_usd": 0.02071101
+   },
+   "builder_refinements": {
+    "calls": 2,
+    "prompt_tokens": 6472,
+    "cached_tokens": 0,
+    "completion_tokens": 30233,
+    "total_tokens": 36705,
+    "cost_usd": 0.02074057
+   },
+   "program_replays": {
+    "count": 4,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   }
+  },
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "forum": "lakewood",
+      "title": "dry cleaning",
+      "text": "guiexp-18186196782894070694-3cadbdb4"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "WritingPrompts",
+      "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+      "text": "guiexp-18186196782894070695-7b33d971"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "Washington",
+      "title": "bald eagle perched on a cow in central washington",
+      "text": "guiexp-18186196782894070696-123b0e74"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "IPS vs TN in 2023",
+      "text": "guiexp-18186196782894070697-7ca40616"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "forum": "monitor",
+      "title": "Why do my monitors look so completely different?",
+      "text": "guiexp-18186196782894070698-5097d22f"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "record_type": "verification"
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 378.8,
+  "total_tokens": 11364,
+  "cost_usd": 0.00513259,
+  "uses": [
+   {
+    "goal": "Leave a comment on the post titled \"Why is it so hard to find legitimate housing?\" in the ManchesterNH forum, saying \"guiexp-900000-71c2602a\".",
+    "expected": {
+     "forum": "ManchesterNH",
+     "title": "Why is it so hard to find legitimate housing?",
+     "text": "guiexp-900000-71c2602a"
+    },
+    "extracted": {
+     "forum": "ManchesterNH",
+     "title": "Why is it so hard to find legitimate housing?",
+     "text": "guiexp-900000-71c2602a"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 360,
+    "cost_usd": 0.00030231,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 193,
+      "cached_tokens": 0,
+      "completion_tokens": 167,
+      "cost_usd": 0.0003023064
+     }
+    ],
+    "wall_s": 17.9
+   },
+   {
+    "goal": "Leave a comment on the post titled \"What\u2019s wrong with my Camera? Shot taken from Iphone 14 Pro Max\" in the iphone forum, saying \"guiexp-900001-7db54743\".",
+    "expected": {
+     "forum": "iphone",
+     "title": "What\u2019s wrong with my Camera? Shot taken from Iphone 14 Pro Max",
+     "text": "guiexp-900001-7db54743"
+    },
+    "extracted": {
+     "forum": "iphone",
+     "title": "What\u2019s wrong with my Camera? Shot taken from Iphone 14 Pro Max",
+     "text": "guiexp-900001-7db54743"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 347,
+    "cost_usd": 0.00011609,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 254,
+      "cached_tokens": 0,
+      "completion_tokens": 93,
+      "cost_usd": 0.0001160874
+     }
+    ],
+    "wall_s": 18.62
+   },
+   {
+    "goal": "Leave a comment on the post titled \"New Guy\" in the Newark forum, saying \"guiexp-900002-64412058\".",
+    "expected": {
+     "forum": "Newark",
+     "title": "New Guy",
+     "text": "guiexp-900002-64412058"
+    },
+    "extracted": {
+     "forum": "Newark",
+     "title": "New Guy",
+     "text": "guiexp-900002-64412058"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 299,
+    "cost_usd": 9.257e-05,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 236,
+      "cached_tokens": 0,
+      "completion_tokens": 63,
+      "cost_usd": 9.2565e-05
+     }
+    ],
+    "wall_s": 17.31
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Seen on 128 This Morning\" in the massachusetts forum, saying \"guiexp-900003-e216db61\".",
+    "expected": {
+     "forum": "massachusetts",
+     "title": "Seen on 128 This Morning",
+     "text": "guiexp-900003-e216db61"
+    },
+    "extracted": {
+     "forum": "massachusetts",
+     "title": "Seen on 128 This Morning",
+     "text": "guiexp-900003-e216db61"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 316,
+    "cost_usd": 9.904e-05,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 242,
+      "cached_tokens": 0,
+      "completion_tokens": 74,
+      "cost_usd": 9.9038016e-05
+     }
+    ],
+    "wall_s": 16.96
+   },
+   {
+    "goal": "Leave a comment on the post titled \"wtf is this apps picture \ud83d\ude02\" in the funny forum, saying \"guiexp-900004-8166ac23\".",
+    "expected": {
+     "forum": "funny",
+     "title": "wtf is this apps picture \ud83d\ude02",
+     "text": "guiexp-900004-8166ac23"
+    },
+    "extracted": {
+     "forum": "funny",
+     "title": "wtf is this apps picture \ud83d\ude02",
+     "text": "guiexp-900004-8166ac23"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 318,
+    "cost_usd": 0.00010193,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 243,
+      "cached_tokens": 0,
+      "completion_tokens": 75,
+      "cost_usd": 0.0001019304
+     }
+    ],
+    "wall_s": 17.5
+   },
+   {
+    "goal": "Leave a comment on the post titled \"We need a new city flag!\" in the BridgeportCT forum, saying \"guiexp-900005-ed9b6419\".",
+    "expected": {
+     "forum": "BridgeportCT",
+     "title": "We need a new city flag!",
+     "text": "guiexp-900005-ed9b6419"
+    },
+    "extracted": {
+     "forum": "BridgeportCT",
+     "title": "We need a new city flag!",
+     "text": "guiexp-900005-ed9b6419"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 320,
+    "cost_usd": 0.00010117,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 243,
+      "cached_tokens": 0,
+      "completion_tokens": 77,
+      "cost_usd": 0.000101172456
+     }
+    ],
+    "wall_s": 17.51
+   },
+   {
+    "goal": "Leave a comment on the post titled \"\u201cGod, please grant grace to those that think In-N-Out is better.\u201d\" in the funny forum, saying \"guiexp-900006-8bd59536\".",
+    "expected": {
+     "forum": "funny",
+     "title": "\u201cGod, please grant grace to those that think In-N-Out is better.\u201d",
+     "text": "guiexp-900006-8bd59536"
+    },
+    "extracted": {
+     "forum": "funny",
+     "title": "\u201cGod, please grant grace to those that think In-N-Out is better.\u201d",
+     "text": "guiexp-900006-8bd59536"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 462,
+    "cost_usd": 0.00018826,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 252,
+      "cached_tokens": 0,
+      "completion_tokens": 210,
+      "cost_usd": 0.000188257608
+     }
+    ],
+    "wall_s": 17.68
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Worried that solid state buttons might lose the silent ringer and it\u2019s a huge deal for me, what do you guys think?\" in the iphone forum, saying \"guiexp-900007-21234ecb\".",
+    "expected": {
+     "forum": "iphone",
+     "title": "Worried that solid state buttons might lose the silent ringer and it\u2019s a huge deal for me, what do you guys think?",
+     "text": "guiexp-900007-21234ecb"
+    },
+    "extracted": {
+     "forum": "iphone",
+     "title": "Worried that solid state buttons might lose the silent ringer and it\u2019s a huge deal for me, what do you guys think?",
+     "text": "guiexp-900007-21234ecb"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 394,
+    "cost_usd": 0.00033018,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 212,
+      "cached_tokens": 0,
+      "completion_tokens": 182,
+      "cost_usd": 0.0003301848
+     }
+    ],
+    "wall_s": 17.31
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Video shows vehicles speeding before fatal crash that killed 6 highway workers on I-695\" in the baltimore forum, saying \"guiexp-900008-1028cf9d\".",
+    "expected": {
+     "forum": "baltimore",
+     "title": "Video shows vehicles speeding before fatal crash that killed 6 highway workers on I-695",
+     "text": "guiexp-900008-1028cf9d"
+    },
+    "extracted": {
+     "forum": "baltimore",
+     "title": "Video shows vehicles speeding before fatal crash that killed 6 highway workers on I-695",
+     "text": "guiexp-900008-1028cf9d"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 351,
+    "cost_usd": 0.0001159,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 255,
+      "cached_tokens": 0,
+      "completion_tokens": 96,
+      "cost_usd": 0.000115900092
+     }
+    ],
+    "wall_s": 16.47
+   },
+   {
+    "goal": "Leave a comment on the post titled \"How much Money would it take to Renovate ALL Vacant Homes in Baltimore? \ud83e\udd14\" in the baltimore forum, saying \"guiexp-900009-a5e457fd\".",
+    "expected": {
+     "forum": "baltimore",
+     "title": "How much Money would it take to Renovate ALL Vacant Homes in Baltimore? \ud83e\udd14",
+     "text": "guiexp-900009-a5e457fd"
+    },
+    "extracted": {
+     "forum": "baltimore",
+     "title": "How much Money would it take to Renovate ALL Vacant Homes in Baltimore? \ud83e\udd14",
+     "text": "guiexp-900009-a5e457fd"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 339,
+    "cost_usd": 0.00026615,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 203,
+      "cached_tokens": 0,
+      "completion_tokens": 136,
+      "cost_usd": 0.0002661516
+     }
+    ],
+    "wall_s": 17.84
+   },
+   {
+    "goal": "Leave a comment on the post titled \"The Worm Moon of March rising over Beavertail Lighthouse, last year.\" in the RhodeIsland forum, saying \"guiexp-900010-908cbcfd\".",
+    "expected": {
+     "forum": "RhodeIsland",
+     "title": "The Worm Moon of March rising over Beavertail Lighthouse, last year.",
+     "text": "guiexp-900010-908cbcfd"
+    },
+    "extracted": {
+     "forum": "RhodeIsland",
+     "title": "The Worm Moon of March rising over Beavertail Lighthouse, last year.",
+     "text": "guiexp-900010-908cbcfd"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 345,
+    "cost_usd": 0.00011377,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 251,
+      "cached_tokens": 0,
+      "completion_tokens": 94,
+      "cost_usd": 0.000113765652
+     }
+    ],
+    "wall_s": 17.11
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Some Switzerland residents can now legally buy recreational cannabis in pharmacies\" in the UpliftingNews forum, saying \"guiexp-900011-af3a8c79\".",
+    "expected": {
+     "forum": "UpliftingNews",
+     "title": "Some Switzerland residents can now legally buy recreational cannabis in pharmacies",
+     "text": "guiexp-900011-af3a8c79"
+    },
+    "extracted": {
+     "forum": "UpliftingNews",
+     "title": "Some Switzerland residents can now legally buy recreational cannabis in pharmacies",
+     "text": "guiexp-900011-af3a8c79"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 337,
+    "cost_usd": 0.00010864,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 251,
+      "cached_tokens": 0,
+      "completion_tokens": 86,
+      "cost_usd": 0.000108642996
+     }
+    ],
+    "wall_s": 16.41
+   },
+   {
+    "goal": "Leave a comment on the post titled \"FACT: You're trash if you do this to your plates.\" in the Connecticut forum, saying \"guiexp-900012-4ebcb090\".",
+    "expected": {
+     "forum": "Connecticut",
+     "title": "FACT: You're trash if you do this to your plates.",
+     "text": "guiexp-900012-4ebcb090"
+    },
+    "extracted": {
+     "forum": "connecticut",
+     "title": "FACT: You're trash if you do this to your plates.",
+     "text": "guiexp-900012-4ebcb090"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 441,
+    "cost_usd": 0.00017652,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 248,
+      "cached_tokens": 0,
+      "completion_tokens": 193,
+      "cost_usd": 0.000176518188
+     }
+    ],
+    "wall_s": 17.49
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Florida aquarium to release orca after more than 50 years in captivity\" in the news forum, saying \"guiexp-900013-2e590543\".",
+    "expected": {
+     "forum": "news",
+     "title": "Florida aquarium to release orca after more than 50 years in captivity",
+     "text": "guiexp-900013-2e590543"
+    },
+    "extracted": {
+     "forum": "news",
+     "title": "Florida aquarium to release orca after more than 50 years in captivity",
+     "text": "guiexp-900013-2e590543"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 384,
+    "cost_usd": 0.00013959,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 249,
+      "cached_tokens": 0,
+      "completion_tokens": 135,
+      "cost_usd": 0.000139592376
+     }
+    ],
+    "wall_s": 17.7
+   },
+   {
+    "goal": "Leave a comment on the post titled \"I\u2019m Felix Aplin a neuroscientist researching how the human body can connect with technology. Ask me anything about cyborgs, robot arms, and brain-machine interfaces!\" in the IAmA forum, saying \"guiexp-900014-c9da4ac2\".",
+    "expected": {
+     "forum": "IAmA",
+     "title": "I\u2019m Felix Aplin a neuroscientist researching how the human body can connect with technology. Ask me anything about cyborgs, robot arms, and brain-machine interfaces!",
+     "text": "guiexp-900014-c9da4ac2"
+    },
+    "extracted": {
+     "forum": "IAmA",
+     "title": "I\u2019m Felix Aplin a neuroscientist researching how the human body can connect with technology. Ask me anything about cyborgs, robot arms, and brain-machine interfaces!",
+     "text": "guiexp-900014-c9da4ac2"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 423,
+    "cost_usd": 0.00036111,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 220,
+      "cached_tokens": 0,
+      "completion_tokens": 203,
+      "cost_usd": 0.0003611124
+     }
+    ],
+    "wall_s": 17.3
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Say No to Python/Django - Use PHP/JQuery Instead\" in the InternetIsBeautiful forum, saying \"guiexp-900015-655e1031\".",
+    "expected": {
+     "forum": "InternetIsBeautiful",
+     "title": "Say No to Python/Django - Use PHP/JQuery Instead",
+     "text": "guiexp-900015-655e1031"
+    },
+    "extracted": {
+     "forum": "InternetIsBeautiful",
+     "title": "Say No to Python/Django - Use PHP/JQuery Instead",
+     "text": "guiexp-900015-655e1031"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 1013,
+    "cost_usd": 0.00055343,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 249,
+      "cached_tokens": 0,
+      "completion_tokens": 764,
+      "cost_usd": 0.0005534298
+     }
+    ],
+    "wall_s": 21.72
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Bernardo Kastrup argues that the world is fundamentally mental. A person\u2019s mind is a dissociated part of one cosmic mind. \u201cMatter\u201d is what regularities in the cosmic mind look like. This dissolves the problem of consciousness and explains odd findings in neuroscience.\" in the philosophy forum, saying \"guiexp-900016-eedc5bd8\".",
+    "expected": {
+     "forum": "philosophy",
+     "title": "Bernardo Kastrup argues that the world is fundamentally mental. A person\u2019s mind is a dissociated part of one cosmic mind. \u201cMatter\u201d is what regularities in the cosmic mind look like. This dissolves the problem of consciousness and explains odd findings in neuroscience.",
+     "text": "guiexp-900016-eedc5bd8"
+    },
+    "extracted": {
+     "forum": "philosophy",
+     "title": "Bernardo Kastrup argues that the world is fundamentally mental. A person\u2019s mind is a dissociated part of one cosmic mind. \u201cMatter\u201d is what regularities in the cosmic mind look like. This dissolves the problem of consciousness and explains odd findings in neuroscience.",
+     "text": "guiexp-900016-eedc5bd8"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 397,
+    "cost_usd": 0.00031233,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 237,
+      "cached_tokens": 0,
+      "completion_tokens": 160,
+      "cost_usd": 0.0003123252
+     }
+    ],
+    "wall_s": 17.69
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Looking for a recommended HVAC engineer\" in the CambridgeMA forum, saying \"guiexp-900017-b6f0131b\".",
+    "expected": {
+     "forum": "CambridgeMA",
+     "title": "Looking for a recommended HVAC engineer",
+     "text": "guiexp-900017-b6f0131b"
+    },
+    "extracted": {
+     "forum": "CambridgeMA",
+     "title": "Looking for a recommended HVAC engineer",
+     "text": "guiexp-900017-b6f0131b"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 319,
+    "cost_usd": 0.00010258,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 243,
+      "cached_tokens": 0,
+      "completion_tokens": 76,
+      "cost_usd": 0.0001025838
+     }
+    ],
+    "wall_s": 17.26
+   },
+   {
+    "goal": "Leave a comment on the post titled \"TIL that the US, Canada, and Cuba have the lowest burden of food borne illness on the planet.\" in the todayilearned forum, saying \"guiexp-900018-cd1fe55a\".",
+    "expected": {
+     "forum": "todayilearned",
+     "title": "TIL that the US, Canada, and Cuba have the lowest burden of food borne illness on the planet.",
+     "text": "guiexp-900018-cd1fe55a"
+    },
+    "extracted": {
+     "forum": "todayilearned",
+     "title": "TIL that the US, Canada, and Cuba have the lowest burden of food borne illness on the planet.",
+     "text": "guiexp-900018-cd1fe55a"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 365,
+    "cost_usd": 0.00012273,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 260,
+      "cached_tokens": 0,
+      "completion_tokens": 105,
+      "cost_usd": 0.0001227303
+     }
+    ],
+    "wall_s": 16.42
+   },
+   {
+    "goal": "Leave a comment on the post titled \"[image] Don\u2019t burn your opportunities\" in the GetMotivated forum, saying \"guiexp-900019-473bced3\".",
+    "expected": {
+     "forum": "GetMotivated",
+     "title": "[image] Don\u2019t burn your opportunities",
+     "text": "guiexp-900019-473bced3"
+    },
+    "extracted": {
+     "forum": "GetMotivated",
+     "title": "[image] Don\u2019t burn your opportunities",
+     "text": "guiexp-900019-473bced3"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 348,
+    "cost_usd": 0.00011825,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 245,
+      "cached_tokens": 0,
+      "completion_tokens": 103,
+      "cost_usd": 0.000118247976
+     }
+    ],
+    "wall_s": 18.94
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Ardelyx is on fire as I predicted months ago.\" in the wallstreetbets forum, saying \"guiexp-900020-9a892617\".",
+    "expected": {
+     "forum": "wallstreetbets",
+     "title": "Ardelyx is on fire as I predicted months ago.",
+     "text": "guiexp-900020-9a892617"
+    },
+    "extracted": {
+     "forum": "wallstreetbets",
+     "title": "Ardelyx is on fire as I predicted months ago.",
+     "text": "guiexp-900020-9a892617"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 370,
+    "cost_usd": 0.0001302,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 250,
+      "cached_tokens": 0,
+      "completion_tokens": 120,
+      "cost_usd": 0.00013020084
+     }
+    ],
+    "wall_s": 17.13
+   },
+   {
+    "goal": "Leave a comment on the post titled \"[Image] What You Don't See Behind Success\" in the GetMotivated forum, saying \"guiexp-900021-3ea4c76f\".",
+    "expected": {
+     "forum": "GetMotivated",
+     "title": "[Image] What You Don't See Behind Success",
+     "text": "guiexp-900021-3ea4c76f"
+    },
+    "extracted": {
+     "forum": "GetMotivated",
+     "title": "[Image] What You Don't See Behind Success",
+     "text": "guiexp-900021-3ea4c76f"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 359,
+    "cost_usd": 0.00012654,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 248,
+      "cached_tokens": 0,
+      "completion_tokens": 111,
+      "cost_usd": 0.0001265418
+     }
+    ],
+    "wall_s": 17.3
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Rowdy pig zoomies\" in the gifs forum, saying \"guiexp-900022-1e1613c6\".",
+    "expected": {
+     "forum": "gifs",
+     "title": "Rowdy pig zoomies",
+     "text": "guiexp-900022-1e1613c6"
+    },
+    "extracted": {
+     "forum": "gifs",
+     "title": "Rowdy pig zoomies",
+     "text": "guiexp-900022-1e1613c6"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 313,
+    "cost_usd": 9.866e-05,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 243,
+      "cached_tokens": 0,
+      "completion_tokens": 70,
+      "cost_usd": 9.86634e-05
+     }
+    ],
+    "wall_s": 18.34
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Journalist plugs in unknown USB drive mailed to him\u2014it exploded in his face\" in the gadgets forum, saying \"guiexp-900023-626a4b45\".",
+    "expected": {
+     "forum": "gadgets",
+     "title": "Journalist plugs in unknown USB drive mailed to him\u2014it exploded in his face",
+     "text": "guiexp-900023-626a4b45"
+    },
+    "extracted": {
+     "forum": "gadgets",
+     "title": "Journalist plugs in unknown USB drive mailed to him\u2014it exploded in his face",
+     "text": "guiexp-900023-626a4b45"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 342,
+    "cost_usd": 0.00011369,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 252,
+      "cached_tokens": 0,
+      "completion_tokens": 90,
+      "cost_usd": 0.0001136916
+     }
+    ],
+    "wall_s": 16.96
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Who is a good guy in history who actually wasn\u2019t a good guy?\" in the AskReddit forum, saying \"guiexp-900024-d46c77ca\".",
+    "expected": {
+     "forum": "AskReddit",
+     "title": "Who is a good guy in history who actually wasn\u2019t a good guy?",
+     "text": "guiexp-900024-d46c77ca"
+    },
+    "extracted": {
+     "forum": "AskReddit",
+     "title": "Who is a good guy in history who actually wasn\u2019t a good guy?",
+     "text": "guiexp-900024-d46c77ca"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 343,
+    "cost_usd": 0.00011435,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 252,
+      "cached_tokens": 0,
+      "completion_tokens": 91,
+      "cost_usd": 0.000114345
+     }
+    ],
+    "wall_s": 16.74
+   },
+   {
+    "goal": "Leave a comment on the post titled \"[image] Don\u2019t burn your opportunities\" in the GetMotivated forum, saying \"guiexp-900025-9111ca90\".",
+    "expected": {
+     "forum": "GetMotivated",
+     "title": "[image] Don\u2019t burn your opportunities",
+     "text": "guiexp-900025-9111ca90"
+    },
+    "extracted": {
+     "forum": "GetMotivated",
+     "title": "[image] Don\u2019t burn your opportunities",
+     "text": "guiexp-900025-9111ca90"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 321,
+    "cost_usd": 0.00010302,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 245,
+      "cached_tokens": 0,
+      "completion_tokens": 76,
+      "cost_usd": 0.0001030194
+     }
+    ],
+    "wall_s": 19.44
+   },
+   {
+    "goal": "Leave a comment on the post titled \"OLED MacBook Air Reportedly Now in Development as Apple Plans to Bring New Display Technology to Multiple Product Lines\" in the gadgets forum, saying \"guiexp-900026-9370e57a\".",
+    "expected": {
+     "forum": "gadgets",
+     "title": "OLED MacBook Air Reportedly Now in Development as Apple Plans to Bring New Display Technology to Multiple Product Lines",
+     "text": "guiexp-900026-9370e57a"
+    },
+    "extracted": {
+     "forum": "gadgets",
+     "title": "OLED MacBook Air Reportedly Now in Development as Apple Plans to Bring New Display Technology to Multiple Product Lines",
+     "text": "guiexp-900026-9370e57a"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 354,
+    "cost_usd": 0.00011697,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 257,
+      "cached_tokens": 0,
+      "completion_tokens": 97,
+      "cost_usd": 0.000116967312
+     }
+    ],
+    "wall_s": 16.39
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Most dogs die virgins.\" in the Showerthoughts forum, saying \"guiexp-900027-9dd37179\".",
+    "expected": {
+     "forum": "Showerthoughts",
+     "title": "Most dogs die virgins.",
+     "text": "guiexp-900027-9dd37179"
+    },
+    "extracted": {
+     "forum": "Showerthoughts",
+     "title": "Most dogs die virgins.",
+     "text": "guiexp-900027-9dd37179"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 320,
+    "cost_usd": 0.00010324,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 243,
+      "cached_tokens": 0,
+      "completion_tokens": 77,
+      "cost_usd": 0.0001032372
+     }
+    ],
+    "wall_s": 16.89
+   },
+   {
+    "goal": "Leave a comment on the post titled \"Music Melting Pot [Week of March 06, 2023]\" in the listentothis forum, saying \"guiexp-900028-e9354ac5\".",
+    "expected": {
+     "forum": "listentothis",
+     "title": "Music Melting Pot [Week of March 06, 2023]",
+     "text": "guiexp-900028-e9354ac5"
+    },
+    "extracted": {
+     "forum": "listentothis",
+     "title": "Music Melting Pot [Week of March 06, 2023]",
+     "text": "guiexp-900028-e9354ac5"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 292,
+    "cost_usd": 0.00020822,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 199,
+      "cached_tokens": 0,
+      "completion_tokens": 93,
+      "cost_usd": 0.0002082168
+     }
+    ],
+    "wall_s": 18.41
+   },
+   {
+    "goal": "Leave a comment on the post titled \"/r/MechanicalKeyboards Ask ANY question, get an answer (March 29, 2023)\" in the MechanicalKeyboards forum, saying \"guiexp-900029-62e63b8d\".",
+    "expected": {
+     "forum": "MechanicalKeyboards",
+     "title": "/r/MechanicalKeyboards Ask ANY question, get an answer (March 29, 2023)",
+     "text": "guiexp-900029-62e63b8d"
+    },
+    "extracted": {
+     "forum": "MechanicalKeyboards",
+     "title": "/r/MechanicalKeyboards Ask ANY question, get an answer (March 29, 2023)",
+     "text": "guiexp-900029-62e63b8d"
+    },
+    "success": true,
+    "error_type": null,
+    "retries": 0,
+    "tokens": 472,
+    "cost_usd": 0.00019515,
+    "calls_detail": [
+     {
+      "call": 1,
+      "kind": "extract",
+      "prompt_tokens": 260,
+      "cached_tokens": 0,
+      "completion_tokens": 212,
+      "cost_usd": 0.0001951488
+     }
+    ],
+    "wall_s": 18.86
+   }
+  ]
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 778,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 35933,
+    "cached_tokens": 18688,
+    "completion_tokens": 228,
+    "total_tokens": 36161,
+    "cost_usd": 0.00602292,
+    "model_calls": 5,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4784,
+      "cached_tokens": 0,
+      "completion_tokens": 36,
+      "cost_usd": 0.0021309552
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 6312,
+      "cached_tokens": 4736,
+      "completion_tokens": 32,
+      "cost_usd": 0.00085960512
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 7856,
+      "cached_tokens": 6272,
+      "completion_tokens": 43,
+      "cost_usd": 0.00092004264
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 7851,
+      "cached_tokens": 0,
+      "completion_tokens": 52,
+      "cost_usd": 0.001709046108
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 9130,
+      "cached_tokens": 7680,
+      "completion_tokens": 65,
+      "cost_usd": 0.000403273332
+     }
+    ],
+    "unit_floored": 14019.2
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 38320,
+    "cached_tokens": 5426,
+    "completion_tokens": 317,
+    "total_tokens": 38637,
+    "cost_usd": 0.01047094,
+    "model_calls": 5,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4659,
+      "cached_tokens": 0,
+      "completion_tokens": 122,
+      "cost_usd": 0.001094445
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 6563,
+      "cached_tokens": 384,
+      "completion_tokens": 68,
+      "cost_usd": 0.00278575704
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 8167,
+      "cached_tokens": 384,
+      "completion_tokens": 16,
+      "cost_usd": 0.00341650584
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 8818,
+      "cached_tokens": 0,
+      "completion_tokens": 63,
+      "cost_usd": 0.001922490108
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 10113,
+      "cached_tokens": 4658,
+      "completion_tokens": 48,
+      "cost_usd": 0.00125174214
+     }
+    ],
+    "unit_floored": 7709.2
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 34313,
+    "cached_tokens": 15616,
+    "completion_tokens": 550,
+    "total_tokens": 34863,
+    "cost_usd": 0.00447065,
+    "model_calls": 5,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4523,
+      "cached_tokens": 0,
+      "completion_tokens": 149,
+      "cost_usd": 0.001082466
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 5665,
+      "cached_tokens": 512,
+      "completion_tokens": 174,
+      "cost_usd": 0.0012147718968
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 6821,
+      "cached_tokens": 512,
+      "completion_tokens": 83,
+      "cost_usd": 0.0014032429488
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 8004,
+      "cached_tokens": 6656,
+      "completion_tokens": 37,
+      "cost_usd": 0.0003566183544
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 9300,
+      "cached_tokens": 7936,
+      "completion_tokens": 107,
+      "cost_usd": 0.0004135496904
+     }
+    ],
+    "unit_floored": 7493.2
+   }
+  ],
+  "success_count": 3,
+  "L_doc_tokens_mean": 36553.666666666664,
+  "L_doc_unit_floored_mean": 9740.533333333333,
+  "totals": {
+   "calls": 15,
+   "prompt_tokens": 108566,
+   "cached_tokens": 39730,
+   "completion_tokens": 1095,
+   "total_tokens": 109661,
+   "cost_usd": 0.02096451
+  }
+ },
+ "total_cost_usd": 0.201961,
+ "break_even": {
+  "c_unit_floored": 25724.9,
+  "floor_unit": 4256.8,
+  "d_unit": 654.1,
+  "q": 0.0,
+  "price_weights": {
+   "r_c": 0.032,
+   "r_o": 3.0
+  },
+  "build_totals_raw": {
+   "exploration": 409421,
+   "translator": 53356,
+   "builder_selected": 51048,
+   "verification_analyzer": 14029,
+   "verification_resume": 96857,
+   "autorpa_build": 624711
+  },
+  "build_totals_priced": {
+   "exploration_floored": 77174.6,
+   "translator": 112180,
+   "builder_selected": 134686,
+   "verification_analyzer_plus_floored_resume": 57915.4,
+   "autorpa_build": 381956.0
+  },
+  "s_unit": 25070.8,
+  "nstar": {
+   "marginal": 5.3722,
+   "autorpa_build": 15.2351
+  }
+ }
+}

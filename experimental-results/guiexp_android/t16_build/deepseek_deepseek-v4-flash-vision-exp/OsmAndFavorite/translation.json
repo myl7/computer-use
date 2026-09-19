@@ -1,0 +1,449 @@
+{
+ "1": {
+  "family": "OsmAndFavorite",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s1_a2/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This action launches the OsmAnd app by name; it depends on the app being installed and launchable, not on any UI element, so it works regardless of element indexes. Failure occurs if the app is missing or cannot be launched.",
+    "snippet": "device.open_app(\"OsmAnd\")",
+    "usage": {
+     "prompt_tokens": 888,
+     "completion_tokens": 1378,
+     "cached_tokens": 0,
+     "cost_usd": 0.001071915768
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action opens the search UI by clicking the \"Search\" button on the map screen. It depends on the map activity being visible and the Search button being present; it fails if the app is not on the map or the button is hidden.",
+    "snippet": "index = device.find(description='Search')\nif index is None:\n    raise RuntimeError(\"Search button not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 972,
+     "completion_tokens": 411,
+     "cached_tokens": 0,
+     "cost_usd": 0.000480249
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Malbun, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action targets the search EditText identified by its hint 'Type to search all'. It can fail if the hint changes or the field is not present on another screen instance; look it up dynamically.",
+    "snippet": "idx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    raise RuntimeError(\"Search field not found\")\ndevice.input_text(binding['location'], index=idx)",
+    "usage": {
+     "prompt_tokens": 1028,
+     "completion_tokens": 377,
+     "cached_tokens": 0,
+     "cost_usd": 0.000460825596
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action depends on a \"SHOW ON MAP\" TextView in the search results list, which appears after typing a location. It can fail if the element is off-screen, not present, or if the search query needs to be entered first via the EditText.",
+    "snippet": "# Ensure the search field is populated with the target location from binding\nsearch_field = device.find(hint='Type to search all', editable=True)\nif search_field is None:\n    raise RuntimeError(\"Search field not found\")\ndevice.click(index=search_field)\ndevice.input_text(binding['location'])\ndevice.settle(2)\n\n# Click the SHOW ON MAP button to add the favorite marker\nshow_on_map = device.find(text='SHOW ON MAP')\nif show_on_map is None:\n    raise RuntimeError(\"'SHOW ON MAP' button not found\")\ndevice.click(index=show_on_map)",
+    "usage": {
+     "prompt_tokens": 848,
+     "completion_tokens": 372,
+     "cached_tokens": 0,
+     "cost_usd": 0.000419204016
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The recorded click targets the Map surface only by its index in the a11y list; on another screen the same \"Map\" View can sit at a different index, and the surrounding status-bar FrameLayouts change, so the index is unstable. The stable identity is description='Map' (class View, clickable); no task value is needed from `binding`.",
+    "snippet": "idx = device.find(description=\"Map\", clickable=True)\nif idx is None:\n    raise LookupError(\"OsmAnd map view (description='Map', clickable) not found on screen\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 495,
+     "completion_tokens": 216,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004978908
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back navigation, not tied to any element. It depends on the current screen state; if the search overlay is not present, back might exit the app instead of closing the search.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 645,
+     "completion_tokens": 1061,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008337384
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 13,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 4876,
+   "cached_tokens": 0,
+   "completion_tokens": 3815,
+   "total_tokens": 8691,
+   "cost_usd": 0.00376382
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "OsmAndFavorite",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This action opens the OsmAnd app from the launcher; it depends on the app being installed and the launcher being available. It can fail if the app is not installed or the launcher is not the default.",
+    "snippet": "device.open_app(\"OsmAnd\")",
+    "usage": {
+     "prompt_tokens": 733,
+     "completion_tokens": 382,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008184924
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends only on the map screen's \"Search\" ImageButton, but the recorded index 4 is positional \u2014 on another instance the toolbar may have a different number/order of buttons (or the map may not be the current screen), so the index would hit a different control. Look it up by its semantic `description='Search'` (and clickable) instead, and fail loudly if absent.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd map screen: no clickable 'Search' ImageButton found\")\ndevice.click(index=idx)\ndevice.settle(1.5)\nif device.find(editable=True, hint=\"Type to search all\") is None:\n    raise RuntimeError(\"Search field did not open after tapping 'Search'\")",
+    "usage": {
+     "prompt_tokens": 919,
+     "completion_tokens": 307,
+     "cached_tokens": 0,
+     "cost_usd": 0.000801504
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "47.0688832, 9.5061564"
+    },
+    "field": "location",
+    "analysis": "This action depends on the search EditText being present with hint 'Type to search all'. It can fail if the search field is not visible or has a different hint on another instance.",
+    "snippet": "idx = device.find(hint='Type to search all', editable=True)\nif idx is None:\n    raise RuntimeError(\"Search field not found\")\ndevice.input_text(binding['location'], index=idx)",
+    "usage": {
+     "prompt_tokens": 988,
+     "completion_tokens": 591,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006013458
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "This action depends on the search result for the given location being visible on the map screen, identified by its coordinate text. It can fail if the location string format differs from the displayed text or if the result is not yet loaded.",
+    "snippet": "location = binding['location']\nindex = device.find(text=location)\nif index is None:\n    raise RuntimeError(f\"Location '{location}' not found on screen\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 993,
+     "completion_tokens": 797,
+     "cached_tokens": 0,
+     "cost_usd": 0.000722294496
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This action clicks the 'Share' option in the location context menu. It depends on that menu being open and the text 'Share' being present; it can fail if the menu is not shown or the app is in a different language.",
+    "snippet": "share_index = device.find(text='Share')\nif share_index is None:\n    raise RuntimeError(\"Share option not found\")\ndevice.click(index=share_index)",
+    "usage": {
+     "prompt_tokens": 741,
+     "completion_tokens": 1506,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011454102
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 743,
+     "completion_tokens": 279,
+     "cached_tokens": 0,
+     "cost_usd": 0.000688248
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The action clicks the \"Add\" button in the map context menu to open the \"Add Favorite\" dialog. This depends on the \"Add\" text being present and unique; on a different instance, the element might be absent or there could be multiple \"Add\" texts, so find the clickable/visible one. The screen after shows the dialog, so we can also verify by waiting for \"Add Favorite\" or the name field.",
+    "snippet": "target = device.find(text='Add', clickable=True)\nif target is None:\n    target = device.find(text='Add')\nif target is None:\n    raise RuntimeError(\"Could not find 'Add' button to open Add Favorite dialog\")\ndevice.click(index=target)",
+    "usage": {
+     "prompt_tokens": 907,
+     "completion_tokens": 320,
+     "cached_tokens": 0,
+     "cost_usd": 0.000398499948
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "input_text",
+     "index": 5,
+     "text": "Favorite"
+    },
+    "field": null,
+    "analysis": "The action types a value into the \"Name\" EditText of the favorite dialog. It depends on that field being present and editable, and on `binding` supplying the task-specific text. The field is identified by hint/text \"Name\", not by index.",
+    "snippet": "name_field = device.find(hint=\"Name\", class_name=\"EditText\", editable=True)\nif name_field is None:\n    raise RuntimeError(\"Name field not found\")\ndevice.input_text(binding[\"location\"], index=name_field)",
+    "usage": {
+     "prompt_tokens": 602,
+     "completion_tokens": 246,
+     "cached_tokens": 0,
+     "cost_usd": 0.00028601496
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 16
+    },
+    "field": null,
+    "analysis": "The recorded action clicks the 'Save' button in the \"Add Favorite\" dialog to persist the new favorite. It depends on the dialog being open and the Save button being visible; it fails if the button is missing, disabled, or if another 'Save' element is present.",
+    "snippet": "save = device.find(text='Save')\nif save is None:\n    raise RuntimeError(\"Save button not found in Add Favorite dialog\")\ndevice.click(index=save)",
+    "usage": {
+     "prompt_tokens": 927,
+     "completion_tokens": 204,
+     "cached_tokens": 0,
+     "cost_usd": 0.000328490316
+    }
+   }
+  ],
+  "effective_actions": 9,
+  "recorded_actions": 10,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 9,
+   "prompt_tokens": 7553,
+   "cached_tokens": 0,
+   "completion_tokens": 4632,
+   "total_tokens": 12185,
+   "cost_usd": 0.0057903
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "OsmAndFavorite",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s3_a1/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This action opens the OsmAnd app globally; it depends on the app being installed and launchable, and does not require any element lookup.",
+    "snippet": "device.open_app(\"OsmAnd\")",
+    "usage": {
+     "prompt_tokens": 888,
+     "completion_tokens": 624,
+     "cached_tokens": 0,
+     "cost_usd": 0.000601128
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the presence of a Search button on the map screen. It can fail if the button is not visible or has a different description on another instance.",
+    "snippet": "search_btn = device.find(description='Search', clickable=True)\nif search_btn is None:\n    raise RuntimeError(\"Search button not found\")\ndevice.click(index=search_btn)",
+    "usage": {
+     "prompt_tokens": 972,
+     "completion_tokens": 312,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004155624
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back action with no element, and its only observable effect was dismissing the on-screen (emoji/sticker) keyboard panel on MapActivity \u2014 so indexed lookup is irrelevant, but a blind `navigate_back()` would pop the map screen on any instance where no keyboard is open.",
+    "snippet": "keyboard_markers = {\"Sticker Keyboard\", \"GIF Keyboard\", \"More features\", \"Clipboard\", \"Settings\"}\nels = device.elements()\nkeyboard_open = any((e.get(\"description\") or \"\") in keyboard_markers for e in els)\nif not keyboard_open:\n    raise AssertionError(\"No on-screen keyboard detected; refusing a blind back press that would leave MapActivity\")\ndevice.navigate_back()\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 761,
+     "completion_tokens": 567,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010724472
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action depends on the search input being present and identifiable by its hint 'Type to search all' and editable attribute. It can fail if the screen does not have the search box or if the hint changes.",
+    "snippet": "index = device.find(hint='Type to search all', editable=True)\nif index is None:\n    raise RuntimeError(\"Search box not found\")\ndevice.input_text(text=binding['location'], index=index)",
+    "usage": {
+     "prompt_tokens": 991,
+     "completion_tokens": 320,
+     "cached_tokens": 0,
+     "cost_usd": 0.000416429244
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action clicks the 'SHOW ON MAP' TextView to display the searched location on the map. It depends on the search result screen being present and the text label being visible; it can fail if the label is absent or not yet loaded.",
+    "snippet": "elem = device.find(text='SHOW ON MAP')\nif elem is None:\n    raise RuntimeError(\"Could not find 'SHOW ON MAP' button\")\ndevice.click(index=elem)",
+    "usage": {
+     "prompt_tokens": 848,
+     "completion_tokens": 198,
+     "cached_tokens": 0,
+     "cost_usd": 0.000307786248
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "long_press",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action long-presses the map view to trigger a context menu. It depends on the map element being exposed with description='Map' and clickable=True; if another instance exposes the map differently, the lookup fails.",
+    "snippet": "el = device.find(description='Map', clickable=True)\nif el is None:\n    raise RuntimeError(\"Map element not found for long press\")\ndevice.long_press(index=el)",
+    "usage": {
+     "prompt_tokens": 656,
+     "completion_tokens": 900,
+     "cached_tokens": 0,
+     "cost_usd": 0.000716318064
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The action depends on an on-screen \"Add\" action item opening the Add Favorite dialog; it fails if the label is absent, localized, or ambiguous, so look it up by its exact text rather than the recorded index.",
+    "snippet": "idx = device.find(text=\"Add\")\nif idx is None:\n    raise LookupError(\"Could not find the 'Add' action needed to open the Add Favorite dialog\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 852,
+     "completion_tokens": 1040,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017302032
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "input_text",
+     "index": 5,
+     "text": "Nendeln, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action depends on an editable EditText with hint 'Name' being present; it can fail if the hint is localized or absent, or if multiple such fields exist.",
+    "snippet": "idx = device.find(hint='Name', editable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find the Name input field\")\ndevice.input_text(binding['location'], index=idx)",
+    "usage": {
+     "prompt_tokens": 631,
+     "completion_tokens": 372,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003804966
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 15
+    },
+    "field": null,
+    "analysis": "The action clicks the 'Save' button in the Add Favorite dialog. This is safe to target by text 'Save' because it is the only visible button with that exact text in the dialog. It could fail if the dialog isn't open or if another 'Save' element exists on screen.",
+    "snippet": "element = device.find(text='Save')\nif element is None:\n    raise ValueError(\"Could not find 'Save' button\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 919,
+     "completion_tokens": 198,
+     "cached_tokens": 0,
+     "cost_usd": 0.000322940772
+    }
+   }
+  ],
+  "effective_actions": 9,
+  "recorded_actions": 10,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 9,
+   "prompt_tokens": 7518,
+   "cached_tokens": 0,
+   "completion_tokens": 4531,
+   "total_tokens": 12049,
+   "cost_usd": 0.00596331
+  },
+  "record_type": "translation"
+ }
+}

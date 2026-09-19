@@ -1,0 +1,638 @@
+{
+ "1": {
+  "family": "FilesMoveFile",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s1_a2/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Files"
+    },
+    "field": null,
+    "analysis": "This is a global launch of the Files (DocumentsUI) app and depends only on the app being installed/resolvable by name; it can fail if the app launches slowly or opens to a different root view, so the rewrite should launch by name and then verify a Files-app signature element (e.g. the \"Show roots\" drawer button or \"Downloads\" root) before proceeding.",
+    "snippet": "device.open_app(\"Files\")\ndevice.settle(2)\nif (device.find(description=\"Show roots\") is None\n        and device.find(text=\"Downloads\") is None\n        and device.find(text=\"Files\") is None):\n    raise RuntimeError(\"Files app did not open after open_app('Files'); \"\n                       \"no DocumentsUI signature element found on screen\")",
+    "usage": {
+     "prompt_tokens": 799,
+     "completion_tokens": 449,
+     "cached_tokens": 0,
+     "cost_usd": 0.00029999772
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action clicks the \"Show roots\" button to open the navigation drawer, which is needed to reach the sdk_gphone_x86_64 root. It fails if the button isn't found (drawer already open or different layout), so look it up by its unique description.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    raise LookupError(\"Show roots button not found on screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 675,
+     "completion_tokens": 105,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001032075
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The click just opens the internal-storage root (\"sdk_gphone*_\u2026\" volume) from the DocumentsUI drawer, so it depends on that volume entry being present and the roots drawer being open; on other instances the index differs, the drawer may be closed, and the volume name suffix (arm64 vs x86_64) can vary, so the entry must be found by its text (with a drawer-open fallback and a loose prefix match).",
+    "snippet": "import re\n\nname = binding.get(\"storage_area\") or binding.get(\"storage\") or binding.get(\"volume\")\nif not name:\n    raise KeyError(\"binding must provide the storage area name ('storage_area')\")\n\nidx = device.find(text=name, contains=True)\nif idx is None:\n    roots = device.find(description=\"Show roots\", clickable=True)\n    if roots is None:\n        raise LookupError(\"'Show roots' drawer button not found\")\n    device.click(roots)\n    device.settle(1.5)\n    idx = device.find(text=name, contains=True)\nif idx is None:\n    # volume suffix may differ between emulator instances (arm64 / x86_64)\n    prefix = re.split(r\"\\d\", name)[0]          # e.g. 'sdk_gphone'\n    idx = device.find(text=prefix, contains=True)\nif idx is None:\n    raise LookupError(f\"storage root '{name}' not found on screen\")\n\ndevice.click(idx)\ndevice.settle(1.5)",
+    "usage": {
+     "prompt_tokens": 732,
+     "completion_tokens": 2360,
+     "cached_tokens": 0,
+     "cost_usd": 0.00112367376
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "The action clicks the 'DCIM' folder row to open it; indexes vary per screen, so look it up by text 'DCIM' as a TextView. Failure if the folder isn't visible (needs scrolling) or is missing.",
+    "snippet": "idx = device.find(text=\"DCIM\", class_name=\"TextView\")\nif idx is None:\n    raise LookupError(\"DCIM folder not found on screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 837,
+     "completion_tokens": 94,
+     "cached_tokens": 0,
+     "cost_usd": 0.000115434
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "long_press",
+     "index": 20
+    },
+    "field": null,
+    "analysis": "The long-press targets the non-clickable detail line of the file row (\"<time>, <size>, JPG image\") in the Files app, which toggles selection mode. It depends on the row's stable suffix \"JPG image\" \u2014 the exact timestamp/size and the element index vary per instance, so match on that stable substring and handle off-screen rows with a scroll.",
+    "snippet": "target = device.find(contains='JPG image', clickable=False, editable=False)\nif target is None:\n    device.scroll('down')\n    device.settle(1)\n    target = device.find(contains='JPG image', clickable=False, editable=False)\nif target is None:\n    raise LookupError(\n        \"File detail line (text like '<time>, <size>, JPG image') not found \"\n        \"for moving the file; check the file is visible in the source folder.\"\n    )\ndevice.long_press(target)",
+    "usage": {
+     "prompt_tokens": 545,
+     "completion_tokens": 998,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005059494
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action opens the selection-mode overflow menu, so it depends only on the toolbar button with description \"More options\" being present (i.e., a file is currently selected); the recorded index 4 is unstable across instances, and the lookup fails if no selection is active or the menu button is absent.",
+    "snippet": "idx = device.find(description=\"More options\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"'More options' overflow button not found \u2014 is a file selected in Files?\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 837,
+     "completion_tokens": 382,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003133845
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends on the overflow-menu item \"Move to\u2026\" in DocumentsUI; on another instance the menu may be reached via a different index or the item may need scrolling, so we look it up by text and fail clearly if absent.",
+    "snippet": "el = device.find(text=\"Move to\u2026\", contains=True)\nif el is None:\n    raise RuntimeError(\"'Move to\u2026' menu item not found on screen\")\ndevice.click(index=el)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 668,
+     "completion_tokens": 103,
+     "cached_tokens": 0,
+     "cost_usd": 7.50915e-05
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action opens the storage-roots drawer in the DocumentsUI picker so the agent can switch roots/folders for the move; it depends only on the stable \"Show roots\" description, but on other instances the element index differs and the button may be absent (e.g., drawer already open or different picker layout), so a semantic lookup with a clear failure is needed.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"'Show roots' button not found; cannot open roots drawer for move navigation\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 599,
+     "completion_tokens": 290,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002325015
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The click targets the storage-root entry (TextView labeled with the emulator volume name) in the DocumentsUI \"Move to\u2026\" picker, to enter that volume before picking the destination folder. It fails on other instances because the volume label varies (recording shows `sdk_gphone64_arm64` while the task names `sdk_gphone_x86_64`) and its index/row clickability differ, so it must be found by fuzzy text match on the binding's storage name with a generic fallback.",
+    "snippet": "storage = binding.get(\"storage_area\") or binding.get(\"storage\") or binding.get(\"volume\")\nidx = None\nif storage:\n    idx = device.find(text=storage, contains=True)\nif idx is None:\n    idx = device.find(text=\"sdk_gphone\", contains=True)  # emulator volume label prefix\nif idx is None:\n    raise LookupError(f\"Storage root entry for '{storage}' not found on picker screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 677,
+     "completion_tokens": 1243,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007158195
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "The action is a blind global scroll of the DocumentsUI picker list, recorded only to bring more folders (e.g., the destination folder) into view. On another instance a fixed single scroll may be unnecessary (folder already visible) or insufficient (list longer/shorter), so it should be made conditional: scroll down until the folder named in `binding` is actually present, with a bounded retry.",
+    "snippet": "target = binding[\"destination_folder\"]\nfor _ in range(10):\n    if device.find(text=target) is not None or device.find(contains=target) is not None:\n        break\n    device.scroll(\"down\")\n    device.settle(1)\nif device.find(text=target) is None and device.find(contains=target) is None:\n    raise LookupError(f\"Folder '{target}' not found in picker after scrolling\")",
+    "usage": {
+     "prompt_tokens": 517,
+     "completion_tokens": 771,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004584195
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "The click enters a named subfolder in the DocumentsUI picker; it depends only on a TextView whose text equals the folder name from the task binding (here 'Recordings' = the destination folder), not on index 18. On another instance the index shifts and the folder may not be visible without scrolling, so look it up by text and fail loudly if absent.",
+    "snippet": "folder = binding.get(\"destination_folder\") or binding.get(\"source_folder\")\nidx = device.find(text=folder, class_name=\"TextView\")\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=folder, class_name=\"TextView\")\nif idx is None:\n    raise LookupError(f\"Folder '{folder}' not found on picker screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 603,
+     "completion_tokens": 784,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004776255
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "This action is the final confirmation click on the picker's \"MOVE\" button; it depends only on that button being present (distinct from \"CANCEL\") after the destination folder has been navigated to. Indexes shift between instances, so it must be found by its unique text/clickable attributes, and the move fails if the button is missing (e.g., wrong screen state).",
+    "snippet": "move_idx = device.find(text=\"MOVE\", clickable=True)\nif move_idx is None:\n    raise RuntimeError(\"MOVE confirmation button not found; destination picker screen not in expected state\")\ndevice.click(move_idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 856,
+     "completion_tokens": 461,
+     "cached_tokens": 0,
+     "cost_usd": 0.000355311
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 8345,
+   "cached_tokens": 0,
+   "completion_tokens": 8040,
+   "total_tokens": 16385,
+   "cost_usd": 0.00477642
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "FilesMoveFile",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Files"
+    },
+    "field": null,
+    "analysis": "This is a global launch of the DocumentsUI \"Files\" app; it depends only on the app label resolving on the launcher, and can fail if the label differs or the launch is slow, so we verify a DocumentsUI marker (e.g. \"Show roots\") appears before proceeding.",
+    "snippet": "device.open_app(\"Files\")\ndevice.settle(2)\nif device.find(description=\"Show roots\") is None and device.find(text=\"Downloads\") is None:\n    raise RuntimeError(\"Files app (DocumentsUI) did not open: no 'Show roots'/'Downloads' marker found\")",
+    "usage": {
+     "prompt_tokens": 799,
+     "completion_tokens": 469,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003508065
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action opens the DocumentsUI navigation drawer by clicking the toolbar's \"Show roots\" ImageButton; it only depends on that description and the drawer being closed. It fails if the drawer is already open (button absent) or the button is not currently in the a11y tree, so we look it up by description and error clearly if missing.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    raise LookupError(\"'Show roots' button not found \u2014 drawer may already be open or toolbar not visible\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 675,
+     "completion_tokens": 458,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003269475
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The click targets the storage-root entry whose label is the volume name (recorded as `sdk_gphone64_arm64`, i.e. the instance's storage area from the binding), shown in the roots drawer; on another instance the index differs, the label matches the bound storage name, and the drawer may be closed, so the root may only appear after tapping \"Show roots\".",
+    "snippet": "storage = binding.get('storage_area') or binding.get('storage') or binding.get('volume_name')\nif not storage:\n    raise KeyError(\"binding does not contain the storage area name\")\nidx = device.find(text=storage, contains=True)\nif idx is None:\n    roots_btn = device.find(description='Show roots', clickable=True)\n    if roots_btn is not None:\n        device.click(roots_btn)\n        device.settle(1)\n    idx = device.find(text=storage, contains=True)\nif idx is None:\n    raise LookupError(f\"Storage root '{storage}' not found on screen (drawer open or closed)\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 732,
+     "completion_tokens": 1238,
+     "cached_tokens": 0,
+     "cost_usd": 0.000721512
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 15
+    },
+    "field": null,
+    "analysis": "This action navigates into the source folder by clicking its name in the storage root listing; it depends only on the folder's text label, which can shift index or require scrolling on other instances.",
+    "snippet": "folder = binding[\"source_folder\"]\nidx = device.find(text=folder)\nif idx is None:\n    raise LookupError(f\"Source folder '{folder}' not visible on screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 839,
+     "completion_tokens": 323,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002844765
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "This is a global scroll with no element dependency; it only makes sense while the target file is still below the fold. On another instance, scrolling blindly could scroll past an already-visible file (or be a no-op at the list end), so guard it on the file's visibility from `binding`.",
+    "snippet": "target = binding[\"file_name\"]\n\n# Global scroll down: only needed if the file to move is not yet visible.\nif device.find(text=target) is None:\n    device.scroll(\"down\")\n    device.settle(1)\nelse:\n    # File already on screen; scrolling would risk moving it out of view.\n    pass",
+    "usage": {
+     "prompt_tokens": 774,
+     "completion_tokens": 1055,
+     "cached_tokens": 0,
+     "cost_usd": 0.000637164
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "long_press",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "The action long-presses the row of the file to be moved, identified only by its displayed file name; on another instance both the file name and its index differ, and the file may not be visible without scrolling.",
+    "snippet": "file_name = binding[\"file_name\"]\nidx = device.find(text=file_name, class_name=\"TextView\")\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=file_name, class_name=\"TextView\")\nif idx is None:\n    raise LookupError(f\"File '{file_name}' not found in current folder listing\")\ndevice.long_press(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 548,
+     "completion_tokens": 338,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002486631312
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action only depends on the overflow menu button being present with description 'More options' (clickable ImageView); element indexes shift between instances, and the button may be missing if no file is selected or the menu is already open, so look it up semantically and fail loudly if absent.",
+    "snippet": "idx = device.find(description=\"More options\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Overflow 'More options' button not found; cannot open move menu\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 846,
+     "completion_tokens": 349,
+     "cached_tokens": 0,
+     "cost_usd": 0.000298386
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends only on the overflow-menu item labeled \"Move to\u2026\" being present on screen; it does not depend on any task binding (file/folder names). It can fail if the label differs slightly (e.g., ellipsis rendering) or the menu isn't open, so look it up by a tolerant text match and raise if absent.",
+    "snippet": "idx = device.find(text='Move to\u2026')\nif idx is None:\n    idx = device.find(contains='Move to')\nif idx is None:\n    raise RuntimeError(\"Menu item 'Move to\u2026' not found; overflow menu may not be open\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 648,
+     "completion_tokens": 539,
+     "cached_tokens": 0,
+     "cost_usd": 0.000363033
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action opens the storage-roots drawer in the DocumentsUI picker by clicking the toolbar ImageButton with description 'Show roots'; it depends only on that stable content description being present while the drawer is closed. It can fail if the drawer is already open (button absent) or the description is localized/absent, so we look it up semantically and raise if not found.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"'Show roots' button not found \u2014 drawer may already be open or screen state unexpected\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 599,
+     "completion_tokens": 376,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002750715
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The click targets the storage-root entry in the documentsui \"Move to\u2026\" picker's roots drawer; its label is the instance-specific storage name (recorded as `sdk_gphone64_arm64`, not the template's `sdk_gphone_x86_64`), and the drawer may or may not already be open, and indexes shift, so we must look the root up by exact text from `binding` and open the drawer via \"Show roots\" if needed.",
+    "snippet": "storage = binding.get('storage_area') or binding.get('storage')\nif not storage:\n    raise KeyError(\"binding does not contain the storage area name\")\n\nif device.find(text=storage) is None:          # roots drawer not showing the entry\n    if device.find(description='Show roots') is not None:\n        device.click(description='Show roots')\n        device.settle(1)\n\nidx = device.find(text=storage)                # exact match avoids 'Files on <name>' title\nif idx is None:\n    raise LookupError(f\"Storage root '{storage}' not found in Move-to picker\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 677,
+     "completion_tokens": 1375,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007811595
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "The click navigates into a folder by tapping its name row, so it depends only on the folder's visible text matching the task's source folder \u2014 element indexes and surrounding rows will differ per instance, and the row may need scrolling into view.",
+    "snippet": "folder = binding[\"source_folder\"]\nidx = device.find(text=folder)\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=folder)\nif idx is None:\n    raise LookupError(f\"Source folder '{folder}' not found on screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 582,
+     "completion_tokens": 978,
+     "cached_tokens": 0,
+     "cost_usd": 0.00042790275
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "This action depends only on the picker's confirmation button labeled 'MOVE' (clickable Button) appearing on the PickActivity screen; it does not depend on task values or element indexes. On another instance the index will differ and the button may be absent (e.g., move already confirmed or dialog not shown), so we must look it up by text and fail clearly if missing.",
+    "snippet": "idx = device.find(text='MOVE', clickable=True)\nif idx is None:\n    raise RuntimeError(\"MOVE confirmation button not found on the picker screen\")\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 896,
+     "completion_tokens": 292,
+     "cached_tokens": 0,
+     "cost_usd": 0.000277596
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 8615,
+   "cached_tokens": 0,
+   "completion_tokens": 7790,
+   "total_tokens": 16405,
+   "cost_usd": 0.00499272
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "FilesMoveFile",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Files"
+    },
+    "field": null,
+    "analysis": "This is a global `open_app` action, so it depends on no element indexes at all \u2014 it only depends on the Files app being installed and launchable. On another instance the risk is only that the app fails to open (missing app, slow launch), which should be verified rather than assumed.",
+    "snippet": "app_name = binding.get(\"app_name\", \"Files\")\ndevice.open_app(app_name)\ndevice.settle(3)\nif device.find(description=\"Show roots\") is None:\n    raise RuntimeError(f\"App '{app_name}' did not open; expected Files (documentsui) UI not found\")",
+    "usage": {
+     "prompt_tokens": 799,
+     "completion_tokens": 527,
+     "cached_tokens": 768,
+     "cost_usd": 0.000253684728
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The click depends solely on the stable semantic description 'Show roots' of the toolbar toggle in DocumentsUI, not on any task value; it can fail on another instance if indexes differ (handled by lookup), if the drawer is already open (button absent), or if the button is off-screen.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    # drawer may already be open\n    if device.find(text=\"sdk_gphone64_arm64\", contains=True) is None:\n        raise RuntimeError(\"Roots toggle ('Show roots') not found and root drawer not visible\")\nelse:\n    device.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 675,
+     "completion_tokens": 404,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002641914
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The click opens the storage volume root in the Files app by tapping its name label (an emulator-specific name like 'sdk_gphone64_arm64', which may be 'sdk_gphone_x86_64' on other instances); a fixed index or hardcoded volume name fails when the list order or the AVD/storage name differs.",
+    "snippet": "storage = binding.get('storage_area') or binding.get('storage')\nif not storage:\n    raise ValueError(\"binding does not provide the storage area name\")\nidx = device.find(text=storage)\nif idx is None:\n    idx = device.find(contains=storage)\nif idx is None:\n    raise LookupError(f\"storage root '{storage}' not found on screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 732,
+     "completion_tokens": 954,
+     "cached_tokens": 704,
+     "cost_usd": 0.000437621184
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 19
+    },
+    "field": null,
+    "analysis": "The click opens the source folder of the move task inside the Files app; it depends only on a row whose text equals the folder name being visible on the storage-root screen. On another instance the index differs and the folder may sit below the fold, so resolve it by text (from binding) and scroll if not immediately visible.",
+    "snippet": "src = binding[\"source_folder\"]\nidx = device.find(text=src)\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=src)\nif idx is None:\n    raise LookupError(f\"Source folder '{src}' not found in Files app\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 719,
+     "completion_tokens": 413,
+     "cached_tokens": 0,
+     "cost_usd": 0.00027386172
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "long_press",
+     "index": 17
+    },
+    "field": null,
+    "analysis": "The action long-presses the file entry to enter selection mode; it depends only on the file's label text matching the task's `file_name`, while the index varies per screen. It fails if the file isn't currently rendered (e.g., needs scrolling) or the label differs, so we look it up by text and error out if absent.",
+    "snippet": "target = device.find(text=binding[\"file_name\"])\nif target is None:\n    raise LookupError(f\"File '{binding['file_name']}' not visible on screen\")\ndevice.long_press(target)",
+    "usage": {
+     "prompt_tokens": 542,
+     "completion_tokens": 345,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001507572
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The click opens the selection-mode overflow menu (needed to reach \"Move to\u2026\"), and depends only on the toolbar's three-dot button being present with the standard content description; it can fail if the button is localized differently or not yet visible because no file is selected.",
+    "snippet": "idx = device.find(description=\"More options\", clickable=True)\nif idx is None:\n    raise LookupError(\"Overflow button ('More options') not found \u2014 is a file selected?\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 828,
+     "completion_tokens": 263,
+     "cached_tokens": 0,
+     "cost_usd": 0.00022276584
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends only on the overflow-menu item labeled 'Move to\u2026' being present; element indexes vary between instances, so the item must be looked up by its stable text. It can fail if the menu wasn't opened or the label is missing/localized, in which case the lookup returns None and we must raise.",
+    "snippet": "idx = device.find(text='Move to\u2026')\nif idx is None:\n    raise RuntimeError(\"Menu item 'Move to\u2026' not found on current screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 648,
+     "completion_tokens": 286,
+     "cached_tokens": 0,
+     "cost_usd": 0.000237798
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The click opens DocumentsUI's root drawer via the toolbar \"Show roots\" ImageButton; it only depends on that stable content-description, not on any task value. It fails if the drawer is already open (button absent from the tree) or the description is missing/localized, in which case the lookup must raise instead of guessing an index.",
+    "snippet": "el = device.find(description=\"Show roots\", clickable=True)\nif el is None:\n    raise RuntimeError(\"'Show roots' button not found; root drawer may already be open\")\ndevice.click(el)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 599,
+     "completion_tokens": 451,
+     "cached_tokens": 0,
+     "cost_usd": 0.00027473292
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The click opens the internal-storage root entry in the document picker; its label varies per emulator image (here `sdk_gphone64_arm64`, task says `sdk_gphone_x86_64`), so the entry must be located by a device-generic name pattern (falling back to the binding's storage value) rather than the recorded index, and the script fails if the root entry isn't visible.",
+    "snippet": "storage = binding.get(\"storage\") or binding.get(\"storage_area\") or \"\"\nidx = device.find(contains=storage) if storage else None\nif idx is None:\n    idx = device.find(contains=\"sdk_gphone\")\nif idx is None:\n    raise RuntimeError(\"Internal storage root entry (sdk_gphone*) not found on picker screen\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 677,
+     "completion_tokens": 863,
+     "cached_tokens": 0,
+     "cost_usd": 0.00046439316
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "This is a global scroll of the DocumentsUI picker list, needed only to bring more root folders (e.g. the destination folder) into view; on another instance the folder count/order differs, so an unconditional scroll may scroll past the target or do nothing useful when it is already visible.",
+    "snippet": "target = binding[\"destination_folder\"]\nfor _ in range(10):\n    if device.find(text=target) is not None:\n        break\n    device.scroll(\"down\")\n    device.settle(1)\nelse:\n    raise LookupError(f\"Destination folder '{target}' not visible after scrolling\")",
+    "usage": {
+     "prompt_tokens": 517,
+     "completion_tokens": 809,
+     "cached_tokens": 0,
+     "cost_usd": 0.00041996196
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "The click targets the destination folder entry (`Recordings` = `binding[\"destination_folder\"]`) in the DocumentsUI picker's folder list; it depends only on that text being present, while the index (18) shifts with the folder list contents, and the folder may sit below the fold on other instances.",
+    "snippet": "folder = binding[\"destination_folder\"]\nidx = device.find(text=folder)\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=folder)\nif idx is None:\n    raise LookupError(f\"Destination folder '{folder}' not found in storage listing\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 603,
+     "completion_tokens": 601,
+     "cached_tokens": 0,
+     "cost_usd": 0.00034059564
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The action depends only on the picker's confirmation button labeled 'MOVE' being present after the destination folder was chosen; element indexes vary per instance, and the button may be missing if no move is staged, so we look it up by text/class/clickability and fail loudly if absent.",
+    "snippet": "idx = device.find(text='MOVE', clickable=True)\nif idx is None:\n    raise RuntimeError(\"MOVE confirmation button not found on destination picker screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 779,
+     "completion_tokens": 326,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002770515
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 8118,
+   "cached_tokens": 1472,
+   "completion_tokens": 6242,
+   "total_tokens": 14360,
+   "cost_usd": 0.00361742
+  },
+  "record_type": "translation"
+ }
+}

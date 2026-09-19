@@ -1,0 +1,236 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Target note 'friendly_koala_2023_03_02' is not selected/present on screen",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Target note 'friendly_koala_2023_03_02' is not selected/present on screen"
+    }
+   ],
+   "analysis": {
+    "cause": "The long-press actually worked \u2014 the item's description changed from 'File friendly_koala_2023_03_02' to 'Selected friendly_koala_2023_03_02', so the follow-up lookup for a 'File ...' description matched nothing and raised the error, even though the note is selected and the Delete button is visible.",
+    "done": "Markor is open and the target note is already long-pressed/selected, with its context menu (Rename/Details/Delete) shown.",
+    "plan": "1. Tap 'Delete' (index 5) in the context menu. 2. Confirm the deletion in the dialog that appears (tap the OK/Yes/Delete confirmation button). 3. Verify 'friendly_koala_2023_03_02' no longer appears in the file list.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 881,
+    "cached_tokens": 0,
+    "completion_tokens": 646,
+    "total_tokens": 1527,
+    "cost_usd": 0.0002703591,
+    "usage": {
+     "prompt_tokens": 881,
+     "completion_tokens": 646,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002703591
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 2,
+    "success": true,
+    "calls": 2,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6170,
+      "cached_tokens": 0,
+      "completion_tokens": 69,
+      "total_tokens": 6239,
+      "cost_usd": 0.00057024,
+      "usage": {
+       "prompt_tokens": 6170,
+       "completion_tokens": 69,
+       "cached_tokens": 0,
+       "cost_usd": 0.00057024
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":5}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 10116,
+      "cached_tokens": 0,
+      "completion_tokens": 38,
+      "total_tokens": 10154,
+      "cost_usd": 0.0009126216,
+      "usage": {
+       "prompt_tokens": 10116,
+       "completion_tokens": 38,
+       "cached_tokens": 0,
+       "cost_usd": 0.0009126216
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":3}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 2393,
+    "cached_tokens": 0,
+    "completion_tokens": 7434,
+    "total_tokens": 9827,
+    "cost_usd": 0.00379307907,
+    "usage": {
+     "prompt_tokens": 2393,
+     "completion_tokens": 7434,
+     "cached_tokens": 0,
+     "cost_usd": 0.00379307907
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2393,
+      "cached_tokens": 0,
+      "completion_tokens": 7434,
+      "total_tokens": 9827,
+      "cost_usd": 0.00379307907,
+      "usage": {
+       "prompt_tokens": 2393,
+       "completion_tokens": 7434,
+       "cached_tokens": 0,
+       "cost_usd": 0.00379307907
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 1,
+ "replays": 1,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine1",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"note file name including its extension, e.g. note.txt\",\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"].strip()\n\n    # ------------------------------------------------------------------\n    # Helpers. All matching is done by scanning fresh element lists so we\n    # are independent of device.find() semantics, and by exact title so\n    # similar notes (e.g. '<name>_copy.md', '1JyG_<name>.md') are never\n    # touched.\n    # ------------------------------------------------------------------\n    def norm(s):\n        return \" \".join((s or \"\").split())\n\n    def row_kind(el):\n        \"\"\"Return 'file' | 'selected' | None for a list row of our target.\"\"\"\n        d = norm(el.get(\"description\"))\n        if d == \"File %s\" % file_name:\n            return \"file\"\n        if d == \"Selected %s\" % file_name:\n            return \"selected\"\n        return None\n\n    def find_row(want=\"any\"):\n        \"\"\"Locate the target row on the current screen (never by position).\"\"\"\n        for el in device.elements():\n            kind = row_kind(el)\n            if kind is None or not el.get(\"clickable\"):\n                continue\n            if want == \"any\" or want == kind:\n                return el\n        return None\n\n    def on_main_screen():\n        for el in device.elements():\n            if norm(el.get(\"description\")) in (\"Create a new file or folder\", \"Files\"):\n                return True\n        return False\n\n    # ------------------------------------------------------------------\n    # 1. Launch Markor and ensure its main (file list) screen is showing.\n    # ------------------------------------------------------------------\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    if not on_main_screen():\n        device.navigate_home()\n        device.settle(1)\n        device.open_app(\"Markor\")\n        device.settle(3)\n        if not on_main_screen():\n            raise RuntimeError(\n                \"Markor did not launch: app missing or main screen not detected\"\n            )\n\n    # ------------------------------------------------------------------\n    # 2. Locate the target note row by its exact title, scrolling if\n    #    needed, then long-press it to enter selection mode.\n    # ------------------------------------------------------------------\n    target = find_row(\"file\")\n    scrolls = 0\n    while target is None and scrolls < 6:\n        device.scroll(\"down\")\n        target = find_row(\"file\")\n        scrolls += 1\n\n    if target is None:\n        raise LookupError(\"Note '%s' not found in the file list\" % file_name)\n\n    device.long_press(target[\"index\"])\n    device.settle(1)\n\n    # The long-press works: the row's description flips from\n    # 'File <name>' to 'Selected <name>' (and a selection bar with a\n    # Delete action appears). Verify via that state, retrying once.\n    if find_row(\"selected\") is None:\n        retry = find_row(\"file\")\n        if retry is not None:\n            device.long_press(retry[\"index\"])\n            device.settle(1)\n        if find_row(\"selected\") is None:\n            # Accept as selected if the plain row is gone from matching or a\n            # selection bar with Delete is visible; otherwise fail.\n            still_plain = find_row(\"file\")\n            delete_probe = device.find(description=\"Delete\", clickable=True)\n            if still_plain is not None and delete_probe is None:\n                raise RuntimeError(\n                    \"Could not select note '%s' via long-press\" % file_name\n                )\n\n    # ------------------------------------------------------------------\n    # 3. Tap the Delete action shown by the selection top bar.\n    # ------------------------------------------------------------------\n    delete_btn = device.find(description=\"Delete\", clickable=True)\n    if delete_btn is None:\n        device.settle(1)\n        delete_btn = device.find(description=\"Delete\", clickable=True)\n    if delete_btn is None:\n        raise RuntimeError(\n            \"Delete button not found after selecting note '%s'\" % file_name\n        )\n    device.click(delete_btn)\n    device.settle(1)  # wait for the confirmation dialog (if any)\n\n    # ------------------------------------------------------------------\n    # 4. Confirm the deletion dialog. Button label varies (OK / Yes /\n    #    Delete / Confirm), so scan for a clickable confirmation control.\n    # ------------------------------------------------------------------\n    def find_confirm():\n        # Prefer unambiguous positive answers first ('Delete' last, since a\n        # selection-bar Delete may still linger behind the dialog).\n        for want in (\"ok\", \"yes\", \"confirm\"):\n            for el in device.elements():\n                if not el.get(\"clickable\"):\n                    continue\n                label = norm(el.get(\"text\") or el.get(\"description\") or \"\").lower()\n                if label == want:\n                    return el\n        for el in device.elements():\n            if not el.get(\"clickable\"):\n                continue\n            label = norm(el.get(\"text\") or el.get(\"description\") or \"\").lower()\n            if label in (\"delete\", \"confirm delete\", \"yes, delete\", \"move to trash\"):\n                return el\n        return None\n\n    confirm = find_confirm()\n    attempts = 0\n    while confirm is None and attempts < 2:\n        device.settle(1)\n        confirm = find_confirm()\n        attempts += 1\n\n    if confirm is not None:\n        device.click(confirm[\"index\"])\n        device.settle(1)\n    # else: some builds delete immediately without a dialog; the check\n    # below validates the outcome either way.\n\n    # ------------------------------------------------------------------\n    # 5. Verify the note is gone from the list (exact title, so similarly\n    #    named notes are ignored).\n    # ------------------------------------------------------------------\n    device.settle(1)\n    leftover = find_row(\"any\")\n    checks = 0\n    while leftover is not None and checks < 2:\n        device.scroll(\"down\")\n        leftover = find_row(\"any\")\n        checks += 1\n\n    if leftover is not None:\n        raise RuntimeError(\"Note '%s' is still present after delete\" % file_name)\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"note file name including its extension, e.g. note.txt\",\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"].strip()\n\n    # ------------------------------------------------------------------\n    # Helpers. All matching is done by scanning fresh element lists so we\n    # are independent of device.find() semantics, and by exact title so\n    # similar notes (e.g. '<name>_copy.md', '1JyG_<name>.md') are never\n    # touched.\n    # ------------------------------------------------------------------\n    def norm(s):\n        return \" \".join((s or \"\").split())\n\n    def row_kind(el):\n        \"\"\"Return 'file' | 'selected' | None for a list row of our target.\"\"\"\n        d = norm(el.get(\"description\"))\n        if d == \"File %s\" % file_name:\n            return \"file\"\n        if d == \"Selected %s\" % file_name:\n            return \"selected\"\n        return None\n\n    def find_row(want=\"any\"):\n        \"\"\"Locate the target row on the current screen (never by position).\"\"\"\n        for el in device.elements():\n            kind = row_kind(el)\n            if kind is None or not el.get(\"clickable\"):\n                continue\n            if want == \"any\" or want == kind:\n                return el\n        return None\n\n    def on_main_screen():\n        for el in device.elements():\n            if norm(el.get(\"description\")) in (\"Create a new file or folder\", \"Files\"):\n                return True\n        return False\n\n    # ------------------------------------------------------------------\n    # 1. Launch Markor and ensure its main (file list) screen is showing.\n    # ------------------------------------------------------------------\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    if not on_main_screen():\n        device.navigate_home()\n        device.settle(1)\n        device.open_app(\"Markor\")\n        device.settle(3)\n        if not on_main_screen():\n            raise RuntimeError(\n                \"Markor did not launch: app missing or main screen not detected\"\n            )\n\n    # ------------------------------------------------------------------\n    # 2. Locate the target note row by its exact title, scrolling if\n    #    needed, then long-press it to enter selection mode.\n    # ------------------------------------------------------------------\n    target = find_row(\"file\")\n    scrolls = 0\n    while target is None and scrolls < 6:\n        device.scroll(\"down\")\n        target = find_row(\"file\")\n        scrolls += 1\n\n    if target is None:\n        raise LookupError(\"Note '%s' not found in the file list\" % file_name)\n\n    device.long_press(target[\"index\"])\n    device.settle(1)\n\n    # The long-press works: the row's description flips from\n    # 'File <name>' to 'Selected <name>' (and a selection bar with a\n    # Delete action appears). Verify via that state, retrying once.\n    if find_row(\"selected\") is None:\n        retry = find_row(\"file\")\n        if retry is not None:\n            device.long_press(retry[\"index\"])\n            device.settle(1)\n        if find_row(\"selected\") is None:\n            # Accept as selected if the plain row is gone from matching or a\n            # selection bar with Delete is visible; otherwise fail.\n            still_plain = find_row(\"file\")\n            delete_probe = device.find(description=\"Delete\", clickable=True)\n            if still_plain is not None and delete_probe is None:\n                raise RuntimeError(\n                    \"Could not select note '%s' via long-press\" % file_name\n                )\n\n    # ------------------------------------------------------------------\n    # 3. Tap the Delete action shown by the selection top bar.\n    # ------------------------------------------------------------------\n    delete_btn = device.find(description=\"Delete\", clickable=True)\n    if delete_btn is None:\n        device.settle(1)\n        delete_btn = device.find(description=\"Delete\", clickable=True)\n    if delete_btn is None:\n        raise RuntimeError(\n            \"Delete button not found after selecting note '%s'\" % file_name\n        )\n    device.click(delete_btn)\n    device.settle(1)  # wait for the confirmation dialog (if any)\n\n    # ------------------------------------------------------------------\n    # 4. Confirm the deletion dialog. Button label varies (OK / Yes /\n    #    Delete / Confirm), so scan for a clickable confirmation control.\n    # ------------------------------------------------------------------\n    def find_confirm():\n        # Prefer unambiguous positive answers first ('Delete' last, since a\n        # selection-bar Delete may still linger behind the dialog).\n        for want in (\"ok\", \"yes\", \"confirm\"):\n            for el in device.elements():\n                if not el.get(\"clickable\"):\n                    continue\n                label = norm(el.get(\"text\") or el.get(\"description\") or \"\").lower()\n                if label == want:\n                    return el\n        for el in device.elements():\n            if not el.get(\"clickable\"):\n                continue\n            label = norm(el.get(\"text\") or el.get(\"description\") or \"\").lower()\n            if label in (\"delete\", \"confirm delete\", \"yes, delete\", \"move to trash\"):\n                return el\n        return None\n\n    confirm = find_confirm()\n    attempts = 0\n    while confirm is None and attempts < 2:\n        device.settle(1)\n        confirm = find_confirm()\n        attempts += 1\n\n    if confirm is not None:\n        device.click(confirm[\"index\"])\n        device.settle(1)\n    # else: some builds delete immediately without a dialog; the check\n    # below validates the outcome either way.\n\n    # ------------------------------------------------------------------\n    # 5. Verify the note is gone from the list (exact title, so similarly\n    #    named notes are ignored).\n    # ------------------------------------------------------------------\n    device.settle(1)\n    leftover = find_row(\"any\")\n    checks = 0\n    while leftover is not None and checks < 2:\n        device.scroll(\"down\")\n        leftover = find_row(\"any\")\n        checks += 1\n\n    if leftover is not None:\n        raise RuntimeError(\"Note '%s' is still present after delete\" % file_name)\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The long-press actually worked \u2014 the item's description changed from 'File friendly_koala_2023_03_02' to 'Selected friendly_koala_2023_03_02', so the follow-up lookup for a 'File ...' description matched nothing and raised the error, even though the note is selected and the Delete button is visible."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 1,
+   "prompt_tokens": 881,
+   "cached_tokens": 0,
+   "completion_tokens": 646,
+   "total_tokens": 1527,
+   "cost_usd": 0.00027036
+  },
+  "resume_episodes": {
+   "calls": 2,
+   "prompt_tokens": 16286,
+   "cached_tokens": 0,
+   "completion_tokens": 107,
+   "total_tokens": 16393,
+   "cost_usd": 0.00148286
+  },
+  "builder_refinements": {
+   "calls": 1,
+   "prompt_tokens": 2393,
+   "cached_tokens": 0,
+   "completion_tokens": 7434,
+   "total_tokens": 9827,
+   "cost_usd": 0.00379308
+  },
+  "program_replays": {
+   "count": 1,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "hot_sun_4RHp"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "eager_zebra_2023_07_18"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "final_happy_penguin"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "happy_vase_SixC"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "backup_alert_xylophone"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

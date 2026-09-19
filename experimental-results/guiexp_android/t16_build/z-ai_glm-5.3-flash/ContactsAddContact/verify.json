@@ -1,0 +1,99 @@
+{
+ "family": "ContactsAddContact",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 6,
+ "unautomatable": false,
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\"type\": \"string\", \"description\": \"Full contact name, exactly two words (first and last)\"},\n    \"number\": {\"type\": \"string\", \"description\": \"Phone number, one string copied verbatim\"},\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    words = name.split()\n    if len(words) != 2:\n        raise ValueError(\"binding['name'] must be exactly two words\")\n    first, last = words\n\n    # Launch the Contacts app\n    device.open_app(\"Contacts\")\n    device.settle(2)\n\n    # If we landed in the dialer or elsewhere, try to get to the Contacts UI\n    if (device.find(description=\"Create contact\") is None\n            and device.find(text=\"No contacts yet\") is None\n            and device.find(description=\"Contacts\") is None):\n        device.open_app(\"Google Contacts\")\n        device.settle(2)\n    if (device.find(description=\"Create contact\") is None\n            and device.find(text=\"No contacts yet\") is None\n            and device.find(description=\"Contacts\") is None):\n        raise RuntimeError(\"Contacts app did not open\")\n\n    # Open the contact editor via the floating \"Create contact\" button\n    btn = device.find(description=\"Create contact\", clickable=True)\n    if btn is None:\n        device.scroll(\"down\")\n        btn = device.find(description=\"Create contact\", clickable=True)\n    if btn is None:\n        raise LookupError(\"'Create contact' button not found\")\n    device.click(btn)\n    device.settle(2)\n\n    # First name field\n    idx = device.find(hint=\"First name\", editable=True)\n    if idx is None:\n        idx = device.find(text=\"First name\", editable=True)\n    if idx is None:\n        raise RuntimeError(\"First name field not found on contact editor screen\")\n    device.input_text(first, index=idx)\n\n    # Last name field\n    idx = device.find(hint=\"Last name\", editable=True)\n    if idx is None:\n        idx = device.find(text=\"Last name\", editable=True)\n    if idx is None:\n        raise LookupError(\"Last name EditText not found on contact editor screen\")\n    device.input_text(last, index=idx)\n\n    # Phone field (leave label at default)\n    idx = device.find(hint=\"Phone\", editable=True)\n    if idx is None:\n        idx = device.find(contains=\"Phone\", editable=True)\n    if idx is None:\n        raise LookupError(\"Phone number EditText not found in contact editor\")\n    device.input_text(number, index=idx)\n    device.settle(1)\n\n    # Save the contact\n    idx = device.find(text=\"Save\", clickable=True)\n    if idx is None:\n        idx = device.find(description=\"Save\", clickable=True)\n    if idx is None:\n        device.scroll(\"down\")\n        idx = device.find(text=\"Save\", clickable=True)\n    if idx is None:\n        idx = device.find(description=\"Save\", clickable=True)\n    if idx is None:\n        raise LookupError(\"Contact editor 'Save' button not found on screen\")\n    device.click(idx)\n    device.settle(2)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 6,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

@@ -1,0 +1,462 @@
+{
+ "1": {
+  "family": "FilesMoveFile",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "The recorded action is a global (indexless) scroll, so it has no element to re-bind \u2014 but it only has the intended effect (dismissing the launcher home / opening the notification shade) when the home screen is actually foreground; on any other screen the same gesture does nothing useful, so the action must be gated on a semantic precondition rather than an index.",
+    "snippet": "home = device.find(description=\"Home\") or device.find(text=\"Phone\")\nif home is None:\n    raise RuntimeError(\"Expected launcher home screen before scrolling up; not found\")\ndevice.scroll(\"up\")\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 809,
+     "completion_tokens": 772,
+     "cached_tokens": 0,
+     "cost_usd": 0.00136125
+    }
+   }
+  ],
+  "effective_actions": 1,
+  "recorded_actions": 15,
+  "replay_stopped_at": "step 2: ValueError",
+  "totals": {
+   "calls": 1,
+   "prompt_tokens": 809,
+   "cached_tokens": 0,
+   "completion_tokens": 772,
+   "total_tokens": 1581,
+   "cost_usd": 0.00136125
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "FilesMoveFile",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This action is a global scroll gesture on the launcher, not tied to any element. It can fail if the current screen is not the launcher or if the scroll direction is not appropriate, but since it's a global action, we can call device.scroll directly.",
+    "snippet": "device.scroll(\"up\")",
+    "usage": {
+     "prompt_tokens": 722,
+     "completion_tokens": 2796,
+     "cached_tokens": 0,
+     "cost_usd": 0.001984158
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 15
+    },
+    "field": null,
+    "analysis": "The action clicks a Switch that toggles Do Not Disturb, identified by its stable description \"Do Not Disturb.\" rather than its changing text. It can fail if the switch is not visible/available on another screen, so it must be looked up by semantic attributes and raise an error if absent.",
+    "snippet": "switch = device.find(description=\"Do Not Disturb.\", class_name=\"Switch\")\nif switch is None:\n    raise RuntimeError(\"Do Not Disturb switch not found\")\ndevice.click(index=switch)",
+    "usage": {
+     "prompt_tokens": 642,
+     "completion_tokens": 1405,
+     "cached_tokens": 0,
+     "cost_usd": 0.001036697508
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Files"
+    },
+    "field": null,
+    "analysis": "This is a global app-launch action with no element dependency, so the recorded index is irrelevant; the only fragility is that \"Files\" (DocumentsUI) may launch to a different root/label or be swallowed by a permission/launcher screen, so the launch should be followed by a check that the Files UI actually rendered before the next step runs.",
+    "snippet": "device.open_app(\"Files\")          # app identity is constant for this family\ndevice.settle(2)\n\nels = device.elements()\nif not els:\n    raise RuntimeError(\"Files app did not render: screen has no elements after open_app('Files')\")\n\n# Confirm we are on the DocumentsUI Files screen (its toolbar/root list), not the launcher.\nif device.find(text=\"Files\") is None and device.find(description=\"Show roots\") is None:\n    raise RuntimeError(\"Files app not in foreground (DocumentsUI FilesActivity not detected)\")",
+    "usage": {
+     "prompt_tokens": 517,
+     "completion_tokens": 899,
+     "cached_tokens": 0,
+     "cost_usd": 0.0014000184
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "This action clicks a non-clickable status bar battery indicator, which is unrelated to the file move task and has no effect on the file operation. It should be skipped; performing it adds no value and may fail if the battery status text differs.",
+    "snippet": "# The recorded action is an incidental status bar click; it does not contribute to moving the file.\n# No operation is needed for the file move task.\npass",
+    "usage": {
+     "prompt_tokens": 596,
+     "completion_tokens": 3073,
+     "cached_tokens": 0,
+     "cost_usd": 0.002137707
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 14
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 604,
+     "completion_tokens": 121,
+     "cached_tokens": 0,
+     "cost_usd": 0.000206400348
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "long_press",
+     "index": 17
+    },
+    "field": null,
+    "analysis": "This action depends on the presence of the quick settings tile with description 'Alarm, No alarm set' in the notification shade. It can fail if the tile is not present, if the description changes (e.g., an alarm is set), or if the notification shade is not open.",
+    "snippet": "tile = device.find(description='Alarm, No alarm set')\nif tile is None:\n    raise RuntimeError(\"Alarm quick settings tile not found\")\ndevice.long_press(index=tile)",
+    "usage": {
+     "prompt_tokens": 1031,
+     "completion_tokens": 1395,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011360448
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the source folder being visible and clickable on the current file manager screen; it can fail if the folder is not in the current directory or if the element is not clickable.",
+    "snippet": "# Click on the source folder to open it\nindex = device.find(text=binding['source_folder'], clickable=True)\nif index is None:\n    raise RuntimeError(f\"Source folder '{binding['source_folder']}' not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 812,
+     "completion_tokens": 4349,
+     "cached_tokens": 0,
+     "cost_usd": 0.0030184902
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The click targets a transient TextView labelled 'Add label' that only exists on the alarm-label editor, and it was addressed by positional index 4, so any index shift (or the fact that this screen is not the Files move screen the task family actually needs) breaks it; the lookup must therefore be semantic and fail loudly when absent.",
+    "snippet": "label = device.find(text=\"Add label\", clickable=True) or device.find(hint=\"Add label\", clickable=True)\nif label is None:\n    raise LookupError(\"No 'Add label' element found; not on the alarm-label editor screen\")\ndevice.click(label)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 1210,
+     "completion_tokens": 577,
+     "cached_tokens": 0,
+     "cost_usd": 0.0012810996
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action clicks a visible \"Cancel\" button to dismiss a dialog. It depends on that button being present; on another instance the index may differ, so we locate it by text and raise an error if absent.",
+    "snippet": "cancel = device.find(text='Cancel')\nif cancel is None:\n    raise ValueError(\"Cancel button not found\")\ndevice.click(index=cancel)",
+    "usage": {
+     "prompt_tokens": 1255,
+     "completion_tokens": 1544,
+     "cached_tokens": 0,
+     "cost_usd": 0.001256544828
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action clicks the 'Add alarm' button, identified by its description attribute. It depends on that button being present and uniquely labeled; it can fail if the UI language or description changes.",
+    "snippet": "# Click the \"Add alarm\" button\nbtn = device.find(description='Add alarm', clickable=True)\nif btn is None:\n    raise RuntimeError(\"Could not find the 'Add alarm' button\")\ndevice.click(index=btn)",
+    "usage": {
+     "prompt_tokens": 1332,
+     "completion_tokens": 3138,
+     "cached_tokens": 0,
+     "cost_usd": 0.002293669224
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "click",
+     "index": 12
+    },
+    "field": null,
+    "analysis": "This action clicks on the file to move by matching its name from binding. It can fail if the file name is not visible or if multiple elements share the same text.",
+    "snippet": "file_name = binding['file_name']\nelement = device.find(text=file_name, clickable=True)\nif element is None:\n    raise RuntimeError(f\"File '{file_name}' not found\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 1187,
+     "completion_tokens": 4051,
+     "cached_tokens": 0,
+     "cost_usd": 0.002905452
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0857731248
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 14,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 10508,
+   "cached_tokens": 0,
+   "completion_tokens": 154420,
+   "total_tokens": 164928,
+   "cost_usd": 0.10442941
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "FilesMoveFile",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Files"
+    },
+    "field": null,
+    "analysis": "This action opens the Files app by name; it depends on the app being installed and registered as \"Files\". It can fail if the app name differs or the app is not available.",
+    "snippet": "device.open_app(\"Files\")",
+    "usage": {
+     "prompt_tokens": 911,
+     "completion_tokens": 383,
+     "cached_tokens": 0,
+     "cost_usd": 0.000897336
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The click targets the \"Show roots\" ImageButton, identified only by its recorded index; index 1 is not stable across screens. It must be found by its semantic description (and clickable state), and the action should fail loudly if the drawer/roots button isn't present.",
+    "snippet": "idx = device.find(description=\"Show roots\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find 'Show roots' button to open the storage roots drawer\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 730,
+     "completion_tokens": 168,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005375304
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "This action opens the storage root by clicking its name in the roots list. It depends on the root name being available in `binding` and the element being visible; it fails if the name is missing or the drawer is closed.",
+    "snippet": "root_name = binding.get('storage_root') or binding.get('device_name')\nif not root_name:\n    raise ValueError(\"No storage root name in binding\")\nindex = device.find(text=root_name)\nif index is None:\n    raise RuntimeError(f\"Could not find storage root '{root_name}'\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 867,
+     "completion_tokens": 2073,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015433308
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 838,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0858249612
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "This is a global scroll action; it depends on the screen being scrollable and the desired content being below the current viewport. It can fail if the screen has no scrollable content or if a different navigation method is needed.",
+    "snippet": "device.scroll(\"down\")",
+    "usage": {
+     "prompt_tokens": 768,
+     "completion_tokens": 289,
+     "cached_tokens": 0,
+     "cost_usd": 0.00034898094
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "long_press",
+     "index": 22
+    },
+    "field": null,
+    "analysis": "This action depends on the target file being visible in the current folder and uniquely identifiable by its name. It can fail if the file is not present, or if another element has the same text.",
+    "snippet": "file_name = binding[\"file_name\"]\nidx = device.find(text=file_name)\nif idx is None:\n    raise RuntimeError(f\"File '{file_name}' not found in current directory\")\ndevice.long_press(index=idx)",
+    "usage": {
+     "prompt_tokens": 652,
+     "completion_tokens": 558,
+     "cached_tokens": 0,
+     "cost_usd": 0.000496470744
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action depends on the overflow (\"More options\") ImageView, which opens the contextual action menu; it fails if addressed by the recorded index because the element ordering (and thus index) shifts across screens/instances. It must be located by its description and clickability instead.",
+    "snippet": "idx = device.find(description=\"More options\", clickable=True, class_name=\"ImageView\")\nif idx is None:\n    raise RuntimeError(\"Could not find 'More options' overflow button on the files screen\")\ndevice.click(index=idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 839,
+     "completion_tokens": 152,
+     "cached_tokens": 0,
+     "cost_usd": 0.000564102
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the context menu being open and containing a \"Move to\u2026\" option. It can fail if the menu is not visible or if the option text differs across locales/versions.",
+    "snippet": "element = device.find(text=\"Move to\u2026\")\nif element is None:\n    raise RuntimeError(\"Could not find 'Move to\u2026' menu item\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 752,
+     "completion_tokens": 450,
+     "cached_tokens": 0,
+     "cost_usd": 0.000448659288
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action opens the storage-roots drawer, so it depends only on the 'Show roots' ImageButton being present and clickable \u2014 not on its index (index 1 here). On another instance the drawer button could sit at a different index or be absent, so look it up by description and clickable, and fail loudly if missing.",
+    "snippet": "el = device.find(description=\"Show roots\", clickable=True)\nif el is None:\n    raise LookupError(\"Could not find the 'Show roots' ImageButton on the current screen\")\ndevice.click(index=el)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 649,
+     "completion_tokens": 163,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004957128
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action clicks the sdk_gphone64_arm64 root entry in the picker to navigate into the device storage. On another instance, the root name may differ (e.g., \"sdk_gphone_x86_64\") and the element's index is unreliable, so it must be found by text from binding (or the specific root name present) and clicked.",
+    "snippet": "root = binding.get('source_root') or binding.get('device_name') or 'sdk_gphone64_arm64'\nidx = device.find(text=root, class_name='TextView')\nif idx is None:\n    raise RuntimeError(f\"Could not find root '{root}' in Files picker\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 810,
+     "completion_tokens": 306,
+     "cached_tokens": 0,
+     "cost_usd": 0.000368831232
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 20
+    },
+    "field": null,
+    "analysis": "This action depends on the destination folder being visible in the current directory listing. It can fail if the folder name is not present (e.g., different storage root or folder not visible without scrolling).",
+    "snippet": "folder = binding['destination_folder']\nindex = device.find(text=folder)\nif index is None:\n    raise RuntimeError(f\"Folder '{folder}' not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 727,
+     "completion_tokens": 2478,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017774658
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "This action clicks the \"MOVE\" button in the picker screen to confirm the move operation. It depends on that button being present and clickable; failure occurs if the screen is not the picker or the button's text/clickability differs.",
+    "snippet": "idx = device.find(text='MOVE', clickable=True)\nif idx is None:\n    raise RuntimeError(\"MOVE button not found\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 899,
+     "completion_tokens": 508,
+     "cached_tokens": 0,
+     "cost_usd": 0.000517174812
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 9442,
+   "cached_tokens": 0,
+   "completion_tokens": 138600,
+   "total_tokens": 148042,
+   "cost_usd": 0.09382056
+  },
+  "record_type": "translation"
+ }
+}

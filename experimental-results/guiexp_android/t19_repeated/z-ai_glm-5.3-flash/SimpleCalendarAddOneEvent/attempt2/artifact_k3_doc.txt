@@ -1,0 +1,21 @@
+CREATING A TIMED EVENT — Simple Calendar Pro (Android, 24-hour clock frozen in October 2023)
+
+1. Open Simple Calendar Pro and wait for the main calendar screen.
+2. If a first-run / whats-new popup appears, dismiss it.
+3. Tap the floating "New Event" button; if a popup menu appears instead of the editor, tap "New event" in it — the new-event form opens.
+4. Tap the Title field and type {event_title}.
+5. Tap the Description field directly below Title and type {event_description}.
+6. Tap the start-date row (a TextView showing a date like "October 15 (Sun)"); the date-picker dialog opens.
+7. Tap the day cell labelled "{day} {month name} {year}" — day number first, then month name, then year; step months with the picker arrows if needed.
+8. Confirm the date picker with OK.
+9. Tap the start-time row, the upper of the two HH:MM rows; the time picker opens showing the hours list.
+10. Tap the hour cell "{hour} hours" (24-hour numbering; scroll the list if needed); the minutes selector must read "0 minutes" — if it does not, tap it and pick 0.
+11. Confirm the time picker with OK.
+12. Tap the end-time row, the lower HH:MM row. There is no duration field: {duration_mins} mins is entered as this end time.
+13. In the picker, the end hour must be {hour} plus one for each full 60 minutes inside {duration_mins}; if the hour shown is wrong, tap the correct hours cell.
+14. Tap the minutes selector (the View reading e.g. "0 minutes") to switch from the hours list to the minutes list.
+15. Tap the minutes cell for the minutes leftover from {duration_mins} ({duration_mins} itself when it is under 60); scroll the list if not visible.
+16. Confirm with OK; the form now shows the end time = start time + {duration_mins} mins.
+17. Tap Save (described "Save"); the event is stored and the app returns to the main calendar screen.
+
+TRAPS: the form has two HH:MM rows (start upper, end lower) — never edit the start row twice and never skip the end row; every date and time edit happens in a dialog that must be confirmed with OK before returning to the form; the time picker always opens on the hours list, so setting minutes requires tapping the "N minutes" selector first; match list rows by label, never by position — date cell "{day} {month name} {year}", hour cell "{hour} hours", minutes cell "{duration_mins} minutes".

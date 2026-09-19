@@ -1,0 +1,297 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "z-ai/glm-5.3-flash",
+ "program_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorDeleteNote/verified_program.py",
+ "bindings_total": 5,
+ "injection_passed_now": 5,
+ "injection_passed_t16": 4,
+ "extraction_passed": 3,
+ "extraction_type_check_fails": 0,
+ "extraction_cost_usd": 0.00090656,
+ "per_binding": [
+  {
+   "binding": {
+    "file_name": "hot_sun_4RHp"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": false,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "file_name": "hot_sun_4RHp"
+   },
+   "retries": 0,
+   "tokens": 322,
+   "cost_usd": 0.00012024
+  },
+  {
+   "binding": {
+    "file_name": "eager_zebra_2023_07_18"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "file_name": "eager_zebra_2023_07_18.txt"
+   },
+   "retries": 0,
+   "tokens": 610,
+   "cost_usd": 0.00026106
+  },
+  {
+   "binding": {
+    "file_name": "final_happy_penguin"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "file_name": "final_happy_penguin"
+   },
+   "retries": 0,
+   "tokens": 341,
+   "cost_usd": 0.00012999
+  },
+  {
+   "binding": {
+    "file_name": "happy_vase_SixC"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "file_name": "happy_vase_SixC"
+   },
+   "retries": 0,
+   "tokens": 314,
+   "cost_usd": 0.00011628
+  },
+  {
+   "binding": {
+    "file_name": "backup_alert_xylophone"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "file_name": "backup_alert_xylophone.txt"
+   },
+   "retries": 0,
+   "tokens": 678,
+   "cost_usd": 0.00027899
+  }
+ ],
+ "record_type": "gate_extraction",
+ "wall_s": 262.7,
+ "uses": [
+  {
+   "goal": "Delete the note in Markor named hot_sun_4RHp.",
+   "expected": {
+    "file_name": "hot_sun_4RHp"
+   },
+   "extracted": {
+    "file_name": "hot_sun_4RHp"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 322,
+   "cost_usd": 0.00012024,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 113,
+     "cached_tokens": 0,
+     "completion_tokens": 209,
+     "total_tokens": 322,
+     "cost_usd": 0.0001202355,
+     "usage": {
+      "prompt_tokens": 113,
+      "completion_tokens": 209,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001202355
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 32.03,
+   "binding": {
+    "file_name": "hot_sun_4RHp"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": false
+  },
+  {
+   "goal": "Delete the note in Markor named eager_zebra_2023_07_18.",
+   "expected": {
+    "file_name": "eager_zebra_2023_07_18"
+   },
+   "extracted": {
+    "file_name": "eager_zebra_2023_07_18.txt"
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 610,
+   "cost_usd": 0.00026106,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 118,
+     "cached_tokens": 0,
+     "completion_tokens": 492,
+     "total_tokens": 610,
+     "cost_usd": 0.000261063,
+     "usage": {
+      "prompt_tokens": 118,
+      "completion_tokens": 492,
+      "cached_tokens": 0,
+      "cost_usd": 0.000261063
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 35.57,
+   "binding": {
+    "file_name": "eager_zebra_2023_07_18"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Delete the note in Markor named final_happy_penguin.",
+   "expected": {
+    "file_name": "final_happy_penguin"
+   },
+   "extracted": {
+    "file_name": "final_happy_penguin"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 341,
+   "cost_usd": 0.00012999,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 112,
+     "cached_tokens": 0,
+     "completion_tokens": 229,
+     "total_tokens": 341,
+     "cost_usd": 0.000129987,
+     "usage": {
+      "prompt_tokens": 112,
+      "completion_tokens": 229,
+      "cached_tokens": 0,
+      "cost_usd": 0.000129987
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 23.63,
+   "binding": {
+    "file_name": "final_happy_penguin"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Delete the note in Markor named happy_vase_SixC.",
+   "expected": {
+    "file_name": "happy_vase_SixC"
+   },
+   "extracted": {
+    "file_name": "happy_vase_SixC"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 314,
+   "cost_usd": 0.00011628,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 113,
+     "cached_tokens": 0,
+     "completion_tokens": 201,
+     "total_tokens": 314,
+     "cost_usd": 0.0001162755,
+     "usage": {
+      "prompt_tokens": 113,
+      "completion_tokens": 201,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001162755
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 27.47,
+   "binding": {
+    "file_name": "happy_vase_SixC"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Delete the note in Markor named backup_alert_xylophone.",
+   "expected": {
+    "file_name": "backup_alert_xylophone"
+   },
+   "extracted": {
+    "file_name": "backup_alert_xylophone.txt"
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 678,
+   "cost_usd": 0.00027899,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 112,
+     "cached_tokens": 0,
+     "completion_tokens": 566,
+     "total_tokens": 678,
+     "cost_usd": 0.00027899388,
+     "usage": {
+      "prompt_tokens": 112,
+      "completion_tokens": 566,
+      "cached_tokens": 0,
+      "cost_usd": 0.00027899388
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 18.78,
+   "binding": {
+    "file_name": "backup_alert_xylophone"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+OPERATION: Create a contact for {name} with phone number {number} (Google Contacts, Android).
+
+1. Open the Contacts app and wait for the contact list screen.
+2. If the session starts on the Phone/dialer app instead, that is fine; the same create control leads onward.
+3. On the list screen, tap the "Create contact" floating button.
+4. TRAP: do not type {name} or {number} into the "Search contacts" bar — that only filters the list, it does not create anything.
+5. Wait for the contact editor screen showing "First name", "Last name", and "Phone" fields.
+6. Locate each field by its visible hint/label text; their order and positions change between runs, so never rely on positions.
+7. Tap the "First name" field and type the FIRST word of {name}.
+8. Tap the "Last name" field and type the SECOND word of {name}.
+9. TRAP: {name} is two words and must be split across these two separate fields; never enter the full name into one field.
+10. Tap the "Phone" field and type {number} exactly as given.
+11. TRAP: leave the phone label (e.g. "Mobile") at its default selection; do not open or change it.
+12. If any dialog appears on the editor, dismiss or confirm it so all three fields remain filled.
+13. Find the "Save" button; if it is not visible, scroll down the editor and look again.
+14. Tap "Save".
+15. Success check: the editor closes and the app returns to the contact list showing {name}; if still in the editor, locate "Save" again and tap it.

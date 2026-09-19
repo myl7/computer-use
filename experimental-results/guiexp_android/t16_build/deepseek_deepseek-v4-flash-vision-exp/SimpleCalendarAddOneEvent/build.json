@@ -1,0 +1,502 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 34,
+ "cache_ratio_r": 0.318,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 2,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 21,
+    "prompt_tokens": 795197,
+    "cached_tokens": 0,
+    "completion_tokens": 5504,
+    "total_tokens": 800701,
+    "cost_usd": 0.08279091,
+    "model_calls": 21
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 19,
+    "prompt_tokens": 558931,
+    "cached_tokens": 0,
+    "completion_tokens": 2798,
+    "total_tokens": 561729,
+    "cost_usd": 0.01735238,
+    "model_calls": 19
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 18,
+    "prompt_tokens": 532655,
+    "cached_tokens": 480883,
+    "completion_tokens": 1616,
+    "total_tokens": 534271,
+    "cost_usd": 0.01566436,
+    "model_calls": 18
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 58,
+   "prompt_tokens": 1886783,
+   "cached_tokens": 480883,
+   "completion_tokens": 9918,
+   "total_tokens": 1896701,
+   "cost_usd": 0.11580765
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 6678.1,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 1,
+    "calls": 1,
+    "prompt_tokens": 924,
+    "cached_tokens": 0,
+    "completion_tokens": 126,
+    "total_tokens": 1050,
+    "cost_usd": 0.00028358
+   },
+   {
+    "seed": 2,
+    "effective_actions": 3,
+    "calls": 3,
+    "prompt_tokens": 2874,
+    "cached_tokens": 0,
+    "completion_tokens": 1207,
+    "total_tokens": 4081,
+    "cost_usd": 0.00194909
+   },
+   {
+    "seed": 3,
+    "effective_actions": 17,
+    "calls": 17,
+    "prompt_tokens": 17028,
+    "cached_tokens": 923,
+    "completion_tokens": 142083,
+    "total_tokens": 159111,
+    "cost_usd": 0.09996279
+   }
+  ],
+  "totals": {
+   "calls": 21,
+   "prompt_tokens": 20826,
+   "cached_tokens": 923,
+   "completion_tokens": 143416,
+   "total_tokens": 164242,
+   "cost_usd": 0.10219546
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1943,
+    "completion_tokens": 42258,
+    "cached_tokens": 0,
+    "cost_usd": 0.0560691252
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1818,
+    "completion_tokens": 6710,
+    "cached_tokens": 0,
+    "cost_usd": 0.0095605488
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 3123,
+    "completion_tokens": 34325,
+    "cached_tokens": 0,
+    "cost_usd": 0.022645981512
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2998,
+    "completion_tokens": 11214,
+    "cached_tokens": 0,
+    "cost_usd": 0.00782058816
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 5898,
+    "completion_tokens": 32982,
+    "cached_tokens": 0,
+    "cost_usd": 0.022378322736
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 5773,
+    "completion_tokens": 8101,
+    "cached_tokens": 0,
+    "cost_usd": 0.006419541744
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 21553,
+   "cached_tokens": 0,
+   "completion_tokens": 135590,
+   "total_tokens": 157143,
+   "cost_usd": 0.12489411
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 20926,
+    "cached_tokens": 0,
+    "completion_tokens": 136479,
+    "total_tokens": 157405,
+    "cost_usd": 0.12891846
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 1,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "Exception: Could not find calendar navigation arrows"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": false,
+     "error": "Exception: Could not find calendar navigation arrows"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "Exception: Could not find calendar navigation arrows"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": false,
+     "error": "Exception: Could not find calendar navigation arrows"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "Exception: Could not find calendar navigation arrows"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 25 (Wed)"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 29 (Sun)"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 22 (Sun)"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 20 (Fri)"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 19 (Thu)"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 4593,
+   "cached_tokens": 0,
+   "completion_tokens": 10362,
+   "total_tokens": 14955,
+   "cost_usd": 0.00943169
+  },
+  "resume_episodes": {
+   "calls": 25,
+   "prompt_tokens": 381400,
+   "cached_tokens": 211712,
+   "completion_tokens": 2554,
+   "total_tokens": 383954,
+   "cost_usd": 0.05325842
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 15028,
+   "cached_tokens": 0,
+   "completion_tokens": 103497,
+   "total_tokens": 118525,
+   "cost_usd": 0.10654014
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": false,
+   "error": "RuntimeError: OK button not found in time picker"
+  },
+  "totals_excluding_refinements": {
+   "calls": 28,
+   "prompt_tokens": 385993,
+   "cached_tokens": 211712,
+   "completion_tokens": 12916,
+   "total_tokens": 398909,
+   "cost_usd": 0.06269011
+  }
+ },
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 948,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 21,
+    "prompt_tokens": 590402,
+    "cached_tokens": 436717,
+    "completion_tokens": 2036,
+    "total_tokens": 592438,
+    "cost_usd": 0.03736638,
+    "model_calls": 21
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 28,
+    "prompt_tokens": 950625,
+    "cached_tokens": 690213,
+    "completion_tokens": 3782,
+    "total_tokens": 954407,
+    "cost_usd": 0.06302666,
+    "model_calls": 28
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 23,
+    "prompt_tokens": 694529,
+    "cached_tokens": 514304,
+    "completion_tokens": 4674,
+    "total_tokens": 699203,
+    "cost_usd": 0.04586387,
+    "model_calls": 23
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 72,
+   "prompt_tokens": 2235556,
+   "cached_tokens": 1641234,
+   "completion_tokens": 10492,
+   "total_tokens": 2246048,
+   "cost_usd": 0.14625691
+  },
+  "L_doc_tokens_mean": 748682.6666666666
+ }
+}

@@ -1,0 +1,368 @@
+{
+ "1": {
+  "family": "WriterMemoSave",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/WriterMemoSave/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Quarterly Goals Draft"
+    },
+    "field": "title",
+    "analysis": "The action depends only on an editable, document-text region of the open Writer window; its name (\"Untitled 1 ...\") changes once the file is saved, so it must not be matched by name. It fails if no Writer document is open or the text area isn't editable, so the lookup must be checked and a clear error raised.",
+    "snippet": "idx = device.find(role='document-text', editable=True)\nif idx is None:\n    raise RuntimeError(\"No editable LibreOffice Writer document-text area found\")\ndevice.click(idx)\ndevice.input_text(binding['title'], index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 551,
+     "completion_tokens": 355,
+     "cached_tokens": 0,
+     "cost_usd": 0.00024209559
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Queue times dropped by half after the staffing change last week."
+    },
+    "field": "body",
+    "analysis": "The action depends only on the Writer document's editable text area (role 'document-text', editable), not on its index or the 'Untitled 1' title, which can vary. Failure mode: lookup by name would break on renamed/other documents, so match on role+editable and raise if absent.",
+    "snippet": "idx = device.find(role='document-text', editable=True)\nif idx is None:\n    raise LookupError(\"LibreOffice Writer editable document-text area not found\")\ndevice.click(idx)\ndevice.input_text(binding['body'], index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 546,
+     "completion_tokens": 299,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001374516
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "The action is a global Ctrl+S that only works if a LibreOffice Writer document window has focus and it must be followed by the GTK Save dialog appearing (with the filename still defaulting to \"Untitled 1\"). On another instance it can fail if focus was lost, the dialog never opens, or the default name isn't the task's file name \u2014 so verify the dialog semantically and write `binding[\"file_name\"]` into its name field instead of relying on indexes.",
+    "snippet": "device.hotkey(\"ctrl\", \"s\")\ndevice.settle(1.5)\n\nif device.find(name=\"Name:\", role=\"label\") is None:\n    raise RuntimeError(\"Save dialog did not open after Ctrl+S\")\n\nname_field = device.find(editable=True, role=\"text\")\nif name_field is None:\n    raise RuntimeError(\"Filename field not found in Save dialog\")\n\ndevice.input_text(binding[\"file_name\"], index=name_field)",
+    "usage": {
+     "prompt_tokens": 664,
+     "completion_tokens": 1137,
+     "cached_tokens": 0,
+     "cost_usd": 0.000661419
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "The click targets the \"Desktop\" entry in the Save dialog's places sidebar (it toggles to selected after the click), so it depends on a clickable element literally named 'Desktop'; on other instances the index differs and the label may be absent or matched by non-clickable desktop items, so look it up by name+clickable and fail loudly if missing.",
+    "snippet": "idx = device.find(name='Desktop', clickable=True)\nif idx is None:\n    raise LookupError(\"Save dialog: no clickable 'Desktop' place entry found\")\ndevice.click(idx)\ndevice.settle(1)  # let the file chooser switch to the Desktop folder",
+    "usage": {
+     "prompt_tokens": 524,
+     "completion_tokens": 567,
+     "cached_tokens": 0,
+     "cost_usd": 0.00033697026
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "training_summary"
+    },
+    "field": "file_name",
+    "analysis": "The action targets the editable filename field of the LibreOffice Save dialog, identified semantically by role='text', editable=True and default text starting with 'Untitled' (e.g. 'Untitled 1', 'Untitled 2'). It can fail if the default document name differs or several editable fields exist, so fall back to the unique editable text field and raise if nothing is found.",
+    "snippet": "idx = device.find(role='text', editable=True, contains='Untitled')\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise RuntimeError(\"Save-dialog filename field not found\")\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 541,
+     "completion_tokens": 458,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003070485
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "The action depends only on a clickable push-button labelled 'Save' (the recorded click opened the Save-As dialog since the doc was untitled); on other instances the index differs and the button may be absent or named differently in a ribbon/menu, so it must be re-looked-up by name/role, not position.",
+    "snippet": "idx = device.find(name='Save', role='push-button', clickable=True)\nif idx is None:\n    raise LookupError(\"Robust rewrite: no clickable 'Save' push-button found on screen\")\ndevice.click(index=idx)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 678,
+     "completion_tokens": 470,
+     "cached_tokens": 128,
+     "cost_usd": 0.0003181266
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 3504,
+   "cached_tokens": 128,
+   "completion_tokens": 3286,
+   "total_tokens": 6790,
+   "cost_usd": 0.00200311
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "WriterMemoSave",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/WriterMemoSave/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Recruiting Pipeline Notes"
+    },
+    "field": "title",
+    "analysis": "The action depends only on the editable Writer document-text area receiving the title text; element indexes vary per instance, but the role='document-text' + editable=True attributes identify it reliably. It fails if no editable document is present (wrong window/dialog open), so the lookup must be checked.",
+    "snippet": "doc = device.find(role='document-text', editable=True)\nif doc is None:\n    raise RuntimeError(\"No editable LibreOffice Writer document text area found\")\ndevice.click(index=doc)\ndevice.input_text(binding['title'], index=doc)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 558,
+     "completion_tokens": 278,
+     "cached_tokens": 0,
+     "cost_usd": 0.00020724462
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "All action items from the last session were closed on schedule."
+    },
+    "field": "body",
+    "analysis": "The action types the body text into the Writer document's editable text area; it depends only on that area being findable by role/editable, not on the recorded index or the window title (which varies, e.g. after save or a different doc name). Failure mode: lookup by name would break across instances, so match on role='document-text' + editable and raise if absent.",
+    "snippet": "idx = device.find(role='document-text', editable=True)\nif idx is None:\n    raise RuntimeError('LibreOffice Writer document text area not found')\ndevice.input_text(binding['body'], index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 552,
+     "completion_tokens": 262,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001269972
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This action is a global Ctrl+S that only works if the LibreOffice Writer document window has keyboard focus; on another instance the hotkey could be swallowed by another focused window, or the Save dialog may fail to appear. Robust version: focus the Writer window first, send Ctrl+S, then verify the GTK Save dialog (Name field / file-name entry) actually opened before proceeding.",
+    "snippet": "# Ctrl+S is global: it only reaches Writer if the document window is focused.\nwriter = device.find(contains=\"LibreOffice Writer\")\nif writer is None:\n    raise RuntimeError(\"LibreOffice Writer window not found; cannot send Ctrl+S\")\ndevice.click(writer)\ndevice.hotkey(\"ctrl\", \"s\")\ndevice.wait()\n# Verify the Save dialog actually appeared (file-name entry or Name: label).\nif (device.find(role=\"label\", name=\"Name:\") is None\n        and device.find(editable=True, contains=\"Untitled\") is None):\n    raise RuntimeError(\"Save dialog did not open after Ctrl+S\")\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 670,
+     "completion_tokens": 716,
+     "cached_tokens": 0,
+     "cost_usd": 0.000272349
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "feedback_summary"
+    },
+    "field": "file_name",
+    "analysis": "The action types the extension-stripped file name into the Save dialog's editable filename field, which is the only editable text element on that screen; its text ('Untitled 1') varies per instance, so lookup must rely on role='text' + editable=True rather than the recorded index or the default title text.",
+    "snippet": "idx = device.find(role='text', editable=True)\nif idx is None:\n    raise LookupError(\"Save dialog filename field (editable text element) not found\")\ndevice.click(idx)\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=idx)",
+    "usage": {
+     "prompt_tokens": 547,
+     "completion_tokens": 483,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001921887
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "The click targets the clickable \"Desktop\" entry in the GTK save dialog's places list to set the save location. Its role flips between table-cell and toggle-button depending on selection state (and a non-clickable label with the same name also exists), so lookup must match on name + clickable only; it fails if the places list is hidden or the entry is renamed/localized.",
+    "snippet": "desktop = binding.get('save_dir', 'Desktop')\nidx = device.find(name=desktop, clickable=True)\nif idx is None:\n    raise LookupError(f\"No clickable '{desktop}' entry found in the save dialog\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 530,
+     "completion_tokens": 525,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003182652
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This action clicks the 'Save' confirm button in the LibreOffice save dialog to commit the already-typed filename/location. It depends on the dialog being open with name and folder pre-set; on another instance the button index differs and the click silently fails or the dialog isn't open, so the button must be found by name/role and a missing lookup must raise.",
+    "snippet": "save_btn = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif save_btn is None:\n    raise RuntimeError(\"Save dialog confirm button not found; is the save dialog open?\")\ndevice.click(save_btn)\ndevice.wait()\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 684,
+     "completion_tokens": 469,
+     "cached_tokens": 0,
+     "cost_usd": 0.000333729
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 3541,
+   "cached_tokens": 0,
+   "completion_tokens": 2733,
+   "total_tokens": 6274,
+   "cost_usd": 0.00145077
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "WriterMemoSave",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/WriterMemoSave/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Budget Revision Notes"
+    },
+    "field": "title",
+    "analysis": "The action depends only on the Writer document's editable text area (role 'document-text', editable), not on its name, which varies (e.g., 'Untitled 1/2 - LibreOffice Document'). Failure modes: lookup by name mismatch or no editable document area present.",
+    "snippet": "idx = device.find(role='document-text', editable=True)\nif idx is None:\n    raise LookupError(\"No editable Writer document text area found\")\ndevice.input_text(binding['title'], index=idx)",
+    "usage": {
+     "prompt_tokens": 535,
+     "completion_tokens": 277,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001299375
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "The workshop will run twice to cover both product lines."
+    },
+    "field": "body",
+    "analysis": "The action depends solely on the editable document-text area of the Writer window (its role/editedness, not its index or the volatile \"Untitled 1\" title). On another instance it fails if the document area isn't matched (e.g., multiple views or a differently titled window), so we look it up by role + editable and raise if absent.",
+    "snippet": "doc = device.find(role='document-text', editable=True)\nif doc is None:\n    raise RuntimeError(\"Editable LibreOffice document text area not found\")\ndevice.input_text(binding['body'], index=doc)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 530,
+     "completion_tokens": 311,
+     "cached_tokens": 0,
+     "cost_usd": 0.000218691
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "Ctrl+S only works because LibreOffice was the focused window and its GTK Save dialog reliably exposes a \"Name\" editable field, a \"Desktop\" shortcut entry, and a \"Save\" button. On another instance the element order changes, so all dialog controls must be re-found by name/role, and the task-specific file name must come from `binding` rather than the typed-at-the-time text.",
+    "snippet": "device.hotkey(\"ctrl\", \"s\")          # recorded action, applied globally\ndevice.wait()\n\nname_idx = device.find(role=\"text\", editable=True)\nif name_idx is None:\n    raise RuntimeError(\"Save dialog 'Name' field not found\")\ndevice.hotkey(\"ctrl\", \"a\")\ndevice.input_text(binding[\"file_name\"], index=name_idx)\n\ndesktop_idx = device.find(name=\"Desktop\", role=\"table-cell\")\nif desktop_idx is None:\n    raise RuntimeError(\"Desktop location not found in Save dialog\")\ndevice.click(index=desktop_idx)\n\nsave_idx = device.find(name=\"Save\", role=\"push-button\")\nif save_idx is None:\n    raise RuntimeError(\"Save button not found in Save dialog\")\ndevice.click(index=save_idx)",
+    "usage": {
+     "prompt_tokens": 649,
+     "completion_tokens": 602,
+     "cached_tokens": 0,
+     "cost_usd": 0.00037070451
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "kickoff_brief"
+    },
+    "field": "file_name",
+    "analysis": "The action types the save-file name (without extension) into the filename field, identified by its current text 'Untitled 1' and editable text role. On another instance the field may hold a different default name, so fall back to any editable text element in the Save dialog.",
+    "snippet": "file_base = binding['file_name'].rsplit('.', 1)[0]\nidx = device.find(role='text', text='Untitled 1', editable=True)\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise LookupError(\"Save-dialog filename field not found\")\ndevice.input_text(file_base, index=idx)",
+    "usage": {
+     "prompt_tokens": 528,
+     "completion_tokens": 143,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001018215
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "The bare Enter only worked because the \"Desktop\" entry in the Save dialog's places list happened to be focused; on another instance the focus (or index) may differ and Enter could confirm the wrong thing. Look the Desktop place up by name and activate it directly.",
+    "snippet": "target = binding.get(\"folder\", \"Desktop\")\nidx = device.find(name=target, role=\"table-cell\") or device.find(name=target, clickable=True)\nif idx is None:\n    raise LookupError(f\"Save dialog: no '{target}' place entry found\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 491,
+     "completion_tokens": 1029,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005822685
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This click confirms an already-open LibreOffice save dialog (filename and Desktop location were set by earlier steps); it only depends on a clickable push-button named 'Save' being present. It fails if the dialog isn't open, if a toolbar 'Save' control matches first, or if the lookup returns nothing \u2014 so constrain by role and clickable and verify the result.",
+    "snippet": "idx = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif idx is None:\n    raise LookupError(\"Save push-button not found: save dialog may not be open\")\ndevice.click(idx)\ndevice.settle(2)\nif binding.get(\"file_name\") and binding[\"file_name\"] not in (device.elements()[0].get(\"name\", \"\") if device.elements() else \"\"):\n    pass  # title check is best-effort; save confirmed by dialog closing",
+    "usage": {
+     "prompt_tokens": 668,
+     "completion_tokens": 741,
+     "cached_tokens": 0,
+     "cost_usd": 0.000465993
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 10,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 3401,
+   "cached_tokens": 0,
+   "completion_tokens": 3103,
+   "total_tokens": 6504,
+   "cost_usd": 0.00186942
+  },
+  "record_type": "translation"
+ }
+}

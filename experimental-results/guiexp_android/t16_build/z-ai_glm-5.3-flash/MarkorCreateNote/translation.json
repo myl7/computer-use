@@ -1,0 +1,417 @@
+{
+ "1": {
+  "family": "MarkorCreateNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This is a global launch action \u2014 it depends only on Markor being installed and reachable, not on any element index. It can fail on another instance if the app is missing or slow to start, so verify the Markor UI actually appeared after launching.",
+    "snippet": "app = binding.get(\"app_name\", \"Markor\")\ndevice.open_app(app)\ndevice.settle(2)\nif device.find(text=\"Markor\") is None and \\\n   device.find(description=\"Create a new file or folder\") is None:\n    raise RuntimeError(f\"App '{app}' did not open: Markor main screen not detected\")",
+    "usage": {
+     "prompt_tokens": 787,
+     "completion_tokens": 401,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003153645
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action opens the \"new file\" dialog by clicking the floating create button, which is identified solely by its description \"Create a new file or folder\"; on other instances the index differs and the description could be localized or the button absent, so we must look it up semantically and fail loudly if missing.",
+    "snippet": "idx = device.find(description=\"Create a new file or folder\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Markor 'Create a new file or folder' button not found on main screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 968,
+     "completion_tokens": 268,
+     "cached_tokens": 0,
+     "cost_usd": 0.000276408
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "friendly_koala_2023_03_02"
+    },
+    "field": "file_name",
+    "analysis": "The action depends on the note-name EditText, semantically identified by hint 'my_note' (editable), not by index; on other instances the index shifts and the hint may be absent, so a fallback to any editable EditText plus a clear error is needed.",
+    "snippet": "idx = device.find(hint='my_note', editable=True)\nif idx is None:\n    idx = device.find(editable=True, clickable=True)\nif idx is None:\n    raise RuntimeError(\"Markor note-name EditText (hint 'my_note') not found on screen\")\ndevice.input_text(binding['file_name'], index=idx)",
+    "usage": {
+     "prompt_tokens": 782,
+     "completion_tokens": 297,
+     "cached_tokens": 0,
+     "cost_usd": 0.000263142
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "The action confirms the \"create new file/folder\" dialog by pressing its OK button; it depends only on that dialog being open with name/extension already filled. On another instance the button's index differs, and the dialog may not be open at all, so look it up by text/clickability and fail loudly if absent.",
+    "snippet": "ok_idx = device.find(text=\"OK\", clickable=True)\nif ok_idx is None:\n    raise RuntimeError(\"Create-note dialog 'OK' button not found on screen\")\ndevice.click(ok_idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 837,
+     "completion_tokens": 367,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003059595
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "The early bird catches the worm."
+    },
+    "field": "text",
+    "analysis": "The recorded `input_text` on the non-editable \"To-Do\" entry effectively opens that note (editor appears) and types `binding['text']` into its EditText; on another instance the index differs and the editor may already be open, so resolve the entry by `description='To-Do'` and always type into the editable field rather than a fixed index.",
+    "snippet": "edit = device.find(editable=True)\nif edit is None:\n    entry = device.find(description='To-Do', clickable=True)\n    if entry is None:\n        raise RuntimeError(\"Neither an open editor nor the 'To-Do' note entry was found\")\n    device.click(entry)\n    device.settle(1.5)\n    edit = device.find(editable=True)\n    if edit is None:\n        raise RuntimeError(\"Editor opened but no editable text field appeared\")\ndevice.input_text(binding['text'], index=edit)",
+    "usage": {
+     "prompt_tokens": 992,
+     "completion_tokens": 2166,
+     "cached_tokens": 0,
+     "cost_usd": 0.001219482
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The click toggles the editor from edit mode to view mode; it depends on the \"View mode\" content-description, which may be at any index or may already be in view mode (\"Edit mode\") on other instances.",
+    "snippet": "idx = device.find(description=\"View mode\", clickable=True)\nif idx is None:\n    idx = device.find(description=\"Edit mode\", clickable=True)  # already in view mode; no toggle needed\nif idx is not None and device.elements()[idx].get(\"description\") == \"View mode\":\n    device.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 842,
+     "completion_tokens": 127,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001273635
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 5208,
+   "cached_tokens": 0,
+   "completion_tokens": 3626,
+   "total_tokens": 8834,
+   "cost_usd": 0.00250772
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "MarkorCreateNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s2/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This is a global open_app action; it depends only on Markor being installed and launchable, not on any element index, so it is already robust.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(2)\nif device.find(text=\"Markor\") is None:\n    raise RuntimeError(\"Markor did not open\")",
+    "usage": {
+     "prompt_tokens": 787,
+     "completion_tokens": 76,
+     "cached_tokens": 0,
+     "cost_usd": 0.000104247
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The click depends only on the FAB's unique description \"Create a new file or folder\"; using the recorded index breaks when layout order differs. Fail clearly if the button isn't found.",
+    "snippet": "idx = device.find(description=\"Create a new file or folder\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Create-new-file FAB not found on Markor main screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 968,
+     "completion_tokens": 96,
+     "cached_tokens": 0,
+     "cost_usd": 0.000129096
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "brave_fish_2023_03_28"
+    },
+    "field": "file_name",
+    "analysis": "The action depends on the editable EditText carrying hint 'my_note' (the new-note filename field in the create dialog); indexes shift, so locate it by hint/editable attributes, and fail clearly if absent.",
+    "snippet": "idx = device.find(hint='my_note', editable=True)\nif idx is None:\n    raise RuntimeError(\"Filename EditText (hint='my_note') not found\")\ndevice.input_text(binding['file_name'], index=idx)",
+    "usage": {
+     "prompt_tokens": 782,
+     "completion_tokens": 97,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001110285
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "The click depends on the \"OK\" confirm button of Markor's create-file dialog, after the name/type fields are filled; indexes vary per screen, and the dialog may differ slightly, so look it up by text/class and fail clearly if absent.",
+    "snippet": "idx = device.find(text=\"OK\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Markor create dialog: OK button not found\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 837,
+     "completion_tokens": 95,
+     "cached_tokens": 64,
+     "cost_usd": 0.0001107117
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "To be or not to be."
+    },
+    "field": "text",
+    "analysis": "The action typed the note body into the Markor editor's editable EditText after it opened the \"To-Do\" note; the recorded index is fragile, but the editor is uniquely identified as an editable, clickable EditText. Failure modes: editor not open yet, or multiple editable fields \u2014 pick the editable EditText explicitly.",
+    "snippet": "idx = device.find(editable=True, clickable=True)\nif idx is None:\n    # Editor not open; open the To-Do note first, then retype\n    todo = device.find(description=\"To-Do\", clickable=True)\n    if todo is None:\n        raise RuntimeError(\"Markor editor EditText and 'To-Do' entry not found\")\n    device.click(index=todo)\n    device.settle(2)\n    idx = device.find(editable=True, clickable=True)\n    if idx is None:\n        raise RuntimeError(\"Editable note EditText not found after opening To-Do\")\ndevice.input_text(binding['text'], index=idx)",
+    "usage": {
+     "prompt_tokens": 992,
+     "completion_tokens": 203,
+     "cached_tokens": 64,
+     "cost_usd": 0.0001634787
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The click targets the toolbar toggle switching the editor from edit mode into view mode; it depends on the \"View mode\" content description, which may appear at any index and may only exist while in edit mode.",
+    "snippet": "idx = device.find(description=\"View mode\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Element with description 'View mode' not found on screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 842,
+     "completion_tokens": 89,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001141965
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 5208,
+   "cached_tokens": 128,
+   "completion_tokens": 656,
+   "total_tokens": 5864,
+   "cost_usd": 0.00073276
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "MarkorCreateNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorCreateNote/explore/s3_a2/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This global action only depends on launching Markor to reach MainActivity; it can fail if the app isn't installed or opens to a different screen. No element lookup is needed, but we should verify arrival.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(2)\nif device.find(description=\"Create a new file or folder\") is None and \\\n   device.find(text=\"Markor\", contains=True) is None:\n    raise RuntimeError(\"Markor did not open as expected\")",
+    "usage": {
+     "prompt_tokens": 787,
+     "completion_tokens": 106,
+     "cached_tokens": 768,
+     "cost_usd": 5.38164e-05
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action depends only on the floating \"create\" button being identifiable by its description 'Create a new file or folder'; element indexes vary across instances, so a semantic lookup is required. It can fail if the button is absent (e.g., dialog already open or a different screen), so a missing lookup must raise.",
+    "snippet": "idx = device.find(description='Create a new file or folder', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Markor 'create new file/folder' button not found on current screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 968,
+     "completion_tokens": 279,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002254824
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "final_wise_lamp"
+    },
+    "field": "file_name",
+    "analysis": "The action types the extension-stripped file name into Markor's note-name field, which is stable only via its hint 'my_note' (its text is task-dependent, and indexes shift between instances). It fails if the hint is absent/localized or the field isn't editable, so we look it up by hint+editable and raise if missing.",
+    "snippet": "idx = device.find(hint='my_note', editable=True)\nif idx is None:\n    raise LookupError(\"Markor note-name EditText (hint 'my_note') not found\")\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=idx)",
+    "usage": {
+     "prompt_tokens": 791,
+     "completion_tokens": 404,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002539548
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "The click on 'OK' confirms the create-file dialog after the name/extension were typed. It depends only on a Button labeled 'OK' being present; it fails if the dialog didn't appear or the label is localized differently, so we must verify it exists first and retype the name from binding is not needed here (already entered), just confirm.",
+    "snippet": "ok = device.find(text=\"OK\", clickable=True)\nif ok is None:\n    raise RuntimeError(\"Create-note dialog OK button not found\")\ndevice.click(ok)",
+    "usage": {
+     "prompt_tokens": 966,
+     "completion_tokens": 114,
+     "cached_tokens": 0,
+     "cost_usd": 0.000135135
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "The squeaky wheel gets the grease."
+    },
+    "field": "text",
+    "analysis": "The action only depends on the note-content EditText (the editable, clickable text field) on Markor's editor screen; the recorded index 8 is unstable because the soft keyboard and IME elements shift indexes between instances. It can fail if no editable EditText exists yet, or if several exist (e.g., a filename field), so we look it up by class/editability and prefer the empty one (a new note).",
+    "snippet": "els = device.elements()\ncandidates = [i for i, el in enumerate(els)\n              if el.get('class_name') == 'EditText' and el.get('editable')]\nif not candidates:\n    raise RuntimeError(\"Markor note editor EditText not found on screen\")\n# Prefer the empty editor (new note) over any other editable field (e.g. filename)\nidx = next((i for i in candidates if not els[i].get('text')), candidates[0])\ndevice.click(idx)\ndevice.input_text(binding['text'], index=idx)",
+    "usage": {
+     "prompt_tokens": 1092,
+     "completion_tokens": 809,
+     "cached_tokens": 0,
+     "cost_usd": 0.000562617
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "The recorded action is a global BACK press that dismisses the soft keyboard after typing the note text; it depends on nothing element-specific, so it only fails if the keyboard was never open or the back press would otherwise exit the editor. We keep it a plain global back with no lookup.",
+    "snippet": "# Recorded action was a global navigate_back (no element addressed):\n# dismisses the soft keyboard after entering note text.\nbefore = device.elements()\ndevice.navigate_back()\ndevice.settle(1.0)\n# Guard: ensure we are still in the editor (back should only close the keyboard)\nafter = device.elements()\nif not after:\n    raise RuntimeError(\"Unexpected state after navigate_back: no elements found (editor may have closed)\")",
+    "usage": {
+     "prompt_tokens": 735,
+     "completion_tokens": 155,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001264725
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "The navigate_back exits the editor (auto-saving) to the file list; it doesn't depend on element indexes, but it only makes sense if the editor with the target content was actually open \u2014 if back lands elsewhere or a save dialog appears, the flow fails.",
+    "snippet": "# Leave the editor (text is auto-saved on back) and return to the file list\nedit = device.find(editable=True)\nif edit is None:\n    raise RuntimeError(\"Editor with note text not open; cannot navigate back safely\")\ndevice.navigate_back()\ndevice.settle(1.0)\nif device.find(description=\"Create a new file or folder\") is None:\n    raise RuntimeError(\"Did not return to Markor main file list after back\")",
+    "usage": {
+     "prompt_tokens": 934,
+     "completion_tokens": 155,
+     "cached_tokens": 64,
+     "cost_usd": 0.0001411047
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "long_press",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "The action long-presses the file list item for the target note, identified by its description starting with \"File \" plus the file name; on other screens indexes differ and the description prefix could be \"File \" or the item may need scrolling into view.",
+    "snippet": "target = binding[\"file_name\"]\nel = device.find(description=\"File \" + target, contains=False, clickable=True)\nif el is None:\n    el = device.find(description=\"Selected \" + target, contains=False, clickable=True)\nif el is None:\n    el = device.find(description=target, contains=True, clickable=True)\nif el is None:\n    raise RuntimeError(f\"File item '{target}' not found on screen\")\ndevice.long_press(el)",
+    "usage": {
+     "prompt_tokens": 804,
+     "completion_tokens": 153,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001326105
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This action has no element dependency at all \u2014 it is a pure global back navigation, so differing element indexes cannot break it. On another instance it may dismiss the keyboard, close the editor back to MainActivity, or (as recorded) hit Markor's \"Press 'Back' again to exit\" guard at MainActivity; all are expected, and the note is already saved, so a single back is the faithful, robust rewrite. It could only fail if a modal dialog intercepted back, which this task family does not produce.",
+    "snippet": "# Global action: no element lookup needed, indexes are irrelevant here.\ndevice.navigate_back()\ndevice.settle(1)\n# Expected outcomes on any instance of the family: keyboard dismissed,\n# editor popped to MainActivity, or Markor's \"Press 'Back' again to exit\"\n# guard appears (harmless \u2014 the note is already saved).",
+    "usage": {
+     "prompt_tokens": 452,
+     "completion_tokens": 3175,
+     "cached_tokens": 0,
+     "cost_usd": 0.001638747
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "status",
+     "goal_status": "complete"
+    },
+    "field": null,
+    "analysis": "The action is a global \"task complete\" signal fired after backing out to the note list, so it depends only on the note having actually been created \u2014 on another instance the element indexes differ and the note might not exist, so completion should be gated on finding the note named by `binding[\"file_name\"]` in the list before signaling success.",
+    "snippet": "name = binding[\"file_name\"]\nif device.find(text=name, contains=True) is None:\n    raise RuntimeError(f\"Note '{name}' not visible in list; cannot mark task complete\")\ndevice.settle(1)  # task complete: note exists on the main screen",
+    "usage": {
+     "prompt_tokens": 458,
+     "completion_tokens": 673,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004011078852
+    }
+   }
+  ],
+  "effective_actions": 10,
+  "recorded_actions": 11,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 10,
+   "prompt_tokens": 7987,
+   "cached_tokens": 832,
+   "completion_tokens": 6023,
+   "total_tokens": 14010,
+   "cost_usd": 0.00367105
+  },
+  "record_type": "translation"
+ }
+}

@@ -1,0 +1,3154 @@
+{
+ "family": "CalcTableSave",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 22,
+ "price_weights": {
+  "r_c": 0.032,
+  "r_o": 3.0
+ },
+ "record_type": "build",
+ "floor": {
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 0,
+    "completion_tokens": 62,
+    "cost_usd": 0.00027116
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 1061,
+    "cached_tokens": 0,
+    "completion_tokens": 88,
+    "cost_usd": 0.00028281
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 0,
+    "completion_tokens": 31,
+    "cost_usd": 0.00061115
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 46,
+    "cost_usd": 0.0001449
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 47,
+    "cost_usd": 0.00014621
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 0,
+    "completion_tokens": 40,
+    "cost_usd": 0.00062291
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 103,
+    "cost_usd": 0.00021939
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 93,
+    "cost_usd": 0.00020632
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 40,
+    "cost_usd": 0.00013706
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 28,
+    "cost_usd": 0.00012138
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 40,
+    "cost_usd": 0.00013706
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 51,
+    "cost_usd": 0.00015144
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   }
+  ],
+  "unit_tokens_per_run": [
+   1245,
+   1325,
+   1403,
+   333,
+   336,
+   1430,
+   504,
+   474,
+   315,
+   279,
+   315,
+   348,
+   221,
+   221,
+   221,
+   221,
+   221,
+   221
+  ],
+  "floor_unit_mean": 535.2,
+  "cost_usd_mean": 0.00018556,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 14834.0,
+ "exploration": {
+  "family": "CalcTableSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 22,
+  "instances": [
+   {
+    "family": "CalcTableSave",
+    "seed": 1,
+    "goal": "Open a new spreadsheet in LibreOffice Calc. Cell A1 must read 'Pipeline' and B1 'Budget'. Fill A2 with 8398, B2 with 3934, A3 with 7093 and B3 with 1974. Then save it to the Desktop under the name payroll_extract.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s1_a0/trajectory.jsonl",
+      "success": false,
+      "steps": 22,
+      "usage": {
+       "prompt_tokens": 2593910,
+       "cached_tokens": 2143104,
+       "completion_tokens": 6920,
+       "total_tokens": 2600830,
+       "cost_usd": 0.23511757,
+       "model_calls": 22,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 10900,
+         "cached_tokens": 0,
+         "completion_tokens": 164,
+         "cost_usd": 0.0049623552
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 21212,
+         "cached_tokens": 384,
+         "completion_tokens": 217,
+         "cost_usd": 0.00936157464
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 31525,
+         "cached_tokens": 384,
+         "completion_tokens": 199,
+         "cost_usd": 0.01383039504
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 41712,
+         "cached_tokens": 31488,
+         "completion_tokens": 42,
+         "cost_usd": 0.00494488368
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 51847,
+         "cached_tokens": 41600,
+         "completion_tokens": 78,
+         "cost_usd": 0.0051420996
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 62040,
+         "cached_tokens": 51840,
+         "completion_tokens": 35,
+         "cost_usd": 0.0052073604
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 72181,
+         "cached_tokens": 61952,
+         "completion_tokens": 55,
+         "cost_usd": 0.00538628112
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 82315,
+         "cached_tokens": 21120,
+         "completion_tokens": 80,
+         "cost_usd": 0.0270538092
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 92464,
+         "cached_tokens": 72064,
+         "completion_tokens": 41,
+         "cost_usd": 0.00993862584
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 102605,
+         "cached_tokens": 92416,
+         "completion_tokens": 35,
+         "cost_usd": 0.00576495216
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 112761,
+         "cached_tokens": 102528,
+         "completion_tokens": 37,
+         "cost_usd": 0.00592688448
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 122909,
+         "cached_tokens": 112640,
+         "completion_tokens": 39,
+         "cost_usd": 0.006085332
+        },
+        {
+         "call": 13,
+         "prompt_tokens": 133072,
+         "cached_tokens": 122880,
+         "completion_tokens": 72,
+         "cost_usd": 0.0062368416
+        },
+        {
+         "call": 14,
+         "prompt_tokens": 143292,
+         "cached_tokens": 82304,
+         "completion_tokens": 74,
+         "cost_usd": 0.02780380944
+        },
+        {
+         "call": 15,
+         "prompt_tokens": 153462,
+         "cached_tokens": 132992,
+         "completion_tokens": 109,
+         "cost_usd": 0.01090244232
+        },
+        {
+         "call": 16,
+         "prompt_tokens": 163634,
+         "cached_tokens": 143232,
+         "completion_tokens": 240,
+         "cost_usd": 0.01118593872
+        },
+        {
+         "call": 17,
+         "prompt_tokens": 173907,
+         "cached_tokens": 153344,
+         "completion_tokens": 215,
+         "cost_usd": 0.01136355264
+        },
+        {
+         "call": 18,
+         "prompt_tokens": 184071,
+         "cached_tokens": 173824,
+         "completion_tokens": 1016,
+         "cost_usd": 0.00820050264
+        },
+        {
+         "call": 19,
+         "prompt_tokens": 194235,
+         "cached_tokens": 184064,
+         "completion_tokens": 208,
+         "cost_usd": 0.00725342904
+        },
+        {
+         "call": 20,
+         "prompt_tokens": 204399,
+         "cached_tokens": 194176,
+         "completion_tokens": 121,
+         "cost_usd": 0.00730254096
+        },
+        {
+         "call": 21,
+         "prompt_tokens": 214589,
+         "cached_tokens": 204288,
+         "completion_tokens": 3769,
+         "cost_usd": 0.01224387648
+        },
+        {
+         "call": 22,
+         "prompt_tokens": 224778,
+         "cached_tokens": 163584,
+         "completion_tokens": 74,
+         "cost_usd": 0.02902008384
+        }
+       ]
+      },
+      "unit_floored": 320814.8
+     },
+     {
+      "attempt": 1,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s1_a1/trajectory.jsonl",
+      "success": true,
+      "steps": 21,
+      "usage": {
+       "prompt_tokens": 2379372,
+       "cached_tokens": 1958400,
+       "completion_tokens": 6588,
+       "total_tokens": 2385960,
+       "cost_usd": 0.21912803,
+       "model_calls": 21,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 10986,
+         "cached_tokens": 384,
+         "completion_tokens": 319,
+         "cost_usd": 0.00504042264
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 21502,
+         "cached_tokens": 384,
+         "completion_tokens": 507,
+         "cost_usd": 0.00986687064
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 31694,
+         "cached_tokens": 10880,
+         "completion_tokens": 96,
+         "cost_usd": 0.009342828
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 41851,
+         "cached_tokens": 21376,
+         "completion_tokens": 336,
+         "cost_usd": 0.00965426616
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 52076,
+         "cached_tokens": 31616,
+         "completion_tokens": 265,
+         "cost_usd": 0.00969687576
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 62373,
+         "cached_tokens": 41728,
+         "completion_tokens": 405,
+         "cost_usd": 0.01010056608
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 72521,
+         "cached_tokens": 62336,
+         "completion_tokens": 137,
+         "cost_usd": 0.00547959456
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 82719,
+         "cached_tokens": 72448,
+         "completion_tokens": 276,
+         "cost_usd": 0.00583885368
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 92875,
+         "cached_tokens": 82688,
+         "completion_tokens": 153,
+         "cost_usd": 0.00578345328
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 103120,
+         "cached_tokens": 51968,
+         "completion_tokens": 268,
+         "cost_usd": 0.02335231008
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 113331,
+         "cached_tokens": 103040,
+         "completion_tokens": 238,
+         "cost_usd": 0.0062219124
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 123540,
+         "cached_tokens": 92800,
+         "completion_tokens": 88,
+         "cost_usd": 0.0147915504
+        },
+        {
+         "call": 13,
+         "prompt_tokens": 133743,
+         "cached_tokens": 113280,
+         "completion_tokens": 514,
+         "cost_usd": 0.0111554388
+        },
+        {
+         "call": 14,
+         "prompt_tokens": 143947,
+         "cached_tokens": 133632,
+         "completion_tokens": 164,
+         "cost_usd": 0.00655966872
+        },
+        {
+         "call": 15,
+         "prompt_tokens": 154130,
+         "cached_tokens": 143872,
+         "completion_tokens": 140,
+         "cost_usd": 0.00664540272
+        },
+        {
+         "call": 16,
+         "prompt_tokens": 164353,
+         "cached_tokens": 123520,
+         "completion_tokens": 450,
+         "cost_usd": 0.020086902
+        },
+        {
+         "call": 17,
+         "prompt_tokens": 174547,
+         "cached_tokens": 154112,
+         "completion_tokens": 97,
+         "cost_usd": 0.01116423792
+        },
+        {
+         "call": 18,
+         "prompt_tokens": 184718,
+         "cached_tokens": 164352,
+         "completion_tokens": 216,
+         "cost_usd": 0.01143161712
+        },
+        {
+         "call": 19,
+         "prompt_tokens": 194918,
+         "cached_tokens": 174464,
+         "completion_tokens": 323,
+         "cost_usd": 0.01174992984
+        },
+        {
+         "call": 20,
+         "prompt_tokens": 205104,
+         "cached_tokens": 194816,
+         "completion_tokens": 106,
+         "cost_usd": 0.00732012336
+        },
+        {
+         "call": 21,
+         "prompt_tokens": 215324,
+         "cached_tokens": 184704,
+         "completion_tokens": 1490,
+         "cost_usd": 0.01784520144
+        }
+       ]
+      },
+      "unit_floored": 303429.8
+     }
+    ],
+    "reflections": [
+     {
+      "lesson": "In the Save As dialog, type the filename but do not press Escape\u2014that cancels or resets the dialog. Instead, set the location to Desktop by clicking \u201cDesktop\u201d in the left sidebar, then press Enter or click the \u201cSave\u201d button (bottom right). The previous attempt pressed Escape twice and clicked random controls, leaving the dialog stuck open.",
+      "usage": {
+       "prompt_tokens": 926,
+       "completion_tokens": 847,
+       "cached_tokens": 0,
+       "cost_usd": 0.000740010348
+      },
+      "cost_usd": 0.000740010348,
+      "stage": "reflection",
+      "for_attempt": 1
+     }
+    ],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s1_a1/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 2,
+    "goal": "Please set up a small table in a new LibreOffice Calc spreadsheet: headers 'Region' (A1) and 'Location' (B1), then 876 and 1336 on the second row, 2264 and 8597 on the third. Save the file on the Desktop as unit_figures.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s2_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 18,
+      "usage": {
+       "prompt_tokens": 2091540,
+       "cached_tokens": 1882387,
+       "completion_tokens": 269220,
+       "total_tokens": 2360760,
+       "cost_usd": 0.23709842,
+       "model_calls": 20,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 10900,
+         "cached_tokens": 0,
+         "completion_tokens": 333,
+         "cost_usd": 0.0051832044
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 20929,
+         "cached_tokens": 0,
+         "completion_tokens": 719,
+         "cost_usd": 0.0050281308
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 30748,
+         "cached_tokens": 20928,
+         "completion_tokens": 462,
+         "cost_usd": 0.00258569784
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 40582,
+         "cached_tokens": 30747,
+         "completion_tokens": 659,
+         "cost_usd": 0.00278573031
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 50406,
+         "cached_tokens": 40581,
+         "completion_tokens": 268,
+         "cost_usd": 0.00259622253
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 60244,
+         "cached_tokens": 50405,
+         "completion_tokens": 205,
+         "cost_usd": 0.00262618785
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 70076,
+         "cached_tokens": 60243,
+         "completion_tokens": 51,
+         "cost_usd": 0.00259243479
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 79922,
+         "cached_tokens": 70075,
+         "completion_tokens": 131,
+         "cost_usd": 0.00271589175
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 89758,
+         "cached_tokens": 79921,
+         "completion_tokens": 58,
+         "cost_usd": 0.00273424833
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 99609,
+         "cached_tokens": 89757,
+         "completion_tokens": 168,
+         "cost_usd": 0.00287755281
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 109453,
+         "cached_tokens": 99608,
+         "completion_tokens": 43,
+         "cost_usd": 0.00286262064
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 119312,
+         "cached_tokens": 109452,
+         "completion_tokens": 64,
+         "cost_usd": 0.00294782796
+        },
+        {
+         "call": 13,
+         "prompt_tokens": 129164,
+         "cached_tokens": 119311,
+         "completion_tokens": 58,
+         "cost_usd": 0.00301070583
+        },
+        {
+         "call": 14,
+         "prompt_tokens": 139031,
+         "cached_tokens": 129163,
+         "completion_tokens": 73,
+         "cost_usd": 0.00309204819
+        },
+        {
+         "call": 15,
+         "prompt_tokens": 148899,
+         "cached_tokens": 139030,
+         "completion_tokens": 131072,
+         "cost_usd": 0.0887553909
+        },
+        {
+         "call": 16,
+         "prompt_tokens": 158775,
+         "cached_tokens": 148898,
+         "completion_tokens": 2223,
+         "cost_usd": 0.00463558194
+        },
+        {
+         "call": 17,
+         "prompt_tokens": 168639,
+         "cached_tokens": 158774,
+         "completion_tokens": 94,
+         "cost_usd": 0.00331032042
+        },
+        {
+         "call": 18,
+         "prompt_tokens": 178499,
+         "cached_tokens": 168638,
+         "completion_tokens": 344,
+         "cost_usd": 0.00354115674
+        },
+        {
+         "call": 19,
+         "prompt_tokens": 188359,
+         "cached_tokens": 178498,
+         "completion_tokens": 131072,
+         "cost_usd": 0.08902716174
+        },
+        {
+         "call": 20,
+         "prompt_tokens": 198235,
+         "cached_tokens": 188358,
+         "completion_tokens": 1123,
+         "cost_usd": 0.00419029974
+        }
+       ]
+      },
+      "unit_floored": 1065944.8
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 3,
+    "goal": "In LibreOffice Calc, create a new spreadsheet. Put the header 'Pipeline' in cell A1 and the header 'Location' in B1. Under the headers enter the numbers 3640 in A2, 2835 in B2, 1410 in A3 and 7663 in B3. Save the spreadsheet as workgroup_grid.ods on the Desktop.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s3_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 17,
+      "usage": {
+       "prompt_tokens": 1522395,
+       "cached_tokens": 1103192,
+       "completion_tokens": 3907,
+       "total_tokens": 1526302,
+       "cost_usd": 0.10734968,
+       "model_calls": 17,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 10660,
+         "cached_tokens": 0,
+         "completion_tokens": 258,
+         "cost_usd": 0.002440518696
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 20605,
+         "cached_tokens": 0,
+         "completion_tokens": 593,
+         "cost_usd": 0.004777730496
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 31292,
+         "cached_tokens": 0,
+         "completion_tokens": 40,
+         "cost_usd": 0.0136830672
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 40262,
+         "cached_tokens": 0,
+         "completion_tokens": 56,
+         "cost_usd": 0.00862954092
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 50100,
+         "cached_tokens": 0,
+         "completion_tokens": 127,
+         "cost_usd": 0.0109947618
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 59932,
+         "cached_tokens": 40192,
+         "completion_tokens": 44,
+         "cost_usd": 0.0045145191168
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 69779,
+         "cached_tokens": 10496,
+         "completion_tokens": 70,
+         "cost_usd": 0.0127697064264
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 79619,
+         "cached_tokens": 40192,
+         "completion_tokens": 49,
+         "cost_usd": 0.0087197928048
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 89474,
+         "cached_tokens": 59904,
+         "completion_tokens": 76,
+         "cost_usd": 0.0067670363376
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 99318,
+         "cached_tokens": 50099,
+         "completion_tokens": 53,
+         "cost_usd": 0.01110171447
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 109177,
+         "cached_tokens": 99317,
+         "completion_tokens": 55,
+         "cost_usd": 0.00287171181
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 119029,
+         "cached_tokens": 109176,
+         "completion_tokens": 53,
+         "cost_usd": 0.00293720328
+        },
+        {
+         "call": 13,
+         "prompt_tokens": 128896,
+         "cached_tokens": 119028,
+         "completion_tokens": 72,
+         "cost_usd": 0.00302115924
+        },
+        {
+         "call": 14,
+         "prompt_tokens": 138764,
+         "cached_tokens": 128895,
+         "completion_tokens": 1125,
+         "cost_usd": 0.00377778555
+        },
+        {
+         "call": 15,
+         "prompt_tokens": 148636,
+         "cached_tokens": 138763,
+         "completion_tokens": 381,
+         "cost_usd": 0.00336091239
+        },
+        {
+         "call": 16,
+         "prompt_tokens": 158496,
+         "cached_tokens": 148635,
+         "completion_tokens": 493,
+         "cost_usd": 0.00349989255
+        },
+        {
+         "call": 17,
+         "prompt_tokens": 168356,
+         "cached_tokens": 158495,
+         "completion_tokens": 362,
+         "cost_usd": 0.00348262695
+        }
+       ]
+      },
+      "unit_floored": 222869.8
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 4,
+   "retry_episodes": 1,
+   "reflection_calls": 1,
+   "prompt_tokens": 8588143,
+   "cached_tokens": 7087083,
+   "completion_tokens": 287482,
+   "total_tokens": 8875625,
+   "cost_usd": 0.79943371
+  },
+  "record_type": "exploration"
+ },
+ "resumed_from_stages": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k"
+ ],
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 3,
+     "prompt_tokens": 10375,
+     "cached_tokens": 0,
+     "completion_tokens": 38129,
+     "total_tokens": 48504,
+     "cost_usd": 0.01661256
+    },
+    "cost_usd": 0.01661256,
+    "attempts": 3,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3406,
+      "cached_tokens": 0,
+      "completion_tokens": 12804,
+      "total_tokens": 16210,
+      "cost_usd": 0,
+      "usage": {
+       "prompt_tokens": 3406,
+       "completion_tokens": 12804,
+       "cached_tokens": 0,
+       "cost_usd": 0
+      },
+      "stage": "builder",
+      "accepted": false
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 3406,
+      "cached_tokens": 0,
+      "completion_tokens": 569,
+      "total_tokens": 3975,
+      "cost_usd": 0,
+      "usage": {
+       "prompt_tokens": 3406,
+       "completion_tokens": 569,
+       "cached_tokens": 0,
+       "cost_usd": 0
+      },
+      "stage": "builder",
+      "accepted": false
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 3563,
+      "cached_tokens": 0,
+      "completion_tokens": 24756,
+      "total_tokens": 28319,
+      "cost_usd": 0.016612559964,
+      "usage": {
+       "prompt_tokens": 3563,
+       "completion_tokens": 24756,
+       "cached_tokens": 0,
+       "cost_usd": 0.016612559964
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3379,
+     "cached_tokens": 0,
+     "completion_tokens": 3794,
+     "total_tokens": 7173,
+     "cost_usd": 0.00321495
+    },
+    "cost_usd": 0.00321495,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3379,
+      "cached_tokens": 0,
+      "completion_tokens": 3794,
+      "total_tokens": 7173,
+      "cost_usd": 0.0032149458,
+      "usage": {
+       "prompt_tokens": 3379,
+       "completion_tokens": 3794,
+       "cached_tokens": 0,
+       "cost_usd": 0.0032149458
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 6090,
+     "cached_tokens": 0,
+     "completion_tokens": 21673,
+     "total_tokens": 27763,
+     "cost_usd": 0.01517779
+    },
+    "cost_usd": 0.01517779,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6090,
+      "cached_tokens": 0,
+      "completion_tokens": 21673,
+      "total_tokens": 27763,
+      "cost_usd": 0.015177789396,
+      "usage": {
+       "prompt_tokens": 6090,
+       "completion_tokens": 21673,
+       "cached_tokens": 0,
+       "cost_usd": 0.015177789396
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 5853,
+     "cached_tokens": 0,
+     "completion_tokens": 9668,
+     "total_tokens": 15521,
+     "cost_usd": 0.01518371
+    },
+    "cost_usd": 0.01518371,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5853,
+      "cached_tokens": 0,
+      "completion_tokens": 9668,
+      "total_tokens": 15521,
+      "cost_usd": 0.0151837092,
+      "usage": {
+       "prompt_tokens": 5853,
+       "completion_tokens": 9668,
+       "cached_tokens": 0,
+       "cost_usd": 0.0151837092
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 2,
+     "prompt_tokens": 16974,
+     "cached_tokens": 256,
+     "completion_tokens": 152673,
+     "total_tokens": 169647,
+     "cost_usd": 0.10308132
+    },
+    "cost_usd": 0.10308132,
+    "attempts": 2,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 8487,
+      "cached_tokens": 0,
+      "completion_tokens": 131072,
+      "total_tokens": 139559,
+      "cost_usd": 0.0874909134,
+      "usage": {
+       "prompt_tokens": 8487,
+       "completion_tokens": 131072,
+       "cached_tokens": 0,
+       "cost_usd": 0.0874909134
+      },
+      "stage": "builder",
+      "accepted": false
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 8487,
+      "cached_tokens": 256,
+      "completion_tokens": 21601,
+      "total_tokens": 30088,
+      "cost_usd": 0.0155904076944,
+      "usage": {
+       "prompt_tokens": 8487,
+       "completion_tokens": 21601,
+       "cached_tokens": 256,
+       "cost_usd": 0.0155904076944
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 8303,
+     "cached_tokens": 0,
+     "completion_tokens": 12293,
+     "total_tokens": 20596,
+     "cost_usd": 0.00964383
+    },
+    "cost_usd": 0.00964383,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 8303,
+      "cached_tokens": 0,
+      "completion_tokens": 12293,
+      "total_tokens": 20596,
+      "cost_usd": 0.009643826808,
+      "usage": {
+       "prompt_tokens": 8303,
+       "completion_tokens": 12293,
+       "cached_tokens": 0,
+       "cost_usd": 0.009643826808
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 5,
+    "prompt_tokens": 27914,
+    "cached_tokens": 256,
+    "completion_tokens": 185963,
+    "total_tokens": 213877,
+    "cost_usd": 0.126882
+   }
+  }
+ },
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 18,
+    "recorded_actions": 21,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 18,
+     "prompt_tokens": 11791,
+     "cached_tokens": 0,
+     "completion_tokens": 286345,
+     "total_tokens": 298136,
+     "cost_usd": 0.19376405
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 17,
+    "recorded_actions": 18,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 17,
+     "prompt_tokens": 10830,
+     "cached_tokens": 0,
+     "completion_tokens": 143068,
+     "total_tokens": 153898,
+     "cost_usd": 0.09920566
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 16,
+    "recorded_actions": 17,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 16,
+     "prompt_tokens": 10379,
+     "cached_tokens": 0,
+     "completion_tokens": 17076,
+     "total_tokens": 27455,
+     "cost_usd": 0.01611615
+    }
+   }
+  ],
+  "totals": {
+   "calls": 51,
+   "prompt_tokens": 33000,
+   "cached_tokens": 0,
+   "completion_tokens": 446489,
+   "total_tokens": 479489,
+   "cost_usd": 0.30908586
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "family": "CalcTableSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "artifact": "code",
+  "m_max": 3,
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "rounds": [
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'",
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+     }
+    ],
+    "analysis": {
+     "cause": "The automation script called ProgramDevice.find() with the keyword argument 'text', which is not supported by the method, causing a TypeError. This occurred after opening the Save As dialog, when it tried to locate a control (e.g., the filename field or Save button) using an invalid parameter.",
+     "done": "The spreadsheet data has been entered correctly: A1='Pipeline', B1='Budget', A2=8398, B2=3934, A3=7093, B3=1974. The Ctrl+Shift+S shortcut was sent, opening the Save As dialog.",
+     "plan": "From the current state (Save As dialog open), locate the filename input field using the supported find() parameters (e.g., by role or name), type \"payroll_extract.ods\" into it, set the save location to the Desktop, then click the Save button. If the dialog is not open, press Ctrl+Shift+S again first.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1306,
+     "cached_tokens": 0,
+     "completion_tokens": 6051,
+     "total_tokens": 7357,
+     "cost_usd": 0.004153406796,
+     "usage": {
+      "prompt_tokens": 1306,
+      "completion_tokens": 6051,
+      "cached_tokens": 0,
+      "cost_usd": 0.004153406796
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 8,
+     "success": true,
+     "calls": 8,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 10972,
+       "cached_tokens": 0,
+       "completion_tokens": 4426,
+       "total_tokens": 15398,
+       "cost_usd": 0.00528165,
+       "usage": {
+        "prompt_tokens": 10972,
+        "completion_tokens": 4426,
+        "cached_tokens": 0,
+        "cost_usd": 0.00528165
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"payroll_extract.ods\"}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 21393,
+       "cached_tokens": 0,
+       "completion_tokens": 1396,
+       "total_tokens": 22789,
+       "cost_usd": 0.0111430836,
+       "usage": {
+        "prompt_tokens": 21393,
+        "completion_tokens": 1396,
+        "cached_tokens": 0,
+        "cost_usd": 0.0111430836
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 31562,
+       "cached_tokens": 512,
+       "completion_tokens": 48,
+       "total_tokens": 31610,
+       "cost_usd": 0.01360229904,
+       "usage": {
+        "prompt_tokens": 31562,
+        "completion_tokens": 48,
+        "cached_tokens": 512,
+        "cost_usd": 0.01360229904
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 74}"
+      },
+      {
+       "step": 4,
+       "call": 4,
+       "first_call": false,
+       "prompt_tokens": 41726,
+       "cached_tokens": 0,
+       "completion_tokens": 2552,
+       "total_tokens": 44278,
+       "cost_usd": 0.0215107992,
+       "usage": {
+        "prompt_tokens": 41726,
+        "completion_tokens": 2552,
+        "cached_tokens": 0,
+        "cost_usd": 0.0215107992
+       },
+       "stage": "react_resume",
+       "action": "I've selected the Desktop folder. Let me open it by double-clicking.\n\naction: {\"action_type\": \"click\", \"index\": 74}"
+      },
+      {
+       "step": 5,
+       "call": 5,
+       "first_call": false,
+       "prompt_tokens": 51906,
+       "cached_tokens": 0,
+       "completion_tokens": 298,
+       "total_tokens": 52204,
+       "cost_usd": 0.02299968,
+       "usage": {
+        "prompt_tokens": 51906,
+        "completion_tokens": 298,
+        "cached_tokens": 0,
+        "cost_usd": 0.02299968
+       },
+       "stage": "react_resume",
+       "action": "I need to navigate into the Desktop folder. Let me double-click it.\n\naction: {\"action_type\": \"long_press\", \"index\": 74}"
+      },
+      {
+       "step": 6,
+       "call": 6,
+       "first_call": false,
+       "prompt_tokens": 62087,
+       "cached_tokens": 0,
+       "completion_tokens": 236,
+       "total_tokens": 62323,
+       "cost_usd": 0.027353502,
+       "usage": {
+        "prompt_tokens": 62087,
+        "completion_tokens": 236,
+        "cached_tokens": 0,
+        "cost_usd": 0.027353502
+       },
+       "stage": "react_resume",
+       "action": "The filename is set. Now I need to make sure the save location is the Desktop. Let me click Desktop in the sidebar.\n\naction: {\"action_type\": \"click\", \"index\": 33}"
+      },
+      {
+       "step": 7,
+       "call": 7,
+       "first_call": false,
+       "prompt_tokens": 72277,
+       "cached_tokens": 31488,
+       "completion_tokens": 1167,
+       "total_tokens": 73444,
+       "cost_usd": 0.02016557136,
+       "usage": {
+        "prompt_tokens": 72277,
+        "completion_tokens": 1167,
+        "cached_tokens": 31488,
+        "cost_usd": 0.02016557136
+       },
+       "stage": "react_resume",
+       "action": "The Desktop folder is selected. Let me press Enter to navigate into it.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 8,
+       "call": 8,
+       "first_call": false,
+       "prompt_tokens": 82456,
+       "cached_tokens": 41600,
+       "completion_tokens": 238,
+       "total_tokens": 82694,
+       "cost_usd": 0.019261044,
+       "usage": {
+        "prompt_tokens": 82456,
+        "completion_tokens": 238,
+        "cached_tokens": 41600,
+        "cost_usd": 0.019261044
+       },
+       "stage": "react_resume",
+       "action": "The location is now set to Desktop. Now I'll save the file.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      }
+     ]
+    },
+    "refinement": 1,
+    "gate": {
+     "passed": 0,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3226,
+     "cached_tokens": 0,
+     "completion_tokens": 10323,
+     "total_tokens": 13549,
+     "cost_usd": 0.00744767,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 3226,
+      "cached_tokens": 0,
+      "completion_tokens": 10323,
+      "total_tokens": 13549,
+      "cost_usd": 0.00744767
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3226,
+       "cached_tokens": 0,
+       "completion_tokens": 10323,
+       "total_tokens": 13549,
+       "cost_usd": 0.007447671,
+       "usage": {
+        "prompt_tokens": 3226,
+        "completion_tokens": 10323,
+        "cached_tokens": 0,
+        "cost_usd": 0.007447671
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   },
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": null,
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": null
+     }
+    ],
+    "analysis": {
+     "cause": "The Save As flow never completed: the filename field lookup failed, and after the subsequent clicks the document is still titled \"Untitled 1\", so no payroll_extract.ods was written to the Desktop. The checker rejected because the required saved file is missing/incorrect.",
+     "done": "Spreadsheet is open in LibreOffice Calc with A1='Pipeline', B1='Budget'; A2/B2/A3/B3 values were entered (verify if needed).",
+     "plan": "1) Verify/fill A2=8398, B2=3934, A3=7093, B3=1974. 2) Press Ctrl+Shift+S to open Save As. 3) In the filename field, select all and type payroll_extract.ods (or full path ~/Desktop/payroll_extract.ods). 4) Choose Desktop as the save location if not using full path. 5) Click Save; if a format prompt appears, keep ODF/use .ods. 6) Confirm title changes to payroll_extract.ods and file exists on Desktop.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1421,
+     "cached_tokens": 0,
+     "completion_tokens": 2252,
+     "total_tokens": 3673,
+     "cost_usd": 0.0035619012,
+     "usage": {
+      "prompt_tokens": 1421,
+      "completion_tokens": 2252,
+      "cached_tokens": 0,
+      "cost_usd": 0.0035619012
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 17,
+     "success": true,
+     "calls": 17,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 11005,
+       "cached_tokens": 0,
+       "completion_tokens": 4644,
+       "total_tokens": 15649,
+       "cost_usd": 0.005322653028,
+       "usage": {
+        "prompt_tokens": 11005,
+        "completion_tokens": 4644,
+        "cached_tokens": 0,
+        "cost_usd": 0.005322653028
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 20870,
+       "cached_tokens": 10752,
+       "completion_tokens": 1481,
+       "total_tokens": 22351,
+       "cost_usd": 0.0031809792168,
+       "usage": {
+        "prompt_tokens": 20870,
+        "completion_tokens": 1481,
+        "cached_tokens": 10752,
+        "cost_usd": 0.0031809792168
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"~/Desktop/payroll_extract.ods\"}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 30742,
+       "cached_tokens": 0,
+       "completion_tokens": 2704,
+       "total_tokens": 33446,
+       "cost_usd": 0.008293153176,
+       "usage": {
+        "prompt_tokens": 30742,
+        "completion_tokens": 2704,
+        "cached_tokens": 0,
+        "cost_usd": 0.008293153176
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"Escape\"}"
+      },
+      {
+       "step": 4,
+       "call": 4,
+       "first_call": false,
+       "prompt_tokens": 40606,
+       "cached_tokens": 0,
+       "completion_tokens": 1953,
+       "total_tokens": 42559,
+       "cost_usd": 0.00991767546,
+       "usage": {
+        "prompt_tokens": 40606,
+        "completion_tokens": 1953,
+        "cached_tokens": 0,
+        "cost_usd": 0.00991767546
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 5,
+       "call": 5,
+       "first_call": false,
+       "prompt_tokens": 50474,
+       "cached_tokens": 0,
+       "completion_tokens": 1673,
+       "total_tokens": 52147,
+       "cost_usd": 0.011844647892,
+       "usage": {
+        "prompt_tokens": 50474,
+        "completion_tokens": 1673,
+        "cached_tokens": 0,
+        "cost_usd": 0.011844647892
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"Escape\"}"
+      },
+      {
+       "step": 6,
+       "call": 6,
+       "first_call": false,
+       "prompt_tokens": 60336,
+       "cached_tokens": 40448,
+       "completion_tokens": 206,
+       "total_tokens": 60542,
+       "cost_usd": 0.0046515812112,
+       "usage": {
+        "prompt_tokens": 60336,
+        "completion_tokens": 206,
+        "cached_tokens": 40448,
+        "cost_usd": 0.0046515812112
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"shift\", \"s\"]}"
+      },
+      {
+       "step": 7,
+       "call": 7,
+       "first_call": false,
+       "prompt_tokens": 70206,
+       "cached_tokens": 60160,
+       "completion_tokens": 2550,
+       "total_tokens": 72756,
+       "cost_usd": 0.004185675648,
+       "usage": {
+        "prompt_tokens": 70206,
+        "completion_tokens": 2550,
+        "cached_tokens": 60160,
+        "cost_usd": 0.004185675648
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"payroll_extract.ods\"}"
+      },
+      {
+       "step": 8,
+       "call": 8,
+       "first_call": false,
+       "prompt_tokens": 80074,
+       "cached_tokens": 60160,
+       "completion_tokens": 1016,
+       "total_tokens": 81090,
+       "cost_usd": 0.005309671752,
+       "usage": {
+        "prompt_tokens": 80074,
+        "completion_tokens": 1016,
+        "cached_tokens": 60160,
+        "cost_usd": 0.005309671752
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 9,
+       "call": 9,
+       "first_call": false,
+       "prompt_tokens": 89942,
+       "cached_tokens": 20736,
+       "completion_tokens": 1586,
+       "total_tokens": 91528,
+       "cost_usd": 0.0159279984864,
+       "usage": {
+        "prompt_tokens": 89942,
+        "completion_tokens": 1586,
+        "cached_tokens": 20736,
+        "cost_usd": 0.0159279984864
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 10,
+       "call": 10,
+       "first_call": false,
+       "prompt_tokens": 99810,
+       "cached_tokens": 79872,
+       "completion_tokens": 2230,
+       "total_tokens": 102040,
+       "cost_usd": 0.0062260295328,
+       "usage": {
+        "prompt_tokens": 99810,
+        "completion_tokens": 2230,
+        "cached_tokens": 79872,
+        "cost_usd": 0.0062260295328
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+      },
+      {
+       "step": 11,
+       "call": 11,
+       "first_call": false,
+       "prompt_tokens": 109678,
+       "cached_tokens": 99584,
+       "completion_tokens": 2834,
+       "total_tokens": 112512,
+       "cost_usd": 0.0046455194016,
+       "usage": {
+        "prompt_tokens": 109678,
+        "completion_tokens": 2834,
+        "cached_tokens": 99584,
+        "cost_usd": 0.0046455194016
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 12,
+       "call": 12,
+       "first_call": false,
+       "prompt_tokens": 119546,
+       "cached_tokens": 109568,
+       "completion_tokens": 873,
+       "total_tokens": 120419,
+       "cost_usd": 0.0034328741832,
+       "usage": {
+        "prompt_tokens": 119546,
+        "completion_tokens": 873,
+        "cached_tokens": 109568,
+        "cost_usd": 0.0034328741832
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 13,
+       "call": 13,
+       "first_call": false,
+       "prompt_tokens": 129414,
+       "cached_tokens": 89856,
+       "completion_tokens": 1210,
+       "total_tokens": 130624,
+       "cost_usd": 0.0098284675104,
+       "usage": {
+        "prompt_tokens": 129414,
+        "completion_tokens": 1210,
+        "cached_tokens": 89856,
+        "cost_usd": 0.0098284675104
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"/home/user/Desktop/payroll_extract.ods\"}"
+      },
+      {
+       "step": 14,
+       "call": 14,
+       "first_call": false,
+       "prompt_tokens": 139286,
+       "cached_tokens": 119296,
+       "completion_tokens": 89,
+       "total_tokens": 139375,
+       "cost_usd": 0.0051339219624,
+       "usage": {
+        "prompt_tokens": 139286,
+        "completion_tokens": 89,
+        "cached_tokens": 119296,
+        "cost_usd": 0.0051339219624
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+      },
+      {
+       "step": 15,
+       "call": 15,
+       "first_call": false,
+       "prompt_tokens": 149154,
+       "cached_tokens": 129280,
+       "completion_tokens": 294,
+       "total_tokens": 149448,
+       "cost_usd": 0.005308235856,
+       "usage": {
+        "prompt_tokens": 149154,
+        "completion_tokens": 294,
+        "cached_tokens": 129280,
+        "cost_usd": 0.005308235856
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"/home/user/Desktop/payroll_extract.ods\"}"
+      },
+      {
+       "step": 16,
+       "call": 16,
+       "first_call": false,
+       "prompt_tokens": 159026,
+       "cached_tokens": 148992,
+       "completion_tokens": 57,
+       "total_tokens": 159083,
+       "cost_usd": 0.0031900602888,
+       "usage": {
+        "prompt_tokens": 159026,
+        "completion_tokens": 57,
+        "cached_tokens": 148992,
+        "cost_usd": 0.0031900602888
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 400}"
+      },
+      {
+       "step": 17,
+       "call": 17,
+       "first_call": false,
+       "prompt_tokens": 168886,
+       "cached_tokens": 119296,
+       "completion_tokens": 242,
+       "total_tokens": 169128,
+       "cost_usd": 0.0115498351584,
+       "usage": {
+        "prompt_tokens": 168886,
+        "completion_tokens": 242,
+        "cached_tokens": 119296,
+        "cost_usd": 0.0115498351584
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"Enter\"}"
+      }
+     ]
+    },
+    "refinement": 2,
+    "gate": {
+     "passed": 0,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3950,
+     "cached_tokens": 0,
+     "completion_tokens": 11798,
+     "total_tokens": 15748,
+     "cost_usd": 0.00839774,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 3950,
+      "cached_tokens": 0,
+      "completion_tokens": 11798,
+      "total_tokens": 15748,
+      "cost_usd": 0.00839774
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3950,
+       "cached_tokens": 0,
+       "completion_tokens": 11798,
+       "total_tokens": 15748,
+       "cost_usd": 0.008397740736,
+       "usage": {
+        "prompt_tokens": 3950,
+        "completion_tokens": 11798,
+        "cached_tokens": 0,
+        "cost_usd": 0.008397740736
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   },
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": "RuntimeError: Save did not complete; window title not updated",
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": "RuntimeError: Save did not complete; window title not updated"
+     }
+    ],
+    "analysis": {
+     "cause": "The Save As dialog was not committed correctly: after Ctrl+Shift+S the script entered the full path and then dismissed/clicked the wrong control, so LibreOffice never saved and the title stayed \u201cUntitled 1\u201d.",
+     "done": "Opened LibreOffice Calc and entered Pipeline/Budget in A1/B1, 8398/3934 in A2/B2, and 7093/1974 in A3/B3.",
+     "plan": "From the current Calc window, press Ctrl+Shift+S; in the Save dialog set the file name to payroll_extract.ods and the folder to /home/myl/Desktop (or select Desktop); click Save; confirm overwrite if prompted; wait until the title reads payroll_extract.ods - LibreOffice Calc.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1430,
+     "cached_tokens": 0,
+     "completion_tokens": 2933,
+     "total_tokens": 4363,
+     "cost_usd": 0.0044557524,
+     "usage": {
+      "prompt_tokens": 1430,
+      "completion_tokens": 2933,
+      "cached_tokens": 0,
+      "cost_usd": 0.0044557524
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 17,
+     "success": true,
+     "calls": 17,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 10937,
+       "cached_tokens": 0,
+       "completion_tokens": 4824,
+       "total_tokens": 15761,
+       "cost_usd": 0.005423398596,
+       "usage": {
+        "prompt_tokens": 10937,
+        "completion_tokens": 4824,
+        "cached_tokens": 0,
+        "cost_usd": 0.005423398596
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 20796,
+       "cached_tokens": 0,
+       "completion_tokens": 410,
+       "total_tokens": 21206,
+       "cost_usd": 0.0047972628,
+       "usage": {
+        "prompt_tokens": 20796,
+        "completion_tokens": 410,
+        "cached_tokens": 0,
+        "cost_usd": 0.0047972628
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 30658,
+       "cached_tokens": 0,
+       "completion_tokens": 224,
+       "total_tokens": 30882,
+       "cost_usd": 0.00668720052,
+       "usage": {
+        "prompt_tokens": 30658,
+        "completion_tokens": 224,
+        "cached_tokens": 0,
+        "cost_usd": 0.00668720052
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 4,
+       "call": 4,
+       "first_call": false,
+       "prompt_tokens": 40516,
+       "cached_tokens": 20795,
+       "completion_tokens": 213,
+       "total_tokens": 40729,
+       "cost_usd": 0.00457851735,
+       "usage": {
+        "prompt_tokens": 40516,
+        "completion_tokens": 213,
+        "cached_tokens": 20795,
+        "cost_usd": 0.00457851735
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 5,
+       "call": 5,
+       "first_call": false,
+       "prompt_tokens": 50376,
+       "cached_tokens": 40515,
+       "completion_tokens": 467,
+       "total_tokens": 50843,
+       "cost_usd": 0.00273363255,
+       "usage": {
+        "prompt_tokens": 50376,
+        "completion_tokens": 467,
+        "cached_tokens": 40515,
+        "cost_usd": 0.00273363255
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 6,
+       "call": 6,
+       "first_call": false,
+       "prompt_tokens": 60236,
+       "cached_tokens": 50375,
+       "completion_tokens": 131072,
+       "total_tokens": 191308,
+       "cost_usd": 0.08813926935,
+       "usage": {
+        "prompt_tokens": 60236,
+        "completion_tokens": 131072,
+        "cached_tokens": 50375,
+        "cost_usd": 0.08813926935
+       },
+       "stage": "react_resume",
+       "action": ""
+      },
+      {
+       "step": 7,
+       "call": 7,
+       "first_call": false,
+       "prompt_tokens": 70100,
+       "cached_tokens": 60235,
+       "completion_tokens": 496,
+       "total_tokens": 70596,
+       "cost_usd": 0.00289011195,
+       "usage": {
+        "prompt_tokens": 70100,
+        "completion_tokens": 496,
+        "cached_tokens": 60235,
+        "cost_usd": 0.00289011195
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 8,
+       "call": 8,
+       "first_call": false,
+       "prompt_tokens": 79960,
+       "cached_tokens": 70099,
+       "completion_tokens": 1225,
+       "total_tokens": 81185,
+       "cost_usd": 0.00343392687,
+       "usage": {
+        "prompt_tokens": 79960,
+        "completion_tokens": 1225,
+        "cached_tokens": 70099,
+        "cost_usd": 0.00343392687
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 9,
+       "call": 9,
+       "first_call": false,
+       "prompt_tokens": 89820,
+       "cached_tokens": 79959,
+       "completion_tokens": 2710,
+       "total_tokens": 92530,
+       "cost_usd": 0.00447255567,
+       "usage": {
+        "prompt_tokens": 89820,
+        "completion_tokens": 2710,
+        "cached_tokens": 79959,
+        "cost_usd": 0.00447255567
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 400}"
+      },
+      {
+       "step": 10,
+       "call": 10,
+       "first_call": false,
+       "prompt_tokens": 99680,
+       "cached_tokens": 89819,
+       "completion_tokens": 1178,
+       "total_tokens": 100858,
+       "cost_usd": 0.00353987667,
+       "usage": {
+        "prompt_tokens": 99680,
+        "completion_tokens": 1178,
+        "cached_tokens": 89819,
+        "cost_usd": 0.00353987667
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"tab\"}"
+      },
+      {
+       "step": 11,
+       "call": 11,
+       "first_call": false,
+       "prompt_tokens": 109540,
+       "cached_tokens": 99679,
+       "completion_tokens": 1193,
+       "total_tokens": 110733,
+       "cost_usd": 0.00361800747,
+       "usage": {
+        "prompt_tokens": 109540,
+        "completion_tokens": 1193,
+        "cached_tokens": 99679,
+        "cost_usd": 0.00361800747
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 12,
+       "call": 12,
+       "first_call": false,
+       "prompt_tokens": 119400,
+       "cached_tokens": 109539,
+       "completion_tokens": 131072,
+       "total_tokens": 250472,
+       "cost_usd": 0.08854927587,
+       "usage": {
+        "prompt_tokens": 119400,
+        "completion_tokens": 131072,
+        "cached_tokens": 109539,
+        "cost_usd": 0.08854927587
+       },
+       "stage": "react_resume",
+       "action": ""
+      },
+      {
+       "step": 13,
+       "call": 13,
+       "first_call": false,
+       "prompt_tokens": 129264,
+       "cached_tokens": 119399,
+       "completion_tokens": 1524,
+       "total_tokens": 130788,
+       "cost_usd": 0.00397181367,
+       "usage": {
+        "prompt_tokens": 129264,
+        "completion_tokens": 1524,
+        "cached_tokens": 119399,
+        "cost_usd": 0.00397181367
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"escape\"}"
+      },
+      {
+       "step": 14,
+       "call": 14,
+       "first_call": false,
+       "prompt_tokens": 139124,
+       "cached_tokens": 129263,
+       "completion_tokens": 110,
+       "total_tokens": 139234,
+       "cost_usd": 0.00311539239,
+       "usage": {
+        "prompt_tokens": 139124,
+        "completion_tokens": 110,
+        "cached_tokens": 129263,
+        "cost_usd": 0.00311539239
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"shift\", \"s\"]}"
+      },
+      {
+       "step": 15,
+       "call": 15,
+       "first_call": false,
+       "prompt_tokens": 148992,
+       "cached_tokens": 139123,
+       "completion_tokens": 131072,
+       "total_tokens": 280064,
+       "cost_usd": 0.08875603539,
+       "usage": {
+        "prompt_tokens": 148992,
+        "completion_tokens": 131072,
+        "cached_tokens": 139123,
+        "cost_usd": 0.08875603539
+       },
+       "stage": "react_resume",
+       "action": ""
+      },
+      {
+       "step": 16,
+       "call": 16,
+       "first_call": false,
+       "prompt_tokens": 158856,
+       "cached_tokens": 148991,
+       "completion_tokens": 3418,
+       "total_tokens": 162274,
+       "cost_usd": 0.00541442583,
+       "usage": {
+        "prompt_tokens": 158856,
+        "completion_tokens": 3418,
+        "cached_tokens": 148991,
+        "cost_usd": 0.00541442583
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"/home/user/Desktop/payroll_extract.ods\"}"
+      },
+      {
+       "step": 17,
+       "call": 17,
+       "first_call": false,
+       "prompt_tokens": 168728,
+       "cached_tokens": 158855,
+       "completion_tokens": 573,
+       "total_tokens": 169301,
+       "cost_usd": 0.00362560275,
+       "usage": {
+        "prompt_tokens": 168728,
+        "completion_tokens": 573,
+        "cached_tokens": 158855,
+        "cost_usd": 0.00362560275
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      }
+     ]
+    },
+    "refinement": 3,
+    "gate": {
+     "passed": 0,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3764,
+     "cached_tokens": 0,
+     "completion_tokens": 11169,
+     "total_tokens": 14933,
+     "cost_usd": 0.00795527,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 3764,
+      "cached_tokens": 0,
+      "completion_tokens": 11169,
+      "total_tokens": 14933,
+      "cost_usd": 0.00795527
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3764,
+       "cached_tokens": 0,
+       "completion_tokens": 11169,
+       "total_tokens": 14933,
+       "cost_usd": 0.007955271324,
+       "usage": {
+        "prompt_tokens": 3764,
+        "completion_tokens": 11169,
+        "cached_tokens": 0,
+        "cost_usd": 0.007955271324
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   }
+  ],
+  "refinements": 3,
+  "replays": 4,
+  "unautomatable": true,
+  "admitted": false,
+  "admitted_version": "refine3",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine2",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine3",
+    "passed": 0,
+    "total": 5
+   }
+  ],
+  "final_artifact": "import os\n\nPARAMS_SCHEMA = {\n    \"file_name\": {\"type\": \"string\", \"description\": \"Spreadsheet file name ending in .ods\"},\n    \"header_a\": {\"type\": \"string\", \"description\": \"Column A header text\"},\n    \"header_b\": {\"type\": \"string\", \"description\": \"Column B header text\"},\n    \"val_a2\": {\"type\": \"integer\", \"description\": \"Integer for cell A2\"},\n    \"val_b2\": {\"type\": \"integer\", \"description\": \"Integer for cell B2\"},\n    \"val_a3\": {\"type\": \"integer\", \"description\": \"Integer for cell A3\"},\n    \"val_b3\": {\"type\": \"integer\", \"description\": \"Integer for cell B3\"},\n}\n\ndef program(device, binding: dict) -> bool:\n    # Verify a spreadsheet is available\n    if device.find(name='A1', role='table-cell') is None:\n        raise RuntimeError(\"No LibreOffice Calc spreadsheet found (cell A1 missing)\")\n\n    # Fill the cells in order: A1, B1, A2, B2, A3, B3\n    cells = [\n        ('A1', binding['header_a']),\n        ('B1', binding['header_b']),\n        ('A2', binding['val_a2']),\n        ('B2', binding['val_b2']),\n        ('A3', binding['val_a3']),\n        ('B3', binding['val_b3']),\n    ]\n    for cell_name, value in cells:\n        idx = device.find(name=cell_name, role='table-cell', editable=True)\n        if idx is None:\n            raise RuntimeError(f\"Cell {cell_name} not found or not editable\")\n        device.input_text(str(value), index=idx)\n\n    # Open the Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n    device.settle(0.5)\n\n    # Build the full path to the Desktop.\n    home = os.path.expanduser('~')\n    full_path = os.path.join(home, 'Desktop', binding['file_name'])\n\n    # Type the full path directly into the filename field.\n    # The Name field is focused by default in the Save As dialog;\n    # input_text selects the existing text and replaces it.\n    device.input_text(full_path)\n    device.settle(0.2)\n\n    # Accept the path and save.\n    device.press('enter')\n    device.settle(0.5)\n\n    # Check if the save already happened (title changed).\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    # Otherwise, click the Save button.\n    save_btn = device.find(name='Save', role='push-button', clickable=True)\n    if save_btn is None:\n        save_btn = device.find(name='Save', clickable=True)\n    if save_btn is not None:\n        device.click(index=save_btn)\n    else:\n        device.hotkey('alt', 's')\n    device.settle(1)\n\n    # Verify the save completed.\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    # If still not saved, try pressing Enter as a fallback.\n    device.press('enter')\n    device.settle(1)\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    raise RuntimeError(\"Save did not complete; window title not updated\")\n",
+  "last_artifact": "import os\n\nPARAMS_SCHEMA = {\n    \"file_name\": {\"type\": \"string\", \"description\": \"Spreadsheet file name ending in .ods\"},\n    \"header_a\": {\"type\": \"string\", \"description\": \"Column A header text\"},\n    \"header_b\": {\"type\": \"string\", \"description\": \"Column B header text\"},\n    \"val_a2\": {\"type\": \"integer\", \"description\": \"Integer for cell A2\"},\n    \"val_b2\": {\"type\": \"integer\", \"description\": \"Integer for cell B2\"},\n    \"val_a3\": {\"type\": \"integer\", \"description\": \"Integer for cell A3\"},\n    \"val_b3\": {\"type\": \"integer\", \"description\": \"Integer for cell B3\"},\n}\n\ndef program(device, binding: dict) -> bool:\n    # Verify a spreadsheet is available\n    if device.find(name='A1', role='table-cell') is None:\n        raise RuntimeError(\"No LibreOffice Calc spreadsheet found (cell A1 missing)\")\n\n    # Fill the cells in order: A1, B1, A2, B2, A3, B3\n    cells = [\n        ('A1', binding['header_a']),\n        ('B1', binding['header_b']),\n        ('A2', binding['val_a2']),\n        ('B2', binding['val_b2']),\n        ('A3', binding['val_a3']),\n        ('B3', binding['val_b3']),\n    ]\n    for cell_name, value in cells:\n        idx = device.find(name=cell_name, role='table-cell', editable=True)\n        if idx is None:\n            raise RuntimeError(f\"Cell {cell_name} not found or not editable\")\n        device.input_text(str(value), index=idx)\n\n    # Open the Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n    device.settle(0.5)\n\n    # Build the full path to the Desktop.\n    home = os.path.expanduser('~')\n    full_path = os.path.join(home, 'Desktop', binding['file_name'])\n\n    # Type the full path directly into the filename field.\n    # The Name field is focused by default in the Save As dialog;\n    # input_text selects the existing text and replaces it.\n    device.input_text(full_path)\n    device.settle(0.2)\n\n    # Accept the path and save.\n    device.press('enter')\n    device.settle(0.5)\n\n    # Check if the save already happened (title changed).\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    # Otherwise, click the Save button.\n    save_btn = device.find(name='Save', role='push-button', clickable=True)\n    if save_btn is None:\n        save_btn = device.find(name='Save', clickable=True)\n    if save_btn is not None:\n        device.click(index=save_btn)\n    else:\n        device.hotkey('alt', 's')\n    device.settle(1)\n\n    # Verify the save completed.\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    # If still not saved, try pressing Enter as a fallback.\n    device.press('enter')\n    device.settle(1)\n    title = device.active_window()\n    if binding['file_name'] in title:\n        return True\n\n    raise RuntimeError(\"Save did not complete; window title not updated\")\n",
+  "conclusions": [
+   "seed 1: The automation script called ProgramDevice.find() with the keyword argument 'text', which is not supported by the method, causing a TypeError. This occurred after opening the Save As dialog, when it tried to locate a control (e.g., the filename field or Save button) using an invalid parameter.",
+   "seed 1: The Save As flow never completed: the filename field lookup failed, and after the subsequent clicks the document is still titled \"Untitled 1\", so no payroll_extract.ods was written to the Desktop. The checker rejected because the required saved file is missing/incorrect.",
+   "seed 1: The Save As dialog was not committed correctly: after Ctrl+Shift+S the script entered the full path and then dismissed/clicked the wrong control, so LibreOffice never saved and the title stayed \u201cUntitled 1\u201d."
+  ],
+  "totals": {
+   "analyzer": {
+    "calls": 3,
+    "prompt_tokens": 4157,
+    "cached_tokens": 0,
+    "completion_tokens": 11236,
+    "total_tokens": 15393,
+    "cost_usd": 0.01217106
+   },
+   "resume_episodes": {
+    "calls": 42,
+    "prompt_tokens": 3430417,
+    "cached_tokens": 2478246,
+    "completion_tokens": 447784,
+    "total_tokens": 3878201,
+    "cost_usd": 0.58301292
+   },
+   "builder_refinements": {
+    "calls": 3,
+    "prompt_tokens": 10940,
+    "cached_tokens": 0,
+    "completion_tokens": 33290,
+    "total_tokens": 44230,
+    "cost_usd": 0.02380068
+   },
+   "program_replays": {
+    "count": 4,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   }
+  },
+  "gate": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": false,
+     "error": "RuntimeError: Save did not complete; window title not updated"
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": false,
+     "error": "RuntimeError: Save did not complete; window title not updated"
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": false,
+     "error": "RuntimeError: Save did not complete; window title not updated"
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": false,
+     "error": "RuntimeError: Save did not complete; window title not updated"
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": false,
+     "error": "RuntimeError: Save did not complete; window title not updated"
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": false,
+   "error": "RuntimeError: Save did not complete; window title not updated"
+  },
+  "record_type": "verification"
+ },
+ "deploy": {
+  "skipped": "no version passed the held-out gate"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 963,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 18,
+    "prompt_tokens": 2982595,
+    "cached_tokens": 2555355,
+    "completion_tokens": 924649,
+    "total_tokens": 3907244,
+    "cost_usd": 0.71483571,
+    "model_calls": 24,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 10888,
+      "cached_tokens": 0,
+      "completion_tokens": 842,
+      "cost_usd": 0.0029215692
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 20833,
+      "cached_tokens": 0,
+      "completion_tokens": 52,
+      "cost_usd": 0.004479976116
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 30667,
+      "cached_tokens": 10887,
+      "completion_tokens": 83,
+      "cost_usd": 0.00443776311
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 40495,
+      "cached_tokens": 30666,
+      "completion_tokens": 50,
+      "cost_usd": 0.00238594158
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 50333,
+      "cached_tokens": 40494,
+      "completion_tokens": 193,
+      "cost_usd": 0.00254966382
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 60165,
+      "cached_tokens": 50332,
+      "completion_tokens": 52,
+      "cost_usd": 0.00252440496
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 70012,
+      "cached_tokens": 60164,
+      "completion_tokens": 1149,
+      "cost_usd": 0.00331258752
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 79852,
+      "cached_tokens": 70011,
+      "completion_tokens": 53,
+      "cost_usd": 0.00266317623
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 89707,
+      "cached_tokens": 79851,
+      "completion_tokens": 771,
+      "cost_usd": 0.00320377563
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 99555,
+      "cached_tokens": 89706,
+      "completion_tokens": 57,
+      "cost_usd": 0.00280401858
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 109418,
+      "cached_tokens": 99554,
+      "completion_tokens": 113,
+      "cost_usd": 0.00291212262
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 119270,
+      "cached_tokens": 109417,
+      "completion_tokens": 58,
+      "cost_usd": 0.00294214041
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 129137,
+      "cached_tokens": 119269,
+      "completion_tokens": 69,
+      "cost_usd": 0.00302086917
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 139009,
+      "cached_tokens": 129136,
+      "completion_tokens": 131072,
+      "cost_usd": 0.08868769668
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 148889,
+      "cached_tokens": 139008,
+      "completion_tokens": 2048,
+      "cost_usd": 0.00445357044
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 158757,
+      "cached_tokens": 148888,
+      "completion_tokens": 131072,
+      "cost_usd": 0.08882370684
+     },
+     {
+      "call": 17,
+      "prompt_tokens": 168637,
+      "cached_tokens": 158756,
+      "completion_tokens": 131072,
+      "cost_usd": 0.08889470568
+     },
+     {
+      "call": 18,
+      "prompt_tokens": 178517,
+      "cached_tokens": 0,
+      "completion_tokens": 131072,
+      "cost_usd": 0.1245234474
+     },
+     {
+      "call": 19,
+      "prompt_tokens": 188397,
+      "cached_tokens": 178516,
+      "completion_tokens": 131072,
+      "cost_usd": 0.08903164248
+     },
+     {
+      "call": 20,
+      "prompt_tokens": 198261,
+      "cached_tokens": 188396,
+      "completion_tokens": 131072,
+      "cost_usd": 0.08909662608
+     },
+     {
+      "call": 21,
+      "prompt_tokens": 208141,
+      "cached_tokens": 198260,
+      "completion_tokens": 131072,
+      "cost_usd": 0.0891684684
+     },
+     {
+      "call": 22,
+      "prompt_tokens": 218021,
+      "cached_tokens": 208140,
+      "completion_tokens": 45,
+      "cost_usd": 0.003623895
+     },
+     {
+      "call": 23,
+      "prompt_tokens": 227885,
+      "cached_tokens": 218020,
+      "completion_tokens": 1031,
+      "cost_usd": 0.004333131
+     },
+     {
+      "call": 24,
+      "prompt_tokens": 237749,
+      "cached_tokens": 227884,
+      "completion_tokens": 479,
+      "cost_usd": 0.00404081172
+     }
+    ],
+    "unit_floored": 3098994.8
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 21,
+    "prompt_tokens": 2372549,
+    "cached_tokens": 2157056,
+    "completion_tokens": 4260,
+    "total_tokens": 2376809,
+    "cost_usd": 0.12933251,
+    "model_calls": 21,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 11136,
+      "cached_tokens": 512,
+      "completion_tokens": 56,
+      "cost_usd": 0.00470809152
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 21398,
+      "cached_tokens": 11008,
+      "completion_tokens": 728,
+      "cost_usd": 0.00562980528
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 31671,
+      "cached_tokens": 21376,
+      "completion_tokens": 272,
+      "cost_usd": 0.00513622296
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 41939,
+      "cached_tokens": 31616,
+      "completion_tokens": 120,
+      "cost_usd": 0.00509171256
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 52067,
+      "cached_tokens": 41856,
+      "completion_tokens": 29,
+      "cost_usd": 0.00506593296
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 62208,
+      "cached_tokens": 51968,
+      "completion_tokens": 16,
+      "cost_usd": 0.00520172928
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 72343,
+      "cached_tokens": 62080,
+      "completion_tokens": 91,
+      "cost_usd": 0.0054499104
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 82494,
+      "cached_tokens": 72320,
+      "completion_tokens": 29,
+      "cost_usd": 0.0054720468
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 92642,
+      "cached_tokens": 82432,
+      "completion_tokens": 108,
+      "cost_usd": 0.00573111792
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 102784,
+      "cached_tokens": 92544,
+      "completion_tokens": 30,
+      "cost_usd": 0.00578240784
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 112940,
+      "cached_tokens": 102656,
+      "completion_tokens": 26,
+      "cost_usd": 0.00593649936
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 123099,
+      "cached_tokens": 112896,
+      "completion_tokens": 29,
+      "cost_usd": 0.00604706256
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 133261,
+      "cached_tokens": 123008,
+      "completion_tokens": 62,
+      "cost_usd": 0.00625211928
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 143435,
+      "cached_tokens": 133248,
+      "completion_tokens": 29,
+      "cost_usd": 0.00632217168
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 153604,
+      "cached_tokens": 143360,
+      "completion_tokens": 92,
+      "cost_usd": 0.0065694816
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 163779,
+      "cached_tokens": 153600,
+      "completion_tokens": 182,
+      "cost_usd": 0.006800706
+     },
+     {
+      "call": 17,
+      "prompt_tokens": 173964,
+      "cached_tokens": 163712,
+      "completion_tokens": 311,
+      "cost_usd": 0.00714123432
+     },
+     {
+      "call": 18,
+      "prompt_tokens": 184149,
+      "cached_tokens": 173952,
+      "completion_tokens": 984,
+      "cost_usd": 0.00813867912
+     },
+     {
+      "call": 19,
+      "prompt_tokens": 194353,
+      "cached_tokens": 184064,
+      "completion_tokens": 729,
+      "cost_usd": 0.00798567264
+     },
+     {
+      "call": 20,
+      "prompt_tokens": 204547,
+      "cached_tokens": 194304,
+      "completion_tokens": 183,
+      "cost_usd": 0.00739404864
+     },
+     {
+      "call": 21,
+      "prompt_tokens": 214736,
+      "cached_tokens": 204544,
+      "completion_tokens": 154,
+      "cost_usd": 0.00747586224
+     }
+    ],
+    "unit_floored": 295534.8
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 18,
+    "prompt_tokens": 1754350,
+    "cached_tokens": 1538048,
+    "completion_tokens": 2944,
+    "total_tokens": 1757294,
+    "cost_usd": 0.13359503,
+    "model_calls": 18,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 10888,
+      "cached_tokens": 0,
+      "completion_tokens": 164,
+      "cost_usd": 0.00242899272
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 20833,
+      "cached_tokens": 0,
+      "completion_tokens": 65,
+      "cost_usd": 0.0045798984
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 31520,
+      "cached_tokens": 384,
+      "completion_tokens": 43,
+      "cost_usd": 0.01362967848
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 41648,
+      "cached_tokens": 31488,
+      "completion_tokens": 37,
+      "cost_usd": 0.00534689496
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 51791,
+      "cached_tokens": 41600,
+      "completion_tokens": 79,
+      "cost_usd": 0.0056955888
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 61926,
+      "cached_tokens": 51712,
+      "completion_tokens": 641,
+      "cost_usd": 0.00672033384
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 72073,
+      "cached_tokens": 61824,
+      "completion_tokens": 24,
+      "cost_usd": 0.00620958888
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 82223,
+      "cached_tokens": 72064,
+      "completion_tokens": 194,
+      "cost_usd": 0.00667639368
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 92389,
+      "cached_tokens": 82176,
+      "completion_tokens": 24,
+      "cost_usd": 0.00675806472
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 102546,
+      "cached_tokens": 92288,
+      "completion_tokens": 70,
+      "cost_usd": 0.00711808416
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 112706,
+      "cached_tokens": 102528,
+      "completion_tokens": 25,
+      "cost_usd": 0.00730828296
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 122870,
+      "cached_tokens": 112640,
+      "completion_tokens": 45,
+      "cost_usd": 0.0076373748
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 133037,
+      "cached_tokens": 122752,
+      "completion_tokens": 24,
+      "cost_usd": 0.00791419464
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 143208,
+      "cached_tokens": 132992,
+      "completion_tokens": 121,
+      "cost_usd": 0.00829475064
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 153394,
+      "cached_tokens": 143104,
+      "completion_tokens": 356,
+      "cost_usd": 0.00891438768
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 163579,
+      "cached_tokens": 153344,
+      "completion_tokens": 78,
+      "cost_usd": 0.00881099208
+     },
+     {
+      "call": 17,
+      "prompt_tokens": 173761,
+      "cached_tokens": 163456,
+      "completion_tokens": 769,
+      "cost_usd": 0.01002478752
+     },
+     {
+      "call": 18,
+      "prompt_tokens": 183958,
+      "cached_tokens": 173696,
+      "completion_tokens": 185,
+      "cost_usd": 0.00952673832
+     }
+    ],
+    "unit_floored": 242507.8
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 63,
+   "prompt_tokens": 7109494,
+   "cached_tokens": 6250459,
+   "completion_tokens": 931853,
+   "total_tokens": 8041347,
+   "cost_usd": 0.97776325
+  }
+ },
+ "break_even": {
+  "c_unit_floored": 536543.1,
+  "floor_unit": 535.2,
+  "d_unit": null,
+  "q": null,
+  "price_weights": {
+   "r_c": 0.032,
+   "r_o": 3.0
+  },
+  "build_totals_raw": {
+   "exploration": 8875625,
+   "translator": 479489,
+   "builder_selected": 213877,
+   "verification_analyzer": 15393,
+   "verification_resume": 3878201,
+   "autorpa_build": 13462585
+  },
+  "build_totals_priced": {
+   "exploration_floored": 1916526.2,
+   "translator": 1372467,
+   "builder_selected": 585555,
+   "verification_analyzer_plus_floored_resume": 1896012.4,
+   "autorpa_build": 5770560.6
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 2.868182
+}

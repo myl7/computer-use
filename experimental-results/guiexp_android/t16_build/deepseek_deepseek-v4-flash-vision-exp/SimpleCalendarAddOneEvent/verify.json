@@ -1,0 +1,140 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Start date row not found: October 19 (Thu)",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Start date row not found: October 19 (Thu)"
+    }
+   ],
+   "analysis": {
+    "cause": "The automation looked for a start date row already showing 'October 19 (Thu)', but the event was still on the default date 'October 15 (Sun)' because the date picker had not been opened.",
+    "done": "Opened Simple Calendar Pro, tapped New Event, entered title 'Workshop on Project X' and description.",
+    "plan": "1. Click the start date row (index 8, 'October 15 (Sun)') and select October 19 in the date picker. 2. Click the end date row (index 10) and select October 19 if it did not update automatically. 3. Click the start time row (index 9) and set 18:00. 4. Click the end time row (index 11) and set 18:15. 5. Click Save (index 2).",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 13,
+    "success": true
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The event end time was left as 15:00 instead of 18:15, so the event duration was wrong/invalid; the attempts to set a 15-minute duration failed on missing controls, and Save did not create the correct event.",
+    "done": "Opened Simple Calendar Pro, started a new event, set title 'Workshop on Project X', set description 'We will understand software updates. Looking forward to productive discussions.', and set start date October 19 (Thu) with start time 18:00.",
+    "plan": "1. Tap the end time field showing '15:00' (index 10). 2. In the time picker, set the end time to 18:15. 3. Confirm the time picker. 4. Verify end date is October 19 and start/end are 18:00\u201318:15. 5. Tap Save (index 2). 6. Confirm the event appears on 2023-10-19 at 18:00 for 15 minutes.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 5,
+    "success": true
+   },
+   "refinement": 2
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The end time was set to 15:00 instead of 18:15, making the event invalid (end before start) so the save was rejected.",
+    "done": "Opened Simple Calendar Pro, created a new event, entered the title and description, set the start date/time to October 19 2023 18:00, and the end date is also October 19.",
+    "plan": "Tap the end time field showing \"15:00\" (index 10); in the time picker set the hour to 18 and minute to 15 and confirm; tap the Save button (index 2).",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 7,
+    "success": true
+   },
+   "refinement": 3
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "final_artifact": "import re\nimport calendar\nimport datetime\n\nPARAMS_SCHEMA = {\n    \"year\": {\"type\": \"int\", \"description\": \"Event year\"},\n    \"month\": {\"type\": \"int\", \"description\": \"Event month (1-12)\"},\n    \"day\": {\"type\": \"int\", \"description\": \"Event day of month\"},\n    \"hour\": {\"type\": \"int\", \"description\": \"Event start hour (0-23)\"},\n    \"duration_mins\": {\"type\": \"int\", \"description\": \"Event duration in minutes\"},\n    \"event_title\": {\"type\": \"str\", \"description\": \"Event title\"},\n    \"event_description\": {\"type\": \"str\", \"description\": \"Event description\"}\n}\n\n\ndef _find_field(device, hint):\n    idx = device.find(hint=hint, editable=True)\n    if idx is not None:\n        return idx\n    for e in device.elements():\n        if e.get(\"editable\") and (e.get(\"hint\") == hint or e.get(\"text\") == hint or e.get(\"description\") == hint):\n            return e[\"index\"]\n    return None\n\n\ndef _open_new_event(device):\n    for _ in range(3):\n        el = device.find(description=\"New Event\", clickable=True)\n        if el is not None:\n            device.click(index=el)\n            device.settle(1.0)\n            if _find_field(device, \"Title\") is not None:\n                return\n            el2 = device.find(text=\"New Event\", clickable=True)\n            if el2 is None:\n                el2 = device.find(description=\"New Event\", clickable=True)\n            if el2 is not None and el2 != el:\n                device.click(index=el2)\n                device.settle(1.0)\n                if _find_field(device, \"Title\") is not None:\n                    return\n        dismissed = False\n        for text in [\"OK\", \"Close\", \"Got it\", \"Allow\", \"Next\", \"Continue\", \"Dismiss\"]:\n            d = device.find(text=text, clickable=True)\n            if d is not None:\n                device.click(index=d)\n                device.settle(0.5)\n                dismissed = True\n                break\n        if not dismissed:\n            break\n    raise RuntimeError(\"Could not open new event editor\")\n\n\ndef _get_time_rows(device):\n    rows = []\n    for e in device.elements():\n        if e.get(\"clickable\") and e.get(\"text\") and re.fullmatch(r\"\\d{2}:\\d{2}\", e[\"text\"]):\n            rows.append(e[\"index\"])\n    return rows\n\n\ndef _find_date_rows(device):\n    rows = []\n    for e in device.elements():\n        text = e.get(\"text\") or \"\"\n        if e.get(\"clickable\") and re.fullmatch(r\"[A-Z][a-z]+ \\d{1,2} \\([A-Z][a-z]{2}\\)\", text):\n            rows.append(e[\"index\"])\n    return rows\n\n\ndef _find_day_cell(device, day, label):\n    day_cell = device.find(text=str(day), description=label)\n    if day_cell is not None:\n        return day_cell\n    for e in device.elements():\n        if e.get(\"text\") == str(day) and label.lower() in (e.get(\"description\") or \"\").lower():\n            return e[\"index\"]\n    return None\n\n\ndef _get_current_month_year(device):\n    for e in device.elements():\n        text = e.get(\"text\") or \"\"\n        m = re.search(r\"([A-Z][a-z]+)\\s+(\\d{4})\", text)\n        if m:\n            month_name = m.group(1)\n            year = int(m.group(2))\n            if month_name in calendar.month_name:\n                month = list(calendar.month_name).index(month_name)\n                return year, month\n    return 2023, 10\n\n\ndef _set_date_row(device, which, year, month, day):\n    rows = _find_date_rows(device)\n    if len(rows) < 2:\n        raise RuntimeError(\"Not enough date rows found\")\n    row = rows[0] if which == \"start\" else rows[1]\n    device.click(index=row)\n    device.settle(1.0)\n\n    label = f\"{day} {calendar.month_name[month]} {year}\"\n    day_cell = _find_day_cell(device, day, label)\n    if day_cell is None:\n        month_year_text = f\"{calendar.month_name[month]} {year}\"\n        header_found = any((e.get(\"text\") or \"\") and month_year_text.lower() in (e.get(\"text\") or \"\").lower() for e in device.elements())\n        if not header_found:\n            current_year, current_month = _get_current_month_year(device)\n            target_total = year * 12 + (month - 1)\n            current_total = current_year * 12 + (current_month - 1)\n            delta = target_total - current_total\n            if delta > 0:\n                for _ in range(delta):\n                    next_btn = device.find(description=\"Next month\")\n                    if next_btn is None:\n                        next_btn = device.find(text=\">\", clickable=True)\n                    if next_btn is None:\n                        raise RuntimeError(\"Next month button not found in date picker\")\n                    device.click(index=next_btn)\n                    device.settle(0.5)\n            elif delta < 0:\n                for _ in range(-delta):\n                    prev_btn = device.find(description=\"Previous month\")\n                    if prev_btn is None:\n                        prev_btn = device.find(text=\"<\", clickable=True)\n                    if prev_btn is None:\n                        raise RuntimeError(\"Previous month button not found in date picker\")\n                    device.click(index=prev_btn)\n                    device.settle(0.5)\n            day_cell = _find_day_cell(device, day, label)\n    if day_cell is None:\n        day_cell = device.find(text=str(day), clickable=True)\n    if day_cell is None:\n        raise RuntimeError(f\"Day cell {day} not found in date picker\")\n    device.click(index=day_cell)\n    device.settle(1.0)\n\n    ok = device.find(text=\"OK\", clickable=True)\n    if ok is None:\n        raise RuntimeError(\"OK button not found in date picker\")\n    device.click(index=ok)\n    device.settle(1.0)\n\n\ndef _click_text(device, text):\n    \"\"\"Click the first clickable element whose text exactly matches ``text``.\"\"\"\n    for e in device.elements():\n        if e.get(\"clickable\") and (e.get(\"text\") or \"\") == text:\n            device.click(index=e[\"index\"])\n            device.settle(0.5)\n            return True\n    return False\n\n\ndef _select_time_in_picker(device, hour, minute, current_time_text=None):\n    \"\"\"Set the hour and minute in the time picker.\n\n    The picker may open in hour mode or minute mode.  To be robust we\n    explicitly switch to hour mode by clicking the current hour in the\n    header, then select the desired hour.  Afterwards we switch to minute\n    mode by clicking the current minute in the header, then select the\n    desired minute.  Finally we confirm with OK.\n    \"\"\"\n    current_hour = None\n    current_minute = None\n    if current_time_text:\n        parts = current_time_text.split(':')\n        if len(parts) == 2:\n            current_hour = parts[0]\n            current_minute = parts[1]\n\n    # Switch to hour mode (if we know the current hour)\n    if current_hour:\n        _click_text(device, current_hour)\n        device.settle(0.5)\n\n    # Select the desired hour\n    hour_str = str(hour)\n    hour_str_2 = f\"{hour:02d}\"\n    if not _click_text(device, hour_str):\n        if hour_str_2 != hour_str:\n            _click_text(device, hour_str_2)\n\n    # Switch to minute mode (if we know the current minute)\n    if current_minute:\n        _click_text(device, current_minute)\n        device.settle(0.5)\n\n    # Select the desired minute\n    minute_str = f\"{minute:02d}\"\n    minute_str_2 = str(minute)\n    if not _click_text(device, minute_str):\n        if minute_str_2 != minute_str:\n            _click_text(device, minute_str_2)\n\n    # Confirm with OK\n    ok = device.find(text=\"OK\", clickable=True)\n    if ok is None:\n        raise RuntimeError(\"OK button not found in time picker\")\n    device.click(index=ok)\n    device.settle(1.0)\n\n\ndef _set_time_row(device, which, hour, minute):\n    rows = _get_time_rows(device)\n    if len(rows) < 2:\n        raise RuntimeError(\"Not enough time rows found\")\n    row = rows[0] if which == \"start\" else rows[1]\n\n    # Capture the current time text before clicking, so we can switch picker modes.\n    current_time_text = None\n    for e in device.elements():\n        if e.get(\"index\") == row:\n            current_time_text = e.get(\"text\")\n            break\n\n    device.click(index=row)\n    device.settle(1.0)\n\n    _select_time_in_picker(device, hour, minute, current_time_text)\n\n    ok = device.find(text=\"OK\", clickable=True)\n    if ok is None:\n        raise RuntimeError(\"OK button not found in time picker\")\n    device.click(index=ok)\n    device.settle(1.0)\n\n\ndef program(device, binding: dict) -> bool:\n    device.open_app(\"Simple Calendar Pro\")\n    device.settle(1.0)\n\n    _open_new_event(device)\n\n    title_field = _find_field(device, \"Title\")\n    if title_field is None:\n        raise RuntimeError(\"Title field not found\")\n    device.click(index=title_field)\n    device.settle(0.5)\n    device.input_text(binding['event_title'], index=title_field)\n    device.settle(0.5)\n\n    desc_field = _find_field(device, \"Description\")\n    if desc_field is None:\n        raise RuntimeError(\"Description field not found\")\n    device.click(index=desc_field)\n    device.settle(0.5)\n    device.input_text(binding['event_description'], index=desc_field)\n    device.settle(0.5)\n\n    _set_date_row(device, \"start\", binding['year'], binding['month'], binding['day'])\n    _set_date_row(device, \"end\", binding['year'], binding['month'], binding['day'])\n\n    _set_time_row(device, \"start\", binding['hour'], 0)\n\n    start_total = binding['hour'] * 60\n    end_total = start_total + binding['duration_mins']\n    end_hour = (end_total // 60) % 24\n    end_minute = end_total % 60\n\n    _set_time_row(device, \"end\", end_hour, end_minute)\n\n    save_btn = device.find(description=\"Save\", clickable=True)\n    if save_btn is None:\n        save_btn = device.find(text=\"Save\", clickable=True)\n    if save_btn is None:\n        raise RuntimeError(\"Save button not found\")\n    device.click(index=save_btn)\n    device.settle(2.0)\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The automation looked for a start date row already showing 'October 19 (Thu)', but the event was still on the default date 'October 15 (Sun)' because the date picker had not been opened.",
+  "seed 1: The event end time was left as 15:00 instead of 18:15, so the event duration was wrong/invalid; the attempts to set a 15-minute duration failed on missing controls, and Save did not create the correct event.",
+  "seed 1: The end time was set to 15:00 instead of 18:15, making the event invalid (end before start) so the save was rejected."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 4593,
+   "cached_tokens": 0,
+   "completion_tokens": 10362,
+   "total_tokens": 14955,
+   "cost_usd": 0.00943169
+  },
+  "resume_episodes": {
+   "calls": 25,
+   "prompt_tokens": 381400,
+   "cached_tokens": 211712,
+   "completion_tokens": 2554,
+   "total_tokens": 383954,
+   "cost_usd": 0.05325842
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 15028,
+   "cached_tokens": 0,
+   "completion_tokens": 103497,
+   "total_tokens": 118525,
+   "cost_usd": 0.10654014
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": null,
+ "test_seed0": {
+  "passed": false,
+  "error": "RuntimeError: OK button not found in time picker"
+ },
+ "record_type": "verification"
+}

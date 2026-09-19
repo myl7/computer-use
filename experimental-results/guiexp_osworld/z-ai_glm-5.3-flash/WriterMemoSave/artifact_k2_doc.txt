@@ -1,0 +1,18 @@
+OPERATION: Draft and save a memo in LibreOffice Writer
+
+1. In the open new Writer document (window titled "Untitled ..."), click the editable document-text area.
+2. Type {title} there. Do not press Enter after the title yet beyond step 3.
+3. Press Enter twice: this ends the title line, leaves the second line EMPTY (Enter, not a space), and places the cursor on the third line.
+4. Type {body} into the document text area. Do not add a trailing Enter.
+5. Press Ctrl+S to open the Save dialog. Verify the dialog appeared (a "Name:" label / filename field is visible).
+6. In the Save dialog, click the "Desktop" entry in the places list to set the save folder; wait for the file chooser to switch to Desktop.
+7. Click the editable Name/filename field (its default text starts with "Untitled") and replace its contents with {file_name} WITHOUT the .odt extension — the dialog appends .odt automatically. Keep the field's extension setting unchanged.
+8. Click the "Save" push-button to confirm.
+9. Confirm success: the Writer window title now shows {file_name} instead of "Untitled".
+
+TRAPS:
+- The second line must be a bare empty paragraph (two Enter presses total), never a space.
+- The Save dialog's Name field takes the file name WITHOUT the ".odt" suffix; typing the extension can yield a double extension.
+- You must switch the folder to Desktop via the "Desktop" place entry BEFORE confirming the save; otherwise the file lands in the default folder.
+- Element indexes differ per screen; locate controls by role/name (editable document-text area, editable filename field, "Desktop" place, "Save" button), never by recorded index.
+- If the Ctrl+S hotkey does not open the Save dialog, click the Writer window first and retry.

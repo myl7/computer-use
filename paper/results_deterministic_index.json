@@ -1,0 +1,4050 @@
+{
+ "schema": "results_new_index/1",
+ "generated": "2026-09-09",
+ "purpose": "map every NEW headline number (methods-v2 s6 constants + T2 table key cells) to its source file+field, for check_numbers_new.py and the body.tex number swap DETERMINISTIC-CONVENTION EDITION: same key structure as results_new_index.json so the number pass can switch by changing one path.",
+ "units": "deterministic cache-adjusted tokens: within an episode effective_i = (prompt_i - prompt_{i-1}) + r*prompt_{i-1} + completion_i, call 1 all fresh, episodes cold; single calls (compile, extraction) fresh in full. r: GLM 0.20, DS 0.318. Entries named raw/usd keep their own unit.",
+ "convention": {
+  "within_episode": "effective_i = (prompt_i - prompt_{i-1}) + r*prompt_{i-1} + completion_i; call 1 all fresh",
+  "across_episodes": "cold start, nothing cached",
+  "single_calls": "fresh in full (compile attempts, deployment extraction calls)",
+  "retry_exception_applied": false,
+  "retry_exception_note": "A byte-identical retry of a previous call in the same build could have its prefix priced at the cache rate. Not applied: single calls stay fully fresh. t13_compilepath/fullread is the one place where it would bind (identical prompts across the three attempts).",
+  "r_cache": {
+   "z-ai/glm-5.3-flash": 0.19999999999999998,
+   "deepseek/deepseek-v4-flash-vision-exp": 0.3181818181818182,
+   "anthropic/claude-sonnet-5": 0.1,
+   "z-ai/glm-5v-turbo": 0.19999999999999998
+  },
+  "r_quoted_in_paper": {
+   "z-ai/glm-5.3-flash": 0.2,
+   "deepseek/deepseek-v4-flash-vision-exp": 0.318,
+   "anthropic/claude-sonnet-5": 0.1,
+   "z-ai/glm-5v-turbo": 0.2
+  }
+ },
+ "constants_table_methods_v2_s6": {
+  "glm": {
+   "c": {
+    "value": 58363,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard det_tok 3-seed mean (z-ai/glm-5.3-flash)",
+    "note": "mean det_tok of 3 discover/wizard seeds"
+   },
+   "L": {
+    "value": 22561,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard det_tok 3-seed mean (z-ai/glm-5.3-flash)"
+   },
+   "D": {
+    "value": 35801,
+    "source": "derived",
+    "field": "c - L"
+   },
+   "rho_wizard": {
+    "value": 0.613,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.rho_wizard_pooled",
+    "note": "pooled 1 - sum(told)/sum(discover), deterministic"
+   },
+   "C_stepview": {
+    "value": 14983,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t13_compile rows det_tok 3-attempt mean",
+    "note": "single calls fresh in full, so this equals the raw mean"
+   },
+   "C_fullread": {
+    "value": 23091,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t13_compile_fullread rows det_tok 3-attempt mean",
+    "note": "retry exception NOT applied; see summary.convention"
+   },
+   "p_gate": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/gate1..3",
+    "field": "bindings_passed/bindings_total",
+    "note": "unchanged by the convention"
+   },
+   "d": {
+    "value": 346.6,
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/deploy30/deploy.json",
+    "field": "mean of uses[].tokens",
+    "note": "single extraction call, fresh in full: identical to the raw d"
+   },
+   "q0": {
+    "value": 0.1667,
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/deploy30/deploy.json",
+    "field": "1 - success_rate",
+    "note": "unchanged by the convention"
+   },
+   "s": {
+    "value": 48289,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.s",
+    "note": "(1-q0)*c - d"
+   },
+   "N_star": {
+    "value": 0.3103,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.N_star_marginal",
+    "note": "C/p / ((1-q0)c-d)"
+   },
+   "C_plus_c_over_s": {
+    "value": 1.519,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.N_star_full_build",
+    "note": "offline full-build reading"
+   },
+   "raw_c": {
+    "value": 203764,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard raw_tok 3-seed mean"
+   },
+   "raw_L": {
+    "value": 66061,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard raw_tok 3-seed mean"
+   },
+   "raw_rho_wizard": {
+    "value": 0.676,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.grid.wizard.rho_raw_pooled"
+   },
+   "provider_c": {
+    "value": 95296,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard prov_tok 3-seed mean",
+    "note": "the superseded provider-reported unit, for comparison"
+   },
+   "provider_L": {
+    "value": 22018,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard prov_tok 3-seed mean"
+   },
+   "dollar_N_star": {
+    "value": 0.6308,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.dollar.N_star_usd",
+    "note": "dollars are the bill: unchanged from results_new_index.json"
+   },
+   "r_cache": {
+    "value": 0.2,
+    "source": "docs/cache-adjusted-accounting.md s1",
+    "field": "official p_c/p_in"
+   },
+   "deploy_d_usd": {
+    "value": 6.865733333333334e-05,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.glm.dollar.d_usd"
+   }
+  },
+  "ds": {
+   "c": {
+    "value": 55382,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard det_tok 3-seed mean (deepseek/deepseek-v4-flash-vision-exp)",
+    "note": "mean det_tok of 3 discover/wizard seeds"
+   },
+   "L": {
+    "value": 17410,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard det_tok 3-seed mean (deepseek/deepseek-v4-flash-vision-exp)"
+   },
+   "D": {
+    "value": 37972,
+    "source": "derived",
+    "field": "c - L"
+   },
+   "rho_wizard": {
+    "value": 0.686,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.rho_wizard_pooled",
+    "note": "pooled 1 - sum(told)/sum(discover), deterministic"
+   },
+   "C_stepview": {
+    "value": 13994,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t13_compile rows det_tok 3-attempt mean",
+    "note": "single calls fresh in full, so this equals the raw mean"
+   },
+   "C_fullread": {
+    "value": 23217,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t13_compile_fullread rows det_tok 3-attempt mean",
+    "note": "retry exception NOT applied; see summary.convention"
+   },
+   "p_gate": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/gate1..3",
+    "field": "bindings_passed/bindings_total",
+    "note": "unchanged by the convention"
+   },
+   "d": {
+    "value": 490.6,
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "mean of uses[].tokens",
+    "note": "single extraction call, fresh in full: identical to the raw d"
+   },
+   "q0": {
+    "value": 0.2333,
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "1 - success_rate",
+    "note": "unchanged by the convention"
+   },
+   "s": {
+    "value": 41969,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.s",
+    "note": "(1-q0)*c - d"
+   },
+   "N_star": {
+    "value": 0.3334,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.N_star_marginal",
+    "note": "C/p / ((1-q0)c-d)"
+   },
+   "C_plus_c_over_s": {
+    "value": 1.653,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.N_star_full_build",
+    "note": "offline full-build reading"
+   },
+   "raw_c": {
+    "value": 141380,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard raw_tok 3-seed mean"
+   },
+   "raw_L": {
+    "value": 39653,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard raw_tok 3-seed mean"
+   },
+   "raw_rho_wizard": {
+    "value": 0.72,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.grid.wizard.rho_raw_pooled"
+   },
+   "provider_c": {
+    "value": 114518,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 discover/wizard prov_tok 3-seed mean",
+    "note": "the superseded provider-reported unit, for comparison"
+   },
+   "provider_L": {
+    "value": 31626,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+    "field": "t11 told/wizard prov_tok 3-seed mean"
+   },
+   "dollar_N_star": {
+    "value": 1.838,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.dollar.N_star_usd",
+    "note": "dollars are the bill: unchanged from results_new_index.json"
+   },
+   "r_cache": {
+    "value": 0.318,
+    "source": "docs/cache-adjusted-accounting.md s1",
+    "field": "official p_c/p_in"
+   },
+   "deploy_d_usd": {
+    "value": 0.00023649266666666668,
+    "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+    "field": "openapps.ds.dollar.d_usd"
+   }
+  }
+ },
+ "measure_grid": {
+  "glm": {
+   "wizard": {
+    "discover": {
+     "value": 58363,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|discover|wizard|det_tok mean"
+    },
+    "mid": {
+     "value": 52060,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|mid|wizard|det_tok mean"
+    },
+    "told": {
+     "value": 22561,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|told|wizard|det_tok mean"
+    },
+    "skill": {
+     "value": 33548,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|skill|wizard|det_tok mean"
+    },
+    "floor": {
+     "value": 1522,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|floor|wizard|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.613,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.657,
+      0.611,
+      0.561
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 2.31,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": 0.693,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": 0.176,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "single_page": {
+    "discover": {
+     "value": 52220,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|discover|single_page|det_tok mean"
+    },
+    "mid": {
+     "value": 30043,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|mid|single_page|det_tok mean"
+    },
+    "told": {
+     "value": 20092,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|told|single_page|det_tok mean"
+    },
+    "skill": {
+     "value": 32324,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|skill|single_page|det_tok mean"
+    },
+    "floor": {
+     "value": 1531,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|floor|single_page|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.615,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.673,
+      0.512,
+      0.628
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 1.5,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": 0.619,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": 0.69,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "sectioned": {
+    "discover": {
+     "value": 43126,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|discover|sectioned|det_tok mean"
+    },
+    "mid": {
+     "value": 33809,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|mid|sectioned|det_tok mean"
+    },
+    "told": {
+     "value": 23137,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|told|sectioned|det_tok mean"
+    },
+    "skill": {
+     "value": 40538,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|skill|sectioned|det_tok mean"
+    },
+    "floor": {
+     "value": 1526,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|z-ai/glm-5.3-flash|floor|sectioned|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.464,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.308,
+      0.304,
+      0.631
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 1.46,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": 0.129,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": 0.466,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "solving_runs_all_succeed": {
+    "value": 0,
+    "source": "experimental-results/guiexp/t11_grid/z-ai/glm-5.3-flash/",
+    "field": "final record success=true",
+    "note": "36 = 3 layouts x 4 conditions x 3 seeds (floor excluded)"
+   }
+  },
+  "ds": {
+   "wizard": {
+    "discover": {
+     "value": 55382,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|discover|wizard|det_tok mean"
+    },
+    "mid": {
+     "value": 70697,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|mid|wizard|det_tok mean"
+    },
+    "told": {
+     "value": 17410,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|told|wizard|det_tok mean"
+    },
+    "skill": {
+     "value": 58492,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|skill|wizard|det_tok mean"
+    },
+    "floor": {
+     "value": 1128,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|floor|wizard|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.686,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.744,
+      0.665,
+      0.624
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 4.06,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": -0.082,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": -0.403,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "single_page": {
+    "discover": {
+     "value": 58655,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|discover|single_page|det_tok mean"
+    },
+    "mid": {
+     "value": 48841,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|mid|single_page|det_tok mean"
+    },
+    "told": {
+     "value": 15931,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|told|single_page|det_tok mean"
+    },
+    "skill": {
+     "value": 61266,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|skill|single_page|det_tok mean"
+    },
+    "floor": {
+     "value": 1138,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|floor|single_page|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.728,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.758,
+      0.763,
+      0.629
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 3.07,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": -0.061,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": 0.23,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "sectioned": {
+    "discover": {
+     "value": 62767,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|discover|sectioned|det_tok mean"
+    },
+    "mid": {
+     "value": 83120,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|mid|sectioned|det_tok mean"
+    },
+    "told": {
+     "value": 18362,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|told|sectioned|det_tok mean"
+    },
+    "skill": {
+     "value": 67067,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|skill|sectioned|det_tok mean"
+    },
+    "floor": {
+     "value": 1148,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "t11|deepseek/deepseek-v4-flash-vision-exp|floor|sectioned|det_tok mean",
+     "note": "one call, therefore all fresh: equals the raw floor"
+    },
+    "rho_pooled": {
+     "value": 0.707,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "pooled 1 - sum(told)/sum(discover)"
+    },
+    "rho_per_seed": {
+     "value": [
+      0.761,
+      0.714,
+      0.613
+     ],
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "1 - told_s/discover_s"
+    },
+    "mid_over_told": {
+     "value": 4.53,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "mid mean / told mean"
+    },
+    "skill_recovery": {
+     "value": -0.097,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-skill)/(discover-told)"
+    },
+    "mid_recovery": {
+     "value": -0.458,
+     "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/runs_deterministic.csv",
+     "field": "(discover-mid)/(discover-told)"
+    }
+   },
+   "solving_runs_all_succeed": {
+    "value": 0,
+    "source": "experimental-results/guiexp/t11_grid/deepseek/deepseek-v4-flash-vision-exp/",
+    "field": "final record success=true",
+    "note": "36 = 3 layouts x 4 conditions x 3 seeds (floor excluded)"
+   }
+  }
+ },
+ "compile_path": {
+  "glm": {
+   "attempts_det": {
+    "value": [
+     6397,
+     20619,
+     17933
+    ],
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/attempt1..3/compile.json",
+    "field": "usage.prompt_tokens+completion_tokens (single call, all fresh)"
+   },
+   "C_det_mean": {
+    "value": 14983,
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/attempt*",
+    "field": "det mean"
+   },
+   "deploy30_success": {
+    "value": "23/30",
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "success_count/n"
+   },
+   "deploy30_d_mean": {
+    "value": 346.6,
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/deploy30/deploy.json",
+    "field": "d_tokens_mean",
+    "note": "unchanged: single extraction call"
+   },
+   "deploy30_fail_types": {
+    "value": "oracle_fail only; program_error=0; type_check rejects=0",
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "uses[].error_type"
+   },
+   "gates": {
+    "value": "15/15",
+    "source": "experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/gate1..3",
+    "field": "bindings_passed sum"
+   },
+   "regates": {
+    "value": {
+     "regate1": "4/5",
+     "regate2.prefix": "0/5",
+     "regate3": "4/5"
+    },
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/regate*",
+    "field": "success_count/n per file"
+   },
+   "fullread_attempts_det": {
+    "value": [
+     19564,
+     20606,
+     29103
+    ],
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/z-ai_glm-5.3-flash/attempt1..3/compile.json",
+    "field": "usage.prompt+completion; retry exception not applied"
+   },
+   "fullread_C_det_mean": {
+    "value": 23091,
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/z-ai_glm-5.3-flash/attempt*",
+    "field": "det mean"
+   },
+   "fullread_gates": {
+    "value": "15/15",
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/deepseek_deepseek-v4-flash-vision-exp/gate1..3",
+    "field": "bindings_passed sum"
+   },
+   "_note_old_index_bug": "results_new_index.json carried the DeepSeek values and paths in its compile_path.glm block; this file uses each model's own artifacts."
+  },
+  "ds": {
+   "attempts_det": {
+    "value": [
+     12314,
+     12103,
+     17564
+    ],
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/attempt1..3/compile.json",
+    "field": "usage.prompt_tokens+completion_tokens (single call, all fresh)"
+   },
+   "C_det_mean": {
+    "value": 13994,
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/attempt*",
+    "field": "det mean"
+   },
+   "deploy30_success": {
+    "value": "23/30",
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "success_count/n"
+   },
+   "deploy30_d_mean": {
+    "value": 490.6,
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "d_tokens_mean",
+    "note": "unchanged: single extraction call"
+   },
+   "deploy30_fail_types": {
+    "value": "oracle_fail only; program_error=0; type_check rejects=0",
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/deploy30/deploy.json",
+    "field": "uses[].error_type"
+   },
+   "gates": {
+    "value": "15/15",
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/gate1..3",
+    "field": "bindings_passed sum"
+   },
+   "regates": {
+    "value": {
+     "regate1": "4/5",
+     "regate2.prefix": "0/5",
+     "regate3": "4/5"
+    },
+    "source": "experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/regate*",
+    "field": "success_count/n per file"
+   },
+   "fullread_attempts_det": {
+    "value": [
+     21661,
+     18459,
+     29532
+    ],
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/deepseek_deepseek-v4-flash-vision-exp/attempt1..3/compile.json",
+    "field": "usage.prompt+completion; retry exception not applied"
+   },
+   "fullread_C_det_mean": {
+    "value": 23217,
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/deepseek_deepseek-v4-flash-vision-exp/attempt*",
+    "field": "det mean"
+   },
+   "fullread_gates": {
+    "value": "15/15",
+    "source": "experimental-results/guiexp/t13_compilepath/fullread/deepseek_deepseek-v4-flash-vision-exp/gate1..3",
+    "field": "bindings_passed sum"
+   },
+   "_note_old_index_bug": "results_new_index.json carried the DeepSeek values and paths in its compile_path.glm block; this file uses each model's own artifacts."
+  }
+ },
+ "t15": {
+  "claude_sonnet_5_rho_det": {
+   "value": 0.6907,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.anthropic/claude-sonnet-5.rho_det",
+   "note": "1 - told/discover, single runs, deterministic"
+  },
+  "claude_sonnet_5_rho_raw": {
+   "value": 0.7795,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.anthropic/claude-sonnet-5.rho_raw"
+  },
+  "claude_sonnet_5_rho_provider": {
+   "value": 0.7795,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.anthropic/claude-sonnet-5.rho_prov",
+   "note": "superseded provider-reported unit"
+  },
+  "claude_sonnet_5_discover": {
+   "value": {
+    "steps": 19,
+    "raw_tok": 337133,
+    "det_tok": 61585.4,
+    "prov_tok": 333728.3,
+    "cost_usd": 0.67413654,
+    "r": 0.1
+   },
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.anthropic/claude-sonnet-5__discover"
+  },
+  "claude_sonnet_5_told": {
+   "value": {
+    "steps": 10,
+    "raw_tok": 74337,
+    "det_tok": 19046.4,
+    "prov_tok": 73587.9,
+    "cost_usd": 0.14832773999999999,
+    "r": 0.1
+   },
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.anthropic/claude-sonnet-5__told"
+  },
+  "glm_5v_turbo_rho_det": {
+   "value": 0.3085,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.z-ai/glm-5v-turbo.rho_det",
+   "note": "1 - told/discover, single runs, deterministic"
+  },
+  "glm_5v_turbo_rho_raw": {
+   "value": 0.3621,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.z-ai/glm-5v-turbo.rho_raw"
+  },
+  "glm_5v_turbo_rho_provider": {
+   "value": 0.3828,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.z-ai/glm-5v-turbo.rho_prov",
+   "note": "superseded provider-reported unit"
+  },
+  "glm_5v_turbo_discover": {
+   "value": {
+    "steps": 12,
+    "raw_tok": 105114,
+    "det_tok": 33520.4,
+    "prov_tok": 99956.1,
+    "cost_usd": 0.1220724648,
+    "r": 0.19999999999999998
+   },
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.z-ai/glm-5v-turbo__discover"
+  },
+  "glm_5v_turbo_told": {
+   "value": {
+    "steps": 10,
+    "raw_tok": 67048,
+    "det_tok": 23179.2,
+    "prov_tok": 61694.6,
+    "cost_usd": 0.0758226744,
+    "r": 0.19999999999999998
+   },
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "t15.z-ai/glm-5v-turbo__told"
+  }
+ },
+ "android": {
+  "glm": {
+   "contacts": {
+    "c_raw": {
+     "value": 123671,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 115442,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__ContactsAddContact__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 54323,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 51806,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__ContactsAddContact__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": 0.046,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": 0.082,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": 0.067,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 10265,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/contacts/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 224.7,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/contacts/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/contacts/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "calendar": {
+    "c_raw": {
+     "value": 697274,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 820576,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__SimpleCalendarAddOneEvent__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 208084,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 237497,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__SimpleCalendarAddOneEvent__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": -0.141,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": -0.434,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": -0.177,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 63400,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/calendar/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 321.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/calendar/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/calendar/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "markor": {
+    "c_raw": {
+     "value": 167491,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 168034,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__MarkorCreateNote__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 67917,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 68350,
+     "source": "experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/told__MarkorCreateNote__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": -0.006,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": 0.248,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": -0.003,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 5529,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/markor/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 215.1,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/markor/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/markor/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "t14_gates_deploy": {
+    "value": {
+     "contacts": {
+      "gates": {
+       "attempt1": "5/5",
+       "attempt2": "5/5",
+       "attempt3": "5/5"
+      },
+      "deploy30": "30/30",
+      "regates": {
+       "attempt2": "5/5",
+       "attempt3": "5/5"
+      }
+     },
+     "calendar": {
+      "gates": {
+       "attempt1": "0/5",
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      },
+      "deploy30": "0/30",
+      "regates": {
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      }
+     },
+     "markor": {
+      "gates": {
+       "attempt1": "0/5",
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      },
+      "deploy30": "0/30",
+      "regates": {
+       "attempt1": "0/5",
+       "attempt3": "0/5"
+      }
+     }
+    },
+    "source": "experimental-results/guiexp_android/t14_compilepath/z-ai_glm-5.3-flash/summary.json",
+    "field": "families.*"
+   },
+   "_note_seed_basis": "c/L here are 3-seed means over ALL seeds, the basis results_new_index.json used. constants.deterministic.json keeps the constants.measured.json basis instead and drops the one failed run (DS discover MarkorCreateNote s2)."
+  },
+  "ds": {
+   "contacts": {
+    "c_raw": {
+     "value": 136183,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 82949,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__ContactsAddContact__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 65345,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 42773,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__ContactsAddContact__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": 0.345,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": 0.391,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": 0.391,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 12262,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/contacts/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 0.6666666666666666,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 277.3,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/contacts/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/contacts/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "calendar": {
+    "c_raw": {
+     "value": 651171,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 677133,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__SimpleCalendarAddOneEvent__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 248515,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 256507,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__SimpleCalendarAddOneEvent__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": -0.032,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": 0.079,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": -0.04,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 39461,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/calendar/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 0.06666666666666667,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 360.3,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/calendar/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 0.7667,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/calendar/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "markor": {
+    "c_raw": {
+     "value": 217605,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "L_raw": {
+     "value": 101770,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__MarkorCreateNote__s*",
+     "field": "sum usage P+C, 3-seed mean"
+    },
+    "c_det": {
+     "value": 92530,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "L_det": {
+     "value": 50178,
+     "source": "experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/told__MarkorCreateNote__s*",
+     "field": "deterministic per-call accounting, 3-seed mean"
+    },
+    "rho_det": {
+     "value": 0.458,
+     "source": "derived",
+     "field": "1 - L/c (deterministic)"
+    },
+    "rho_provider": {
+     "value": 0.525,
+     "source": "derived",
+     "field": "1 - L/c under the superseded provider-reported unit"
+    },
+    "rho_raw": {
+     "value": 0.532,
+     "source": "derived",
+     "field": "1 - L/c (raw P+C)"
+    },
+    "C_det": {
+     "value": 21259,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/markor/attempt1..3/compile.json",
+     "field": "3-attempt mean, single call fresh in full"
+    },
+    "p_gate": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/summary.json",
+     "field": "families.*.gates summed"
+    },
+    "d": {
+     "value": 287.1,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/markor/deploy30/deploy.json",
+     "field": "mean uses[].tokens"
+    },
+    "q0": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/markor/deploy30/deploy.json",
+     "field": "1 - success_rate"
+    }
+   },
+   "t14_gates_deploy": {
+    "value": {
+     "contacts": {
+      "gates": {
+       "attempt1": "5/5",
+       "attempt2": "5/5",
+       "attempt3": "0/5"
+      },
+      "deploy30": "30/30",
+      "regates": {
+       "attempt2": "5/5",
+       "attempt3": "5/5"
+      }
+     },
+     "calendar": {
+      "gates": {
+       "attempt1": "1/5",
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      },
+      "deploy30": "7/30",
+      "regates": {
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      }
+     },
+     "markor": {
+      "gates": {
+       "attempt1": "0/5",
+       "attempt2": "0/5",
+       "attempt3": "0/5"
+      },
+      "deploy30": "0/30",
+      "regates": {
+       "attempt1": "0/5",
+       "attempt2": "0/5"
+      }
+     }
+    },
+    "source": "experimental-results/guiexp_android/t14_compilepath/deepseek_deepseek-v4-flash-vision-exp/summary.json",
+    "field": "families.*"
+   },
+   "_note_seed_basis": "c/L here are 3-seed means over ALL seeds, the basis results_new_index.json used. constants.deterministic.json keeps the constants.measured.json basis instead and drops the one failed run (DS discover MarkorCreateNote s2)."
+  }
+ },
+ "library": {
+  "m_design": {
+   "value": 90.93,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "m.m_design_tokens_per_entry"
+  },
+  "m_api": {
+   "value": 90.78,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "m.m_api_best (n=100)"
+  },
+  "m_e2e": {
+   "value": 90.95,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "e2e.floor.m_e2e_per_entry"
+  },
+  "m_headline": {
+   "value": 91,
+   "source": "docs/methods-v2.md s6",
+   "field": "m=91 (three methods agree: 90.93/90.78/90.95)"
+  },
+  "tau_prompt_law": {
+   "value": "prompt(n) = 368 + 90.0*n",
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "stream_tax.prompt_law"
+  },
+  "tau_slope": {
+   "value": 90.035,
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "stream_tax.slope_tokens_per_entry"
+  },
+  "tau0_prompt_intercept": {
+   "value": 368,
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "stream_tax.prompt_law intercept"
+  },
+  "tau0_with_completion": {
+   "value": 567.4,
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "368 + completion_assumed 199.4"
+  },
+  "d_full_n1": {
+   "value": 637.2,
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "accounting.n=1.d_full"
+  },
+  "d_full_n100": {
+   "value": 9576.5,
+   "source": "experimental-results/guiexp/m_library2/summary.json",
+   "field": "accounting.n=100.d_full"
+  },
+  "eps_glm_all_n": {
+   "value": 0.0,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "routing.cells: GLM accuracy 1.0 at n=0,1,5,20,100"
+  },
+  "eps_ds_n20": {
+   "value": 0.050000000000000044,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "routing.cells(ds|n=20).err_rate"
+  },
+  "eps_ds_n100": {
+   "value": 0.0,
+   "source": "experimental-results/guiexp/m_library/analysis.json",
+   "field": "routing.cells(ds|n=100).err_rate"
+  }
+ },
+ "estimator": {
+  "ds_discover_sectioned": {
+   "value": [
+    0.396,
+    0.283,
+    0.211
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|discover|sectioned"
+  },
+  "ds_discover_single_page": {
+   "value": [
+    0.336,
+    0.339,
+    0.236
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|discover|single_page"
+  },
+  "ds_discover_wizard": {
+   "value": [
+    0.314,
+    0.256,
+    0.215
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|discover|wizard"
+  },
+  "ds_told_sectioned": {
+   "value": [
+    0.008,
+    0.008,
+    0.007
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|told|sectioned"
+  },
+  "ds_told_single_page": {
+   "value": [
+    0.007,
+    0.007,
+    0.011
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|told|single_page"
+  },
+  "ds_told_wizard": {
+   "value": [
+    0.007,
+    0.009,
+    0.012
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "deepseek_deepseek-v4-flash-vision-exp|told|wizard"
+  },
+  "glm_discover_sectioned": {
+   "value": [
+    0.083,
+    0.082,
+    0.327
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|discover|sectioned"
+  },
+  "glm_discover_single_page": {
+   "value": [
+    0.287,
+    0.182,
+    0.255
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|discover|single_page"
+  },
+  "glm_discover_wizard": {
+   "value": [
+    0.26,
+    0.229,
+    0.197
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|discover|wizard"
+  },
+  "glm_told_sectioned": {
+   "value": [
+    0.005,
+    0.004,
+    0.004
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|told|sectioned"
+  },
+  "glm_told_single_page": {
+   "value": [
+    0.006,
+    0.004,
+    0.005
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|told|single_page"
+  },
+  "glm_told_wizard": {
+   "value": [
+    0.004,
+    0.005,
+    0.006
+   ],
+   "source": "experimental-results/guiexp/e6_estimator_shares.json",
+   "field": "z-ai_glm-5.3-flash|told|wizard"
+  },
+  "glm_bias_wizard": {
+   "value": -0.385,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "glm_bias_single_page": {
+   "value": -0.374,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "glm_bias_sectioned": {
+   "value": -0.3,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "ds_bias_wizard": {
+   "value": -0.424,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "ds_bias_single_page": {
+   "value": -0.425,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "ds_bias_sectioned": {
+   "value": -0.411,
+   "source": "derived",
+   "field": "mean(estimator discover shares) - deterministic pooled rho"
+  },
+  "_note": "estimator shares are fractions of an episode's own steps and do not depend on the token unit; the *_bias entries are recomputed against the deterministic pooled rho below."
+ },
+ "drift": {
+  "per_arm_counts": {
+   "value": {
+    "wizard": {
+     "pass": 5,
+     "loud": 0,
+     "silent": 0
+    },
+    "wizard+dark_theme": {
+     "pass": 5,
+     "loud": 0,
+     "silent": 0
+    },
+    "wizard+black_and_white": {
+     "pass": 5,
+     "loud": 0,
+     "silent": 0
+    },
+    "wizard+challenging_font": {
+     "pass": 5,
+     "loud": 0,
+     "silent": 0
+    },
+    "single_page": {
+     "pass": 0,
+     "loud": 5,
+     "silent": 0
+    },
+    "sectioned": {
+     "pass": 0,
+     "loud": 5,
+     "silent": 0
+    }
+   },
+   "source": "experimental-results/guiexp/e7_drift/drift_probe.json",
+   "field": "summary.per_arm_counts"
+  },
+  "break_prob_per_change_event": {
+   "value": 0.4,
+   "source": "experimental-results/guiexp/e7_drift/drift_probe.json",
+   "field": "summary.hazard_model.break_prob_per_change_event"
+  },
+  "per_use_hazard_by_change_rate": {
+   "value": {
+    "0.01": 0.004,
+    "0.02": 0.008,
+    "0.05": 0.02,
+    "0.1": 0.04,
+    "0.25": 0.1
+   },
+   "source": "experimental-results/guiexp/e7_drift/drift_probe.json",
+   "field": "summary.hazard_model.per_use_hazard_by_change_rate"
+  },
+  "identical_to_old_probe": {
+   "value": true,
+   "source": "experimental-results/guiexp/e7_drift/drift_probe.json",
+   "field": "summary.comparison.*.same_outcome_mix all true"
+  }
+ },
+ "t2_sim": {
+  "constants_file": "computer-use/t2sim/constants.measured.json",
+  "constants_fingerprint": "91b9077d36a4cbde",
+  "E3": {
+   "bursty/android_glm": {
+    "always_reactive": {
+     "value": 1.2675,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.2098,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.2102,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.212,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0408,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0025,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9991,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 30.13,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": "inf",
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/android_glm._n_star"
+    }
+   },
+   "bursty/openapps_glm": {
+    "always_reactive": {
+     "value": 5.3981,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.0779,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.4186,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.7725,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0478,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9757,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 4.12,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.bursty/openapps_glm._n_star"
+    }
+   },
+   "poisson/android_glm": {
+    "always_reactive": {
+     "value": 1.2413,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.2139,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.2144,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.2161,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0396,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0024,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9991,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 31.45,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": "inf",
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/android_glm._n_star"
+    }
+   },
+   "poisson/openapps_glm": {
+    "always_reactive": {
+     "value": 5.4306,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.0958,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.424,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.8201,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0594,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.982,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 4.07,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.poisson/openapps_glm._n_star"
+    }
+   },
+   "zipf/android_glm": {
+    "always_reactive": {
+     "value": 1.6972,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.2435,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.2442,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.2469,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0632,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0038,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9986,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 19.94,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": "inf",
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/android_glm._n_star"
+    }
+   },
+   "zipf/openapps_glm": {
+    "always_reactive": {
+     "value": 5.4696,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.always_compile.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.0697,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.3901,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.709,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.toolpro_port.rel_to_ours"
+    },
+    "ours": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.ours.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.oracle.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0459,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.breakeven.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.982,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.offline_opt.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 4.59,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm.ours.mean_tokens/1e6"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E3.json",
+     "field": "cells.zipf/openapps_glm._n_star"
+    }
+   }
+  },
+  "E4": {
+   "bpi2019/price=1M": {
+    "always_reactive": {
+     "value": 2.0622,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 18.0353,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.3686,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.5402,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 3.1729,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.3828,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 2.0622,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.1158,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 0.9977,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 0.9933,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.2091,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 9454.72,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 11528.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 3.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 251734,
+      "families": 11973,
+      "singleton_families": 9030,
+      "singleton_family_pct": 75.41969431220245,
+      "top_family_n": 50286,
+      "top_family_share_pct": 19.97584752159025
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=1M._stream"
+    }
+   },
+   "bpi2019/price=5M": {
+    "always_reactive": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 11.2018,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.4355,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.308,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.9288,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.7988,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.4214,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 19497.8,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 11836.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 251734,
+      "families": 11973,
+      "singleton_families": 9030,
+      "singleton_family_pct": 75.41969431220245,
+      "top_family_n": 50286,
+      "top_family_share_pct": 19.97584752159025
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=5M._stream"
+    }
+   },
+   "bpi2019/price=autorpa_233k": {
+    "always_reactive": {
+     "value": 1.8911,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 15.6478,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 2.5399,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.4428,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 2.7681,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.2216,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.889,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.8166,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 2.2002,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 0.9654,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.1764,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 10310.4,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 10604.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 18.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 4.0474,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 251734,
+      "families": 11973,
+      "singleton_families": 9030,
+      "singleton_family_pct": 75.41969431220245,
+      "top_family_n": 50286,
+      "top_family_share_pct": 19.97584752159025
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=autorpa_233k._stream"
+    }
+   },
+   "bpi2019/price=native": {
+    "always_reactive": {
+     "value": 1.4432,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 11.7483,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 11.7483,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.2704,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 2.0818,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.9222,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 2.953,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 3.0464,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.9375,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.1658,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0302,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 13510.01,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 251734,
+      "families": 11973,
+      "singleton_families": 9030,
+      "singleton_family_pct": 75.41969431220245,
+      "top_family_n": 50286,
+      "top_family_share_pct": 19.97584752159025
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.bpi2019/price=native._stream"
+    }
+   },
+   "sepsis/price=1M": {
+    "always_reactive": {
+     "value": 0.9868,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 11.54,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.9676,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9632,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.2383,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.0113,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 0.9868,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0038,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0006,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 0.9868,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 78.13,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 842.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 3.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 1050,
+      "families": 846,
+      "singleton_families": 784,
+      "singleton_family_pct": 92.67139479905437,
+      "top_family_n": 35,
+      "top_family_share_pct": 3.3333333333333335
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=1M._stream"
+    }
+   },
+   "sepsis/price=5M": {
+    "always_reactive": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 55.5851,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 2.6556,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.2842,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 77.1,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 846.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 1050,
+      "families": 846,
+      "singleton_families": 784,
+      "singleton_family_pct": 92.67139479905437,
+      "top_family_n": 35,
+      "top_family_share_pct": 3.3333333333333335
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=5M._stream"
+    }
+   },
+   "sepsis/price=autorpa_233k": {
+    "always_reactive": {
+     "value": 1.0461,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 3.4299,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.9765,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9629,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.0318,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.0201,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0461,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.9994,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 3.4299,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0138,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0499,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 73.7,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 835.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 4.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 4.0474,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 1050,
+      "families": 846,
+      "singleton_families": 784,
+      "singleton_family_pct": 92.67139479905437,
+      "top_family_n": 35,
+      "top_family_share_pct": 3.3333333333333335
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=autorpa_233k._stream"
+    }
+   },
+   "sepsis/price=native": {
+    "always_reactive": {
+     "value": 1.0344,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 0.912,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.912,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.3502,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 0.9411,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.994,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0265,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.9195,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 0.912,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 0.912,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0086,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 74.54,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 1050,
+      "families": 846,
+      "singleton_families": 784,
+      "singleton_family_pct": 92.67139479905437,
+      "top_family_n": 35,
+      "top_family_share_pct": 3.3333333333333335
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.sepsis/price=native._stream"
+    }
+   },
+   "wiki_A/price=1M": {
+    "always_reactive": {
+     "value": 2.8238,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 5.8937,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.9052,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.6707,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.3201,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.9337,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 2.8238,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.8894,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0003,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.2312,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 1863.25,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 2434.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 3.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 65564,
+      "families": 2529,
+      "singleton_families": 2057,
+      "singleton_family_pct": 81.33649663898774,
+      "top_family_n": 23543,
+      "top_family_share_pct": 35.90842535537795
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=1M._stream"
+    }
+   },
+   "wiki_A/price=5M": {
+    "always_reactive": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 4.0098,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.3147,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.2792,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 0.707,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.4181,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.3447,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 5261.42,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 2491.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 65564,
+      "families": 2529,
+      "singleton_families": 2057,
+      "singleton_family_pct": 81.33649663898774,
+      "top_family_n": 23543,
+      "top_family_share_pct": 35.90842535537795
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=5M._stream"
+    }
+   },
+   "wiki_A/price=autorpa_233k": {
+    "always_reactive": {
+     "value": 3.0264,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 5.2009,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.2429,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.6611,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.2758,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.95,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.4066,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0658,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.918,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 0.9676,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.178,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 1738.48,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 2297.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 10.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 4.0474,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 65564,
+      "families": 2529,
+      "singleton_families": 2057,
+      "singleton_family_pct": 81.33649663898774,
+      "top_family_n": 23543,
+      "top_family_share_pct": 35.90842535537795
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=autorpa_233k._stream"
+    }
+   },
+   "wiki_A/price=native": {
+    "always_reactive": {
+     "value": 2.3929,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 3.8609,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 3.8609,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.443,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 0.9775,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.7397,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.7743,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.1995,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.7515,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0805,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.1602,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 2198.75,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 65564,
+      "families": 2529,
+      "singleton_families": 2057,
+      "singleton_family_pct": 81.33649663898774,
+      "top_family_n": 23543,
+      "top_family_share_pct": 35.90842535537795
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_A/price=native._stream"
+    }
+   },
+   "wiki_B/price=1M": {
+    "always_reactive": {
+     "value": 0.9811,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 51.2814,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.1027,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.8267,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 2.0808,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.1334,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 0.9811,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.0197,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 0.9981,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 0.9594,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 7515.16,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 68504.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 24.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 100000,
+      "families": 68773,
+      "singleton_families": 65653,
+      "singleton_family_pct": 95.46333590217091,
+      "top_family_n": 2342,
+      "top_family_share_pct": 2.342
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=1M._stream"
+    }
+   },
+   "wiki_B/price=5M": {
+    "always_reactive": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 89.5771,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 0.9672,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.9011,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 3.0615,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.3858,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 0.9756,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 1.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 7373.32,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 68714.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 86.8539,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 100000,
+      "families": 68773,
+      "singleton_families": 65653,
+      "singleton_family_pct": 95.46333590217091,
+      "top_family_n": 2342,
+      "top_family_share_pct": 2.342
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=5M._stream"
+    }
+   },
+   "wiki_B/price=autorpa_233k": {
+    "always_reactive": {
+     "value": 0.9327,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 42.0785,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 1.7149,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.7373,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.8099,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 1.0362,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 0.9446,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.3004,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 5.6398,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.0003,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 0.9181,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 7905.21,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 67622.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 16.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 4.0474,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 100000,
+      "families": 68773,
+      "singleton_families": 65653,
+      "singleton_family_pct": 95.46333590217091,
+      "top_family_n": 2342,
+      "top_family_share_pct": 2.342
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=autorpa_233k._stream"
+    }
+   },
+   "wiki_B/price=native": {
+    "always_reactive": {
+     "value": 0.6374,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.always_reactive.rel_to_ours"
+    },
+    "always_compile": {
+     "value": 27.4553,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.always_compile.rel_to_ours"
+    },
+    "oracle": {
+     "value": 27.4553,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.oracle.rel_to_ours"
+    },
+    "offline_opt": {
+     "value": 0.2005,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.offline_opt.rel_to_ours"
+    },
+    "on_second": {
+     "value": 1.204,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.on_second.rel_to_ours"
+    },
+    "success_count": {
+     "value": 0.7001,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.success_count.rel_to_ours"
+    },
+    "toolpro_port": {
+     "value": 0.7911,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.toolpro_port.rel_to_ours"
+    },
+    "breakeven": {
+     "value": 1.7685,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.breakeven.rel_to_ours"
+    },
+    "ours_g15": {
+     "value": 5.0181,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.ours_g15.rel_to_ours"
+    },
+    "ours_g120": {
+     "value": 1.7705,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.ours_g120.rel_to_ours"
+    },
+    "ours_hfix": {
+     "value": 0.9289,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.ours_hfix.rel_to_ours"
+    },
+    "ours_mean_tokens_M": {
+     "value": 11568.46,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.ours.mean_tokens/1e6"
+    },
+    "always_compile_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.always_compile.mean_wasted"
+    },
+    "ours_mean_wasted": {
+     "value": 0.0,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native.ours.mean_wasted"
+    },
+    "_n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native._n_star"
+    },
+    "_stream": {
+     "value": {
+      "n_arrivals": 100000,
+      "families": 68773,
+      "singleton_families": 65653,
+      "singleton_family_pct": 95.46333590217091,
+      "top_family_n": 2342,
+      "top_family_share_pct": 2.342
+     },
+     "source": "experimental-results/guiexp/t2_sim/E4.json",
+     "field": "cells.wiki_B/price=native._stream"
+    }
+   }
+  },
+  "E5_selected": {
+   "a_cooldown/gate=0.3": {
+    "n_star": {
+     "value": 0.8424,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.3.n_star"
+    },
+    "fixed_3": {
+     "value": 5484321.1,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.3.fixed_3.mean_tokens"
+    },
+    "inflate_2x": {
+     "value": 7597207.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.3.inflate_2x.mean_tokens"
+    },
+    "blacklist": {
+     "value": 18891369.3,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.3.blacklist.mean_tokens"
+    }
+   },
+   "a_cooldown/gate=0.6": {
+    "n_star": {
+     "value": 0.4212,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.6.n_star"
+    },
+    "fixed_3": {
+     "value": 4771686.3,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.6.fixed_3.mean_tokens"
+    },
+    "inflate_2x": {
+     "value": 4684714.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.6.inflate_2x.mean_tokens"
+    },
+    "blacklist": {
+     "value": 14418314.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=0.6.blacklist.mean_tokens"
+    }
+   },
+   "a_cooldown/gate=1.0": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=1.0.n_star"
+    },
+    "fixed_3": {
+     "value": 4261093.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=1.0.fixed_3.mean_tokens"
+    },
+    "inflate_2x": {
+     "value": 4261093.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=1.0.inflate_2x.mean_tokens"
+    },
+    "blacklist": {
+     "value": 4261093.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.a_cooldown/gate=1.0.blacklist.mean_tokens"
+    }
+   },
+   "c_prior/1M": {
+    "n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/1M.n_star"
+    },
+    "gamma_1_20": {
+     "value": 11163537.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/1M.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 10312952.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/1M.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 9505406.9,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/1M.population.mean_tokens"
+    }
+   },
+   "c_prior/5M": {
+    "n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/5M.n_star"
+    },
+    "gamma_1_20": {
+     "value": 22990701.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/5M.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 22990701.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/5M.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 22990701.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/5M.population.mean_tokens"
+    }
+   },
+   "c_prior/native": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/native.n_star"
+    },
+    "gamma_1_20": {
+     "value": 4230314.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/native.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 4230314.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/native.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 4230314.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/native.population.mean_tokens"
+    }
+   },
+   "c_prior/real:helpdesk/1M": {
+    "n_star": {
+     "value": 17.3502,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/1M.n_star"
+    },
+    "gamma_1_20": {
+     "value": 147897047.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/1M.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 146253685.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/1M.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 146253685.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/1M.population.mean_tokens"
+    }
+   },
+   "c_prior/real:helpdesk/native": {
+    "n_star": {
+     "value": 0.2524,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/native.n_star"
+    },
+    "gamma_1_20": {
+     "value": 125168993.5,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/native.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 126690470.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/native.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 121449581.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:helpdesk/native.population.mean_tokens"
+    }
+   },
+   "c_prior/real:sepsis/1M": {
+    "n_star": {
+     "value": 17.3708,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/1M.n_star"
+    },
+    "gamma_1_20": {
+     "value": 78180920.3,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/1M.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 78134283.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/1M.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 78134283.4,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/1M.population.mean_tokens"
+    }
+   },
+   "c_prior/real:sepsis/native": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/native.n_star"
+    },
+    "gamma_1_20": {
+     "value": 67978340.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/native.gamma_1_20.mean_tokens"
+    },
+    "gamma_1_5": {
+     "value": 67978340.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/native.gamma_1_5.mean_tokens"
+    },
+    "population": {
+     "value": 74535753.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.c_prior/real:sepsis/native.population.mean_tokens"
+    }
+   },
+   "d_horizon/5M/bursty": {
+    "n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/bursty.n_star"
+    },
+    "fixed_60": {
+     "value": 22267106.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/bursty.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 26443488.8,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/bursty.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 22267106.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/bursty.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 22267106.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/bursty.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/5M/long30000_bursty": {
+    "n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/long30000_bursty.n_star"
+    },
+    "fixed_60": {
+     "value": 2207647489.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/long30000_bursty.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 431599138.9,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/long30000_bursty.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 2207647489.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/long30000_bursty.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 2207647489.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/long30000_bursty.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/5M/regime_shift": {
+    "n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/regime_shift.n_star"
+    },
+    "fixed_60": {
+     "value": 22496740.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/regime_shift.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 24856309.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/regime_shift.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 22496740.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/regime_shift.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 22496740.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/5M/regime_shift.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/heldout:bpi2019/native": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/native.n_star"
+    },
+    "fixed_60": {
+     "value": 13917173543.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/native.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 25615597921.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/native.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 13508500807.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/native.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 13917173543.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/native.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/heldout:bpi2019/5M": {
+    "n_star": {
+     "value": 86.8542,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/5M.n_star"
+    },
+    "fixed_60": {
+     "value": 19497801224.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/5M.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 26522393104.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/5M.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 19497801224.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/5M.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 19497801224.0,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/heldout:bpi2019/5M.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/native/bursty": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/bursty.n_star"
+    },
+    "fixed_60": {
+     "value": 4124955.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/bursty.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 4124955.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/bursty.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 4124955.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/bursty.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 4124955.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/bursty.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/native/long30000_bursty": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/long30000_bursty.n_star"
+    },
+    "fixed_60": {
+     "value": 403047324.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/long30000_bursty.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 403047324.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/long30000_bursty.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 403047324.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/long30000_bursty.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 403047324.2,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/long30000_bursty.capped_fixed.mean_tokens"
+    }
+   },
+   "d_horizon/native/regime_shift": {
+    "n_star": {
+     "value": 0.2527,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/regime_shift.n_star"
+    },
+    "fixed_60": {
+     "value": 4137976.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/regime_shift.fixed_60.mean_tokens"
+    },
+    "doubling": {
+     "value": 4137976.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/regime_shift.doubling.mean_tokens"
+    },
+    "capped_doubling": {
+     "value": 4137976.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/regime_shift.capped_doubling.mean_tokens"
+    },
+    "capped_fixed": {
+     "value": 4137976.6,
+     "source": "experimental-results/guiexp/t2_sim/E5.json",
+     "field": "cells.d_horizon/native/regime_shift.capped_fixed.mean_tokens"
+    }
+   },
+   "b_decay_all_variants_identical": {
+    "value": true,
+    "source": "experimental-results/guiexp/t2_sim/E5.json",
+    "field": "cells.b_decay/*: T_inf == T_120 == T_60 == T_30 at native and 5M (mechanism inert)"
+   }
+  },
+  "E8_selected": {
+   "grid/5M/s=native/unpaired/poisson/always_compile": {
+    "value": 0.8609,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/poisson.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/unpaired/poisson/oracle": {
+    "value": 0.8448,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/poisson.oracle.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/poisson/always_compile": {
+    "value": 0.8608,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/poisson.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/poisson/oracle": {
+    "value": 0.8417,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/poisson.oracle.rel_to_ours"
+   },
+   "grid/xu_10M/s=native/paired/poisson/always_compile": {
+    "value": 1.5394,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/xu_10M/s=native/paired/poisson.always_compile.rel_to_ours"
+   },
+   "grid/1M/s=native/paired/poisson/always_compile": {
+    "value": 0.713,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/1M/s=native/paired/poisson.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/unpaired/zipf/always_compile": {
+    "value": 0.779,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/zipf.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/unpaired/zipf/oracle": {
+    "value": 0.6226,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/zipf.oracle.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/zipf/always_compile": {
+    "value": 0.7788,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/zipf.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/zipf/oracle": {
+    "value": 0.6196,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/zipf.oracle.rel_to_ours"
+   },
+   "grid/xu_10M/s=native/paired/zipf/always_compile": {
+    "value": 1.3765,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/xu_10M/s=native/paired/zipf.always_compile.rel_to_ours"
+   },
+   "grid/1M/s=native/paired/zipf/always_compile": {
+    "value": 0.7224,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/1M/s=native/paired/zipf.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/unpaired/bursty/always_compile": {
+    "value": 0.8558,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/bursty.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/unpaired/bursty/oracle": {
+    "value": 0.7678,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/unpaired/bursty.oracle.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/bursty/always_compile": {
+    "value": 0.8569,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/bursty.always_compile.rel_to_ours"
+   },
+   "grid/5M/s=native/paired/bursty/oracle": {
+    "value": 0.7684,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/5M/s=native/paired/bursty.oracle.rel_to_ours"
+   },
+   "grid/xu_10M/s=native/paired/bursty/always_compile": {
+    "value": 1.5306,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/xu_10M/s=native/paired/bursty.always_compile.rel_to_ours"
+   },
+   "grid/1M/s=native/paired/bursty/always_compile": {
+    "value": 0.8344,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.grid.grid/1M/s=native/paired/bursty.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/off/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/off/poisson.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/off/poisson/always_compile": {
+    "value": 0.8517,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/off/poisson.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/off/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/off/zipf.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/off/zipf/always_compile": {
+    "value": 0.7704,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/off/zipf.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/off/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/off/bursty.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/off/bursty/always_compile": {
+    "value": 0.848,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/off/bursty.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/measured/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/measured/poisson.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/measured/poisson/always_compile": {
+    "value": 0.8561,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/measured/poisson.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/measured/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/measured/zipf.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/measured/zipf/always_compile": {
+    "value": 0.7747,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/measured/zipf.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/measured/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/measured/bursty.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/measured/bursty/always_compile": {
+    "value": 0.8523,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/measured/bursty.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/10x/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/10x/poisson.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/10x/poisson/always_compile": {
+    "value": 0.8891,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/10x/poisson.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/10x/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/10x/zipf.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/10x/zipf/always_compile": {
+    "value": 0.8037,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/10x/zipf.always_compile.rel_to_ours"
+   },
+   "tau/native/s=1.0/10x/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/native/s=1.0/10x/bursty.always_compile.rel_to_ours"
+   },
+   "tau/5M/s=1.0/10x/bursty/always_compile": {
+    "value": 0.8839,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.tau.tau/5M/s=1.0/10x/bursty.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/off/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/off/poisson.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/off/poisson/always_compile": {
+    "value": 0.8561,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/off/poisson.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/off/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/off/zipf.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/off/zipf/always_compile": {
+    "value": 0.7747,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/off/zipf.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/off/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/off/bursty.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/off/bursty/always_compile": {
+    "value": 0.8523,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/off/bursty.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/cliff/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/cliff/poisson.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/cliff/poisson/always_compile": {
+    "value": 0.8592,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/cliff/poisson.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/cliff/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/cliff/zipf.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/cliff/zipf/always_compile": {
+    "value": 0.7778,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/cliff/zipf.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/cliff/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/cliff/bursty.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/cliff/bursty/always_compile": {
+    "value": 0.8554,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/cliff/bursty.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/harsh/poisson/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/harsh/poisson.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/harsh/poisson/always_compile": {
+    "value": 0.8668,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/harsh/poisson.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/harsh/zipf/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/harsh/zipf.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/harsh/zipf/always_compile": {
+    "value": 0.7855,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/harsh/zipf.always_compile.rel_to_ours"
+   },
+   "eps/native/s=1.0/harsh/bursty/always_compile": {
+    "value": 1.0,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/native/s=1.0/harsh/bursty.always_compile.rel_to_ours"
+   },
+   "eps/5M/s=1.0/harsh/bursty/always_compile": {
+    "value": 0.8625,
+    "source": "experimental-results/guiexp/t2_sim/E8.json",
+    "field": "cells.eps.eps/5M/s=1.0/harsh/bursty.always_compile.rel_to_ours"
+   }
+  },
+  "_status": "COPIED VERBATIM from results_new_index.json. These are outputs of the T2 simulator run on constants.measured.json (fingerprint 91b9077d36a4cbde). constants.deterministic.json changes the inputs, so E3/E4/E5/E8 must be re-run before these cells can be quoted alongside the deterministic unit.",
+  "constants_file_deterministic": "computer-use/t2sim/constants.deterministic.json"
+ },
+ "nstar_recompute": {
+  "glm_N_star_deterministic": {
+   "value": 0.3103,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "openapps.glm.N_star_marginal"
+  },
+  "glm_N_star_provider_reported": {
+   "value": 0.184,
+   "source": "results_new_index.json",
+   "field": "constants_table_methods_v2_s6.glm.N_star",
+   "note": "the superseded number, kept for the comparison table"
+  },
+  "ds_N_star_deterministic": {
+   "value": 0.3334,
+   "source": "/Users/myl/app/computer-use/experimental-results/guiexp/cache_adjust/summary_deterministic.json",
+   "field": "openapps.ds.N_star_marginal"
+  },
+  "ds_N_star_provider_reported": {
+   "value": 0.153,
+   "source": "results_new_index.json",
+   "field": "constants_table_methods_v2_s6.ds.N_star",
+   "note": "the superseded number, kept for the comparison table"
+  },
+  "_note_clip_interval_retired": "The clip-convention interval [0.15, 0.22] quoted in methods-v2 s6 was a property of the back-out solver. The deterministic convention has no clip and no interval."
+ }
+}

@@ -1,0 +1,366 @@
+{
+ "schema": "t2sim.constants/1",
+ "notes": "T2 simulation constants. Fill measured numbers here as T1.1-T1.4 land; set status to 'measured' when a number is real. Placeholder cells carry provisional values so the pipeline runs end-to-end today; every output JSON records which statuses were used. OpenApps GLM/DS wizard numbers are the measured methods-v2 section-6 values. m=91 is measured (three methods agree); tau0 waits on d_full. Units: cache-adjusted tokens (fresh + r*cached).",
+ "cost_sets": {
+  "openapps_glm": {
+   "label": "OpenApps wizard layouts, GLM 5.3 Flash (cache-adjusted)",
+   "status": "measured",
+   "source": "docs/methods-v2.md section 6",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 0,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 95296,
+     "L": 22018,
+     "rho": 0.769,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "single_page": {
+     "status": "placeholder",
+     "note": "T1.1 per-layout numbers pending; provisional = wizard",
+     "c": 95296,
+     "L": 22018,
+     "rho": 0.769,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "sectioned": {
+     "status": "placeholder",
+     "note": "T1.1 per-layout numbers pending; provisional = wizard",
+     "c": 95296,
+     "L": 22018,
+     "rho": 0.769,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    }
+   }
+  },
+  "openapps_ds": {
+   "label": "OpenApps wizard layouts, DeepSeek v4 flash vision-exp (cache-adjusted)",
+   "status": "measured",
+   "source": "docs/methods-v2.md section 6",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 0,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 114518,
+     "L": 31626,
+     "rho": 0.724,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "single_page": {
+     "status": "placeholder",
+     "note": "T1.1 per-layout numbers pending; provisional = wizard",
+     "c": 114518,
+     "L": 31626,
+     "rho": 0.724,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "sectioned": {
+     "status": "placeholder",
+     "note": "T1.1 per-layout numbers pending; provisional = wizard",
+     "c": 114518,
+     "L": 31626,
+     "rho": 0.724,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    }
+   }
+  },
+  "android_glm": {
+   "label": "AndroidWorld 3 families, GLM 5.3 Flash (T1.2/T1.4)",
+   "status": "placeholder",
+   "source": "PENDING T1.2 (c, L, rho) and T1.4 (C, p, d, q0)",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 0,
+   "layouts": {
+    "android_a": {
+     "status": "placeholder",
+     "note": "Provisional: rho anchored mid-range of the measured Android 0-0.54; all other numbers copied from openapps_glm/wizard. REPLACE with T1.2/T1.4.",
+     "c": 95296,
+     "L": 61943,
+     "rho": 0.35,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "android_b": {
+     "status": "placeholder",
+     "note": "Provisional; REPLACE with T1.2/T1.4.",
+     "c": 95296,
+     "L": 61943,
+     "rho": 0.35,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "android_c": {
+     "status": "placeholder",
+     "note": "Provisional; REPLACE with T1.2/T1.4.",
+     "c": 95296,
+     "L": 61943,
+     "rho": 0.35,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    }
+   }
+  },
+  "android_ds": {
+   "label": "AndroidWorld 3 families, DeepSeek v4 flash vision-exp (T1.2/T1.4)",
+   "status": "placeholder",
+   "source": "PENDING T1.2 (c, L, rho) and T1.4 (C, p, d, q0)",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 0,
+   "layouts": {
+    "android_a": {
+     "status": "placeholder",
+     "note": "Provisional; REPLACE with T1.2/T1.4.",
+     "c": 114518,
+     "L": 79229,
+     "rho": 0.35,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "android_b": {
+     "status": "placeholder",
+     "note": "Provisional; REPLACE with T1.2/T1.4.",
+     "c": 114518,
+     "L": 79229,
+     "rho": 0.35,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "android_c": {
+     "status": "placeholder",
+     "note": "Provisional; REPLACE with T1.2/T1.4.",
+     "c": 114518,
+     "L": 79229,
+     "rho": 0.35,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    }
+   }
+  }
+ },
+ "price_ladder": [
+  {
+   "name": "native",
+   "C": null,
+   "note": "the cost set's own measured C"
+  },
+  {
+   "name": "autorpa_233k",
+   "C": 233000,
+   "note": "AutoRPA published offline build price"
+  },
+  {
+   "name": "1M",
+   "C": 1000000
+  },
+  {
+   "name": "5M",
+   "C": 5000000
+  },
+  {
+   "name": "xu_10M",
+   "C": 10000000
+  }
+ ],
+ "epsilon_cliff": {
+  "enabled": false,
+  "eps0": 0.3,
+  "cliff_start": 100,
+  "cliff_slope": 20,
+  "note": "eps(n) = eps0*sigmoid((n-cliff_start)/cliff_slope). Measured eps=0 for n<=100, so headline runs keep it off; E8 sweeps eps0/cliff_start/cliff_slope."
+ },
+ "streams": {
+  "synthetic": {
+   "patterns": [
+    "poisson",
+    "zipf",
+    "bursty"
+   ],
+   "n_arrivals": 300,
+   "n_arrivals_long": 30000
+  },
+  "wiki_A": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_tool_hot_tail.jsonl",
+   "window": null,
+   "label": "Wikipedia-A tool hot+tail (65,564 arrivals, 2,529 families)",
+   "role": "main"
+  },
+  "wiki_B": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_content_tail.jsonl",
+   "window": 100000,
+   "label": "Wikipedia-B content tail (161,830 total; first 100k by ts)",
+   "role": "main"
+  },
+  "sepsis": {
+   "format": "old_real_streams",
+   "key": "sepsis",
+   "label": "Sepsis process log (1,050 arrivals, 846 families)",
+   "role": "main"
+  },
+  "helpdesk": {
+   "format": "old_real_streams",
+   "key": "helpdesk",
+   "label": "Helpdesk process log (4,580 arrivals, 226 families)",
+   "role": "e5_selection"
+  },
+  "bpi2019": {
+   "format": "old_real_streams",
+   "key": "bpi2019",
+   "label": "BPI Challenge 2019 (251,734 arrivals, 11,973 families)",
+   "role": "held_out"
+  }
+ },
+ "trigger": {
+  "cooldown": "inflate",
+  "cooldown_len": 3,
+  "half_life": 120.0,
+  "prior_mode": "population",
+  "prior_shape": 1.0,
+  "prior_rate": 5.0,
+  "horizon_mode": "capped_doubling",
+  "horizon_fixed": 60,
+  "horizon_cap": 50.0,
+  "buy_formula": "full",
+  "note": "horizon_cap = 1/h at the old engine drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); threshold carries manifest externality m*t (methods-v2 s2 extension), inert at m=0. buy_formula: how the trigger prices an attempt -- 'full' = Algorithm 1 B_hat = C + (1/p_hat - 1)*C_fail (default since W1.5, 2026-09-19; at C_fail = C it evaluates C/p_hat exactly, so rows without a measured C_fail_mult are unchanged), 'narrow' = the pre-W1.5 C/p_hat for bitwise reproduction of old rows; see sim.BUY_FORMULA_DOC. As everywhere else, absent mechanism keys (gate_prior, spend_cap) fall back to the historical defaults in sim.py."
+ },
+ "e3": {
+  "cost_sets": [
+   "openapps_glm",
+   "android_glm"
+  ],
+  "price": "native"
+ },
+ "e4": {
+  "cost_set": "openapps_glm",
+  "streams": [
+   "wiki_A",
+   "wiki_B",
+   "sepsis"
+  ],
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M"
+  ],
+  "bpi_heldout": true,
+  "bpi_reps": null
+ },
+ "e5": {
+  "cost_set": "openapps_glm",
+  "selection_streams": [
+   "sepsis",
+   "helpdesk"
+  ],
+  "real_prices": [
+   "native",
+   "1M",
+   "5M"
+  ],
+  "stress_prices": [
+   "native",
+   "5M"
+  ],
+  "gate_rates": [
+   0.3,
+   0.6,
+   1.0
+  ],
+  "long_n": 30000,
+  "bpi_horizon_heldout": true,
+  "bpi_reps": 5
+ },
+ "e8": {
+  "cost_set": "openapps_glm",
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M",
+   "xu_10M"
+  ],
+  "strengths": [
+   0.5,
+   0.75,
+   1.0
+  ],
+  "include_native_strength": true,
+  "tau_modes": [
+   "off",
+   "measured",
+   "10x"
+  ],
+  "eps_modes": [
+   "off",
+   "cliff",
+   "harsh"
+  ],
+  "sens_prices": [
+   "native",
+   "5M"
+  ]
+ },
+ "deployment": {
+  "note": "Deployment options (docs/harder-families-and-routers.md part B). Absent or omitted keys fall back to the code defaults in sim.py, which are the measured full-listing router, a monotone library and the one-demonstration compiler -- i.e. exactly what E3/E4/E5/E8 were run with. Only the E4_crn / E4_evict / E4_retrieval / E4_kmin3 experiments read this block.",
+  "retrieval_router": {
+   "kind": "retrieval",
+   "k": 5,
+   "eps_select": 0.02,
+   "eps_recall_per_decade": 0.075,
+   "n_ref": 200,
+   "eps_max": 0.5,
+   "note": "tau = tau0 + m*min(k,n), flat in n once the library has k entries (Voyager top-5, RAG-MCP, SkillOps, PreAct). eps_recall_per_decade is SkillOps' 200 -> 2,000 sweep (worst arm 7.5 SR points per decade of n); eps_select is the shortlist floor at k, which has an interior optimum (SkillRouter K=20 beats K=50 by 2.0 pp). Set eps_enabled=false to price the token side alone."
+  },
+  "hierarchical_router": {
+   "kind": "hierarchical",
+   "m_group": null,
+   "note": "tau = 2*tau0 + m_g*G + m*ceil(n/G) at G = sqrt(n*m/m_g); m_group null means m_g = m, i.e. about 2*m*sqrt(n) (AnyTool, MCP-Zero, HiSkill, Graph-of-Skills)."
+  },
+  "eviction": {
+   "T": "t_star",
+   "v_min": 10,
+   "t_min": 1,
+   "t_max": 100000,
+   "note": "Delist a program after T stream arrivals without a use. T may be a number or \"t_star\", the closed form T* = (1/lambda) ln(C_eff*lambda/m) evaluated from the family's own online lambda_hat. v_min is the evidence floor: no entry may be delisted before it has been offered v_min routing opportunities (D2Skill T_prot = 10, WhenToForget V_min = 10). Relisting costs zero compile tokens; see sim.EVICTION_DOC."
+  },
+  "k_min_demo": 3,
+  "k_min_note": "k_min demonstrations before a family may be compiled. 1 is the deployed protocol and is inert; 3 is the AutoRPA-style protocol. Per-layout C(k), p(k) go in cost_sets.<set>.layouts.<layout>.k_table as {\"3\": {\"C_scale\": 1.4, \"p_scale\": 1.0}} -- prefer the _scale form, because the price ladder overwrites an absolute C."
+ }
+}

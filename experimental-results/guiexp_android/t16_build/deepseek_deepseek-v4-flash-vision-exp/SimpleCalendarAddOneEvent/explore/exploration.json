@@ -1,0 +1,104 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 34,
+ "instances": [
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 1,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 21,
+     "usage": {
+      "prompt_tokens": 795197,
+      "cached_tokens": 0,
+      "completion_tokens": 5504,
+      "total_tokens": 800701,
+      "cost_usd": 0.08279091,
+      "model_calls": 21
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 2,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 19,
+     "usage": {
+      "prompt_tokens": 558931,
+      "cached_tokens": 0,
+      "completion_tokens": 2798,
+      "total_tokens": 561729,
+      "cost_usd": 0.01735238,
+      "model_calls": 19
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 3,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 18,
+     "usage": {
+      "prompt_tokens": 532655,
+      "cached_tokens": 480883,
+      "completion_tokens": 1616,
+      "total_tokens": 534271,
+      "cost_usd": 0.01566436,
+      "model_calls": 18
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 2,
+  "reflection_calls": 0,
+  "prompt_tokens": 1886783,
+  "cached_tokens": 480883,
+  "completion_tokens": 9918,
+  "total_tokens": 1896701,
+  "cost_usd": 0.11580765
+ },
+ "record_type": "exploration"
+}

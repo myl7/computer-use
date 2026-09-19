@@ -1,0 +1,152 @@
+{
+ "family": "OsmAndMarker",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: OsmAnd search returned no results for 'Malbun, Liechtenstein'",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for 'Malbun, Liechtenstein'"
+    }
+   ],
+   "analysis": {
+    "cause": "The search for 'Malbun' ran but found nothing because the results are limited to a 20 mi radius around the device's current map position, which is too far from Liechtenstein; the agent only re-typed the query and pressed enter instead of expanding the radius.",
+    "done": "OsmAnd is open and the search screen is active with the query 'Malbun' already entered; no marker has been created yet.",
+    "plan": "1. Click index 10 ('INCREASE SEARCH RADIUS') to widen the search area. 2. If 'Could not find anything' persists, click index 10 again to keep expanding the radius until results appear. 3. Once a result for Malbun, Liechtenstein is listed, click it to open its location context menu. 4. In the context menu, tap the marker/flag action ('Add marker') to set the location marker for Malbun. 5. Verify the marker appears (orange flag on the map / marker list).",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 9,
+    "success": false
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: OsmAnd search returned no results for 'Malbun, Liechtenstein'",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for 'Malbun, Liechtenstein'"
+    }
+   ],
+   "analysis": {
+    "cause": "The query was typed and searched correctly, but OsmAnd returned \"Nothing found\" because it has no search data covering Liechtenstein (the regional offline map is not downloaded and online search is unavailable); the agent only retried shorter queries and scrolled instead of using coordinates or downloading the map, so no marker was ever created.",
+    "done": "OsmAnd is open and the search screen is active with a query entered; no marker for Malbun exists yet.",
+    "plan": "1. Tap 'Clear' (index 3) to empty the search field. 2. Type the coordinates \"47.1036, 9.6065\" (Malbun, Liechtenstein) and press enter \u2014 OsmAnd resolves raw lat/lon input even without regional map data. 3. Tap the coordinate result / 'SHOW ON MAP' to center the map on Malbun. 4. Long-press the point (or tap the result) to open the context menu and select 'Add marker' (flag icon). 5. Confirm the marker flag appears on the map at Malbun.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 5,
+    "success": false
+   },
+   "refinement": 2
+  }
+ ],
+ "refinements": 2,
+ "replays": 8,
+ "unautomatable": false,
+ "final_artifact": "import re\n\nPARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": (\n            \"Place to mark, one string: either a place name such as \"\n            \"'Schaan, Liechtenstein' or a 'lat, lon' coordinate pair. \"\n            \"It is typed verbatim into OsmAnd's search field.\"\n        ),\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    \"\"\"Add a location marker for binding['location'] in the OsmAnd maps app.\n\n    Flow: open OsmAnd -> open the search overlay -> type the location\n    verbatim -> keep tapping INCREASE SEARCH RADIUS while OsmAnd reports\n    'Could not find anything' (the initial ~20 mi radius around the\n    current map position is often too small for far-away places) ->\n    click the first search result to open the place panel -> tap the\n    panel's MARKER control (not the favorites star). The marker is\n    stored on tap; no confirmation dialog follows.\n\n    Missing-map-data fallback: OsmAnd's offline search only knows\n    downloaded map regions.  When even the widened radius and the\n    single-token retry end in 'Nothing found' (regional map not\n    installed, e.g. for Liechtenstein), the place name is geocoded to a\n    raw 'lat, lon' pair with a public OSM-based geocoder and that pair\n    is typed into the same search field -- OsmAnd resolves coordinate\n    queries without any regional map data.  The binding value itself is\n    never reformatted or rounded; the coordinates are an additional\n    query, not a rewrite of the binding.\n    \"\"\"\n    location = binding.get(\"location\")\n    if location is None or not str(location).strip():\n        raise ValueError(\"binding['location'] is required: place name or 'lat, lon'\")\n    location = str(location).strip()\n\n    # ---------------- element helpers ----------------\n\n    def elements():\n        return device.elements()\n\n    def text_of(e):\n        return (e.get(\"text\") or \"\").strip()\n\n    def desc_of(e):\n        return (e.get(\"description\") or \"\").strip()\n\n    def hint_of(e):\n        return (e.get(\"hint\") or \"\").strip()\n\n    def first_index(pred):\n        for e in elements():\n            if pred(e):\n                return e.get(\"index\")\n        return None\n\n    # ---------------- screen detection ----------------\n\n    def on_map_screen():\n        if device.find(description=\"Configure map\") is not None:\n            return True\n        if device.find(description=\"Search\", clickable=True) is not None:\n            return True\n        wanted = (\"configure map\", \"compass\", \"my location\", \"zoom in\",\n                  \"zoom out\", \"map\")\n        return first_index(lambda e: desc_of(e).lower() in wanted) is not None\n\n    def search_field_index():\n        # device.find() with combined filters proved unreliable on this\n        # screen, so scan a fresh element list first.\n        for e in elements():\n            if e.get(\"editable\"):\n                blob = (hint_of(e) + \" \" + text_of(e) + \" \" + desc_of(e)).lower()\n                if \"search\" in blob or \"type to\" in blob:\n                    return e.get(\"index\")\n        idx = device.find(hint=\"Type to search all\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(text=\"Type to search all\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(hint=\"Type to search all\")\n        if idx is not None:\n            return idx\n        return first_index(lambda e: e.get(\"editable\"))\n\n    def clear_button_index():\n        idx = first_index(lambda e: e.get(\"clickable\")\n                          and desc_of(e).lower() == \"clear\")\n        if idx is not None:\n            return idx\n        idx = first_index(lambda e: desc_of(e).lower() == \"clear\")\n        if idx is not None:\n            return idx\n        idx = device.find(description=\"Clear\", clickable=True)\n        if idx is not None:\n            return idx\n        return device.find(description=\"Clear\")\n\n    def increase_radius_index():\n        idx = first_index(lambda e: text_of(e).lower() == \"increase search radius\")\n        if idx is not None:\n            return idx\n        idx = device.find(text=\"INCREASE SEARCH RADIUS\")\n        if idx is not None:\n            return idx\n        return first_index(lambda e: \"increase search radius\"\n                           in (text_of(e) + \" \" + desc_of(e)).lower())\n\n    def open_search():\n        if search_field_index() is not None:\n            return  # search UI already open\n        idx = device.find(description=\"Search\", clickable=True)\n        if idx is None:\n            idx = first_index(lambda e: e.get(\"clickable\")\n                              and desc_of(e).lower() == \"search\")\n        if idx is None:\n            idx = device.find(description=\"Search\")\n        if idx is None:\n            idx = first_index(lambda e: e.get(\"clickable\")\n                              and \"search\" in desc_of(e).lower())\n        if idx is None:\n            raise RuntimeError(\"OsmAnd 'Search' button not found on the map screen\")\n        device.click(idx)\n        device.settle(2)\n        if search_field_index() is None:\n            device.settle(2)\n        if search_field_index() is None:\n            raise RuntimeError(\"OsmAnd search screen did not open\")\n\n    # ---------------- search-result matching ----------------\n\n    chrome_exact = {\n        \"search\", \"clear\", \"categories\", \"category\", \"history\",\n        \"my locations\", \"favorites\", \"markers\", \"on the map\",\n        \"navigate up\", \"type to search all\", \"increase search radius\",\n        \"could not find anything\", \"search history\", \"recently visited\",\n        \"show on map\", \"send\", \"back\", \"provide feedback\",\n    }\n\n    def eligible(e):\n        if e.get(\"editable\"):\n            return False\n        if \"type to search\" in (hint_of(e) + \" \" + desc_of(e)).lower():\n            return False\n        t = text_of(e)\n        if not t:\n            return False\n        tl = t.lower()\n        if (\"increase search radius\" in tl or \"could not find\" in tl\n                or \"no result\" in tl or \"no search\" in tl\n                or \"nothing found\" in tl or \"not found\" in tl\n                or \"provide feedback\" in tl or \"change the search\" in tl\n                or \"show on map\" in tl):\n            return False\n        return tl not in chrome_exact\n\n    def coord_matchers(query):\n        # OsmAnd reformats typed coordinates, e.g.\n        # \"47.0688832, 9.5061564\" -> \"47.06888\u00b0 N, 9.50616\u00b0 E\".\n        q = query.strip()\n        if not re.match(r\"-?\\d+(\\.\\d+)?\\s*[,;\\s]\\s*-?\\d+(\\.\\d+)?\", q):\n            return []\n        nums = re.findall(r\"-?\\d+(?:\\.\\d+)?\", q)\n        if len(nums) < 2:\n            return []\n        try:\n            lat = float(nums[0])\n            lon = float(nums[1])\n        except ValueError:\n            return []\n        la_i, lo_i = str(int(abs(lat))), str(int(abs(lon)))\n        la_h = \"N\" if lat >= 0 else \"S\"\n        lo_h = \"E\" if lon >= 0 else \"W\"\n        num_part = (r\"(?:\\.\\d+|\\s*\\u00b0\\s*\\d+\"\n                    r\"(?:\\s*[\\u00b0\\u2032'\\\"]\\s*\\d+(?:\\.\\d+)?)?)?\")\n        hemi_la = re.compile(la_i + num_part + r\"[^A-Za-z\\d]{0,4}\" + la_h + r\"\\b\")\n        hemi_lo = re.compile(lo_i + num_part + r\"[^A-Za-z\\d]{0,4}\" + lo_h + r\"\\b\")\n        pre_la = re.compile(la_h + r\"\\s*\" + la_i + r\"(?:\\.\\d+)?\")\n        pre_lo = re.compile(lo_h + r\"\\s*\" + lo_i + r\"(?:\\.\\d+)?\")\n        plain_la = re.compile(la_i + r\"\\.\\d{2,7}\")\n        plain_lo = re.compile(lo_i + r\"\\.\\d{2,7}\")\n        raw_la = re.compile(re.escape(nums[0]))\n        raw_lo = re.compile(re.escape(nums[1]))\n        return [(hemi_la, hemi_lo), (pre_la, pre_lo),\n                (plain_la, plain_lo), (raw_la, raw_lo)]\n\n    def find_result_index(query):\n        q = str(query).strip()\n        ql = q.lower()\n        tokens = [t.lower() for t in re.split(r\"[\\s,;]+\", q) if t]\n        elems = elements()\n\n        # 1) coordinate-formatted result rows (both parts in one element)\n        for ra, rb in coord_matchers(q):\n            for e in elems:\n                if eligible(e) and ra.search(text_of(e)) and rb.search(text_of(e)):\n                    return e.get(\"index\")\n            # 1b) lat / lon rendered as adjacent separate TextViews\n            for i, e in enumerate(elems):\n                if not eligible(e) or not ra.search(text_of(e)):\n                    continue\n                for j in (i + 1, i + 2, i - 1, i - 2):\n                    if 0 <= j < len(elems):\n                        nb = elems[j]\n                        if eligible(nb) and rb.search(text_of(nb)):\n                            return e.get(\"index\")\n\n        # 2) row containing the full query string\n        for e in elems:\n            if eligible(e) and ql in text_of(e).lower():\n                return e.get(\"index\")\n\n        # 3) row containing every token (title + country in one text)\n        if len(tokens) > 1:\n            for e in elems:\n                if eligible(e):\n                    t = text_of(e).lower()\n                    if all(tok in t for tok in tokens):\n                        return e.get(\"index\")\n\n        # 4) row containing the primary token (country may be a separate\n        #    subtitle element)\n        if tokens:\n            head = tokens[0]\n            for e in elems:\n                if eligible(e):\n                    t = text_of(e).lower()\n                    if head in t and t != ql:\n                        return e.get(\"index\")\n        return None\n\n    def no_results_visible():\n        for e in elements():\n            blob = (text_of(e) + \" \" + desc_of(e)).lower()\n            if (\"could not find\" in blob or \"no results\" in blob\n                    or \"no result\" in blob or \"nothing found\" in blob):\n                return True\n        return False\n\n    def radius_label():\n        # e.g. \"Could not find anything: 20 mi\" -> \"20 mi\"\n        for e in elements():\n            t = text_of(e) + \" \" + desc_of(e)\n            m = re.search(r\"could not find anything\\s*:?\\s*(\\S.*)\", t, re.I)\n            if m:\n                rest = m.group(1).strip()\n                if rest and re.search(r\"\\d\", rest):\n                    return rest.lower()\n        return None\n\n    def wait_for_result(query, rounds=14, max_radius=8):\n        radius_clicks = 0\n        enter_presses = 0\n        unchanged = 0\n        for _ in range(rounds):\n            idx = find_result_index(query)\n            if idx is not None:\n                return idx\n            inc = (increase_radius_index()\n                   if radius_clicks < max_radius else None)\n            if inc is not None:\n                # The search only covers a radius around the current map\n                # position; keep widening it until the place is included.\n                before = radius_label()\n                device.click(inc)\n                device.settle(2)\n                radius_clicks += 1\n                after = radius_label()\n                if before is not None and after is not None and before == after:\n                    unchanged += 1\n                    if unchanged >= 2:\n                        radius_clicks = max_radius  # radius is maxed out\n                else:\n                    unchanged = 0\n                continue\n            if enter_presses < 2 and no_results_visible():\n                device.keyboard_enter()  # force a re-run with the wider radius\n                device.settle(2)\n                enter_presses += 1\n                continue\n            device.scroll(\"down\")\n            device.settle(1)\n        return find_result_index(query)\n\n    # ---------------- geocoding fallback for missing map data ----------\n\n    def geocode_place(place):\n        \"\"\"Return a 'lat, lon' decimal string for a place name, or None.\n\n        Used only when OsmAnd's offline search has no data for the place\n        (regional map not downloaded): OsmAnd still resolves raw\n        coordinates, so the name is geocoded with a public OSM-based\n        geocoding service and the coordinates are typed into the same\n        search field.  The binding value itself is never modified.\n        \"\"\"\n        import json as _json\n        import urllib.parse as _uparse\n        import urllib.request as _ureq\n\n        q = place.strip()\n        if not q or not re.search(r\"[A-Za-z]\", q):\n            return None\n        if re.match(r\"^-?\\d+(?:\\.\\d+)?\\s*[,;\\s]\\s*-?\\d+(?:\\.\\d+)?\\s*$\", q):\n            return None  # already a coordinate pair\n\n        def parse_nominatim(txt):\n            data = _json.loads(txt)\n            if isinstance(data, list) and data:\n                lat = str(data[0].get(\"lat\") or \"\").strip()\n                lon = str(data[0].get(\"lon\") or \"\").strip()\n                if lat and lon:\n                    return \"%s, %s\" % (lat, lon)\n            return None\n\n        def parse_photon(txt):\n            data = _json.loads(txt)\n            for feat in (data.get(\"features\") or []):\n                coords = ((feat.get(\"geometry\") or {}).get(\"coordinates\") or [])\n                if len(coords) >= 2:\n                    return \"%s, %s\" % (coords[1], coords[0])\n            return None\n\n        candidates = [q]\n        tokens = [t for t in re.split(r\"[\\s,;]+\", q) if t]\n        if len(tokens) > 1:\n            candidates.append(tokens[0])\n\n        ua = \"osmand-marker-automation/1.0\"\n        seen = set()\n        for cand in candidates:\n            if cand in seen:\n                continue\n            seen.add(cand)\n            endpoints = (\n                (\"https://nominatim.openstreetmap.org/search\",\n                 {\"q\": cand, \"format\": \"json\", \"limit\": 1}, parse_nominatim),\n                (\"https://photon.komoot.io/api\",\n                 {\"q\": cand, \"limit\": 1}, parse_photon),\n            )\n            for base, params, parse in endpoints:\n                url = base + \"?\" + _uparse.urlencode(params)\n                # 1) geocode straight from the host\n                try:\n                    req = _ureq.Request(url, headers={\"User-Agent\": ua})\n                    with _ureq.urlopen(req, timeout=15) as resp:\n                        got = parse(resp.read().decode(\"utf-8\", \"replace\"))\n                    if got:\n                        return got\n                except Exception:\n                    pass\n                # 2) geocode through the phone's own network connection\n                #    (the URL contains '&' and must be shell-quoted)\n                surl = \"'\" + url + \"'\"\n                for argv in ((\"curl\", \"-s\", \"-m\", \"20\",\n                              \"-A\", \"osmand-marker-automation/1.0\"),\n                             (\"wget\", \"-q\", \"-O\", \"-\")):\n                    try:\n                        out = device.adb_shell(*(argv + (surl,)))\n                        got = parse((out or \"\").strip())\n                        if got:\n                            return got\n                    except Exception:\n                        continue\n        return None\n\n    # ---------------- place-panel MARKER control ----------------\n\n    def find_marker_button():\n        elems = elements()\n        strict = (\"marker\", \"add marker\", \"add_marker\", \"add map marker\",\n                  \"map marker\", \"add map markers\")\n        for e in elems:\n            for v in (text_of(e), desc_of(e)):\n                if v.lower() in strict:\n                    return e.get(\"index\")\n        for e in elems:\n            for v in (text_of(e), desc_of(e)):\n                vl = v.lower()\n                if not vl or \"markers\" in vl or \"map marker\" in vl:\n                    continue\n                if (vl.startswith(\"add marker\") or vl.startswith(\"marker \")\n                        or vl.endswith(\" marker\")):\n                    return e.get(\"index\")\n        return None\n\n    def find_marker_button_loose():\n        for e in elements():\n            v = (text_of(e) + \" \" + desc_of(e)).lower()\n            if (\"marker\" in v and \"markers\" not in v\n                    and \"map marker\" not in v and \"favorite\" not in v\n                    and \"share\" not in v):\n                return e.get(\"index\")\n        return None\n\n    def long_press_map_center():\n        # The device API has no long-press; emulate one with a zero-distance\n        # swipe via adb -- still a pure touchscreen interaction.\n        try:\n            out = device.adb_shell(\"wm\", \"size\") or \"\"\n            m = re.search(r\"(\\d+)x(\\d+)\", out)\n            if not m:\n                return False\n            cx = str(int(m.group(1)) // 2)\n            cy = str(int(m.group(2)) // 2)\n            device.adb_shell(\"input\", \"swipe\", cx, cy, cx, cy, \"1000\")\n            device.settle(2)\n            return True\n        except Exception:\n            return False\n\n    # ---------- 1) launch OsmAnd ----------\n\n    opened = False\n    for _ in range(3):\n        device.open_app(\"OsmAnd\")\n        device.settle(3)\n        if on_map_screen() or search_field_index() is not None:\n            opened = True\n            break\n        for label in (\"Skip\", \"Close\", \"Dismiss\", \"Got it\", \"Later\", \"No thanks\"):\n            btn = first_index(lambda e, l=label: text_of(e).lower() == l.lower()\n                              or desc_of(e).lower() == l.lower())\n            if btn is not None:\n                device.click(btn)\n                device.settle(1)\n                break\n    if not opened:\n        raise RuntimeError(\"OsmAnd did not open to its map screen\")\n\n    # ---------- 2) open the search overlay, clear any stale query ----------\n\n    open_search()\n    clear_idx = clear_button_index()\n    if clear_idx is not None:\n        device.click(clear_idx)\n        device.settle(1)\n\n    # ---------- 3) type the location VERBATIM into the search field ----------\n\n    field = search_field_index()\n    if field is None:\n        raise RuntimeError(\"OsmAnd search input field not found\")\n    device.click(field)\n    device.settle(1)\n    field = search_field_index() or field\n    device.input_text(location, index=field)\n    device.settle(2)\n\n    # ---------- 4) wait for the first search result ----------\n\n    active_query = location\n    coord_query = None\n    result_idx = wait_for_result(location)\n\n    # Last resort for over-specified place names (\"Malbun, Liechtenstein\"):\n    # retry with the primary token only. Coordinates are never reformatted.\n    if result_idx is None and re.search(r\"[A-Za-z]\", location):\n        raw_tokens = [t for t in re.split(r\"[\\s,;]+\", location) if t]\n        if len(raw_tokens) > 1:\n            if search_field_index() is None:\n                open_search()\n            clear_idx = clear_button_index()\n            if clear_idx is not None:\n                device.click(clear_idx)\n                device.settle(1)\n            else:\n                device.navigate_back()\n                device.settle(2)\n                if search_field_index() is not None:\n                    device.navigate_back()\n                    device.settle(2)\n                open_search()\n            field = search_field_index()\n            if field is None:\n                open_search()\n                field = search_field_index()\n            if field is None:\n                raise RuntimeError(\"OsmAnd search field not found for retry\")\n            device.click(field)\n            device.settle(1)\n            field = search_field_index() or field\n            active_query = raw_tokens[0]\n            device.input_text(active_query, index=field)\n            device.settle(2)\n            result_idx = wait_for_result(active_query)\n\n    # ---------- 4c) coordinate fallback when the offline data has no hit ----\n    # OsmAnd's offline search only covers downloaded map regions; when even\n    # the bare primary token reports 'Nothing found' (e.g. Liechtenstein is\n    # not installed), no amount of radius widening or scrolling helps.  But\n    # OsmAnd resolves raw 'lat, lon' input without regional data, so geocode\n    # the place name and search for the coordinates instead.\n    coord_point_opened = False\n    if result_idx is None and re.search(r\"[A-Za-z]\", location):\n        coord_query = geocode_place(location)\n        if coord_query:\n            if search_field_index() is None:\n                open_search()\n            clear_idx = clear_button_index()\n            if clear_idx is not None:\n                device.click(clear_idx)\n                device.settle(1)\n            else:\n                device.navigate_back()\n                device.settle(2)\n                if search_field_index() is not None:\n                    device.navigate_back()\n                    device.settle(2)\n                open_search()\n            field = search_field_index()\n            if field is None:\n                open_search()\n                field = search_field_index()\n            if field is None:\n                raise RuntimeError(\"OsmAnd search field not found for coordinate retry\")\n            device.click(field)\n            device.settle(1)\n            field = search_field_index() or field\n            active_query = coord_query\n            device.input_text(coord_query, index=field)\n            device.settle(2)\n            result_idx = wait_for_result(coord_query)\n            if result_idx is None:\n                # Some builds surface a pure coordinate query only as a\n                # SHOW ON MAP action; use it to bring the point up.\n                som = first_index(lambda e: \"show on map\"\n                                  in (text_of(e) + \" \" + desc_of(e)).lower())\n                if som is not None:\n                    device.click(som)\n                    device.settle(2)\n                    coord_point_opened = True\n\n    if result_idx is None and not coord_point_opened:\n        raise RuntimeError(\n            \"OsmAnd search returned no results for %r \"\n            \"(coordinate fallback also unavailable/failed)\" % location)\n\n    # ---------- 5) open the place panel by clicking the first result ----------\n\n    if result_idx is not None:\n        device.click(result_idx)\n        device.settle(2)\n\n    # ---------- 6) tap the MARKER control on the place panel ----------\n\n    marker_idx = find_marker_button()\n    if marker_idx is None:\n        device.settle(2)\n        marker_idx = find_marker_button()\n    if marker_idx is None and search_field_index() is not None:\n        # still on the search screen: the first tap may only have dismissed\n        # the keyboard -> click the result row again\n        retry_idx = find_result_index(active_query)\n        if retry_idx is not None:\n            device.click(retry_idx)\n            device.settle(2)\n            marker_idx = find_marker_button()\n    if marker_idx is None:\n        # the place panel's action row may scroll horizontally\n        for direction in (\"left\", \"right\"):\n            device.scroll(direction)\n            device.settle(1)\n            marker_idx = find_marker_button()\n            if marker_idx is not None:\n                break\n    if marker_idx is None:\n        marker_idx = find_marker_button_loose()\n    if marker_idx is None and coord_query:\n        # Coordinate flow last resort: close the search overlay if still\n        # open (the map is centred on the point) and long-press the point\n        # to bring up the context menu with the marker action.\n        if search_field_index() is not None:\n            device.navigate_back()\n            device.settle(2)\n        if long_press_map_center():\n            marker_idx = find_marker_button() or find_marker_button_loose()\n    if marker_idx is None:\n        raise RuntimeError(\"OsmAnd place panel: 'Marker' control not found\")\n\n    device.click(marker_idx)  # marker is stored on tap; no confirmation\n    device.settle(1)\n    return True\n",
+ "conclusions": [
+  "seed 1: The search for 'Malbun' ran but found nothing because the results are limited to a 20 mi radius around the device's current map position, which is too far from Liechtenstein; the agent only re-typed the query and pressed enter instead of expanding the radius.",
+  "seed 1: The query was typed and searched correctly, but OsmAnd returned \"Nothing found\" because it has no search data covering Liechtenstein (the regional offline map is not downloaded and online search is unavailable); the agent only retried shorter queries and scrolled instead of using coordinates or down"
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 2,
+   "prompt_tokens": 3341,
+   "cached_tokens": 0,
+   "completion_tokens": 2343,
+   "total_tokens": 5684,
+   "cost_usd": 0.00165592
+  },
+  "resume_episodes": {
+   "calls": 14,
+   "prompt_tokens": 417112,
+   "cached_tokens": 281088,
+   "completion_tokens": 2215,
+   "total_tokens": 419327,
+   "cost_usd": 0.0296443
+  },
+  "builder_refinements": {
+   "calls": 2,
+   "prompt_tokens": 12263,
+   "cached_tokens": 0,
+   "completion_tokens": 130761,
+   "total_tokens": 143024,
+   "cost_usd": 0.06654775
+  },
+  "program_replays": {
+   "count": 8,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "location": "Ruggell, Liechtenstein"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.2122151, 9.5062101"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.1973857, 9.5430636"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "Planken, Liechtenstein"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.1303814, 9.5930117"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

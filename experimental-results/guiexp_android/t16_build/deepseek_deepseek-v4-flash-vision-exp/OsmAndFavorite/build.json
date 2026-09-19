@@ -1,0 +1,499 @@
+{
+ "family": "OsmAndFavorite",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 13,
+ "cache_ratio_r": 0.318,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 6,
+  "retry_episodes": 3,
+  "reused_episodes": 0,
+  "reflection_calls": 3,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 154660,
+    "cached_tokens": 133174,
+    "completion_tokens": 1027,
+    "total_tokens": 155687,
+    "cost_usd": 0.00627359,
+    "model_calls": 13
+   },
+   {
+    "seed": 1,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 158789,
+    "cached_tokens": 122880,
+    "completion_tokens": 1455,
+    "total_tokens": 160244,
+    "cost_usd": 0.01060331,
+    "model_calls": 13
+   },
+   {
+    "seed": 1,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 234346,
+    "cached_tokens": 170752,
+    "completion_tokens": 5873,
+    "total_tokens": 240219,
+    "cost_usd": 0.01966439,
+    "model_calls": 13
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 141014,
+    "cached_tokens": 111418,
+    "completion_tokens": 1598,
+    "total_tokens": 142612,
+    "cost_usd": 0.00826227,
+    "model_calls": 10
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 10,
+    "prompt_tokens": 146774,
+    "cached_tokens": 105216,
+    "completion_tokens": 2639,
+    "total_tokens": 149413,
+    "cost_usd": 0.01127471,
+    "model_calls": 10
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 167725,
+    "cached_tokens": 131968,
+    "completion_tokens": 1295,
+    "total_tokens": 169020,
+    "cost_usd": 0.02092621,
+    "model_calls": 10
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 1,
+    "for_attempt": 1,
+    "prompt_tokens": 796,
+    "completion_tokens": 191,
+    "cached_tokens": 0,
+    "cost_usd": 0.000292204836
+   },
+   {
+    "seed": 1,
+    "for_attempt": 2,
+    "prompt_tokens": 758,
+    "completion_tokens": 521,
+    "cached_tokens": 0,
+    "cost_usd": 0.0005055138
+   },
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 560,
+    "completion_tokens": 3069,
+    "cached_tokens": 0,
+    "cost_usd": 0.0021272526
+   }
+  ],
+  "totals": {
+   "calls": 72,
+   "prompt_tokens": 1005422,
+   "cached_tokens": 775408,
+   "completion_tokens": 17668,
+   "total_tokens": 1023090,
+   "cost_usd": 0.07992945
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 4727.1,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 6,
+    "calls": 6,
+    "prompt_tokens": 4876,
+    "cached_tokens": 0,
+    "completion_tokens": 3815,
+    "total_tokens": 8691,
+    "cost_usd": 0.00376382
+   },
+   {
+    "seed": 2,
+    "effective_actions": 9,
+    "calls": 9,
+    "prompt_tokens": 7553,
+    "cached_tokens": 0,
+    "completion_tokens": 4632,
+    "total_tokens": 12185,
+    "cost_usd": 0.0057903
+   },
+   {
+    "seed": 3,
+    "effective_actions": 9,
+    "calls": 9,
+    "prompt_tokens": 7518,
+    "cached_tokens": 0,
+    "completion_tokens": 4531,
+    "total_tokens": 12049,
+    "cost_usd": 0.00596331
+   }
+  ],
+  "totals": {
+   "calls": 24,
+   "prompt_tokens": 19947,
+   "cached_tokens": 0,
+   "completion_tokens": 12978,
+   "total_tokens": 32925,
+   "cost_usd": 0.01551743
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1900,
+    "completion_tokens": 12227,
+    "cached_tokens": 0,
+    "cost_usd": 0.0084029418
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1775,
+    "completion_tokens": 1736,
+    "cached_tokens": 0,
+    "cost_usd": 0.001490479452
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 3026,
+    "completion_tokens": 12373,
+    "cached_tokens": 0,
+    "cost_usd": 0.017487162
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2954,
+    "completion_tokens": 3964,
+    "cached_tokens": 0,
+    "cost_usd": 0.0032334588
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 4314,
+    "completion_tokens": 24134,
+    "cached_tokens": 0,
+    "cost_usd": 0.016374569904
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 4189,
+    "completion_tokens": 4291,
+    "cached_tokens": 0,
+    "cost_usd": 0.0037161036
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 18158,
+   "cached_tokens": 0,
+   "completion_tokens": 58725,
+   "total_tokens": 76883,
+   "cost_usd": 0.05070471
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 16816,
+    "cached_tokens": 0,
+    "completion_tokens": 105192,
+    "total_tokens": 122008,
+    "cost_usd": 0.09476864
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite button not found"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite button not found"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite button not found"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite button not found"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite button not found"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not select the first search result"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not select the first search result"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not open the OsmAnd search screen"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not select the first search result"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not select the first search result"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 3723,
+   "cached_tokens": 0,
+   "completion_tokens": 5655,
+   "total_tokens": 9378,
+   "cost_usd": 0.00759228
+  },
+  "resume_episodes": {
+   "calls": 39,
+   "prompt_tokens": 637472,
+   "cached_tokens": 495063,
+   "completion_tokens": 154597,
+   "total_tokens": 792069,
+   "cost_usd": 0.13507616
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 12502,
+   "cached_tokens": 0,
+   "completion_tokens": 81058,
+   "total_tokens": 93560,
+   "cost_usd": 0.07839407
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": false,
+   "error": "RuntimeError: Favorite control not found on place panel"
+  },
+  "totals_excluding_refinements": {
+   "calls": 42,
+   "prompt_tokens": 641195,
+   "cached_tokens": 495063,
+   "completion_tokens": 160252,
+   "total_tokens": 801447,
+   "cost_usd": 0.14266844
+  }
+ },
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 522,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 13,
+    "prompt_tokens": 269633,
+    "cached_tokens": 157440,
+    "completion_tokens": 12280,
+    "total_tokens": 281913,
+    "cost_usd": 0.03360843,
+    "model_calls": 13
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 140622,
+    "cached_tokens": 70400,
+    "completion_tokens": 3060,
+    "total_tokens": 143682,
+    "cost_usd": 0.017426,
+    "model_calls": 10
+   },
+   {
+    "seed": 6,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 278274,
+    "cached_tokens": 108800,
+    "completion_tokens": 7571,
+    "total_tokens": 285845,
+    "cost_usd": 0.04176007,
+    "model_calls": 13
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 36,
+   "prompt_tokens": 688529,
+   "cached_tokens": 336640,
+   "completion_tokens": 22911,
+   "total_tokens": 711440,
+   "cost_usd": 0.0927945
+  },
+  "L_doc_tokens_mean": 237146.66666666666
+ },
+ "break_even": {
+  "c_raw_tokens": 149237.3,
+  "c_cache_adjusted_tokens": 69714.3,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.318,
+  "build_totals_raw": {
+   "exploration": 1023090,
+   "translator": 32925,
+   "builder_selected": 122008,
+   "verification": 801447,
+   "autorpa_build": 1979470
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 494262,
+   "translator": 32925,
+   "builder_selected": 122008,
+   "verification": 463814,
+   "autorpa_build": 1113009
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 0.460009
+}

@@ -1,0 +1,527 @@
+{
+ "family": "OsmAndMarker",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 20,
+ "cache_ratio_r": 0.318,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 20,
+    "prompt_tokens": 536682,
+    "cached_tokens": 401430,
+    "completion_tokens": 137750,
+    "total_tokens": 674432,
+    "cost_usd": 0.12179066,
+    "model_calls": 21
+   },
+   {
+    "seed": 1,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 1,
+    "prompt_tokens": 2523,
+    "cached_tokens": 0,
+    "completion_tokens": 523,
+    "total_tokens": 3046,
+    "cost_usd": 0.00178248,
+    "model_calls": 1
+   },
+   {
+    "seed": 1,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 20,
+    "prompt_tokens": 356817,
+    "cached_tokens": 290560,
+    "completion_tokens": 3621,
+    "total_tokens": 360438,
+    "cost_usd": 0.01844713,
+    "model_calls": 20
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 8,
+    "prompt_tokens": 75228,
+    "cached_tokens": 43264,
+    "completion_tokens": 1406,
+    "total_tokens": 76634,
+    "cost_usd": 0.00801665,
+    "model_calls": 8
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 8,
+    "prompt_tokens": 70978,
+    "cached_tokens": 52380,
+    "completion_tokens": 1577,
+    "total_tokens": 72555,
+    "cost_usd": 0.00542615,
+    "model_calls": 8
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 15,
+    "prompt_tokens": 300023,
+    "cached_tokens": 153088,
+    "completion_tokens": 4144,
+    "total_tokens": 304167,
+    "cost_usd": 0.07302005,
+    "model_calls": 15
+   },
+   {
+    "seed": 3,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 20,
+    "prompt_tokens": 602601,
+    "cached_tokens": 482560,
+    "completion_tokens": 19236,
+    "total_tokens": 621837,
+    "cost_usd": 0.04121672,
+    "model_calls": 20
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 1,
+    "for_attempt": 1,
+    "prompt_tokens": 986,
+    "completion_tokens": 918,
+    "cached_tokens": 0,
+    "cost_usd": 0.000814572
+   },
+   {
+    "seed": 1,
+    "for_attempt": 2,
+    "prompt_tokens": 227,
+    "completion_tokens": 333,
+    "cached_tokens": 0,
+    "cost_usd": 0.0005340456
+   },
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 491,
+    "completion_tokens": 993,
+    "cached_tokens": 0,
+    "cost_usd": 0.000755766
+   },
+   {
+    "seed": 3,
+    "for_attempt": 2,
+    "prompt_tokens": 701,
+    "completion_tokens": 1596,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011955042
+   }
+  ],
+  "totals": {
+   "calls": 97,
+   "prompt_tokens": 1947257,
+   "cached_tokens": 1423282,
+   "completion_tokens": 172097,
+   "total_tokens": 2119354,
+   "cost_usd": 0.27299973
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 498.9,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 17,
+    "calls": 17,
+    "prompt_tokens": 14571,
+    "cached_tokens": 940,
+    "completion_tokens": 275708,
+    "total_tokens": 290279,
+    "cost_usd": 0.18486382
+   },
+   {
+    "seed": 2,
+    "effective_actions": 7,
+    "calls": 7,
+    "prompt_tokens": 5056,
+    "cached_tokens": 0,
+    "completion_tokens": 80288,
+    "total_tokens": 85344,
+    "cost_usd": 0.09767427
+   },
+   {
+    "seed": 3,
+    "effective_actions": 9,
+    "calls": 9,
+    "prompt_tokens": 7414,
+    "cached_tokens": 0,
+    "completion_tokens": 13047,
+    "total_tokens": 20461,
+    "cost_usd": 0.01076219
+   }
+  ],
+  "totals": {
+   "calls": 33,
+   "prompt_tokens": 27041,
+   "cached_tokens": 940,
+   "completion_tokens": 369043,
+   "total_tokens": 396084,
+   "cost_usd": 0.29330028
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 2922,
+    "completion_tokens": 6597,
+    "cached_tokens": 0,
+    "cost_usd": 0.004847953572
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 2797,
+    "completion_tokens": 1129,
+    "cached_tokens": 0,
+    "cost_usd": 0.001319937696
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 4042,
+    "completion_tokens": 13362,
+    "cached_tokens": 0,
+    "cost_usd": 0.0096110784
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 3917,
+    "completion_tokens": 2039,
+    "cached_tokens": 0,
+    "cost_usd": 0.002141697096
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 5616,
+    "completion_tokens": 10648,
+    "cached_tokens": 0,
+    "cost_usd": 0.00801695664
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 5491,
+    "completion_tokens": 823,
+    "cached_tokens": 0,
+    "cost_usd": 0.00169901424
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 24785,
+   "cached_tokens": 0,
+   "completion_tokens": 34598,
+   "total_tokens": 59383,
+   "cost_usd": 0.02763664
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 16166,
+    "cached_tokens": 0,
+    "completion_tokens": 71909,
+    "total_tokens": 88075,
+    "cost_usd": 0.09266841
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search results found"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search results found"
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search results found"
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search results found"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search results found"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Marker button not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Marker button not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": false,
+     "error": "RuntimeError: Marker button not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Marker button not found on place panel"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Marker button not found on place panel"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search result found for 'Ruggell, Liechtenstein'"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search result found for '47.2122151, 9.5062101'"
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search result found for '47.1973857, 9.5430636'"
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search result found for 'Planken, Liechtenstein'"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: No search result found for '47.1303814, 9.5930117'"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2954,
+   "cached_tokens": 0,
+   "completion_tokens": 77240,
+   "total_tokens": 80194,
+   "cost_usd": 0.09584856
+  },
+  "resume_episodes": {
+   "calls": 60,
+   "prompt_tokens": 1965094,
+   "cached_tokens": 1206884,
+   "completion_tokens": 35403,
+   "total_tokens": 2000497,
+   "cost_usd": 0.3041645
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 10550,
+   "cached_tokens": 0,
+   "completion_tokens": 61261,
+   "total_tokens": 71811,
+   "cost_usd": 0.08465145
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": false,
+   "error": "RuntimeError: No search result for 'Rotenboden, Liechtenstein'"
+  },
+  "totals_excluding_refinements": {
+   "calls": 63,
+   "prompt_tokens": 1968048,
+   "cached_tokens": 1206884,
+   "completion_tokens": 112643,
+   "total_tokens": 2080691,
+   "cost_usd": 0.40001306
+  }
+ },
+ "resumed_from_stages": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification"
+ ],
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 652,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 53674,
+    "cached_tokens": 37492,
+    "completion_tokens": 1787,
+    "total_tokens": 55461,
+    "cost_usd": 0.00495188,
+    "model_calls": 6
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 124855,
+    "cached_tokens": 91654,
+    "completion_tokens": 2306,
+    "total_tokens": 127161,
+    "cost_usd": 0.01198786,
+    "model_calls": 10
+   },
+   {
+    "seed": 6,
+    "success": false,
+    "steps": 20,
+    "prompt_tokens": 584360,
+    "cached_tokens": 422656,
+    "completion_tokens": 10497,
+    "total_tokens": 594857,
+    "cost_usd": 0.04410674,
+    "model_calls": 20
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 36,
+   "prompt_tokens": 762889,
+   "cached_tokens": 551802,
+   "completion_tokens": 14590,
+   "total_tokens": 777479,
+   "cost_usd": 0.06104648
+  },
+  "L_doc_tokens_mean": 259159.66666666666
+ },
+ "break_even": {
+  "c_raw_tokens": 274540.3,
+  "c_cache_adjusted_tokens": 161539.0,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.318,
+  "build_totals_raw": {
+   "exploration": 2119354,
+   "translator": 396084,
+   "builder_selected": 88075,
+   "verification": 2080691,
+   "autorpa_build": 4684204
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 1148676,
+   "translator": 395443,
+   "builder_selected": 88075,
+   "verification": 1257596,
+   "autorpa_build": 2889790
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 1.139648
+}

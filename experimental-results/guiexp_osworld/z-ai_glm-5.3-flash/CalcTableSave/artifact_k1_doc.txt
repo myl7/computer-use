@@ -1,0 +1,20 @@
+OPERATION: put two headers and four numbers into a new LibreOffice Calc sheet, then save it on the Desktop as {file_name}.
+If Calc is not open yet, start it so an empty spreadsheet titled "Untitled 1 - LibreOffice Calc" is on screen.
+SCREEN 1 — "Untitled 1 - LibreOffice Calc" (empty grid).
+1. Click the table cell named A1, type {header_a}, press Enter to commit it.
+2. Click the table cell named B1, type {header_b}, press Enter.
+3. Click A2, type {val_a2}, press Enter.
+4. Click B2, type {val_b2}, press Enter.
+5. Click A3, type {val_a3}, press Enter.
+6. Click B3, type {val_b3}, press Enter.
+TRAP — cell entry: click the exact target cell before every entry; Enter commits the cell and moves the cursor down one row (Tab commits and moves right), so typing without clicking first writes into the wrong cell.
+TRAP — layout: the numbers go directly under the headers, row 2 then row 3; only these six cells receive content, every other cell and row stays empty.
+7. Press Ctrl+S; the save dialog opens and the window title gains "| Save".
+SCREEN 2 — Save dialog; it starts in some other folder, not the Desktop.
+8. Click the Name field; it is pre-filled with a default name.
+9. With the dialog owning keyboard focus, press Ctrl+A to select that pre-filled text.
+10. Type /home/user/Desktop/{file_name} — the .ods extension included — so the field's single line holds exactly the full path, nothing before or after it.
+(Alternative: click the Desktop place in the dialog's sidebar, then type {file_name} into the Name field.)
+11. Confirm the save with Enter (or the Save button).
+SCREEN 3 — "{file_name} - LibreOffice Calc": this title confirms the file is saved on the Desktop.
+TRAP — no overwrite prompt may ever appear: {file_name} never exists beforehand; if one shows up, stop, something already went wrong.

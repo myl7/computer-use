@@ -1,0 +1,19 @@
+OPERATION: Create a timed event in Simple Calendar Pro for {year}-{month}-{day} at {hour}:00 lasting {duration_mins} minutes.
+
+1. Open the app "Simple Calendar Pro" and wait for the month-view main screen.
+2. Tap the round "New Event" (+) button on the main screen.
+3. If a dialog asks what to create, choose "Event"; the New/Edit Event screen opens.
+4. Tap the Title field and type {event_title}.
+5. Tap the Description field and type {event_description}.
+6. Tap the START DATE row to open the date picker dialog.
+7. TRAP: the picker is pre-filled with the device's frozen date, not the target date. Set year {year}, month {month}, and day-of-month {day}, then tap OK — the change is lost without OK.
+8. Tap the START TIME row to open the time picker dialog.
+9. Set the hour to {hour} on the 24-hour clock (no AM/PM) and minutes to 00, then tap OK to confirm.
+10. Tap the END TIME row to open its own time picker dialog.
+11. TRAP: there is NO duration field anywhere — the length is expressed only through the end time.
+12. Set the end picker to the start time plus {duration_mins} minutes (end minutes = {duration_mins} past the hour, carrying into the next hour as needed), then tap OK.
+13. TRAP: setting the start time auto-shifts the end time by a default offset, so always open and fix the end time AFTER the start time is set.
+14. If the computed end time crosses midnight, also open the END DATE row and move it to {year}-{month}-{day} plus one day, confirming its dialog with OK.
+15. Re-check the form: title {event_title}, description {event_description}, start date {year}-{month}-{day}, start time {hour}:00, end time = start + {duration_mins} minutes.
+16. Tap Save (the check/floppy icon at the top of the New/Edit Event screen).
+17. Success: the app returns to the main calendar view with the new event stored on {year}-{month}-{day}.

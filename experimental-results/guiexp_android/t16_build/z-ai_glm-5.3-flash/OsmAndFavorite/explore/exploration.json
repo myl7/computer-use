@@ -1,0 +1,214 @@
+{
+ "family": "OsmAndFavorite",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 13,
+ "instances": [
+  {
+   "family": "OsmAndFavorite",
+   "seed": 1,
+   "goal": "Add a favorite location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 549388,
+      "cached_tokens": 347200,
+      "completion_tokens": 2415,
+      "total_tokens": 551803,
+      "cost_usd": 0.02669933,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 545343,
+      "cached_tokens": 418496,
+      "completion_tokens": 4597,
+      "total_tokens": 549940,
+      "cost_usd": 0.01769448,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 554760,
+      "cached_tokens": 473152,
+      "completion_tokens": 2983,
+      "total_tokens": 557743,
+      "cost_usd": 0.01382399,
+      "model_calls": 13
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "- Steps 5\u20138 repeated the same click (index 10) four times with no screen change: the tap had no effect, so stop re-clicking and reassess.\n- After typing \"Malbun\", wait for the results list to load, then tap the matching result row (\"Malbun\" / \"Malbun, Liechtenstein\") \u2014 the results appear below the search field in the bottom sheet; don't retype the query (\"Liechtenstein\") or dismiss it.\n- Tapping the correct result opens the place context menu; from there tap the star icon / \"Add to favorites\" (or \"Add marker\") to save it \u2014 this is the step that was never reached.\n- If the search list stays empty, the query likely didn't match: try tapping the search/category result or scroll the results, rather than editing the text repeatedly.",
+     "usage": {
+      "prompt_tokens": 544,
+      "completion_tokens": 581,
+      "cached_tokens": 0,
+      "cost_usd": 0.0003315411
+     },
+     "cost_usd": 0.0003315411,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "1. After typing \"Malbun\", clicking index 10 four times changed nothing \u2014 that element is not a result; you were stuck on the same screen.\n2. On the search screen, tap the search/keyboard submit once, then read the results list and tap the row for \"Malbun, Triesenberg, Liechtenstein\" \u2014 a list item, not the search bar or a button.\n3. If no results appear, scroll the results list before retrying; do not re-enter the same query.\n4. Tapping the result opens the map centered on Malbun with the context menu at the bottom.\n5. In the context menu, tap the star icon (\"Add favorite\") to save it; confirm the dialog to create the favorite marker.\n6. Verify the star dialog completed \u2014 repeated identical clicks with an unchanged foreground mean the tap missed; re-identify the element instead of repeating it.",
+     "usage": {
+      "prompt_tokens": 540,
+      "completion_tokens": 617,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001928025
+     },
+     "cost_usd": 0.0001928025,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndFavorite",
+   "seed": 2,
+   "goal": "Add a favorite location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 8,
+     "usage": {
+      "prompt_tokens": 200880,
+      "cached_tokens": 152384,
+      "completion_tokens": 828,
+      "total_tokens": 201708,
+      "cost_usd": 0.00606866,
+      "model_calls": 8
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndFavorite",
+   "seed": 3,
+   "goal": "Add a favorite location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 532206,
+      "cached_tokens": 443328,
+      "completion_tokens": 3024,
+      "total_tokens": 535230,
+      "cost_usd": 0.01432977,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 559059,
+      "cached_tokens": 408896,
+      "completion_tokens": 2594,
+      "total_tokens": 561653,
+      "cost_usd": 0.03174693,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s3_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 558766,
+      "cached_tokens": 444416,
+      "completion_tokens": 2876,
+      "total_tokens": 561642,
+      "cost_usd": 0.03075888,
+      "model_calls": 13
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "1. After typing \"Nendeln\" the agent tapped the same result row (index 10) three times and then poked random indices (0, 14, 12, 1) without ever opening the place's context menu, so no favorite was created.\n2. On the search results screen, tap the \"Nendeln, Liechtenstein\" row once, then verify the map centers and a context menu with the place name appears.\n3. In that context menu, tap the star icon (\"Add favorite\") in the actions row next to Directions.\n4. In the \"Add favorite\" dialog, tap Save (checkmark) to confirm; the point should then show a yellow favorite star.\n5. If the menu doesn't show the star, long-press the Nendeln point on the map to reopen the context menu, then repeat star \u2192 Save.\n6. Never re-click an element without first checking the screen changed; confirm each tap did something before proceeding.",
+     "usage": {
+      "prompt_tokens": 535,
+      "completion_tokens": 933,
+      "cached_tokens": 0,
+      "cost_usd": 0.00027064125
+     },
+     "cost_usd": 0.00027064125,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- After typing \"Nendeln\" you clicked the same element (index 10) five times instead of the search suggestion; the results list below the field contains the \"Nendeln, Liechtenstein\" entry \u2014 tap that specific row.\n- Don't rely on keyboard_enter to run the search; the suggestions update live, so select the match directly.\n- After selecting the result, OsmAnd shows the location context menu with a star icon labeled \"Add favorite\" \u2014 tap it, then confirm with \"Add\" on the favorite dialog.\n- You never opened the context menu for the point; clicking map/search elements blindly (index 0/6/12) did nothing toward favoriting.\n- If the suggestion list isn't visible, tap the magnifying-glass search button, type, then wait one turn before tapping the result row.",
+     "usage": {
+      "prompt_tokens": 536,
+      "completion_tokens": 448,
+      "cached_tokens": 0,
+      "cost_usd": 0.000150678
+     },
+     "cost_usd": 0.000150678,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndFavorite/explore/s3_a2/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "prompt_tokens": 3502557,
+  "cached_tokens": 2687872,
+  "completion_tokens": 21896,
+  "total_tokens": 3524453,
+  "cost_usd": 0.1420677
+ },
+ "record_type": "exploration"
+}

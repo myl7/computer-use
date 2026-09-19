@@ -1,0 +1,465 @@
+{
+ "family": "FilesMoveFile",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 20,
+ "cache_ratio_r": 0.318,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 15,
+    "prompt_tokens": 294575,
+    "cached_tokens": 251264,
+    "completion_tokens": 1283,
+    "total_tokens": 295858,
+    "cost_usd": 0.02590646,
+    "model_calls": 15
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 182552,
+    "cached_tokens": 125952,
+    "completion_tokens": 2380,
+    "total_tokens": 184932,
+    "cost_usd": 0.01543333,
+    "model_calls": 14
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 192288,
+    "cached_tokens": 161408,
+    "completion_tokens": 929,
+    "total_tokens": 193217,
+    "cost_usd": 0.01846778,
+    "model_calls": 12
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 41,
+   "prompt_tokens": 669415,
+   "cached_tokens": 538624,
+   "completion_tokens": 4592,
+   "total_tokens": 674007,
+   "cost_usd": 0.05980757
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 9425.9,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 1,
+    "calls": 1,
+    "prompt_tokens": 809,
+    "cached_tokens": 0,
+    "completion_tokens": 772,
+    "total_tokens": 1581,
+    "cost_usd": 0.00136125
+   },
+   {
+    "seed": 2,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 10508,
+    "cached_tokens": 0,
+    "completion_tokens": 154420,
+    "total_tokens": 164928,
+    "cost_usd": 0.10442941
+   },
+   {
+    "seed": 3,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 9442,
+    "cached_tokens": 0,
+    "completion_tokens": 138600,
+    "total_tokens": 148042,
+    "cost_usd": 0.09382056
+   }
+  ],
+  "totals": {
+   "calls": 25,
+   "prompt_tokens": 20759,
+   "cached_tokens": 0,
+   "completion_tokens": 293792,
+   "total_tokens": 314551,
+   "cost_usd": 0.19961122
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1688,
+    "completion_tokens": 29773,
+    "cached_tokens": 0,
+    "cost_usd": 0.019424898108
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1510,
+    "completion_tokens": 2327,
+    "cached_tokens": 0,
+    "cost_usd": 0.0036986796
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 3252,
+    "completion_tokens": 26696,
+    "cached_tokens": 0,
+    "cost_usd": 0.036302904
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 3180,
+    "completion_tokens": 9285,
+    "cached_tokens": 0,
+    "cost_usd": 0.00662423454
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 4869,
+    "completion_tokens": 3547,
+    "cached_tokens": 0,
+    "cost_usd": 0.00331051644
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 4744,
+    "completion_tokens": 7331,
+    "cached_tokens": 0,
+    "cost_usd": 0.005706852228
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 19243,
+   "cached_tokens": 0,
+   "completion_tokens": 78959,
+   "total_tokens": 98202,
+   "cost_usd": 0.07506808
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 5,
+    "prompt_tokens": 23997,
+    "cached_tokens": 0,
+    "completion_tokens": 119070,
+    "total_tokens": 143067,
+    "cost_usd": 0.08171513
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "RuntimeError: Storage root 'sdk_gphone_x86_64' not found in drawer"
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "RuntimeError: Storage root 'sdk_gphone_x86_64' not found in drawer"
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": false,
+     "error": "RuntimeError: Storage root 'sdk_gphone_x86_64' not found in drawer"
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": false,
+     "error": "RuntimeError: Storage root 'sdk_gphone_x86_64' not found in drawer"
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": false,
+     "error": "RuntimeError: Storage root 'sdk_gphone_x86_64' not found in drawer"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 4,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "RuntimeError: neither 'Cut' nor 'Move to' was offered by the menu"
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "RuntimeError: Source folder 'Notifications' not found"
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "RuntimeError: Source folder 'Recordings' not found"
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": false,
+     "error": "RuntimeError: Source folder 'Notifications' not found"
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": false,
+     "error": "RuntimeError: Source folder 'Download' not found"
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": false,
+     "error": "RuntimeError: Source folder 'Music' not found"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 5,
+  "program_replays": 17,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 5,
+   "prompt_tokens": 4912,
+   "cached_tokens": 0,
+   "completion_tokens": 21894,
+   "total_tokens": 26806,
+   "cost_usd": 0.01524778
+  },
+  "resume_episodes": {
+   "calls": 55,
+   "prompt_tokens": 908359,
+   "cached_tokens": 604433,
+   "completion_tokens": 10667,
+   "total_tokens": 919026,
+   "cost_usd": 0.12268763
+  },
+  "builder_refinements": {
+   "calls": 5,
+   "prompt_tokens": 19128,
+   "cached_tokens": 0,
+   "completion_tokens": 115523,
+   "total_tokens": 134651,
+   "cost_usd": 0.07840461
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 60,
+   "prompt_tokens": 913271,
+   "cached_tokens": 604433,
+   "completion_tokens": 32561,
+   "total_tokens": 945832,
+   "cost_usd": 0.13793541
+  }
+ },
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1206,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 167521,
+    "cached_tokens": 115712,
+    "completion_tokens": 1408,
+    "total_tokens": 168929,
+    "cost_usd": 0.01274575,
+    "model_calls": 12
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 190477,
+    "cached_tokens": 159360,
+    "completion_tokens": 1100,
+    "total_tokens": 191577,
+    "cost_usd": 0.01870383,
+    "model_calls": 12
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 151297,
+    "cached_tokens": 129516,
+    "completion_tokens": 1232,
+    "total_tokens": 152529,
+    "cost_usd": 0.00644644,
+    "model_calls": 12
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 36,
+   "prompt_tokens": 509295,
+   "cached_tokens": 404588,
+   "completion_tokens": 3740,
+   "total_tokens": 513035,
+   "cost_usd": 0.03789602
+  },
+  "L_doc_tokens_mean": 171011.66666666666
+ },
+ "break_even": {
+  "c_raw_tokens": 224669.0,
+  "c_cache_adjusted_tokens": 102222.0,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.318,
+  "build_totals_raw": {
+   "exploration": 674007,
+   "translator": 314551,
+   "builder_selected": 143067,
+   "verification": 945832,
+   "autorpa_build": 2077457
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 306665,
+   "translator": 314551,
+   "builder_selected": 143067,
+   "verification": 533609,
+   "autorpa_build": 1297892
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 0.588723
+}

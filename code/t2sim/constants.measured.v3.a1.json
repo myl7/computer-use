@@ -1,0 +1,656 @@
+{
+  "schema": "t2sim.constants/1",
+  "notes": "T2 simulation constants, v2 (2026-09-11). android_glm / android_ds are rebuilt from experimental-results/guiexp_android/t16_build/constants_table.json: 7 AndroidWorld families x 2 models, headline unit PRICE-WEIGHTED TOKENS (pw) = (prompt - cached) + r_c*cached + r_o*completion. The three old android layouts (contacts/calendar/markor) are superseded by the seven named families. openapps_glm / openapps_ds are UNCHANGED and are still in cache-adjusted tokens (fresh + r*cached), a DIFFERENT unit: do not compare absolute tokens across the android and openapps cost sets. m=91 and tau0=368 are carried over from the OpenApps m_library2 measurement; the t16_build table measures neither. Every per-family value is the measured headline of its cell; where a cell has no measured value (no deploy stage, or no compile that passed the gate) the layout's `note` says which model-level median was substituted. See computer-use/t2sim/CONSTANTS_V2.md.",
+  "cost_sets": {
+    "openapps_glm": {
+      "label": "OpenApps wizard layouts, GLM 5.3 Flash (cache-adjusted)",
+      "status": "measured",
+      "source": "T1.1/T1.3 cache-adjusted + d_full",
+      "r_cache": 0.2,
+      "m": 91,
+      "tau0": 368,
+      "layouts": {
+        "wizard": {
+          "status": "measured",
+          "c": 95296,
+          "L": 22018,
+          "rho": 0.769,
+          "C": 14549,
+          "p": 1.0,
+          "d": 347,
+          "q0": 0.17
+        },
+        "single_page": {
+          "status": "measured",
+          "c": 68655,
+          "L": 34813,
+          "rho": 0.493,
+          "C": 14549,
+          "p": 1.0,
+          "d": 347,
+          "q0": 0.17
+        },
+        "sectioned": {
+          "status": "measured",
+          "c": 55793,
+          "L": 25235,
+          "rho": 0.548,
+          "C": 14549,
+          "p": 1.0,
+          "d": 347,
+          "q0": 0.17
+        }
+      }
+    },
+    "openapps_ds": {
+      "label": "OpenApps wizard layouts, DeepSeek v4 flash vision-exp (cache-adjusted)",
+      "status": "measured",
+      "source": "T1.1/T1.3 cache-adjusted + d_full",
+      "r_cache": 0.318,
+      "m": 91,
+      "tau0": 368,
+      "layouts": {
+        "wizard": {
+          "status": "measured",
+          "c": 114518,
+          "L": 31626,
+          "rho": 0.724,
+          "C": 13361,
+          "p": 1.0,
+          "d": 491,
+          "q0": 0.23
+        },
+        "single_page": {
+          "status": "measured",
+          "c": 131076,
+          "L": 35112,
+          "rho": 0.732,
+          "C": 13361,
+          "p": 1.0,
+          "d": 491,
+          "q0": 0.23
+        },
+        "sectioned": {
+          "status": "measured",
+          "c": 135685,
+          "L": 41811,
+          "rho": 0.692,
+          "C": 13361,
+          "p": 1.0,
+          "d": 491,
+          "q0": 0.23
+        }
+      }
+    },
+    "android_glm": {
+      "label": "Three-dataset build 2026-09-18, 7 families (4 AndroidWorld + 2 OSWorld + 1 WebArena), z-ai/glm-5.3-flash (price-weighted tokens)",
+      "status": "measured",
+      "source": "paper/measurement_update_20260918.json (2026-09-18)",
+      "source_sha256": "bbdc01da37dfa69f",
+      "source_unit": "HEADLINE: price-weighted tokens (pw), tokens_pw = (prompt_tokens - cached_tokens) + r_c * cached_tokens + r_o * completion_tokens, per stage and per cell, for c, C, L_doc and every derived quantity",
+      "unit": "price-weighted tokens (pw) = (prompt - cached) + r_c*cached + r_o*completion, r_c/r_o from the model's price sheet",
+      "r_cache": 0.19999999999999998,
+      "m": 91,
+      "tau0": 368,
+      "floor_raw_tokens": 5090,
+      "price_sheet": {
+        "p_in": 1.5e-07,
+        "p_c": 3e-08,
+        "p_o": 5e-07
+      },
+      "note": "no rejected GLM compilation in the initial table; the failed-price multiple is unidentified and set to 1; GLM failed-attempt prices appear only in the repeated-compilation records (t19), reported in the verification-distribution section",
+      "per_model": {
+        "model": "z-ai/glm-5.3-flash",
+        "n_cells": 7,
+        "cells_admitted": 7,
+        "cells_not_admitted": 0,
+        "cells_with_measured_deploy": 7,
+        "p_model_admitted_rate": 1.0,
+        "c_median_admitted": 123883.98518518519,
+        "c_median_all": 123883.98518518519,
+        "d_median_measured_deploy": 546.6622222222222,
+        "q_median_measured_deploy": 0.0,
+        "L_doc_median_all": 102387.36296296297,
+        "C_median_admitted": 254491.59999999998,
+        "C_fail_median_not_admitted": null,
+        "C_fail_over_C_ratio": null
+      },
+      "layouts": {
+        "CalcTableSave": {
+          "status": "measured",
+          "c": 505062.3259259259,
+          "L": 697392.8370370369,
+          "rho": -0.38080549912035766,
+          "C": 481241.8,
+          "p": 1.0,
+          "d": 671.8955555555556,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 481241.8,
+            "C_eff_table": 481241.8,
+            "c_unsubtracted": 506431.5111111111,
+            "s_arrival": 504390.4303703704,
+            "nstar_marginal": 0.9541057304489847
+          },
+          "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        },
+        "CommentPost": {
+          "status": "measured",
+          "c": 123883.98518518519,
+          "L": 102387.36296296297,
+          "rho": 0.17352220458591538,
+          "C": 252666.53333333335,
+          "p": 1.0,
+          "d": 650.9911111111111,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 252666.53333333335,
+            "C_eff_table": 252666.53333333335,
+            "c_unsubtracted": 128709.75555555556,
+            "s_arrival": 123232.99407407407,
+            "nstar_marginal": 2.050315625549584
+          }
+        },
+        "ContactsAddContact": {
+          "status": "measured",
+          "c": 98724.56303615608,
+          "L": 89784.33333333333,
+          "rho": 0.09055729828400001,
+          "C": 41027.8,
+          "p": 1.0,
+          "d": 178.68666666666667,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 41027.8,
+            "C_eff_table": 41027.8,
+            "c_unsubtracted": 103814.56303615608,
+            "s_arrival": 98545.87636948942,
+            "nstar_marginal": 0.41633198172767516
+          }
+        },
+        "MarkorDeleteNote": {
+          "status": "measured",
+          "c": 33698.84444444444,
+          "L": 40588.35555555555,
+          "rho": -0.20444354175019522,
+          "C": 38971.46666666667,
+          "p": 1.0,
+          "d": 200.03333333333333,
+          "q0": 0.19999999999999996,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 38971.46666666667,
+            "C_eff_table": 38971.46666666667,
+            "c_unsubtracted": 38788.84444444444,
+            "s_arrival": 26759.04222222222,
+            "nstar_marginal": 1.4563849611292352
+          },
+          "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        },
+        "OsmAndMarker": {
+          "status": "measured",
+          "c": 279832.9583333333,
+          "L": 118157.66666666667,
+          "rho": 0.5777564323716335,
+          "C": 966880.0666666667,
+          "p": 1.0,
+          "d": 474.77333333333337,
+          "q0": 0.0,
+          "pi": 0.125,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 966880.0666666667,
+            "C_eff_table": 966880.0666666667,
+            "c_unsubtracted": 284922.9583333333,
+            "s_arrival": 279358.185,
+            "nstar_marginal": 3.4610765625738393
+          }
+        },
+        "SimpleCalendarAddOneEvent": {
+          "status": "measured",
+          "c": 313821.96788535325,
+          "L": 260186.44444444444,
+          "rho": 0.17091067206774757,
+          "C": 916335.4666666666,
+          "p": 1.0,
+          "d": 558.4333333333333,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 916335.4666666666,
+            "C_eff_table": 916335.4666666666,
+            "c_unsubtracted": 318911.96788535325,
+            "s_arrival": 313263.5345520199,
+            "nstar_marginal": 2.925126500845574
+          }
+        },
+        "WriterMemoSave": {
+          "status": "measured",
+          "c": 70205.76296296295,
+          "L": 89553.00740740741,
+          "rho": -0.27557914945887124,
+          "C": 254491.59999999998,
+          "p": 1.0,
+          "d": 546.6622222222222,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 1.0,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 254491.59999999998,
+            "C_eff_table": 254491.59999999998,
+            "c_unsubtracted": 70874.64444444444,
+            "s_arrival": 69659.10074074073,
+            "nstar_marginal": 3.6533862380333364
+          },
+          "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        }
+      }
+    },
+    "android_ds": {
+      "label": "Three-dataset build 2026-09-18, 7 families (4 AndroidWorld + 2 OSWorld + 1 WebArena), deepseek/deepseek-v4-flash-vision-exp (price-weighted tokens)",
+      "status": "measured",
+      "source": "paper/measurement_update_20260918.json (2026-09-18)",
+      "source_sha256": "bbdc01da37dfa69f",
+      "source_unit": "HEADLINE: price-weighted tokens (pw), tokens_pw = (prompt_tokens - cached_tokens) + r_c * cached_tokens + r_o * completion_tokens, per stage and per cell, for c, C, L_doc and every derived quantity",
+      "unit": "price-weighted tokens (pw) = (prompt - cached) + r_c*cached + r_o*completion, r_c/r_o from the model's price sheet",
+      "r_cache": 0.031818181818181815,
+      "m": 91,
+      "tau0": 368,
+      "floor_raw_tokens": 2290,
+      "price_sheet": {
+        "p_in": 2.2e-07,
+        "p_c": 7e-09,
+        "p_o": 6.6e-07
+      },
+      "per_model": {
+        "model": "deepseek/deepseek-v4-flash-vision-exp",
+        "n_cells": 7,
+        "cells_admitted": 4,
+        "cells_not_admitted": 3,
+        "cells_with_measured_deploy": 4,
+        "p_model_admitted_rate": 0.5714285714285714,
+        "c_median_admitted": 45385.40795454546,
+        "c_median_all": 65044.73580066963,
+        "d_median_measured_deploy": 539.8810606060606,
+        "q_median_measured_deploy": 0.016666666666666663,
+        "L_doc_median_all": 64480.7696969697,
+        "C_median_admitted": 238134.36818181816,
+        "C_fail_median_not_admitted": 2502646.7636363637,
+        "C_fail_over_C_ratio": 10.509389227369171
+      },
+      "layouts": {
+        "CalcTableSave": {
+          "status": "measured",
+          "c": 646716.1228535355,
+          "L": 1283955.845959596,
+          "rho": -0.9853468942359722,
+          "C": 238134.36818181816,
+          "p": 0.0,
+          "d": 539.8810606060606,
+          "q0": 0.016666666666666663,
+          "pi": 0.75,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": false,
+            "C_with_repair": 4370263.427272728
+          },
+          "note": "never admitted (the 2026-09-18 three-dataset build never passed the gate for CalcTableSave): no deploy stage ran, so q0 and d are the model median over its admitted cells (q0=0.0166667, d=539.881); C is the model median over admitted cells (238134) because this family has no measured price for an attempt that PASSES. Its own C_with_repair (4.37026e+06) is the price of an attempt that failed and is kept under `measured`. rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        },
+        "CommentPost": {
+          "status": "measured",
+          "c": 40034.569191919196,
+          "L": 20204.797979797982,
+          "rho": 0.495316213272098,
+          "C": 332356.73636363633,
+          "p": 1.0,
+          "d": 654.0666666666667,
+          "q0": 0.0,
+          "pi": 1.0,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 332356.73636363633,
+            "C_eff_table": 332356.73636363633,
+            "c_unsubtracted": 44291.48333333334,
+            "s_arrival": 39380.50252525253,
+            "nstar_marginal": 8.43962659314757
+          }
+        },
+        "ContactsAddContact": {
+          "status": "measured",
+          "c": 65044.73580066963,
+          "L": 64480.7696969697,
+          "rho": 0.008670434228962237,
+          "C": 143912.0,
+          "p": 1.0,
+          "d": 430.2621212121212,
+          "q0": 0.033333333333333326,
+          "pi": 1.0,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 143912.0,
+            "C_eff_table": 143912.0,
+            "c_unsubtracted": 67334.73580066963,
+            "s_arrival": 62446.315819435185,
+            "nstar_marginal": 2.3045715045243744
+          }
+        },
+        "MarkorDeleteNote": {
+          "status": "measured",
+          "c": 10762.40909090909,
+          "L": 23803.939393939392,
+          "rho": -1.2117668258909025,
+          "C": 68477.0,
+          "p": 1.0,
+          "d": 402.06666666666666,
+          "q0": 0.033333333333333326,
+          "pi": 1.0,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 68477.0,
+            "C_eff_table": 68477.0,
+            "c_unsubtracted": 13052.40909090909,
+            "s_arrival": 10001.595454545453,
+            "nstar_marginal": 6.846607654869611
+          },
+          "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        },
+        "OsmAndMarker": {
+          "status": "measured",
+          "c": 152788.89220779223,
+          "L": 88514.7787878788,
+          "rho": 0.42067268432381144,
+          "C": 238134.36818181816,
+          "p": 0.0,
+          "d": 539.8810606060606,
+          "q0": 0.016666666666666663,
+          "pi": 0.14285714285714285,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": false,
+            "C_with_repair": 2502646.7636363637
+          },
+          "note": "never admitted (the 2026-09-18 three-dataset build never passed the gate for OsmAndMarker): no deploy stage ran, so q0 and d are the model median over its admitted cells (q0=0.0166667, d=539.881); C is the model median over admitted cells (238134) because this family has no measured price for an attempt that PASSES. Its own C_with_repair (2.50265e+06) is the price of an attempt that failed and is kept under `measured`."
+        },
+        "SimpleCalendarAddOneEvent": {
+          "status": "measured",
+          "c": 146345.62945635445,
+          "L": 223716.3606060606,
+          "rho": -0.5286849456121332,
+          "C": 238134.36818181816,
+          "p": 0.0,
+          "d": 539.8810606060606,
+          "q0": 0.016666666666666663,
+          "pi": 1.0,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": false,
+            "C_with_repair": 1100308.6590909092
+          },
+          "note": "never admitted (the 2026-09-18 three-dataset build never passed the gate for SimpleCalendarAddOneEvent): no deploy stage ran, so q0 and d are the model median over its admitted cells (q0=0.0166667, d=539.881); C is the model median over admitted cells (238134) because this family has no measured price for an attempt that PASSES. Its own C_with_repair (1.10031e+06) is the price of an attempt that failed and is kept under `measured`. rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        },
+        "WriterMemoSave": {
+          "status": "measured",
+          "c": 50736.24671717172,
+          "L": 62517.3398989899,
+          "rho": -0.2322026942097563,
+          "C": 585704.4727272728,
+          "p": 1.0,
+          "d": 649.5,
+          "q0": 0.0,
+          "pi": 0.75,
+          "C_fail_mult": 10.509389227369171,
+          "measured": {
+            "admitted": true,
+            "C_with_repair": 585704.4727272728,
+            "C_eff_table": 585704.4727272728,
+            "c_unsubtracted": 51271.147727272735,
+            "s_arrival": 50086.74671717172,
+            "nstar_marginal": 11.693801476758123
+          },
+          "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
+        }
+      }
+    }
+  },
+  "price_ladder": [
+    {
+      "name": "native",
+      "C": null,
+      "note": "the cost set's own measured C"
+    },
+    {
+      "name": "autorpa_233k",
+      "C": 233000,
+      "note": "AutoRPA published offline build price"
+    },
+    {
+      "name": "1M",
+      "C": 1000000
+    },
+    {
+      "name": "5M",
+      "C": 5000000
+    },
+    {
+      "name": "xu_10M",
+      "C": 10000000
+    }
+  ],
+  "epsilon_cliff": {
+    "enabled": false,
+    "eps0": 0.3,
+    "cliff_start": 100,
+    "cliff_slope": 20,
+    "note": "eps(n) = eps0*sigmoid((n-cliff_start)/cliff_slope). Measured eps=0 for n<=100, so headline runs keep it off; E8 sweeps eps0/cliff_start/cliff_slope."
+  },
+  "streams": {
+    "synthetic": {
+      "patterns": [
+        "poisson",
+        "zipf",
+        "bursty"
+      ],
+      "n_arrivals": 300,
+      "n_arrivals_long": 30000
+    },
+    "wiki_A": {
+      "format": "wiki_jsonl",
+      "path": "datasets/wiki-stream/stream_tool_hot_tail.jsonl",
+      "window": null,
+      "label": "Wikipedia-A tool hot+tail (65,564 arrivals, 2,529 families)",
+      "role": "main"
+    },
+    "wiki_B": {
+      "format": "wiki_jsonl",
+      "path": "datasets/wiki-stream/stream_content_tail.jsonl",
+      "window": 100000,
+      "label": "Wikipedia-B content tail (161,830 total; first 100k by ts)",
+      "role": "main"
+    },
+    "sepsis": {
+      "format": "old_real_streams",
+      "key": "sepsis",
+      "label": "Sepsis process log (1,050 arrivals, 846 families)",
+      "role": "main"
+    },
+    "helpdesk": {
+      "format": "old_real_streams",
+      "key": "helpdesk",
+      "label": "Helpdesk process log (4,580 arrivals, 226 families)",
+      "role": "e5_selection"
+    },
+    "bpi2019": {
+      "format": "old_real_streams",
+      "key": "bpi2019",
+      "label": "BPI Challenge 2019 (251,734 arrivals, 11,973 families)",
+      "role": "held_out"
+    }
+  },
+  "trigger": {
+    "cooldown": "inflate",
+    "cooldown_len": 3,
+    "half_life": 120.0,
+    "prior_mode": "population",
+    "prior_shape": 1.0,
+    "prior_rate": 5.0,
+    "horizon_mode": "capped_doubling",
+    "horizon_cap": 50.0,
+    "horizon_fixed": 60,
+    "note": "horizon_cap = 1/h at the old engine's drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); the projection is H=lambda_hat*min-uses capped at it. The threshold also carries the manifest externality m*t (methods-v2 section 2 one-line extension), inert at m=0. v2: gate_prior='pi' and spend_cap=on are Algorithm 1 as decided 2026-09-11; cooldown='inflate' and half_life=120 are left at their published values (methods-v3 section 3 removes the cooldown, which is a separate change and is NOT made here). | a1 variant (W7b): gate_prior switched pi -> add_one, the flat Beta(1,1) posterior mean of Algorithm 1 / app:mech; nothing else moved. Built 2026-09-19 for the E3/E4/E11 add-one rerun; do not publish as a constants release.",
+    "gate_prior": "add_one",
+    "spend_cap": true,
+    "spend_cap_mult": 1.0
+  },
+  "e3": {
+    "cost_sets": [
+      "openapps_glm",
+      "openapps_ds",
+      "android_glm",
+      "android_ds"
+    ],
+    "price": "native"
+  },
+  "e4": {
+    "cost_set": "android_glm",
+    "streams": [
+      "wiki_A",
+      "wiki_B",
+      "sepsis"
+    ],
+    "prices": [
+      "native",
+      "autorpa_233k",
+      "1M",
+      "5M"
+    ],
+    "bpi_heldout": true,
+    "bpi_reps": null
+  },
+  "e5": {
+    "cost_set": "android_glm",
+    "selection_streams": [
+      "sepsis",
+      "helpdesk"
+    ],
+    "real_prices": [
+      "native",
+      "1M",
+      "5M"
+    ],
+    "stress_prices": [
+      "native",
+      "5M"
+    ],
+    "gate_rates": [
+      0.0,
+      0.3,
+      0.6,
+      1.0
+    ],
+    "long_n": 30000,
+    "bpi_horizon_heldout": true,
+    "bpi_reps": 5
+  },
+  "e8": {
+    "cost_set": "openapps_glm",
+    "prices": [
+      "native",
+      "autorpa_233k",
+      "1M",
+      "5M",
+      "xu_10M"
+    ],
+    "strengths": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "include_native_strength": true,
+    "tau_modes": [
+      "off",
+      "measured",
+      "10x"
+    ],
+    "eps_modes": [
+      "off",
+      "cliff",
+      "harsh"
+    ],
+    "sens_prices": [
+      "native",
+      "5M"
+    ]
+  },
+  "extras": {
+    "C_fullread": {
+      "z-ai/glm-5.3-flash": 20633,
+      "deepseek/deepseek-v4-flash-vision-exp": 18760
+    },
+    "tau_law": "prompt(n)=368+90.0n (d_full); tax n=846 -> 76,737",
+    "pi_population_t16_build": {
+      "note": "Strata of the 14 cells by the demonstration success rate pi. sim.PI_POPULATION and sim.PI_PRIOR_TABLE are hard-coded in the engine and still carry the older 6/3/5 split with prior means 0.8/0.5/0.2; the counts and prior means here are what the regenerated table gives.",
+      "strata": [
+        {
+          "pi_floor": 1.0,
+          "label": "pi = 1",
+          "n_cells": 7,
+          "mean_p": 0.6571428571428571,
+          "admitted": 5,
+          "families": [
+            "deepseek:ContactsAddContact(pi=1,p=1)",
+            "deepseek:FilesMoveFile(pi=1,p=0)",
+            "deepseek:MarkorDeleteNote(pi=1,p=1)",
+            "deepseek:SimpleCalendarAddOneEvent(pi=1,p=0)",
+            "z-ai:ContactsAddContact(pi=1,p=1)",
+            "z-ai:MarkorDeleteNote(pi=1,p=0.8)",
+            "z-ai:SimpleCalendarAddOneEvent(pi=1,p=0.8)"
+          ]
+        },
+        {
+          "pi_floor": 0.5,
+          "label": "pi in [0.5, 1)",
+          "n_cells": 2,
+          "mean_p": 0.5,
+          "admitted": 1,
+          "families": [
+            "deepseek:MarkorCreateNote(pi=0.75,p=0)",
+            "z-ai:FilesMoveFile(pi=0.6,p=1)"
+          ]
+        },
+        {
+          "pi_floor": 0.0,
+          "label": "pi < 0.5",
+          "n_cells": 5,
+          "mean_p": 0.2,
+          "admitted": 1,
+          "families": [
+            "deepseek:OsmAndFavorite(pi=0.333,p=0)",
+            "deepseek:OsmAndMarker(pi=0.143,p=0)",
+            "z-ai:MarkorCreateNote(pi=0.4,p=0)",
+            "z-ai:OsmAndFavorite(pi=0.143,p=0)",
+            "z-ai:OsmAndMarker(pi=0.125,p=1)"
+          ]
+        }
+      ]
+    },
+    "units_warning": "android_* cost sets are in price-weighted tokens (pw); openapps_* are in cache-adjusted tokens. Output meta still says 'cache-adjusted tokens'."
+  }
+}

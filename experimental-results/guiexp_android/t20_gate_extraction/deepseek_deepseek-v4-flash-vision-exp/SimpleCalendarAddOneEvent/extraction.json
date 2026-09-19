@@ -1,0 +1,447 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "program_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/verified_program.py",
+ "bindings_total": 5,
+ "injection_passed_now": 0,
+ "injection_passed_t16": null,
+ "extraction_passed": 0,
+ "extraction_type_check_fails": 0,
+ "extraction_cost_usd": 0.00071991,
+ "per_binding": [
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": null,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 372,
+   "cost_usd": 0.00012807
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": null,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "retries": 0,
+   "tokens": 355,
+   "cost_usd": 0.00011675
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": null,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 387,
+   "cost_usd": 0.00013511
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": null,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "retries": 0,
+   "tokens": 307,
+   "cost_usd": 0.00022259
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": null,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 358,
+   "cost_usd": 0.00011739
+  }
+ ],
+ "record_type": "gate_extraction",
+ "wall_s": 664.8,
+ "uses": [
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-25 at 11h with the title 'Meeting with Dr. Smith' and the description 'We will plan contract details. Looking forward to productive discussions.'. The event should last for 60 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 372,
+   "cost_usd": 0.00012807,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 264,
+     "cached_tokens": 0,
+     "completion_tokens": 108,
+     "total_tokens": 372,
+     "cost_usd": 0.0001280664,
+     "usage": {
+      "prompt_tokens": 264,
+      "completion_tokens": 108,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001280664
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 66.2,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OK button not found in time picker",
+   "injection_passed_t16": null
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-29 at 23h with the title 'Catch up on Budget Planning' and the description 'We will celebrate product launch.'. The event should last for 30 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 355,
+   "cost_usd": 0.00011675,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 259,
+     "cached_tokens": 0,
+     "completion_tokens": 96,
+     "total_tokens": 355,
+     "cost_usd": 0.000116753868,
+     "usage": {
+      "prompt_tokens": 259,
+      "completion_tokens": 96,
+      "cached_tokens": 0,
+      "cost_usd": 0.000116753868
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 65.44,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OK button not found in time picker",
+   "injection_passed_t16": null
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 0h with the title 'Call with Dr. Smith' and the description 'We will review business objectives. Looking forward to productive discussions.'. The event should last for 30 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 387,
+   "cost_usd": 0.00013511,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 264,
+     "cached_tokens": 0,
+     "completion_tokens": 123,
+     "total_tokens": 387,
+     "cost_usd": 0.000135110052,
+     "usage": {
+      "prompt_tokens": 264,
+      "completion_tokens": 123,
+      "cached_tokens": 0,
+      "cost_usd": 0.000135110052
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 65.52,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OK button not found in time picker",
+   "injection_passed_t16": null
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-20 at 21h with the title 'Appointment for Project X' and the description 'We will review marketing strategies.'. The event should last for 15 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 307,
+   "cost_usd": 0.00022259,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 205,
+     "cached_tokens": 0,
+     "completion_tokens": 102,
+     "total_tokens": 307,
+     "cost_usd": 0.0002225916,
+     "usage": {
+      "prompt_tokens": 205,
+      "completion_tokens": 102,
+      "cached_tokens": 0,
+      "cost_usd": 0.0002225916
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 65.35,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OK button not found in time picker",
+   "injection_passed_t16": null
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 4h with the title 'Meeting with HR' and the description 'We will explore annual budget. Looking forward to productive discussions.'. The event should last for 60 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 358,
+   "cost_usd": 0.00011739,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 262,
+     "cached_tokens": 0,
+     "completion_tokens": 96,
+     "total_tokens": 358,
+     "cost_usd": 0.0001173942,
+     "usage": {
+      "prompt_tokens": 262,
+      "completion_tokens": 96,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001173942
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 64.7,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OK button not found in time picker",
+   "injection_passed_t16": null
+  }
+ ]
+}

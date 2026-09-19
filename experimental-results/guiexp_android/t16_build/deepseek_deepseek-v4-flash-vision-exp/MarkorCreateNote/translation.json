@@ -1,0 +1,356 @@
+{
+ "1": {
+  "family": "MarkorCreateNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action opens the Markor app, depending only on the app being installed and launchable. It can fail if the app is missing or the launcher cannot resolve it.",
+    "snippet": "device.open_app(\"Markor\")",
+    "usage": {
+     "prompt_tokens": 899,
+     "completion_tokens": 385,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004473612
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action clicks the \"Create a new file or folder\" button on the main screen. It depends on that button being present and clickable; it can fail if the button is not visible or its description changes. The action only opens the creation dialog; it does not fill in the note name or text.",
+    "snippet": "index = device.find(description='Create a new file or folder', clickable=True)\nif index is None:\n    raise RuntimeError(\"Could not find 'Create a new file or folder' button\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 895,
+     "completion_tokens": 1475,
+     "cached_tokens": 0,
+     "cost_usd": 0.001158696
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "friendly_koala_2023_03_02"
+    },
+    "field": "file_name",
+    "analysis": "This action targets the filename EditText, identified by its placeholder hint \"my_note\". It may fail if the hint is not constant or if the field is not currently present.",
+    "snippet": "index = device.find(hint='my_note', editable=True)\nif index is None:\n    raise RuntimeError(\"Could not find filename field with hint 'my_note'\")\ndevice.input_text(binding['file_name'], index=index)",
+    "usage": {
+     "prompt_tokens": 925,
+     "completion_tokens": 1524,
+     "cached_tokens": 0,
+     "cost_usd": 0.001173301668
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "This action clicks the OK button in the note creation dialog to confirm and open the new document. It depends on the dialog being present and the button text/clickability; task values are not needed.",
+    "snippet": "index = device.find(text='OK', clickable=True)\nif index is None:\n    raise RuntimeError(\"OK button not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 955,
+     "completion_tokens": 943,
+     "cached_tokens": 0,
+     "cost_usd": 0.000807672096
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "The early bird catches the worm."
+    },
+    "field": "text",
+    "analysis": "The action depends on the note editor being the *only* editable EditText on DocumentActivity, identified at record time by a raw index (8). On another instance the index shifts (keyboard/IME chrome, toolbar, etc. change the a11y list), so the lookup must be by semantics: an editable, clickable text field \u2014 not by position.",
+    "snippet": "fields = [e for e in device.elements() if e.get('editable') and e.get('clickable')]\nif not fields:\n    raise RuntimeError(\"Markor: no editable note field on DocumentActivity\")\ntarget = next((e for e in fields if not (e.get('text') or '').strip()), fields[0])\ndevice.input_text(binding['text'], index=target['index'])",
+    "usage": {
+     "prompt_tokens": 1137,
+     "completion_tokens": 491,
+     "cached_tokens": 0,
+     "cost_usd": 0.001136916
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 4811,
+   "cached_tokens": 0,
+   "completion_tokens": 4818,
+   "total_tokens": 9629,
+   "cost_usd": 0.00472395
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "MarkorCreateNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s2_a1/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action depends on the launcher/home screen being visible and the Markor app being installed; it fails if Markor is not present or the app name changes. The lookup uses the app name from binding and opens it, relying on the Android launcher to resolve the app.",
+    "snippet": "device.open_app(binding[\"app_name\"])",
+    "usage": {
+     "prompt_tokens": 899,
+     "completion_tokens": 148,
+     "cached_tokens": 0,
+     "cost_usd": 0.000286655292
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action clicks the \"Create a new file or folder\" button in Markor's main activity to open the new-note dialog. It can fail if the button is missing, not visible, or has a different description in another instance.",
+    "snippet": "index = device.find(description=\"Create a new file or folder\")\nif index is None:\n    raise RuntimeError(\"Create new file button not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 875,
+     "completion_tokens": 532,
+     "cached_tokens": 0,
+     "cost_usd": 0.000527420124
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 857,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0858290994
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "brave_fish_2023_03_28"
+    },
+    "field": "file_name",
+    "analysis": "This action inputs the file name into the note name EditText. It depends on locating the single editable EditText on the screen; it can fail if multiple EditTexts exist or if the field is not present.",
+    "snippet": "element = device.find(class_name='EditText', editable=True, clickable=True)\nif element is None:\n    raise RuntimeError(\"Note name EditText not found\")\ndevice.input_text(binding['file_name'], index=element)",
+    "usage": {
+     "prompt_tokens": 889,
+     "completion_tokens": 4356,
+     "cached_tokens": 0,
+     "cost_usd": 0.0030398346
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "This action depends on a button labeled 'OK' being present and clickable in the note creation dialog. It can fail if the dialog is absent, the button is disabled, or the text is localized differently.",
+    "snippet": "index = device.find(text='OK', clickable=True)\nif index is None:\n    raise RuntimeError(\"OK button not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 953,
+     "completion_tokens": 678,
+     "cached_tokens": 0,
+     "cost_usd": 0.000637557228
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The action clicks the editable text area to focus it and open the keyboard. It depends on an EditText being present and editable; the recorded index is unreliable across instances, so the lookup must use class and editable attributes.",
+    "snippet": "el = device.find(class_name='EditText', editable=True)\nif el is None:\n    raise RuntimeError(\"EditText not found\")\ndevice.click(index=el)",
+    "usage": {
+     "prompt_tokens": 1148,
+     "completion_tokens": 188,
+     "cached_tokens": 0,
+     "cost_usd": 0.000365416128
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "To be or not to be."
+    },
+    "field": "text",
+    "analysis": "The recorded index 8 pointed at an empty, editable EditText \u2014 an attribute-empty element, so index and even (text/hint/description) lookups are unstable across instances; the only invariant is \"the currently empty editable EditText in the note editor\". The typed value must come from `binding['text']`, not a literal.",
+    "snippet": "els = device.elements()\ntarget = next((i for i, e in enumerate(els)\n               if e.get('editable') and not (e.get('text') or '').strip()), None)\nif target is None:\n    raise LookupError(\"Markor: no empty editable EditText found to type the note text into\")\ndevice.input_text(binding['text'], index=target)",
+    "usage": {
+     "prompt_tokens": 557,
+     "completion_tokens": 593,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010175616
+    }
+   }
+  ],
+  "effective_actions": 7,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 7,
+   "prompt_tokens": 6178,
+   "cached_tokens": 0,
+   "completion_tokens": 137567,
+   "total_tokens": 143745,
+   "cost_usd": 0.09170354
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "MarkorCreateNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This is a global `open_app` action with no element dependency \u2014 it only relies on the app being identified by name (\"Markor\", a constant of the task family), so there is no index or task value to look up. It can fail only if the launcher is not foregrounded or the package name isn't registered; opening by name plus a settle guards that.",
+    "snippet": "app_name = binding.get(\"app_name\", \"Markor\") if binding else \"Markor\"\nif not device.open_app(app_name):\n    raise RuntimeError(f\"Could not open app '{app_name}'\")\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 846,
+     "completion_tokens": 257,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007043652
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action opens the \"create new file/folder\" dialog by clicking the main action button in Markor's file list. It depends on the button's description text being stable; on other instances it can fail if the description is localized or if multiple matching elements exist.",
+    "snippet": "element = device.find(description=\"Create a new file or folder\", clickable=True)\nif element is None:\n    raise RuntimeError(\"Could not find the 'Create a new file or folder' button\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 895,
+     "completion_tokens": 743,
+     "cached_tokens": 0,
+     "cost_usd": 0.000666799056
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action clicks the note-name EditText, which is identifiable by its text or hint matching the file_name from binding. It can fail if the field is empty and the hint is not set to the file_name, or if the field is not editable/clickable.",
+    "snippet": "index = device.find(text=binding['file_name'], editable=True, clickable=True)\nif index is None:\n    index = device.find(hint=binding['file_name'], editable=True, clickable=True)\nif index is None:\n    raise Exception(\"Note name field not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 857,
+     "completion_tokens": 2248,
+     "cached_tokens": 856,
+     "cost_usd": 0.00147499308
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "final_wise_lamp"
+    },
+    "field": "file_name",
+    "analysis": "This action inputs the note filename into the EditText field of the new-note dialog. It depends on locating that specific EditText; it can fail if multiple editable fields exist or if the field is not identifiable by class/editable attributes. We find it by class_name 'EditText' and editable=True from the fresh element list.",
+    "snippet": "elements = device.elements()\ntarget = next((el for el in elements if el.get('class_name') == 'EditText' and el.get('editable')), None)\nif target is None:\n    raise RuntimeError(\"Note name EditText not found\")\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=target['index'])",
+    "usage": {
+     "prompt_tokens": 900,
+     "completion_tokens": 2531,
+     "cached_tokens": 0,
+     "cost_usd": 0.0018497754
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 11
+    },
+    "field": null,
+    "analysis": "The action depends on the create-note dialog's affirmative button being present and identified only by its list index; on other instances the dialog may have a different number/order of elements (spinners, hints, buttons), so index 11 may not point at 'OK'. It should be looked up by its text and clickability.",
+    "snippet": "ok = device.find(text=\"OK\", clickable=True)\nif ok is None:\n    raise RuntimeError(\"Create-note dialog 'OK' button not found on screen\")\ndevice.click(index=ok)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 888,
+     "completion_tokens": 272,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007422624
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "The squeaky wheel gets the grease."
+    },
+    "field": "text",
+    "analysis": "The action types the note text into the content EditText. It depends on an editable, clickable EditText being present; it can fail if the screen has no such field or if multiple exist and the wrong one is selected.",
+    "snippet": "elements = device.elements()\ntarget = next((e for e in elements if e.get('class_name') == 'EditText' and e.get('editable') and e.get('clickable')), None)\nif target is None:\n    raise RuntimeError(\"No editable EditText found for note content\")\ndevice.input_text(binding['text'], index=target['index'])",
+    "usage": {
+     "prompt_tokens": 1191,
+     "completion_tokens": 2265,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017393508
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 7,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 5577,
+   "cached_tokens": 856,
+   "completion_tokens": 8316,
+   "total_tokens": 13893,
+   "cost_usd": 0.00717755
+  },
+  "record_type": "translation"
+ }
+}

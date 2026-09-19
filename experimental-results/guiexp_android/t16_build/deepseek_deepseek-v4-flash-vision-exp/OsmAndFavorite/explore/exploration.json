@@ -1,0 +1,187 @@
+{
+ "family": "OsmAndFavorite",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 13,
+ "instances": [
+  {
+   "family": "OsmAndFavorite",
+   "seed": 1,
+   "goal": "Add a favorite location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 154660,
+      "cached_tokens": 133174,
+      "completion_tokens": 1027,
+      "total_tokens": 155687,
+      "cost_usd": 0.00627359,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 158789,
+      "cached_tokens": 122880,
+      "completion_tokens": 1455,
+      "total_tokens": 160244,
+      "cost_usd": 0.01060331,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 234346,
+      "cached_tokens": 170752,
+      "completion_tokens": 5873,
+      "total_tokens": 240219,
+      "cost_usd": 0.01966439,
+      "model_calls": 13
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "The agent never launched OsmAnd; it stayed on the launcher and repeated scroll/home/back. Find and tap the OsmAnd app icon on the home screen or in the app drawer to open it first. Use the app drawer if the icon is not on the home screen. Do not navigate away until the OsmAnd map screen is visible.",
+     "usage": {
+      "prompt_tokens": 796,
+      "completion_tokens": 191,
+      "cached_tokens": 0,
+      "cost_usd": 0.000292204836
+     },
+     "cost_usd": 0.000292204836,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "After typing \"Malbun, Liechtenstein\" in the search field, you must tap the matching search result in the list to open its details. Then tap the star/favorite icon or \"Add to favorites\" button on that location screen. Do not stop after inputting text. Also, skip the launcher scrolling/back steps; open OsmAnd directly.",
+     "usage": {
+      "prompt_tokens": 758,
+      "completion_tokens": 521,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005055138
+     },
+     "cost_usd": 0.0005055138,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndFavorite",
+   "seed": 2,
+   "goal": "Add a favorite location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 10,
+     "usage": {
+      "prompt_tokens": 141014,
+      "cached_tokens": 111418,
+      "completion_tokens": 1598,
+      "total_tokens": 142612,
+      "cost_usd": 0.00826227,
+      "model_calls": 10
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndFavorite",
+   "seed": 3,
+   "goal": "Add a favorite location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 13,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 10,
+     "usage": {
+      "prompt_tokens": 146774,
+      "cached_tokens": 105216,
+      "completion_tokens": 2639,
+      "total_tokens": 149413,
+      "cost_usd": 0.01127471,
+      "model_calls": 10
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 10,
+     "usage": {
+      "prompt_tokens": 167725,
+      "cached_tokens": 131968,
+      "completion_tokens": 1295,
+      "total_tokens": 169020,
+      "cost_usd": 0.02092621,
+      "model_calls": 10
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "After searching, tap the result for Nendeln, Liechtenstein to center the map. The previous attempt long-pressed on a UI element instead of the map, so the context menu didn't open. Long-press on the map itself to open the context menu, then select 'Add to favorites', enter the name, and tap 'Save'. Verify the favorite is saved.",
+     "usage": {
+      "prompt_tokens": 560,
+      "completion_tokens": 3069,
+      "cached_tokens": 0,
+      "cost_usd": 0.0021272526
+     },
+     "cost_usd": 0.0021272526,
+     "stage": "reflection",
+     "for_attempt": 1
+    }
+   ],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndFavorite/explore/s3_a1/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 6,
+  "retry_episodes": 3,
+  "reused_episodes": 0,
+  "reflection_calls": 3,
+  "prompt_tokens": 1005422,
+  "cached_tokens": 775408,
+  "completion_tokens": 17668,
+  "total_tokens": 1023090,
+  "cost_usd": 0.07992945
+ },
+ "record_type": "exploration"
+}

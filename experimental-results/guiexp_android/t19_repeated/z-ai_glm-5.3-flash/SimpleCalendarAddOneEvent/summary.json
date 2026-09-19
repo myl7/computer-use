@@ -1,0 +1,141 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "z-ai/glm-5.3-flash",
+ "source_cell": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent",
+ "building_seeds": [
+  1,
+  2,
+  3
+ ],
+ "building_trajectories": [
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+ ],
+ "translations_reused": true,
+ "attempts": [
+  {
+   "attempt": 1,
+   "family": "SimpleCalendarAddOneEvent",
+   "model": "z-ai/glm-5.3-flash",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.1526768991,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 17545,
+    "cached_tokens": 0,
+    "completion_tokens": 289849,
+    "total_tokens": 0,
+    "cost_usd": 0.1526768991
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 3,
+     "total": 5
+    },
+    "k2": {
+     "passed": 0,
+     "total": 5
+    },
+    "k3": {
+     "passed": 2,
+     "total": 5
+    }
+   },
+   "error": "RuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 868, in call_builder\n    text = extract_python_source(reply)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 790, in extract_python_source\n    raise ValueError(\"empty model reply\")\nValueError: empty model reply\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/expa/repeated_compile.py\", line 228, in run_cell\n    verify = verify_and_repair(\n             ^^^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/verify_runner.py\", line 473, in verify_and_repair\n    refined = refine_artifact(\n              ^^^^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 938, in refine_artifact\n    result = call_builder(\n             ^^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/computer-use/guiexp_android/compiler.py\", line 878, in call_builder\n    raise RuntimeError(\nRuntimeError: builder call failed after 3 attempts: attempt 1: ValueError: empty model reply | attempt 2: ValueError: empty model reply | attempt 3: ValueError: empty model reply\n",
+   "wall_s": 10191.9
+  },
+  {
+   "attempt": 2,
+   "family": "SimpleCalendarAddOneEvent",
+   "model": "z-ai/glm-5.3-flash",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.10058276547,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 20815,
+    "cached_tokens": 0,
+    "completion_tokens": 392723,
+    "total_tokens": 0,
+    "cost_usd": 0.10058276547
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 0,
+     "total": 5
+    },
+    "k2": {
+     "passed": 0,
+     "total": 5
+    },
+    "k3": {
+     "passed": 4,
+     "total": 5
+    }
+   },
+   "gate_passed": 4,
+   "gate_total": 5,
+   "gate_history": [
+    {
+     "version": "initial",
+     "passed": 4,
+     "total": 5
+    }
+   ],
+   "admitted": true,
+   "admitted_version": "initial",
+   "refinements": 0,
+   "unautomatable": false,
+   "test_seed0": {
+    "passed": true,
+    "error": null
+   },
+   "replays": 6,
+   "repair_cost_usd": 0.0,
+   "repair_totals": {
+    "analyzer": {
+     "calls": 0,
+     "prompt_tokens": 0,
+     "cached_tokens": 0,
+     "completion_tokens": 0,
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    },
+    "resume_episodes": {
+     "calls": 0,
+     "prompt_tokens": 0,
+     "cached_tokens": 0,
+     "completion_tokens": 0,
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    },
+    "builder_refinements": {
+     "calls": 0,
+     "prompt_tokens": 0,
+     "cached_tokens": 0,
+     "completion_tokens": 0,
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    },
+    "program_replays": {
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    }
+   },
+   "attempt_cost_usd": 0.10058277,
+   "wall_s": 9240.6
+  }
+ ],
+ "wall_s_total": 19432.5
+}

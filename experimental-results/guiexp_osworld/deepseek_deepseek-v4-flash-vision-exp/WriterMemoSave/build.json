@@ -1,0 +1,1599 @@
+{
+ "family": "WriterMemoSave",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 18,
+ "price_weights": {
+  "r_c": 0.032,
+  "r_o": 3.0
+ },
+ "record_type": "build",
+ "floor": {
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 0,
+    "completion_tokens": 62,
+    "cost_usd": 0.00027116
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 1061,
+    "cached_tokens": 0,
+    "completion_tokens": 88,
+    "cost_usd": 0.00028281
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 0,
+    "completion_tokens": 31,
+    "cost_usd": 0.00061115
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 46,
+    "cost_usd": 0.0001449
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 47,
+    "cost_usd": 0.00014621
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 0,
+    "completion_tokens": 40,
+    "cost_usd": 0.00062291
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 103,
+    "cost_usd": 0.00021939
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 93,
+    "cost_usd": 0.00020632
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 40,
+    "cost_usd": 0.00013706
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 28,
+    "cost_usd": 0.00012138
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 40,
+    "cost_usd": 0.00013706
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 1310,
+    "cached_tokens": 1152,
+    "completion_tokens": 51,
+    "cost_usd": 0.00015144
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 1059,
+    "cached_tokens": 1058,
+    "completion_tokens": 62,
+    "cost_usd": 4.806e-05
+   }
+  ],
+  "unit_tokens_per_run": [
+   1245,
+   1325,
+   1403,
+   333,
+   336,
+   1430,
+   504,
+   474,
+   315,
+   279,
+   315,
+   348,
+   221,
+   221,
+   221,
+   221,
+   221,
+   221
+  ],
+  "floor_unit_mean": 535.2,
+  "cost_usd_mean": 0.00018556,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "floor_note": "DS OSWorld floor calibration reused from CalcTableSave (same model, same harness; floor never launches an app - see floor.py); per master-handoff convention one calibration per model per dataset.",
+ "resumed_from_stages": [
+  "floor"
+ ],
+ "exploration": {
+  "family": "WriterMemoSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 18,
+  "instances": [
+   {
+    "family": "WriterMemoSave",
+    "seed": 1,
+    "goal": "Please draft a short memo in a new LibreOffice Writer document: the title 'Quarterly Goals Draft' on line one, an empty line, then the sentence 'Queue times dropped by half after the staffing change last week.'. Save the finished document on the Desktop as training_summary.odt.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s1_a0/trajectory.jsonl",
+      "success": false,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 145157,
+       "cached_tokens": 101888,
+       "completion_tokens": 1168,
+       "total_tokens": 146325,
+       "cost_usd": 0.01070547,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 3723,
+         "cached_tokens": 0,
+         "completion_tokens": 373,
+         "cost_usd": 0.001033495848
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 6623,
+         "cached_tokens": 0,
+         "completion_tokens": 95,
+         "cost_usd": 0.0015045624
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 9600,
+         "cached_tokens": 3584,
+         "completion_tokens": 102,
+         "cost_usd": 0.0013737333456
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 12566,
+         "cached_tokens": 9472,
+         "completion_tokens": 73,
+         "cost_usd": 0.0007714681128
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 15592,
+         "cached_tokens": 9472,
+         "completion_tokens": 67,
+         "cost_usd": 0.0014135076648
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 19133,
+         "cached_tokens": 15360,
+         "completion_tokens": 122,
+         "cost_usd": 0.00098776062
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 22630,
+         "cached_tokens": 18944,
+         "completion_tokens": 135,
+         "cost_usd": 0.0010018556856
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 26137,
+         "cached_tokens": 22528,
+         "completion_tokens": 129,
+         "cost_usd": 0.0010059188832
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 29153,
+         "cached_tokens": 22528,
+         "completion_tokens": 72,
+         "cost_usd": 0.0016131670632
+        }
+       ]
+      },
+      "unit_floored": 35832.8
+     },
+     {
+      "attempt": 1,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s1_a1/trajectory.jsonl",
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 145071,
+       "cached_tokens": 102074,
+       "completion_tokens": 836,
+       "total_tokens": 145907,
+       "cost_usd": 0.01055574,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 3900,
+         "cached_tokens": 0,
+         "completion_tokens": 170,
+         "cost_usd": 0.00094128804
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 6799,
+         "cached_tokens": 0,
+         "completion_tokens": 70,
+         "cost_usd": 0.0015265602
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 9780,
+         "cached_tokens": 0,
+         "completion_tokens": 62,
+         "cost_usd": 0.002127182904
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 12746,
+         "cached_tokens": 6798,
+         "completion_tokens": 64,
+         "cost_usd": 0.00138440214
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 15710,
+         "cached_tokens": 12745,
+         "completion_tokens": 55,
+         "cost_usd": 0.00077003685
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 18736,
+         "cached_tokens": 15709,
+         "completion_tokens": 60,
+         "cost_usd": 0.00080734797
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 22275,
+         "cached_tokens": 18735,
+         "completion_tokens": 99,
+         "cost_usd": 0.00096553215
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 25814,
+         "cached_tokens": 22274,
+         "completion_tokens": 155,
+         "cost_usd": 0.00102664782
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 29311,
+         "cached_tokens": 25813,
+         "completion_tokens": 101,
+         "cost_usd": 0.00100674189
+        }
+       ]
+      },
+      "unit_floored": 34989.8
+     }
+    ],
+    "reflections": [
+     {
+      "lesson": "- The document body was wrong: after the title, only one Enter was pressed, so the sentence sat directly on line 2 with no blank line between \u2014 the required empty line was never created.\n- In the Writer canvas, type the title, then press Enter twice (two separate Enter presses) before typing the sentence.\n- Verify by looking at the canvas: line 1 title, line 2 visibly empty/cursor alone, line 3 the sentence.\n- Saving itself worked: Ctrl+Shift+S opened the Save dialog, the filename field took \"training_summary\", and the file landed on the Desktop with the .odt extension appended\u2014don't change that part.\n- Don't mark the step complete until you have checked the paragraph spacing on screen, not just the filename in the title bar.",
+      "usage": {
+       "prompt_tokens": 498,
+       "completion_tokens": 275,
+       "cached_tokens": 0,
+       "cost_usd": 0.0005762988
+      },
+      "cost_usd": 0.0005762988,
+      "stage": "reflection",
+      "for_attempt": 1
+     }
+    ],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s1_a1/trajectory.jsonl"
+   },
+   {
+    "family": "WriterMemoSave",
+    "seed": 2,
+    "goal": "Open a new document in LibreOffice Writer. Start with the title 'Recruiting Pipeline Notes' on the first line, keep the second line blank, and write 'All action items from the last session were closed on schedule.' on the third line. Then save it to the Desktop under the name feedback_summary.odt.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s2_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 10,
+      "usage": {
+       "prompt_tokens": 176821,
+       "cached_tokens": 121600,
+       "completion_tokens": 1019,
+       "total_tokens": 177840,
+       "cost_usd": 0.01326492,
+       "model_calls": 10,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 3728,
+         "cached_tokens": 512,
+         "completion_tokens": 121,
+         "cost_usd": 0.0007673932728
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 6627,
+         "cached_tokens": 0,
+         "completion_tokens": 48,
+         "cost_usd": 0.001445229324
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 9608,
+         "cached_tokens": 3584,
+         "completion_tokens": 173,
+         "cost_usd": 0.0014209044696
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 12574,
+         "cached_tokens": 9472,
+         "completion_tokens": 140,
+         "cost_usd": 0.0008160779088
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 15538,
+         "cached_tokens": 9472,
+         "completion_tokens": 90,
+         "cost_usd": 0.0014167093248
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 18564,
+         "cached_tokens": 6400,
+         "completion_tokens": 49,
+         "cost_usd": 0.002671174044
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 22252,
+         "cached_tokens": 15360,
+         "completion_tokens": 75,
+         "cost_usd": 0.001623396852
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 25785,
+         "cached_tokens": 22016,
+         "completion_tokens": 134,
+         "cost_usd": 0.0010397943864
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 29324,
+         "cached_tokens": 25600,
+         "completion_tokens": 80,
+         "cost_usd": 0.001019951856
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 32821,
+         "cached_tokens": 29184,
+         "completion_tokens": 109,
+         "cost_usd": 0.0010442922336
+        }
+       ]
+      },
+      "unit_floored": 39452.8
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "WriterMemoSave",
+    "seed": 3,
+    "goal": "New Writer document: first line 'Budget Revision Notes', second line left empty, third line 'The workshop will run twice to cover both product lines.'. Save it as kickoff_brief.odt on the Desktop.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s3_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 143192,
+       "cached_tokens": 107008,
+       "completion_tokens": 1086,
+       "total_tokens": 144278,
+       "cost_usd": 0.00914539,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 3707,
+         "cached_tokens": 512,
+         "completion_tokens": 258,
+         "cost_usd": 0.0008506364328
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 6607,
+         "cached_tokens": 3584,
+         "completion_tokens": 101,
+         "cost_usd": 0.0007342551216
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 9579,
+         "cached_tokens": 6400,
+         "completion_tokens": 120,
+         "cost_usd": 0.000798843276
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 12545,
+         "cached_tokens": 9472,
+         "completion_tokens": 127,
+         "cost_usd": 0.0008015637168
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 15509,
+         "cached_tokens": 9472,
+         "completion_tokens": 113,
+         "cost_usd": 0.0014252470848
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 18534,
+         "cached_tokens": 15360,
+         "completion_tokens": 64,
+         "cost_usd": 0.000822768408
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 22071,
+         "cached_tokens": 18432,
+         "completion_tokens": 154,
+         "cost_usd": 0.0010005129288
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 25568,
+         "cached_tokens": 18432,
+         "completion_tokens": 75,
+         "cost_usd": 0.0016963403688
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 29072,
+         "cached_tokens": 25344,
+         "completion_tokens": 74,
+         "cost_usd": 0.0010152250416
+        }
+       ]
+      },
+      "unit_floored": 34949.8
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 4,
+   "retry_episodes": 1,
+   "reflection_calls": 1,
+   "prompt_tokens": 610739,
+   "cached_tokens": 432570,
+   "completion_tokens": 4384,
+   "total_tokens": 615123,
+   "cost_usd": 0.04424782
+  },
+  "record_type": "exploration"
+ },
+ "wall_s": 9719.1,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 6,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 6,
+     "prompt_tokens": 3834,
+     "cached_tokens": 0,
+     "completion_tokens": 5732,
+     "total_tokens": 9566,
+     "cost_usd": 0.00597212
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 7,
+    "recorded_actions": 10,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 7,
+     "prompt_tokens": 5054,
+     "cached_tokens": 0,
+     "completion_tokens": 6721,
+     "total_tokens": 11775,
+     "cost_usd": 0.00634386
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 6,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 6,
+     "prompt_tokens": 3668,
+     "cached_tokens": 0,
+     "completion_tokens": 5186,
+     "total_tokens": 8854,
+     "cost_usd": 0.0065074
+    }
+   }
+  ],
+  "totals": {
+   "calls": 19,
+   "prompt_tokens": 12556,
+   "cached_tokens": 0,
+   "completion_tokens": 17639,
+   "total_tokens": 30195,
+   "cost_usd": 0.01882338
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1926,
+     "cached_tokens": 0,
+     "completion_tokens": 1299,
+     "total_tokens": 3225,
+     "cost_usd": 0.00126825
+    },
+    "cost_usd": 0.00126825,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1926,
+      "cached_tokens": 0,
+      "completion_tokens": 1299,
+      "total_tokens": 3225,
+      "cost_usd": 0.0012682494,
+      "usage": {
+       "prompt_tokens": 1926,
+       "completion_tokens": 1299,
+       "cached_tokens": 0,
+       "cost_usd": 0.0012682494
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1742,
+     "cached_tokens": 0,
+     "completion_tokens": 3361,
+     "total_tokens": 5103,
+     "cost_usd": 0.00257549
+    },
+    "cost_usd": 0.00257549,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1742,
+      "cached_tokens": 0,
+      "completion_tokens": 3361,
+      "total_tokens": 5103,
+      "cost_usd": 0.002575485,
+      "usage": {
+       "prompt_tokens": 1742,
+       "completion_tokens": 3361,
+       "cached_tokens": 0,
+       "cost_usd": 0.002575485
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3096,
+     "cached_tokens": 0,
+     "completion_tokens": 9596,
+     "total_tokens": 12692,
+     "cost_usd": 0.01388867
+    },
+    "cost_usd": 0.01388867,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3096,
+      "cached_tokens": 0,
+      "completion_tokens": 9596,
+      "total_tokens": 12692,
+      "cost_usd": 0.0138886704,
+      "usage": {
+       "prompt_tokens": 3096,
+       "completion_tokens": 9596,
+       "cached_tokens": 0,
+       "cost_usd": 0.0138886704
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2965,
+     "cached_tokens": 0,
+     "completion_tokens": 2337,
+     "total_tokens": 5302,
+     "cost_usd": 0.00212932
+    },
+    "cost_usd": 0.00212932,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2965,
+      "cached_tokens": 0,
+      "completion_tokens": 2337,
+      "total_tokens": 5302,
+      "cost_usd": 0.002129317344,
+      "usage": {
+       "prompt_tokens": 2965,
+       "completion_tokens": 2337,
+       "cached_tokens": 0,
+       "cost_usd": 0.002129317344
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4287,
+     "cached_tokens": 0,
+     "completion_tokens": 8530,
+     "total_tokens": 12817,
+     "cost_usd": 0.00637707
+    },
+    "cost_usd": 0.00637707,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4287,
+      "cached_tokens": 0,
+      "completion_tokens": 8530,
+      "total_tokens": 12817,
+      "cost_usd": 0.006377066388,
+      "usage": {
+       "prompt_tokens": 4287,
+       "completion_tokens": 8530,
+       "cached_tokens": 0,
+       "cost_usd": 0.006377066388
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4103,
+     "cached_tokens": 0,
+     "completion_tokens": 8495,
+     "total_tokens": 12598,
+     "cost_usd": 0.00631538
+    },
+    "cost_usd": 0.00631538,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4103,
+      "cached_tokens": 0,
+      "completion_tokens": 8495,
+      "total_tokens": 12598,
+      "cost_usd": 0.006315381072,
+      "usage": {
+       "prompt_tokens": 4103,
+       "completion_tokens": 8495,
+       "cached_tokens": 0,
+       "cost_usd": 0.006315381072
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 2,
+    "prompt_tokens": 9941,
+    "cached_tokens": 0,
+    "completion_tokens": 151456,
+    "total_tokens": 161397,
+    "cost_usd": 0.10082914
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "TypeError: ProgramDevice.find() got an unexpected keyword argument 'text'"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "family": "WriterMemoSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "artifact": "code",
+  "m_max": 3,
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "rounds": [
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": null,
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": null
+     }
+    ],
+    "analysis": {
+     "cause": "The Save As dialog is still open; the file was not saved to Desktop as training_summary.odt. The automation typed the filename but did not complete the save.",
+     "done": "The document content is correct: title \"Quarterly Goals Draft\" on line one, empty line, body sentence. The Save As dialog was opened and \"training_summary\" was typed into the filename field.",
+     "plan": "1. In the Save As dialog, clear the filename field and type \"training_summary.odt\". 2. Ensure the save location is Desktop (click \"Desktop\" in the sidebar if needed). 3. Click the \"Save\" button in the dialog. 4. If a \"Keep Current Format\" dialog appears, click \"Use ODF Text Document!\".",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 1306,
+     "cached_tokens": 0,
+     "completion_tokens": 10758,
+     "total_tokens": 12064,
+     "cost_usd": 0.007313724,
+     "usage": {
+      "prompt_tokens": 1306,
+      "completion_tokens": 10758,
+      "cached_tokens": 0,
+      "cost_usd": 0.007313724
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 3,
+     "success": true,
+     "calls": 3,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4570,
+       "cached_tokens": 0,
+       "completion_tokens": 317,
+       "total_tokens": 4887,
+       "cost_usd": 0.001178424324,
+       "usage": {
+        "prompt_tokens": 4570,
+        "completion_tokens": 317,
+        "cached_tokens": 0,
+        "cost_usd": 0.001178424324
+       },
+       "stage": "react_resume",
+       "action": "{\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 8069,
+       "cached_tokens": 0,
+       "completion_tokens": 401,
+       "total_tokens": 8470,
+       "cost_usd": 0.001979052768,
+       "usage": {
+        "prompt_tokens": 8069,
+        "completion_tokens": 401,
+        "cached_tokens": 0,
+        "cost_usd": 0.001979052768
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"input_text\", \"text\": \"training_summary.odt\", \"index\": 84}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 11580,
+       "cached_tokens": 4352,
+       "completion_tokens": 61,
+       "total_tokens": 11641,
+       "cost_usd": 0.0016113896568,
+       "usage": {
+        "prompt_tokens": 11580,
+        "completion_tokens": 61,
+        "cached_tokens": 4352,
+        "cost_usd": 0.0016113896568
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"click\", \"index\": 98}"
+      }
+     ]
+    },
+    "refinement": 1,
+    "gate": {
+     "passed": 5,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5654,
+     "cached_tokens": 0,
+     "completion_tokens": 142926,
+     "total_tokens": 148580,
+     "cost_usd": 0.09445207,
+     "usage": {
+      "calls": 2,
+      "prompt_tokens": 5654,
+      "cached_tokens": 0,
+      "completion_tokens": 142926,
+      "total_tokens": 148580,
+      "cost_usd": 0.09445207
+     },
+     "stage": "builder_refine",
+     "attempts": 2,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2827,
+       "cached_tokens": 0,
+       "completion_tokens": 131072,
+       "total_tokens": 133899,
+       "cost_usd": 0.0862581654,
+       "usage": {
+        "prompt_tokens": 2827,
+        "completion_tokens": 131072,
+        "cached_tokens": 0,
+        "cost_usd": 0.0862581654
+       },
+       "stage": "builder",
+       "accepted": false
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 2827,
+       "cached_tokens": 0,
+       "completion_tokens": 11854,
+       "total_tokens": 14681,
+       "cost_usd": 0.008193901716,
+       "usage": {
+        "prompt_tokens": 2827,
+        "completion_tokens": 11854,
+        "cached_tokens": 0,
+        "cost_usd": 0.008193901716
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   }
+  ],
+  "refinements": 1,
+  "replays": 1,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "refine1",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"document file name ending in .odt, one string\"\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"the title line, one string\"\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"the body sentence for the third line, one string\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    # Focus the Writer document body\n    doc = device.find(role='document-text', editable=True)\n    if doc is None:\n        doc = device.find(role='paragraph', editable=True)\n    if doc is None:\n        doc = device.find(role='text', editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable Writer document body found\")\n    device.click(index=doc)\n\n    # Title line\n    device.input_text(binding['title'], index=doc)\n\n    # Empty line\n    device.press('enter')\n    device.press('enter')\n\n    # Body line\n    device.type_at_caret(binding['body'])\n\n    # Open Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n\n    # Find the filename field in the Save dialog\n    filename_field = device.find(role='text', editable=True, contains='Untitled')\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        # Fallback: File menu -> Save As\n        file_menu = device.find(name='File', role='menu')\n        if file_menu is None:\n            raise RuntimeError(\"Could not find File menu\")\n        device.click(index=file_menu)\n        save_as = device.find(name='Save As...', role='menu-item', clickable=True)\n        if save_as is None:\n            raise RuntimeError(\"Save As... menu item not found\")\n        device.click(index=save_as)\n        device.wait()\n        filename_field = device.find(role='text', editable=True, contains='Untitled')\n        if filename_field is None:\n            filename_field = device.find(role='text', editable=True)\n        if filename_field is None:\n            raise RuntimeError(\"Save dialog did not open\")\n\n    # Fill the Name field with the full file name including .odt\n    device.input_text(binding['file_name'], index=filename_field)\n\n    # Select Desktop as the save location\n    desktop = device.find(name='Desktop')\n    if desktop is None:\n        desktop = device.find(name='Desktop', role='label')\n    if desktop is None:\n        raise RuntimeError(\"Desktop location not found in save dialog\")\n    device.click(index=desktop)\n    device.wait()\n\n    # Re-locate the filename field and give it focus, then press Enter\n    # to trigger the dialog's default Save button.\n    filename_field = device.find(role='text', editable=True, contains=binding['file_name'])\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        raise RuntimeError(\"Filename field not found after selecting Desktop\")\n    device.click(index=filename_field)\n    device.press('enter')\n    device.wait()\n\n    # Handle a possible \"Keep Current Format\" dialog\n    keep_format = device.find(name='Use ODF Text Document!')\n    if keep_format is not None:\n        device.click(index=keep_format)\n        device.wait()\n\n    return True\n",
+  "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"document file name ending in .odt, one string\"\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"the title line, one string\"\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"the body sentence for the third line, one string\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    # Focus the Writer document body\n    doc = device.find(role='document-text', editable=True)\n    if doc is None:\n        doc = device.find(role='paragraph', editable=True)\n    if doc is None:\n        doc = device.find(role='text', editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable Writer document body found\")\n    device.click(index=doc)\n\n    # Title line\n    device.input_text(binding['title'], index=doc)\n\n    # Empty line\n    device.press('enter')\n    device.press('enter')\n\n    # Body line\n    device.type_at_caret(binding['body'])\n\n    # Open Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n\n    # Find the filename field in the Save dialog\n    filename_field = device.find(role='text', editable=True, contains='Untitled')\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        # Fallback: File menu -> Save As\n        file_menu = device.find(name='File', role='menu')\n        if file_menu is None:\n            raise RuntimeError(\"Could not find File menu\")\n        device.click(index=file_menu)\n        save_as = device.find(name='Save As...', role='menu-item', clickable=True)\n        if save_as is None:\n            raise RuntimeError(\"Save As... menu item not found\")\n        device.click(index=save_as)\n        device.wait()\n        filename_field = device.find(role='text', editable=True, contains='Untitled')\n        if filename_field is None:\n            filename_field = device.find(role='text', editable=True)\n        if filename_field is None:\n            raise RuntimeError(\"Save dialog did not open\")\n\n    # Fill the Name field with the full file name including .odt\n    device.input_text(binding['file_name'], index=filename_field)\n\n    # Select Desktop as the save location\n    desktop = device.find(name='Desktop')\n    if desktop is None:\n        desktop = device.find(name='Desktop', role='label')\n    if desktop is None:\n        raise RuntimeError(\"Desktop location not found in save dialog\")\n    device.click(index=desktop)\n    device.wait()\n\n    # Re-locate the filename field and give it focus, then press Enter\n    # to trigger the dialog's default Save button.\n    filename_field = device.find(role='text', editable=True, contains=binding['file_name'])\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        raise RuntimeError(\"Filename field not found after selecting Desktop\")\n    device.click(index=filename_field)\n    device.press('enter')\n    device.wait()\n\n    # Handle a possible \"Keep Current Format\" dialog\n    keep_format = device.find(name='Use ODF Text Document!')\n    if keep_format is not None:\n        device.click(index=keep_format)\n        device.wait()\n\n    return True\n",
+  "conclusions": [
+   "seed 1: The Save As dialog is still open; the file was not saved to Desktop as training_summary.odt. The automation typed the filename but did not complete the save."
+  ],
+  "totals": {
+   "analyzer": {
+    "calls": 1,
+    "prompt_tokens": 1306,
+    "cached_tokens": 0,
+    "completion_tokens": 10758,
+    "total_tokens": 12064,
+    "cost_usd": 0.00731372
+   },
+   "resume_episodes": {
+    "calls": 3,
+    "prompt_tokens": 24219,
+    "cached_tokens": 4352,
+    "completion_tokens": 779,
+    "total_tokens": 24998,
+    "cost_usd": 0.00476887
+   },
+   "builder_refinements": {
+    "calls": 1,
+    "prompt_tokens": 5654,
+    "cached_tokens": 0,
+    "completion_tokens": 142926,
+    "total_tokens": 148580,
+    "cost_usd": 0.09445207
+   },
+   "program_replays": {
+    "count": 1,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   }
+  },
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "record_type": "verification"
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 387.6333333333333,
+  "total_tokens": 11629,
+  "cost_usd": 0.00500215
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 665,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 145367,
+    "cached_tokens": 86287,
+    "completion_tokens": 1450,
+    "total_tokens": 146817,
+    "cost_usd": 0.01593448,
+    "model_calls": 9,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 3873,
+      "cached_tokens": 0,
+      "completion_tokens": 329,
+      "cost_usd": 0.001058508
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 7325,
+      "cached_tokens": 0,
+      "completion_tokens": 39,
+      "cost_usd": 0.0032417352
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 9751,
+      "cached_tokens": 0,
+      "completion_tokens": 88,
+      "cost_usd": 0.00213764166
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 12717,
+      "cached_tokens": 0,
+      "completion_tokens": 30,
+      "cost_usd": 0.002733577308
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 15681,
+      "cached_tokens": 3872,
+      "completion_tokens": 67,
+      "cost_usd": 0.00264261096
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 18707,
+      "cached_tokens": 15680,
+      "completion_tokens": 43,
+      "cost_usd": 0.0007960392
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 22246,
+      "cached_tokens": 18706,
+      "completion_tokens": 104,
+      "cost_usd": 0.00096859818
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 25785,
+      "cached_tokens": 22245,
+      "completion_tokens": 681,
+      "cost_usd": 0.00137013525
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 29282,
+      "cached_tokens": 25784,
+      "completion_tokens": 69,
+      "cost_usd": 0.00098563212
+     }
+    ],
+    "unit_floored": 36811.8
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 144655,
+    "cached_tokens": 104960,
+    "completion_tokens": 1139,
+    "total_tokens": 145794,
+    "cost_usd": 0.00991482,
+    "model_calls": 9,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 3860,
+      "cached_tokens": 0,
+      "completion_tokens": 246,
+      "cost_usd": 0.000981415512
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 6755,
+      "cached_tokens": 512,
+      "completion_tokens": 163,
+      "cost_usd": 0.0014403822048
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 9732,
+      "cached_tokens": 6656,
+      "completion_tokens": 35,
+      "cost_usd": 0.0007241689224
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 12698,
+      "cached_tokens": 6656,
+      "completion_tokens": 36,
+      "cost_usd": 0.0013578841584
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 15662,
+      "cached_tokens": 12544,
+      "completion_tokens": 61,
+      "cost_usd": 0.0007897699656
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 18687,
+      "cached_tokens": 12544,
+      "completion_tokens": 52,
+      "cost_usd": 0.0014296750776
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 22228,
+      "cached_tokens": 18432,
+      "completion_tokens": 322,
+      "cost_usd": 0.0011415994128
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 25768,
+      "cached_tokens": 22016,
+      "completion_tokens": 156,
+      "cost_usd": 0.0010502531424
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 29265,
+      "cached_tokens": 25600,
+      "completion_tokens": 68,
+      "cost_usd": 0.000999674676
+     }
+    ],
+    "unit_floored": 35838.8
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 146391,
+    "cached_tokens": 74410,
+    "completion_tokens": 727,
+    "total_tokens": 147118,
+    "cost_usd": 0.02096854,
+    "model_calls": 9,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 3855,
+      "cached_tokens": 0,
+      "completion_tokens": 138,
+      "cost_usd": 0.0009297882
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 6751,
+      "cached_tokens": 0,
+      "completion_tokens": 69,
+      "cost_usd": 0.001485143352
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 9732,
+      "cached_tokens": 3854,
+      "completion_tokens": 47,
+      "cost_usd": 0.00133764642
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 12698,
+      "cached_tokens": 9731,
+      "completion_tokens": 36,
+      "cost_usd": 0.00073717083
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 15662,
+      "cached_tokens": 12697,
+      "completion_tokens": 61,
+      "cost_usd": 0.00077362461
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 20446,
+      "cached_tokens": 0,
+      "completion_tokens": 24,
+      "cost_usd": 0.0089376408
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 22224,
+      "cached_tokens": 512,
+      "completion_tokens": 96,
+      "cost_usd": 0.0046992451968
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 25763,
+      "cached_tokens": 22016,
+      "completion_tokens": 154,
+      "cost_usd": 0.0010479052584
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 29260,
+      "cached_tokens": 25600,
+      "completion_tokens": 102,
+      "cost_usd": 0.001020378744
+     }
+    ],
+    "unit_floored": 34651.8
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 27,
+   "prompt_tokens": 436413,
+   "cached_tokens": 265657,
+   "completion_tokens": 3316,
+   "total_tokens": 439729,
+   "cost_usd": 0.04681784
+  }
+ },
+ "break_even": {
+  "c_unit_floored": 36745.1,
+  "floor_unit": 535.2,
+  "d_unit": 387.6333333333333,
+  "q": 0.0,
+  "price_weights": {
+   "r_c": 0.032,
+   "r_o": 3.0
+  },
+  "build_totals_raw": {
+   "exploration": 615123,
+   "translator": 30195,
+   "builder_selected": 161397,
+   "verification_analyzer": 12064,
+   "verification_resume": 24998,
+   "autorpa_build": 843777
+  },
+  "build_totals_priced": {
+   "exploration_floored": 146548.2,
+   "translator": 65473,
+   "builder_selected": 464309,
+   "verification_analyzer_plus_floored_resume": 47365.8,
+   "autorpa_build": 723696.0
+  },
+  "s_unit": 36357.5,
+  "nstar": {
+   "marginal": 12.7707,
+   "autorpa_build": 19.905
+  }
+ },
+ "total_cost_usd": 0.25398
+}

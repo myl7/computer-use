@@ -1,0 +1,140 @@
+{
+ "family": "OsmAndMarker",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: No search result found for 'Malbun, Liechtenstein'",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: No search result found for 'Malbun, Liechtenstein'"
+    }
+   ],
+   "analysis": {
+    "cause": "",
+    "done": "",
+    "plan": "",
+    "decision": "restart"
+   },
+   "resume": {
+    "restarted": true,
+    "steps": 20,
+    "success": false
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: MARKER control not found on place panel",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: MARKER control not found on place panel"
+    }
+   ],
+   "analysis": {
+    "cause": "The search query was never actually entered into the search field, so no search results or place panel appeared; the automation looked for MARKER on the search screen.",
+    "done": "OsmAnd app opened; search screen opened.",
+    "plan": "1. Tap the search field (index 2). 2. Type \"Malbun, Liechtenstein\". 3. Wait for search results and tap the Malbun result. 4. On the place panel, tap \"MARKER\".",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 20,
+    "success": false
+   },
+   "refinement": 2
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: No search result for 'Malbun, Liechtenstein'",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: No search result for 'Malbun, Liechtenstein'"
+    }
+   ],
+   "analysis": {
+    "cause": "The automation never found OsmAnd's search field; it typed into the wrong element, so no search for \"Malbun, Liechtenstein\" was actually performed.",
+    "done": "OsmAnd is open on the map view; no marker has been added.",
+    "plan": "1. Tap the map (index 1) to open the map context menu. 2. Tap \"Search\" in the context menu. 3. Type \"Malbun, Liechtenstein\" into the search field. 4. Select the search result for Malbun, Liechtenstein. 5. Tap \"Add marker\" to place the marker.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 20,
+    "success": false
+   },
+   "refinement": 3
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"description\": \"Place name or 'lat, lon' coordinate pair to mark\",\n        \"required\": True,\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    location = binding[\"location\"]\n    loc = location.strip()\n    primary = loc.split(\",\")[0].strip() or loc\n\n    # ------------------------- helpers -------------------------\n\n    def combined(el):\n        return \" \".join([\n            el.get(\"text\") or \"\",\n            el.get(\"description\") or \"\",\n            el.get(\"hint\") or \"\",\n        ]).lower()\n\n    def find_editable():\n        for el in device.elements():\n            if el.get(\"editable\"):\n                return el[\"index\"]\n        return None\n\n    def field_text(idx):\n        els = device.elements()\n        if idx is not None and 0 <= idx < len(els):\n            return els[idx].get(\"text\") or \"\"\n        return \"\"\n\n    def dismiss_dialogs():\n        for label in [\"Allow\", \"While using the app\", \"Only this time\",\n                      \"OK\", \"Got it\", \"Continue\", \"AGREE\", \"Agree\",\n                      \"Yes\", \"Skip\", \"Later\", \"Not now\", \"Dismiss\"]:\n            for kw in ({\"text\": label}, {\"description\": label}):\n                idx = device.find(clickable=True, **kw)\n                if idx is not None:\n                    device.click(index=idx)\n                    device.settle(1)\n                    return True\n        return False\n\n    def find_result():\n        els = device.elements()\n        # 1) first clickable, non-editable element that mentions the primary token\n        for el in els:\n            if el.get(\"editable\") or not el.get(\"clickable\"):\n                continue\n            if primary.lower() in combined(el):\n                return el[\"index\"]\n        # 2) full query string\n        for el in els:\n            if el.get(\"editable\") or not el.get(\"clickable\"):\n                continue\n            if loc.lower() in combined(el):\n                return el[\"index\"]\n        return None\n\n    def find_marker():\n        for el in device.elements():\n            t = combined(el)\n            if \"marker\" in t and \"favorite\" not in t:\n                return el[\"index\"]\n        return None\n\n    def open_search():\n        # already on a screen with an editable search input?\n        f = find_editable()\n        if f is not None:\n            return f\n\n        # try tapping a search-labelled control\n        candidates = [\n            {\"description\": \"Search\", \"clickable\": True},\n            {\"text\": \"Search\", \"clickable\": True},\n            {\"hint\": \"Search\", \"clickable\": True},\n            {\"description\": \"Search OsmAnd\", \"clickable\": True},\n            {\"text\": \"Search OsmAnd\", \"clickable\": True},\n            {\"description\": \"Search...\", \"clickable\": True},\n            {\"contains\": \"Search\", \"clickable\": True},\n        ]\n        for kw in candidates:\n            idx = device.find(**kw)\n            if idx is None:\n                continue\n            device.click(index=idx)\n            device.settle(2)\n            for _ in range(4):\n                f = find_editable()\n                if f is not None:\n                    return f\n                device.settle(1)\n            device.navigate_back()\n            device.settle(1)\n\n        # last resort: tap the map / main view then look for a search entry\n        for mkw in ({\"description\": \"Map\", \"clickable\": True},\n                    {\"text\": \"Map\", \"clickable\": True}):\n            midx = device.find(**mkw)\n            if midx is None:\n                continue\n            device.click(index=midx)\n            device.settle(2)\n            for _ in range(3):\n                f = find_editable()\n                if f is not None:\n                    return f\n                sidx = device.find(contains=\"Search\", clickable=True)\n                if sidx is not None:\n                    device.click(index=sidx)\n                    device.settle(2)\n                    f = find_editable()\n                    if f is not None:\n                        return f\n                device.settle(1)\n            device.navigate_back()\n            device.settle(1)\n        return None\n\n    # ------------------------- open app -------------------------\n    device.open_app(\"OsmAnd\")\n    device.settle(3)\n    for _ in range(3):\n        if not dismiss_dialogs():\n            break\n        device.settle(1)\n\n    field = open_search()\n    if field is None:\n        # retry once from a clean state\n        device.navigate_back()\n        device.settle(1)\n        device.open_app(\"OsmAnd\")\n        device.settle(3)\n        dismiss_dialogs()\n        field = open_search()\n    if field is None:\n        raise RuntimeError(\"Search input field not found\")\n\n    # ---------------------- enter the query ---------------------\n    typed = False\n    for _ in range(4):\n        f = find_editable()\n        if f is None:\n            f = open_search()\n        if f is None:\n            break\n\n        cur = field_text(f)\n        if loc.lower() in cur.lower() or primary.lower() in cur.lower():\n            typed = True\n            break\n\n        # clear stale text\n        if cur.strip():\n            clr = device.find(description=\"Clear\", clickable=True)\n            if clr is None:\n                clr = device.find(contains=\"Clear\", clickable=True)\n            if clr is not None:\n                device.click(index=clr)\n                device.settle(1)\n\n        # focus the field, then type verbatim\n        device.click(index=f)\n        device.settle(1)\n        f2 = find_editable()\n        if f2 is None:\n            f2 = f\n        device.input_text(text=loc, index=f2)\n        device.settle(2)\n\n        chk = field_text(find_editable())\n        if loc.lower() in chk.lower() or primary.lower() in chk.lower():\n            typed = True\n            break\n\n    if not typed:\n        f = find_editable()\n        if f is None:\n            raise RuntimeError(\"Could not focus the search field\")\n        device.input_text(text=loc, index=f)\n        device.settle(2)\n\n    # -------------------- wait for results ----------------------\n    result = None\n    for _ in range(8):\n        result = find_result()\n        if result is not None:\n            break\n        device.settle(1)\n\n    if result is None:\n        device.keyboard_enter()\n        device.settle(2)\n        for _ in range(8):\n            result = find_result()\n            if result is not None:\n                break\n            device.settle(1)\n\n    if result is not None:\n        device.click(index=result)\n        device.settle(2)\n    else:\n        # some flows show the place panel directly (no result list)\n        if find_marker() is None:\n            raise RuntimeError(\"No search result for %r\" % loc)\n\n    # -------------------- place the marker ----------------------\n    marker = find_marker()\n    if marker is None:\n        for _ in range(4):\n            device.scroll(\"down\")\n            device.settle(1)\n            marker = find_marker()\n            if marker is not None:\n                break\n    if marker is None:\n        for _ in range(2):\n            device.scroll(\"up\")\n            device.settle(1)\n            marker = find_marker()\n            if marker is not None:\n                break\n    if marker is None:\n        for mkw in ({\"description\": \"More\", \"clickable\": True},\n                    {\"contains\": \"More\", \"clickable\": True},\n                    {\"description\": \"More options\", \"clickable\": True}):\n            midx = device.find(**mkw)\n            if midx is not None:\n                device.click(index=midx)\n                device.settle(2)\n                marker = find_marker()\n                if marker is not None:\n                    break\n\n    if marker is None:\n        raise RuntimeError(\"MARKER control not found on place panel\")\n\n    device.click(index=marker)\n    device.settle(2)\n    return True\n",
+ "conclusions": [
+  "seed 1: ",
+  "seed 1: The search query was never actually entered into the search field, so no search results or place panel appeared; the automation looked for MARKER on the search screen.",
+  "seed 1: The automation never found OsmAnd's search field; it typed into the wrong element, so no search for \"Malbun, Liechtenstein\" was actually performed."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2954,
+   "cached_tokens": 0,
+   "completion_tokens": 77240,
+   "total_tokens": 80194,
+   "cost_usd": 0.09584856
+  },
+  "resume_episodes": {
+   "calls": 60,
+   "prompt_tokens": 1965094,
+   "cached_tokens": 1206884,
+   "completion_tokens": 35403,
+   "total_tokens": 2000497,
+   "cost_usd": 0.3041645
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 10550,
+   "cached_tokens": 0,
+   "completion_tokens": 61261,
+   "total_tokens": 71811,
+   "cost_usd": 0.08465145
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": null,
+ "test_seed0": {
+  "passed": false,
+  "error": "RuntimeError: No search result for 'Rotenboden, Liechtenstein'"
+ },
+ "record_type": "verification"
+}

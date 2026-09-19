@@ -1,0 +1,297 @@
+{
+ "family": "OsmAndMarker",
+ "model": "z-ai/glm-5.3-flash",
+ "program_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/verified_program.py",
+ "bindings_total": 5,
+ "injection_passed_now": 1,
+ "injection_passed_t16": 5,
+ "extraction_passed": 4,
+ "extraction_type_check_fails": 0,
+ "extraction_cost_usd": 0.00038682,
+ "per_binding": [
+  {
+   "binding": {
+    "location": "Ruggell, Liechtenstein"
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "location": "Ruggell, Liechtenstein"
+   },
+   "retries": 0,
+   "tokens": 233,
+   "cost_usd": 5.304e-05
+  },
+  {
+   "binding": {
+    "location": "47.2122151, 9.5062101"
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "location": "47.2122151, 9.5062101"
+   },
+   "retries": 0,
+   "tokens": 312,
+   "cost_usd": 9.311e-05
+  },
+  {
+   "binding": {
+    "location": "47.1973857, 9.5430636"
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "location": "47.1973857, 9.5430636"
+   },
+   "retries": 0,
+   "tokens": 296,
+   "cost_usd": 7.91e-05
+  },
+  {
+   "binding": {
+    "location": "Planken, Liechtenstein"
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": true,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "location": "Planken, Liechtenstein"
+   },
+   "retries": 0,
+   "tokens": 249,
+   "cost_usd": 6.47e-05
+  },
+  {
+   "binding": {
+    "location": "47.1303814, 9.5930117"
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "location": "47.1303814, 9.5930117"
+   },
+   "retries": 0,
+   "tokens": 321,
+   "cost_usd": 9.687e-05
+  }
+ ],
+ "record_type": "gate_extraction",
+ "wall_s": 803.0,
+ "uses": [
+  {
+   "goal": "Add a location marker for Ruggell, Liechtenstein in the OsmAnd maps app.",
+   "expected": {
+    "location": "Ruggell, Liechtenstein"
+   },
+   "extracted": {
+    "location": "Ruggell, Liechtenstein"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 233,
+   "cost_usd": 5.304e-05,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 170,
+     "cached_tokens": 0,
+     "completion_tokens": 63,
+     "total_tokens": 233,
+     "cost_usd": 5.30442e-05,
+     "usage": {
+      "prompt_tokens": 170,
+      "completion_tokens": 63,
+      "cached_tokens": 0,
+      "cost_usd": 5.30442e-05
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 209.97,
+   "binding": {
+    "location": "Ruggell, Liechtenstein"
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "AdbControllerError: Error executing adb command: [adb -P 5037 start-server]",
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Add a location marker for 47.2122151, 9.5062101 in the OsmAnd maps app.",
+   "expected": {
+    "location": "47.2122151, 9.5062101"
+   },
+   "extracted": {
+    "location": "47.2122151, 9.5062101"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 312,
+   "cost_usd": 9.311e-05,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 177,
+     "cached_tokens": 0,
+     "completion_tokens": 135,
+     "total_tokens": 312,
+     "cost_usd": 9.31095e-05,
+     "usage": {
+      "prompt_tokens": 177,
+      "completion_tokens": 135,
+      "cached_tokens": 0,
+      "cost_usd": 9.31095e-05
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 38.99,
+   "binding": {
+    "location": "47.2122151, 9.5062101"
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OsmAnd did not open to its map screen",
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Add a location marker for 47.1973857, 9.5430636 in the OsmAnd maps app.",
+   "expected": {
+    "location": "47.1973857, 9.5430636"
+   },
+   "extracted": {
+    "location": "47.1973857, 9.5430636"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 296,
+   "cost_usd": 7.91e-05,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 180,
+     "cached_tokens": 0,
+     "completion_tokens": 116,
+     "total_tokens": 296,
+     "cost_usd": 7.9101e-05,
+     "usage": {
+      "prompt_tokens": 180,
+      "completion_tokens": 116,
+      "cached_tokens": 0,
+      "cost_usd": 7.9101e-05
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 43.26,
+   "binding": {
+    "location": "47.1973857, 9.5430636"
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OsmAnd did not open to its map screen",
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Add a location marker for Planken, Liechtenstein in the OsmAnd maps app.",
+   "expected": {
+    "location": "Planken, Liechtenstein"
+   },
+   "extracted": {
+    "location": "Planken, Liechtenstein"
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 249,
+   "cost_usd": 6.47e-05,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 169,
+     "cached_tokens": 0,
+     "completion_tokens": 80,
+     "total_tokens": 249,
+     "cost_usd": 6.46965e-05,
+     "usage": {
+      "prompt_tokens": 169,
+      "completion_tokens": 80,
+      "cached_tokens": 0,
+      "cost_usd": 6.46965e-05
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 107.51,
+   "binding": {
+    "location": "Planken, Liechtenstein"
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: OsmAnd search screen did not open",
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "Add a location marker for 47.1303814, 9.5930117 in the OsmAnd maps app.",
+   "expected": {
+    "location": "47.1303814, 9.5930117"
+   },
+   "extracted": {
+    "location": "47.1303814, 9.5930117"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 321,
+   "cost_usd": 9.687e-05,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 179,
+     "cached_tokens": 0,
+     "completion_tokens": 142,
+     "total_tokens": 321,
+     "cost_usd": 9.68715e-05,
+     "usage": {
+      "prompt_tokens": 179,
+      "completion_tokens": 142,
+      "cached_tokens": 0,
+      "cost_usd": 9.68715e-05
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 76.3,
+   "binding": {
+    "location": "47.1303814, 9.5930117"
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  }
+ ]
+}

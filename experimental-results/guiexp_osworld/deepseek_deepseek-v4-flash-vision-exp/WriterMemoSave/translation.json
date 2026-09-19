@@ -1,0 +1,379 @@
+{
+ "1": {
+  "family": "WriterMemoSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s1_a1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Quarterly Goals Draft"
+    },
+    "field": "title",
+    "analysis": "This action depends on finding the Writer document's editable text area, which is uniquely identified by role 'document-text' and editable=True. It can fail if the document is not open or if another editable element with the same role exists.",
+    "snippet": "element = device.find(role='document-text', editable=True)\nif element is None:\n    raise RuntimeError(\"No editable document text element found\")\ndevice.input_text(binding['title'], index=element)",
+    "usage": {
+     "prompt_tokens": 636,
+     "completion_tokens": 455,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004358178
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "text": "Queue times dropped by half after the staffing change last week."
+    },
+    "field": "body",
+    "analysis": "The recorded action is a global text input \u2014 it types the task parameter at the current caret inside the already-focused Writer document body, so it depends on the document having focus and the caret being on the blank line after the title; a generic lookup by role could instead match the title paragraph, so the caret-based input is the robust equivalent.",
+    "snippet": "body = binding[\"body\"]\nif not body:\n    raise ValueError(\"binding['body'] is empty; nothing to type\")\n# Global action: insert the memo sentence at the caret in the focused document.\ndevice.type_at_caret(body)",
+    "usage": {
+     "prompt_tokens": 546,
+     "completion_tokens": 852,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013512312
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "shift",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This action triggers the Save As dialog via a global hotkey. It depends on the LibreOffice Writer window being focused and the document being open; it can fail if the window is not active or the hotkey is intercepted.",
+    "snippet": "device.hotkey(\"ctrl\", \"shift\", \"s\")",
+    "usage": {
+     "prompt_tokens": 752,
+     "completion_tokens": 889,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007446582
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "training_summary"
+    },
+    "field": "file_name",
+    "analysis": "The action types the derived filename stem into the Save dialog's editable filename field, which the recorder addressed by index 84 and identified only by its current text \"Untitled 1\" \u2014 that index and that placeholder text both change across instances (different suggested names, different element ordering), so the field must be located semantically as the editable text element instead.",
+    "snippet": "target = binding['file_name'].rsplit('.', 1)[0]\nidx = device.find(role='text', editable=True, text='Untitled 1')\nif idx is None:  # suggested name may differ across instances\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise LookupError(\"Save dialog: editable filename field not found\")\ndevice.input_text(target, index=idx)",
+    "usage": {
+     "prompt_tokens": 577,
+     "completion_tokens": 480,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008786052
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action clicks the \"Desktop\" entry in the file picker to set the save location. It relies on an element named \"Desktop\" being present; the role may vary across LibreOffice versions, so we search by name with a role fallback and raise a clear error if absent.",
+    "snippet": "desktop = device.find(name='Desktop', role='label')\nif desktop is None:\n    desktop = device.find(name='Desktop')\nif desktop is None:\n    raise RuntimeError(\"Desktop location not found in save dialog\")\ndevice.click(desktop)",
+    "usage": {
+     "prompt_tokens": 606,
+     "completion_tokens": 2811,
+     "cached_tokens": 0,
+     "cost_usd": 0.001929320316
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This action depends on the \"Save\" push-button being present and identified by its name/role, not by list position; the recorded index 98 is dialog-specific and will shift on any other instance (different toolbars, dialogs, or locales).",
+    "snippet": "idx = device.find(name=\"Save\", role=\"push-button\")\nif idx is None:\n    raise RuntimeError(\"Save button not found on the current screen\")\ndevice.click(index=idx)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 717,
+     "completion_tokens": 245,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006324912
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 9,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 3834,
+   "cached_tokens": 0,
+   "completion_tokens": 5732,
+   "total_tokens": 9566,
+   "cost_usd": 0.00597212
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "WriterMemoSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Recruiting Pipeline Notes"
+    },
+    "field": "title",
+    "analysis": "This action depends on an editable document text area being present; it can fail if no document is open or if multiple editable text areas exist. Locate by role and editable attribute, not by index.",
+    "snippet": "element = device.find(role='document-text', editable=True)\nif element is None:\n    raise RuntimeError(\"No editable document text area found\")\ndevice.input_text(binding['title'], index=element)",
+    "usage": {
+     "prompt_tokens": 641,
+     "completion_tokens": 426,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004179582
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "text": "All action items from the last session were closed on schedule."
+    },
+    "field": "body",
+    "analysis": "The recorded action typed the body text at the caret with no element target, relying on the caret already being on the (empty) third line; on another instance the editable document area must be located semantically and focused before typing, and `binding['body']` must supply the text.",
+    "snippet": "body = binding['body']\nidx = device.find(role='paragraph', editable=True)\nif idx is None:\n    idx = device.find(editable=True)\nif idx is None:\n    raise RuntimeError(\"No editable text area found in LibreOffice Writer\")\ndevice.click(index=idx)\ndevice.type_at_caret(body)",
+    "usage": {
+     "prompt_tokens": 551,
+     "completion_tokens": 654,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010946628
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "This action opens the File menu by clicking its menu-bar entry. It depends on the File menu being present and clickable; if the menu bar is missing or the UI is in a different state, the lookup fails.",
+    "snippet": "index = device.find(name='File', role='menu')\nif index is None:\n    raise ValueError(\"File menu not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 838,
+     "completion_tokens": 919,
+     "cached_tokens": 0,
+     "cost_usd": 0.00076733118
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 9
+    },
+    "field": null,
+    "analysis": "This action depends on the \"Save As...\" menu item being present and clickable in the current menu. It can fail if the menu is not open or the item is disabled/renamed.",
+    "snippet": "idx = device.find(name='Save As...', role='menu-item', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Save As... menu item not found\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1056,
+     "completion_tokens": 450,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005240268
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "feedback_summary"
+    },
+    "field": "file_name",
+    "analysis": "This action types the base filename into the editable text field in LibreOffice Writer's Save dialog. It depends on finding that field by role='text' and editable=True; it can fail if multiple editable text fields exist or the dialog isn't present.",
+    "snippet": "# Find the filename input field in the Save dialog\nindex = device.find(role='text', editable=True, clickable=False)\nif index is None:\n    raise RuntimeError(\"Could not find editable filename field in Save dialog\")\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=index)",
+    "usage": {
+     "prompt_tokens": 635,
+     "completion_tokens": 1507,
+     "cached_tokens": 0,
+     "cost_usd": 0.001100517264
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action clicks the 'Desktop' entry in the Save dialog to set the save location. The element's role may vary (label, toggle-button) across instances, so the lookup must rely on its name/text, not role or index. It fails if the dialog is not open or if 'Desktop' is not present.",
+    "snippet": "index = device.find(name='Desktop')\nif index is None:\n    raise RuntimeError(\"Desktop element not found in the Save dialog\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 611,
+     "completion_tokens": 2429,
+     "cached_tokens": 0,
+     "cost_usd": 0.001685780712
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "The action clicks the \"Save\" push-button of the Writer file-save dialog, identified only by positional index 98. It fails on other instances because the dialog may not be open yet, the button index shifts with the file list/path bar, and toolbar \"Save\" buttons can collide unless role and clickable are constrained.",
+    "snippet": "idx = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Save push-button not found; is the Save dialog open?\")\ndevice.click(index=idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 722,
+     "completion_tokens": 336,
+     "cached_tokens": 0,
+     "cost_usd": 0.000753588
+    }
+   }
+  ],
+  "effective_actions": 7,
+  "recorded_actions": 10,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 7,
+   "prompt_tokens": 5054,
+   "cached_tokens": 0,
+   "completion_tokens": 6721,
+   "total_tokens": 11775,
+   "cost_usd": 0.00634386
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "WriterMemoSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "text": "Budget Revision Notes"
+    },
+    "field": "title",
+    "analysis": "The recorded action is a caret-level text insertion (no element index), so it depends only on the Writer document body already having the caret; the index-based addressing is a no-op and any concrete index would be meaningless across instances. It fails if focus is on a dialog/toolbar widget, so I target the document text area via its editable role before typing, falling back to caret insertion.",
+    "snippet": "import time\n\n# The recorded action was a global \"type at caret\": rebuild text from the binding.\ntitle = binding['title']\n\n# Make sure the caret is in the Writer document body (editable paragraph), not a toolbar/dialog.\nidx = device.find(role='paragraph', editable=True)\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise RuntimeError(\"No editable Writer document body found to type the title into\")\n\ndevice.click(index=idx)\ndevice.type_at_caret(title)\ndevice.wait()",
+    "usage": {
+     "prompt_tokens": 537,
+     "completion_tokens": 280,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005998212
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "text": "The workshop will run twice to cover both product lines."
+    },
+    "field": "body",
+    "analysis": "This action types the body text at the current caret position in the Writer document; it depends on the document being focused and the caret already placed after the empty second line. It can fail if focus is lost or the document is not in the expected state.",
+    "snippet": "device.type_at_caret(binding['body'])",
+    "usage": {
+     "prompt_tokens": 584,
+     "completion_tokens": 1138,
+     "cached_tokens": 0,
+     "cost_usd": 0.000853349112
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "shift",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This is a global Writer shortcut, so it depends on Writer still having focus and the Save As dialog actually opening; it can fail if another window/dialog is focused, so verify the dialog by semantic elements rather than index.",
+    "snippet": "device.hotkey(\"ctrl\", \"shift\", \"s\")\ndevice.wait()\nif device.find(name=\"Name:\") is None or device.find(name=\"Cancel\", role=\"push-button\") is None:\n    raise RuntimeError(\"Save As dialog did not open after Ctrl+Shift+S\")",
+    "usage": {
+     "prompt_tokens": 685,
+     "completion_tokens": 1469,
+     "cached_tokens": 0,
+     "cost_usd": 0.0022180752
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action selects the Desktop folder in the save dialog; it depends on the Desktop label being visible and uniquely identifiable by name and role. It can fail if the dialog layout changes or the label is not yet rendered.",
+    "snippet": "element = device.find(name=\"Desktop\", role=\"label\")\nif element is None:\n    raise RuntimeError(\"Desktop entry not found in save dialog\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 592,
+     "completion_tokens": 1272,
+     "cached_tokens": 0,
+     "cost_usd": 0.000940861152
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "kickoff_brief"
+    },
+    "field": "file_name",
+    "analysis": "The action fills the Save dialog's filename field, but the recording identifies it only by index 84 and by its default text 'Untitled 1', which changes (Untitled 2, etc.) on other instances \u2014 so the field must be located by role/editability and its existing contents replaced, not appended.",
+    "snippet": "file_stem = binding['file_name'].rsplit('.', 1)[0]\nidx = device.find(role='text', editable=True, contains='Untitled')\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise LookupError(\"Filename field not found in Save dialog\")\ndevice.click(index=idx)\ndevice.hotkey('ctrl', 'a')          # replace the default 'Untitled 1'\ndevice.input_text(file_stem, index=idx)",
+    "usage": {
+     "prompt_tokens": 564,
+     "completion_tokens": 641,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010833372
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "The action depends on the dialog's confirm button being a push-button named 'Save', but its index shifts per screen, and a variant may render it as 'Save' inside a different widget order (or the dialog may not be open yet), so the index must be resolved by role+name at runtime.",
+    "snippet": "idx = device.find(name='Save', role='push-button')\nif idx is None:\n    raise LookupError(\"No 'Save' push-button found to confirm saving the document\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 706,
+     "completion_tokens": 386,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008119584
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 9,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 3668,
+   "cached_tokens": 0,
+   "completion_tokens": 5186,
+   "total_tokens": 8854,
+   "cost_usd": 0.0065074
+  },
+  "record_type": "translation"
+ }
+}

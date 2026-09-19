@@ -1,0 +1,94 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 34,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 4,
+  "retry_episodes": 1,
+  "reused_episodes": 2,
+  "reflection_calls": 1,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 640858,
+    "cached_tokens": 0,
+    "completion_tokens": 940,
+    "total_tokens": 641798,
+    "cost_usd": 0.01452194,
+    "model_calls": 14
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 15,
+    "prompt_tokens": 716033,
+    "cached_tokens": 0,
+    "completion_tokens": 2075,
+    "total_tokens": 718108,
+    "cost_usd": 0.01665523,
+    "model_calls": 15
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 34,
+    "prompt_tokens": 2690674,
+    "cached_tokens": 2430720,
+    "completion_tokens": 5486,
+    "total_tokens": 2696160,
+    "cost_usd": 0.11351112,
+    "model_calls": 34
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": true,
+    "steps": 16,
+    "prompt_tokens": 787011,
+    "cached_tokens": 624512,
+    "completion_tokens": 1464,
+    "total_tokens": 788475,
+    "cost_usd": 0.04340379,
+    "model_calls": 16
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 1244,
+    "completion_tokens": 888,
+    "cached_tokens": 0,
+    "cost_usd": 0.000624294
+   }
+  ],
+  "totals": {
+   "calls": 80,
+   "prompt_tokens": 4835820,
+   "cached_tokens": 3055232,
+   "completion_tokens": 10853,
+   "total_tokens": 4846673,
+   "cost_usd": 0.18871637
+  }
+ },
+ "stages_done": [
+  "exploration"
+ ],
+ "wall_s": 568.8
+}

@@ -1,0 +1,1177 @@
+% !TEX root = main.tex
+% Paper content: abstract through the appendices.
+% main.tex owns the preamble, the title block, and the document skeleton.
+% The bibliography and \appendix are issued in this file, so that the
+% appendices live next to the main text they support.
+% Rewritten 2026-09-01 for the compilation-policy direction (docs/compile-policy-plan.md);
+% oral-target writing pass and 9-page compression 2026-09-02 (docs/oral-refine-plan.md);
+% writing pass on the author's margin comments 2026-09-03.
+% Problem-and-methods pass 2026-09-16 (docs/problem-challenges-lock-2026-09-16.md,
+% docs/methods-plan-2026-09-16.md): four locked challenges, audited-payback framing,
+% protocol extensions (repeated compilations, paired replays); experiments section stubbed
+% pending the re-scored tables and the new experiments.
+% Measurement update 2026-09-18: 4 Android + 2 desktop + 1 web families,
+% repeated compilations, extraction checks, and paired replays.
+% Reproduce these tables with measurement_update_20260918.py --check.
+% Legacy number generators retain the earlier Android-only snapshot.
+% Previous versions: misc/old-paper-backups/ (body.tex.pre_methods_20260916 and earlier).
+
+% Numbers are inlined as literals. The September 18 measurement tables use
+% measurement_update_20260918.py --check and its source-indexed JSON output.
+% gen_numbers.py and inline_numbers.py retain their historical snapshot scope.
+\begin{abstract}
+Compiling a recurring computer-use task family into a program removes almost the whole cost of every later use, yet the field cannot price that win.
+Published audits report payback after 4, 17, or 100--300 uses, or no payback at all, and none of these numbers can be compared.
+The decision is hard because the saving is counterfactual, the price is random and repeats under drift, and the paying arrivals are unknown.
+One protocol compiles the same three agent traces into both a document and a program, verifies programs by execution, and prices every path in one unit.
+A break-even law separates the marginal compilation price from the traces the stream has already paid for, counts failed attempts, and reads the audits onto one axis, and a cost-informed trigger estimates arrivals and verification online, compiles when the projected saving exceeds the priced compilation, and gives up on families that cannot compile.
+We run the protocol on seven task families on Android, desktop, and web interfaces with two models and evaluate the trigger on synthetic streams, real process-log arrival streams, and a regime sweep.
+A verified program removes 0.79 to 1.00 of an attempt at one extraction call per use, while a document from the same traces saves little and costs more in half the cells.
+Verification is unstable and failed attempts cost several times a verified one, so the difficulty sits on the price side; our trigger never costs more than 1.7 times the best fixed rule or 2.4 times the best rule with the same information, while every fixed rule costs multiples somewhere.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Large language models (LLMs) improve rapidly, and one application is the computer-use agent.
+A computer-use agent reads the screen interface as both a screenshot and a text tree, e.g., an accessibility tree or an HTML tree, thinks with the LLM, and sends actions to the interface.
+Task success rates keep rising on benchmarks \citep{zhou2024webarena,xie2024osworld,rawles2025androidworld}, allowing these agents to be used in real work.
+However, one completed task consumes a large number of LLM tokens and costs real money.
+Token efficiency, i.e., reducing the tokens spent per completed task, has become a first-order concern.
+
+To improve token efficiency, prior work reuses what the agent has already learned: record how a task was solved, turn the record into a reusable artifact such as a workflow memory \citep{wang2025awm}, an agent skill \citep{wang2025asi}, a replay state machine \citep{li2026preact}, or a compiled program \citep{chen2026autorpa,elyadouni2026tracecompiler}, and run it on later tasks from the same family.
+These systems \textit{compile} the record into the reusable artifact, unconditionally or on quality signals such as success counts, and none asks when compiling is worth its cost.
+% (Figure~\ref{fig:teaser})
+Published audits report payback after 4 uses for compiled programs \citep{chen2026autorpa}, 17 uses in a function-calling setting \citep{trooskens2026compiledai}, and 152--293 uses for skill text \citep{xu2026realcost}.
+Other systems report no payback at all \citep{elyadouni2026tracecompiler,xu2026skillsmith,winston2026jit}.
+% The spread does not mean that some tasks pay back after 4 uses and others after 293.
+% Each audit prices a different artifact class under a different accounting on a different task population, so the numbers cannot be compared.
+That is, every system compiles at a price, the token cost of producing the artifact, and none has measured that price accurately.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{fig/teaser_iclr27.pdf}
+\caption{\textbf{A task family recurs, and compiling it into a program is a purchase at a random, repeating price.}
+An agent \citep{yao2023react} pays a full run on every arrival of the family.
+A compilation attempt is a draw, a verified program serves later arrivals for one extraction call, and a rejected attempt costs more.
+Interface drift breaks a deployed program, and the family compiles again.
+The saving is observed only on the path the deployment serves, and the number of future arrivals is unknown at the decision.}
+\label{fig:teaser}
+\end{figure}
+
+Measuring how many uses pay the compilation back poses three challenges (Figure~\ref{fig:teaser}).
+\textbf{Counterfactual saving}:
+An artifact's saving is the difference between an agent run and an artifact run of the same task.
+A deployment observes only the side it serves.
+Re-running the other side would give the difference, but the measurement would then pay both sides' costs.
+Moreover, before the first compilation, the artifact does not exist, so its side cannot be sampled without paying the compilation.
+Single runs are noisy, and repeating a run to reduce the noise pays its cost again.
+\textbf{Random price}:
+The price to compile to an artifact is not fixed.
+A compilation can produce a wrong artifact, so compiling is an attempt, and deployment requires verification, i.e., executing the artifact to check that it works.
+An attempt that fails verification costs more than a verified one.
+Later the interface drifts, i.e., the screens and controls of the application change, and the artifact stops working, so the family must compile again.
+\textbf{Unknown arrivals}:
+Whether a compilation pays depends on how often the family's tasks arrive after it.
+The decision to compile is thus a prediction of future arrivals.
+% Computer use has no public task-arrival log to inform that prediction.
+
+To address these challenges, we propose a measurement protocol that prices the compilation decision.
+The protocol compiles the same three agent traces of a family into both artifact classes, a plain-text document and a family program, so the source traces are held fixed across the two paths.
+A program is verified only by executing it on held-out bindings, and a deployed use is one extraction call that reads the goal and fills the program's parameters.
+Every path, compiling, repairing, verifying, and serving, is priced in one unit, the price-weighted token.
+From the same logs the protocol reports the saving share of each class, the verification rate, the price of a failed attempt, and how often a deployed program breaks under interface perturbations.
+Repeated compilations measure variation in verification outcomes, and paired replays compare costs on the same binding set.
+The quantity that transfers across audits is the \emph{saving share}, the fraction of an agent attempt that one use of an artifact removes, so numbers from any audit, ours or a published one, sit on the same axis.
+
+The \emph{break-even count}, the number of future uses at which the accumulated saving equals the compilation spend, prices the decision.
+A discrete threshold reference carries a factor-two bound under a known, fixed compilation price.
+A stationary comparison prices the repeated compilation under interface drift.
+A per-family trigger estimates arrival and verification rates online, with a failed-spend check and library residency.
+The simulation evaluates decision rules using supplied cost parameters and online arrival and verification estimates.
+
+The paper's central finding comes from the measurement.
+The difficulty of the compilation decision lies on the price side, not on the saving side.
+A verified program removes most of an attempt at one extraction call per use, while a document compiled from the same traces gives mixed savings.
+Compilation price and verification introduce additional uncertainty.
+The initial verification outcome can overstate what a later compilation or execution will achieve.
+The decision must weigh this uncertainty against the realized price of a successful attempt.
+
+Our contributions are:
+\begin{itemize}
+\item \textbf{The first same-protocol pricing of two artifact classes.}
+One protocol compiles the same traces into a document and a program, verifies by execution, and reports the saving share of each class, the verification rate, the price of a failed attempt, and both readings of the break-even count.
+Repeated compilations, extraction-based verification, and paired replays test verification stability and the saving on a matched binding set.
+\item \textbf{A break-even law that reads the audits onto one axis.}
+We distinguish sunk trace cost, subsequent compilation spend, and per-use saving, reconcile the published amortization statistics under their own accounting, and explain why aggregate break-even counts do not identify a saving share.
+Where verification is rare and failure is expensive, pricing failed attempts moves the break-even count by an order of magnitude, and that decides whether compiling pays at all.
+\item \textbf{A compilation decision that stays near the best fixed rule in every regime.}
+A per-family trigger with estimated arrivals and verification, a failed-spend check, and library residency compiles the families that recur and skips the ones that arrive once.
+On streams that mix regimes, fixed rules lose by multiples.
+A fixed-price reference carries a factor-two bound.
+\end{itemize}
+
+\section{Problem Formulation}
+\label{sec:formulation}
+
+\paragraph{Task families.}
+Tasks arrive over time, grouped into \emph{task families}.
+A family $f$ is a set of tasks that share one \emph{interface procedure}, the interactions an application requires, such as opening a form, filling fields, and confirming, and differ only in \emph{parameter bindings}, the concrete values of fields such as a note title or an event date.
+An agent solves every task from scratch from a screenshot and the interface's text tree, and one agent attempt on family $f$ costs $c_f$ tokens.
+Tokens are counted in one unit throughout, the \emph{price-weighted token}: an uncached input token counts one, a cached input token counts its price ratio $r_c$, and an output token counts its price ratio $r_o$, all as the provider reports them (Section~\ref{sec:unit}).
+Each attempt's cost and trace are logged, and an attempt can fail, which the objective below does not price but Appendix~\ref{app:success} reports.
+Arrival rates are unknown and may drift.
+Because compiling requires three agent attempts on a family, a family that arrives once or twice never reaches the decision, so the arrival streams of Section~\ref{sec:realstreams} also report what fraction of arrivals ever becomes eligible.
+
+\paragraph{Compiled artifacts.}
+After $k \ge 3$ agent attempts on a family, \emph{compiling} turns their traces into a reusable artifact.
+Two artifact classes come from the same traces.
+A \emph{document} is plain text that describes the procedure, and a use of it is still an agent run, at cost $L^{\mathrm{doc}}_f$.
+A \emph{family program} is a parameterized procedure that serves the whole family with one model call per use, the extraction of the bindings from the goal, at cost $d_f \ll c_f$.
+A program reaches deployment only through \emph{verification}, which executes it on five held-out bindings and demands at least four passes.
+Repeated compilations provide observations of the verification rate $p_f$, distinct from a program's pass fraction over bindings.
+A compilation attempt costs $C_f$ when it is verified and $C^{\mathrm{fail}}_f$ when it is not, and a failed attempt wastes its cost.
+A verified program can still fail on an unseen binding, with probability $q_f$, and a failed use falls back to one agent attempt, so its expected cost per use is $d_f + q_f c_f$.
+Every deployment failure we observed was loud, an exception raised before any record is written, so the assumed fallback policy detects these failures.
+The perturbation probe finds a silent minority that the fallback misses (Section~\ref{sec:fragility}).
+The interface drifts, so a deployed program breaks at hazard rate $h_f$.
+Each break forces the family to compile again and pass verification again, so the compilation price repeats over the artifact's life rather than being paid once (notation in Appendix~\ref{app:notation}).
+A router assigns each arriving task to a resident program or to the agent, and its call is paid on every arrival.
+
+\paragraph{Objective.}
+After the $k$-th attempt on family $f$, choose whether to keep serving the family with the agent or attempt a family program, so as to minimize the cumulative price-weighted tokens of the stream.
+The accounting charges the router call on every arrival, the serving cost of whichever path runs, and the full cost of every compilation attempt, verified or not.
+Task success is reported alongside the cost but is not part of the objective, because an agent attempt and an artifact can both fail, and the measurement reports success differences separately.
+
+\section{Price Measurement}
+\label{sec:measure}
+
+The decision needs the cost of an agent attempt, the cost of using an artifact, and the price and outcome of a compilation attempt.
+Figure~\ref{fig:workflow} shows the protocol that measures these quantities on the same source traces, and this section checks how the results change across compilation attempts and verification paths.
+The main comparison covers seven families across Android, desktop, and web interfaces, with two models per family.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{fig/workflow_iclr27.pdf}
+\caption{\textbf{One protocol measures both artifact classes from the same three agent traces, and its measured constants feed a break-even law and a trigger.}
+Three agent attempts on a family supply the traces, on Android, desktop, and web families.
+A translator and a builder turn them into a document and a program, a repair loop fixes the program on the traces, and verification executes the result on five held-out bindings.
+Thirty deployed uses price a program per use, three further agent runs with the document price the document per use, and the same logs price every compilation attempt.
+Repeated compilations and paired replays extend the protocol, and the break-even count with the trigger turn the measured constants into the decision.}
+\label{fig:workflow}
+\end{figure}
+
+\subsection{Measurement protocol and accounting unit}
+\label{sec:unit}
+
+AndroidWorld \citep{rawles2025androidworld} supplies four families: adding a contact, deleting a Markor note, adding a calendar event, and saving an OsmAnd marker.
+The desktop extension uses two parameterized tasks in an OSWorld-based LibreOffice environment \citep{xie2024osworld}: saving a small Calc table and saving a Writer memo.
+These are custom task families with file-content checkers, run in a Linux container with a harness reset rather than the benchmark's virtual-machine reset.
+The web extension uses a parameterized comment-posting task on WebArena's self-hosted Reddit application \citep{zhou2024webarena}, with a database checker for the target post and comment text.
+The extensions test the protocol on additional interfaces; they do not estimate benchmark-wide success.
+Both GLM 5.3 Flash and DeepSeek V4 Flash read an unmarked screenshot and a numbered interface tree at each agent step.
+The tree is an accessibility tree on Android and the desktop, and a DOM tree on the web.
+
+The protocol follows AutoRPA's translator--builder stages \citep{chen2026autorpa}, including its three-trace compilation requirement, which their ablations find effective.
+Three exploration seeds supply the source traces, and all recorded agent attempts, including retries, contribute to the per-attempt cost.
+A translator rewrites the traces action by action, and a builder produces a document and a program from one, two, and three traces.
+The three-trace program receives up to three repair rounds and is verified by execution on five held-out bindings.
+At least four passes are required before deployment on thirty fresh bindings.
+The three-trace document is supplied to agent runs on seeds four to six.
+Initial verification injects the known bindings directly into the program, whereas deployment extracts them from the goal with a model call.
+We test this difference separately on Android in Section~\ref{sec:verification}.
+
+The unit is the \emph{price-weighted token}, $u=(\text{input}-\text{cached})+r_c\,\text{cached}+r_o\,\text{output}$.
+The weights are the list-price ratios to an uncached input token: $r_c=0.20$ and $r_o\approx3.33$ for GLM, and $r_c\approx0.032$ and $r_o=3.00$ for DeepSeek.
+We use the unrounded ratios in the calculations.
+The desktop and web costs are recomputed from recorded token counts, including retries and repair calls, without the cache imputation used in their original run summaries.
+The retained Android measurements estimate missing cache counts for reused exploration runs from the same cell's observed cache share.
+Their deployment records lack separate token counts, so the extraction cost uses the recorded bill divided by the uncached-input price.
+This proxy retains provider-pricing variation that a count-based measurement would remove.
+A no-task harness floor is subtracted from each agent and document run, but not from compilation or extraction.
+On Android the floor is 5090 tokens for GLM and 2290 for DeepSeek.
+On the desktop it is 669--1369 for GLM and 535 for DeepSeek.
+On the web it is 4826 for GLM and 4257 for DeepSeek.
+Each calibration uses eighteen no-task runs, with separate GLM desktop calibrations for Calc and Writer.
+Costs cover retained call records.
+Some calls charged during interrupted desktop runs were not retained, so these measurements do not recover the full campaign bill.
+
+\subsection{Saving per use by artifact class}
+\label{sec:share}
+
+Table~\ref{tab:share} compares an agent attempt, an agent run with a document, and a verified program use.
+The document share is $(c-L^{\mathrm{doc}})/c$.
+The program share is $((1-q)c-d)/c$, which charges one agent attempt for a failed program use.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Documents give mixed savings, while verified programs remove most of the per-use cost.}
+$c$ and $L^{\mathrm{doc}}$ are in thousands of price-weighted tokens after floor subtraction, and $d$ is in tokens without floor subtraction.
+$c$ averages exploration attempts, $L^{\mathrm{doc}}$ averages three document runs, and $d$ and $q$ summarize thirty program uses.
+Each cell shows the GLM value on blue and the DeepSeek value on amber.
+The first four families are Android tasks, the next two are desktop tasks, and the last is the web task.
+A blue-only cell means that model produced no verified program in the recorded attempt.}
+\label{tab:share}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Family & $c$ & $L^{\mathrm{doc}}$ & $d$ & $q$ & Doc share & Program share \\
+\midrule
+Contacts & \dual{98.7k}{65.0k} & \dual{89.8k}{64.5k} & \dual{179}{430} & \dual{0.00}{0.03} & \dual{0.09}{0.01} & \dual{1.00}{0.96} \\
+Markor delete & \dual{33.7k}{10.8k} & \dual{40.6k}{23.8k} & \dual{200}{402} & \dual{0.20}{0.03} & \dual{-0.20}{-1.21} & \dual{0.79}{0.93} \\
+Calendar & \dual{313.8k}{146.3k} & \dual{260.2k}{223.7k} & \dualG{558} & \dualG{0.00} & \dual{0.17}{-0.53} & \dualG{1.00} \\
+OsmAnd marker & \dual{279.8k}{152.8k} & \dual{118.2k}{88.5k} & \dualG{475} & \dualG{0.00} & \dual{0.58}{0.42} & \dualG{1.00} \\
+Calc table & \dual{505.1k}{646.7k} & \dual{697.4k}{1284.0k} & \dualG{672} & \dualG{0.00} & \dual{-0.38}{-0.99} & \dualG{1.00} \\
+Writer memo & \dual{70.2k}{50.7k} & \dual{89.6k}{62.5k} & \dual{547}{650} & \dual{0.00}{0.00} & \dual{-0.28}{-0.23} & \dual{0.99}{0.99} \\
+Reddit comment & \dual{123.9k}{40.0k} & \dual{102.4k}{20.2k} & \dual{651}{654} & \dual{0.00}{0.00} & \dual{0.17}{0.50} & \dual{0.99}{0.98} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The document share ranges from -1.21 to 0.58, with a median of -0.10.
+Seven of fourteen cells cost more with the document, and only three save more than a quarter of an agent attempt.
+The positive cases include the OsmAnd marker on both models and the Reddit comment on DeepSeek.
+Both desktop families cost more with the document on both models.
+A document can describe the procedure, but the agent still observes the interface and selects actions at each step.
+The measurements show that supplying this description does not consistently reduce the total cost.
+
+Eleven programs pass verification, and their saving shares range from 0.79 to 1.00.
+Extraction costs 179--672 tokens per use.
+The only share below 0.9 is GLM Markor delete, whose program fails on six of thirty bindings.
+The five verified desktop and web programs each succeed on all thirty deployed bindings.
+DeepSeek Calc produces no verified program and therefore contributes no program-use saving.
+The high saving share is conditional on obtaining a verified program.
+
+The two paths share source traces but have different deployment procedures.
+Only the program receives the repair loop and execution-based verification.
+Thus the comparison measures the two artifact classes with these procedures, and does not isolate representation from repair.
+Success also differs across paths: the GLM OsmAnd agent succeeds in one of eight exploration attempts, its document path in two of three runs, and its verified program in thirty of thirty uses.
+The shares price attempts rather than hold success rates equal.
+The paired replays in Section~\ref{sec:paired} provide a larger agent sample on the program's bindings.
+
+\subsection{Compilation price and verification}
+\label{sec:price}
+
+Table~\ref{tab:price} reports the cost and outcome of each initial compilation.
+The price includes translation, the selected three-trace code builder, and all recorded analyzer, agent-continuation, and refinement calls used for repair.
+It excludes exploration and the other document and program candidates built for comparison.
+Verification by direct program execution adds no model tokens, although it consumes execution time.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Verification and compilation price vary across families and models.}
+$C$ is the recorded compilation price in thousands of price-weighted tokens, including repair, whether or not verification succeeds.
+$p(k)$ is the fraction of five held-out bindings passed by the unrepaired program from $k$ traces, not the probability that a compilation succeeds.
+Final reports the final verification fraction when recorded.
+For verified programs, $N^{*}_{\mathrm{marg}}=C/((1-q)c-d)$ uses the realized price of this attempt.
+$N^*_{\mathrm{incl}}$ adds three agent attempts at the measured mean cost, giving $(C+3c)/((1-q)c-d)$.
+It is a standardized three-attempt reading, not the total cost of acquiring traces with additional retries.
+A blue-only cell in the final three columns means that this attempt produced no verified program.}
+\label{tab:price}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Family & $C$ & $p(1)$ & $p(2)$ & $p(3)$ & Final & $N^{*}_{\mathrm{marg}}$ & $N^{*}_{\mathrm{incl}}$ \\
+\midrule
+Contacts & \dual{41.0k}{143.9k} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{0.42}{2.30} & \dual{3.42}{5.43} \\
+Markor delete & \dual{39.0k}{68.5k} & \dual{0.00}{1.00} & \dual{0.00}{1.00} & \dual{1.00}{1.00} & \dual{0.80}{1.00} & \dual{1.46}{6.85} & \dual{5.23}{10.07} \\
+Calendar & \dual{916.3k}{1100.3k} & \dual{0.00}{0.20} & \dual{0.20}{0.00} & \dual{0.00}{0.00} & \dualG{0.80} & \dualG{2.93} & \dualG{5.93} \\
+OsmAnd marker & \dual{966.9k}{2502.6k} & \dual{0.00}{0.00} & \dual{0.40}{0.00} & \dual{0.60}{0.00} & \dualG{1.00} & \dualG{3.46} & \dualG{6.47} \\
+Calc table & \dual{481.2k}{4370.3k} & \dual{1.00}{0.00} & \dual{1.00}{0.00} & \dual{0.00}{0.00} & \dual{1.00}{0.00} & \dualG{0.95} & \dualG{3.96} \\
+Writer memo & \dual{254.5k}{585.7k} & \dual{0.00}{0.00} & \dual{0.00}{0.00} & \dual{0.00}{0.00} & \dual{1.00}{1.00} & \dual{3.65}{11.69} & \dual{6.68}{14.73} \\
+Reddit comment & \dual{252.7k}{332.4k} & \dual{0.60}{0.60} & \dual{1.00}{0.80} & \dual{0.00}{0.40} & \dual{1.00}{1.00} & \dual{2.05}{8.44} & \dual{5.07}{11.49} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All seven GLM compilations and four of seven DeepSeek compilations pass verification.
+The failures are concentrated in DeepSeek Calendar, OsmAnd marker, and Calc.
+Repair matters even where the final outcome is successful.
+All five verified desktop and web programs require repair, and their unrepaired three-trace programs pass at most two of five bindings.
+Conversely, GLM Calc passes all five bindings with one or two traces but none with three before repair.
+Adding traces does not guarantee a better program.
+
+The three rejected DeepSeek compilations have a median recorded price of 2502.6k tokens, compared with 238.1k for its four verified compilations, a ratio of 10.5.
+DeepSeek Calc costs 4370.3k tokens and still passes zero of five bindings after three repair rounds.
+There is no rejected GLM compilation in this initial seven-family comparison, so it provides no corresponding GLM price ratio.
+These are comparisons across different families, not estimates of the extra cost caused by failure within a family.
+
+Among verified programs, the marginal break-even count $N^{*}_{\mathrm{marg}}$ ranges from 0.42 to 3.65 uses on GLM and from 2.30 to 11.69 on DeepSeek.
+The standardized inclusive ranges are 3.42--6.68 and 5.43--14.73, respectively.
+These values use each attempt's realized price and the measured serving costs.
+They do not include the cost of a future failed compilation or replacement after interface drift.
+
+\subsection{Protocol extensions: repeated compilations and paired replays}
+\label{sec:extensions}
+
+We run two further compilations for each of the four Android families and two models, giving sixteen additional attempts.
+These attempts reuse the source traces and their translations, then sample new builders and run repair and verification again.
+The original and two additional attempts give three observations per family and model, and the additional runs took place on a different emulator setup, so changes across these observations need not come only from model sampling.
+Their recorded compilation bills also include the comparison builder arms, whereas Table~\ref{tab:price} prices the selected program path.
+We therefore report verification counts separately from the initial compilation prices.
+
+We also re-run the thirty deployment bindings of each of the six verified Android programs as agent attempts, giving 180 paired replays.
+This controls the binding set when comparing agent and program costs.
+Each binding receives one new agent run, so the observed spread combines differences across bindings, execution variability, and changes from the original run environment, and does not separately identify repeated-run variance at a fixed binding and environment.
+Sections~\ref{sec:verification} and~\ref{sec:paired} report the results.
+
+\section{Compilation Decision}
+\label{sec:policy}
+
+We first define the break-even count from the measured costs, then give a fixed-price reference and the estimating trigger.
+
+\subsection{The break-even identity}
+\label{sec:breakeven}
+
+A verified program saves $s_f = (1 - q_f)\,c_f - d_f$ per use, the agent attempt it replaces less its own use and less the fallback it triggers when it fails.
+If independent compilation attempts have a fixed verification probability $p_f>0$ and continue until verification, their count is geometric.
+Under this assumption, expected compilation spend is $C^{\mathrm{eff}}_f=C_f+(1/p_f-1)C^{\mathrm{fail}}_f$, reducing to $C_f/p_f$ only when $C^{\mathrm{fail}}_f=C_f$.
+This quantity excludes the cost of agent runs while waiting between attempts.
+For positive per-use saving, the accounting break-even count is
+\begin{equation}
+  N^{*}_f \;=\; \frac{C^{\mathrm{eff}}_f}{(1 - q_f)\,c_f - d_f}.
+  \label{eq:breakeven-law}
+\end{equation}
+The count has two readings that differ in what the price contains.
+The \emph{marginal} reading prices only the compilation itself, because the three traces are paid on the agent path whether or not the family is ever compiled, and it is the quantity an online decision compares against future uses.
+The \emph{inclusive} reading adds trace acquisition to the price, following the accounting boundary of \citet{chen2026autorpa}.
+Table~\ref{tab:price} standardizes this term to three attempts at the measured mean cost, so it excludes any extra attempts needed to acquire the traces, and reports both readings.
+
+The break-even identity is an accounting tool whose interpretation depends on the baseline and on which costs the numerator includes.
+The published studies use different baselines and aggregate their results differently (Table~\ref{tab:reconcile}, Appendix~\ref{app:reconcile}).
+Each published number is defensible under its own accounting: the four-task claim covers the families for which a verified function exists, the seventeen-transaction break-even prices workflows that execute without model calls, and the subset medians price text the executor still reads.
+None of them transfers to another setting.
+Dividing a population mean compilation cost by a median break-even count over only finite cases does not recover a population saving share.
+We therefore use their reported numbers as context and calculate saving shares and break-even counts from our own per-cell costs.
+For an assumed $p_f=0$, or for nonpositive per-use saving with positive compilation spend, no finite accounting break-even exists.
+A failed measured compilation alone does not establish that a family's verification probability is zero.
+
+\subsection{A fixed-price reference rule}
+\label{sec:ski}
+
+Classic ski rental provides a reference when the saving is known and a working program can be bought at a fixed price.
+The following result starts after the required traces are available and excludes their common sunk cost.
+
+\begin{theorem}[Fixed-price discrete threshold]
+\label{thm:ski}
+Consider one family with known constant agent cost $c$, expected program-use cost $b=d+qc\geq 0$, and saving $s=c-b>0$.
+At any arrival, the system can pay a known deterministic price $B>0$ to obtain a working program immediately, before serving that arrival.
+Use failures are independent with probability $q$, the program remains usable for the rest of the stream, and the number $n$ of arrivals is unknown.
+Let $R$ be the excess already paid on agent uses.
+Before each use, buy if $R+s\geq B$.
+Otherwise serve with the agent and set $R\gets R+s$.
+For every $n$, this rule's serving and purchase costs are at most twice the offline minimum $nb+\min(ns,B)$ in expected accounting cost, where the offline policy knows $n$ but not future use-failure outcomes.
+\end{theorem}
+
+Appendix~\ref{app:ski} gives the discrete proof using the classic excess-cost reduction \citep{karlin1994competitive,borodin1998online}.
+Checking the threshold before serving the deciding arrival avoids overshooting the buy price by one expensive agent use.
+The theorem assumes a working program at a fixed price, so substituting the expected cost of random compilation attempts does not by itself establish the same guarantee.
+Unknown verification probabilities, failed attempts, and estimated future savings require separate analysis.
+
+The evaluated policy uses a failed-spend check to limit repeated compilation attempts relative to realized and projected savings.
+We treat this check as a heuristic, evaluate its effect in Section~\ref{sec:regimes}, and show in Appendix~\ref{app:cap} that it does not inherit the fixed-price bound.
+Changing compilation prices and detecting interface breaks introduce additional decisions, discussed in Appendix~\ref{app:crack}.
+
+\subsection{A stationary cost comparison}
+\label{sec:stationary}
+
+\begin{proposition}[Cost of replacing a program after each break]
+\label{prop:ss}
+Suppose a working program can be obtained at deterministic price $B$ before serving an arrival.
+At each use it incurs extraction cost $d$ and breaks with independent probability $h\in(0,1]$.
+A break triggers one agent fallback of cost $c$ and replacement before the next arrival.
+Conditional on no break, an ordinary failure occurs with probability $q$ and triggers one fallback without killing the program.
+For independent renewal cycles with $H=1/h$ expected uses, including the terminal breaking use, replacing after every break costs $d+(1-h)qc+h(B+c)$ per arrival in the long run.
+This specified policy is cheaper than never compiling exactly when $H[(1-q)c-d]>B+(1-q)c$.
+\end{proposition}
+
+Appendix~\ref{app:ss} derives this comparison by counting one fallback on each terminal use.
+The rate $\lambda_f$ drops out because the assumed hazard acts per use rather than per unit of calendar time.
+
+Substituting each model's verified fraction and failed-attempt price from the measured table into the independent-retry formula prices the replacement draw a family faces after drift.
+The two models sit at opposite ends.
+GLM verifies all seven of its compilations, so its replacement price is the realized price and its break-even count $N^{*}$ runs from 0.4 to 3.7 uses.
+DeepSeek verifies four of seven, the population lottery prices every replacement at a spend of $B_{\mathrm{pop}}$ of 1.9 to 2.5 million tokens, and $N^{*}=B_{\mathrm{pop}}/s$ rises to between 32.4 and 194.5 uses.
+The repeated compilations of Section~\ref{sec:verification} support reading this lottery as a draw over family types rather than over independent attempts, and the failed-spend check is what gives up on the never-verifying type.
+The per-arrival cost of replacing after each break doubles relative to its no-drift level at break rates from 0.0003 to 0.105 per use, and replacing stops beating never compiling at break rates from 0.21 to 0.71 on GLM and from 0.005 to 0.030 on DeepSeek.
+At the regime sweep's default break rate of 0.02 per use, replacing does not pay back for three of the four verified DeepSeek families.
+These are accounting scenarios from the measured table, not prices observed from post-drift recompilations.
+
+This comparison between two specified policies does not establish optimality among adaptive policies with unknown parameters.
+The estimating trigger below uses a finite projection of future uses, whose performance we assess by simulation.
+
+\subsection{The cost-informed decision template}
+\label{sec:fullpolicy}
+
+Algorithm~\ref{alg:policy} describes a cost-informed decision template with estimated arrival and verification rates.
+The simulator supplies the per-family cost and failure parameters from measurements or scenario settings, including the hazard used to cap program lifetime.
+It estimates $\hat{\lambda}_f$ from arrivals and uses the add-one verification estimate $\hat{p}_f=(g_f+1)/(a_f+2)$ after $a_f$ attempts and $g_f$ verifications.
+The evaluation therefore tests decision rules on measured constants, with only arrivals and verification estimated online.
+A prior stratified by trace success is a possible refinement, compared in Appendix~\ref{app:mech}.
+
+The trigger prices the compilation decision with the estimated compilation spend $\hat{B}_f=C_f+(1/\hat{p}_f-1)C^{\mathrm{fail}}_f$ of Section~\ref{sec:breakeven}.
+The failed-spend check compares the tokens a family has spent on rejected attempts, $F_f$, with its accounted savings, $S_f$, plus projected savings.
+This check can delay further attempts, but it does not impose a pathwise budget or establish a competitive ratio (Appendix~\ref{app:cap}).
+The trigger also includes a manifest-cost allowance $m\min(T,\hat{\Lambda}_{\mathrm{rest}})$ for other arrivals during an idle residency interval.
+A router $R$ holds a manifest of the resident programs, and one call against it returns the applicable program or none.
+The call costs $\tau_R(n)$ tokens at library size $n$ and errs with probability $\varepsilon_R(n)$; both are properties of the router architecture rather than of the policy, and the call is paid on every arrival whichever path serves the task.
+Programs that no arrival has used for $T$ arrivals leave the manifest, and a family that returns re-enters it at no compilation cost, so the router's cost grows only with programs that are in use.
+We discuss the router and residency assumptions in Appendix~\ref{app:router}.
+
+\begin{algorithm}[t]
+\caption{\textbf{A cost-informed trigger with arrival and verification estimates.}
+Decision template after serving an arrival of family $f$, with supplied $c_f,d_f,q_f,C_f,C^{\mathrm{fail}}_f,h_f,m,T$ and a three-trace eligibility requirement.
+The expected-price and failed-spend terms are heuristics.}
+\label{alg:policy}
+\begin{algorithmic}[1]
+\State Evict programs unused for $T$ arrivals; route and serve the arrival; use a live program if available and fall back to the agent on failure
+\State Log any agent trace; credit the served path's accounted saving to $S_f$; let $k$ count logged traces
+\State Update $\hat{\lambda}_f$ from arrivals; $\hat{H}_f\gets\min(\hat{\lambda}_f\,\mathrm{age}_f,1/h_f)$, with $1/0=\infty$
+\State $s_f\gets(1-q_f)c_f-d_f$; $\hat{p}_f\gets(g_f+1)/(a_f+2)$; $\hat{B}_f\gets C_f+(1/\hat{p}_f-1)C^{\mathrm{fail}}_f$
+\If{$k\geq3$ and no live program serves $f$ and $s_f>0$}
+  \If{$F_f<S_f+\hat{H}_f s_f$ and $\hat{H}_f s_f>\hat{B}_f+m\min(T,\hat{\Lambda}_{\mathrm{rest}})$}
+    \State $P\gets\mathrm{compile}(\text{logged traces})$; repair and evaluate the candidate on the verification bindings
+    \State $a_f\gets a_f+1$
+    \If{at least four of five verification bindings pass} deploy $P$; $g_f\gets g_f+1$
+    \Else\ $F_f\gets F_f+\text{cost of the failed attempt}$
+    \EndIf
+  \EndIf
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+The template fixes the three-trace service order and residency rule.
+Appendix~\ref{app:sim} records the deployment configuration of the simulations that evaluate it.
+
+Three mechanisms remain open once the trigger is fixed: the projection horizon, the verification estimate, and the spend cap.
+Appendix~\ref{app:mech} compares candidates for each at raised compilation prices and lowered verification rates, where the choice matters, and Section~\ref{sec:eval} reports the chosen forms.
+
+\section{Experiments}
+\label{sec:eval}
+
+% STATUS (2026-09-19): all subsections below report the 2026-09-19 reruns (v3 constants, full buy formula, add-one estimate).
+
+This section reports repeated compilation, extraction-based verification, and paired replays, followed by the decision-rule evaluation.
+
+\subsection{The verification distribution}
+\label{sec:verification}
+
+Repeated compilation lands at the extremes rather than in between (Table~\ref{tab:verification-repeat}).
+Contacts and Markor delete verify all three attempts on both models.
+The two DeepSeek families rejected initially verify none of their three.
+Only the GLM Calendar and GLM OsmAnd marker cells fall in between, at two of three and one of three.
+Nine of the sixteen additional attempts produce a verified program.
+Four fail after exhausting the repair budget, all on OsmAnd marker.
+Three Calendar attempts terminate after repeated empty model replies, one on GLM and two on DeepSeek.
+These provider failures count as unsuccessful end-to-end attempts, but are distinct from a program rejected by verification.
+GLM OsmAnd marker verifies only the original attempt, so its initial outcome was optimistic.
+The two rejected DeepSeek families stay rejected, so their initial outcome was reproducible.
+Three observations per cell do not establish independence or a stable verification probability for the geometric-retry calculation.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Repeated compilation and extraction-based verification test different sources of failure.}
+Verified counts verified compilations out of three attempts per family and model; each $\dagger$ marks one of the three attempts lost to repeated empty model replies, which count as unsuccessful.
+The held-out columns re-run the original program on five new bindings, either injecting the known parameters or extracting them from the goal.
+They test the same original artifact, not the newly compiled artifacts; for the two DeepSeek families with no verified program, this artifact is the rejected one.
+The four families are the Android tasks.}
+\label{tab:verification-repeat}
+\small
+\begin{tabular}{lccc}
+\toprule
+ & Repeated compilation & \multicolumn{2}{c}{Held-out bindings (of 5)} \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-4}
+Family & Verified (of 3) & Injected & Extracted \\
+\midrule
+Contacts & \dual{3/3}{3/3} & \dual{4/5}{3/5} & \dual{5/5}{5/5} \\
+Markor delete & \dual{3/3}{3/3} & \dual{5/5}{5/5} & \dual{3/5}{2/5} \\
+Calendar & \dual{2/3$^{\dagger}$}{0/3$^{\dagger\dagger}$} & \dual{4/5}{0/5} & \dual{4/5}{0/5} \\
+OsmAnd marker & \dual{1/3}{0/3} & \dual{1/5}{0/5} & \dual{4/5}{0/5} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The extraction check changes which original programs meet the four-of-five threshold.
+Both Markor delete programs pass five of five injected bindings, but only three with extraction on GLM and two on DeepSeek.
+GLM OsmAnd marker changes in the other direction, from one injected pass to four with extraction.
+All extracted parameters pass the type check, so type validity alone does not establish successful execution.
+The injected re-run itself differs from the original verification: GLM OsmAnd marker falls from five passes to one, and DeepSeek Contacts from five to three.
+These checks show that initial verification does not reliably predict the full deployment path.
+Because injection and extraction were not repeatedly tested under identical execution conditions, their difference cannot be attributed to extraction error alone.
+
+\subsection{Paired replays}
+\label{sec:paired}
+
+All 180 agent replays produce usable cost records.
+Table~\ref{tab:paired-replays} reports their costs and success counts alongside the original program outcomes on the same bindings.
+The saving share uses each cell's measured program failure fraction $q$ and the replay mean $c$, with expected program-path cost $d+qc$.
+It is an accounting estimate, because the experiment did not execute an agent fallback immediately after each failed program use.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{The large program saving survives the new binding-matched agent sample.}
+$c$ is the mean floored agent cost in thousands of price-weighted tokens.
+CV is the standard deviation divided by the mean across thirty bindings.
+Success counts compare the new agent replays with the original program uses.
+The saving share charges fallback at $qc$ rather than an observed post-failure bill.
+The four families are the Android tasks, and the blue-only rows are the two DeepSeek families that produced no verified program, so no replay exists.}
+\label{tab:paired-replays}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Family & $c$ & CV & Agent success & Program success & Share \\
+\midrule
+Contacts & \dual{67.1k}{67.3k} & \dual{0.33}{1.06} & \dual{30/30}{27/30} & \dual{30/30}{29/30} & \dual{0.997}{0.960} \\
+Markor delete & \dual{35.4k}{22.3k} & \dual{0.37}{1.04} & \dual{30/30}{23/30} & \dual{24/30}{29/30} & \dual{0.794}{0.949} \\
+Calendar & \dualG{535.3k} & \dualG{0.49} & \dualG{14/30} & \dualG{30/30} & \dualG{0.999} \\
+OsmAnd marker & \dualG{258.9k} & \dualG{0.66} & \dualG{12/30} & \dualG{30/30} & \dualG{0.998} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The estimated saving share ranges from 0.794 to 0.999.
+The agent cost varies substantially across the thirty bindings, with coefficients of variation from 0.33 to 1.06.
+DeepSeek Markor delete costs 22.3k tokens per replay, compared with 10.8k in the initial exploration sample, yet the estimated program saving remains 0.949.
+For GLM Calendar and OsmAnd marker, the agent succeeds on fourteen and twelve of thirty bindings, respectively, while each original program succeeds on all thirty.
+The program advantage therefore persists in both estimated serving cost and observed success on these two families.
+The replay uses a different emulator profile from the original deployment, and the initial Android exploration costs include cache estimates where counts were missing.
+Consequently, differences from the original agent means cannot be assigned to model randomness alone.
+
+\subsection{Decision rules on synthetic streams}
+\label{sec:policysim}
+Deciding per family must beat deciding once for all families somewhere, because no fixed rule survives both models' constants.
+Table~\ref{tab:policysim} compares the trigger, both fixed rules, the count-based rule, the estimated-price break-even rule, an oracle threshold rule, and the offline optimum on 300-arrival Poisson, Zipf, and bursty streams whose families span the measured regimes.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Neither fixed rule survives the other model's constants, and the trigger never pays more than 1.7 times the best fixed rule.}
+Cumulative price-weighted tokens over synthetic 300-arrival streams, relative to our policy (lower is better), mean over 20 repetitions, with the seven measured families' constants under each model, the GLM-constants value on blue and the DeepSeek-constants value on amber.
+Each cell shows the mean ratio with $\pm$ half its 95 percent bootstrap interval; ours is 1.00 by construction.
+Within each model's constants, the best of the six rules in each column is in bold, the second best is underlined, and a rule that pays at least three times ours is in red.
+Ties share a mark, and no second is marked when the best is shared.
+The oracle and the offline optimum are bounds, not rules.
+The oracle knows the arrival counts and the verification rates and is a threshold rule.
+The offline optimum also knows the coins, so no rule beats the offline optimum in expectation.
+The break-even row uses an estimated-price accumulated-excess trigger, whose simulation performance is separate from the fixed-price guarantee of Theorem~\ref{thm:ski}.}
+\label{tab:policysim}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccc}
+\toprule
+Policy & Poisson & Zipf & Bursty \\
+\midrule
+always reactive      & \dual{\textcolor{red}{$6.1 \pm 0.12$}}{$\underline{0.83 \pm 0.01}$} & \dual{\textcolor{red}{$9.4 \pm 0.22$}}{$\underline{0.92 \pm 0.01}$} & \dual{\textcolor{red}{$5.6 \pm 0.55$}}{$\underline{0.85 \pm 0.01}$} \\
+always compile       & \dual{$\mathbf{0.64 \pm 0.01}$}{\textcolor{red}{$6.1 \pm 0.15$}} & \dual{$\mathbf{0.64 \pm 0.01}$}{\textcolor{red}{$4.7 \pm 0.03$}} & \dual{$\mathbf{0.60 \pm 0.02}$}{\textcolor{red}{$6.6 \pm 0.62$}} \\
+success count (10)   & \dual{$1.73 \pm 0.02$}{\textcolor{red}{$5.1 \pm 0.13$}} & \dual{$1.72 \pm 0.02$}{\textcolor{red}{$4.1 \pm 0.03$}} & \dual{$1.56 \pm 0.07$}{\textcolor{red}{$5.5 \pm 0.54$}} \\
+ToolPro rule (port)  & \dual{\textcolor{red}{$4.3 \pm 0.13$}}{$\mathbf{0.83 \pm 0.01}$} & \dual{$2.4 \pm 0.12$}{$\mathbf{0.92 \pm 0.01}$} & \dual{$3.0 \pm 0.17$}{$\mathbf{0.83 \pm 0.02}$} \\
+break-even (est.)    & \dual{$\underline{0.97 \pm 0.01}$}{$1.50 \pm 0.01$} & \dual{$\underline{0.96 \pm 0.01}$}{$1.25 \pm 0.00$} & \dual{$\underline{0.90 \pm 0.03}$}{$1.41 \pm 0.04$} \\
+ours                 & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{1.00}{1.00} \\
+oracle               & \dual{$0.64 \pm 0.01$}{$0.74 \pm 0.01$} & \dual{$0.64 \pm 0.01$}{$0.89 \pm 0.01$} & \dual{$0.59 \pm 0.02$}{$0.76 \pm 0.03$} \\
+offline optimum      & \dual{$0.34 \pm 0.00$}{$0.73 \pm 0.01$} & \dual{$0.34 \pm 0.01$}{$0.89 \pm 0.01$} & \dual{$0.32 \pm 0.01$}{$0.75 \pm 0.03$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each stream draws its families round-robin from the seven measured families of Section~\ref{sec:measure}, so under the GLM constants every family verifies and pays back within a few uses, while under the DeepSeek constants three of seven never verify and a rejected compilation costs 10.5 times a verified one.
+Neither fixed rule survives the other model's constants, since staying reactive pays 5.6 to 9.4 times ours under the GLM constants and always compiling pays 4.7 to 6.6 times ours under DeepSeek, the first forgoing the families that pay back and the second paying repeated failed attempts on the three that never verify.
+Under the GLM constants always compiling is itself the best rule, the oracle ties it at 0.59 to 0.64 of ours, and our trigger pays 1.6 to 1.7 times them, the cost of estimating before buying.
+The count-based rule inherits the wrong side of each regime, paying 1.6 to 1.7 under the GLM constants and 4.1 to 5.5 under DeepSeek, where a promotion rule keeps re-attempting families that never verify.
+The ToolPro port follows the same split, at 2.4 to 4.3 under the GLM constants because its programs serve one binding and repay nothing, and at 0.83 to 0.92 under DeepSeek because it buys almost nothing.
+The estimated-price break-even rule pays 0.90 to 1.50 times ours on the six cells, at or below ours under the GLM constants and 1.2 to 1.5 times ours under the DeepSeek constants, where accumulated excess arrives after the early uses of a hot family.
+The fixed rules need none of our estimates, so they are the deployable baselines, and the break-even rule shares our estimated price and spend check, so it is an ablation of the trigger rather than an independent baseline.
+Pricing the failed attempt inside the buy estimate at its measured multiple of 10.5 cuts the trigger's compilations under the DeepSeek constants from 11 to 15 per stream down to about five and its tokens by 6.4 to 18.9 percent against the narrow form that prices attempts at $C/\hat{p}$.
+This comparison measures the recorded rules and does not test the fixed-price theorem.
+
+\subsection{Decision rules on real arrival streams}
+\label{sec:realstreams}
+The same question on real arrival streams separates the concentrated streams from the singleton-heavy ones, two replayed from public process logs and two from Wikipedia edits, at the measured compilation price and at a raised price.
+Table~\ref{tab:realstreams} reports each stream's eligible fraction, the share of arrivals belonging to families that ever reach three arrivals, and scores the rules on the eligible substream as well as on the full stream.
+The logs supply only the arrival order, and the cost constants are the seven measured families under each model, assigned round-robin to each stream's families.
+The streams differ most in what fraction of arrivals ever becomes eligible.
+Arrivals belonging to families that reach three arrivals cover 0.964 of tool-edit Wikipedia, 0.956 of BPI 2019, 0.316 of human-edit Wikipedia, and 0.187 of Sepsis.
+These eligible families are 12 percent of families on the tool-edit stream, 16 percent on BPI 2019, and 2.5 and 3.2 percent on the human-edit and Sepsis streams.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{On real arrival streams staying reactive loses by multiples on the concentrated streams, the three-trace floor holds always compiling within 1.8 times ours, the count rule that wins on BPI 2019 loses by multiples under the DeepSeek constants, and the estimated-price break-even rule overtakes our policy at the highest price.}
+Cumulative price-weighted tokens relative to our policy (lower is better) on four real arrival streams at the measured price (left) and at five million tokens per compilation (right), two of the four simulated prices, 20 repetitions, with the seven measured families' constants under each model, the GLM-constants value on blue and the DeepSeek-constants value on amber.
+Within each model's constants, the best of the six rules in each column is in bold, the second best is underlined, and a rule that pays at least three times ours is in red.
+Ties share a mark, and no second is marked when the best is shared.
+The oracle and the offline optimum are bounds, not rules.
+The 95 percent bootstrap intervals of these cells have half-widths of at most 0.01, mostly below the print precision, so no $\pm$ terms are shown, and the offline optimum is a computed bound without an interval.
+The oracle knows the arrival counts and the verification rates and is a threshold rule.
+The offline optimum also knows the coins.}
+\label{tab:realstreams}
+\footnotesize
+\setlength{\tabcolsep}{1pt}
+\begin{tabular}{lcccc|cccc}
+\toprule
+ & \multicolumn{4}{c}{Measured price} & \multicolumn{4}{c}{Five million per compilation} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+{\scriptsize Policy} & {\scriptsize Sepsis} & {\scriptsize BPI 2019} & {\scriptsize Wiki tools} & {\scriptsize Wiki humans} & {\scriptsize Sepsis} & {\scriptsize BPI 2019} & {\scriptsize Wiki tools} & {\scriptsize Wiki humans} \\
+\midrule
+always reactive      & \dual{1.16}{\textbf{0.95}} & \dual{2.9}{\textbf{1.00}} & \dual{\textcolor{red}{12}}{1.00} & \dual{1.09}{\textbf{0.95}} & \dual{\underline{1.00}}{\textbf{1.00}} & \dual{1.96}{\textbf{1.00}} & \dual{\textcolor{red}{4.0}}{\textbf{1.00}} & \dual{1.09}{\textbf{1.00}} \\
+always compile       & \dual{1.01}{1.93} & \dual{1.75}{\textcolor{red}{9.41}} & \dual{1.18}{\textcolor{red}{5.09}} & \dual{1.23}{2.98} & \dual{1.42}{\textcolor{red}{23}} & \dual{1.58}{\textcolor{red}{172}} & \dual{0.71}{\textcolor{red}{87}} & \dual{1.64}{\textcolor{red}{41}} \\
+success count (10)   & \dual{1.06}{1.48} & \dual{\textbf{0.82}}{\textcolor{red}{8.76}} & \dual{\textbf{0.93}}{\textcolor{red}{4.99}} & \dual{\textbf{0.96}}{2.34} & \dual{1.02}{\textcolor{red}{13}} & \dual{\underline{0.68}}{\textcolor{red}{165}} & \dual{\underline{0.43}}{\textcolor{red}{85}} & \dual{1.06}{\textcolor{red}{31}} \\
+ToolPro rule (port)  & \dual{1.16}{\textbf{0.95}} & \dual{1.35}{1.07} & \dual{1.74}{\textbf{0.99}} & \dual{1.07}{\underline{0.96}} & \dual{\underline{1.00}}{\textbf{1.00}} & \dual{1.96}{\textbf{1.00}} & \dual{\textcolor{red}{4.0}}{\textbf{1.00}} & \dual{1.09}{\textbf{1.00}} \\
+break-even (est.)    & \dual{\underline{1.00}}{1.24} & \dual{1.25}{1.12} & \dual{\underline{1.00}}{1.01} & \dual{1.07}{1.23} & \dual{1.00}{1.56} & \dual{\textbf{0.45}}{1.05} & \dual{\textbf{0.41}}{1.02} & \dual{\textbf{0.95}}{1.19} \\
+ours                 & \dual{\textbf{1.00}}{1.00} & \dual{\underline{1.00}}{\underline{1.00}} & \dual{1.00}{\underline{1.00}} & \dual{\underline{1.00}}{1.00} & \dual{\textbf{1.00}}{\textbf{1.00}} & \dual{1.00}{\textbf{1.00}} & \dual{1.00}{\textbf{1.00}} & \dual{\underline{1.00}}{\textbf{1.00}} \\
+oracle               & \dual{0.99}{0.95} & \dual{1.41}{1.03} & \dual{1.04}{0.96} & \dual{1.12}{1.03} & \dual{0.92}{1.00} & \dual{0.48}{0.86} & \dual{0.34}{0.95} & \dual{0.94}{0.99} \\
+offline optimum      & \dual{0.88}{0.94} & \dual{0.21}{0.80} & \dual{0.42}{0.94} & \dual{0.72}{0.92} & \dual{0.91}{1.00} & \dual{0.27}{0.82} & \dual{0.26}{0.95} & \dual{0.87}{0.99} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the measured price our policy beats both fixed rules on the two streams whose arrivals concentrate on a few families.
+Staying reactive pays 12 times ours on the tool-edit Wikipedia stream and 2.9 times on BPI 2019, and always compiling pays 1.2 and 1.8 times.
+On the two singleton-heavy streams our policy lands within 15 percent of the reactive rule, and the three-trace eligibility floor holds always compiling to 1.0 to 1.6 times ours, because families that arrive once or twice never reach the compile decision.
+BPI 2019 and the tool-edit Wikipedia stream are the two streams where the success-count rule beats us at every price.
+The success-count rule pays 0.68 to 0.83 of ours across the four simulated prices, and at the measured price ours pays 1.23 times it, because their hottest families cover a fifth and a third of the arrivals and a ten-success promotion is right by construction there.
+The same count rule pays 1.6 to 5.5 times ours on the synthetic streams and 1.5 to 8.8 times on these four streams under the DeepSeek constants at the measured price, rising to 165 times at five million, so the cells it wins are the cells built for it.
+The oracle threshold rule no longer dominates us at the measured price, because the three-trace floor delays its buys as well, and it pays 0.99 to 1.41 times ours across the four streams, buying 1{,}379 programs on BPI 2019 against our 325.
+At five million tokens it pays 0.34 to 0.94 of ours, because its knowledge skips the buys our projection still makes.
+The estimated-price break-even rule overtakes us as the price rises.
+It pays 1.0 to 1.3 times ours at the measured price, but 0.41 of ours on the tool-edit stream and 0.45 on BPI 2019 at five million, where our projection overbuys and waiting is right.
+Scoring the eligible substream alone does not change the ordering where the eligible fraction is high, and it flips Sepsis toward compiling, with always compiling at 0.91 of ours and the oracle at 0.82, because the families that return are the ones worth buying.
+Under the DeepSeek constants, where three of seven families never verify, the trigger buys almost nothing at the measured price and lands within 6 percent of the reactive rule on every stream, and at five million it buys nothing, identical to staying reactive, while always compiling pays 23 to 172 times ours.
+The full buy price matters most on the Sepsis log, where it cuts the DeepSeek trigger's net tokens by 11 percent against the narrow form and its compilations from 17 to 4, while on BPI 2019 it pays 8 percent more, because the compilations it still makes sit on the families that never verify.
+Across both tables, no competitor that differs from our policy has a 95 percent bootstrap interval covering parity with it.
+The gap to the offline optimum spans 0.21 to 0.91 across the table, the residual cost of not knowing which families will return and which programs will verify.
+
+\subsection{Robustness across regimes}
+\label{sec:regimes}
+A whole stream sitting in one regime is where a fixed rule is right by construction, so it bounds what the trigger can lose.
+We sweep the four quantities that place a deployment in a regime, the drift hazard, the failure rate, the verification rate down to zero, and the price of a failed attempt relative to a verified one, together with the fallback multiple and a silent-failure share, over the four real streams at the measured price and at AutoRPA's 233k.
+Appendix~\ref{app:sim} lists the full grid, and every rule is scored against the better of the two fixed rules in each cell.
+The measured failed-attempt multiple is 10.5 under the DeepSeek constants and unidentified under the GLM constants, where no compilation is rejected and the axis collapses, so the sweep covers 400 cells under the DeepSeek constants and 240 under GLM, at 10 repetitions with 2{,}000 bootstrap resamples per cell.
+Each fixed rule loses by multiples somewhere, staying reactive up to 2.8 times the better fixed rule on hot streams with long-lived programs, always compiling up to 3.3 times under the GLM constants and 28 times under DeepSeek, and the estimated-price break-even rule up to 6.9 times under DeepSeek, concentrated where verification fails and attempts are expensive.
+Our policy's worst cell is 1.15 times the better fixed rule under the GLM constants, a BPI 2019 cell where verification never fails and the only error is buying later than always compiling, and 1.38 under DeepSeek on a tool-edit Wikipedia cell at the raised price with a lowered verification rate, with median 1.00 on both models and both means within half a percent of parity.
+The form of the spend cap decides the worst case: a cap that counts failed spend against the projected saving alone pays up to 1.76 under the GLM constants and 1.78 under DeepSeek, a cap that resets at each observed break pays 1.38 on both, and crediting the saving already delivered pays 1.15 and 1.38, so Algorithm~\ref{alg:policy} credits the realized saving.
+Pricing the failed attempt inside the buy estimate is what holds this axis, and on the 64 DeepSeek cells where verification always fails at the measured multiple the naive compiling rule averages 82{,}000 failed attempts per cell and reaches 240{,}000 in its worst BPI 2019 cell, against our 144 per cell and 918 in that cell.
+Raising the multiple from one to 10.5 moves our rule's mean ratio to the better fixed rule only from 0.99 to 1.01, while the naive rule's failure bill on those cells grows tenfold, from 22 billion to 226 billion tokens per cell.
+The policy's value across regimes is therefore a bounded loss against rules that are right by construction, and not a margin over the best rule in any one of them.
+
+\subsection{Fragility of deployed programs}
+\label{sec:fragility}
+How often a deployed program breaks is an input the policy cannot estimate before the break happens.
+The probe replays the verified programs on their held-out bindings under ten interface variants ported from two published robustness benchmarks \citep{lee2025bmoca,chen2026dgara}, with no model call anywhere in the probe.
+Appearance changes break 0.06 of the clean-passing replays on GLM and 0.10 on DeepSeek, interruptions break 0.59 and 1.00, and 82 to 93 percent of breaks are loud, so the assumed fallback detects most but not all failures (Appendix~\ref{app:fragility}).
+
+\section{Limitations}
+\label{sec:limitations}
+
+The measurement covers seven selected families on three interfaces and two models.
+The desktop and web extensions use custom parameterized tasks, so they do not support benchmark-wide conclusions.
+The retained Android costs use estimated missing cache counts and a bill-based deployment proxy, while the desktop and web costs use recorded token counts.
+Interrupted desktop calls with lost records are absent from the reported cost.
+Verification uses only five bindings, so a high pass fraction gives limited evidence about later execution.
+The re-runs show that the same program can fall from five passes to one when execution conditions change.
+The compilation price includes up to three repair rounds, and the repair loop is a large part of a failed attempt, so a cheaper loop lowers $C^{\mathrm{fail}}$ and the spend cap stops attempts later without changing the rule.
+The unit weights cached and output tokens by list-price ratios, and a provider that prices differently changes the two ratios and none of the measurements.
+The real arrival streams are process logs replayed as task arrivals, so they supply recurrence structure and not computer-use tasks, and a log of real agent traffic would replace them without touching the policy.
+The fragility probe injects ten perturbations from two published benchmarks, and the change frequency that turns its break rate into a hazard is a deployment property, which a log of interface updates supplies without rerunning the probe.
+Verification injects known parameters, whereas deployment extracts them from the goal.
+The Android extraction check shows that this difference can change whether a program meets the threshold.
+Three compilation observations per Android cell and one agent replay per binding do not establish independent retries or isolate within-binding execution variance.
+The decision rules use supplied costs and hazards, with only arrivals and verification estimated online.
+Online cost learning has not been evaluated in a live deployment.
+
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Compiling agent experience and auditing its cost.}
+Systems compile agent experience into reusable artifacts, always or on success counts: skill libraries \citep{wang2023voyager}, workflow memory \citep{wang2025awm}, site skills and site APIs \citep{wang2025asi,zheng2025skillweaver}, replay state machines \citep{li2026preact}, and program and skill compilers \citep{chen2026skilldroid,zhong2026actionengine,guo2026skilldisco,elyadouni2026tracecompiler,chundru2026agentic,malik2026crystallization}.
+A second wave audits whether reuse pays \citep{hajimiri2026budget,yang2026signalnoise,xu2026realcost,yu2026compile}; the executable claims are a prose amortization figure \citep{chen2026autorpa}, a zero-runtime break-even outside computer use \citep{trooskens2026compiledai}, a compilation cost without reuse analysis \citep{xu2026skillsmith}, and no net claim at all \citep{winston2026jit}.
+Each audit prices one artifact class after the fact, and a lifecycle survey leaves admission, verification, and retirement open \citep{li2026lifecycle}.
+The closest decision systems, ToolPro's per-instance latency rule \citep{liu2026toolpro} and Eureka's within-task thresholds \citep{wong2026eureka}, decide inside one execution, whereas our trigger decides across unknown arrivals.
+Cost is also the objective in model cascades and cost-per-delivered-answer accounting \citep{chen2023frugalgpt,erol2025costofpass}.
+
+\textbf{Classic decision theory.}
+Ski rental, the buy-versus-rent trade-off, and its learning-augmented and sequential variants \citep{karlin1988competitive,karlin1994competitive,borodin1998online,purohit2018improving,gollapudi2019online,bamas2020primal,shah2021sequential,cheung2024leveraging} assume a deterministic purchase and a non-decaying good, which verification and drift break here, and importing their guarantees is future work.
+Threshold ordering policies \citep{scarf1960optimality,veinott1966optimality,rust1987optimal}, just-in-time compilation, which makes the same expected-use-versus-compile-cost comparison \citep{aycock2003brief,gal2009trace,arnold2000adaptive}, adaptive indexing \citep{karp1988deferred,idreos2007database}, and empirical Bayes \citep{robbins1956empirical} price recurring work by expected future use, and none has been applied to compiling agent behavior.
+We state a discrete fixed-price reference from ski rental, whose theorem does not cover the verification, spend-cap, and residency mechanisms evaluated here.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We measured what compiling saves and what it costs on the same traces, and the measurement places the difficulty of the compilation decision on the price side.
+Verified programs remove most of the per-use cost, while documents give mixed savings.
+The initial comparison verifies eleven of fourteen programs, but repeated compilation and extraction-based checks show that the initial result need not persist.
+Compilation failures can be expensive, and the break-even law separates that price from trace costs already paid by the stream.
+The fixed-price threshold has a factor-two bound under its stated assumptions.
+The simulated estimating policies have no established competitive guarantee, and their measured costs depend on verification, recurrence, and drift.
+Compilation systems already exist; this work adds the measurement protocol that prices them and the rules that decide when to spend.
+
+\section*{AI use statement}
+% Matches the four boxes selected in the ICLR 2027 submission form
+% (aid/polish writing; retrieval and discovery; research ideation or
+% execution; drafting sections), 2026-09-19.
+We disclose the four uses of large language models and other AI tools selected in the submission form.
+To aid or polish writing, we used AI tools to revise the text and to keep the wording and terminology consistent across sections.
+For retrieval and discovery, we used AI-assisted search to find related work and to check published numbers, venues, and citation details against the original papers.
+For research ideation or execution, we used AI coding assistants to write and run the measurement and simulation code, to drive the runs on the benchmark environments, to aggregate the recorded logs, and to check the mathematical statements and the proofs; the authors checked the results against the recorded logs.
+To draft sections of the paper, the draft was produced with AI assistance and then edited and confirmed by the authors, who are responsible for the final content.
+
+\section*{Ethics statement}
+This work uses public benchmark environments, Android applications in an emulator, desktop applications in a Linux container, and a self-hosted web application, together with public, anonymized arrival logs, involves no human subjects, and reports no personal data.
+We do not foresee ethical concerns specific to it.
+
+\section*{Reproducibility statement}
+The measurement protocol and accounting unit are specified in Appendices~\ref{app:protocol} and~\ref{app:unit}, the reference results and their limits in Appendix~\ref{app:proofs}, and the simulation configuration in Appendix~\ref{app:sim}.
+All code, prompts, result files, and the script that regenerates every number in this paper from those files are released at \texttt{[anonymous repository URL]}.
+% TODO(user, after Anonymous GitHub link is created): replace the
+% \texttt{[anonymous repository URL]} placeholder with the URL.
+
+\bibliography{references}
+\bibliographystyle{iclr2027_conference}
+
+\appendix
+\crefalias{section}{appendix}
+\crefalias{subsection}{appendix}
+
+\section{Notation}
+\label{app:notation}
+
+Each symbol is introduced in the main text at first use.
+Table~\ref{tab:notation} collects them.
+
+\begin{table}[h]
+\centering
+\caption{Notation summary.}
+\label{tab:notation}
+\footnotesize
+\begin{tabular}{p{0.23\linewidth}p{0.68\linewidth}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$f$ & task family \\
+$c_f$ & cost of one agent attempt, harness floor subtracted \\
+$\pi_f$ & success rate of agent attempts, reported but not priced \\
+$L^{\mathrm{doc}}_f$ & cost of one agent run that reads the compiled document \\
+$d_f$ & cost of one program use, the extraction call \\
+$q_f$ & failure rate of a program use; a failed use falls back to one agent attempt \\
+$s_f$ & $(1-q_f)c_f-d_f$, saving per use; $s_f/c_f$ is the share \\
+$C_f$, $C^{\mathrm{fail}}_f$ & cost of a verified and of a failed compilation attempt \\
+$p_f$ & verification rate of a compilation attempt; $\hat{p}_f$ its posterior mean \\
+$C^{\mathrm{eff}}_f$ & $C_f+(1/p_f-1)C^{\mathrm{fail}}_f$ under independent retries \\
+$N^{*}_f$ & break-even count, the compilation spend over the per-use saving; marginal reading $N^{*}_{\mathrm{marg}}$, inclusive $N^{*}_{\mathrm{incl}}$, per-success $N^{*}_{\mathrm{succ}}$ \\
+$B_{\mathrm{pop}}$ & replacement spend under the population lottery (Section~\ref{sec:stationary}) \\
+$B$, $b$, $R$ & fixed purchase price, expected use cost $d+qc$, and accumulated excess in Theorem~\ref{thm:ski} \\
+$\lambda_f$ & arrival rate of family $f$ (unknown) \\
+$h_f$, $H_f=1/h_f$ & supplied drift hazard per use and expected program lifetime \\
+$\tau_R(n)$, $\varepsilon_R(n)$ & call cost and error rate of router $R$ at library size $n$; $\tau_0$ the cost at $n = 0$ \\
+$m$, $T$ & manifest tokens per program; residency in arrivals before eviction \\
+$k$ & agent attempts on the family so far \\
+$F_f$, $S_f$ & tokens spent on the family's failed compilation attempts; saving its programs have delivered \\
+$u$, $r_c$, $r_o$ & price-weighted token; price ratios of a cached input and an output token \\
+$\hat{\lambda}_f$ & estimated arrival rate \\
+$\hat{H}_f$, $\hat{B}_f$ & projected future uses and estimated compilation spend $C_f+(1/\hat{p}_f-1)C^{\mathrm{fail}}_f$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Proofs and Scope of the Reference Results}
+\label{app:proofs}
+
+\subsection{Theorem~\ref{thm:ski}: fixed-price discrete threshold}
+\label{app:ski}
+
+Write $b=d+qc$ and $s=c-b>0$.
+In expected accounting cost, every policy pays the common nonnegative term $nb$.
+Its remaining cost is $s$ for each agent use and $B$ if it buys a program.
+The offline policy knows $n$ and can either react throughout or buy before the first use, so its excess cost is $\min(ns,B)$.
+Delaying a purchase adds positive rent without reducing the fixed price.
+
+\begin{proof}
+Let $j=\lceil B/s\rceil$.
+The rule rents on the first $j-1$ arrivals and buys before serving arrival $j$, if it occurs.
+If $n<j$, then $ns<B$ and both policies pay excess $ns$.
+If $n\geq j$, then $(j-1)s<B\leq js\leq ns$, so the offline excess is $B$ and the rule's excess is $(j-1)s+B<2B$.
+Adding the common term $nb\geq0$ gives the stated factor of at most two for total expected accounting cost.
+The case $B\leq s$ causes immediate purchase at the first arrival and also satisfies the bound.
+\end{proof}
+
+The proof does not require an arrival-rate model.
+Decision-dependent routing costs are outside this reference model.
+It does require the known, deterministic purchase price and immediate availability assumed in the theorem.
+We do not assert that two is the best possible ratio for every discrete value of $B/s$.
+The classical continuous-time randomized ratio requires a different timing model and is not a guarantee for Algorithm~\ref{alg:policy}.
+
+\subsection{Failed-spend checks and random compilation}
+\label{app:cap}
+
+For independent compilation attempts with verification probability $p>0$, successful-attempt cost $C$, and failed-attempt cost $C^{\mathrm{fail}}$, geometric waiting gives expected spend $C+(1/p-1)C^{\mathrm{fail}}$ when attempts continue until verification.
+This identity accounts for compilation spend but does not account for extra agent uses while verification is delayed.
+It therefore does not turn a failed-spend check into a consequence of Theorem~\ref{thm:ski}.
+A check performed before an attempt must also allow for the attempt's possible cost if it is to enforce a pathwise budget after that attempt.
+
+For example, let $s=C=C^{\mathrm{fail}}=1$, $d=q=0$, and $p=1/2$ on a stream of four uses after traces are available.
+Consider a rule that reacts twice and then retries within an arrival while failed spend $F$ is below accumulated excess $E$.
+It resumes attempts on a later arrival if additional rent restores this allowance.
+At the third arrival it can make two attempts, and after two failures it reacts, raises $E$ to three, and can make one attempt at the fourth arrival.
+The expected attempt spend is $1+1/2+1/4=7/4$, and expected rent is $2+1/4+1/8=19/8$.
+Its total is $33/8>4$, whereas attempting until verification before the first use costs two in expectation.
+Thus even this retry schedule, which allows multiple attempts per arrival, exceeds a factor of two.
+
+Algorithm~\ref{alg:policy} uses realized savings plus projected savings as its allowance.
+Projection error, delayed verification, and a failed attempt that exceeds the remaining allowance keep this check from being a worst-case bound.
+We report its measured effect as an ablation.
+
+\subsection{Proposition~\ref{prop:ss}: replacement-cycle accounting}
+\label{app:ss}
+
+\begin{proof}
+Let $L$ be the number of program uses in a renewal cycle, including the terminal use that breaks the program.
+The independent per-use break probability gives $\mathbb{E}[L]=H=1/h$.
+A cycle pays $B$ to obtain the program and $Ld$ for extraction.
+Only its $L-1$ nonterminal uses incur ordinary failures, with expected fallback cost $(L-1)qc$.
+The terminal use incurs one fallback of cost $c$.
+Therefore the expected cycle cost is $B+Hd+(H-1)qc+c$.
+Dividing by $H$ gives $d+(1-h)qc+h(B+c)$ per arrival.
+Comparing with agent cost $c$ and rearranging gives $H[(1-q)c-d]>B+(1-q)c$.
+\end{proof}
+
+This calculation compares replacement at every break with never compiling under the stated cycle model.
+It does not prove optimality among policies that learn costs, verification probabilities, or interface lifetimes.
+A calendar-time hazard or delayed compilation requires a different cycle calculation.
+
+\subsection{Changing compilation prices and observed breaks}
+\label{app:crack}
+
+Additional traces can change both the compilation cost and the probability of verification.
+Theorem~\ref{thm:ski} fixes the purchase price throughout the comparison, so its proof does not establish a bound against an offline policy that can choose among future prices.
+Even monotonicity requires evidence.
+On one GLM family the two-trace program passed all five bindings and the three-trace program passed none.
+We treat trace-dependent prices as an extension requiring separate analysis.
+
+A program failure can reveal an interface change and trigger replacement.
+An epoch-wise competitive argument would require both the online policy and its comparator to face the same observable boundaries, artifact validity conditions, and purchase model within each epoch.
+In deployment, an agent-only policy may not observe a program-specific break, and a replacement compile may fail.
+Theorem~\ref{thm:ski} alone therefore gives no bound for the full stream with drift.
+The fragility probe measures failure observability, and the simulations measure replacement costs under their specified hazards.
+Silent failures require their own detection and recovery accounting.
+
+\section{Compilation Protocol}
+\label{app:protocol}
+
+\textbf{Environment.} AndroidWorld \citep{rawles2025androidworld} runs real Android applications in an emulator and checks each task programmatically.
+Each family is a task template with a parameter generator, so a seed fixes the bindings, and the checker reads the application's own store, so success is decided by the record and not by the actions taken.
+The four Android families are ContactsAddContact, MarkorDeleteNote, SimpleCalendarAddOneEvent, and OsmAndMarker; the two desktop families are CalcTableSave and WriterMemoSave in an OSWorld-based LibreOffice environment \citep{xie2024osworld}; and the web family is CommentPost on WebArena's self-hosted Reddit application \citep{zhou2024webarena}.
+The agent sees an unmarked screenshot and the numbered accessibility-tree text of the M3A text variant at every step, and acts by clicking an element index, typing, scrolling, or navigating.
+
+\textbf{Stages.} The protocol reproduces the translator--builder pipeline of \citet{chen2026autorpa} and adds verification.
+(1) Exploration: one agent attempt on each of seeds one, two, and three, with up to two reflection retries when the checker reports failure, and every attempt's cost enters the trace cost whether or not it succeeds.
+(2) Translation: each trace is rewritten action by action into a description of what the step did, one model call per step.
+(3) Compilation: from the translated traces of the first $k$ seeds, $k = 1, 2, 3$, one model call emits a program and another emits a document, so each family has three programs and three documents.
+(4) Per-$k$ verification: each unrepaired program runs on the same five held-out bindings, which gives the $p(k)$ columns of Table~\ref{tab:price}.
+(5) Verification and repair: the three-trace program is replayed on the traces, and a failure triggers an analysis call, an agent resumption from the failing step, and a rewrite of the program, at most three times.
+Every version is verified and the best-verified version is kept.
+(6) Deployment: a verified program serves thirty fresh bindings, each use one extraction call that reads the goal and fills the program's parameters, and a use fails when the program raises or the checker rejects the record.
+Verification injects the bindings as parameters, so an extraction failure appears in the measured $q$ of the deployed uses rather than in selection.
+(7) Document side: three agent runs on seeds four to six with the three-trace document in the prompt.
+
+\textbf{Which program the fourteen cells deployed.} The cells were run before verification on held-out bindings became the criterion, under the rule that the repair loop's own outcome decided deployment.
+One consequence is visible in Table~\ref{tab:price} and stated here rather than hidden.
+Two GLM programs whose final verification passed four of five were deployed, which the current threshold also verifies.
+
+\textbf{Locators.} A compiled program addresses controls through the accessibility tree by text, content description, and index, and never by resource identifier or by pixel coordinate, so that the contract is the same text the agent reads.
+This choice is what the fragility probe of Appendix~\ref{app:fragility} tests.
+
+\section{Accounting Unit}
+\label{app:unit}
+
+Every model call records the provider's counts of input tokens, cached input tokens, and output tokens, and the provider's bill for the call.
+The price-weighted token of Section~\ref{sec:unit} weights the three counts by the list-price ratios of the model, $r_c$ for a cached input token and $r_o$ for an output token, relative to an uncached input token.
+A per-call regression of the bill on the three counts over 1071 screenshot-bearing calls returns the list prices to within a few percent for the GLM coefficients and for the output coefficient on DeepSeek.
+The uncached coefficient is not a single number.
+The provider routes each call to one of several upstream hosts with different prices, so a call is billed at the list price or at a fixed multiple of it, and consecutive calls of one run can differ.
+The bill therefore measures the counts times a per-call routing factor, and the unit removes that factor.
+A call that lands on a host without a warm cache is billed at the cache share of the equivalent warm call, so the unit does not depend on where the provider routes a call.
+The cells reported here predate per-call host logging and use the provider's cached counts as reported.
+Dollar totals are reported alongside every table in the result files.
+The cells' deployment stage predates per-call logging of the split, so $d$ is the bill of a use at the list input price, which equals the unit up to the routing factor for a single uncached call.
+The traces reused from an earlier run lack cached-token counts, so their cached share is imputed from the same family's fresh runs on the same model, with the unimputed value kept in the result files.
+Builder replies that failed the syntax check were not charged in these cells, so $C$ is a lower bound on the compilation price.
+
+\section{Success Rates and Cost per Success}
+\label{app:success}
+
+Table~\ref{tab:success} reports what the objective of Section~\ref{sec:formulation} leaves out: how often an agent attempt succeeds, and what one delivered success costs on each path.
+An agent attempt succeeds with probability $\pi_f$, so a delivered success costs $c_f / \pi_f$ in expectation.
+A program use succeeds with probability $1 - q_f$ and its fallback with $\pi_f$, so a delivered success through the program costs $(d_f + q_f c_f) / ((1 - q_f) + q_f \pi_f)$.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Where the agent traces fail, a verified program lifts the success rate as well as removing cost, and where they do not, the per-success break-even equals the per-arrival one.}
+$\pi$ is the success rate of the agent traces.
+Agent per success is in thousands of price-weighted tokens and program per success in tokens.
+$N^{*}_{\mathrm{succ}}$ is the break-even count in delivered successes.
+A blue-only cell means that model produced no verified program.}
+\label{tab:success}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Family & $\pi$ & agent per success & program per success & $N^{*}_{\mathrm{succ}}$ \\
+\midrule
+Contacts & \dual{1.00}{1.00} & \dual{98.7k}{65.0k} & \dual{179}{2598} & \dual{0.42}{2.30} \\
+Markor delete & \dual{1.00}{1.00} & \dual{33.7k}{10.8k} & \dual{6940}{761} & \dual{1.46}{6.85} \\
+Calendar & \dual{1.00}{1.00} & \dual{313.8k}{146.3k} & \dualG{558} & \dualG{2.93} \\
+OsmAnd marker & \dual{0.13}{0.14} & \dual{2238.7k}{1069.5k} & \dualG{475} & \dualG{0.43} \\
+Calc table & \dual{1.00}{0.75} & \dual{505.1k}{862.3k} & \dualG{672} & \dualG{0.95} \\
+Writer memo & \dual{1.00}{0.75} & \dual{70.2k}{67.6k} & \dual{547}{650} & \dual{3.65}{8.74} \\
+Reddit comment & \dual{1.00}{1.00} & \dual{123.9k}{40.0k} & \dual{651}{654} & \dual{2.05}{8.44} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three observations follow.
+The agent traces succeed on most cells, with $\pi = 1$ on ten of fourteen.
+They fail hardest on the OsmAnd marker family, one success in eight attempts on GLM and one in seven on DeepSeek, and succeed at only three of four attempts on the two DeepSeek desktop families.
+The traces' success rate still predicts verification only loosely: nine of the ten cells with $\pi = 1$ are verified against two of the four others, and the exceptions run both ways, with GLM OsmAnd marker verified at $\pi = 0.13$ and DeepSeek Calendar rejected at $\pi = 1$.
+For a cell with $\pi = 1$ the per-success break-even equals the per-arrival one of Table~\ref{tab:price} by identity, so the two readings diverge exactly where the agent fails, and both divergences favor the program.
+GLM OsmAnd marker falls from 3.46 uses to 0.43 delivered successes, because an agent success there costs eight attempts, and DeepSeek Writer memo falls from 11.69 to 8.74 at three successes in four attempts.
+Where the program itself fails uses, the per-success reading charges the fallback, so on GLM Markor delete, whose program fails six of thirty uses, a delivered success through the program costs 6940 tokens against 33.7k through the agent.
+The per-arrival reading of the main text keeps the objective on tokens, and this table records that the same programs also change what a success costs.
+
+\section{Accounting Boundaries in Published Studies}
+\label{app:reconcile}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Published amortization statistics have different accounting scopes.}
+We retain each source's unit and aggregation.
+The finite-subset medians do not identify saving shares for the whole task population.}
+\label{tab:reconcile}
+\small
+\begin{tabular}{llrl}
+\toprule
+Work & Artifact & Build cost & Reported break-even \\
+\midrule
+\citet{xu2026realcost} & structured skill text & \$0.12 & 152, finite in 16/40 tasks \\
+\citet{xu2026realcost} & scoped skill loading & \$0.12 & 293, finite in 18/40 tasks \\
+\citet{xu2026realcost} & cheaper text compiler & \$0.01 & 12, finite in 15/40 tasks \\
+\citet{chen2026autorpa} & family program & 233k tok & approximately four tasks \\
+\citet{trooskens2026compiledai} & deterministic workflow & 9.6k tok & 17 transactions, zero runtime \\
+\citet{xu2026skillsmith} & skill-to-interface & 3.1k tok & none reported \\
+\citet{elyadouni2026tracecompiler} & workflow from traces & not measured & declined \\
+\citet{winston2026jit} & task-to-code & offline setup time & latency only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{\citet{xu2026realcost}.}
+Their baseline S1-M supplies a raw curated skill, so the comparison measures the effect of optimizing skill representation.
+For the structured-rendering condition S3-55-M, their Table 4 reports mean solve cost of \$0.0075 against \$0.0062 for S1-M, an increase at the condition mean.
+Their Table 5 reports mean compilation cost of approximately \$0.12 per task and median finite break-even count 152 for the 16 of 40 tasks whose solve cost decreases.
+The cheaper-compiler condition has mean compilation cost of approximately \$0.01 and median finite break-even count 12 for 15 of 40 tasks.
+The scoped-loading condition S4-55-M keeps the \$0.12 compilation cost and reports a median finite break-even count of 293 for 18 of 40 tasks, the upper end of the range the introduction cites.
+A ratio formed from a full-population mean compilation cost, a finite-subset median break-even count, and a full-population mean baseline cost mixes three aggregates.
+It does not estimate a mean or median saving share.
+A comparable share requires paired compile and solve costs at task level and an explicit treatment of tasks with nonpositive saving.
+
+\textbf{AutoRPA \citep{chen2026autorpa}.}
+Their appendix reports 233k compilation tokens per AndroidWorld family, including agent exploration, translation, compilation, and verification.
+They report amortization after approximately four tasks.
+The ratio $233/4$k is an implied saving scale, but a saving share also requires a matching agent baseline and aggregation.
+We do not infer a near-one share from that ratio alone.
+Our inclusive reading includes traces and provides a within-study comparison with our marginal reading (Table~\ref{tab:price}).
+
+\textbf{Compiled AI \citep{trooskens2026compiledai}.}
+Their Table 1 prices a 9,600-token one-time generation against 552 tokens per transaction and reports break-even at approximately 17 transactions, in a function-calling benchmark whose compiled workflows execute without model calls.
+The per-use saving is therefore the entire runtime cost, and nothing in the accounting prices verification failure or drift, which our setting must.
+
+\textbf{SkillSmith, TraceCompiler, and Agent JIT.}
+Skill-to-interface compilation reports a 3,104-token compilation cost per artifact and token reductions at use, but no reuse count at which the compilation is recovered \citep{xu2026skillsmith}.
+Trace mining into workflows states that offline compilation cost is not measured and that no net efficiency result is claimed \citep{elyadouni2026tracecompiler}.
+Just-in-time compilation of web tasks amortizes a per-application setup over latency rather than tokens \citep{winston2026jit}.
+
+\section{Fragility Probe Details}
+\label{app:fragility}
+
+\textbf{What is replayed.} Each verified Android program of Table~\ref{tab:price} is replayed on its five held-out bindings under ten interface variants, with no model call anywhere in the probe, so the only variable is the interface.
+Four GLM programs and two DeepSeek programs take part, 195 and 95 replays.
+
+\textbf{Variants.} The clean variant reproduces the verification outcome.
+Five configurations change the device for the whole session, ported from B-MoCA \citep{lee2025bmoca}: large font, small font, low display density, French locale, and dark theme.
+Four interruptions inject an event while the program runs, ported from D-GARA \citep{chen2026dgara}: a notification, a low-battery dialog, a permission dialog, and an update prompt, the last a stand-in for the benchmark's application-update dialog.
+The permission-dialog variant revokes a pre-granted runtime permission, which the note application does not hold, so that variant does not apply to it and its cell is skipped, 195 and 95 replays rather than 200 and 100.
+
+\textbf{Outcome coding.} A replay passes if the program returns normally and the checker accepts the record.
+It is loud if the program raises before returning, silent if it returns normally and the checker rejects the record.
+Table~\ref{tab:fragility} gives the pass rates.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Appearance changes leave the programs standing and interruptions bring them down, on both models.}
+Pass rate per variant over the verified programs' held-out bindings; the break-given-change and uniform rows use the robust success rate, conditional on the bindings that pass clean and averaged per family, so they do not equal one minus the pass rate.
+Silent counts the replays that returned normally with a wrong or missing record.}
+\label{tab:fragility}
+\small
+\begin{tabular}{ll>{\columncolor{glmTint}}r>{\columncolor{dsTint}}r}
+\toprule
+Arm & Source & GLM & DeepSeek \\
+\midrule
+clean & verification & 0.95 & 1.00 \\
+large font & B-MoCA & 0.70 & 0.60 \\
+small font & B-MoCA & 0.95 & 0.90 \\
+low density & B-MoCA & 0.90 & 1.00 \\
+French locale & B-MoCA & 0.95 & 1.00 \\
+dark theme & B-MoCA & 0.95 & 1.00 \\
+notification & D-GARA & 0.20 & 0.00 \\
+low battery & D-GARA & 0.75 & 0.00 \\
+permission dialog & D-GARA & 0.33 & 0.00 \\
+update prompt & D-GARA & 0.20 & 0.00 \\
+\midrule
+break given change, uniform & & 0.30 & 0.50 \\
+loud share of breaks & & 93\% & 82\% \\
+silent breaks & & 4 & 7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{What breaks.} Every failing step recorded in the trace addressed the control by its text or its content description.
+A larger font wraps a label and the exact match misses, and a dialog covers the control the program addresses, which the program does not know to dismiss and which defeats both locator kinds.
+The agent observes the screen at every step and closes the dialog, a step that a compiled action sequence lacks.
+In the web pilot, the agent survived five of six fault classes at up to 2.2 times its clean cost, the fallback multiple the sweep uses.
+
+\textbf{From break probability to hazard.} The two variant classes break at rates an order of magnitude apart.
+Appearance changes break 0.06 of the clean-passing replays on GLM and 0.10 on DeepSeek, and interruptions break 0.59 and 1.00, each the robust rate averaged over its class's variants.
+A deployment composes its per-use hazard from its own mix of change kinds, each rate times that kind's frequency, and the uniform draw over the nine variants, 0.30 and 0.50, is the single number a fixed equal mix would imply.
+The change frequencies are properties of the deployment and not of the program, and the sweep of Appendix~\ref{app:sim} covers the range.
+
+\section{Router Measurement}
+\label{app:router}
+
+\textbf{Manifest cost.} A resident manifest lists one entry per verified program, 80 to 120 tokens each, naming the family, its trigger, and its parameters.
+Appending manifests of 0 to 100 entries to the router prompt and regressing the prompt tokens on the entry count gives $m = 90.3$ tokens per entry on GLM and $94.3$ on DeepSeek, with a fixed cost of a few hundred tokens for the prompt itself.
+Entries written for the seven Android families are longer than the generic decoys, about 105 tokens each.
+
+\textbf{Routing error.} For each library size the router answers 49 asks.
+Five per family use the family's own goal wording or a paraphrase of it, and the rest match no program.
+An error is a wrong program or a miss.
+Both models route without error at 7, 10, 50, and 100 entries, and the one to two errors at 25 entries vanish under re-seeding, so $\varepsilon_R(n) = 0$ up to 100 entries for the full-manifest router, at a total cost of \$0.28 for 588 calls.
+The two OsmAnd families, whose entries differ in one clause, are routed correctly at every size.
+
+\textbf{Residency.}
+The term $m\min(T,\hat{\Lambda}_{\mathrm{rest}})$ is the trigger's allowance for manifest cost over an idle interval.
+Repeated uses can extend residency, so $mT$ is not a bound on the total manifest cost of one compiled program.
+Because relisting does not itself incur compilation cost, we make no optimality claim for a residency threshold derived by balancing eviction against recompilation.
+
+\section{Mechanism Selection}
+\label{app:mech}
+
+Algorithm~\ref{alg:policy} leaves open the projection horizon, the verification estimate, and the spend cap, and verification leaves open the number of held-out bindings.
+This appendix compares candidates for each by simulation and fixes the binding count analytically, holding the other mechanisms at their chosen values and varying one at a time.
+At the measured GLM prices most comparisons are inert, because the families that compile do so within a few uses whatever the mechanism does, so each comparison runs at the stress condition where the mechanism matters: a raised compilation price, a lowered verification rate, or a stream that goes cold.
+Every number is the candidate's mean cumulative tokens divided by an oracle that knows the arrivals, averaged over the block's cells; lower is better.
+The comparison streams overlap the evaluation streams of Section~\ref{sec:eval}, so these numbers select a design and do not predict held-out performance.
+Earlier versions of the policy carried a cooldown after a failed attempt and a decay of the arrival counters.
+Both are compared here for the record and neither is part of Algorithm~\ref{alg:policy}.
+
+\textbf{(a) Verification estimate and spend cap.}
+Candidates for $\hat{p}_f$: the flat add-one estimate, the prior stratified by the traces' success rate $\pi_f$, and, as a reference, the true verification rate handed to the trigger, each with and without the spend cap.
+The true rate is the cheapest at 1.47 under the GLM constants and 1.08 under DeepSeek, the add-one estimate pays 1.66 and 1.55, and the stratified prior 1.64 and 1.58.
+The prior lowers the first-attempt estimate on families whose traces failed, which is right on the families that never compile and wrong on the one family that compiled from mostly failed traces.
+Under the DeepSeek constants, at the native price with verification always succeeding, handing the trigger the true rate pays 1.17 against 2.88 for the add-one estimate, because knowing that never-verifying families exist is most of the decision.
+Algorithm~\ref{alg:policy} keeps the add-one estimate, which is cheaper under the DeepSeek constants and within two percent of the prior under the GLM constants, and the stratified prior remains the natural next candidate once more families are measured.
+The cap is inert in this block, identical to its base on both models, so its three forms are compared in the sweep of Section~\ref{sec:regimes}: counting failed spend against the projected saving alone, resetting the count at each observed break, and crediting the saving already delivered, with worst cells of 1.76, 1.38, and 1.15 under the GLM constants and 1.78, 1.38, and 1.38 under DeepSeek.
+A second seed repeats the sweep and preserves the ordering, with worst cells of 1.75, 1.42, and 1.15 under the GLM constants and 1.78, 1.34, and 1.18 under DeepSeek, so the selection does not rest on one seeding.
+
+\textbf{(b) Arrival prior.}
+The arrival-rate estimate needs a prior for families with little history.
+Candidates: three fixed conjugate Gamma priors and the population prior, which prices a family's first arrival as the fraction of known families that ever returned times their pooled arrival rate, plus one for the deciding arrival itself.
+On the synthetic ladder and the real logs the population prior pays 1.37 against 1.47 for Gamma$(1,20)$ and ties Gamma$(1,5)$ under the GLM constants, and under DeepSeek the three priors tie at 1.08.
+The population prior is at the front on both models, and Algorithm~\ref{alg:policy} keeps it.
+
+\textbf{(c) Projection horizon.}
+The projection horizon is the window over which the trigger projects a family's arrivals.
+Candidates: plain deployment age, deployment age capped at the scenario lifetime, a fixed 60-step window, and the fixed window capped.
+The choice is model-dependent.
+Under the GLM constants plain deployment age pays 1.44, the capped form 3.0, and the fixed window 5.2, whose worst cell is again a fragmented 30{,}000-arrival stream where a 60-step projection never clears a five-million buy price.
+Under the DeepSeek constants the ordering reverses, with both capped forms and the fixed window at 1.1 against 1.5 for plain deployment age, whose worst cell is BPI 2019 at the five-million price.
+The lifetime cap is no longer inert, since it turns the GLM fragmented cell from 1.5 to 13 times and repairs the DeepSeek BPI 2019 cell from 3.2 to 1.2, in opposite directions on the two models.
+Algorithm~\ref{alg:policy} keeps the capped deployment age as stated, which is the better form under the DeepSeek constants and the worse one under GLM on a block dominated by one fragmented stream.
+
+\textbf{(d) Retired mechanisms.}
+A cooldown after a failed attempt takes three forms, a fixed block of three arrivals, a doubling of the effective price per consecutive failure, and a blacklist.
+They pay 1.6, 1.8, and 2.7 under the GLM constants and 1.6, 1.7, and 1.9 under DeepSeek at lowered verification rates.
+The blacklist is ruinous because one failed attempt blocks the family for the rest of the stream, and the other two are what the verification estimate and the spend cap now do without a separate mechanism.
+A decay of the arrival counters changes the block mean by at most 0.01 under GLM and not at all under DeepSeek, inside the seeding noise, so decay is dropped.
+
+\textbf{(e) Verification holdout count.}
+Verification executes a candidate on $n$ held-out bindings, and if a fraction $q$ of the candidate's inputs are defective and the holdouts are independent draws, the chance of accepting a defective program at threshold $n$ of $n$ is $(1-q)^{n}$.
+
+\begin{table}[h]
+\caption{Verification holdout count.
+The left block is $(1-q)^{n}$, the chance that a program with defect rate $q$ passes all $n$ holdouts.
+The right block is the holdout count that minimizes expected cost under two harm models: the defect is caught on the program's first bad use, or it stays silent for the program's whole life.}
+\label{tab:mech-verify}
+\centering
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+ & \multicolumn{4}{c}{$(1-q)^{n}$} & \multicolumn{2}{c}{cost-minimizing $n$} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-7}
+Defect rate $q$ & $n{=}1$ & $n{=}3$ & $n{=}5$ & $n{=}10$ & caught fast & silent \\
+\midrule
+0.05 & 0.950 & 0.857 & 0.774 & 0.599 & 4 & 22 \\
+0.1  & 0.900 & 0.729 & 0.590 & 0.349 & 9 & 24 \\
+0.3  & 0.700 & 0.343 & 0.168 & 0.028 & 6 & 14 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We use $n = 5$ with a threshold of four (Table~\ref{tab:mech-verify}), and the justification is narrower than this count suggests.
+Five sits inside the range that minimizes expected cost only under the fast-detection harm model, and the probe of Section~\ref{sec:fragility} puts 82 to 93 percent of breaks in that regime.
+The threshold of four rather than five absorbs the verification noise.
+The gate's acceptance probability for a defective program at threshold four is $(1-q)^{5}+5q(1-q)^{4}$, above the all-five column of Table~\ref{tab:mech-verify}, and that margin is the price of the noise tolerance.
+The same program passed five and then four bindings on one family with no change in between (Appendix~\ref{app:protocol}), and a rule that demanded five would have rejected two programs that then served 24 and 30 of 30 uses.
+Five straight passes bound the defect rate below 0.45 at 95 percent confidence, so a pass rate of one is thin evidence that the true rate is small, and the thirty deployed uses are what measure $q$.
+
+\section{Policy Simulation Details}
+\label{app:sim}
+
+\textbf{Costs and verification assumptions.}
+Each simulated family uses cost constants from one of the seven measured families and one model.
+The recorded native scenarios set $p=0$ for compilations that were not verified and use the measured verification values for the other cells.
+A program's pass fraction over bindings, the probability that an independent compilation passes verification, and the verified fraction across families are different quantities.
+The measured compilations do not establish the per-family retry probabilities used by the simulation.
+We interpret the native verification settings as modeling assumptions and the explicit $p$ sweep as a sensitivity analysis.
+A stream's families are assigned to the seven measured families round-robin, so a stream with many families draws on every regime of Section~\ref{sec:price}.
+Every arrival pays the router call $\tau_0+mn$ at the measured $m$.
+Eviction depends on the selected policy variant and deployment configuration (Appendix~\ref{app:router}).
+
+\textbf{Baselines.} The always-compile rule has variants with and without residency.
+The success-count rule promotes a family after ten successful agent runs, in the spirit of evidence-based promotion \citep{malik2026crystallization}.
+The ToolPro port \citep{liu2026toolpro} decides greedily on every arrival from a windowed rate estimate taken from the last five inter-arrival times, and its artifacts serve one instance, so a new binding pays the compilation again.
+The break-even rows use accumulated excess and an estimated buy price, with a failed-spend check where marked.
+Theorem~\ref{thm:ski} concerns a fixed deterministic price and does not apply to these estimating rows.
+The oracle is a threshold rule that knows every family's arrival count and verification rate and pays the router call.
+Without fragility or drift the offline optimum is an exact scan over each family's arrival positions with every random outcome known in advance, the manifest tax included, and the three-trace floor ignored.
+When verification always succeeds the scan is attained, so it is the true optimum and not just a bound.
+With gate randomness it charges the gate its expectation and drops re-admissions, two relaxations that only lower the value, so it stays a lower bound.
+The regime sweep replaces the scan with a two-state dynamic program per family that keeps the manifest tax and chooses when to replace a dead program, and each of its relaxations only lowers the value, so it stays a lower bound.
+Under the legacy drift channel it falls back to the tax-blind dynamic program, which stays a lower bound because the tax term is nonnegative.
+The policies in a cell share the arrival sequence.
+The reruns use the measured constants of Tables~\ref{tab:share} and~\ref{tab:price}, the full buy formula of Algorithm~\ref{alg:policy}, the add-one verification estimate, and the template's three-trace eligibility throughout.
+The simulator still enables eviction only for designated policy variants.
+The regime sweep shares the per-attempt random draws across policies.
+
+\textbf{Synthetic streams.} 300 arrivals over the seven families under Poisson, Zipf, and bursty arrival patterns, a drift hazard of 0.02 per use, 20 repetitions per cell.
+
+\textbf{Real arrival streams.} Each case of a process log is one arrival, and its variant, the sequence of activities it passes through, is its family.
+The Sepsis log \citep{mannhardt2016sepsis} has 1{,}050 cases over 846 families, of which 93 percent arrive exactly once, and the BPI 2019 purchase-order log \citep{vandongen2019bpi} has 251{,}734 cases over 11{,}973 families, of which 75 percent arrive once but carry under 4 percent of arrivals while the hottest family covers 20 percent.
+The two Wikipedia streams are drawn from 48 hours of edits to English Wikipedia articles, 227{,}394 edits pulled from the recent-changes feed, with a family defined by the bot flag, the editing tool, the edit class, and the normalized edit-summary template.
+The tool stream keeps the tool-tagged and bot edits, 65{,}564 arrivals over 2{,}529 families, where the hottest family covers 36 percent of arrivals and 81 percent of families arrive once but carry 3 percent of arrivals.
+The human stream keeps the edits with neither tool tag nor bot flag, the first 100{,}000 of 161{,}830 arrivals over 111{,}063 families, where 96 percent of families arrive once and together carry 66 percent of arrivals, the heaviest singleton tail of the four streams.
+The logs and streams supply only the arrival order.
+
+\textbf{The regime sweep.} Section~\ref{sec:regimes} draws 50 grid points from six axes.
+The drift hazard $h$ ranges over 0, 0.02, 0.1, and 0.3 per use; the base failure rate over 0.17, 0.4, and 0.6; the verification rate over 1, 0.5, 0.3, and 0; the fallback multiple over 1 and 2.2, the upper value from a web pilot on WAREX \citep{kara2025warex} where a fallback run after a program failure cost up to 2.2 agent runs; a silent-failure share of 0 and 0.3 with a penalty of three agent runs per silent failure; and the failed-attempt price over one and the measured multiple of the verified price.
+A core block varies each axis from a base point, and further blocks pair the failed-attempt price with each verification rate.
+The sweep runs over the four real streams and two compilation prices, the measured price and AutoRPA's 233k, for 400 cells under the DeepSeek constants and 240 under the GLM constants, whose failed-attempt price axis collapses to its single measured level, at 10 repetitions with 2{,}000 bootstrap resamples per cell.
+Drift breaks a deployed program on a use, loudly, and removes its manifest entry, so the family must recompile.
+The failure rate acts on every live use independently.
+The full grid, the per-cell means, and the bootstrap intervals are in the result files.

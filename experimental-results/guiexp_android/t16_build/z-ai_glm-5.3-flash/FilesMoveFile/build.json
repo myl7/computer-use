@@ -1,0 +1,582 @@
+{
+ "family": "FilesMoveFile",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 20,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 5,
+  "retry_episodes": 2,
+  "reused_episodes": 0,
+  "reflection_calls": 2,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 17,
+    "prompt_tokens": 834966,
+    "cached_tokens": 718848,
+    "completion_tokens": 1507,
+    "total_tokens": 836473,
+    "cost_usd": 0.03540535,
+    "model_calls": 19
+   },
+   {
+    "seed": 1,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 17,
+    "prompt_tokens": 747778,
+    "cached_tokens": 612864,
+    "completion_tokens": 1094,
+    "total_tokens": 748872,
+    "cost_usd": 0.03877832,
+    "model_calls": 17
+   },
+   {
+    "seed": 1,
+    "attempt": 2,
+    "reused": false,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 376580,
+    "cached_tokens": 182272,
+    "completion_tokens": 603,
+    "total_tokens": 377183,
+    "cost_usd": 0.02404469,
+    "model_calls": 12
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 868741,
+    "cached_tokens": 721152,
+    "completion_tokens": 1344,
+    "total_tokens": 870085,
+    "cost_usd": 0.04400046,
+    "model_calls": 18
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 370160,
+    "cached_tokens": 309056,
+    "completion_tokens": 923,
+    "total_tokens": 371083,
+    "cost_usd": 0.01646462,
+    "model_calls": 12
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 1,
+    "for_attempt": 1,
+    "prompt_tokens": 797,
+    "completion_tokens": 1546,
+    "cached_tokens": 0,
+    "cost_usd": 0.0008836245
+   },
+   {
+    "seed": 1,
+    "for_attempt": 2,
+    "prompt_tokens": 709,
+    "completion_tokens": 1097,
+    "cached_tokens": 0,
+    "cost_usd": 0.0003889809
+   }
+  ],
+  "totals": {
+   "calls": 80,
+   "prompt_tokens": 3199731,
+   "cached_tokens": 2544192,
+   "completion_tokens": 8114,
+   "total_tokens": 3207845,
+   "cost_usd": 0.15996605
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 5639.6,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 8345,
+    "cached_tokens": 0,
+    "completion_tokens": 8040,
+    "total_tokens": 16385,
+    "cost_usd": 0.00477642
+   },
+   {
+    "seed": 2,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 8615,
+    "cached_tokens": 0,
+    "completion_tokens": 7790,
+    "total_tokens": 16405,
+    "cost_usd": 0.00499272
+   },
+   {
+    "seed": 3,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 8118,
+    "cached_tokens": 1472,
+    "completion_tokens": 6242,
+    "total_tokens": 14360,
+    "cost_usd": 0.00361742
+   }
+  ],
+  "totals": {
+   "calls": 36,
+   "prompt_tokens": 25078,
+   "cached_tokens": 1472,
+   "completion_tokens": 22072,
+   "total_tokens": 47150,
+   "cost_usd": 0.01338656
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 2827,
+    "completion_tokens": 5997,
+    "cached_tokens": 0,
+    "cost_usd": 0.00298172556
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 2724,
+    "completion_tokens": 1098,
+    "cached_tokens": 0,
+    "cost_usd": 0.00083426112
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 4746,
+    "completion_tokens": 9955,
+    "cached_tokens": 0,
+    "cost_usd": 0.0050692554
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 4643,
+    "completion_tokens": 2642,
+    "cached_tokens": 0,
+    "cost_usd": 0.00175760244
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 6558,
+    "completion_tokens": 17628,
+    "cached_tokens": 0,
+    "cost_usd": 0.00853575624
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 6455,
+    "completion_tokens": 1329,
+    "cached_tokens": 0,
+    "cost_usd": 0.0014224518
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 27953,
+   "cached_tokens": 0,
+   "completion_tokens": 38649,
+   "total_tokens": 66602,
+   "cost_usd": 0.02060106
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 22231,
+    "cached_tokens": 0,
+    "completion_tokens": 136610,
+    "total_tokens": 158841,
+    "cost_usd": 0.05974802
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "LookupError: 'Show roots' (hamburger) button not found on screen"
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "LookupError: 'Show roots' (hamburger) button not found on screen"
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": false,
+     "error": "LookupError: 'Show roots' (hamburger) button not found on screen"
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": false,
+     "error": "LookupError: 'Show roots' (hamburger) button not found on screen"
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": false,
+     "error": "LookupError: 'Show roots' (hamburger) button not found on screen"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "LookupError: storage root 'sdk_gphone_x86_64' not found in the roots drawer"
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": false,
+     "error": "LookupError: storage root 'sdk_gphone_x86_64' not found in the roots drawer"
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": false,
+     "error": "LookupError: storage root 'sdk_gphone_x86_64' not found in the roots drawer"
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": false,
+     "error": "LookupError: storage root 'sdk_gphone_x86_64' not found in the roots drawer"
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": false,
+     "error": "LookupError: storage root 'sdk_gphone_x86_64' not found in the roots drawer"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 11,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2878,
+   "cached_tokens": 0,
+   "completion_tokens": 4504,
+   "total_tokens": 7382,
+   "cost_usd": 0.00265687
+  },
+  "resume_episodes": {
+   "calls": 38,
+   "prompt_tokens": 1324463,
+   "cached_tokens": 991360,
+   "completion_tokens": 15708,
+   "total_tokens": 1340171,
+   "cost_usd": 0.07495201
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 15673,
+   "cached_tokens": 0,
+   "completion_tokens": 118982,
+   "total_tokens": 134655,
+   "cost_usd": 0.05121226
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 41,
+   "prompt_tokens": 1327341,
+   "cached_tokens": 991360,
+   "completion_tokens": 20212,
+   "total_tokens": 1347553,
+   "cost_usd": 0.07760888
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 28,
+  "success_rate": 0.9333333333333333,
+  "d_tokens_mean": 277.43333333333334,
+  "total_tokens": 8323,
+  "cost_usd": 0.00202683
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1574,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 390597,
+    "cached_tokens": 120576,
+    "completion_tokens": 745,
+    "total_tokens": 391342,
+    "cost_usd": 0.03025757,
+    "model_calls": 12
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 13,
+    "prompt_tokens": 454035,
+    "cached_tokens": 283072,
+    "completion_tokens": 603,
+    "total_tokens": 454638,
+    "cost_usd": 0.03041767,
+    "model_calls": 13
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 12,
+    "prompt_tokens": 373897,
+    "cached_tokens": 311872,
+    "completion_tokens": 743,
+    "total_tokens": 374640,
+    "cost_usd": 0.01855828,
+    "model_calls": 12
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 37,
+   "prompt_tokens": 1218529,
+   "cached_tokens": 715520,
+   "completion_tokens": 2091,
+   "total_tokens": 1220620,
+   "cost_usd": 0.07923352
+  },
+  "L_doc_tokens_mean": 406873.3333333333
+ },
+ "break_even": {
+  "c_raw_tokens": 692547.0,
+  "c_cache_adjusted_tokens": 226132.0,
+  "d_tokens": 277.43333333333334,
+  "q": 0.06666666666666665,
+  "cache_ratio_r": 0.2,
+  "build_totals_raw": {
+   "exploration": 3207845,
+   "translator": 47150,
+   "builder_selected": 158841,
+   "verification": 1347553,
+   "autorpa_build": 4761389
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 1172491,
+   "translator": 45972,
+   "builder_selected": 158841,
+   "verification": 554465,
+   "autorpa_build": 1931770
+  },
+  "s_raw": 646099.8,
+  "nstar_raw": {
+   "marginal": 0.2458,
+   "autorpa_build": 7.3694
+  },
+  "s_cache_adjusted": 210779.1,
+  "nstar_cache_adjusted": {
+   "marginal": 0.7536,
+   "autorpa_build": 9.1649
+  }
+ },
+ "total_cost_usd": 0.404035,
+ "redeploy": {
+  "source_artifact": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/artifact_k3_code.py",
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Podcasts"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "health_series.mp3",
+      "source_folder": "Recordings",
+      "destination_folder": "Podcasts"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "history_lecture.mp3",
+      "source_folder": "Notifications",
+      "destination_folder": "Audiobooks"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "jazz_song.mp3",
+      "source_folder": "Download",
+      "destination_folder": "Music"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "traffic_info.mp3",
+      "source_folder": "Music",
+      "destination_folder": "Notifications"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "p_after": 1.0,
+  "admitted": true,
+  "gate_min_pass": 4,
+  "timestamp": "2026-09-11T18:11:27+0800",
+  "deploy_uses": 30,
+  "doc_arm": false
+ }
+}

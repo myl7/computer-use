@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workflow - One Protocol Prices Both Artifact Classes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=block" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; font-family: "Source Sans 3", Arial, sans-serif; }
+    svg { display: block; }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <script>
+    const FONT = '"Source Sans 3", Arial, sans-serif';
+    // Every colour used for text clears 4.5:1 on white.
+    const C = {
+      ink: "#243447", muted: "#5E6E7E", line: "#B9C6D3", faint: "#F6F8FB",
+      blueT: "#34597F", blueDeep: "#2F5580", blueTint: "#E6EEF7",
+      coralT: "#98493F", coralTint: "#FAE7E2",
+      amberT: "#85580F", amberTint: "#FBF0DC",
+      tealT: "#2C6459", tealFill: "#3F8073", tealTint: "#EAF4F1",
+      // 3D backing layers, one tone darker than the fills they sit behind.
+      shLight: "#CBD5DF", shBlueDeep: "#1D3650", shBlueTint: "#C6D8EA",
+      shTealFill: "#2C5D53", shTealTint: "#C2DAD3", shCoralTint: "#F0CFC7",
+      shAmberTint: "#EDD9B8", shFaint: "#D8E0E8"
+    };
+
+    const W = 780, H = 514;
+    const B1 = 118, B2 = 230, B3 = 306;
+    const BOX_H = 68;
+    const PAD = 13, INSET = 14;
+    const LEFT = 12, RIGHT = 768;
+    const TITLE = 16.5, SUB = 14, CHIP = 14;
+
+    const svg = d3.select("#chart").append("svg")
+      .attr("width", W).attr("height", H).attr("viewBox", `0 0 ${W} ${H}`)
+      .attr("data-figure", "measurement-protocol-workflow-v11");
+    // Full-canvas background so the export is not cropped to the drawn content.
+    svg.append("rect").attr("x", 0).attr("y", 0).attr("width", W).attr("height", H)
+      .attr("fill", "#fff").attr("data-layer", "canvas");
+    const defs = svg.append("defs");
+    [["arrow", C.muted], ["arrow-blue", C.blueT], ["arrow-teal", C.tealT],
+     ["arrow-coral", C.coralT], ["arrow-amber", C.amberT], ["arrow-ink", C.ink],
+     ["arrow-derived", "#5B4A8A"]].forEach(([id, fill]) => {
+      defs.append("marker").attr("id", id).attr("viewBox", "0 0 10 8")
+        .attr("refX", 9).attr("refY", 4).attr("markerWidth", 6).attr("markerHeight", 5).attr("orient", "auto")
+        .append("path").attr("d", "M0,0 L10,4 L0,8 Z").attr("fill", fill);
+    });
+    // F-b: derived-methods heads are hollow (white fill, purple outline, open V so
+    // the back edge is not stroked) — distinguishable from solid heads in grayscale.
+    defs.select("marker#arrow-derived path")
+      .attr("d", "M0,0 L10,4 L0,8").attr("fill", "#fff")
+      .attr("stroke", "#5B4A8A").attr("stroke-width", 1.3);
+
+    function text(g, x, y, value, size, weight = 400, fill = C.ink, anchor = "start") {
+      return g.append("text").attr("x", x).attr("y", y).attr("font-family", FONT)
+        .attr("font-size", size).attr("font-weight", weight).attr("fill", fill)
+        .attr("text-anchor", anchor).text(value);
+    }
+    // One hidden text node measures every string, so no box is narrower than its label.
+    const meas = svg.append("text").attr("visibility", "hidden").attr("font-family", FONT);
+    function tw(s, size, weight) {
+      meas.attr("font-size", size).attr("font-weight", weight).text(s);
+      return meas.node().getComputedTextLength();
+    }
+    function natural(s) {
+      const w = Math.max(...s.title.map(t => tw(t, TITLE, 700)), ...s.sub.map(t => tw(t, SUB, 600)));
+      return Math.ceil(w) + 2 * PAD + (s.gate ? 2 * INSET : 0);
+    }
+    // Draws a node with a double-layer offset pseudo-3D backing sheet.
+    function draw(s, cx, cy, w) {
+      const g = svg.append("g").attr("data-node", s.key);
+      const h = s.h || BOX_H;
+      const x = cx - w / 2, y = cy - h / 2;
+      const shape = sel => sel.append("path").attr("d",
+          `M${x},${cy} L${x + INSET},${y} L${x + w - INSET},${y}` +
+          ` L${x + w},${cy} L${x + w - INSET},${y + h} L${x + INSET},${y + h} Z`)
+        .attr("fill", s.fill).attr("stroke", s.stroke).attr("stroke-width", 1.1);
+      const rect = (sel, dx, dy) => sel.append("rect").attr("x", x + dx).attr("y", y + dy)
+        .attr("width", w).attr("height", h)
+        .attr("rx", s.pill ? h / 2 : 6)
+        .attr("fill", s.fill).attr("stroke", s.stroke).attr("stroke-width", 1.1);
+      if (s.gate) {
+        g.append("path").attr("d",
+          `M${x + 2.5},${cy + 2.5} L${x + INSET + 2.5},${y + 2.5} L${x + w - INSET + 2.5},${y + 2.5}` +
+          ` L${x + w + 2.5},${cy + 2.5} L${x + w - INSET + 2.5},${y + h + 2.5} L${x + INSET + 2.5},${y + h + 2.5} Z`)
+          .attr("fill", s.shadow).attr("data-node", `${s.key}-3d`);
+        shape(g);
+      } else {
+        rect(g, 2.5, 2.5).attr("fill", s.shadow).attr("data-node", `${s.key}-3d`);
+        rect(g, 0, 0);
+      }
+      const rows = s.title.map(t => ({ t, size: TITLE, w: 700, c: s.titleColor, lh: 20 }))
+        .concat(s.sub.map(t => ({ t, size: SUB, w: 600, c: s.subColor, lh: 18 })));
+      const blockH = d3.sum(rows, r => r.lh);
+      let cur = cy - blockH / 2;
+      rows.forEach(r => { text(g, cx, cur + r.lh * 0.75, r.t, r.size, r.w, r.c, "middle"); cur += r.lh; });
+      return { x, y, w, cx, cy, r: x + w, b: y + h };
+    }
+    function arrow(points, color, marker, key, dash) {
+      return svg.append("path").attr("d", points.map((p, i) => `${i ? "L" : "M"}${p.x},${p.y}`).join(" "))
+        .attr("fill", "none").attr("stroke", color).attr("stroke-width", 1.4)
+        .attr("stroke-linejoin", "round").attr("marker-end", `url(#${marker})`).attr("data-edge", key)
+        .attr("stroke-dasharray", dash || null);
+    }
+    // A measured quantity: an italic symbol chip plus a gloss, centred on the chip.
+    function qtag(x, y, base, sub, gloss, color, tint, toLeft, glossSize) {
+      const g = svg.append("g").attr("data-quantity", base + (sub || ""));
+      const cw = sub ? 40 : 30;
+      g.append("rect").attr("x", x + 2.5).attr("y", y + 2.5).attr("width", cw).attr("height", 26).attr("rx", 5)
+        .attr("fill", C.shFaint).attr("data-node", `quantity-${base}${sub || ""}-3d`);
+      g.append("rect").attr("x", x).attr("y", y).attr("width", cw).attr("height", 26).attr("rx", 5)
+        .attr("fill", tint).attr("stroke", color).attr("stroke-width", 1);
+      const t = g.append("text").attr("x", x + cw / 2).attr("y", y + 19).attr("font-family", FONT)
+        .attr("font-size", 17).attr("font-weight", 700).attr("font-style", "italic")
+        .attr("fill", color).attr("text-anchor", "middle");
+      t.append("tspan").text(base);
+      if (sub) t.append("tspan").attr("font-size", 11.5).attr("dy", 3.5).attr("font-style", "normal").text(sub);
+      gloss.forEach((l, i) => text(g, toLeft ? x - 8 : x + cw + 8,
+        y + 18 - (gloss.length - 1) * 9 + i * 18, l, glossSize || CHIP, 600, C.muted, toLeft ? "end" : "start"));
+      return g;
+    }
+
+    /* ---- top band: setup strip (platforms + price C), not an extension ---- */
+    svg.append("rect").attr("x", 8).attr("y", 8).attr("width", 764).attr("height", 44)
+      .attr("rx", 8).attr("fill", "none").attr("stroke", "#D8DDE3").attr("stroke-width", 1)
+      .attr("data-region", "top-band");
+
+    /* ---- platform chips -------------------------------------------------- */
+    let px = LEFT;
+    ["Android", "desktop", "web"].forEach((p, i, all) => {
+      const w = tw(p, 13, 600) + 18;
+      svg.append("rect").attr("x", px + 2.5).attr("y", 14.5).attr("width", w).attr("height", 24).attr("rx", 12)
+        .attr("fill", C.shFaint).attr("data-node", `platform-${p}-3d`);
+      svg.append("rect").attr("x", px).attr("y", 12).attr("width", w).attr("height", 24).attr("rx", 12)
+        .attr("fill", C.faint).attr("stroke", C.line).attr("stroke-width", 1).attr("data-node", `platform-${p}`);
+      text(svg, px + w / 2, 28.5, p, 13, 600, C.muted, "middle");
+      px += w;
+      if (i < all.length - 1) { text(svg, px + 7, 28, "·", 13, 700, C.muted, "middle"); px += 14; }
+    });
+
+    /* ---- band 1: agent traces through verification ----------------------- */
+    const specs = [
+      { key: "agent-traces", title: ["3 agent traces"], sub: ["seeds 1–3,", "agent attempts"],
+        fill: "#fff", stroke: C.coralT, titleColor: C.coralT, subColor: C.muted, shadow: C.shLight },
+      { key: "translator-builder", title: ["translator +", "builder"], sub: [],
+        fill: "#fff", stroke: C.ink, titleColor: C.ink, subColor: C.muted, shadow: C.shLight },
+      { key: "program", title: ["program"], sub: [],
+        fill: C.blueDeep, stroke: C.blueDeep, titleColor: "#fff", subColor: "#fff", shadow: C.shBlueDeep },
+      { key: "repair-loop", title: ["repair loop"], sub: ["≤ 3 rounds"],
+        fill: C.blueTint, stroke: C.blueT, titleColor: C.blueT, subColor: C.muted, shadow: C.shBlueTint },
+      { key: "verification", title: ["verification"], sub: ["5 held-out bindings,", "≥ 4/5"], gate: true,
+        fill: C.tealTint, stroke: C.tealT, titleColor: C.tealT, subColor: C.ink, shadow: C.shTealTint }
+    ];
+    const ws = specs.map(natural);
+    const gap = (RIGHT - LEFT - d3.sum(ws)) / (ws.length - 1);
+    const N = {};
+    let cursor = LEFT;
+    specs.forEach(s => {
+      N[s.key] = draw(s, cursor + ws[specs.indexOf(s)] / 2, B1, ws[specs.indexOf(s)]);
+      cursor += ws[specs.indexOf(s)] + gap;
+    });
+    specs.slice(1).forEach((s, i) => {
+      const a = N[specs[i].key], b = N[s.key];
+      arrow([{ x: a.r + 5, y: B1 }, { x: b.x - 5, y: B1 }],
+        i === 0 ? C.muted : C.blueT, i === 0 ? "arrow" : "arrow-blue", `${specs[i].key}-to-${s.key}`);
+    });
+    const G = N["verification"], TB = N["translator-builder"], D0 = N["agent-traces"];
+    // Legibility bump for the gate's threshold line only.
+    svg.select('g[data-node="verification"]').selectAll("text")
+      .filter(function () { return this.textContent === "≥ 4/5"; }).attr("font-size", 14.5);
+
+    // Protocol extension: repeated compilation reruns the builder, repair, and verification.
+    const ring = { x: N["program"].x - 8, r: G.r + 8, y: B1 - 42, b: B1 + 42 };
+    svg.append("rect").attr("x", ring.x).attr("y", ring.y).attr("width", ring.r - ring.x).attr("height", ring.b - ring.y)
+      .attr("rx", 8).attr("fill", "none").attr("stroke", C.line).attr("stroke-width", 1)
+      .attr("stroke-dasharray", "5,4").attr("data-region", "compile-x3");
+    const ringLabel = "compile ×3 independently, Android families";
+    const ringChipW = tw(ringLabel, 11, 600) + 16;
+    const ringChipC = (N["program"].x + N["repair-loop"].r) / 2;
+    svg.append("rect").attr("x", ringChipC - ringChipW / 2).attr("y", 162)
+      .attr("width", ringChipW).attr("height", 22).attr("rx", 5)
+      .attr("fill", "#fff").attr("stroke", C.line).attr("stroke-width", 1).attr("stroke-dasharray", "5,4")
+      .attr("data-node", "compile-x3-chip");
+    text(svg, ringChipC, 177, ringLabel, 11, 600, C.muted, "middle")
+      .attr("data-label", "compile-x3");
+
+    /* ---- band 2: the document lane and the deployed program -------------- */
+    const docS = { key: "document", title: ["document"], sub: ["plain text"],
+      fill: C.amberTint, stroke: C.amberT, titleColor: C.amberT, subColor: C.muted, shadow: C.shAmberTint };
+    const epS = { key: "agent-runs", title: ["3 agent runs"], sub: ["seeds 4–6,", "reading it"],
+      fill: "#fff", stroke: C.coralT, titleColor: C.coralT, subColor: C.muted, shadow: C.shLight };
+    const dpS = { key: "deploy", title: ["deploy"], sub: ["30 uses, one", "extraction call each"],
+      fill: C.tealFill, stroke: C.tealT, titleColor: "#fff", subColor: "#fff", shadow: C.shTealFill };
+    const docW = natural(docS), epW = natural(epS), dpW = natural(dpS);
+    const DOC = draw(docS, TB.cx, B2, docW);
+    const EP = draw(epS, DOC.r + 30 + epW / 2, B2, epW);
+    const DP = draw(dpS, RIGHT - dpW / 2, B2, dpW);
+
+    arrow([{ x: DOC.cx, y: TB.b + 5 }, { x: DOC.cx, y: DOC.y - 5 }], C.amberT, "arrow-amber", "builder-to-document");
+    arrow([{ x: DOC.r + 5, y: B2 }, { x: EP.x - 5, y: B2 }], C.coralT, "arrow-coral", "document-to-agent-runs");
+
+    /* ---- the two verification outcomes ----------------------------------- */
+    const passX = G.r - INSET - 16, rejX = G.x + INSET + 4, RJ_CX = 480;
+    arrow([{ x: passX, y: G.b + 5 }, { x: passX, y: DP.y - 5 }], C.tealT, "arrow-teal", "verification-pass");
+    text(svg, 704, 183, "pass", CHIP, 700, C.tealT, "end").attr("data-label", "verification-pass");
+    // The verified attempt's price hangs on the pass branch, mirroring C_fail on reject.
+    svg.append("rect").attr("x", 714.5).attr("y", 165.5).attr("width", 52).attr("height", 22).attr("rx", 5)
+      .attr("fill", C.shFaint).attr("data-node", "quantity-priceC-3d");
+    svg.append("rect").attr("x", 712).attr("y", 163).attr("width", 52).attr("height", 22).attr("rx", 5)
+      .attr("fill", C.tealTint).attr("stroke", C.tealT).attr("stroke-width", 1).attr("data-quantity", "priceC");
+    const pcT = svg.append("text").attr("x", 738).attr("y", 178.5).attr("font-family", FONT)
+      .attr("font-size", 11).attr("font-weight", 600).attr("fill", C.tealT).attr("text-anchor", "middle");
+    pcT.append("tspan").text("price ");
+    pcT.append("tspan").attr("font-size", 13.5).attr("font-weight", 700).attr("font-style", "italic").text("C");
+    // The verification rate p belongs to the verification fork, on the pass side of the reject drop.
+    const pPill = qtag(643, 150, "p", null, [], C.tealT, C.tealTint, false);
+    pPill.select("rect:not([data-node])").attr("stroke", C.ink);
+    // G2: gloss now hugs the pill (centred, 11px) instead of floating over the reject wedge.
+    ["verification", "rate"].forEach((l, i) =>
+      text(pPill, 643, 179 + i * 15, l, 11, 600, C.muted, "middle"));
+    const rjS = { key: "rejected", title: ["rejected"], sub: [], pill: true, h: 36,
+      fill: C.coralTint, stroke: C.coralT, titleColor: C.coralT, subColor: C.muted, shadow: C.shCoralTint };
+    const RJ = draw(rjS, RJ_CX, B3, Math.max(natural(rjS), 130));
+    arrow([{ x: rejX, y: G.b + 5 }, { x: rejX, y: 192 }, { x: RJ_CX, y: 192 }, { x: RJ_CX, y: RJ.y - 5 }],
+      C.coralT, "arrow-coral", "verification-reject");
+    text(svg, RJ_CX + 18, 204, "reject", CHIP, 700, C.coralT, "start").attr("data-label", "verification-reject");
+
+    /* ---- the price of one compilation attempt ---------------------------- */
+    const bY = 52;
+    // F-a: traces-box right edge x_t = 149, so 176.5 - x_t = 27.5 >= 12 — the left end
+    // stays at TB.x. Left tick now drops from the arm to just above the translator+
+    // builder box (TB.y - 4), anchoring the span to that box; right tick keeps 4px.
+    svg.append("path").attr("d", `M${TB.x},${TB.y - 4} L${TB.x},${bY} L${G.r},${bY} L${G.r},${bY + 4}`)
+      .attr("fill", "none").attr("stroke", C.muted).attr("stroke-width", 1)
+      .attr("data-bracket", "compile-price");
+    const brkGloss = ["compilation price C", "model calls from translator to verification"];
+    qtag((TB.x + G.r) / 2 - 15, bY - 34, "C", null, brkGloss, C.muted, C.faint);
+
+    /* ---- measured quantities --------------------------------------------- */
+    const cTag = qtag(D0.x, B1 + BOX_H / 2 + 14, "c", null, ["one agent", "attempt"], C.coralT, C.coralTint);
+    // G1: x-height c reads a class smaller than d/q; +2px and serif italic so it stays lowercase in print.
+    cTag.select("text").attr("font-size", 19).attr("dy", 1)
+      .attr("font-family", "Georgia, 'Times New Roman', serif");
+    qtag(EP.x, B2 + BOX_H / 2 + 14, "L", "doc", ["per-use cost"], C.coralT, C.coralTint, true);
+    qtag(666, B2 + BOX_H / 2 + 14, "d", null, ["per-use cost"], C.tealT, C.tealTint, true);
+    qtag(666, B2 + BOX_H / 2 + 46, "q", null, ["failure rate"], C.tealT, C.tealTint, true);
+    qtag(575, 340, "C", "fail", ["price of a", "rejected attempt"], C.coralT, C.coralTint, true);
+    // Each deployed-use quantity gets its own short leader back to the deploy box.
+    [["M666,291 L657,291 L657,267", "quantity-leader-d"], ["M666,323 L645,323 L645,267", "quantity-leader-q"]]
+      .forEach(([d, key]) => svg.append("path").attr("d", d)
+        .attr("fill", "none").attr("stroke", C.tealT).attr("stroke-width", 1).attr("opacity", 0.6)
+        .attr("data-leader", key));
+
+    // Protocol extension: paired replays reuse the deployment bindings as agent runs.
+    const prG = svg.append("g").attr("data-region", "paired-replays");
+    prG.append("rect").attr("x", 640).attr("y", 348).attr("width", 128).attr("height", 46).attr("rx", 6)
+      .attr("fill", "#fff").attr("stroke", C.tealT).attr("stroke-width", 1)
+      .attr("stroke-dasharray", "5,4").attr("data-node", "paired-replays-chip");
+    ["paired replays:", "same bindings", "as agent runs"].forEach((l, i) =>
+      text(prG, 704, 363 + i * 13.5, l, 10.5, 600, C.muted, "middle"));
+    svg.append("path").attr("d", "M752,349 L752,267").attr("fill", "none").attr("stroke", C.tealT)
+      .attr("stroke-width", 1).attr("stroke-dasharray", "8,6").attr("opacity", 0.7)
+      .attr("data-leader", "paired-replays-to-deploy");
+
+    /* ---- band 3: methods derived from the measured constants ------------- */
+    // A confluence strip of the measured constants feeds the methods lane below it.
+    text(svg, 156, 380, "measured constants", 11, 700, C.ink, "end").attr("data-label", "measured-constants");
+    const stripChips = [
+      { base: "c", sub: null, color: C.coralT, tint: C.coralTint },
+      { base: "d", sub: null, color: C.tealT, tint: C.tealTint },
+      { base: "q", sub: null, color: C.tealT, tint: C.tealTint },
+      { base: "C", sub: null, color: C.muted, tint: C.faint },
+      { base: "C", sub: "fail", color: C.coralT, tint: C.coralTint },
+      { base: "p", sub: null, color: C.tealT, tint: C.tealTint },
+      { base: "L", sub: "doc", color: C.coralT, tint: C.coralTint }
+    ];
+    let sx = 168;
+    const stripG = svg.append("g").attr("data-layer", "constant-strip");
+    stripChips.forEach(ch => {
+      const w = ch.sub ? 34 : 24;
+      stripG.append("rect").attr("x", sx + 2).attr("y", 368).attr("width", w).attr("height", 20).attr("rx", 4)
+        .attr("fill", C.shFaint).attr("data-node", `strip-${ch.base}${ch.sub || ""}-3d`);
+      stripG.append("rect").attr("x", sx).attr("y", 366).attr("width", w).attr("height", 20).attr("rx", 4)
+        .attr("fill", ch.tint).attr("stroke", ch.color).attr("stroke-width", 0.9)
+        .attr("data-node", `strip-${ch.base}${ch.sub || ""}`);
+      const st = stripG.append("text").attr("x", sx + w / 2).attr("y", 380.5).attr("font-family", FONT)
+        .attr("font-size", 14).attr("font-weight", 700).attr("font-style", "italic")
+        .attr("fill", ch.color).attr("text-anchor", "middle");
+      st.append("tspan").text(ch.base);
+      if (ch.sub) st.append("tspan").attr("font-size", 9).attr("dy", 2.5).attr("font-style", "normal").text(ch.sub);
+      sx += w + 12;
+    });
+    arrow([{ x: 298, y: 390 }, { x: 298, y: 402 }], C.ink, "arrow-ink", "measured-constants", "1.5,4.5")
+      .attr("stroke-width", 1.7);
+
+    const boxA = draw({ key: "break-even-law", title: [], sub: [], h: 96,
+      fill: C.blueTint, stroke: C.blueT, titleColor: C.ink, subColor: C.muted, shadow: C.shBlueTint },
+      325, 454, 230);
+    text(svg, 325, 429, "Break-even law", 16, 700, C.ink, "middle").attr("data-text", "law-title");
+    const fA = svg.append("text").attr("x", 325).attr("y", 456).attr("font-family", FONT)
+      .attr("font-size", 17).attr("font-weight", 700).attr("font-style", "italic")
+      .attr("fill", C.ink).attr("text-anchor", "middle").attr("data-formula", "breakeven");
+    fA.append("tspan").text("N");
+    fA.append("tspan").attr("dy", -6).attr("font-size", 12).text("*");
+    fA.append("tspan").attr("dy", 6).text(" = C");
+    fA.append("tspan").attr("dy", 4).attr("font-size", 11.5).text("eff");
+    fA.append("tspan").attr("dy", -4).text(" / s");
+    const fSub = svg.append("text").attr("x", 325).attr("y", 476).attr("font-family", FONT)
+      .attr("font-size", 12).attr("font-weight", 600).attr("fill", C.muted)
+      .attr("text-anchor", "middle").attr("data-formula", "effective-price");
+    fSub.append("tspan").text("C");
+    fSub.append("tspan").attr("dy", 3.5).attr("font-size", 10).text("eff");
+    fSub.append("tspan").attr("dy", -3.5).text(" = C + (1/p − 1)·C");
+    fSub.append("tspan").attr("dy", 3.5).attr("font-size", 9.5).text("fail");
+    text(svg, 325, 494, "s = (1 − q)c − d per use", 11, 600, C.muted, "middle").attr("data-formula", "saving-def");
+
+    const boxB = draw({ key: "trigger", title: [], sub: [], h: 96,
+      fill: C.tealTint, stroke: C.tealT, titleColor: C.ink, subColor: C.muted, shadow: C.shTealTint },
+      659, 454, 218);
+    text(svg, 659, 431, "Trigger", 16, 700, C.ink, "middle").attr("data-text", "trigger-title");
+    text(svg, 659, 456, "compile when projected saving", 12.5, 600, C.ink, "middle").attr("data-text", "trigger-body-1");
+    text(svg, 659, 473, "exceeds the priced compilation", 12.5, 600, C.ink, "middle").attr("data-text", "trigger-body-2");
+    text(svg, 659, 491, "estimates: arrivals, verification", 12, 600, C.muted, "middle").attr("data-text", "trigger-sub");
+
+    arrow([{ x: boxA.r + 5, y: 454 }, { x: boxB.x - 5, y: 454 }], "#5B4A8A", "arrow-derived", "law-to-trigger");
+    text(svg, (boxA.r + boxB.x) / 2, 447, "prices the attempt", 11, 600, C.ink, "middle").attr("data-label", "law-to-trigger");
+
+    /* ---- line-style legend ------------------------------------------------ */
+    const LG = svg.append("g").attr("data-layer", "legend");
+    LG.append("path").attr("d", "M12,424.5 L34,424.5").attr("stroke", C.muted).attr("stroke-width", 1.4)
+      .attr("marker-end", "url(#arrow)").attr("data-legend-swatch", "measured-protocol");
+    text(LG, 40, 428, "measured protocol", 11, 600, C.muted);
+    LG.append("rect").attr("x", 12).attr("y", 436.5).attr("width", 22).attr("height", 11).attr("rx", 4)
+      .attr("fill", "none").attr("stroke", C.line).attr("stroke-width", 1).attr("stroke-dasharray", "4,3")
+      .attr("data-legend-swatch", "protocol-extension");
+    text(LG, 40, 446, "protocol extension", 11, 600, C.muted);
+    LG.append("path").attr("d", "M12,459.5 L34,459.5").attr("stroke", C.ink).attr("stroke-width", 1.7)
+      .attr("stroke-dasharray", "1.5,4.5").attr("marker-end", "url(#arrow-ink)").attr("data-legend-swatch", "measured-constants-feed");
+    text(LG, 40, 463, "measured constants feed", 11, 600, C.muted);
+    LG.append("path").attr("d", "M12,476.5 L34,476.5").attr("stroke", "#5B4A8A").attr("stroke-width", 1.4)
+      .attr("marker-end", "url(#arrow-derived)").attr("data-legend-swatch", "derived-methods");
+    text(LG, 40, 480, "derived methods", 11, 600, C.muted);
+
+    meas.remove();
+  </script>
+</body>
+</html>

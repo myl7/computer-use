@@ -1,0 +1,159 @@
+{
+ "family": "MarkorCreateNote",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 16,
+ "instances": [
+  {
+   "family": "MarkorCreateNote",
+   "seed": 1,
+   "goal": "Create a new note in Markor named friendly_koala_2023_03_02.txt with the following text: The early bird catches the worm.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s1/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 6,
+     "usage": {
+      "prompt_tokens": 123335,
+      "cached_tokens": 0,
+      "completion_tokens": 437,
+      "total_tokens": 123772,
+      "cost_usd": 0.00417164,
+      "model_calls": 6
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s1/trajectory.jsonl"
+  },
+  {
+   "family": "MarkorCreateNote",
+   "seed": 2,
+   "goal": "Create a new note in Markor named brave_fish_2023_03_28.txt with the following text: To be or not to be.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s2/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 6,
+     "usage": {
+      "prompt_tokens": 123329,
+      "cached_tokens": 0,
+      "completion_tokens": 383,
+      "total_tokens": 123712,
+      "cost_usd": 0.00459112,
+      "model_calls": 6
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__MarkorCreateNote__s2/trajectory.jsonl"
+  },
+  {
+   "family": "MarkorCreateNote",
+   "seed": 3,
+   "goal": "Create a new note in Markor named final_wise_lamp.txt with the following text: The squeaky wheel gets the grease.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorCreateNote/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 7,
+     "usage": {
+      "prompt_tokens": 171209,
+      "cached_tokens": 99072,
+      "completion_tokens": 457,
+      "total_tokens": 171666,
+      "cost_usd": 0.013881,
+      "model_calls": 7
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorCreateNote/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 16,
+     "usage": {
+      "prompt_tokens": 831330,
+      "cached_tokens": 686592,
+      "completion_tokens": 3891,
+      "total_tokens": 835221,
+      "cost_usd": 0.04381142,
+      "model_calls": 16
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorCreateNote/explore/s3_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 11,
+     "usage": {
+      "prompt_tokens": 403977,
+      "cached_tokens": 281088,
+      "completion_tokens": 5729,
+      "total_tokens": 409706,
+      "cost_usd": 0.02943319,
+      "model_calls": 11
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "The note was never saved: after typing the body, the click on index 4 did not hit Markor's save control, yet the agent declared success.\n\nIn DocumentActivity, first confirm the typed text is actually visible in the editor (index 8 may not have been the editor field).\n\nThen tap the floppy-disk Save icon in the editor's top toolbar \u2014 not an arbitrary toolbar index \u2014 or press Back and confirm the save prompt.\n\nAfter saving, verify the result: reopen final_wise_lamp.txt from the file list or check it shows the text before issuing status complete.\n\nNever mark complete while still inside the editor without visual confirmation the content persisted.",
+     "usage": {
+      "prompt_tokens": 424,
+      "completion_tokens": 805,
+      "cached_tokens": 0,
+      "cost_usd": 0.000461439
+     },
+     "cost_usd": 0.000461439,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- The note was actually created and the text typed correctly (steps 1\u20135); the failure was in finishing and exiting.\n- In DocumentActivity, after typing into the editor (index 8), tap the save (floppy) icon in the top toolbar, then press back once.\n- If an \"unsaved changes / save?\" dialog appears, tap Save/OK \u2014 do not click random indices or press back repeatedly (steps 6\u20138).\n- Once back in MainActivity's file list, the task is done: just confirm final_wise_lamp.txt appears and stop.\n- Do not long-press list items or type the filename into dialogs/search fields afterwards \u2014 steps 10\u201316 risked renaming or duplicating the note and wasted the attempt.",
+     "usage": {
+      "prompt_tokens": 729,
+      "completion_tokens": 1181,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006928515
+     },
+     "cost_usd": 0.0006928515,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorCreateNote/explore/s3_a2/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 5,
+  "retry_episodes": 2,
+  "reused_episodes": 2,
+  "reflection_calls": 2,
+  "prompt_tokens": 1654333,
+  "cached_tokens": 1066752,
+  "completion_tokens": 12883,
+  "total_tokens": 1667216,
+  "cost_usd": 0.09704266
+ },
+ "record_type": "exploration"
+}

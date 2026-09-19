@@ -1,0 +1,22 @@
+GOAL: In Simple Calendar Pro create an event on {year}-{month}-{day} starting at {hour}:00, titled '{event_title}', described '{event_description}', lasting {duration_mins} minutes.
+1. Open Simple Calendar Pro and wait for the main month screen.
+2. Tap the round "New Event" (+) button to open the event editor.
+3. Tap the Title field and type {event_title}.
+4. Tap the Description field and type {event_description}.
+5. Tap the Start date row (below the text fields) to open the date picker dialog.
+6. If the dialog does not show {month} {year}, move there with the month arrows (tap the year label to switch years first if needed).
+7. Tap day {day} in the grid, then tap OK to confirm the date.
+8. Tap the Start time row to open the 24-hour time picker dialog.
+9. Tap hour {hour} on the clock face; the picker then switches to minutes.
+10. Tap minute 00, then tap OK to confirm the start time.
+11. Work out the end time: {hour}:00 advanced by {duration_mins} minutes (each full 60 minutes adds one hour; wrap past midnight if needed).
+12. Tap the End time row to open the time picker again.
+13. Tap the end hour on the clock face, then tap the end minute, then tap OK.
+14. Verify the rows now show the target date, the start time, and the end time.
+15. Tap the Save (floppy) icon in the top bar; the editor closes back to the main screen.
+TRAPS:
+- There is no duration field: the length is set only through the END time, which must equal the start time plus {duration_mins} minutes.
+- Both pickers must be confirmed with OK; cancelling or leaving the dialog keeps the previous value.
+- The device clock is frozen (October 2023, 24-hour), so the date picker opens on that month; navigate whenever the target month or year differs.
+- After tapping the hour on the clock face the picker auto-switches to minutes; select the minute explicitly before OK, otherwise a leftover minute is kept.
+- Title and Description start empty on a new event; type into each, text fields first, date and time rows after.

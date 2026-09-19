@@ -1,0 +1,19 @@
+OPERATION CommentPost — leave comment <text> on post <title> in forum <forum>.
+
+PARAMS: <forum> = short name from /f/<forum> URLs; <title> = full post title verbatim; <text> = comment body verbatim.
+
+1. On any page, find the header search box: an editable input with aria "Search query" / name "q".
+2. Type <title> (a distinctive prefix of it is enough) into the search box, then click the "Search" button and wait for the results page.
+3. On the results page, find the link whose text contains <title> (fall back to progressively shorter prefixes) and click it.
+4. QUIRK: this title link opens the post's IMAGE or EXTERNAL url, never the post page. That is expected.
+5. Navigate back once; you should be on the search results again.
+6. On the results, find the post's comments link: text "No comments" or "N comments", href starting with /f/<forum>/. Click it to open the post's page.
+7. On the post page, find the big comment textarea (aria "Comment", editable) and type <text> into it.
+8. Click the "Formatting help" label near the comment form (recorded quirk: the box may lose/reset its content).
+9. Re-type <text> into the same comment textarea, then click the "Post" button (the comment submit button, not "Preview").
+10. Verify success: the page now shows a comment by you containing <text> under the post (run status if available).
+
+FALLBACKS:
+- If the title link or comments link can't be found on search results, goto /search?q=<title url-encoded> directly.
+- Last resort: open /f/<forum>/new and use the comments link of the row whose title matches <title>.
+- Never locate elements by coordinates or index; match by tag, text, aria, name, or href containing <forum> / a <title> slug.

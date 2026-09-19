@@ -1,0 +1,1944 @@
+{
+ "family": "CalcTableSave",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 22,
+ "price_weights": {
+  "r_c": 0.2,
+  "r_o": 3.33
+ },
+ "record_type": "build",
+ "floor": {
+  "model": "z-ai/glm-5.3-flash",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 16,
+    "cost_usd": 0.00018072
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 18,
+    "cost_usd": 0.0003022
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 16,
+    "cost_usd": 0.00018072
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 32,
+    "cost_usd": 0.00018548
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 18,
+    "cost_usd": 7.41e-05
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 18,
+    "cost_usd": 7.41e-05
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 18,
+    "cost_usd": 7.41e-05
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 16,
+    "cost_usd": 7.311e-05
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 64,
+    "cost_usd": 9.687e-05
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 18,
+    "cost_usd": 7.41e-05
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 18,
+    "cost_usd": 7.41e-05
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 1920,
+    "completion_tokens": 16,
+    "cost_usd": 7.311e-05
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 16,
+    "cost_usd": 0.00018072
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 33,
+    "cost_usd": 0.00018577
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 16,
+    "cost_usd": 0.00018072
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 18,
+    "cost_usd": 0.00018132
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 32,
+    "cost_usd": 0.00018548
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 1975,
+    "cached_tokens": 0,
+    "completion_tokens": 32,
+    "cost_usd": 0.00018548
+   }
+  ],
+  "unit_tokens_per_run": [
+   2028,
+   2035,
+   2028,
+   2082,
+   499,
+   499,
+   499,
+   492,
+   652,
+   499,
+   499,
+   492,
+   2028,
+   2085,
+   2028,
+   2035,
+   2082,
+   2082
+  ],
+  "floor_unit_mean": 1369.1,
+  "cost_usd_mean": 0.00014234,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 10557.5,
+ "exploration": {
+  "family": "CalcTableSave",
+  "model": "z-ai/glm-5.3-flash",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 22,
+  "instances": [
+   {
+    "family": "CalcTableSave",
+    "seed": 1,
+    "goal": "Open a new spreadsheet in LibreOffice Calc. Cell A1 must read 'Pipeline' and B1 'Budget'. Fill A2 with 8398, B2 with 3934, A3 with 7093 and B3 with 1974. Then save it to the Desktop under the name payroll_extract.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s1_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 12,
+      "usage": {
+       "prompt_tokens": 879568,
+       "cached_tokens": 676288,
+       "completion_tokens": 5293,
+       "total_tokens": 884861,
+       "cost_usd": 0.04886214,
+       "model_calls": 12,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 11866,
+         "cached_tokens": 0,
+         "completion_tokens": 665,
+         "cost_usd": 0.002091276
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 23118,
+         "cached_tokens": 11776,
+         "completion_tokens": 107,
+         "cost_usd": 0.0020869992
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 34251,
+         "cached_tokens": 23040,
+         "completion_tokens": 60,
+         "cost_usd": 0.0023788215
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 45394,
+         "cached_tokens": 34176,
+         "completion_tokens": 52,
+         "cost_usd": 0.0027066402
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 56545,
+         "cached_tokens": 45312,
+         "completion_tokens": 26,
+         "cost_usd": 0.0030267369
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 67704,
+         "cached_tokens": 0,
+         "completion_tokens": 46,
+         "cost_usd": 0.0060460884
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 78871,
+         "cached_tokens": 56448,
+         "completion_tokens": 52,
+         "cost_usd": 0.0050320611
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 90035,
+         "cached_tokens": 78784,
+         "completion_tokens": 1092,
+         "cost_usd": 0.0045511983
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 101198,
+         "cached_tokens": 89920,
+         "completion_tokens": 2597,
+         "cost_usd": 0.005630922
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 112364,
+         "cached_tokens": 101120,
+         "completion_tokens": 289,
+         "cost_usd": 0.004816053
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 123528,
+         "cached_tokens": 112256,
+         "completion_tokens": 115,
+         "cost_usd": 0.0050648202
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 134694,
+         "cached_tokens": 123456,
+         "completion_tokens": 192,
+         "cost_usd": 0.0054305262
+        }
+       ]
+      },
+      "unit_floored": 299924.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s1_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 2,
+    "goal": "Please set up a small table in a new LibreOffice Calc spreadsheet: headers 'Region' (A1) and 'Location' (B1), then 876 and 1336 on the second row, 2264 and 8597 on the third. Save the file on the Desktop as unit_figures.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s2_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 13,
+      "usage": {
+       "prompt_tokens": 1025253,
+       "cached_tokens": 430400,
+       "completion_tokens": 6660,
+       "total_tokens": 1031913,
+       "cost_usd": 0.07688661,
+       "model_calls": 13,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 11865,
+         "cached_tokens": 0,
+         "completion_tokens": 379,
+         "cost_usd": 0.0011697345
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 23117,
+         "cached_tokens": 0,
+         "completion_tokens": 273,
+         "cost_usd": 0.0021408057
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 34250,
+         "cached_tokens": 0,
+         "completion_tokens": 76,
+         "cost_usd": 0.003074247
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 45391,
+         "cached_tokens": 0,
+         "completion_tokens": 54,
+         "cost_usd": 0.0040603761
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 56539,
+         "cached_tokens": 0,
+         "completion_tokens": 26,
+         "cost_usd": 0.0050453469
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 67696,
+         "cached_tokens": 0,
+         "completion_tokens": 63,
+         "cost_usd": 0.010084041
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 78861,
+         "cached_tokens": 0,
+         "completion_tokens": 54,
+         "cost_usd": 0.0117375885
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 90023,
+         "cached_tokens": 0,
+         "completion_tokens": 68,
+         "cost_usd": 0.0080412453
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 101181,
+         "cached_tokens": 80256,
+         "completion_tokens": 345,
+         "cost_usd": 0.00339704442
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 112342,
+         "cached_tokens": 80256,
+         "completion_tokens": 50,
+         "cost_usd": 0.00430387452
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 123500,
+         "cached_tokens": 101120,
+         "completion_tokens": 3338,
+         "cost_usd": 0.0047874024
+        },
+        {
+         "call": 12,
+         "prompt_tokens": 134662,
+         "cached_tokens": 101120,
+         "completion_tokens": 1624,
+         "cost_usd": 0.0052728786
+        },
+        {
+         "call": 13,
+         "prompt_tokens": 145826,
+         "cached_tokens": 67648,
+         "completion_tokens": 310,
+         "cost_usd": 0.0137720286
+        }
+       ]
+      },
+      "unit_floored": 342520.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 3,
+    "goal": "In LibreOffice Calc, create a new spreadsheet. Put the header 'Pipeline' in cell A1 and the header 'Location' in B1. Under the headers enter the numbers 3640 in A2, 2835 in B2, 1410 in A3 and 7663 in B3. Save the spreadsheet as workgroup_grid.ods on the Desktop.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s3_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 11,
+      "usage": {
+       "prompt_tokens": 744941,
+       "cached_tokens": 365888,
+       "completion_tokens": 2325,
+       "total_tokens": 747266,
+       "cost_usd": 0.04863408,
+       "model_calls": 11,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 11876,
+         "cached_tokens": 0,
+         "completion_tokens": 698,
+         "cost_usd": 0.002109096
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 23128,
+         "cached_tokens": 0,
+         "completion_tokens": 124,
+         "cost_usd": 0.0020975328
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 34261,
+         "cached_tokens": 0,
+         "completion_tokens": 53,
+         "cost_usd": 0.0030683961
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 45404,
+         "cached_tokens": 0,
+         "completion_tokens": 50,
+         "cost_usd": 0.0040603464
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 56555,
+         "cached_tokens": 16384,
+         "completion_tokens": 41,
+         "cost_usd": 0.00388337598
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 67712,
+         "cached_tokens": 56512,
+         "completion_tokens": 43,
+         "cost_usd": 0.00201773484
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 78878,
+         "cached_tokens": 56512,
+         "completion_tokens": 54,
+         "cost_usd": 0.00301589244
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 90041,
+         "cached_tokens": 56512,
+         "completion_tokens": 315,
+         "cost_usd": 0.00408803274
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 101203,
+         "cached_tokens": 89984,
+         "completion_tokens": 54,
+         "cost_usd": 0.00261916578
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 112362,
+         "cached_tokens": 0,
+         "completion_tokens": 666,
+         "cost_usd": 0.017015427
+        },
+        {
+         "call": 11,
+         "prompt_tokens": 123521,
+         "cached_tokens": 89984,
+         "completion_tokens": 227,
+         "cost_usd": 0.00465908058
+        }
+       ]
+      },
+      "unit_floored": 254176.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 3,
+   "retry_episodes": 0,
+   "reflection_calls": 0,
+   "prompt_tokens": 2649762,
+   "cached_tokens": 1472576,
+   "completion_tokens": 14278,
+   "total_tokens": 2664040,
+   "cost_usd": 0.17438283
+  },
+  "record_type": "exploration"
+ },
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 12,
+    "recorded_actions": 12,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 12,
+     "prompt_tokens": 7375,
+     "cached_tokens": 256,
+     "completion_tokens": 6477,
+     "total_tokens": 13852,
+     "cost_usd": 0.0033415
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 10,
+    "recorded_actions": 13,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 10,
+     "prompt_tokens": 6235,
+     "cached_tokens": 128,
+     "completion_tokens": 5938,
+     "total_tokens": 12173,
+     "cost_usd": 0.00340785
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 10,
+    "recorded_actions": 11,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 10,
+     "prompt_tokens": 6325,
+     "cached_tokens": 0,
+     "completion_tokens": 4986,
+     "total_tokens": 11311,
+     "cost_usd": 0.00239857
+    }
+   }
+  ],
+  "totals": {
+   "calls": 32,
+   "prompt_tokens": 19935,
+   "cached_tokens": 384,
+   "completion_tokens": 17401,
+   "total_tokens": 37336,
+   "cost_usd": 0.00914792
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3030,
+     "cached_tokens": 0,
+     "completion_tokens": 7019,
+     "total_tokens": 10049,
+     "cost_usd": 0.00392436
+    },
+    "cost_usd": 0.00392436,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3030,
+      "cached_tokens": 0,
+      "completion_tokens": 7019,
+      "total_tokens": 10049,
+      "cost_usd": 0.00392436,
+      "usage": {
+       "prompt_tokens": 3030,
+       "completion_tokens": 7019,
+       "cached_tokens": 0,
+       "cost_usd": 0.00392436
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2863,
+     "cached_tokens": 0,
+     "completion_tokens": 11317,
+     "total_tokens": 14180,
+     "cost_usd": 0.00361624
+    },
+    "cost_usd": 0.00361624,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2863,
+      "cached_tokens": 0,
+      "completion_tokens": 11317,
+      "total_tokens": 14180,
+      "cost_usd": 0.0036162423,
+      "usage": {
+       "prompt_tokens": 2863,
+       "completion_tokens": 11317,
+       "cached_tokens": 0,
+       "cost_usd": 0.0036162423
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 5007,
+     "cached_tokens": 0,
+     "completion_tokens": 29480,
+     "total_tokens": 34487,
+     "cost_usd": 0.01533614
+    },
+    "cost_usd": 0.01533614,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5007,
+      "cached_tokens": 0,
+      "completion_tokens": 29480,
+      "total_tokens": 34487,
+      "cost_usd": 0.0153361395,
+      "usage": {
+       "prompt_tokens": 5007,
+       "completion_tokens": 29480,
+       "cached_tokens": 0,
+       "cost_usd": 0.0153361395
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4840,
+     "cached_tokens": 0,
+     "completion_tokens": 8578,
+     "total_tokens": 13418,
+     "cost_usd": 0.00297891
+    },
+    "cost_usd": 0.00297891,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4840,
+      "cached_tokens": 0,
+      "completion_tokens": 8578,
+      "total_tokens": 13418,
+      "cost_usd": 0.00297891,
+      "usage": {
+       "prompt_tokens": 4840,
+       "completion_tokens": 8578,
+       "cached_tokens": 0,
+       "cost_usd": 0.00297891
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 6883,
+     "cached_tokens": 0,
+     "completion_tokens": 18113,
+     "total_tokens": 24996,
+     "cost_usd": 0.00599284
+    },
+    "cost_usd": 0.00599284,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6883,
+      "cached_tokens": 0,
+      "completion_tokens": 18113,
+      "total_tokens": 24996,
+      "cost_usd": 0.0059928363,
+      "usage": {
+       "prompt_tokens": 6883,
+       "completion_tokens": 18113,
+       "cached_tokens": 0,
+       "cost_usd": 0.0059928363
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 6716,
+     "cached_tokens": 0,
+     "completion_tokens": 9073,
+     "total_tokens": 15789,
+     "cost_usd": 0.00329308
+    },
+    "cost_usd": 0.00329308,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6716,
+      "cached_tokens": 0,
+      "completion_tokens": 9073,
+      "total_tokens": 15789,
+      "cost_usd": 0.0032930766,
+      "usage": {
+       "prompt_tokens": 6716,
+       "completion_tokens": 9073,
+       "cached_tokens": 0,
+       "cost_usd": 0.0032930766
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 2,
+    "prompt_tokens": 12456,
+    "cached_tokens": 0,
+    "completion_tokens": 39744,
+    "total_tokens": 52200,
+    "cost_usd": 0.01683568
+   }
+  }
+ },
+ "resumed_from_stages": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder"
+ ],
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": false,
+     "error": "RuntimeError: Save of 'cost_center_sheet.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": false,
+     "error": "RuntimeError: Save of 'receivable_age.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": false,
+     "error": "RuntimeError: Save of 'ledger_slice.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": false,
+     "error": "RuntimeError: Save of 'channel_breakdown.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": false,
+     "error": "RuntimeError: Save of 'payment_records.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "family": "CalcTableSave",
+  "model": "z-ai/glm-5.3-flash",
+  "artifact": "code",
+  "m_max": 3,
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "rounds": [
+   {
+    "seed_added": 1,
+    "seen_seeds": [
+     1
+    ],
+    "failure_seed": 1,
+    "error": "RuntimeError: Save of 'payroll_extract.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')",
+    "replay_detail": [
+     {
+      "seed": 1,
+      "passed": false,
+      "error": "RuntimeError: Save of 'payroll_extract.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+     }
+    ],
+    "analysis": {
+     "cause": "Ctrl+S opened the Save dialog, but the filename was never entered into the dialog's actual file-name field (both 'File name' lookups returned NOT FOUND, so the typed path went to the wrong widget) and the Save click (index 500) therefore had no effect. The dialog stayed open, no save occurred, and the agent then looped waiting for a 'Replace' overwrite prompt that could never appear, until the run timed out.",
+     "done": "LibreOffice Calc is open with a new spreadsheet; all cell content is entered correctly (A1='Pipeline', B1='Budget', A2=8398, B2=3934, A3=7093, B3=1974); the Save dialog is currently open on top of the window. Only the actual save to Desktop/payroll_extract.ods is missing.",
+     "plan": "1) Work in the still-open Save dialog: locate its file-name entry (search the dialog's elements for an editable text/combo field; if it again can't be found, press Escape to cancel and reopen via File > Save As / Ctrl+Shift+S). 2) Clear the field and type the full path /home/user/Desktop/payroll_extract.ods (or type payroll_extract and select Desktop in the places list). 3) Confirm the file type is ODF Spreadsheet (.ods). 4) Click Save. 5) If an 'already exists / Replace' prompt appears, click Replace. 6) Verify the title bar changes to 'payroll_extract.ods - LibreOffice Calc' and the file exists on the Desktop.",
+     "decision": "continue",
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2247,
+     "cached_tokens": 0,
+     "completion_tokens": 2009,
+     "total_tokens": 4256,
+     "cost_usd": 0.0013281345,
+     "usage": {
+      "prompt_tokens": 2247,
+      "completion_tokens": 2009,
+      "cached_tokens": 0,
+      "cost_usd": 0.0013281345
+     },
+     "stage": "analyzer"
+    },
+    "resume": {
+     "restarted": false,
+     "steps": 9,
+     "success": true,
+     "calls": 9,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 12327,
+       "cached_tokens": 0,
+       "completion_tokens": 5129,
+       "total_tokens": 17456,
+       "cost_usd": 0.0043694145,
+       "usage": {
+        "prompt_tokens": 12327,
+        "completion_tokens": 5129,
+        "cached_tokens": 0,
+        "cost_usd": 0.0043694145
+       },
+       "stage": "react_resume",
+       "action": "I can see the Save dialog is open with the Name field already containing \"/home/user/Desktop/payroll_extract.ods\" and file type \"ODF Spreadsheet (.ods)\". However, the dialog is currently in search mod"
+      },
+      {
+       "step": 2,
+       "call": 2,
+       "first_call": false,
+       "prompt_tokens": 23634,
+       "cached_tokens": 0,
+       "completion_tokens": 1680,
+       "total_tokens": 25314,
+       "cost_usd": 0.004341249,
+       "usage": {
+        "prompt_tokens": 23634,
+        "completion_tokens": 1680,
+        "cached_tokens": 0,
+        "cost_usd": 0.004341249
+       },
+       "stage": "react_resume",
+       "action": "action: {\"action_type\": \"press\", \"key\": \"esc\"}"
+      },
+      {
+       "step": 3,
+       "call": 3,
+       "first_call": false,
+       "prompt_tokens": 34794,
+       "cached_tokens": 12288,
+       "completion_tokens": 2832,
+       "total_tokens": 37626,
+       "cost_usd": 0.004802398524,
+       "usage": {
+        "prompt_tokens": 34794,
+        "completion_tokens": 2832,
+        "cached_tokens": 12288,
+        "cost_usd": 0.004802398524
+       },
+       "stage": "react_resume",
+       "action": "The dialog still shows search mode. The Name field already contains the correct full path. I'll use Ctrl+L to focus the location/Name entry in the GTK file chooser, then confirm with Enter.\n\naction: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+      },
+      {
+       "step": 4,
+       "call": 4,
+       "first_call": false,
+       "prompt_tokens": 45999,
+       "cached_tokens": 34752,
+       "completion_tokens": 154,
+       "total_tokens": 46153,
+       "cost_usd": 0.002611831266,
+       "usage": {
+        "prompt_tokens": 45999,
+        "completion_tokens": 154,
+        "cached_tokens": 34752,
+        "cost_usd": 0.002611831266
+       },
+       "stage": "react_resume",
+       "action": "The location bar is now focused with the full path \"/home/user/Desktop/payroll_extract.ods\" and an autocomplete dropdown appeared. I'll press Enter to confirm the save to this path.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 5,
+       "call": 5,
+       "first_call": false,
+       "prompt_tokens": 57197,
+       "cached_tokens": 45952,
+       "completion_tokens": 2008,
+       "total_tokens": 59205,
+       "cost_usd": 0.003786899886,
+       "usage": {
+        "prompt_tokens": 57197,
+        "completion_tokens": 2008,
+        "cached_tokens": 45952,
+        "cost_usd": 0.003786899886
+       },
+       "stage": "react_resume",
+       "action": "The first Enter likely just dismissed the autocomplete dropdown. The Name field still contains the full path. I'll press Enter again to trigger the save.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      },
+      {
+       "step": 6,
+       "call": 6,
+       "first_call": false,
+       "prompt_tokens": 68386,
+       "cached_tokens": 57152,
+       "completion_tokens": 1248,
+       "total_tokens": 69634,
+       "cost_usd": 0.003744417996,
+       "usage": {
+        "prompt_tokens": 68386,
+        "completion_tokens": 1248,
+        "cached_tokens": 57152,
+        "cost_usd": 0.003744417996
+       },
+       "stage": "react_resume",
+       "action": "The dialog appears stuck in search mode (\"No Results Found\"), and the Save button looks inactive. The Enter presses aren't triggering the save. I'll press Escape to exit this stuck state and then reopen a fresh Save dialog if needed.\n\naction: {\"action_type\": \"press\", \"key\": \"esc\"}"
+      },
+      {
+       "step": 7,
+       "call": 7,
+       "first_call": false,
+       "prompt_tokens": 79591,
+       "cached_tokens": 68352,
+       "completion_tokens": 118,
+       "total_tokens": 79709,
+       "cost_usd": 0.003532008546,
+       "usage": {
+        "prompt_tokens": 79591,
+        "completion_tokens": 118,
+        "cached_tokens": 68352,
+        "cost_usd": 0.003532008546
+       },
+       "stage": "react_resume",
+       "action": "The Escape cancelled the Save dialog entirely; we're back to the spreadsheet with all data intact. Now I'll reopen the Save As dialog with Ctrl+Shift+S.\n\naction: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"shift\", \"s\"]}"
+      },
+      {
+       "step": 8,
+       "call": 8,
+       "first_call": false,
+       "prompt_tokens": 90791,
+       "cached_tokens": 79552,
+       "completion_tokens": 435,
+       "total_tokens": 91226,
+       "cost_usd": 0.003992190246,
+       "usage": {
+        "prompt_tokens": 90791,
+        "completion_tokens": 435,
+        "cached_tokens": 79552,
+        "cost_usd": 0.003992190246
+       },
+       "stage": "react_resume",
+       "action": "A fresh Save dialog is open in normal browse mode, with \"Untitled 1\" selected in the Name field. I'll type the full path to replace it.\n\naction: {\"action_type\": \"input_text\", \"text\": \"/home/user/Desktop/payroll_extract.ods\"}"
+      },
+      {
+       "step": 9,
+       "call": 9,
+       "first_call": false,
+       "prompt_tokens": 101992,
+       "cached_tokens": 90752,
+       "completion_tokens": 214,
+       "total_tokens": 102206,
+       "cost_usd": 0.004202180136,
+       "usage": {
+        "prompt_tokens": 101992,
+        "completion_tokens": 214,
+        "cached_tokens": 90752,
+        "cost_usd": 0.004202180136
+       },
+       "stage": "react_resume",
+       "action": "The Name field now contains the full path and the file type is ODF Spreadsheet (.ods). I'll press Enter to confirm the save.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+      }
+     ]
+    },
+    "refinement": 1,
+    "gate": {
+     "passed": 5,
+     "total": 5
+    },
+    "refinement_usage": {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5573,
+     "cached_tokens": 0,
+     "completion_tokens": 21631,
+     "total_tokens": 27204,
+     "cost_usd": 0.01084284,
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 5573,
+      "cached_tokens": 0,
+      "completion_tokens": 21631,
+      "total_tokens": 27204,
+      "cost_usd": 0.01084284
+     },
+     "stage": "builder_refine",
+     "attempts": 1,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5573,
+       "cached_tokens": 0,
+       "completion_tokens": 21631,
+       "total_tokens": 27204,
+       "cost_usd": 0.01084283937,
+       "usage": {
+        "prompt_tokens": 5573,
+        "completion_tokens": 21631,
+        "cached_tokens": 0,
+        "cost_usd": 0.01084283937
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   }
+  ],
+  "refinements": 1,
+  "replays": 1,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "refine1",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Spreadsheet file name ending in .ods; the file is saved on the Desktop\",\n    },\n    \"header_a\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell A1\",\n    },\n    \"header_b\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell B1\",\n    },\n    \"val_a2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A2 (below header_a)\",\n    },\n    \"val_b2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B2 (below header_b)\",\n    },\n    \"val_a3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A3\",\n    },\n    \"val_b3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B3\",\n    },\n}\n\n_DESKTOP_DIR = \"/home/user/Desktop\"\n\n\ndef _safe_find(device, **criteria):\n    try:\n        return device.find(**criteria)\n    except Exception:\n        return None\n\n\ndef _find_cell(device, cell_name):\n    idx = _safe_find(device, name=cell_name, role=\"table-cell\", editable=True)\n    if idx is None:\n        idx = _safe_find(device, name=cell_name, role=\"table-cell\")\n    if idx is None:\n        idx = _safe_find(device, name=cell_name)\n    return idx\n\n\ndef _read_cell_text(device, cell_name):\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    for el in els:\n        try:\n            if el.get(\"role\") == \"table-cell\" and el.get(\"name\") == cell_name:\n                return el.get(\"text\")\n        except Exception:\n            continue\n    return None\n\n\ndef _fill_cell(device, cell_name, value):\n    expected = str(value)\n    idx = _find_cell(device, cell_name)\n    if idx is None:\n        device.settle(1.0)\n        idx = _find_cell(device, cell_name)\n    if idx is None:\n        raise LookupError(\n            \"Spreadsheet cell '%s' not found in LibreOffice Calc\" % cell_name\n        )\n    device.click(idx)\n    device.input_text(expected, index=idx)\n    device.settle(0.3)\n\n    # Verify the commit; retry once if the cell text is readable and wrong.\n    for _ in range(1):\n        text = _read_cell_text(device, cell_name)\n        if text is None:\n            break\n        if str(text).strip() == expected:\n            break\n        idx = _find_cell(device, cell_name)\n        if idx is None:\n            break\n        device.click(idx)\n        device.input_text(expected, index=idx)\n        device.settle(0.3)\n\n\ndef _ensure_calc_sheet(device):\n    title = device.active_window() or \"\"\n    if \"Calc\" not in title:\n        device.open_app(\"LibreOffice Calc\")\n        device.wait()\n        device.settle(2.0)\n    for attempt in range(4):\n        if _find_cell(device, \"A1\") is not None:\n            return\n        if attempt == 1 and \"Calc\" in (device.active_window() or \"\"):\n            # Calc is running but no fresh sheet grid: open a new spreadsheet.\n            device.hotkey(\"ctrl\", \"n\")\n            device.settle(2.0)\n        else:\n            device.settle(1.0)\n    raise RuntimeError(\"LibreOffice Calc spreadsheet with cell A1 not found\")\n\n\ndef _overwrite_prompt_visible(device):\n    if _safe_find(device, name=\"Replace\", role=\"push-button\") is not None:\n        return True\n    if _safe_find(device, name=\"Replace\") is not None:\n        return True\n    if _safe_find(device, contains=\"already exists\") is not None:\n        return True\n    return False\n\n\ndef _title_shows_saved(device, file_name):\n    title = device.active_window() or \"\"\n    if file_name in title:\n        return True\n    base = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n    return bool(base) and base in title and \"Save\" not in title\n\n\ndef _wait_until_saved(device, file_name, attempts=5):\n    for _ in range(attempts):\n        if _title_shows_saved(device, file_name):\n            return True\n        if _overwrite_prompt_visible(device):\n            raise RuntimeError(\n                \"Overwrite prompt appeared for '%s'; a file with this name \"\n                \"must not exist yet\" % file_name\n            )\n        device.settle(1.0)\n    return False\n\n\ndef _save_dialog_open(device):\n    if \"| save\" in (device.active_window() or \"\").lower():\n        return True\n    if (\n        _safe_find(device, name=\"Cancel\", role=\"push-button\") is not None\n        and _safe_find(device, name=\"Save\", role=\"push-button\") is not None\n    ):\n        return True\n    return False\n\n\ndef _close_save_dialog(device, tries=4):\n    for _ in range(tries):\n        if not _save_dialog_open(device):\n            return True\n        device.press(\"esc\")\n        device.settle(1.0)\n    return not _save_dialog_open(device)\n\n\ndef _open_save_dialog(device):\n    # Cancel any stale/partially-typed dialog first so we start from a\n    # fresh dialog whose Name entry has focus with its content selected.\n    _close_save_dialog(device)\n    for _attempt in range(2):\n        for keys in ((\"ctrl\", \"shift\", \"s\"), (\"ctrl\", \"s\")):\n            device.hotkey(*keys)\n            for _ in range(3):\n                device.settle(1.0)\n                if _save_dialog_open(device):\n                    return\n    raise RuntimeError(\n        \"Save dialog did not open (active window: %r)\" % (device.active_window(),)\n    )\n\n\ndef _save_state(device, file_name):\n    if _title_shows_saved(device, file_name):\n        return \"saved\"\n    if _overwrite_prompt_visible(device):\n        raise RuntimeError(\n            \"Overwrite prompt appeared for '%s'; a file with this name \"\n            \"must not exist yet\" % file_name\n        )\n    return \"open\" if _save_dialog_open(device) else \"gone\"\n\n\ndef _find_name_entry(device):\n    for criteria in (\n        {\"role\": \"text\", \"editable\": True, \"name\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"name\"},\n        {\"role\": \"entry\", \"editable\": True},\n    ):\n        idx = _safe_find(device, **criteria)\n        if idx is not None:\n            return idx\n    # Last resort: scan for editable text widgets, skipping anything that\n    # looks like the file chooser's search box (which hijacks typed text).\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    fallback = None\n    for el in els:\n        try:\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            if not any(tok in role for tok in (\"text\", \"entry\", \"combo\", \"input\")):\n                continue\n            blob = \" \".join(\n                str(el.get(key) or \"\") for key in (\"name\", \"text\", \"description\")\n            ).lower()\n            if \"search\" in blob:\n                continue\n            fallback = el.get(\"index\")\n        except Exception:\n            continue\n    return fallback\n\n\ndef _save_typed_path(device, file_name):\n    \"\"\"Primary strategy.\n\n    A freshly opened Save dialog focuses its Name entry with the current\n    content selected: select-all + type at the caret puts the absolute\n    target path into the real Name field (no clicking, so the file\n    chooser's search box can never steal the text). Enter confirms.\n    \"\"\"\n    full_path = _DESKTOP_DIR + \"/\" + file_name\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.type_at_caret(full_path)\n    device.settle(0.5)\n    for _ in range(2):  # first Enter may only confirm an autocomplete popup\n        device.press(\"enter\")\n        device.settle(2.0)\n        state = _save_state(device, file_name)\n        if state == \"saved\":\n            return True\n        if state == \"gone\":\n            # Dialog closed but title may lag behind.\n            if _wait_until_saved(device, file_name):\n                return True\n            return False\n    return False\n\n\ndef _save_via_widgets(device, file_name, use_full_path):\n    \"\"\"Fallback: click the real Name entry, fill it, set folder, Save.\"\"\"\n    _open_save_dialog(device)\n    idx = _find_name_entry(device)\n    if idx is None:\n        _close_save_dialog(device)\n        return False\n    device.click(idx)\n    device.settle(0.5)\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.input_text(\n        (_DESKTOP_DIR + \"/\" + file_name) if use_full_path else file_name,\n        index=idx,\n    )\n    device.settle(0.5)\n    if not use_full_path:\n        # Only accept the plain-name variant if we can really switch the\n        # dialog's folder to Desktop, otherwise the save location is wrong.\n        desktop = (\n            _safe_find(device, name=\"Desktop\", role=\"table-cell\")\n            or _safe_find(device, name=\"Desktop\", role=\"list-item\")\n            or _safe_find(device, name=\"Desktop\", role=\"label\")\n            or _safe_find(device, name=\"Desktop\")\n        )\n        if desktop is None:\n            _close_save_dialog(device)\n            return False\n        device.click(desktop)\n        device.settle(1.0)\n    save_btn = _safe_find(device, name=\"Save\", role=\"push-button\")\n    if save_btn is not None:\n        device.click(save_btn)\n    else:\n        device.press(\"enter\")\n    device.settle(2.0)\n    if _wait_until_saved(device, file_name):\n        return True\n    if _save_dialog_open(device):\n        # A second Enter in case the first only confirmed an autocomplete.\n        device.press(\"enter\")\n        device.settle(2.0)\n        if _wait_until_saved(device, file_name):\n            return True\n    _close_save_dialog(device)\n    return False\n\n\ndef _save_spreadsheet(device, binding):\n    file_name = str(binding[\"file_name\"])\n\n    if _wait_until_saved(device, file_name, attempts=1):\n        return\n\n    _open_save_dialog(device)\n\n    if _save_typed_path(device, file_name):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=True):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=False):\n        return\n\n    _close_save_dialog(device)\n    raise RuntimeError(\n        \"Save of '%s' did not complete (active window: %r)\"\n        % (file_name, device.active_window())\n    )\n\n\ndef program(device, binding: dict) -> bool:\n    _ensure_calc_sheet(device)\n\n    cells = (\n        (\"A1\", binding[\"header_a\"]),\n        (\"B1\", binding[\"header_b\"]),\n        (\"A2\", binding[\"val_a2\"]),\n        (\"B2\", binding[\"val_b2\"]),\n        (\"A3\", binding[\"val_a3\"]),\n        (\"B3\", binding[\"val_b3\"]),\n    )\n    for cell_name, value in cells:\n        _fill_cell(device, cell_name, value)\n\n    # Guarantee the last typed cell is committed before saving.\n    device.press(\"enter\")\n    device.settle(0.5)\n\n    _save_spreadsheet(device, binding)\n    return True\n",
+  "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Spreadsheet file name ending in .ods; the file is saved on the Desktop\",\n    },\n    \"header_a\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell A1\",\n    },\n    \"header_b\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell B1\",\n    },\n    \"val_a2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A2 (below header_a)\",\n    },\n    \"val_b2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B2 (below header_b)\",\n    },\n    \"val_a3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A3\",\n    },\n    \"val_b3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B3\",\n    },\n}\n\n_DESKTOP_DIR = \"/home/user/Desktop\"\n\n\ndef _safe_find(device, **criteria):\n    try:\n        return device.find(**criteria)\n    except Exception:\n        return None\n\n\ndef _find_cell(device, cell_name):\n    idx = _safe_find(device, name=cell_name, role=\"table-cell\", editable=True)\n    if idx is None:\n        idx = _safe_find(device, name=cell_name, role=\"table-cell\")\n    if idx is None:\n        idx = _safe_find(device, name=cell_name)\n    return idx\n\n\ndef _read_cell_text(device, cell_name):\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    for el in els:\n        try:\n            if el.get(\"role\") == \"table-cell\" and el.get(\"name\") == cell_name:\n                return el.get(\"text\")\n        except Exception:\n            continue\n    return None\n\n\ndef _fill_cell(device, cell_name, value):\n    expected = str(value)\n    idx = _find_cell(device, cell_name)\n    if idx is None:\n        device.settle(1.0)\n        idx = _find_cell(device, cell_name)\n    if idx is None:\n        raise LookupError(\n            \"Spreadsheet cell '%s' not found in LibreOffice Calc\" % cell_name\n        )\n    device.click(idx)\n    device.input_text(expected, index=idx)\n    device.settle(0.3)\n\n    # Verify the commit; retry once if the cell text is readable and wrong.\n    for _ in range(1):\n        text = _read_cell_text(device, cell_name)\n        if text is None:\n            break\n        if str(text).strip() == expected:\n            break\n        idx = _find_cell(device, cell_name)\n        if idx is None:\n            break\n        device.click(idx)\n        device.input_text(expected, index=idx)\n        device.settle(0.3)\n\n\ndef _ensure_calc_sheet(device):\n    title = device.active_window() or \"\"\n    if \"Calc\" not in title:\n        device.open_app(\"LibreOffice Calc\")\n        device.wait()\n        device.settle(2.0)\n    for attempt in range(4):\n        if _find_cell(device, \"A1\") is not None:\n            return\n        if attempt == 1 and \"Calc\" in (device.active_window() or \"\"):\n            # Calc is running but no fresh sheet grid: open a new spreadsheet.\n            device.hotkey(\"ctrl\", \"n\")\n            device.settle(2.0)\n        else:\n            device.settle(1.0)\n    raise RuntimeError(\"LibreOffice Calc spreadsheet with cell A1 not found\")\n\n\ndef _overwrite_prompt_visible(device):\n    if _safe_find(device, name=\"Replace\", role=\"push-button\") is not None:\n        return True\n    if _safe_find(device, name=\"Replace\") is not None:\n        return True\n    if _safe_find(device, contains=\"already exists\") is not None:\n        return True\n    return False\n\n\ndef _title_shows_saved(device, file_name):\n    title = device.active_window() or \"\"\n    if file_name in title:\n        return True\n    base = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n    return bool(base) and base in title and \"Save\" not in title\n\n\ndef _wait_until_saved(device, file_name, attempts=5):\n    for _ in range(attempts):\n        if _title_shows_saved(device, file_name):\n            return True\n        if _overwrite_prompt_visible(device):\n            raise RuntimeError(\n                \"Overwrite prompt appeared for '%s'; a file with this name \"\n                \"must not exist yet\" % file_name\n            )\n        device.settle(1.0)\n    return False\n\n\ndef _save_dialog_open(device):\n    if \"| save\" in (device.active_window() or \"\").lower():\n        return True\n    if (\n        _safe_find(device, name=\"Cancel\", role=\"push-button\") is not None\n        and _safe_find(device, name=\"Save\", role=\"push-button\") is not None\n    ):\n        return True\n    return False\n\n\ndef _close_save_dialog(device, tries=4):\n    for _ in range(tries):\n        if not _save_dialog_open(device):\n            return True\n        device.press(\"esc\")\n        device.settle(1.0)\n    return not _save_dialog_open(device)\n\n\ndef _open_save_dialog(device):\n    # Cancel any stale/partially-typed dialog first so we start from a\n    # fresh dialog whose Name entry has focus with its content selected.\n    _close_save_dialog(device)\n    for _attempt in range(2):\n        for keys in ((\"ctrl\", \"shift\", \"s\"), (\"ctrl\", \"s\")):\n            device.hotkey(*keys)\n            for _ in range(3):\n                device.settle(1.0)\n                if _save_dialog_open(device):\n                    return\n    raise RuntimeError(\n        \"Save dialog did not open (active window: %r)\" % (device.active_window(),)\n    )\n\n\ndef _save_state(device, file_name):\n    if _title_shows_saved(device, file_name):\n        return \"saved\"\n    if _overwrite_prompt_visible(device):\n        raise RuntimeError(\n            \"Overwrite prompt appeared for '%s'; a file with this name \"\n            \"must not exist yet\" % file_name\n        )\n    return \"open\" if _save_dialog_open(device) else \"gone\"\n\n\ndef _find_name_entry(device):\n    for criteria in (\n        {\"role\": \"text\", \"editable\": True, \"name\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"name\"},\n        {\"role\": \"entry\", \"editable\": True},\n    ):\n        idx = _safe_find(device, **criteria)\n        if idx is not None:\n            return idx\n    # Last resort: scan for editable text widgets, skipping anything that\n    # looks like the file chooser's search box (which hijacks typed text).\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    fallback = None\n    for el in els:\n        try:\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            if not any(tok in role for tok in (\"text\", \"entry\", \"combo\", \"input\")):\n                continue\n            blob = \" \".join(\n                str(el.get(key) or \"\") for key in (\"name\", \"text\", \"description\")\n            ).lower()\n            if \"search\" in blob:\n                continue\n            fallback = el.get(\"index\")\n        except Exception:\n            continue\n    return fallback\n\n\ndef _save_typed_path(device, file_name):\n    \"\"\"Primary strategy.\n\n    A freshly opened Save dialog focuses its Name entry with the current\n    content selected: select-all + type at the caret puts the absolute\n    target path into the real Name field (no clicking, so the file\n    chooser's search box can never steal the text). Enter confirms.\n    \"\"\"\n    full_path = _DESKTOP_DIR + \"/\" + file_name\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.type_at_caret(full_path)\n    device.settle(0.5)\n    for _ in range(2):  # first Enter may only confirm an autocomplete popup\n        device.press(\"enter\")\n        device.settle(2.0)\n        state = _save_state(device, file_name)\n        if state == \"saved\":\n            return True\n        if state == \"gone\":\n            # Dialog closed but title may lag behind.\n            if _wait_until_saved(device, file_name):\n                return True\n            return False\n    return False\n\n\ndef _save_via_widgets(device, file_name, use_full_path):\n    \"\"\"Fallback: click the real Name entry, fill it, set folder, Save.\"\"\"\n    _open_save_dialog(device)\n    idx = _find_name_entry(device)\n    if idx is None:\n        _close_save_dialog(device)\n        return False\n    device.click(idx)\n    device.settle(0.5)\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.input_text(\n        (_DESKTOP_DIR + \"/\" + file_name) if use_full_path else file_name,\n        index=idx,\n    )\n    device.settle(0.5)\n    if not use_full_path:\n        # Only accept the plain-name variant if we can really switch the\n        # dialog's folder to Desktop, otherwise the save location is wrong.\n        desktop = (\n            _safe_find(device, name=\"Desktop\", role=\"table-cell\")\n            or _safe_find(device, name=\"Desktop\", role=\"list-item\")\n            or _safe_find(device, name=\"Desktop\", role=\"label\")\n            or _safe_find(device, name=\"Desktop\")\n        )\n        if desktop is None:\n            _close_save_dialog(device)\n            return False\n        device.click(desktop)\n        device.settle(1.0)\n    save_btn = _safe_find(device, name=\"Save\", role=\"push-button\")\n    if save_btn is not None:\n        device.click(save_btn)\n    else:\n        device.press(\"enter\")\n    device.settle(2.0)\n    if _wait_until_saved(device, file_name):\n        return True\n    if _save_dialog_open(device):\n        # A second Enter in case the first only confirmed an autocomplete.\n        device.press(\"enter\")\n        device.settle(2.0)\n        if _wait_until_saved(device, file_name):\n            return True\n    _close_save_dialog(device)\n    return False\n\n\ndef _save_spreadsheet(device, binding):\n    file_name = str(binding[\"file_name\"])\n\n    if _wait_until_saved(device, file_name, attempts=1):\n        return\n\n    _open_save_dialog(device)\n\n    if _save_typed_path(device, file_name):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=True):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=False):\n        return\n\n    _close_save_dialog(device)\n    raise RuntimeError(\n        \"Save of '%s' did not complete (active window: %r)\"\n        % (file_name, device.active_window())\n    )\n\n\ndef program(device, binding: dict) -> bool:\n    _ensure_calc_sheet(device)\n\n    cells = (\n        (\"A1\", binding[\"header_a\"]),\n        (\"B1\", binding[\"header_b\"]),\n        (\"A2\", binding[\"val_a2\"]),\n        (\"B2\", binding[\"val_b2\"]),\n        (\"A3\", binding[\"val_a3\"]),\n        (\"B3\", binding[\"val_b3\"]),\n    )\n    for cell_name, value in cells:\n        _fill_cell(device, cell_name, value)\n\n    # Guarantee the last typed cell is committed before saving.\n    device.press(\"enter\")\n    device.settle(0.5)\n\n    _save_spreadsheet(device, binding)\n    return True\n",
+  "conclusions": [
+   "seed 1: Ctrl+S opened the Save dialog, but the filename was never entered into the dialog's actual file-name field (both 'File name' lookups returned NOT FOUND, so the typed path went to the wrong widget) and the Save click (index 500) therefore had no effect. The dialog stayed open, no save occurred, and t"
+  ],
+  "totals": {
+   "analyzer": {
+    "calls": 1,
+    "prompt_tokens": 2247,
+    "cached_tokens": 0,
+    "completion_tokens": 2009,
+    "total_tokens": 4256,
+    "cost_usd": 0.00132813
+   },
+   "resume_episodes": {
+    "calls": 9,
+    "prompt_tokens": 514711,
+    "cached_tokens": 388800,
+    "completion_tokens": 13818,
+    "total_tokens": 528529,
+    "cost_usd": 0.03538259
+   },
+   "builder_refinements": {
+    "calls": 1,
+    "prompt_tokens": 5573,
+    "cached_tokens": 0,
+    "completion_tokens": 21631,
+    "total_tokens": 27204,
+    "cost_usd": 0.01084284
+   },
+   "program_replays": {
+    "count": 1,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   }
+  },
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "cost_center_sheet.ods",
+      "header_a": "Branch",
+      "header_b": "Shipment",
+      "val_a2": 4892,
+      "val_b2": 5708,
+      "val_a3": 1213,
+      "val_b3": 8788
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "receivable_age.ods",
+      "header_a": "Attendance",
+      "header_b": "Facility",
+      "val_a2": 3884,
+      "val_b2": 2784,
+      "val_a3": 4620,
+      "val_b3": 6243
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "ledger_slice.ods",
+      "header_a": "Location",
+      "header_b": "Cost Center",
+      "val_a2": 8801,
+      "val_b2": 3393,
+      "val_a3": 3051,
+      "val_b3": 971
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "channel_breakdown.ods",
+      "header_a": "Currency",
+      "header_b": "Payable",
+      "val_a2": 704,
+      "val_b2": 4309,
+      "val_a3": 1593,
+      "val_b3": 7292
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "payment_records.ods",
+      "header_a": "Category",
+      "header_b": "Unit",
+      "val_a2": 8001,
+      "val_b2": 6254,
+      "val_a3": 5400,
+      "val_b3": 2536
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "record_type": "verification"
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 392.76666666666665,
+  "total_tokens": 11783,
+  "cost_usd": 0.00255107
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1841,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": false,
+    "steps": 22,
+    "prompt_tokens": 2850422,
+    "cached_tokens": 2603072,
+    "completion_tokens": 28812,
+    "total_tokens": 2879234,
+    "cost_usd": 0.12830465,
+    "model_calls": 22,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 12337,
+      "cached_tokens": 0,
+      "completion_tokens": 383,
+      "cost_usd": 0.0020216295
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 23591,
+      "cached_tokens": 12288,
+      "completion_tokens": 1941,
+      "cost_usd": 0.0030042441
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 34837,
+      "cached_tokens": 23552,
+      "completion_tokens": 70,
+      "cost_usd": 0.0024099669
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 45958,
+      "cached_tokens": 34816,
+      "completion_tokens": 36,
+      "cost_usd": 0.0027064422
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 57092,
+      "cached_tokens": 45952,
+      "completion_tokens": 293,
+      "cost_usd": 0.0031640994
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 68219,
+      "cached_tokens": 57088,
+      "completion_tokens": 26,
+      "cost_usd": 0.0033613371
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 79363,
+      "cached_tokens": 68160,
+      "completion_tokens": 46,
+      "cost_usd": 0.0037107675
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 90498,
+      "cached_tokens": 79360,
+      "completion_tokens": 26,
+      "cost_usd": 0.004023855
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 101650,
+      "cached_tokens": 90496,
+      "completion_tokens": 17,
+      "cost_usd": 0.0043525152
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 112793,
+      "cached_tokens": 101632,
+      "completion_tokens": 26,
+      "cost_usd": 0.0046887489
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 123953,
+      "cached_tokens": 112768,
+      "completion_tokens": 17,
+      "cost_usd": 0.0050185971
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 135104,
+      "cached_tokens": 123904,
+      "completion_tokens": 37,
+      "cost_usd": 0.0053614638
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 146270,
+      "cached_tokens": 135104,
+      "completion_tokens": 112,
+      "cost_usd": 0.0057261798
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 157434,
+      "cached_tokens": 146240,
+      "completion_tokens": 10120,
+      "cost_usd": 0.011015037
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 168598,
+      "cached_tokens": 157376,
+      "completion_tokens": 158,
+      "cost_usd": 0.0064187442
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 179758,
+      "cached_tokens": 168576,
+      "completion_tokens": 14203,
+      "cost_usd": 0.0136977192
+     },
+     {
+      "call": 17,
+      "prompt_tokens": 190927,
+      "cached_tokens": 179712,
+      "completion_tokens": 134,
+      "cost_usd": 0.0070692039
+     },
+     {
+      "call": 18,
+      "prompt_tokens": 202087,
+      "cached_tokens": 190912,
+      "completion_tokens": 227,
+      "cost_usd": 0.0074419389
+     },
+     {
+      "call": 19,
+      "prompt_tokens": 213247,
+      "cached_tokens": 202048,
+      "completion_tokens": 140,
+      "cost_usd": 0.0077331771
+     },
+     {
+      "call": 20,
+      "prompt_tokens": 224407,
+      "cached_tokens": 213184,
+      "completion_tokens": 127,
+      "cost_usd": 0.0080610453
+     },
+     {
+      "call": 21,
+      "prompt_tokens": 235567,
+      "cached_tokens": 224384,
+      "completion_tokens": 583,
+      "cost_usd": 0.0086134653
+     },
+     {
+      "call": 22,
+      "prompt_tokens": 246732,
+      "cached_tokens": 235520,
+      "completion_tokens": 90,
+      "cost_usd": 0.008704476
+     }
+    ],
+    "unit_floored": 862044.9
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 19,
+    "prompt_tokens": 2140805,
+    "cached_tokens": 1915328,
+    "completion_tokens": 8992,
+    "total_tokens": 2149797,
+    "cost_usd": 0.0902069,
+    "model_calls": 19,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 12336,
+      "cached_tokens": 0,
+      "completion_tokens": 129,
+      "cost_usd": 0.001895751
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 23575,
+      "cached_tokens": 576,
+      "completion_tokens": 464,
+      "cost_usd": 0.003442410378
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 34689,
+      "cached_tokens": 23552,
+      "completion_tokens": 48,
+      "cost_usd": 0.002234472966
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 45816,
+      "cached_tokens": 34688,
+      "completion_tokens": 39,
+      "cost_usd": 0.002539923804
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 56936,
+      "cached_tokens": 45760,
+      "completion_tokens": 44,
+      "cost_usd": 0.00285805872
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 68071,
+      "cached_tokens": 56896,
+      "completion_tokens": 64,
+      "cost_usd": 0.003178119978
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 79198,
+      "cached_tokens": 68032,
+      "completion_tokens": 26,
+      "cost_usd": 0.003470077116
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 90342,
+      "cached_tokens": 79168,
+      "completion_tokens": 45,
+      "cost_usd": 0.003790929384
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 101477,
+      "cached_tokens": 90304,
+      "completion_tokens": 26,
+      "cost_usd": 0.004092843942
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 112629,
+      "cached_tokens": 101440,
+      "completion_tokens": 37,
+      "cost_usd": 0.00441109053
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 123772,
+      "cached_tokens": 112576,
+      "completion_tokens": 25,
+      "cost_usd": 0.0050184882
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 134930,
+      "cached_tokens": 123712,
+      "completion_tokens": 17,
+      "cost_usd": 0.0053485344
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 146080,
+      "cached_tokens": 134912,
+      "completion_tokens": 26,
+      "cost_usd": 0.0056782044
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 157247,
+      "cached_tokens": 146048,
+      "completion_tokens": 35,
+      "cost_usd": 0.005656921974
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 168411,
+      "cached_tokens": 157184,
+      "completion_tokens": 3667,
+      "cost_usd": 0.007661694942
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 179575,
+      "cached_tokens": 168384,
+      "completion_tokens": 3698,
+      "cost_usd": 0.007983775602
+     },
+     {
+      "call": 17,
+      "prompt_tokens": 190742,
+      "cached_tokens": 179520,
+      "completion_tokens": 204,
+      "cost_usd": 0.00667323954
+     },
+     {
+      "call": 18,
+      "prompt_tokens": 201906,
+      "cached_tokens": 190720,
+      "completion_tokens": 24,
+      "cost_usd": 0.0068971419
+     },
+     {
+      "call": 19,
+      "prompt_tokens": 213073,
+      "cached_tokens": 201856,
+      "completion_tokens": 374,
+      "cost_usd": 0.007375219038
+     }
+    ],
+    "unit_floored": 627195.9
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 16,
+    "prompt_tokens": 1537772,
+    "cached_tokens": 1322112,
+    "completion_tokens": 34105,
+    "total_tokens": 1571877,
+    "cost_usd": 0.08817421,
+    "model_calls": 16,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 12339,
+      "cached_tokens": 0,
+      "completion_tokens": 413,
+      "cost_usd": 0.0020367765
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 23591,
+      "cached_tokens": 0,
+      "completion_tokens": 208,
+      "cost_usd": 0.0036062235
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 34728,
+      "cached_tokens": 576,
+      "completion_tokens": 45,
+      "cost_usd": 0.0051109542
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 45873,
+      "cached_tokens": 34688,
+      "completion_tokens": 57,
+      "cost_usd": 0.0027194211
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 57026,
+      "cached_tokens": 45824,
+      "completion_tokens": 26,
+      "cost_usd": 0.0030373398
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 68187,
+      "cached_tokens": 57024,
+      "completion_tokens": 43,
+      "cost_usd": 0.0033726033
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 79356,
+      "cached_tokens": 68160,
+      "completion_tokens": 97,
+      "cost_usd": 0.003734973
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 90522,
+      "cached_tokens": 79296,
+      "completion_tokens": 5015,
+      "cost_usd": 0.0065045772
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 101688,
+      "cached_tokens": 90496,
+      "completion_tokens": 2470,
+      "cost_usd": 0.0055723932
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 112855,
+      "cached_tokens": 101632,
+      "completion_tokens": 3345,
+      "cost_usd": 0.0063408609
+     },
+     {
+      "call": 11,
+      "prompt_tokens": 124021,
+      "cached_tokens": 112832,
+      "completion_tokens": 3742,
+      "cost_usd": 0.0068649669
+     },
+     {
+      "call": 12,
+      "prompt_tokens": 135190,
+      "cached_tokens": 123968,
+      "completion_tokens": 167,
+      "cost_usd": 0.0054309816
+     },
+     {
+      "call": 13,
+      "prompt_tokens": 146352,
+      "cached_tokens": 135168,
+      "completion_tokens": 13653,
+      "cost_usd": 0.0124335486
+     },
+     {
+      "call": 14,
+      "prompt_tokens": 157518,
+      "cached_tokens": 146304,
+      "completion_tokens": 1268,
+      "cost_usd": 0.0066381678
+     },
+     {
+      "call": 15,
+      "prompt_tokens": 168680,
+      "cached_tokens": 157504,
+      "completion_tokens": 3447,
+      "cost_usd": 0.0080437698
+     },
+     {
+      "call": 16,
+      "prompt_tokens": 179846,
+      "cached_tokens": 168640,
+      "completion_tokens": 109,
+      "cost_usd": 0.006726654
+     }
+    ],
+    "unit_floored": 563628.9
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 57,
+   "prompt_tokens": 6528999,
+   "cached_tokens": 5840512,
+   "completion_tokens": 71909,
+   "total_tokens": 6600908,
+   "cost_usd": 0.30668576
+  }
+ },
+ "break_even": {
+  "c_unit_floored": 298874.2,
+  "floor_unit": 1369.1,
+  "d_unit": 392.76666666666665,
+  "q": 0.0,
+  "price_weights": {
+   "r_c": 0.2,
+   "r_o": 3.33
+  },
+  "build_totals_raw": {
+   "exploration": 2664040,
+   "translator": 37336,
+   "builder_selected": 52200,
+   "verification_analyzer": 4256,
+   "verification_resume": 528529,
+   "autorpa_build": 3286361
+  },
+  "build_totals_priced": {
+   "exploration_floored": 896622.7000000001,
+   "translator": 77573,
+   "builder_selected": 144804,
+   "verification_analyzer_plus_floored_resume": 238117.9,
+   "autorpa_build": 1357117.6
+  },
+  "s_unit": 298481.4,
+  "nstar": {
+   "marginal": 0.4851,
+   "autorpa_build": 4.5467
+  }
+ },
+ "total_cost_usd": 0.575463
+}

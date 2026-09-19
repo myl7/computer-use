@@ -1,0 +1,214 @@
+{
+ "family": "OsmAndMarker",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 20,
+ "instances": [
+  {
+   "family": "OsmAndMarker",
+   "seed": 1,
+   "goal": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 536682,
+      "cached_tokens": 401430,
+      "completion_tokens": 137750,
+      "total_tokens": 674432,
+      "cost_usd": 0.12179066,
+      "model_calls": 21
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 1,
+     "usage": {
+      "prompt_tokens": 2523,
+      "cached_tokens": 0,
+      "completion_tokens": 523,
+      "total_tokens": 3046,
+      "cost_usd": 0.00178248,
+      "model_calls": 1
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 356817,
+      "cached_tokens": 290560,
+      "completion_tokens": 3621,
+      "total_tokens": 360438,
+      "cost_usd": 0.01844713,
+      "model_calls": 20
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "After opening OsmAnd, tap the search icon (magnifying glass) to open the search screen. Type \"Malbun, Liechtenstein\" in the search field, then tap the correct search result that shows Malbun on the map. Do not re-enter text or scroll after selecting a result\u2014that returns you to search. Once the map centers on Malbun, long-press directly on the map (not on any button or list item) to drop a marker. If a context menu appears, choose \"Add marker\" or the marker option. Avoid clicking random indices; use visible labels.",
+     "usage": {
+      "prompt_tokens": 986,
+      "completion_tokens": 918,
+      "cached_tokens": 0,
+      "cost_usd": 0.000814572
+     },
+     "cost_usd": 0.000814572,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- The attempt ended immediately with a `status` action and no actual interaction, so nothing was accomplished after the launcher.\n- Do not emit `status` until you have navigated and performed the steps; start by opening the app drawer and tapping the OsmAnd icon.\n- In OsmAnd, tap the search (magnifier) icon in the top bar, type \"Malbun\", and pick the Liechtenstein result (check the subtitle to avoid the Swiss/Austrian namesakes).\n- On the search result, use the actions/menu button and choose \"Add marker\" (or long-press the place on the map and pick \"Add marker\") rather than just \"Show on map\".\n- Confirm the marker appears (flag/pin at Malbun) before reporting completion.\n- If permission/location dialogs appear, dismiss or allow them to continue.",
+     "usage": {
+      "prompt_tokens": 227,
+      "completion_tokens": 333,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005340456
+     },
+     "cost_usd": 0.0005340456,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 2,
+   "goal": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 8,
+     "usage": {
+      "prompt_tokens": 75228,
+      "cached_tokens": 43264,
+      "completion_tokens": 1406,
+      "total_tokens": 76634,
+      "cost_usd": 0.00801665,
+      "model_calls": 8
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 3,
+   "goal": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 8,
+     "usage": {
+      "prompt_tokens": 70978,
+      "cached_tokens": 52380,
+      "completion_tokens": 1577,
+      "total_tokens": 72555,
+      "cost_usd": 0.00542615,
+      "model_calls": 8
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 300023,
+      "cached_tokens": 153088,
+      "completion_tokens": 4144,
+      "total_tokens": 304167,
+      "cost_usd": 0.07302005,
+      "model_calls": 15
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 602601,
+      "cached_tokens": 482560,
+      "completion_tokens": 19236,
+      "total_tokens": 621837,
+      "cost_usd": 0.04121672,
+      "model_calls": 20
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "After searching, the search results list appears. Do not long-press on a result item; that opens a different menu. Instead, tap the result to show the location on the map. Then long-press on the map at the location to open the context menu. In the context menu, select \"Add marker\" to place the marker. Verify the marker is added before declaring complete.",
+     "usage": {
+      "prompt_tokens": 491,
+      "completion_tokens": 993,
+      "cached_tokens": 0,
+      "cost_usd": 0.000755766
+     },
+     "cost_usd": 0.000755766,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "After searching, the search results appear as a list. Tap the result item for \"Nendeln, Liechtenstein\" (not the search icon again). This centers the map on Nendeln. Then tap the \"Add marker\" button in the bottom panel. Do not long-press the map; that adds a marker at the wrong location. The repeated clicks on index 4 were toggling the search overlay, not selecting a result.",
+     "usage": {
+      "prompt_tokens": 701,
+      "completion_tokens": 1596,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011955042
+     },
+     "cost_usd": 0.0011955042,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s3_a2/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "prompt_tokens": 1947257,
+  "cached_tokens": 1423282,
+  "completion_tokens": 172097,
+  "total_tokens": 2119354,
+  "cost_usd": 0.27299973
+ },
+ "record_type": "exploration"
+}

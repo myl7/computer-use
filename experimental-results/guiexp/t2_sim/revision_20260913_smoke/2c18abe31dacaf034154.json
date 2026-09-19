@@ -1,0 +1,632 @@
+{
+  "spec": {
+    "model": "deepseek/deepseek-v4-flash-vision-exp",
+    "admission_mode": "binary_replay",
+    "stream": "zipf",
+    "profiles": {
+      "ContactsAddContact": {
+        "c": 65044.73580066963,
+        "d": 430.2621212121212,
+        "q": 0.033333333333333326,
+        "pi": 1.0,
+        "p": 1.0,
+        "C": 143912.0,
+        "C_fail": 1177449.2545454546,
+        "imputed": [
+          "C_fail"
+        ],
+        "observed_admitted": true,
+        "c_unsubtracted": 67334.73580066963
+      },
+      "FilesMoveFile": {
+        "c": 51611.678787878795,
+        "d": 416.1643939393939,
+        "q": 0.033333333333333326,
+        "pi": 1.0,
+        "p": 0.0,
+        "C": 106194.5,
+        "C_fail": 1709094.959090909,
+        "imputed": [
+          "d",
+          "q",
+          "C"
+        ],
+        "observed_admitted": false,
+        "c_unsubtracted": 53901.678787878795
+      },
+      "MarkorCreateNote": {
+        "c": 154564.8142119386,
+        "d": 416.1643939393939,
+        "q": 0.033333333333333326,
+        "pi": 0.75,
+        "p": 0.0,
+        "C": 106194.5,
+        "C_fail": 1177449.2545454546,
+        "imputed": [
+          "d",
+          "q",
+          "C"
+        ],
+        "observed_admitted": false,
+        "c_unsubtracted": 156854.8142119386
+      },
+      "MarkorDeleteNote": {
+        "c": 10762.40909090909,
+        "d": 402.06666666666666,
+        "q": 0.033333333333333326,
+        "pi": 1.0,
+        "p": 1.0,
+        "C": 68477.0,
+        "C_fail": 1177449.2545454546,
+        "imputed": [
+          "C_fail"
+        ],
+        "observed_admitted": true,
+        "c_unsubtracted": 13052.40909090909
+      },
+      "OsmAndFavorite": {
+        "c": 48991.678787878795,
+        "d": 416.1643939393939,
+        "q": 0.033333333333333326,
+        "pi": 0.3333333333333333,
+        "p": 0.0,
+        "C": 106194.5,
+        "C_fail": 1033913.0045454545,
+        "imputed": [
+          "d",
+          "q",
+          "C"
+        ],
+        "observed_admitted": false,
+        "c_unsubtracted": 51281.678787878795
+      },
+      "OsmAndMarker": {
+        "c": 152788.89220779223,
+        "d": 416.1643939393939,
+        "q": 0.033333333333333326,
+        "pi": 0.14285714285714285,
+        "p": 0.0,
+        "C": 106194.5,
+        "C_fail": 2502646.7636363637,
+        "imputed": [
+          "d",
+          "q",
+          "C"
+        ],
+        "observed_admitted": false,
+        "c_unsubtracted": 155078.89220779223
+      },
+      "SimpleCalendarAddOneEvent": {
+        "c": 146345.62945635445,
+        "d": 416.1643939393939,
+        "q": 0.033333333333333326,
+        "pi": 1.0,
+        "p": 0.0,
+        "C": 106194.5,
+        "C_fail": 1100308.6590909092,
+        "imputed": [
+          "d",
+          "q",
+          "C"
+        ],
+        "observed_admitted": false,
+        "c_unsubtracted": 148635.62945635445
+      }
+    },
+    "reps": 2,
+    "seed": 20260913,
+    "n": 30,
+    "ttl": 100,
+    "h": 0.02,
+    "m": 91.0,
+    "tau0": 368.0,
+    "silent": 0.0,
+    "scale": 1.0,
+    "k_min": 3,
+    "policies": [
+      "reactive",
+      "earliest",
+      "earliest_cap",
+      "fixed10_cap",
+      "success10_cap",
+      "breakeven_cap",
+      "projected",
+      "projected_cap"
+    ],
+    "key": "deepseek/deepseek-v4-flash-vision-exp/binary_replay/zipf/base",
+    "quick": true
+  },
+  "rows": {
+    "reactive": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "earliest": [
+      {
+        "reactive_tokens": 1501701.0426976425,
+        "extraction_tokens": 4704.687878787879,
+        "compile_tokens": 8226218.090909091,
+        "router_tokens": 13497.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 8013829.090909091,
+        "attempts": 7,
+        "admissions": 2,
+        "reactive_uses": 19,
+        "program_uses": 11,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 9746120.821485521,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 2
+      },
+      {
+        "reactive_tokens": 1365042.7461608457,
+        "extraction_tokens": 5163.145454545454,
+        "compile_tokens": 12609844.013636364,
+        "router_tokens": 13315.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 12465932.013636364,
+        "attempts": 9,
+        "admissions": 1,
+        "reactive_uses": 18,
+        "program_uses": 12,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 13993364.905251754,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 1
+      }
+    ],
+    "earliest_cap": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "fixed10_cap": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "success10_cap": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "breakeven_cap": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "projected": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ],
+    "projected_cap": [
+      {
+        "reactive_tokens": 2162910.8097952474,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2173950.8097952474,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      },
+      {
+        "reactive_tokens": 2145579.5757688805,
+        "extraction_tokens": 0.0,
+        "compile_tokens": 0.0,
+        "router_tokens": 11040.0,
+        "harm_tokens": 0.0,
+        "failed_compile_tokens": 0.0,
+        "attempts": 0,
+        "admissions": 0,
+        "reactive_uses": 30,
+        "program_uses": 0,
+        "successes": 26,
+        "silent_failures": 0,
+        "breaks": 0,
+        "evictions": 0,
+        "relists": 0,
+        "tokens": 2156619.5757688805,
+        "success_rate": 0.8666666666666667,
+        "arrivals": 30,
+        "final_library": 0
+      }
+    ]
+  },
+  "summary": {
+    "reactive": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "earliest": {
+      "mean_tokens": 11869742.863368638,
+      "ratio_to_reactive": 5.481838098249687,
+      "ratio_ci95": [
+        4.483137694547677,
+        6.488564354361303
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 10239880.552272728,
+      "mean_attempts": 8.0
+    },
+    "earliest_cap": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "fixed10_cap": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "success10_cap": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "breakeven_cap": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "projected": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    },
+    "projected_cap": {
+      "mean_tokens": 2165285.192782064,
+      "ratio_to_reactive": 1.0,
+      "ratio_ci95": [
+        1.0,
+        1.0
+      ],
+      "success_rate": 0.8666666666666667,
+      "success_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_failed_compile_tokens": 0.0,
+      "mean_attempts": 0.0
+    }
+  },
+  "stream_summary": {
+    "n_arrivals": 30,
+    "families": 5,
+    "singleton_families": 1,
+    "singleton_family_pct": 20.0,
+    "top_family_n": 15,
+    "top_family_share_pct": 50.0
+  },
+  "stream_sha256": [
+    "97a914f4de8922ddc2d70111d840c9d8042b51658e7064eaf67305c5ab6d184c",
+    "bfbbfffca6af843d103413229f30344eeecad7b89a781b06d862e39ef6c45b67"
+  ],
+  "mapping_sha256": [
+    "60e6fcadca2c9280b624474cf092d4052601ba2ba0188ac8a8709165a9df1924",
+    "60e6fcadca2c9280b624474cf092d4052601ba2ba0188ac8a8709165a9df1924"
+  ],
+  "wall_s": 0.005660958995576948
+}

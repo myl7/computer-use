@@ -1,0 +1,341 @@
+{
+ "schema": "t2sim.constants/1",
+ "notes": "T2 simulation constants under the DETERMINISTIC cache convention (within an episode the re-sent prefix is always priced at r, only new tokens are fresh, episodes start cold; single calls fresh in full). Recomputed by experimental-results/guiexp/cache_adjust/deterministic_accounting.py. Sibling of constants.measured.json, which is untouched and holds the provider-reported unit. Seed basis matches constants.measured.json: the one failed AndroidWorld run (DS discover MarkorCreateNote s2) is excluded. p, q0, gates, d and m do not depend on the token unit and are unchanged.",
+ "cost_sets": {
+  "openapps_glm": {
+   "label": "OpenApps wizard layouts, GLM 5.3 Flash (deterministic cache-adjusted)",
+   "status": "measured",
+   "source": "T1.1/T1.3 deterministic cache-adjusted + d_full",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 58363,
+     "L": 22561,
+     "rho": 0.613,
+     "C": 14983,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "single_page": {
+     "status": "measured",
+     "c": 52220,
+     "L": 20092,
+     "rho": 0.615,
+     "C": 14983,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "sectioned": {
+     "status": "measured",
+     "c": 43126,
+     "L": 23137,
+     "rho": 0.464,
+     "C": 14983,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    }
+   }
+  },
+  "openapps_ds": {
+   "label": "OpenApps wizard layouts, DeepSeek v4 flash vision-exp (deterministic cache-adjusted)",
+   "status": "measured",
+   "source": "T1.1/T1.3 deterministic cache-adjusted + d_full",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 55382,
+     "L": 17410,
+     "rho": 0.686,
+     "C": 13994,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "single_page": {
+     "status": "measured",
+     "c": 58655,
+     "L": 15931,
+     "rho": 0.728,
+     "C": 13994,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "sectioned": {
+     "status": "measured",
+     "c": 62767,
+     "L": 18362,
+     "rho": 0.707,
+     "C": 13994,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    }
+   }
+  },
+  "android_glm": {
+   "label": "AndroidWorld 3 families, GLM 5.3 Flash (T1.2/T1.4)",
+   "status": "measured",
+   "source": "T1.2/T1.4 deterministic cache-adjusted",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "contacts": {
+     "status": "measured",
+     "c": 54323,
+     "L": 51806,
+     "rho": 0.05,
+     "C": 10265,
+     "p": 1.0,
+     "d": 225,
+     "q0": 0.0
+    },
+    "calendar": {
+     "status": "measured",
+     "note": "rho negative: told-text defect, see docs/android-told-diagnosis.md",
+     "c": 208084,
+     "L": 237497,
+     "rho": -0.14,
+     "C": 63400,
+     "p": 0.0,
+     "d": 321,
+     "q0": 1.0
+    },
+    "markor": {
+     "status": "measured",
+     "c": 67917,
+     "L": 68350,
+     "rho": -0.01,
+     "C": 5529,
+     "p": 0.0,
+     "d": 215,
+     "q0": 1.0,
+     "note": "rho negative: told-text defect, see docs/android-told-diagnosis.md"
+    }
+   }
+  },
+  "android_ds": {
+   "label": "AndroidWorld 3 families, DeepSeek v4 flash vision-exp (T1.2/T1.4)",
+   "status": "measured",
+   "source": "T1.2/T1.4 deterministic cache-adjusted",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "contacts": {
+     "status": "measured",
+     "c": 65345,
+     "L": 42773,
+     "rho": 0.35,
+     "C": 12262,
+     "p": 0.67,
+     "d": 277,
+     "q0": 0.0
+    },
+    "calendar": {
+     "status": "measured",
+     "c": 248515,
+     "L": 256507,
+     "rho": -0.03,
+     "C": 39461,
+     "p": 0.07,
+     "d": 360,
+     "q0": 0.77,
+     "note": "rho negative: told-text defect, see docs/android-told-diagnosis.md"
+    },
+    "markor": {
+     "status": "measured",
+     "note": "rho negative: told-text defect, see docs/android-told-diagnosis.md",
+     "c": 36637,
+     "L": 50178,
+     "rho": -0.37,
+     "C": 21259,
+     "p": 0.0,
+     "d": 287,
+     "q0": 1.0
+    }
+   }
+  }
+ },
+ "price_ladder": [
+  {
+   "name": "native",
+   "C": null,
+   "note": "the cost set's own measured C"
+  },
+  {
+   "name": "autorpa_233k",
+   "C": 233000,
+   "note": "AutoRPA published offline build price"
+  },
+  {
+   "name": "1M",
+   "C": 1000000
+  },
+  {
+   "name": "5M",
+   "C": 5000000
+  },
+  {
+   "name": "xu_10M",
+   "C": 10000000
+  }
+ ],
+ "epsilon_cliff": {
+  "enabled": false,
+  "eps0": 0.3,
+  "cliff_start": 100,
+  "cliff_slope": 20,
+  "note": "eps(n) = eps0*sigmoid((n-cliff_start)/cliff_slope). Measured eps=0 for n<=100, so headline runs keep it off; E8 sweeps eps0/cliff_start/cliff_slope."
+ },
+ "streams": {
+  "synthetic": {
+   "patterns": [
+    "poisson",
+    "zipf",
+    "bursty"
+   ],
+   "n_arrivals": 300,
+   "n_arrivals_long": 30000
+  },
+  "wiki_A": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_tool_hot_tail.jsonl",
+   "window": null,
+   "label": "Wikipedia-A tool hot+tail (65,564 arrivals, 2,529 families)",
+   "role": "main"
+  },
+  "wiki_B": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_content_tail.jsonl",
+   "window": 100000,
+   "label": "Wikipedia-B content tail (161,830 total; first 100k by ts)",
+   "role": "main"
+  },
+  "sepsis": {
+   "format": "old_real_streams",
+   "key": "sepsis",
+   "label": "Sepsis process log (1,050 arrivals, 846 families)",
+   "role": "main"
+  },
+  "helpdesk": {
+   "format": "old_real_streams",
+   "key": "helpdesk",
+   "label": "Helpdesk process log (4,580 arrivals, 226 families)",
+   "role": "e5_selection"
+  },
+  "bpi2019": {
+   "format": "old_real_streams",
+   "key": "bpi2019",
+   "label": "BPI Challenge 2019 (251,734 arrivals, 11,973 families)",
+   "role": "held_out"
+  }
+ },
+ "trigger": {
+  "cooldown": "inflate",
+  "cooldown_len": 3,
+  "half_life": 120.0,
+  "prior_mode": "population",
+  "prior_shape": 1.0,
+  "prior_rate": 5.0,
+  "horizon_mode": "capped_doubling",
+  "horizon_cap": 50.0,
+  "horizon_fixed": 60,
+  "note": "horizon_cap = 1/h at the old engine's drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); the projection is H=lambda_hat*min-uses capped at it. The threshold also carries the manifest externality m*t (methods-v2 section 2 one-line extension), inert at m=0."
+ },
+ "e3": {
+  "cost_sets": [
+   "openapps_glm",
+   "android_glm"
+  ],
+  "price": "native"
+ },
+ "e4": {
+  "cost_set": "openapps_glm",
+  "streams": [
+   "wiki_A",
+   "wiki_B",
+   "sepsis"
+  ],
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M"
+  ],
+  "bpi_heldout": true,
+  "bpi_reps": null
+ },
+ "e5": {
+  "cost_set": "openapps_glm",
+  "selection_streams": [
+   "sepsis",
+   "helpdesk"
+  ],
+  "real_prices": [
+   "native",
+   "1M",
+   "5M"
+  ],
+  "stress_prices": [
+   "native",
+   "5M"
+  ],
+  "gate_rates": [
+   0.3,
+   0.6,
+   1.0
+  ],
+  "long_n": 30000,
+  "bpi_horizon_heldout": true,
+  "bpi_reps": 5
+ },
+ "e8": {
+  "cost_set": "openapps_glm",
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M",
+   "xu_10M"
+  ],
+  "strengths": [
+   0.5,
+   0.75,
+   1.0
+  ],
+  "include_native_strength": true,
+  "tau_modes": [
+   "off",
+   "measured",
+   "10x"
+  ],
+  "eps_modes": [
+   "off",
+   "cliff",
+   "harsh"
+  ],
+  "sens_prices": [
+   "native",
+   "5M"
+  ]
+ },
+ "extras": {
+  "C_fullread": {
+   "z-ai/glm-5.3-flash": 23091,
+   "deepseek/deepseek-v4-flash-vision-exp": 23217
+  },
+  "tau_law": "prompt(n)=368+90.0n (d_full); tax n=846 -> 76,737"
+ },
+ "_schema_deviations": "constants.schema.json bounds rho to [0,1] and p to (0,1]. Four AndroidWorld cells break those bounds because the measurement does: rho is negative where the told text is defective (see docs/android-told-diagnosis.md) and p is exactly 0 where the gate never passed. constants.measured.json breaks the same bounds in 5 places. The schema is not relaxed here; the deviations are recorded and listed by deterministic_accounting.py."
+}

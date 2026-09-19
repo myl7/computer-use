@@ -1,0 +1,1095 @@
+{
+ "summary": {
+  "program": "/Users/myl/app/computer-use/experimental-results/guiexp/t13_compilepath/z-ai_glm-5.3-flash/attempt1/family_program.py",
+  "probe": "guiexp e7_drift (port of openapps-exp/drift_probe.py)",
+  "drift_seed_namespace": "guiexp:drift:",
+  "drift_seed": 0,
+  "bindings": [
+   "Delta Audit",
+   "Epsilon Workshop",
+   "Alpha Review",
+   "Beta Sync",
+   "Gamma Demo"
+  ],
+  "gate_namespace_rotation": [
+   "Epsilon Workshop",
+   "Alpha Review",
+   "Beta Sync",
+   "Gamma Demo",
+   "Delta Audit"
+  ],
+  "n_runs": 30,
+  "wall_s": 67.3,
+  "per_arm_counts": {
+   "wizard": {
+    "pass": 5,
+    "loud": 0,
+    "silent": 0
+   },
+   "wizard+dark_theme": {
+    "pass": 5,
+    "loud": 0,
+    "silent": 0
+   },
+   "wizard+black_and_white": {
+    "pass": 5,
+    "loud": 0,
+    "silent": 0
+   },
+   "wizard+challenging_font": {
+    "pass": 5,
+    "loud": 0,
+    "silent": 0
+   },
+   "single_page": {
+    "pass": 0,
+    "loud": 5,
+    "silent": 0
+   },
+   "sectioned": {
+    "pass": 0,
+    "loud": 5,
+    "silent": 0
+   }
+  },
+  "per_arm_axis": {
+   "wizard": "baseline",
+   "wizard+dark_theme": "appearance",
+   "wizard+black_and_white": "appearance",
+   "wizard+challenging_font": "appearance",
+   "single_page": "protocol",
+   "sectioned": "protocol"
+  },
+  "baseline_pass_rate": 1.0,
+  "appearance_drift_survival_rate": 1.0,
+  "n_appearance_runs": 15,
+  "protocol_drift_break_rate": 1.0,
+  "n_protocol_runs": 10,
+  "silent_wrong_total": 0,
+  "loud_total": 10,
+  "exception_classes": {
+   "RuntimeError": 10,
+   "none": 20
+  },
+  "hazard_model": {
+   "assumption": "an interface change event is one draw from the five non-baseline arms, uniformly weighted; the program breaks if that draw does not yield PASS",
+   "mixture": {
+    "wizard+dark_theme": 0.2,
+    "wizard+black_and_white": 0.2,
+    "wizard+challenging_font": 0.2,
+    "single_page": 0.2,
+    "sectioned": 0.2
+   },
+   "break_prob_per_change_event": 0.4,
+   "silent_prob_per_change_event": 0.0,
+   "per_use_hazard_by_change_rate": {
+    "0.01": 0.004,
+    "0.02": 0.008,
+    "0.05": 0.02,
+    "0.1": 0.04,
+    "0.25": 0.1
+   },
+   "note": "per-use hazard = break_prob_per_change_event x change events per use; this probe measures the first factor only"
+  },
+  "comparison": {
+   "old_probe_source": "openapps-exp/drift_probe.py over compile_glm_wizard/family_program_a3.py; paper body.tex tab:drift",
+   "arms": {
+    "wizard": {
+     "new": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "old": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    },
+    "wizard+dark_theme": {
+     "new": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "old": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    },
+    "wizard+black_and_white": {
+     "new": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "old": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    },
+    "wizard+challenging_font": {
+     "new": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "old": {
+      "pass": 5,
+      "loud": 0,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    },
+    "single_page": {
+     "new": {
+      "pass": 0,
+      "loud": 5,
+      "silent": 0
+     },
+     "old": {
+      "pass": 0,
+      "loud": 5,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    },
+    "sectioned": {
+     "new": {
+      "pass": 0,
+      "loud": 5,
+      "silent": 0
+     },
+     "old": {
+      "pass": 0,
+      "loud": 5,
+      "silent": 0
+     },
+     "same_outcome_mix": true
+    }
+   }
+  }
+ },
+ "arms": [
+  {
+   "arm": "wizard",
+   "axis": "baseline",
+   "overrides": [
+    "apps/calendar/appearance=wizard"
+   ],
+   "compose": {
+    "flow_marker": "wizard-next-1",
+    "flow_marker_ok": true,
+    "style_fingerprint": "#1095c1",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "wizard",
+     "axis": "baseline",
+     "binding": "Delta Audit",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 47,
+     "events_after": 48,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 48,
+      "title": "Delta Audit",
+      "date": "2026-08-02",
+      "description": "Security review",
+      "url": "https://example.com/delta",
+      "location": "Suite 900",
+      "invitees": "Frank",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 2.3
+    },
+    {
+     "arm": "wizard",
+     "axis": "baseline",
+     "binding": "Epsilon Workshop",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 48,
+     "events_after": 49,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 49,
+      "title": "Epsilon Workshop",
+      "date": "2026-09-15",
+      "description": "Team offsite",
+      "url": "https://example.com/epsilon",
+      "location": "Main Hall",
+      "invitees": "Grace",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.3
+    },
+    {
+     "arm": "wizard",
+     "axis": "baseline",
+     "binding": "Alpha Review",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 49,
+     "events_after": 50,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 50,
+      "title": "Alpha Review",
+      "date": "2026-05-04",
+      "description": "Sprint retro",
+      "url": "https://example.com/alpha",
+      "location": "Room 1",
+      "invitees": "Carol",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard",
+     "axis": "baseline",
+     "binding": "Beta Sync",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 50,
+     "events_after": 51,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 51,
+      "title": "Beta Sync",
+      "date": "2026-06-11",
+      "description": "Quarterly planning",
+      "url": "https://example.com/beta",
+      "location": "Room 7",
+      "invitees": "Dave",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard",
+     "axis": "baseline",
+     "binding": "Gamma Demo",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 51,
+     "events_after": 52,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 52,
+      "title": "Gamma Demo",
+      "date": "2026-07-21",
+      "description": "Product walkthrough",
+      "url": "https://example.com/gamma",
+      "location": "Hall B",
+      "invitees": "Erin",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.3
+    }
+   ]
+  },
+  {
+   "arm": "wizard+dark_theme",
+   "axis": "appearance",
+   "overrides": [
+    "apps/calendar/appearance=dark_theme",
+    "+apps.calendar.form_flow=wizard"
+   ],
+   "compose": {
+    "flow_marker": "wizard-next-1",
+    "flow_marker_ok": true,
+    "style_fingerprint": "#121212",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "wizard+dark_theme",
+     "axis": "appearance",
+     "binding": "Delta Audit",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 47,
+     "events_after": 48,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 48,
+      "title": "Delta Audit",
+      "date": "2026-08-02",
+      "description": "Security review",
+      "url": "https://example.com/delta",
+      "location": "Suite 900",
+      "invitees": "Frank",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 2.1
+    },
+    {
+     "arm": "wizard+dark_theme",
+     "axis": "appearance",
+     "binding": "Epsilon Workshop",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 48,
+     "events_after": 49,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 49,
+      "title": "Epsilon Workshop",
+      "date": "2026-09-15",
+      "description": "Team offsite",
+      "url": "https://example.com/epsilon",
+      "location": "Main Hall",
+      "invitees": "Grace",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.3
+    },
+    {
+     "arm": "wizard+dark_theme",
+     "axis": "appearance",
+     "binding": "Alpha Review",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 49,
+     "events_after": 50,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 50,
+      "title": "Alpha Review",
+      "date": "2026-05-04",
+      "description": "Sprint retro",
+      "url": "https://example.com/alpha",
+      "location": "Room 1",
+      "invitees": "Carol",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard+dark_theme",
+     "axis": "appearance",
+     "binding": "Beta Sync",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 50,
+     "events_after": 51,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 51,
+      "title": "Beta Sync",
+      "date": "2026-06-11",
+      "description": "Quarterly planning",
+      "url": "https://example.com/beta",
+      "location": "Room 7",
+      "invitees": "Dave",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.1
+    },
+    {
+     "arm": "wizard+dark_theme",
+     "axis": "appearance",
+     "binding": "Gamma Demo",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 51,
+     "events_after": 52,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 52,
+      "title": "Gamma Demo",
+      "date": "2026-07-21",
+      "description": "Product walkthrough",
+      "url": "https://example.com/gamma",
+      "location": "Hall B",
+      "invitees": "Erin",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.1
+    }
+   ]
+  },
+  {
+   "arm": "wizard+black_and_white",
+   "axis": "appearance",
+   "overrides": [
+    "apps/calendar/appearance=black_and_white",
+    "+apps.calendar.form_flow=wizard"
+   ],
+   "compose": {
+    "flow_marker": "wizard-next-1",
+    "flow_marker_ok": true,
+    "style_fingerprint": "#000000",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "wizard+black_and_white",
+     "axis": "appearance",
+     "binding": "Delta Audit",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 47,
+     "events_after": 48,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 48,
+      "title": "Delta Audit",
+      "date": "2026-08-02",
+      "description": "Security review",
+      "url": "https://example.com/delta",
+      "location": "Suite 900",
+      "invitees": "Frank",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 2.1
+    },
+    {
+     "arm": "wizard+black_and_white",
+     "axis": "appearance",
+     "binding": "Epsilon Workshop",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 48,
+     "events_after": 49,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 49,
+      "title": "Epsilon Workshop",
+      "date": "2026-09-15",
+      "description": "Team offsite",
+      "url": "https://example.com/epsilon",
+      "location": "Main Hall",
+      "invitees": "Grace",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard+black_and_white",
+     "axis": "appearance",
+     "binding": "Alpha Review",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 49,
+     "events_after": 50,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 50,
+      "title": "Alpha Review",
+      "date": "2026-05-04",
+      "description": "Sprint retro",
+      "url": "https://example.com/alpha",
+      "location": "Room 1",
+      "invitees": "Carol",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard+black_and_white",
+     "axis": "appearance",
+     "binding": "Beta Sync",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 50,
+     "events_after": 51,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 51,
+      "title": "Beta Sync",
+      "date": "2026-06-11",
+      "description": "Quarterly planning",
+      "url": "https://example.com/beta",
+      "location": "Room 7",
+      "invitees": "Dave",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard+black_and_white",
+     "axis": "appearance",
+     "binding": "Gamma Demo",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 51,
+     "events_after": 52,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 52,
+      "title": "Gamma Demo",
+      "date": "2026-07-21",
+      "description": "Product walkthrough",
+      "url": "https://example.com/gamma",
+      "location": "Hall B",
+      "invitees": "Erin",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.0
+    }
+   ]
+  },
+  {
+   "arm": "wizard+challenging_font",
+   "axis": "appearance",
+   "overrides": [
+    "apps/calendar/appearance=challenging_font",
+    "+apps.calendar.form_flow=wizard"
+   ],
+   "compose": {
+    "flow_marker": "wizard-next-1",
+    "flow_marker_ok": true,
+    "style_fingerprint": "Brush Script MT",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "wizard+challenging_font",
+     "axis": "appearance",
+     "binding": "Delta Audit",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 47,
+     "events_after": 48,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 48,
+      "title": "Delta Audit",
+      "date": "2026-08-02",
+      "description": "Security review",
+      "url": "https://example.com/delta",
+      "location": "Suite 900",
+      "invitees": "Frank",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.5
+    },
+    {
+     "arm": "wizard+challenging_font",
+     "axis": "appearance",
+     "binding": "Epsilon Workshop",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 48,
+     "events_after": 49,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 49,
+      "title": "Epsilon Workshop",
+      "date": "2026-09-15",
+      "description": "Team offsite",
+      "url": "https://example.com/epsilon",
+      "location": "Main Hall",
+      "invitees": "Grace",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.2
+    },
+    {
+     "arm": "wizard+challenging_font",
+     "axis": "appearance",
+     "binding": "Alpha Review",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 49,
+     "events_after": 50,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 50,
+      "title": "Alpha Review",
+      "date": "2026-05-04",
+      "description": "Sprint retro",
+      "url": "https://example.com/alpha",
+      "location": "Room 1",
+      "invitees": "Carol",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.4
+    },
+    {
+     "arm": "wizard+challenging_font",
+     "axis": "appearance",
+     "binding": "Beta Sync",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 50,
+     "events_after": 51,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 51,
+      "title": "Beta Sync",
+      "date": "2026-06-11",
+      "description": "Quarterly planning",
+      "url": "https://example.com/beta",
+      "location": "Room 7",
+      "invitees": "Dave",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.4
+    },
+    {
+     "arm": "wizard+challenging_font",
+     "axis": "appearance",
+     "binding": "Gamma Demo",
+     "returned": true,
+     "raised": false,
+     "exception_class": "none",
+     "exception": "",
+     "error": null,
+     "events_before": 51,
+     "events_after": 52,
+     "record_exists": true,
+     "record_duplicated": false,
+     "record_correct": true,
+     "mismatched_fields": [],
+     "record": {
+      "id": 52,
+      "title": "Gamma Demo",
+      "date": "2026-07-21",
+      "description": "Product walkthrough",
+      "url": "https://example.com/gamma",
+      "location": "Hall B",
+      "invitees": "Erin",
+      "recurring": null
+     },
+     "oracle_passed": true,
+     "outcome": "PASS",
+     "wall_s": 1.3
+    }
+   ]
+  },
+  {
+   "arm": "single_page",
+   "axis": "protocol",
+   "overrides": [
+    "apps/calendar/appearance=default"
+   ],
+   "compose": {
+    "flow_marker": null,
+    "flow_marker_ok": true,
+    "style_fingerprint": "#1095c1",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "single_page",
+     "axis": "protocol",
+     "binding": "Delta Audit",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 1.5
+    },
+    {
+     "arm": "single_page",
+     "axis": "protocol",
+     "binding": "Epsilon Workshop",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    },
+    {
+     "arm": "single_page",
+     "axis": "protocol",
+     "binding": "Alpha Review",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    },
+    {
+     "arm": "single_page",
+     "axis": "protocol",
+     "binding": "Beta Sync",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    },
+    {
+     "arm": "single_page",
+     "axis": "protocol",
+     "binding": "Gamma Demo",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    }
+   ]
+  },
+  {
+   "arm": "sectioned",
+   "axis": "protocol",
+   "overrides": [
+    "apps/calendar/appearance=sectioned"
+   ],
+   "compose": {
+    "flow_marker": "reveal-details",
+    "flow_marker_ok": true,
+    "style_fingerprint": "#1095c1",
+    "style_fingerprint_ok": true
+   },
+   "bindings": [
+    "Delta Audit",
+    "Epsilon Workshop",
+    "Alpha Review",
+    "Beta Sync",
+    "Gamma Demo"
+   ],
+   "runs": [
+    {
+     "arm": "sectioned",
+     "axis": "protocol",
+     "binding": "Delta Audit",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 1.1
+    },
+    {
+     "arm": "sectioned",
+     "axis": "protocol",
+     "binding": "Epsilon Workshop",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.5
+    },
+    {
+     "arm": "sectioned",
+     "axis": "protocol",
+     "binding": "Alpha Review",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    },
+    {
+     "arm": "sectioned",
+     "axis": "protocol",
+     "binding": "Beta Sync",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 0.4
+    },
+    {
+     "arm": "sectioned",
+     "axis": "protocol",
+     "binding": "Gamma Demo",
+     "returned": null,
+     "raised": true,
+     "exception_class": "RuntimeError",
+     "exception": "No button matching '^next$|next' found",
+     "error": "RuntimeError: No button matching '^next$|next' found",
+     "events_before": 47,
+     "events_after": 47,
+     "record_exists": false,
+     "record_duplicated": false,
+     "record_correct": false,
+     "mismatched_fields": [],
+     "record": null,
+     "oracle_passed": false,
+     "outcome": "LOUD",
+     "wall_s": 1.1
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,104 @@
+{
+ "family": "FilesMoveFile",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 20,
+ "instances": [
+  {
+   "family": "FilesMoveFile",
+   "seed": 1,
+   "goal": "Move the file lecture_capture.mp3 from DCIM within the sdk_gphone_x86_64 storage area to the Recordings within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 294575,
+      "cached_tokens": 251264,
+      "completion_tokens": 1283,
+      "total_tokens": 295858,
+      "cost_usd": 0.02590646,
+      "model_calls": 15
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s1_a0/trajectory.jsonl"
+  },
+  {
+   "family": "FilesMoveFile",
+   "seed": 2,
+   "goal": "Move the file birthday_party.jpg from Alarms within the sdk_gphone_x86_64 storage area to the DCIM within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 14,
+     "usage": {
+      "prompt_tokens": 182552,
+      "cached_tokens": 125952,
+      "completion_tokens": 2380,
+      "total_tokens": 184932,
+      "cost_usd": 0.01543333,
+      "model_calls": 14
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "FilesMoveFile",
+   "seed": 3,
+   "goal": "Move the file memoir_audio.mp3 from Documents within the sdk_gphone_x86_64 storage area to the Recordings within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 12,
+     "usage": {
+      "prompt_tokens": 192288,
+      "cached_tokens": 161408,
+      "completion_tokens": 929,
+      "total_tokens": 193217,
+      "cost_usd": 0.01846778,
+      "model_calls": 12
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/FilesMoveFile/explore/s3_a0/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "prompt_tokens": 669415,
+  "cached_tokens": 538624,
+  "completion_tokens": 4592,
+  "total_tokens": 674007,
+  "cost_usd": 0.05980757
+ },
+ "record_type": "exploration"
+}

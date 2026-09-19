@@ -1,0 +1,394 @@
+{
+ "family": "CalcTableSave",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Save of 'payroll_extract.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Save of 'payroll_extract.ods' did not complete (active window: 'Untitled 1 - LibreOffice Calc | Save')"
+    }
+   ],
+   "analysis": {
+    "cause": "Ctrl+S opened the Save dialog, but the filename was never entered into the dialog's actual file-name field (both 'File name' lookups returned NOT FOUND, so the typed path went to the wrong widget) and the Save click (index 500) therefore had no effect. The dialog stayed open, no save occurred, and the agent then looped waiting for a 'Replace' overwrite prompt that could never appear, until the run timed out.",
+    "done": "LibreOffice Calc is open with a new spreadsheet; all cell content is entered correctly (A1='Pipeline', B1='Budget', A2=8398, B2=3934, A3=7093, B3=1974); the Save dialog is currently open on top of the window. Only the actual save to Desktop/payroll_extract.ods is missing.",
+    "plan": "1) Work in the still-open Save dialog: locate its file-name entry (search the dialog's elements for an editable text/combo field; if it again can't be found, press Escape to cancel and reopen via File > Save As / Ctrl+Shift+S). 2) Clear the field and type the full path /home/user/Desktop/payroll_extract.ods (or type payroll_extract and select Desktop in the places list). 3) Confirm the file type is ODF Spreadsheet (.ods). 4) Click Save. 5) If an 'already exists / Replace' prompt appears, click Replace. 6) Verify the title bar changes to 'payroll_extract.ods - LibreOffice Calc' and the file exists on the Desktop.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 2247,
+    "cached_tokens": 0,
+    "completion_tokens": 2009,
+    "total_tokens": 4256,
+    "cost_usd": 0.0013281345,
+    "usage": {
+     "prompt_tokens": 2247,
+     "completion_tokens": 2009,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013281345
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 9,
+    "success": true,
+    "calls": 9,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 12327,
+      "cached_tokens": 0,
+      "completion_tokens": 5129,
+      "total_tokens": 17456,
+      "cost_usd": 0.0043694145,
+      "usage": {
+       "prompt_tokens": 12327,
+       "completion_tokens": 5129,
+       "cached_tokens": 0,
+       "cost_usd": 0.0043694145
+      },
+      "stage": "react_resume",
+      "action": "I can see the Save dialog is open with the Name field already containing \"/home/user/Desktop/payroll_extract.ods\" and file type \"ODF Spreadsheet (.ods)\". However, the dialog is currently in search mod"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 23634,
+      "cached_tokens": 0,
+      "completion_tokens": 1680,
+      "total_tokens": 25314,
+      "cost_usd": 0.004341249,
+      "usage": {
+       "prompt_tokens": 23634,
+       "completion_tokens": 1680,
+       "cached_tokens": 0,
+       "cost_usd": 0.004341249
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"press\", \"key\": \"esc\"}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 34794,
+      "cached_tokens": 12288,
+      "completion_tokens": 2832,
+      "total_tokens": 37626,
+      "cost_usd": 0.004802398524,
+      "usage": {
+       "prompt_tokens": 34794,
+       "completion_tokens": 2832,
+       "cached_tokens": 12288,
+       "cost_usd": 0.004802398524
+      },
+      "stage": "react_resume",
+      "action": "The dialog still shows search mode. The Name field already contains the correct full path. I'll use Ctrl+L to focus the location/Name entry in the GTK file chooser, then confirm with Enter.\n\naction: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"l\"]}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 45999,
+      "cached_tokens": 34752,
+      "completion_tokens": 154,
+      "total_tokens": 46153,
+      "cost_usd": 0.002611831266,
+      "usage": {
+       "prompt_tokens": 45999,
+       "completion_tokens": 154,
+       "cached_tokens": 34752,
+       "cost_usd": 0.002611831266
+      },
+      "stage": "react_resume",
+      "action": "The location bar is now focused with the full path \"/home/user/Desktop/payroll_extract.ods\" and an autocomplete dropdown appeared. I'll press Enter to confirm the save to this path.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 57197,
+      "cached_tokens": 45952,
+      "completion_tokens": 2008,
+      "total_tokens": 59205,
+      "cost_usd": 0.003786899886,
+      "usage": {
+       "prompt_tokens": 57197,
+       "completion_tokens": 2008,
+       "cached_tokens": 45952,
+       "cost_usd": 0.003786899886
+      },
+      "stage": "react_resume",
+      "action": "The first Enter likely just dismissed the autocomplete dropdown. The Name field still contains the full path. I'll press Enter again to trigger the save.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 68386,
+      "cached_tokens": 57152,
+      "completion_tokens": 1248,
+      "total_tokens": 69634,
+      "cost_usd": 0.003744417996,
+      "usage": {
+       "prompt_tokens": 68386,
+       "completion_tokens": 1248,
+       "cached_tokens": 57152,
+       "cost_usd": 0.003744417996
+      },
+      "stage": "react_resume",
+      "action": "The dialog appears stuck in search mode (\"No Results Found\"), and the Save button looks inactive. The Enter presses aren't triggering the save. I'll press Escape to exit this stuck state and then reopen a fresh Save dialog if needed.\n\naction: {\"action_type\": \"press\", \"key\": \"esc\"}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 79591,
+      "cached_tokens": 68352,
+      "completion_tokens": 118,
+      "total_tokens": 79709,
+      "cost_usd": 0.003532008546,
+      "usage": {
+       "prompt_tokens": 79591,
+       "completion_tokens": 118,
+       "cached_tokens": 68352,
+       "cost_usd": 0.003532008546
+      },
+      "stage": "react_resume",
+      "action": "The Escape cancelled the Save dialog entirely; we're back to the spreadsheet with all data intact. Now I'll reopen the Save As dialog with Ctrl+Shift+S.\n\naction: {\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"shift\", \"s\"]}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 90791,
+      "cached_tokens": 79552,
+      "completion_tokens": 435,
+      "total_tokens": 91226,
+      "cost_usd": 0.003992190246,
+      "usage": {
+       "prompt_tokens": 90791,
+       "completion_tokens": 435,
+       "cached_tokens": 79552,
+       "cost_usd": 0.003992190246
+      },
+      "stage": "react_resume",
+      "action": "A fresh Save dialog is open in normal browse mode, with \"Untitled 1\" selected in the Name field. I'll type the full path to replace it.\n\naction: {\"action_type\": \"input_text\", \"text\": \"/home/user/Desktop/payroll_extract.ods\"}"
+     },
+     {
+      "step": 9,
+      "call": 9,
+      "first_call": false,
+      "prompt_tokens": 101992,
+      "cached_tokens": 90752,
+      "completion_tokens": 214,
+      "total_tokens": 102206,
+      "cost_usd": 0.004202180136,
+      "usage": {
+       "prompt_tokens": 101992,
+       "completion_tokens": 214,
+       "cached_tokens": 90752,
+       "cost_usd": 0.004202180136
+      },
+      "stage": "react_resume",
+      "action": "The Name field now contains the full path and the file type is ODF Spreadsheet (.ods). I'll press Enter to confirm the save.\n\naction: {\"action_type\": \"press\", \"key\": \"enter\"}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 5573,
+    "cached_tokens": 0,
+    "completion_tokens": 21631,
+    "total_tokens": 27204,
+    "cost_usd": 0.01084284,
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 5573,
+     "cached_tokens": 0,
+     "completion_tokens": 21631,
+     "total_tokens": 27204,
+     "cost_usd": 0.01084284
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5573,
+      "cached_tokens": 0,
+      "completion_tokens": 21631,
+      "total_tokens": 27204,
+      "cost_usd": 0.01084283937,
+      "usage": {
+       "prompt_tokens": 5573,
+       "completion_tokens": 21631,
+       "cached_tokens": 0,
+       "cost_usd": 0.01084283937
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 1,
+ "replays": 1,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine1",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Spreadsheet file name ending in .ods; the file is saved on the Desktop\",\n    },\n    \"header_a\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell A1\",\n    },\n    \"header_b\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell B1\",\n    },\n    \"val_a2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A2 (below header_a)\",\n    },\n    \"val_b2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B2 (below header_b)\",\n    },\n    \"val_a3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A3\",\n    },\n    \"val_b3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B3\",\n    },\n}\n\n_DESKTOP_DIR = \"/home/user/Desktop\"\n\n\ndef _safe_find(device, **criteria):\n    try:\n        return device.find(**criteria)\n    except Exception:\n        return None\n\n\ndef _find_cell(device, cell_name):\n    idx = _safe_find(device, name=cell_name, role=\"table-cell\", editable=True)\n    if idx is None:\n        idx = _safe_find(device, name=cell_name, role=\"table-cell\")\n    if idx is None:\n        idx = _safe_find(device, name=cell_name)\n    return idx\n\n\ndef _read_cell_text(device, cell_name):\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    for el in els:\n        try:\n            if el.get(\"role\") == \"table-cell\" and el.get(\"name\") == cell_name:\n                return el.get(\"text\")\n        except Exception:\n            continue\n    return None\n\n\ndef _fill_cell(device, cell_name, value):\n    expected = str(value)\n    idx = _find_cell(device, cell_name)\n    if idx is None:\n        device.settle(1.0)\n        idx = _find_cell(device, cell_name)\n    if idx is None:\n        raise LookupError(\n            \"Spreadsheet cell '%s' not found in LibreOffice Calc\" % cell_name\n        )\n    device.click(idx)\n    device.input_text(expected, index=idx)\n    device.settle(0.3)\n\n    # Verify the commit; retry once if the cell text is readable and wrong.\n    for _ in range(1):\n        text = _read_cell_text(device, cell_name)\n        if text is None:\n            break\n        if str(text).strip() == expected:\n            break\n        idx = _find_cell(device, cell_name)\n        if idx is None:\n            break\n        device.click(idx)\n        device.input_text(expected, index=idx)\n        device.settle(0.3)\n\n\ndef _ensure_calc_sheet(device):\n    title = device.active_window() or \"\"\n    if \"Calc\" not in title:\n        device.open_app(\"LibreOffice Calc\")\n        device.wait()\n        device.settle(2.0)\n    for attempt in range(4):\n        if _find_cell(device, \"A1\") is not None:\n            return\n        if attempt == 1 and \"Calc\" in (device.active_window() or \"\"):\n            # Calc is running but no fresh sheet grid: open a new spreadsheet.\n            device.hotkey(\"ctrl\", \"n\")\n            device.settle(2.0)\n        else:\n            device.settle(1.0)\n    raise RuntimeError(\"LibreOffice Calc spreadsheet with cell A1 not found\")\n\n\ndef _overwrite_prompt_visible(device):\n    if _safe_find(device, name=\"Replace\", role=\"push-button\") is not None:\n        return True\n    if _safe_find(device, name=\"Replace\") is not None:\n        return True\n    if _safe_find(device, contains=\"already exists\") is not None:\n        return True\n    return False\n\n\ndef _title_shows_saved(device, file_name):\n    title = device.active_window() or \"\"\n    if file_name in title:\n        return True\n    base = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n    return bool(base) and base in title and \"Save\" not in title\n\n\ndef _wait_until_saved(device, file_name, attempts=5):\n    for _ in range(attempts):\n        if _title_shows_saved(device, file_name):\n            return True\n        if _overwrite_prompt_visible(device):\n            raise RuntimeError(\n                \"Overwrite prompt appeared for '%s'; a file with this name \"\n                \"must not exist yet\" % file_name\n            )\n        device.settle(1.0)\n    return False\n\n\ndef _save_dialog_open(device):\n    if \"| save\" in (device.active_window() or \"\").lower():\n        return True\n    if (\n        _safe_find(device, name=\"Cancel\", role=\"push-button\") is not None\n        and _safe_find(device, name=\"Save\", role=\"push-button\") is not None\n    ):\n        return True\n    return False\n\n\ndef _close_save_dialog(device, tries=4):\n    for _ in range(tries):\n        if not _save_dialog_open(device):\n            return True\n        device.press(\"esc\")\n        device.settle(1.0)\n    return not _save_dialog_open(device)\n\n\ndef _open_save_dialog(device):\n    # Cancel any stale/partially-typed dialog first so we start from a\n    # fresh dialog whose Name entry has focus with its content selected.\n    _close_save_dialog(device)\n    for _attempt in range(2):\n        for keys in ((\"ctrl\", \"shift\", \"s\"), (\"ctrl\", \"s\")):\n            device.hotkey(*keys)\n            for _ in range(3):\n                device.settle(1.0)\n                if _save_dialog_open(device):\n                    return\n    raise RuntimeError(\n        \"Save dialog did not open (active window: %r)\" % (device.active_window(),)\n    )\n\n\ndef _save_state(device, file_name):\n    if _title_shows_saved(device, file_name):\n        return \"saved\"\n    if _overwrite_prompt_visible(device):\n        raise RuntimeError(\n            \"Overwrite prompt appeared for '%s'; a file with this name \"\n            \"must not exist yet\" % file_name\n        )\n    return \"open\" if _save_dialog_open(device) else \"gone\"\n\n\ndef _find_name_entry(device):\n    for criteria in (\n        {\"role\": \"text\", \"editable\": True, \"name\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"name\"},\n        {\"role\": \"entry\", \"editable\": True},\n    ):\n        idx = _safe_find(device, **criteria)\n        if idx is not None:\n            return idx\n    # Last resort: scan for editable text widgets, skipping anything that\n    # looks like the file chooser's search box (which hijacks typed text).\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    fallback = None\n    for el in els:\n        try:\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            if not any(tok in role for tok in (\"text\", \"entry\", \"combo\", \"input\")):\n                continue\n            blob = \" \".join(\n                str(el.get(key) or \"\") for key in (\"name\", \"text\", \"description\")\n            ).lower()\n            if \"search\" in blob:\n                continue\n            fallback = el.get(\"index\")\n        except Exception:\n            continue\n    return fallback\n\n\ndef _save_typed_path(device, file_name):\n    \"\"\"Primary strategy.\n\n    A freshly opened Save dialog focuses its Name entry with the current\n    content selected: select-all + type at the caret puts the absolute\n    target path into the real Name field (no clicking, so the file\n    chooser's search box can never steal the text). Enter confirms.\n    \"\"\"\n    full_path = _DESKTOP_DIR + \"/\" + file_name\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.type_at_caret(full_path)\n    device.settle(0.5)\n    for _ in range(2):  # first Enter may only confirm an autocomplete popup\n        device.press(\"enter\")\n        device.settle(2.0)\n        state = _save_state(device, file_name)\n        if state == \"saved\":\n            return True\n        if state == \"gone\":\n            # Dialog closed but title may lag behind.\n            if _wait_until_saved(device, file_name):\n                return True\n            return False\n    return False\n\n\ndef _save_via_widgets(device, file_name, use_full_path):\n    \"\"\"Fallback: click the real Name entry, fill it, set folder, Save.\"\"\"\n    _open_save_dialog(device)\n    idx = _find_name_entry(device)\n    if idx is None:\n        _close_save_dialog(device)\n        return False\n    device.click(idx)\n    device.settle(0.5)\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.input_text(\n        (_DESKTOP_DIR + \"/\" + file_name) if use_full_path else file_name,\n        index=idx,\n    )\n    device.settle(0.5)\n    if not use_full_path:\n        # Only accept the plain-name variant if we can really switch the\n        # dialog's folder to Desktop, otherwise the save location is wrong.\n        desktop = (\n            _safe_find(device, name=\"Desktop\", role=\"table-cell\")\n            or _safe_find(device, name=\"Desktop\", role=\"list-item\")\n            or _safe_find(device, name=\"Desktop\", role=\"label\")\n            or _safe_find(device, name=\"Desktop\")\n        )\n        if desktop is None:\n            _close_save_dialog(device)\n            return False\n        device.click(desktop)\n        device.settle(1.0)\n    save_btn = _safe_find(device, name=\"Save\", role=\"push-button\")\n    if save_btn is not None:\n        device.click(save_btn)\n    else:\n        device.press(\"enter\")\n    device.settle(2.0)\n    if _wait_until_saved(device, file_name):\n        return True\n    if _save_dialog_open(device):\n        # A second Enter in case the first only confirmed an autocomplete.\n        device.press(\"enter\")\n        device.settle(2.0)\n        if _wait_until_saved(device, file_name):\n            return True\n    _close_save_dialog(device)\n    return False\n\n\ndef _save_spreadsheet(device, binding):\n    file_name = str(binding[\"file_name\"])\n\n    if _wait_until_saved(device, file_name, attempts=1):\n        return\n\n    _open_save_dialog(device)\n\n    if _save_typed_path(device, file_name):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=True):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=False):\n        return\n\n    _close_save_dialog(device)\n    raise RuntimeError(\n        \"Save of '%s' did not complete (active window: %r)\"\n        % (file_name, device.active_window())\n    )\n\n\ndef program(device, binding: dict) -> bool:\n    _ensure_calc_sheet(device)\n\n    cells = (\n        (\"A1\", binding[\"header_a\"]),\n        (\"B1\", binding[\"header_b\"]),\n        (\"A2\", binding[\"val_a2\"]),\n        (\"B2\", binding[\"val_b2\"]),\n        (\"A3\", binding[\"val_a3\"]),\n        (\"B3\", binding[\"val_b3\"]),\n    )\n    for cell_name, value in cells:\n        _fill_cell(device, cell_name, value)\n\n    # Guarantee the last typed cell is committed before saving.\n    device.press(\"enter\")\n    device.settle(0.5)\n\n    _save_spreadsheet(device, binding)\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Spreadsheet file name ending in .ods; the file is saved on the Desktop\",\n    },\n    \"header_a\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell A1\",\n    },\n    \"header_b\": {\n        \"type\": \"string\",\n        \"description\": \"Header text written into cell B1\",\n    },\n    \"val_a2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A2 (below header_a)\",\n    },\n    \"val_b2\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B2 (below header_b)\",\n    },\n    \"val_a3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell A3\",\n    },\n    \"val_b3\": {\n        \"type\": \"integer\",\n        \"description\": \"Number written into cell B3\",\n    },\n}\n\n_DESKTOP_DIR = \"/home/user/Desktop\"\n\n\ndef _safe_find(device, **criteria):\n    try:\n        return device.find(**criteria)\n    except Exception:\n        return None\n\n\ndef _find_cell(device, cell_name):\n    idx = _safe_find(device, name=cell_name, role=\"table-cell\", editable=True)\n    if idx is None:\n        idx = _safe_find(device, name=cell_name, role=\"table-cell\")\n    if idx is None:\n        idx = _safe_find(device, name=cell_name)\n    return idx\n\n\ndef _read_cell_text(device, cell_name):\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    for el in els:\n        try:\n            if el.get(\"role\") == \"table-cell\" and el.get(\"name\") == cell_name:\n                return el.get(\"text\")\n        except Exception:\n            continue\n    return None\n\n\ndef _fill_cell(device, cell_name, value):\n    expected = str(value)\n    idx = _find_cell(device, cell_name)\n    if idx is None:\n        device.settle(1.0)\n        idx = _find_cell(device, cell_name)\n    if idx is None:\n        raise LookupError(\n            \"Spreadsheet cell '%s' not found in LibreOffice Calc\" % cell_name\n        )\n    device.click(idx)\n    device.input_text(expected, index=idx)\n    device.settle(0.3)\n\n    # Verify the commit; retry once if the cell text is readable and wrong.\n    for _ in range(1):\n        text = _read_cell_text(device, cell_name)\n        if text is None:\n            break\n        if str(text).strip() == expected:\n            break\n        idx = _find_cell(device, cell_name)\n        if idx is None:\n            break\n        device.click(idx)\n        device.input_text(expected, index=idx)\n        device.settle(0.3)\n\n\ndef _ensure_calc_sheet(device):\n    title = device.active_window() or \"\"\n    if \"Calc\" not in title:\n        device.open_app(\"LibreOffice Calc\")\n        device.wait()\n        device.settle(2.0)\n    for attempt in range(4):\n        if _find_cell(device, \"A1\") is not None:\n            return\n        if attempt == 1 and \"Calc\" in (device.active_window() or \"\"):\n            # Calc is running but no fresh sheet grid: open a new spreadsheet.\n            device.hotkey(\"ctrl\", \"n\")\n            device.settle(2.0)\n        else:\n            device.settle(1.0)\n    raise RuntimeError(\"LibreOffice Calc spreadsheet with cell A1 not found\")\n\n\ndef _overwrite_prompt_visible(device):\n    if _safe_find(device, name=\"Replace\", role=\"push-button\") is not None:\n        return True\n    if _safe_find(device, name=\"Replace\") is not None:\n        return True\n    if _safe_find(device, contains=\"already exists\") is not None:\n        return True\n    return False\n\n\ndef _title_shows_saved(device, file_name):\n    title = device.active_window() or \"\"\n    if file_name in title:\n        return True\n    base = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n    return bool(base) and base in title and \"Save\" not in title\n\n\ndef _wait_until_saved(device, file_name, attempts=5):\n    for _ in range(attempts):\n        if _title_shows_saved(device, file_name):\n            return True\n        if _overwrite_prompt_visible(device):\n            raise RuntimeError(\n                \"Overwrite prompt appeared for '%s'; a file with this name \"\n                \"must not exist yet\" % file_name\n            )\n        device.settle(1.0)\n    return False\n\n\ndef _save_dialog_open(device):\n    if \"| save\" in (device.active_window() or \"\").lower():\n        return True\n    if (\n        _safe_find(device, name=\"Cancel\", role=\"push-button\") is not None\n        and _safe_find(device, name=\"Save\", role=\"push-button\") is not None\n    ):\n        return True\n    return False\n\n\ndef _close_save_dialog(device, tries=4):\n    for _ in range(tries):\n        if not _save_dialog_open(device):\n            return True\n        device.press(\"esc\")\n        device.settle(1.0)\n    return not _save_dialog_open(device)\n\n\ndef _open_save_dialog(device):\n    # Cancel any stale/partially-typed dialog first so we start from a\n    # fresh dialog whose Name entry has focus with its content selected.\n    _close_save_dialog(device)\n    for _attempt in range(2):\n        for keys in ((\"ctrl\", \"shift\", \"s\"), (\"ctrl\", \"s\")):\n            device.hotkey(*keys)\n            for _ in range(3):\n                device.settle(1.0)\n                if _save_dialog_open(device):\n                    return\n    raise RuntimeError(\n        \"Save dialog did not open (active window: %r)\" % (device.active_window(),)\n    )\n\n\ndef _save_state(device, file_name):\n    if _title_shows_saved(device, file_name):\n        return \"saved\"\n    if _overwrite_prompt_visible(device):\n        raise RuntimeError(\n            \"Overwrite prompt appeared for '%s'; a file with this name \"\n            \"must not exist yet\" % file_name\n        )\n    return \"open\" if _save_dialog_open(device) else \"gone\"\n\n\ndef _find_name_entry(device):\n    for criteria in (\n        {\"role\": \"text\", \"editable\": True, \"name\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File name\"},\n        {\"role\": \"text\", \"editable\": True, \"name\": \"File Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"Name\"},\n        {\"role\": \"text\", \"editable\": True, \"contains\": \"name\"},\n        {\"role\": \"entry\", \"editable\": True},\n    ):\n        idx = _safe_find(device, **criteria)\n        if idx is not None:\n            return idx\n    # Last resort: scan for editable text widgets, skipping anything that\n    # looks like the file chooser's search box (which hijacks typed text).\n    try:\n        els = device.elements()\n    except Exception:\n        return None\n    fallback = None\n    for el in els:\n        try:\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            if not any(tok in role for tok in (\"text\", \"entry\", \"combo\", \"input\")):\n                continue\n            blob = \" \".join(\n                str(el.get(key) or \"\") for key in (\"name\", \"text\", \"description\")\n            ).lower()\n            if \"search\" in blob:\n                continue\n            fallback = el.get(\"index\")\n        except Exception:\n            continue\n    return fallback\n\n\ndef _save_typed_path(device, file_name):\n    \"\"\"Primary strategy.\n\n    A freshly opened Save dialog focuses its Name entry with the current\n    content selected: select-all + type at the caret puts the absolute\n    target path into the real Name field (no clicking, so the file\n    chooser's search box can never steal the text). Enter confirms.\n    \"\"\"\n    full_path = _DESKTOP_DIR + \"/\" + file_name\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.type_at_caret(full_path)\n    device.settle(0.5)\n    for _ in range(2):  # first Enter may only confirm an autocomplete popup\n        device.press(\"enter\")\n        device.settle(2.0)\n        state = _save_state(device, file_name)\n        if state == \"saved\":\n            return True\n        if state == \"gone\":\n            # Dialog closed but title may lag behind.\n            if _wait_until_saved(device, file_name):\n                return True\n            return False\n    return False\n\n\ndef _save_via_widgets(device, file_name, use_full_path):\n    \"\"\"Fallback: click the real Name entry, fill it, set folder, Save.\"\"\"\n    _open_save_dialog(device)\n    idx = _find_name_entry(device)\n    if idx is None:\n        _close_save_dialog(device)\n        return False\n    device.click(idx)\n    device.settle(0.5)\n    device.hotkey(\"ctrl\", \"a\")\n    device.settle(0.2)\n    device.input_text(\n        (_DESKTOP_DIR + \"/\" + file_name) if use_full_path else file_name,\n        index=idx,\n    )\n    device.settle(0.5)\n    if not use_full_path:\n        # Only accept the plain-name variant if we can really switch the\n        # dialog's folder to Desktop, otherwise the save location is wrong.\n        desktop = (\n            _safe_find(device, name=\"Desktop\", role=\"table-cell\")\n            or _safe_find(device, name=\"Desktop\", role=\"list-item\")\n            or _safe_find(device, name=\"Desktop\", role=\"label\")\n            or _safe_find(device, name=\"Desktop\")\n        )\n        if desktop is None:\n            _close_save_dialog(device)\n            return False\n        device.click(desktop)\n        device.settle(1.0)\n    save_btn = _safe_find(device, name=\"Save\", role=\"push-button\")\n    if save_btn is not None:\n        device.click(save_btn)\n    else:\n        device.press(\"enter\")\n    device.settle(2.0)\n    if _wait_until_saved(device, file_name):\n        return True\n    if _save_dialog_open(device):\n        # A second Enter in case the first only confirmed an autocomplete.\n        device.press(\"enter\")\n        device.settle(2.0)\n        if _wait_until_saved(device, file_name):\n            return True\n    _close_save_dialog(device)\n    return False\n\n\ndef _save_spreadsheet(device, binding):\n    file_name = str(binding[\"file_name\"])\n\n    if _wait_until_saved(device, file_name, attempts=1):\n        return\n\n    _open_save_dialog(device)\n\n    if _save_typed_path(device, file_name):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=True):\n        return\n    if _save_via_widgets(device, file_name, use_full_path=False):\n        return\n\n    _close_save_dialog(device)\n    raise RuntimeError(\n        \"Save of '%s' did not complete (active window: %r)\"\n        % (file_name, device.active_window())\n    )\n\n\ndef program(device, binding: dict) -> bool:\n    _ensure_calc_sheet(device)\n\n    cells = (\n        (\"A1\", binding[\"header_a\"]),\n        (\"B1\", binding[\"header_b\"]),\n        (\"A2\", binding[\"val_a2\"]),\n        (\"B2\", binding[\"val_b2\"]),\n        (\"A3\", binding[\"val_a3\"]),\n        (\"B3\", binding[\"val_b3\"]),\n    )\n    for cell_name, value in cells:\n        _fill_cell(device, cell_name, value)\n\n    # Guarantee the last typed cell is committed before saving.\n    device.press(\"enter\")\n    device.settle(0.5)\n\n    _save_spreadsheet(device, binding)\n    return True\n",
+ "conclusions": [
+  "seed 1: Ctrl+S opened the Save dialog, but the filename was never entered into the dialog's actual file-name field (both 'File name' lookups returned NOT FOUND, so the typed path went to the wrong widget) and the Save click (index 500) therefore had no effect. The dialog stayed open, no save occurred, and t"
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 1,
+   "prompt_tokens": 2247,
+   "cached_tokens": 0,
+   "completion_tokens": 2009,
+   "total_tokens": 4256,
+   "cost_usd": 0.00132813
+  },
+  "resume_episodes": {
+   "calls": 9,
+   "prompt_tokens": 514711,
+   "cached_tokens": 388800,
+   "completion_tokens": 13818,
+   "total_tokens": 528529,
+   "cost_usd": 0.03538259
+  },
+  "builder_refinements": {
+   "calls": 1,
+   "prompt_tokens": 5573,
+   "cached_tokens": 0,
+   "completion_tokens": 21631,
+   "total_tokens": 27204,
+   "cost_usd": 0.01084284
+  },
+  "program_replays": {
+   "count": 1,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "cost_center_sheet.ods",
+     "header_a": "Branch",
+     "header_b": "Shipment",
+     "val_a2": 4892,
+     "val_b2": 5708,
+     "val_a3": 1213,
+     "val_b3": 8788
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "receivable_age.ods",
+     "header_a": "Attendance",
+     "header_b": "Facility",
+     "val_a2": 3884,
+     "val_b2": 2784,
+     "val_a3": 4620,
+     "val_b3": 6243
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "ledger_slice.ods",
+     "header_a": "Location",
+     "header_b": "Cost Center",
+     "val_a2": 8801,
+     "val_b2": 3393,
+     "val_a3": 3051,
+     "val_b3": 971
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "channel_breakdown.ods",
+     "header_a": "Currency",
+     "header_b": "Payable",
+     "val_a2": 704,
+     "val_b2": 4309,
+     "val_a3": 1593,
+     "val_b3": 7292
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "payment_records.ods",
+     "header_a": "Category",
+     "header_b": "Unit",
+     "val_a2": 8001,
+     "val_b2": 6254,
+     "val_a3": 5400,
+     "val_b3": 2536
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

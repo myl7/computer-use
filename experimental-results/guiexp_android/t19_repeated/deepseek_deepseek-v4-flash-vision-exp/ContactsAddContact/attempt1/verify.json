@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, one string copied verbatim\",\n    }\n}\n\ndef program(device, binding: dict) -> bool:\n    # Start from a clean launcher state\n    device.navigate_home()\n    device.open_app(\"Contacts\")\n    device.settle(1.0)\n\n    # Find and click the create-contact button\n    def find_create_button():\n        # Exact text\n        for text in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\", \"Add new contact\"]:\n            idx = device.find(text=text, clickable=True)\n            if idx is not None:\n                return idx\n        # Exact description\n        for desc in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\", \"Add new contact\"]:\n            idx = device.find(description=desc, clickable=True)\n            if idx is not None:\n                return idx\n        # Contains text\n        for text in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\"]:\n            idx = device.find(contains=text, clickable=True)\n            if idx is not None:\n                return idx\n        # Broad fallback\n        return device.find(contains=\"Create\", clickable=True)\n\n    create_idx = find_create_button()\n    if create_idx is None:\n        raise RuntimeError(\"Could not find create contact button\")\n    device.click(index=create_idx)\n    device.settle(1.0)\n\n    # Helper to find an editable field by hint/text/contains\n    def find_editable(hint=None, text=None, contains=None):\n        if hint:\n            idx = device.find(hint=hint, editable=True)\n            if idx is not None:\n                return idx\n        if text:\n            idx = device.find(text=text, editable=True)\n            if idx is not None:\n                return idx\n        if contains:\n            idx = device.find(contains=contains, editable=True)\n            if idx is not None:\n                return idx\n        return None\n\n    # Wait for first name field\n    first_name_idx = None\n    for _ in range(10):\n        first_name_idx = find_editable(hint=\"First name\", text=\"First name\")\n        if first_name_idx is not None:\n            break\n        device.settle(0.5)\n    if first_name_idx is None:\n        raise RuntimeError(\"First name field not found\")\n\n    device.click(index=first_name_idx)\n    device.input_text(binding['name'].split()[0], index=first_name_idx)\n\n    # Last name\n    last_name_idx = find_editable(hint=\"Last name\", text=\"Last name\")\n    if last_name_idx is None:\n        raise RuntimeError(\"Last name field not found\")\n    device.click(index=last_name_idx)\n    device.input_text(binding['name'].split()[1], index=last_name_idx)\n\n    # Phone number, scroll if necessary\n    phone_idx = None\n    for _ in range(15):\n        phone_idx = find_editable(hint=\"Phone\", text=\"Phone\", contains=\"Phone\")\n        if phone_idx is not None:\n            break\n        device.scroll(direction=\"down\")\n    if phone_idx is None:\n        raise RuntimeError(\"Phone field not found\")\n\n    device.click(index=phone_idx)\n    device.input_text(binding['number'], index=phone_idx)\n\n    # Save\n    save_idx = None\n    for attr in [\"text\", \"description\"]:\n        if attr == \"text\":\n            save_idx = device.find(text=\"Save\", clickable=True)\n        else:\n            save_idx = device.find(description=\"Save\", clickable=True)\n        if save_idx is not None:\n            break\n    if save_idx is None:\n        save_idx = device.find(contains=\"Save\", clickable=True)\n    if save_idx is None:\n        raise RuntimeError(\"Save button not found\")\n\n    device.click(index=save_idx)\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, one string copied verbatim\",\n    }\n}\n\ndef program(device, binding: dict) -> bool:\n    # Start from a clean launcher state\n    device.navigate_home()\n    device.open_app(\"Contacts\")\n    device.settle(1.0)\n\n    # Find and click the create-contact button\n    def find_create_button():\n        # Exact text\n        for text in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\", \"Add new contact\"]:\n            idx = device.find(text=text, clickable=True)\n            if idx is not None:\n                return idx\n        # Exact description\n        for desc in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\", \"Add new contact\"]:\n            idx = device.find(description=desc, clickable=True)\n            if idx is not None:\n                return idx\n        # Contains text\n        for text in [\"Create new contact\", \"Create contact\", \"New contact\", \"Add contact\"]:\n            idx = device.find(contains=text, clickable=True)\n            if idx is not None:\n                return idx\n        # Broad fallback\n        return device.find(contains=\"Create\", clickable=True)\n\n    create_idx = find_create_button()\n    if create_idx is None:\n        raise RuntimeError(\"Could not find create contact button\")\n    device.click(index=create_idx)\n    device.settle(1.0)\n\n    # Helper to find an editable field by hint/text/contains\n    def find_editable(hint=None, text=None, contains=None):\n        if hint:\n            idx = device.find(hint=hint, editable=True)\n            if idx is not None:\n                return idx\n        if text:\n            idx = device.find(text=text, editable=True)\n            if idx is not None:\n                return idx\n        if contains:\n            idx = device.find(contains=contains, editable=True)\n            if idx is not None:\n                return idx\n        return None\n\n    # Wait for first name field\n    first_name_idx = None\n    for _ in range(10):\n        first_name_idx = find_editable(hint=\"First name\", text=\"First name\")\n        if first_name_idx is not None:\n            break\n        device.settle(0.5)\n    if first_name_idx is None:\n        raise RuntimeError(\"First name field not found\")\n\n    device.click(index=first_name_idx)\n    device.input_text(binding['name'].split()[0], index=first_name_idx)\n\n    # Last name\n    last_name_idx = find_editable(hint=\"Last name\", text=\"Last name\")\n    if last_name_idx is None:\n        raise RuntimeError(\"Last name field not found\")\n    device.click(index=last_name_idx)\n    device.input_text(binding['name'].split()[1], index=last_name_idx)\n\n    # Phone number, scroll if necessary\n    phone_idx = None\n    for _ in range(15):\n        phone_idx = find_editable(hint=\"Phone\", text=\"Phone\", contains=\"Phone\")\n        if phone_idx is not None:\n            break\n        device.scroll(direction=\"down\")\n    if phone_idx is None:\n        raise RuntimeError(\"Phone field not found\")\n\n    device.click(index=phone_idx)\n    device.input_text(binding['number'], index=phone_idx)\n\n    # Save\n    save_idx = None\n    for attr in [\"text\", \"description\"]:\n        if attr == \"text\":\n            save_idx = device.find(text=\"Save\", clickable=True)\n        else:\n            save_idx = device.find(description=\"Save\", clickable=True)\n        if save_idx is not None:\n            break\n    if save_idx is None:\n        save_idx = device.find(contains=\"Save\", clickable=True)\n    if save_idx is None:\n        raise RuntimeError(\"Save button not found\")\n\n    device.click(index=save_idx)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

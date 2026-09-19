@@ -1,0 +1,399 @@
+{
+ "1": {
+  "family": "SimpleCalendarAddOneEvent",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Simple Calendar Pro"
+    },
+    "field": null,
+    "analysis": "This action opens the app \"Simple Calendar Pro\" from the launcher. It depends on the app being installed and the launcher being the current screen; it can fail if the app name differs or the app is not installed.",
+    "snippet": "device.open_app(\"Simple Calendar Pro\")",
+    "usage": {
+     "prompt_tokens": 924,
+     "completion_tokens": 126,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002835756
+    }
+   }
+  ],
+  "effective_actions": 1,
+  "recorded_actions": 21,
+  "replay_stopped_at": "step 2: ValueError",
+  "totals": {
+   "calls": 1,
+   "prompt_tokens": 924,
+   "cached_tokens": 0,
+   "completion_tokens": 126,
+   "total_tokens": 1050,
+   "cost_usd": 0.00028358
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "SimpleCalendarAddOneEvent",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "The action is a global scroll up on the launcher, which opens the notification shade. It depends on being on the home screen and having a notification shade to pull down; on another instance, the same scroll gesture should still work to reveal the shade, but the exact elements that appear may differ. The rewrite should simply perform a scroll up gesture, not depend on any specific element.",
+    "snippet": "device.scroll(direction=\"up\")",
+    "usage": {
+     "prompt_tokens": 977,
+     "completion_tokens": 188,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003356298
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back navigation action, not tied to any element. It works on any screen as long as the device supports back navigation; no element lookup is required.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 973,
+     "completion_tokens": 509,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005445
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Simple Calendar Pro"
+    },
+    "field": null,
+    "analysis": "This action opens the app by name, so it depends only on the app being installed and the launcher being available. It can fail if the app name differs or the app is not installed.",
+    "snippet": "device.open_app(\"Simple Calendar Pro\")",
+    "usage": {
+     "prompt_tokens": 924,
+     "completion_tokens": 510,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010689624
+    }
+   }
+  ],
+  "effective_actions": 3,
+  "recorded_actions": 19,
+  "replay_stopped_at": "step 5: ValueError",
+  "totals": {
+   "calls": 3,
+   "prompt_tokens": 2874,
+   "cached_tokens": 0,
+   "completion_tokens": 1207,
+   "total_tokens": 4081,
+   "cost_usd": 0.00194909
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "SimpleCalendarAddOneEvent",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Simple Calendar Pro"
+    },
+    "field": null,
+    "analysis": "This action opens the app by name; it depends on the app being installed and the launcher being available. It can fail if the app name is not exactly \"Simple Calendar Pro\" or if the app is not installed.",
+    "snippet": "device.open_app(\"Simple Calendar Pro\")",
+    "usage": {
+     "prompt_tokens": 924,
+     "completion_tokens": 545,
+     "cached_tokens": 923,
+     "cost_usd": 0.00036271719
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "This action clicks the \"New Event\" button on the main screen to start creating an event. It can fail if the app is not on the main screen or if the button's description is localized/different.",
+    "snippet": "element = device.find(description=\"New Event\", clickable=True)\nif element is None:\n    raise RuntimeError(\"New Event button not found\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 622,
+     "completion_tokens": 708,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005980788
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "The action just taps the \"New Event\" FAB on the main calendar screen; its recorded index 10 is positional and varies, but its `description='New Event'` (ImageButton, clickable) is a stable semantic anchor. Failure modes: another instance may render it as a plain button or with a different class, so allow a description-only fallback before erroring.",
+    "snippet": "el = device.find(description=\"New Event\", class_name=\"ImageButton\", clickable=True)\nif el is None:\n    el = device.find(description=\"New Event\", clickable=True)\nif el is None:\n    raise RuntimeError(\"No 'New Event' button found on the calendar screen\")\ndevice.click(index=el)\ndevice.settle(1.0)\nif device.find(hint=\"Title\", editable=True) is None:\n    raise RuntimeError(\"New-event editor did not open after tapping 'New Event'\")",
+    "usage": {
+     "prompt_tokens": 1002,
+     "completion_tokens": 381,
+     "cached_tokens": 0,
+     "cost_usd": 0.000934362
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 4,
+     "text": "Workshop on Campaign"
+    },
+    "field": "event_title",
+    "analysis": "This action targets the event title EditText, identified by its hint 'Title' and editable status. It can fail if the field is not visible/editable or the keyboard obscures it, so lookup must be semantic rather than by recorded index.",
+    "snippet": "index = device.find(hint='Title', editable=True)\nif index is None:\n    raise RuntimeError('Title EditText not found')\ndevice.input_text(text=binding['event_title'], index=index)",
+    "usage": {
+     "prompt_tokens": 1241,
+     "completion_tokens": 401,
+     "cached_tokens": 0,
+     "cost_usd": 0.000521657136
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 7
+    },
+    "field": null,
+    "analysis": "The recorded step just taps the description EditText, but it addresses it by raw index 7, which is only valid on that exact a11y snapshot (and it also matched a keyboard-I/O dictionary layout). On another instance the same field can sit at a different index, so it must be found by its semantic hint/editable class instead.",
+    "snippet": "idx = device.find(hint=\"Description\", editable=True, clickable=True)\nif idx is None:\n    idx = device.find(text=\"Description\", editable=True)\nif idx is None:\n    raise LookupError(\"Description EditText not found on the event screen\")\ndevice.click(idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 1138,
+     "completion_tokens": 609,
+     "cached_tokens": 0,
+     "cost_usd": 0.001291554
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "We will strategize about marketing strategies."
+    },
+    "field": "event_description",
+    "analysis": "This action depends on locating the description EditText by its hint and editable attributes, not by index. It can fail if the field is missing or the hint changes; we must raise a clear error.",
+    "snippet": "index = device.find(hint='Description', editable=True)\nif index is None:\n    raise RuntimeError(\"Description field not found\")\ndevice.input_text(binding['event_description'], index=index)",
+    "usage": {
+     "prompt_tokens": 677,
+     "completion_tokens": 528,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004924458
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "The action clicks the start-date text in the event form to open a date picker. It depends on the displayed date text, which must match the target date from `binding`; the lookup fails if the text format differs or the element isn't visible/clickable.",
+    "snippet": "import calendar\nimport datetime\n\nyear = binding['year']\nmonth = binding['month']\nday = binding['day']\ndt = datetime.date(year, month, day)\nexpected_text = f\"{calendar.month_name[month]} {day} ({calendar.day_abbr[dt.weekday()]})\"\nindex = device.find(text=expected_text, clickable=True)\nif index is None:\n    raise Exception(f\"Date element not found: {expected_text}\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 1339,
+     "completion_tokens": 1339,
+     "cached_tokens": 0,
+     "cost_usd": 0.001143206064
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 28
+    },
+    "field": null,
+    "analysis": "The action tapped the day cell \"22\" in the month grid, identified only by its a11y index; on another instance the index shifts and the target day number/label come from the task binding. It must be re-found via the cell's text (the day number) plus its description (full date), which disambiguates days from adjacent months.",
+    "snippet": "import calendar\nday = int(binding[\"day\"]); month = int(binding[\"month\"]); year = int(binding[\"year\"])\nlabel = f\"{day} {calendar.month_name[month]} {year}\"\nidx = device.find(text=str(day), description=label)\nif idx is None:\n    hits = [e for e in device.elements()\n            if e.get(\"text\") == str(day) and label.lower() in (e.get(\"description\") or \"\").lower()]\n    idx = hits[0][\"index\"] if hits else None\nif idx is None:\n    raise LookupError(f\"Day cell {day} ({label}) not found in the month grid\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 567,
+     "completion_tokens": 653,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011003256
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "This action confirms the date picker by clicking the OK button. It depends on the date picker being open and the OK button being present; it can fail if the dialog is not shown or if multiple OK buttons exist.",
+    "snippet": "ok = device.find(text='OK', class_name='Button')\nif ok is None:\n    raise RuntimeError(\"OK button not found in date picker\")\ndevice.click(index=ok)",
+    "usage": {
+     "prompt_tokens": 1230,
+     "completion_tokens": 438,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005540832
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 8
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 1210,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0859059828
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 24
+    },
+    "field": null,
+    "analysis": "The action clicks the hour cell in the time picker, addressed by its index. That index is list-order dependent and shifts whenever the picker (or screen) shows a different set of values, so it must be resolved by the semantic label instead. Here the cell is identified by its description \"18 hours\" (text is just \"18\" and minutes use the same \"NN\" text pattern, so description is the safer key); the value comes from `binding`.",
+    "snippet": "hour = int(binding[\"hour\"])\nidx = device.find(description=f\"{hour} hours\", clickable=True)\nif idx is None:\n    idx = device.find(text=f\"{hour}\", clickable=True, description=f\"{hour} hours\")\nif idx is None:\n    raise LookupError(f\"hour cell '{hour} hours' not found in time picker\")\ndevice.click(index=idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 1137,
+     "completion_tokens": 432,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010598148
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action confirms the time picker dialog by clicking the 'OK' button. It depends on the time picker being open and the button being present; it can fail if the dialog is not shown or the button text differs (e.g., localization).",
+    "snippet": "ok = device.find(text='OK', clickable=True)\nif ok is None:\n    raise RuntimeError(\"Could not find OK button in time picker\")\ndevice.click(index=ok)",
+    "usage": {
+     "prompt_tokens": 1077,
+     "completion_tokens": 829,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007762392
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This action clicks the start time field to open the time picker. It depends on finding the clickable TextView whose text matches the formatted start time (e.g., \"18:00\"), and picking the first match to avoid the end time field. It can fail if the time format or hour value differs from the binding.",
+    "snippet": "hour = int(binding['hour'])\ntime_text = f\"{hour:02d}:00\"\nidx = device.find(text=time_text, clickable=True)\nif idx is None:\n    raise RuntimeError(f\"Could not find start time element with text '{time_text}'\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1200,
+     "completion_tokens": 1512,
+     "cached_tokens": 0,
+     "cost_usd": 0.001224314784
+    }
+   },
+   {
+    "step": 15,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The recorded index 1 pointed at the \"00\" cell of the time picker while it was showing hours; clicking it switched the picker to the minutes column and selected minute 00. That index is only valid for the hour-mode list order, so on another instance (different picker mode, layout, or target minute) it would hit the wrong cell. The element must be located by its semantic text/description (\"<MM>\" / \"<M> minutes\"), with the minute value read from the binding.",
+    "snippet": "raw = binding.get(\"minute\", 0) if isinstance(binding, dict) else getattr(binding, \"minute\", 0)\nminute = f\"{int(raw):02d}\"\nidx = device.find(text=minute, description=f\"{minute} minutes\") or device.find(text=minute, description=f\"{int(raw)} minutes\")\nif idx is None:\n    raise LookupError(f\"Minute cell for {minute!r} not found in the time picker on EventActivity\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 1110,
+     "completion_tokens": 1016,
+     "cached_tokens": 0,
+     "cost_usd": 0.0018112248
+    }
+   },
+   {
+    "step": 16,
+    "action": {
+     "action_type": "click",
+     "index": 14
+    },
+    "field": null,
+    "analysis": "This action selects a duration option by its description (e.g., \"30 minutes\"). It depends on the duration value from `binding` and fails if the matching element is not present on the screen.",
+    "snippet": "target_desc = f\"{binding['duration_mins']} minutes\"\nindex = device.find(description=target_desc, clickable=True)\nif index is None:\n    raise RuntimeError(f\"Duration option '{target_desc}' not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 619,
+     "completion_tokens": 324,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003465198
+    }
+   },
+   {
+    "step": 17,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action confirms a time-picker dialog by clicking the \"OK\" Button, which depends on the dialog being open and the index-4 position being the confirm button; on other instances the index differs and there may be other clickable buttons (e.g. \"Cancel\"), so it must be located by its text, not position.",
+    "snippet": "idx = device.find(text=\"OK\", clickable=True)\nif idx is None:\n    raise LookupError(\"Time-picker 'OK' button not found on current screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1024,
+     "completion_tokens": 555,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011713284
+    }
+   },
+   {
+    "step": 18,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The action clicks the Save button on the event creation screen, which must be present and identifiable by its description; failure occurs if the button is missing or has a different description.",
+    "snippet": "save_btn = device.find(description='Save')\nif save_btn is None:\n    raise RuntimeError(\"Save button not found\")\ndevice.click(index=save_btn)",
+    "usage": {
+     "prompt_tokens": 911,
+     "completion_tokens": 741,
+     "cached_tokens": 0,
+     "cost_usd": 0.000668933496
+    }
+   }
+  ],
+  "effective_actions": 17,
+  "recorded_actions": 18,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 17,
+   "prompt_tokens": 17028,
+   "cached_tokens": 923,
+   "completion_tokens": 142083,
+   "total_tokens": 159111,
+   "cost_usd": 0.09996279
+  },
+  "record_type": "translation"
+ }
+}

@@ -1,0 +1,17 @@
+Open the app "Simple Calendar Pro" and wait for its month view.
+If the month grid does not show {month} {year}, tap the prev/next month arrows until it does.
+Tap the day cell numbered {day} in the grid to select the target day.
+Tap the round New Event (+) button; if a day sheet or menu appears instead of the editor, tap "New event" in it — the event editor screen opens.
+The editor's fields run top-down: Title, Description, then the Start date, Start time and End time rows.
+Tap the Title field and type {event_title}.
+Tap the Description field and type {event_description}; scroll down if a field or row is off-screen.
+If the keyboard hides the rows, press back once to dismiss it.
+TRAP: there is no duration field — the length is expressed only through the END time.
+Tap the Start date row; in the date picker, navigate to {month} {year} if it is not shown, tap day {day}, then confirm with OK.
+Tap the Start time row; in the 24-hour time picker set the hour to {hour} and the minutes to 00, then confirm with OK.
+Compute the end time as {hour}:00 plus {duration_mins} minutes, wrapping hours past 24 into the next day.
+Tap the End time row; in the time picker set that computed hour and minute, then confirm with OK.
+If the end time crossed midnight, also tap the End date row, set it to the day after {day} {month} {year}, and confirm with OK.
+TRAP: every date/time edit opens a dialog that must be finished with OK — leaving it any other way discards the change.
+TRAP: the date and time rows come pre-filled with the device's frozen current date/time; always overwrite them through the pickers, never trust the defaults.
+When every row shows the intended values, tap Save (checkmark) — returning to the month view confirms the event was created.

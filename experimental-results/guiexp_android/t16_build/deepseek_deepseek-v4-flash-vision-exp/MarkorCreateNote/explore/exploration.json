@@ -1,0 +1,132 @@
+{
+ "family": "MarkorCreateNote",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 16,
+ "instances": [
+  {
+   "family": "MarkorCreateNote",
+   "seed": 1,
+   "goal": "Create a new note in Markor named friendly_koala_2023_03_02.txt with the following text: The early bird catches the worm.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s1/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 6,
+     "usage": {
+      "prompt_tokens": 65893,
+      "cached_tokens": 0,
+      "completion_tokens": 886,
+      "total_tokens": 66779,
+      "cost_usd": 0.00561839,
+      "model_calls": 6
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s1/trajectory.jsonl"
+  },
+  {
+   "family": "MarkorCreateNote",
+   "seed": 2,
+   "goal": "Create a new note in Markor named brave_fish_2023_03_28.txt with the following text: To be or not to be.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__MarkorCreateNote__s2/trajectory.jsonl",
+     "reused": true,
+     "success": false,
+     "steps": 46,
+     "usage": {
+      "prompt_tokens": 481637,
+      "cached_tokens": 0,
+      "completion_tokens": 37846,
+      "total_tokens": 519483,
+      "cost_usd": 0.046534,
+      "model_calls": 47
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s2_a1/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 8,
+     "usage": {
+      "prompt_tokens": 108768,
+      "cached_tokens": 31744,
+      "completion_tokens": 788,
+      "total_tokens": 109556,
+      "cost_usd": 0.01716048,
+      "model_calls": 8
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "The UI element list was empty (indices 0 to -1), so blind index clicking will never work. Instead, use text-based selectors or content descriptions. In Markor's MainActivity, look for the floating action button (FAB) with a \"+\" icon or content description \"New note\" to create a note. If the FAB isn't visible, try the overflow menu (three dots) or hamburger menu. After tapping the FAB, a new note editor opens\u2014type the text, then use the save/rename option to set the filename to brave_fish_2023_03_28.txt.",
+     "usage": {
+      "prompt_tokens": 2474,
+      "completion_tokens": 723,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010112454
+     },
+     "cost_usd": 0.0010112454,
+     "stage": "reflection",
+     "for_attempt": 1
+    }
+   ],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s2_a1/trajectory.jsonl"
+  },
+  {
+   "family": "MarkorCreateNote",
+   "seed": 3,
+   "goal": "Create a new note in Markor named final_wise_lamp.txt with the following text: The squeaky wheel gets the grease.",
+   "step_cap": 16,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 7,
+     "usage": {
+      "prompt_tokens": 78878,
+      "cached_tokens": 23552,
+      "completion_tokens": 874,
+      "total_tokens": 79752,
+      "cost_usd": 0.0125286,
+      "model_calls": 7
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorCreateNote/explore/s3_a0/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 4,
+  "retry_episodes": 1,
+  "reused_episodes": 2,
+  "reflection_calls": 1,
+  "prompt_tokens": 737650,
+  "cached_tokens": 55296,
+  "completion_tokens": 41117,
+  "total_tokens": 778767,
+  "cost_usd": 0.08285272
+ },
+ "record_type": "exploration"
+}

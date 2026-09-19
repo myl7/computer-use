@@ -1,0 +1,219 @@
+{
+ "family": "OsmAndMarker",
+ "model": "z-ai/glm-5.3-flash",
+ "source_cell": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker",
+ "building_seeds": [
+  1,
+  2,
+  3
+ ],
+ "building_trajectories": [
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s2_a1/trajectory.jsonl",
+  "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl"
+ ],
+ "translations_reused": true,
+ "attempts": [
+  {
+   "attempt": 1,
+   "family": "OsmAndMarker",
+   "model": "z-ai/glm-5.3-flash",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.030590075339999998,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 24993,
+    "cached_tokens": 0,
+    "completion_tokens": 76353,
+    "total_tokens": 0,
+    "cost_usd": 0.030590075339999998
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 0,
+     "total": 5
+    },
+    "k2": {
+     "passed": 0,
+     "total": 5
+    },
+    "k3": {
+     "passed": 2,
+     "total": 5
+    }
+   },
+   "gate_passed": 3,
+   "gate_total": 5,
+   "gate_history": [
+    {
+     "version": "initial",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine1",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine2",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine3",
+     "passed": 3,
+     "total": 5
+    }
+   ],
+   "admitted": false,
+   "admitted_version": "refine3",
+   "refinements": 3,
+   "unautomatable": true,
+   "test_seed0": {
+    "passed": false,
+    "error": "RuntimeError: No search result found for location 'Rotenboden, Liechtenstein' (queries tried: ['Rotenboden, Liechtenstein', 'Rotenboden']); the region's offline map could not be retrieved"
+   },
+   "replays": 4,
+   "repair_cost_usd": 0.25736394,
+   "repair_totals": {
+    "analyzer": {
+     "calls": 3,
+     "prompt_tokens": 4285,
+     "cached_tokens": 0,
+     "completion_tokens": 3580,
+     "total_tokens": 7865,
+     "cost_usd": 0.00232118
+    },
+    "resume_episodes": {
+     "calls": 59,
+     "prompt_tokens": 3660890,
+     "cached_tokens": 3135616,
+     "completion_tokens": 17380,
+     "total_tokens": 3678270,
+     "cost_usd": 0.17339339
+    },
+    "builder_refinements": {
+     "calls": 3,
+     "prompt_tokens": 17499,
+     "cached_tokens": 0,
+     "completion_tokens": 156780,
+     "total_tokens": 174279,
+     "cost_usd": 0.08164937
+    },
+    "program_replays": {
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    }
+   },
+   "attempt_cost_usd": 0.28795402,
+   "wall_s": 6573.7
+  },
+  {
+   "attempt": 2,
+   "family": "OsmAndMarker",
+   "model": "z-ai/glm-5.3-flash",
+   "translation_reused": true,
+   "k_values": [
+    1,
+    2,
+    3
+   ],
+   "compile_cost_usd": 0.03959910207,
+   "compile_usage": {
+    "calls": 0,
+    "prompt_tokens": 24993,
+    "cached_tokens": 0,
+    "completion_tokens": 85829,
+    "total_tokens": 0,
+    "cost_usd": 0.03959910207
+   },
+   "gate_per_k": {
+    "k1": {
+     "passed": 0,
+     "total": 5
+    },
+    "k2": {
+     "passed": 3,
+     "total": 5
+    },
+    "k3": {
+     "passed": 3,
+     "total": 5
+    }
+   },
+   "gate_passed": 3,
+   "gate_total": 5,
+   "gate_history": [
+    {
+     "version": "initial",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine1",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine2",
+     "passed": 3,
+     "total": 5
+    },
+    {
+     "version": "refine3",
+     "passed": 3,
+     "total": 5
+    }
+   ],
+   "admitted": false,
+   "admitted_version": "refine3",
+   "refinements": 3,
+   "unautomatable": true,
+   "test_seed0": {
+    "passed": false,
+    "error": "RuntimeError: OsmAnd: no search results found for 'Rotenboden, Liechtenstein' (the offline map for 'Liechtenstein' could not be retrieved)"
+   },
+   "replays": 4,
+   "repair_cost_usd": 0.18087943,
+   "repair_totals": {
+    "analyzer": {
+     "calls": 3,
+     "prompt_tokens": 4976,
+     "cached_tokens": 0,
+     "completion_tokens": 4861,
+     "total_tokens": 9837,
+     "cost_usd": 0.00282768
+    },
+    "resume_episodes": {
+     "calls": 53,
+     "prompt_tokens": 2843408,
+     "cached_tokens": 2196352,
+     "completion_tokens": 9275,
+     "total_tokens": 2852683,
+     "cost_usd": 0.13590864
+    },
+    "builder_refinements": {
+     "calls": 3,
+     "prompt_tokens": 25343,
+     "cached_tokens": 0,
+     "completion_tokens": 245366,
+     "total_tokens": 270709,
+     "cost_usd": 0.04214311
+    },
+    "program_replays": {
+     "total_tokens": 0,
+     "cost_usd": 0.0
+    }
+   },
+   "attempt_cost_usd": 0.22047853,
+   "wall_s": 10730.0
+  }
+ ],
+ "wall_s_total": 17303.7
+}

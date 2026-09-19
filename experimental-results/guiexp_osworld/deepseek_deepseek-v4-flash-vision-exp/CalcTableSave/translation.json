@@ -1,0 +1,907 @@
+{
+ "1": {
+  "family": "CalcTableSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s1_a1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "input_text",
+     "index": 25,
+     "text": "Pipeline"
+    },
+    "field": "header_a",
+    "analysis": "This action types the header into cell A1. It depends on the spreadsheet being open and the A1 cell being present and editable; it can fail if the cell is not found or not editable.",
+    "snippet": "index = device.find(name='A1', role='table-cell', editable=True)\nif index is None:\n    raise RuntimeError(\"Cell A1 not found or not editable\")\ndevice.input_text(binding['header_a'], index=index)",
+    "usage": {
+     "prompt_tokens": 733,
+     "completion_tokens": 557,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005235912
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 26
+    },
+    "field": null,
+    "analysis": "The action clicks the table cell B1 to select it. It depends on the Calc grid exposing a table-cell element with accessible name \"B1\"; it can fail if the element is missing or its name is not exactly \"B1\", so lookup by name and role with an explicit error.",
+    "snippet": "index = device.find(name='B1', role='table-cell', editable=True, clickable=True)\nif index is None:\n    raise RuntimeError(\"Cell B1 not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 651,
+     "completion_tokens": 1304,
+     "cached_tokens": 0,
+     "cost_usd": 0.000973944972
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "text": "Budget"
+    },
+    "field": "header_b",
+    "analysis": "The recorded step was a global `input_text` that relied on the caret already sitting in the right editable field; on another instance the field's index, its current text ('Budget'), and the screen state all differ, and the string itself is a task parameter, so it must be re-located semantically and re-read from `binding`.",
+    "snippet": "field = device.find(role='paragraph', editable=True) or device.find(editable=True)\nif field is None:\n    raise LookupError(\"header_b: no editable text field found on this screen\")\ndevice.input_text(binding['header_b'], index=field)",
+    "usage": {
+     "prompt_tokens": 614,
+     "completion_tokens": 1271,
+     "cached_tokens": 0,
+     "cost_usd": 0.0019284012
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "This action depends on an active cell edit being in progress (the formula bar shows Accept/Cancel). If the cell is not in edit mode, pressing Enter would simply move the cursor down without committing a value.",
+    "snippet": "device.press(\"enter\")",
+    "usage": {
+     "prompt_tokens": 701,
+     "completion_tokens": 3859,
+     "cached_tokens": 0,
+     "cost_usd": 0.002620665432
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 40
+    },
+    "field": null,
+    "analysis": "This action depends on the spreadsheet having a cell A2 present and clickable; it can fail if the sheet is not focused or the cell is not visible. Look it up semantically by role and name, not index.",
+    "snippet": "idx = device.find(role='table-cell', name='A2')\nif idx is None:\n    raise RuntimeError(\"Could not find cell A2\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 461,
+     "cached_tokens": 0,
+     "cost_usd": 0.000423259452
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "text": "8398"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 645,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0857829258
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "press",
+     "key": "tab"
+    },
+    "field": null,
+    "analysis": "The action presses Tab to confirm the entry in cell A2 and move focus to B2. It depends on the focus being on A2's edit state; failure occurs if the focus is elsewhere.",
+    "snippet": "device.press(\"tab\")",
+    "usage": {
+     "prompt_tokens": 704,
+     "completion_tokens": 2113,
+     "cached_tokens": 0,
+     "cost_usd": 0.001503286092
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "input_text",
+     "text": "3934"
+    },
+    "field": null,
+    "analysis": "The recorded action is a \"global\" text input: it just typed the hard-coded literal `3934` into whatever field had focus \u2014 here the editable paragraph of the modal dialog (Cancel/Accept). On another instance that dialog's index list, its value and even its presence differ, so the literal and the blind target must both go: the field has to be found by its editable/paragraph attributes and the value read from `binding`.",
+    "snippet": "value = binding.get(\"value\", binding.get(\"text\"))\nif value is None:\n    raise KeyError(\"dialogs input: no 'value'/'text' provided by binding\")\n\nidx = device.find(role=\"paragraph\", editable=True)   # the dialog's edit field\nif idx is None:\n    raise LookupError(\"no editable paragraph (dialog input field) on screen\")\n\ndevice.click(index=idx)                 # focus the field, as the user did\ndevice.input_text(str(value), index=idx)\ndevice.settle(0.3)",
+    "usage": {
+     "prompt_tokens": 592,
+     "completion_tokens": 1645,
+     "cached_tokens": 0,
+     "cost_usd": 0.0024075612
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "The action confirmed a dialog's entered value by pressing Enter, which is equivalent to clicking the dialog's Accept button. It depends on that button existing with the same role/name; if missing, it fails clearly.",
+    "snippet": "accept = device.find(role=\"push-button\", name=\"Accept\")\nif accept is None:\n    raise RuntimeError(\"Accept button not found for cell input confirmation\")\ndevice.click(accept)",
+    "usage": {
+     "prompt_tokens": 704,
+     "completion_tokens": 1786,
+     "cached_tokens": 0,
+     "cost_usd": 0.001293897528
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "input_text",
+     "text": "7093"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 645,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0857829258
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "press",
+     "key": "tab"
+    },
+    "field": null,
+    "analysis": "The bare `tab` press only makes sense while the caret sits in cell A3's edit context; on another instance the focus may be elsewhere (or a different cell selected), so the keypress would commit the wrong cell or move from the wrong place. The action must re-establish the A3 editing context from the semantic cell name and the bound value before committing with Tab.",
+    "snippet": "cell = device.find(name=\"A3\", role=\"table-cell\")\nif cell is None:\n    raise RuntimeError(\"Could not find cell A3 to commit\")\ndevice.click(index=cell)\ndevice.input_text(str(binding[\"val_a3\"]))   # idempotent: overwrites A3\ndevice.press(\"tab\")                          # commit A3, move to B3",
+    "usage": {
+     "prompt_tokens": 651,
+     "completion_tokens": 732,
+     "cached_tokens": 0,
+     "cost_usd": 0.0012401532
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "press",
+     "key": "tab"
+    },
+    "field": null,
+    "analysis": "This action presses the Tab key to move the cell cursor to the next column. It depends on the spreadsheet being focused and a cell being active; it can fail if focus is elsewhere.",
+    "snippet": "device.press(\"tab\")",
+    "usage": {
+     "prompt_tokens": 582,
+     "completion_tokens": 2198,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015629328
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "click",
+     "index": 56
+    },
+    "field": null,
+    "analysis": "This action selects cell B3 by its accessible name and role. It depends on the table-cell being present and identified as 'B3' with role 'table-cell'; it may fail if the cell is not visible or the role differs.",
+    "snippet": "index = device.find(name='B3', role='table-cell')\nif index is None:\n    raise RuntimeError(\"Could not find cell B3\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 945,
+     "cached_tokens": 0,
+     "cost_usd": 0.00073318014
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "input_text",
+     "index": 56,
+     "text": "1974"
+    },
+    "field": null,
+    "analysis": "This action types a value into the B3 table cell. It depends on finding the cell by role='table-cell' and name='B3', and on reading the task value from binding. It can fail if the cell is not present or if the lookup matches multiple cells.",
+    "snippet": "cell = device.find(name='B3', role='table-cell', editable=True)\nif cell is None:\n    raise RuntimeError(\"Could not find table cell B3\")\ndevice.input_text(binding['val_b3'], index=cell)",
+    "usage": {
+     "prompt_tokens": 646,
+     "completion_tokens": 228,
+     "cached_tokens": 0,
+     "cost_usd": 0.00028388052
+    }
+   },
+   {
+    "step": 15,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "shift",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This is a global Ctrl+Shift+S \"Save As\" hotkey, so it has no index dependency itself, but it depends on the save dialog (and its Name field / Save button) appearing and on the filename coming from `binding`; on another instance the dialog may already be open, already point elsewhere, or expose the entry/Save button with different names, so the dialog must be awaited and its widgets looked up semantically.",
+    "snippet": "device.hotkey(\"ctrl\", \"shift\", \"s\")\ndevice.wait()\nif (desk := device.find(name=\"Desktop\", role=\"table-cell\")) is not None:\n    device.click(index=desk)          # make sure we save onto the Desktop\nentry = device.find(role=\"text\", editable=True)\nif entry is None:\n    raise RuntimeError(\"Save dialog: no editable filename field found\")\ndevice.input_text(binding[\"file_name\"], index=entry)\nsave = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif save is None:\n    raise RuntimeError(\"Save dialog: Save button not found\")\ndevice.click(index=save)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 726,
+     "completion_tokens": 1003,
+     "cached_tokens": 0,
+     "cost_usd": 0.001626966
+    }
+   },
+   {
+    "step": 16,
+    "action": {
+     "action_type": "input_text",
+     "text": "payroll_extract"
+    },
+    "field": "file_name",
+    "analysis": "This action types the base filename into the Save dialog's file name field. It depends on locating that editable text field; it can fail if the field's default text is not 'Untitled 1' or if multiple editable text fields exist.",
+    "snippet": "field = device.find(editable=True, role=\"text\", text=\"Untitled 1\")\nif field is None:\n    field = device.find(editable=True, role=\"text\")\nif field is None:\n    raise RuntimeError(\"Could not find the file name input field\")\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=field)",
+    "usage": {
+     "prompt_tokens": 633,
+     "completion_tokens": 1772,
+     "cached_tokens": 0,
+     "cost_usd": 0.0012956922
+    }
+   },
+   {
+    "step": 19,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "The recorded step was a bare `Enter` that only worked because the \"Desktop\" location entry happened to be highlighted in the Save dialog; on another instance the same list entry may sit at a different index (or the dialog may expose it as a `table-cell` rather than a `toggle-button`), so a blind Enter would confirm the wrong folder. The rewrite must locate the \"Desktop\" target by its semantic label and activate it explicitly.",
+    "snippet": "target = (device.find(name=\"Desktop\", role=\"toggle-button\", clickable=True)\n          or device.find(name=\"Desktop\", clickable=True)\n          or device.find(text=\"Desktop\", clickable=True))\nif target is None:\n    raise LookupError(\"Save dialog: no 'Desktop' destination entry found\")\ndevice.click(index=target)\ndevice.wait()\ndevice.press(\"enter\")",
+    "usage": {
+     "prompt_tokens": 563,
+     "completion_tokens": 817,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013128984
+    }
+   },
+   {
+    "step": 21,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "alt",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This action is a global hotkey (Alt+S) that confirms the Save dialog. It depends on the Save dialog being open and the Alt+S shortcut being available; it can fail if the dialog is not present or the shortcut differs.",
+    "snippet": "# Ensure the Save dialog is open before confirming\nif device.find(name=\"Name:\", role=\"label\") is None:\n    raise RuntimeError(\"Save dialog not found\")\ndevice.hotkey(\"alt\", \"s\")",
+    "usage": {
+     "prompt_tokens": 801,
+     "completion_tokens": 3510,
+     "cached_tokens": 0,
+     "cost_usd": 0.0024678918
+    }
+   }
+  ],
+  "effective_actions": 18,
+  "recorded_actions": 21,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 18,
+   "prompt_tokens": 11791,
+   "cached_tokens": 0,
+   "completion_tokens": 286345,
+   "total_tokens": 298136,
+   "cost_usd": 0.19376405
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "CalcTableSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "click",
+     "index": 25
+    },
+    "field": null,
+    "analysis": "The recorded index 25 is instance-specific; the element is the editable Name Box / A1 cell reference (role `table-cell`, name `A1`), which on another instance sits at a different index and whose displayed text changes if the active cell isn't A1. So look it up by role/name (with an editable-text fallback) and fail loudly if absent.",
+    "snippet": "idx = device.find(name=\"A1\", role=\"table-cell\", editable=True)\nif idx is None:\n    idx = device.find(contains=\"A1\", editable=True)\nif idx is None:\n    raise LookupError(\"Name Box / A1 cell reference not found; cannot focus cell A1\")\ndevice.click(index=idx)\ndevice.settle(0.3)",
+    "usage": {
+     "prompt_tokens": 600,
+     "completion_tokens": 1187,
+     "cached_tokens": 0,
+     "cost_usd": 0.0018125316
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 25
+    },
+    "field": null,
+    "analysis": "This action selects cell A1 by clicking it. It depends on the spreadsheet being open and the cell A1 being present and editable; it can fail if the sheet is not active or the cell is not accessible.",
+    "snippet": "index = device.find(name='A1', role='table-cell', editable=True)\nif index is None:\n    raise RuntimeError(\"Cell A1 not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 653,
+     "completion_tokens": 486,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004597758
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 25,
+     "text": "Region"
+    },
+    "field": "header_a",
+    "analysis": "This action types the header_a value into cell A1 of a new LibreOffice Calc spreadsheet. It depends on finding the A1 table cell by its name and role, and on the binding['header_a'] value; it can fail if A1 is not present/editable or if the cell already has content.",
+    "snippet": "cell = device.find(name='A1', role='table-cell', editable=True)\nif cell is None:\n    raise RuntimeError(\"A1 table cell not found\")\ndevice.input_text(binding['header_a'], index=cell)",
+    "usage": {
+     "prompt_tokens": 684,
+     "completion_tokens": 240,
+     "cached_tokens": 0,
+     "cost_usd": 0.000299675376
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 26
+    },
+    "field": null,
+    "analysis": "The action depends on locating an editable table cell named 'B1'; it fails if the spreadsheet doesn't have that cell, so the lookup should require name, role, and editable state.",
+    "snippet": "idx = device.find(name='B1', role='table-cell', editable=True)\nif idx is None:\n    raise RuntimeError(\"Cell B1 not found\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 602,
+     "completion_tokens": 173,
+     "cached_tokens": 0,
+     "cost_usd": 0.000239270724
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 26,
+     "text": "Location"
+    },
+    "field": "header_b",
+    "analysis": "This action types the header_b value into cell B1, so it depends on locating the editable table cell named 'B1'. On another instance, index may differ but semantic attributes (name='B1', role='table-cell', editable=True) should find it.",
+    "snippet": "index = device.find(name='B1', role='table-cell', editable=True, clickable=True)\nif index is None:\n    raise RuntimeError(\"Cell B1 not found\")\ndevice.input_text(binding['header_b'], index=index)",
+    "usage": {
+     "prompt_tokens": 671,
+     "completion_tokens": 226,
+     "cached_tokens": 0,
+     "cost_usd": 0.000287935956
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 40
+    },
+    "field": null,
+    "analysis": "This action clicks the table cell A2, which is the first data cell under the first header. It depends on the spreadsheet having a cell named 'A2' that is editable and clickable; it can fail if the sheet is not in the expected state or the cell is not present.",
+    "snippet": "index = device.find(name='A2', role='table-cell', editable=True, clickable=True)\nif index is None:\n    raise RuntimeError(\"Cell A2 not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 602,
+     "completion_tokens": 1047,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008152254
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 40,
+     "text": "876"
+    },
+    "field": null,
+    "analysis": "This action targets the editable cell A2 and enters the value from the binding for the second row first column. It fails if that cell is missing, not editable, or the binding lacks the value.",
+    "snippet": "index = device.find(name='A2', role='table-cell', editable=True)\nif index is None:\n    raise LookupError(\"Cell A2 not found or not editable\")\ndevice.input_text(binding['val_a2'], index=index)",
+    "usage": {
+     "prompt_tokens": 646,
+     "completion_tokens": 505,
+     "cached_tokens": 0,
+     "cost_usd": 0.000461252484
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 41
+    },
+    "field": null,
+    "analysis": "This action clicks on cell B2 to select it. It depends on the spreadsheet having a cell named B2 that is editable; it can fail if the cell is not present or not editable.",
+    "snippet": "index = device.find(name='B2', role='table-cell', editable=True)\nif index is None:\n    raise RuntimeError(\"Cell B2 not found or not editable\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 602,
+     "completion_tokens": 1286,
+     "cached_tokens": 0,
+     "cost_usd": 0.000971388
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "input_text",
+     "index": 41,
+     "text": "1336"
+    },
+    "field": null,
+    "analysis": "The action depends on addressing the editable cell named `B2` in the Calc grid; recorded index 41 is brittle because element ordering changes. It can fail if the B2 cell is looked up by stale index or if the value is not taken from `binding`.",
+    "snippet": "value = str(binding[\"val_b2\"])\nidx = device.find(name=\"B2\", role=\"table-cell\", editable=True)\nif idx is None:\n    raise LookupError(\"Could not find editable table cell B2\")\ndevice.input_text(value, index=idx)",
+    "usage": {
+     "prompt_tokens": 595,
+     "completion_tokens": 1420,
+     "cached_tokens": 0,
+     "cost_usd": 0.002114838
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 55
+    },
+    "field": null,
+    "analysis": "The action clicks the spreadsheet cell named \"A3\", identified only by its recorded list index; any other instance of this task may have a different index (or extra UI chrome) for the same cell, so the index must be replaced by a semantic lookup on name + role.",
+    "snippet": "cell = device.find(name=\"A3\", role=\"table-cell\")\nif cell is None:\n    raise RuntimeError(\"LibreOffice Calc cell 'A3' not found; cannot select it\")\ndevice.click(index=cell)",
+    "usage": {
+     "prompt_tokens": 549,
+     "completion_tokens": 255,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005723784
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "input_text",
+     "index": 55,
+     "text": "2264"
+    },
+    "field": null,
+    "analysis": "This action locates cell A3 as an editable table-cell and types the third-row first-column value from binding. It can fail if the cell is not present, not editable, or binding lacks 'val_a3'.",
+    "snippet": "cell = device.find(name='A3', role='table-cell', editable=True, clickable=True)\nif cell is None:\n    raise RuntimeError(\"Cell A3 not found or not editable\")\ndevice.input_text(str(binding['val_a3']), index=cell)",
+    "usage": {
+     "prompt_tokens": 648,
+     "completion_tokens": 526,
+     "cached_tokens": 0,
+     "cost_usd": 0.000475126344
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 56
+    },
+    "field": null,
+    "analysis": "This action selects cell B3 by its cell address. It depends on the cell being present and accessible in the current sheet; it can fail if the focus is not on the spreadsheet or if B3 is not yet available.",
+    "snippet": "# Select cell B3 in the Calc spreadsheet\nindex = device.find(name='B3', role='table-cell', editable=True)\nif index is None:\n    raise RuntimeError(\"Could not find cell B3 in the spreadsheet\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 602,
+     "completion_tokens": 1284,
+     "cached_tokens": 0,
+     "cost_usd": 0.000950679576
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "input_text",
+     "index": 56,
+     "text": "8597"
+    },
+    "field": null,
+    "analysis": "The action writes a task value into the cell whose Name is 'B3'; it must not rely on index 56, and the value (\"8597\") is a binding variable (`val_b3`), not a literal. It fails on another instance if the cell isn't found by name/role or if the literal value is reused instead of the binding.",
+    "snippet": "value = str(binding[\"val_b3\"])\nidx = device.find(name=\"B3\", role=\"table-cell\", editable=True)\nif idx is None:\n    raise LookupError(\"Could not find editable table-cell 'B3' on the current screen\")\ndevice.click(index=idx)\ndevice.input_text(value, index=idx)",
+    "usage": {
+     "prompt_tokens": 595,
+     "completion_tokens": 367,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007387776
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "shift",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "The action is a global hotkey Ctrl+Shift+S to open the Save As dialog in LibreOffice Calc. It depends on the application being focused and the hotkey being recognized; it can fail if the app is not in the foreground or if the hotkey is intercepted.",
+    "snippet": "device.hotkey(\"ctrl\", \"shift\", \"s\")",
+    "usage": {
+     "prompt_tokens": 781,
+     "completion_tokens": 154,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002707254
+    }
+   },
+   {
+    "step": 15,
+    "action": {
+     "action_type": "input_text",
+     "text": "unit_figures"
+    },
+    "field": "file_name",
+    "analysis": "This action depends on locating the editable filename field in the Save dialog and typing the base name from `binding`. It can fail if the field is not focused or if multiple editable text fields exist, so we find it by role and editable attribute and clear existing content first.",
+    "snippet": "field = device.find(role='text', editable=True)\nif field is None:\n    raise RuntimeError(\"Could not find filename text field\")\ndevice.click(field)\ndevice.hotkey('ctrl', 'a')\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=field)",
+    "usage": {
+     "prompt_tokens": 635,
+     "completion_tokens": 1861,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013542804
+    }
+   },
+   {
+    "step": 17,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 618,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0857770452
+    }
+   },
+   {
+    "step": 18,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "The recorded Enter only confirms the GTK Save dialog; it assumes the filename field already holds `{file_name}`. On another instance that field may be empty or stale, so the name must be (re)established from the binding before confirming \u2014 and the field is identified by being the editable text entry, not by index.",
+    "snippet": "name = binding[\"file_name\"]\nfield = device.find(role=\"text\", editable=True)\nif field is None:\n    raise RuntimeError(\"Save dialog: filename entry field not found\")\ndevice.click(index=field)\ndevice.hotkey(\"ctrl\", \"a\")\ndevice.input_text(name, index=field)\ndevice.press(\"enter\")\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 747,
+     "completion_tokens": 979,
+     "cached_tokens": 0,
+     "cost_usd": 0.0016047504
+    }
+   }
+  ],
+  "effective_actions": 17,
+  "recorded_actions": 18,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 17,
+   "prompt_tokens": 10830,
+   "cached_tokens": 0,
+   "completion_tokens": 143068,
+   "total_tokens": 153898,
+   "cost_usd": 0.09920566
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "CalcTableSave",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "click",
+     "index": 25
+    },
+    "field": null,
+    "analysis": "This action selects cell A1 in the spreadsheet. It depends on the cell being present and identifiable by its role/name; failure occurs if the cell is not found or if another element matches.",
+    "snippet": "cell = device.find(name='A1', role='table-cell')\nif cell is None:\n    raise RuntimeError(\"Cell A1 not found\")\ndevice.click(index=cell)",
+    "usage": {
+     "prompt_tokens": 664,
+     "completion_tokens": 225,
+     "cached_tokens": 0,
+     "cost_usd": 0.000285801516
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 25,
+     "text": "Pipeline"
+    },
+    "field": "header_a",
+    "analysis": "This action depends on the table cell A1 being present and editable in the current spreadsheet; it can fail if the cell is not found or not editable.",
+    "snippet": "index = device.find(name='A1', role='table-cell', editable=True)\nif index is None:\n    raise RuntimeError(\"Cell A1 not found or not editable\")\ndevice.input_text(binding['header_a'], index=index)",
+    "usage": {
+     "prompt_tokens": 746,
+     "completion_tokens": 540,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005153148
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 26
+    },
+    "field": null,
+    "analysis": "The action clicks cell B1, so it depends on finding an editable table-cell element named 'B1'. It can fail if the cell is not visible or the spreadsheet is not focused.",
+    "snippet": "device.click(name='B1', role='table-cell', editable=True)",
+    "usage": {
+     "prompt_tokens": 613,
+     "completion_tokens": 566,
+     "cached_tokens": 0,
+     "cost_usd": 0.000493269084
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 26,
+     "text": "Location"
+    },
+    "field": "header_b",
+    "analysis": "The action must write the bound header_b into cell B1, but it relies on the recorded index. On another instance the index can shift, so the cell must be located by its semantic address/role/editable state and the action should fail clearly if it is missing.",
+    "snippet": "idx = device.find(name=\"B1\", role=\"table-cell\", editable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find editable cell B1 to enter header_b\")\ndevice.input_text(binding[\"header_b\"], index=idx)",
+    "usage": {
+     "prompt_tokens": 629,
+     "completion_tokens": 1039,
+     "cached_tokens": 0,
+     "cost_usd": 0.0016317576
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 40
+    },
+    "field": null,
+    "analysis": "This action selects cell A2 by clicking it. It depends on the cell being present and clickable; it can fail if the spreadsheet is not open or the cell is not editable.",
+    "snippet": "cell = device.find(name='A2', role='table-cell', editable=True, clickable=True)\nif cell is None:\n    raise RuntimeError(\"Cell A2 not found\")\ndevice.click(index=cell)",
+    "usage": {
+     "prompt_tokens": 613,
+     "completion_tokens": 659,
+     "cached_tokens": 0,
+     "cost_usd": 0.000564102
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 40,
+     "text": "3640"
+    },
+    "field": null,
+    "analysis": "This action depends on the cell A2 being present and editable in the current spreadsheet; it can fail if the sheet is not in the expected state or the cell name differs.",
+    "snippet": "cell = device.find(name='A2', role='table-cell', editable=True)\nif cell is None:\n    raise RuntimeError(\"Cell A2 not found\")\ndevice.input_text(binding['val_a2'], index=cell)",
+    "usage": {
+     "prompt_tokens": 659,
+     "completion_tokens": 409,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004107708
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 41
+    },
+    "field": null,
+    "analysis": "The action depends on index 41 pointing at cell B2; on another instance the element ordering may differ, so that index could hit a different cell or nothing, and the selection state could already be elsewhere. Identify the target by its semantic cell name and role instead.",
+    "snippet": "idx = device.find(name='B2', role='table-cell')\nif idx is None:\n    raise RuntimeError(\"Cell 'B2' (role=table-cell) not found on the current screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 560,
+     "completion_tokens": 407,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007758036
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "input_text",
+     "index": 41,
+     "text": "2835"
+    },
+    "field": null,
+    "analysis": "This action enters the value for cell B2, which depends on the binding key `val_b2` and the presence of an editable table-cell named 'B2'. It can fail if the cell is not found or the binding is missing.",
+    "snippet": "cell = device.find(name='B2', role='table-cell', editable=True)\nif cell is None:\n    raise RuntimeError(\"Cell B2 not found\")\ndevice.input_text(binding['val_b2'], index=cell)",
+    "usage": {
+     "prompt_tokens": 659,
+     "completion_tokens": 595,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005323032
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "click",
+     "index": 55
+    },
+    "field": null,
+    "analysis": "The action just selects the cell A3 to make it the active cell; it depends on the recorded index 55 and on A3 being a numbered entry in the element list. On another instance the same cell may sit at a different index (or the list order/scroll position may differ), so the lookup must be by the cell's own name and role rather than the index.",
+    "snippet": "cell = device.find(name='A3', role='table-cell')\nif cell is None:\n    raise LookupError(\"CalcTableSave: could not find cell 'A3' (role=table-cell) on the sheet\")\ndevice.click(cell)",
+    "usage": {
+     "prompt_tokens": 560,
+     "completion_tokens": 285,
+     "cached_tokens": 0,
+     "cost_usd": 0.000616374
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "input_text",
+     "index": 55,
+     "text": "1410"
+    },
+    "field": null,
+    "analysis": "This action inputs a value into cell A3. It depends on finding the cell by its name and role, and reading the value from `binding['val_a3']`; it fails if the cell is missing or the binding lacks that key.",
+    "snippet": "cell = device.find(name='A3', role='table-cell', editable=True)\nif cell is None:\n    raise LookupError(\"Cell A3 not found\")\ndevice.input_text(text=str(binding['val_a3']), index=cell)",
+    "usage": {
+     "prompt_tokens": 659,
+     "completion_tokens": 727,
+     "cached_tokens": 0,
+     "cost_usd": 0.00060618096
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 56
+    },
+    "field": null,
+    "analysis": "The action targets cell B3 in the sheet grid, identified only by its recorded index 56. On another instance the index shifts with layout/dialogs, so the cell must be looked up by its semantic identity (name 'B3', role table-cell, editable), which is a structural constant of this task family (B3 always holds {val_b3}).",
+    "snippet": "idx = device.find(name='B3', role='table-cell', editable=True)\nif idx is None:\n    idx = device.find(name='B3', role='table-cell') or device.find(name='B3', editable=True)\nif idx is None:\n    raise RuntimeError(\"CalcTableSave: could not locate cell B3 (table-cell, editable) on the current screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 560,
+     "completion_tokens": 463,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008489844
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "input_text",
+     "index": 56,
+     "text": "7663"
+    },
+    "field": null,
+    "analysis": "The action inputs {val_b3} into the editable B3 table cell; it must locate that cell by semantic attributes instead of the recorded index, and read the value from `binding`. It fails if B3 is absent, renamed, or not editable on another sheet instance.",
+    "snippet": "value = binding[\"val_b3\"]\ncell = device.find(name=\"B3\", role=\"table-cell\", editable=True)\nif cell is None:\n    raise RuntimeError(\"Could not find editable table cell B3\")\ndevice.input_text(str(value), index=cell)",
+    "usage": {
+     "prompt_tokens": 606,
+     "completion_tokens": 1007,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015799212
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "shift",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This action triggers the Save As dialog via a global hotkey. It depends on the LibreOffice Calc window being focused; if not, the hotkey may be lost. It can fail if the application is not in the foreground or the hotkey is intercepted.",
+    "snippet": "device.hotkey(\"ctrl\", \"shift\", \"s\")",
+    "usage": {
+     "prompt_tokens": 792,
+     "completion_tokens": 503,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005011578
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "input_text",
+     "text": "/home/user/Desktop/workgroup_grid.ods"
+    },
+    "field": null,
+    "analysis": "This action depends on the Save dialog's filename text field being present and editable. It can fail if the dialog is not open or if the field is not found by role='text' and editable=True.",
+    "snippet": "import os\npath = os.path.join(os.path.expanduser(\"~/Desktop\"), binding['file_name'])\nindex = device.find(role='text', editable=True)\nif index is None:\n    raise RuntimeError(\"Could not find the filename text field in the Save dialog\")\ndevice.input_text(path, index=index)",
+    "usage": {
+     "prompt_tokens": 617,
+     "completion_tokens": 3689,
+     "cached_tokens": 0,
+     "cost_usd": 0.0025447752
+    }
+   },
+   {
+    "step": 16,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "The recorded press-enter activated the Desktop folder in the save dialog. This depends on the Desktop element being present and focused; on another instance, focus may differ, so we explicitly find and click the Desktop table-cell, then press Enter to open it.",
+    "snippet": "desktop = device.find(name=\"Desktop\", role=\"table-cell\")\nif desktop is None:\n    raise RuntimeError(\"Desktop folder not found in save dialog\")\ndevice.click(desktop)\ndevice.press(\"enter\")",
+    "usage": {
+     "prompt_tokens": 629,
+     "completion_tokens": 3679,
+     "cached_tokens": 0,
+     "cost_usd": 0.0025408548
+    }
+   },
+   {
+    "step": 17,
+    "action": {
+     "action_type": "press",
+     "key": "enter"
+    },
+    "field": null,
+    "analysis": "This action presses Enter to confirm the Save dialog's default action. It depends on the Save dialog being the active window and the default button being focused; it can fail if the dialog is not present or focus is elsewhere.",
+    "snippet": "# Ensure the Save dialog is present, then press Enter to confirm.\nif device.find(role=\"push-button\", name=\"Cancel\") is None:\n    raise RuntimeError(\"Save dialog not found\")\ndevice.press(\"enter\")",
+    "usage": {
+     "prompt_tokens": 813,
+     "completion_tokens": 2283,
+     "cached_tokens": 0,
+     "cost_usd": 0.0016687836
+    }
+   }
+  ],
+  "effective_actions": 16,
+  "recorded_actions": 17,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 16,
+   "prompt_tokens": 10379,
+   "cached_tokens": 0,
+   "completion_tokens": 17076,
+   "total_tokens": 27455,
+   "cost_usd": 0.01611615
+  },
+  "record_type": "translation"
+ }
+}

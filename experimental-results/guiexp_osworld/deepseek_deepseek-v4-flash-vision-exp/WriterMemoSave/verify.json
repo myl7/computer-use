@@ -1,0 +1,284 @@
+{
+ "family": "WriterMemoSave",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The Save As dialog is still open; the file was not saved to Desktop as training_summary.odt. The automation typed the filename but did not complete the save.",
+    "done": "The document content is correct: title \"Quarterly Goals Draft\" on line one, empty line, body sentence. The Save As dialog was opened and \"training_summary\" was typed into the filename field.",
+    "plan": "1. In the Save As dialog, clear the filename field and type \"training_summary.odt\". 2. Ensure the save location is Desktop (click \"Desktop\" in the sidebar if needed). 3. Click the \"Save\" button in the dialog. 4. If a \"Keep Current Format\" dialog appears, click \"Use ODF Text Document!\".",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1306,
+    "cached_tokens": 0,
+    "completion_tokens": 10758,
+    "total_tokens": 12064,
+    "cost_usd": 0.007313724,
+    "usage": {
+     "prompt_tokens": 1306,
+     "completion_tokens": 10758,
+     "cached_tokens": 0,
+     "cost_usd": 0.007313724
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 3,
+    "success": true,
+    "calls": 3,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4570,
+      "cached_tokens": 0,
+      "completion_tokens": 317,
+      "total_tokens": 4887,
+      "cost_usd": 0.001178424324,
+      "usage": {
+       "prompt_tokens": 4570,
+       "completion_tokens": 317,
+       "cached_tokens": 0,
+       "cost_usd": 0.001178424324
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\": \"hotkey\", \"keys\": [\"ctrl\", \"a\"]}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 8069,
+      "cached_tokens": 0,
+      "completion_tokens": 401,
+      "total_tokens": 8470,
+      "cost_usd": 0.001979052768,
+      "usage": {
+       "prompt_tokens": 8069,
+       "completion_tokens": 401,
+       "cached_tokens": 0,
+       "cost_usd": 0.001979052768
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"input_text\", \"text\": \"training_summary.odt\", \"index\": 84}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 11580,
+      "cached_tokens": 4352,
+      "completion_tokens": 61,
+      "total_tokens": 11641,
+      "cost_usd": 0.0016113896568,
+      "usage": {
+       "prompt_tokens": 11580,
+       "completion_tokens": 61,
+       "cached_tokens": 4352,
+       "cost_usd": 0.0016113896568
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 98}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 5654,
+    "cached_tokens": 0,
+    "completion_tokens": 142926,
+    "total_tokens": 148580,
+    "cost_usd": 0.09445207,
+    "usage": {
+     "calls": 2,
+     "prompt_tokens": 5654,
+     "cached_tokens": 0,
+     "completion_tokens": 142926,
+     "total_tokens": 148580,
+     "cost_usd": 0.09445207
+    },
+    "stage": "builder_refine",
+    "attempts": 2,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2827,
+      "cached_tokens": 0,
+      "completion_tokens": 131072,
+      "total_tokens": 133899,
+      "cost_usd": 0.0862581654,
+      "usage": {
+       "prompt_tokens": 2827,
+       "completion_tokens": 131072,
+       "cached_tokens": 0,
+       "cost_usd": 0.0862581654
+      },
+      "stage": "builder",
+      "accepted": false
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 2827,
+      "cached_tokens": 0,
+      "completion_tokens": 11854,
+      "total_tokens": 14681,
+      "cost_usd": 0.008193901716,
+      "usage": {
+       "prompt_tokens": 2827,
+       "completion_tokens": 11854,
+       "cached_tokens": 0,
+       "cost_usd": 0.008193901716
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 1,
+ "replays": 1,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine1",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"document file name ending in .odt, one string\"\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"the title line, one string\"\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"the body sentence for the third line, one string\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    # Focus the Writer document body\n    doc = device.find(role='document-text', editable=True)\n    if doc is None:\n        doc = device.find(role='paragraph', editable=True)\n    if doc is None:\n        doc = device.find(role='text', editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable Writer document body found\")\n    device.click(index=doc)\n\n    # Title line\n    device.input_text(binding['title'], index=doc)\n\n    # Empty line\n    device.press('enter')\n    device.press('enter')\n\n    # Body line\n    device.type_at_caret(binding['body'])\n\n    # Open Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n\n    # Find the filename field in the Save dialog\n    filename_field = device.find(role='text', editable=True, contains='Untitled')\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        # Fallback: File menu -> Save As\n        file_menu = device.find(name='File', role='menu')\n        if file_menu is None:\n            raise RuntimeError(\"Could not find File menu\")\n        device.click(index=file_menu)\n        save_as = device.find(name='Save As...', role='menu-item', clickable=True)\n        if save_as is None:\n            raise RuntimeError(\"Save As... menu item not found\")\n        device.click(index=save_as)\n        device.wait()\n        filename_field = device.find(role='text', editable=True, contains='Untitled')\n        if filename_field is None:\n            filename_field = device.find(role='text', editable=True)\n        if filename_field is None:\n            raise RuntimeError(\"Save dialog did not open\")\n\n    # Fill the Name field with the full file name including .odt\n    device.input_text(binding['file_name'], index=filename_field)\n\n    # Select Desktop as the save location\n    desktop = device.find(name='Desktop')\n    if desktop is None:\n        desktop = device.find(name='Desktop', role='label')\n    if desktop is None:\n        raise RuntimeError(\"Desktop location not found in save dialog\")\n    device.click(index=desktop)\n    device.wait()\n\n    # Re-locate the filename field and give it focus, then press Enter\n    # to trigger the dialog's default Save button.\n    filename_field = device.find(role='text', editable=True, contains=binding['file_name'])\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        raise RuntimeError(\"Filename field not found after selecting Desktop\")\n    device.click(index=filename_field)\n    device.press('enter')\n    device.wait()\n\n    # Handle a possible \"Keep Current Format\" dialog\n    keep_format = device.find(name='Use ODF Text Document!')\n    if keep_format is not None:\n        device.click(index=keep_format)\n        device.wait()\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"document file name ending in .odt, one string\"\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"the title line, one string\"\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"the body sentence for the third line, one string\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    # Focus the Writer document body\n    doc = device.find(role='document-text', editable=True)\n    if doc is None:\n        doc = device.find(role='paragraph', editable=True)\n    if doc is None:\n        doc = device.find(role='text', editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable Writer document body found\")\n    device.click(index=doc)\n\n    # Title line\n    device.input_text(binding['title'], index=doc)\n\n    # Empty line\n    device.press('enter')\n    device.press('enter')\n\n    # Body line\n    device.type_at_caret(binding['body'])\n\n    # Open Save As dialog\n    device.hotkey('ctrl', 'shift', 's')\n    device.wait()\n\n    # Find the filename field in the Save dialog\n    filename_field = device.find(role='text', editable=True, contains='Untitled')\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        # Fallback: File menu -> Save As\n        file_menu = device.find(name='File', role='menu')\n        if file_menu is None:\n            raise RuntimeError(\"Could not find File menu\")\n        device.click(index=file_menu)\n        save_as = device.find(name='Save As...', role='menu-item', clickable=True)\n        if save_as is None:\n            raise RuntimeError(\"Save As... menu item not found\")\n        device.click(index=save_as)\n        device.wait()\n        filename_field = device.find(role='text', editable=True, contains='Untitled')\n        if filename_field is None:\n            filename_field = device.find(role='text', editable=True)\n        if filename_field is None:\n            raise RuntimeError(\"Save dialog did not open\")\n\n    # Fill the Name field with the full file name including .odt\n    device.input_text(binding['file_name'], index=filename_field)\n\n    # Select Desktop as the save location\n    desktop = device.find(name='Desktop')\n    if desktop is None:\n        desktop = device.find(name='Desktop', role='label')\n    if desktop is None:\n        raise RuntimeError(\"Desktop location not found in save dialog\")\n    device.click(index=desktop)\n    device.wait()\n\n    # Re-locate the filename field and give it focus, then press Enter\n    # to trigger the dialog's default Save button.\n    filename_field = device.find(role='text', editable=True, contains=binding['file_name'])\n    if filename_field is None:\n        filename_field = device.find(role='text', editable=True)\n    if filename_field is None:\n        raise RuntimeError(\"Filename field not found after selecting Desktop\")\n    device.click(index=filename_field)\n    device.press('enter')\n    device.wait()\n\n    # Handle a possible \"Keep Current Format\" dialog\n    keep_format = device.find(name='Use ODF Text Document!')\n    if keep_format is not None:\n        device.click(index=keep_format)\n        device.wait()\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The Save As dialog is still open; the file was not saved to Desktop as training_summary.odt. The automation typed the filename but did not complete the save."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 1,
+   "prompt_tokens": 1306,
+   "cached_tokens": 0,
+   "completion_tokens": 10758,
+   "total_tokens": 12064,
+   "cost_usd": 0.00731372
+  },
+  "resume_episodes": {
+   "calls": 3,
+   "prompt_tokens": 24219,
+   "cached_tokens": 4352,
+   "completion_tokens": 779,
+   "total_tokens": 24998,
+   "cost_usd": 0.00476887
+  },
+  "builder_refinements": {
+   "calls": 1,
+   "prompt_tokens": 5654,
+   "cached_tokens": 0,
+   "completion_tokens": 142926,
+   "total_tokens": 148580,
+   "cost_usd": 0.09445207
+  },
+  "program_replays": {
+   "count": 1,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "pipeline_notes.odt",
+     "title": "Release Checklist",
+     "body": "Attendance was high and the recording is available on the portal."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Team Standup Notes",
+     "body": "The archive migration preserved folder permissions without changes."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "travel_sketch.odt",
+     "title": "Maintenance Window",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Meeting Agenda Draft",
+     "body": "The documentation refresh covers all endpoints released this year."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "budget_notes.odt",
+     "title": "Office Move Plan",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

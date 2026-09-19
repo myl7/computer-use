@@ -1,0 +1,25 @@
+OPERATION: build a two-column Calc table (headers in row 1, numbers in rows 2-3) and save it to the Desktop as {file_name}.
+Values to enter: {header_a}, {header_b}, {val_a2}, {val_b2}, {val_a3}, {val_b3}; the file is saved as {file_name}.
+
+SCREEN 1 — "Untitled 1 - LibreOffice Calc" (fresh empty spreadsheet)
+1. Click cell A1, type {header_a}, press Tab to commit (cursor moves to B1).
+2. Type {header_b} into B1, press Enter to commit (cursor moves down).
+3. Click cell A2 (second row, directly under A1), type {val_a2}, press Tab.
+4. Type {val_b2} into B2, press Enter.
+5. Click cell A3 (third row), type {val_a3}, press Tab.
+6. Type {val_b3} into B3, press Enter.
+Trap: a cell edit takes effect only when committed — finish every entry with Enter (down) or Tab (right); all six cells must be filled, none left empty.
+Trap: the numbers go UNDER the headers in consecutive rows — {val_a2}/{val_b2} in row 2, {val_a3}/{val_b3} in row 3; never leave a blank row between the header row and the numbers.
+Locate each cell by its label (A1, B2, ...) in the element list; positions shift between screens, so never rely on a remembered position.
+
+SCREEN 2 — Save dialog (the Calc title gains "| Save")
+7. Press Ctrl+S in the Calc window and wait for the Save dialog to appear.
+8. The dialog opens in some other folder — switch the place to Desktop (click the Desktop entry in the dialog's places/folder list).
+9. Click the Name field, select all of its pre-filled text, then type {file_name} INCLUDING the .ods extension.
+10. Click the Save button (or press Enter while the Name field holds the name) to confirm.
+Trap: the Name field arrives pre-filled — always select-all first so the new text replaces it instead of appending to it.
+Trap: the name must keep the .ods extension, and no overwrite prompt should ever appear (the file does not exist yet); if one does, cancel and recheck the folder and name.
+Fallback for steps 8-9: select all in the Name field and type the Desktop folder path followed by {file_name} in one go, then confirm.
+
+SCREEN 3 — "{file_name} - LibreOffice Calc"
+11. Verify the title bar now reads {file_name} - LibreOffice Calc; the task is complete.

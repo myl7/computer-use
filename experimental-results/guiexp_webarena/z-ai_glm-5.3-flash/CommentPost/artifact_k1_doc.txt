@@ -1,0 +1,16 @@
+COMMENT POST (postmill-style forum)
+Goal: leave a comment saying "<text>" on the post titled "<title>" in the <forum> forum.
+
+1. Open the site home. Scroll down until the header search box is visible.
+2. Type a distinctive fragment of <title> into the search input (aria "Search query", name "q") and press Enter.
+3. On the search results page, re-enter the full <title> in the search box and press the "Search" button.
+4. If not on results, go directly to the search-results page for the query <title> (URL-encoded), and confirm the page shows a Search heading.
+5. Find the anchor whose text contains <title> and click it. QUIRK: this opens the post's image or external URL, never the post page.
+6. Navigate back to the search results page.
+7. In the same result row, click the comments link: an anchor whose text is "No comments" or "N comments" and whose href starts with /f/. This opens the post page with the comment box.
+8. Fallback if steps 5-7 fail: open /f/<forum>/new, locate the row titled <title>, and click that row's comments link.
+9. On the post page, click the large comment textarea (aria "Comment", editable) and type <text>.
+10. Click the "Formatting help" label below the box; this may reset the form.
+11. Re-check the textarea; if it no longer contains <text>, retype <text> into it.
+12. Click the "Post" button (the comment submit button) and wait for the page to reload.
+13. Verify via a status/page check that a comment with body <text> now appears on the post titled <title>; retry step 9-12 once if missing.

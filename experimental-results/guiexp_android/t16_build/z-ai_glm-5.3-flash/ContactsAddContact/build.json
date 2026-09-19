@@ -1,0 +1,509 @@
+{
+ "family": "ContactsAddContact",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 12,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 2,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 113939,
+    "cached_tokens": 0,
+    "completion_tokens": 360,
+    "total_tokens": 114299,
+    "cost_usd": 0.01076791,
+    "model_calls": 6
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 112709,
+    "cached_tokens": 0,
+    "completion_tokens": 350,
+    "total_tokens": 113059,
+    "cost_usd": 0.00382492,
+    "model_calls": 6
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 113153,
+    "cached_tokens": 0,
+    "completion_tokens": 296,
+    "total_tokens": 113449,
+    "cost_usd": 0.00968306,
+    "model_calls": 6
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 18,
+   "prompt_tokens": 339801,
+   "cached_tokens": 0,
+   "completion_tokens": 1006,
+   "total_tokens": 340807,
+   "cost_usd": 0.02427589
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 2517.5,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 5,
+    "calls": 5,
+    "prompt_tokens": 3571,
+    "cached_tokens": 0,
+    "completion_tokens": 1750,
+    "total_tokens": 5321,
+    "cost_usd": 0.00095923
+   },
+   {
+    "seed": 2,
+    "effective_actions": 5,
+    "calls": 5,
+    "prompt_tokens": 4022,
+    "cached_tokens": 256,
+    "completion_tokens": 3513,
+    "total_tokens": 7535,
+    "cost_usd": 0.00140058
+   },
+   {
+    "seed": 3,
+    "effective_actions": 6,
+    "calls": 6,
+    "prompt_tokens": 5135,
+    "cached_tokens": 128,
+    "completion_tokens": 1660,
+    "total_tokens": 6795,
+    "cost_usd": 0.00109983
+   }
+  ],
+  "totals": {
+   "calls": 16,
+   "prompt_tokens": 12728,
+   "cached_tokens": 384,
+   "completion_tokens": 6923,
+   "total_tokens": 19651,
+   "cost_usd": 0.00345964
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1458,
+    "completion_tokens": 3376,
+    "cached_tokens": 0,
+    "cost_usd": 0.0009438165
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1355,
+    "completion_tokens": 2249,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011567358
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 2324,
+    "completion_tokens": 747,
+    "cached_tokens": 0,
+    "cost_usd": 0.0004889115
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2221,
+    "completion_tokens": 254,
+    "cached_tokens": 0,
+    "cost_usd": 0.00030789
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 3267,
+    "completion_tokens": 679,
+    "cached_tokens": 0,
+    "cost_usd": 0.0005587065
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 3164,
+    "completion_tokens": 1872,
+    "cached_tokens": 0,
+    "cost_usd": 0.000698247
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 13789,
+   "cached_tokens": 0,
+   "completion_tokens": 9177,
+   "total_tokens": 22966,
+   "cost_usd": 0.00415432
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 0,
+    "prompt_tokens": 3267,
+    "cached_tokens": 0,
+    "completion_tokens": 679,
+    "total_tokens": 3946,
+    "cost_usd": 0.00055871
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 0,
+  "program_replays": 6,
+  "unautomatable": false,
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "gate_after_repair": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 211.9,
+  "total_tokens": 6357,
+  "cost_usd": 0.00080409
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1544,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 115377,
+    "cached_tokens": 51648,
+    "completion_tokens": 174,
+    "total_tokens": 115551,
+    "cost_usd": 0.00915612,
+    "model_calls": 6
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 115369,
+    "cached_tokens": 28160,
+    "completion_tokens": 390,
+    "total_tokens": 115759,
+    "cost_usd": 0.0122417,
+    "model_calls": 6
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 115363,
+    "cached_tokens": 512,
+    "completion_tokens": 267,
+    "total_tokens": 115630,
+    "cost_usd": 0.01085128,
+    "model_calls": 6
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 18,
+   "prompt_tokens": 346109,
+   "cached_tokens": 80320,
+   "completion_tokens": 831,
+   "total_tokens": 346940,
+   "cost_usd": 0.0322491
+  },
+  "L_doc_tokens_mean": 115646.66666666667
+ },
+ "break_even": {
+  "c_raw_tokens": 113602.3,
+  "c_cache_adjusted_tokens": 113602.3,
+  "d_tokens": 211.9,
+  "q": 0.0,
+  "cache_ratio_r": 0.2,
+  "build_totals_raw": {
+   "exploration": 340807,
+   "translator": 19651,
+   "builder_selected": 3946,
+   "verification": 0,
+   "autorpa_build": 364404
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 340807,
+   "translator": 19344,
+   "builder_selected": 3946,
+   "verification": 0,
+   "autorpa_build": 364097
+  },
+  "s_raw": 113390.4,
+  "nstar_raw": {
+   "marginal": 0.0348,
+   "autorpa_build": 3.2137
+  },
+  "s_cache_adjusted": 113390.4,
+  "nstar_cache_adjusted": {
+   "marginal": 0.0348,
+   "autorpa_build": 3.211
+  }
+ },
+ "total_cost_usd": 0.064943
+}

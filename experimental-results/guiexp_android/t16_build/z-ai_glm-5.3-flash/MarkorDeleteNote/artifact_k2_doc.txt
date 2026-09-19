@@ -1,0 +1,16 @@
+OPERATION: Delete the Markor note named {file_name}
+
+1. Launch Markor and wait for its main screen: the file list with the "Markor" title and the new-file button visible.
+2. If the main screen is not shown, return to the home screen, launch Markor again, and wait.
+3. In the file list, find the row whose exact title equals {file_name}; rows are labeled "File <name>", so match by the note's full name including extension.
+4. Never pick a row by its position on screen — the list holds several other notes that must stay untouched.
+5. If no row shows {file_name}, scroll the list down and search again; the target row may sit below the visible area.
+6. If the note is still absent after scrolling, stop and report that {file_name} was not found.
+7. Long-press the row titled {file_name}; this enters selection mode and swaps the top bar for selection actions.
+8. Before continuing, confirm the selection state: the target note is the currently selected one — the Delete button acts only on the active selection.
+9. Tap the "Delete" icon in the selection top bar.
+10. A "Confirm Delete" dialog appears; it repeats the note's name — verify it refers to {file_name} (stem or full name with extension may be shown).
+11. If no confirmation dialog with an OK button appears, the wrong note is selected: cancel, and restart from the row-matching step.
+12. Tap the "OK" button inside the "Confirm Delete" dialog to finalize the deletion.
+13. Wait for the file list to refresh.
+14. Verify that the row {file_name} no longer appears, and that every other note is still present.

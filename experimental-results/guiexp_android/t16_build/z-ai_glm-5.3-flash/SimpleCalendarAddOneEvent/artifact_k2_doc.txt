@@ -1,0 +1,20 @@
+Open "Simple Calendar Pro" and wait for its main month-view screen.
+Tap the round "New Event" floating button.
+If a popup asks which item type to create, tap "New event"; the event editor screen opens (if the editor opens directly, continue).
+Tap the Title field and enter {event_title}.
+Tap the Description field, the text field directly below Title, and enter {event_description}; identify the two text fields by their labels, in the order Title then Description.
+Below the text fields are the "Start date", "Start time", and "End time" rows; they come pre-filled with the device's current date and time, so open and set every one of them even if it already looks close.
+Tap the "Start date" row to open the date picker dialog.
+In the dialog, set the year picker to {year}, the month picker to {month}, and the day picker to {day}.
+Tap OK; a picker dialog only applies once confirmed with OK.
+Check the "Start date" row now shows {year}-{month}-{day}; if not, reopen it and correct before moving on.
+Tap the "Start time" row to open the time picker dialog; the device uses a 24-hour clock.
+Set the hour to {hour} and the minutes to 00, then tap OK.
+There is no duration field anywhere: the event length is controlled solely by the END time.
+Compute the end time by adding {duration_mins} minutes to {hour}:00 (every full 60 minutes becomes one extra hour; the remainder is the end minute).
+Tap the "End time" row, set the dialog's hour and minute to that computed end time, and tap OK.
+If the computed end time passes midnight, the event runs into the next day; if an end date is shown, set it to the following day.
+Always match rows and buttons by their visible text ("Start date", "Start time", "End time", "OK", "Save"), never by screen position.
+Tap the Save icon (floppy disk) in the editor's top bar.
+Confirm you are back on the main month view; if the editor is still open, tap Save again.
+Done: the event "{event_title}" with description "{event_description}" exists on {year}-{month}-{day}, starting at {hour}:00 and lasting {duration_mins} minutes.

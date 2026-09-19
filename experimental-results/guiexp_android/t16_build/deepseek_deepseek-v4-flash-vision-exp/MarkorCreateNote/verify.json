@@ -1,0 +1,140 @@
+{
+ "family": "MarkorCreateNote",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Could not open Markor",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Could not open Markor"
+    }
+   ],
+   "analysis": {
+    "cause": "The open_app action reported \"Could not open Markor\" even though the app is on the main screen. This is likely a false negative from the automation's readiness check, not an actual failure to open.",
+    "done": "Opened Markor and landed on the main activity screen.",
+    "plan": "\n1. Tap \"Create a new file or folder\" (index 1).\n2. In the dialog, select \"File\" to create a new file.\n3. Enter the file name \"friendly_koala_2023_03_02.txt\" in the name field.\n4. Confirm to create the file.\n5. In the editor, type \"The early bird catches the worm.\"\n6. Save the note (e.g., press back or tap save).",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 15,
+    "success": true
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The note was created and the text was entered, but the final navigate_back only dismissed the keyboard/left the editor open; the note was not saved, so the oracle rejected it.",
+    "done": "Opened Markor, created a new note named friendly_koala_2023_03_02.txt, and entered the text \"The early bird catches the worm.\" in the editor.",
+    "plan": "Click the Save button (description='Save', index 4) to save the note. Then press back to return to the file list.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 12,
+    "success": true
+   },
+   "refinement": 2
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The filename was entered as \"friendly_koala_2023_03_02\" plus \".txt\" into a field that already appended \".txt\", producing \"friendly_koala_2023_03_02.txt.txt\". The task oracle expected exactly \"friendly_koala_2023_03_02.txt\".",
+    "done": "Markor opened, new note created, text \"The early bird catches the worm.\" entered, note saved, but with wrong filename.",
+    "plan": "\n1. Tap \"More options\" (index 6) in the DocumentActivity.\n2. Tap \"Rename\" from the menu.\n3. In the rename dialog, clear the current filename and enter \"friendly_koala_2023_03_02.txt\" (or set name to \"friendly_koala_2023_03_02\" and extension to \"txt\" if separate fields).\n4. Confirm/save the rename.\n5. Verify the title shows \"friendly_koala_2023_03_02.txt\".",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 16,
+    "success": false
+   },
+   "refinement": 3
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"The note file name including its extension, e.g. note.txt\"\n    },\n    \"text\": {\n        \"type\": \"string\",\n        \"description\": \"The text content to write into the note\"\n    }\n}\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n    text = binding[\"text\"]\n\n    # Split file name into base and extension (including the dot)\n    if \".\" in file_name:\n        base, ext = file_name.rsplit(\".\", 1)\n        ext_with_dot = \".\" + ext\n    else:\n        base = file_name\n        ext_with_dot = \"\"\n\n    def set_text(index, new_text):\n        \"\"\"Set the text of a field, clearing it first if necessary.\"\"\"\n        elements = device.elements()\n        current_text = \"\"\n        for e in elements:\n            if e.get(\"index\") == index:\n                current_text = e.get(\"text\") or \"\"\n                break\n        if current_text.strip():\n            # Long press to select all\n            device.execute({\"action_type\": \"long_press\", \"index\": index})\n            select_all = device.find(text=\"Select all\")\n            if select_all is None:\n                select_all = device.find(contains=\"Select all\")\n            if select_all is not None:\n                device.click(select_all)\n                # Delete selection\n                device.execute({\"action_type\": \"press_key\", \"key\": \"KEYCODE_DEL\"})\n            else:\n                # Fallback: move to end and backspace\n                device.execute({\"action_type\": \"press_key\", \"key\": \"KEYCODE_MOVE_END\"})\n                for _ in range(len(current_text) + 5):\n                    device.execute({\"action_type\": \"press_key\", \"key\": \"KEYCODE_DEL\"})\n        device.input_text(new_text, index=index)\n\n    # 1. Open Markor\n    if not device.open_app(\"Markor\"):\n        elements = device.elements()\n        if not any(\"Create a new file or folder\" in str(e.get(\"description\", \"\")) for e in elements):\n            raise RuntimeError(\"Could not open Markor\")\n    device.settle(2)\n\n    # 2. Tap \"Create a new file or folder\"\n    idx = device.find(description=\"Create a new file or folder\", clickable=True)\n    if idx is None:\n        idx = device.find(description=\"Create a new file or folder\")\n    if idx is None:\n        idx = device.find(description=\"Create\", clickable=True)\n    if idx is None:\n        raise RuntimeError(\"Create new file button not found\")\n    device.click(idx)\n    device.settle(2)\n\n    # 3. Fill the new-file dialog\n    elements = device.elements()\n    editables = [e for e in elements if e.get(\"editable\")]\n    editables.sort(key=lambda e: e.get(\"index\", 0))\n\n    name_field = None\n    ext_field = None\n\n    # Identify the name and extension fields by hints/text where possible\n    for e in editables:\n        hint = (e.get(\"hint\") or \"\").lower()\n        txt = (e.get(\"text\") or \"\").lower()\n        if \"my_note\" in hint or \"name\" in hint:\n            name_field = e\n        elif hint.startswith(\".\") or txt.startswith(\".\"):\n            ext_field = e\n\n    # Fallbacks by order\n    if name_field is None:\n        remaining = [e for e in editables if e is not ext_field]\n        if remaining:\n            name_field = remaining[0]\n    if ext_field is None:\n        remaining = [e for e in editables if e is not name_field]\n        if remaining:\n            ext_field = remaining[0]\n\n    if name_field is None:\n        raise RuntimeError(\"Could not find name field in create dialog\")\n\n    # Put base name into the Name field\n    set_text(name_field[\"index\"], base)\n\n    # Handle extension field\n    if ext_field is not None:\n        current_ext = (ext_field.get(\"text\") or \"\").strip()\n        if ext_with_dot:\n            if current_ext != ext_with_dot:\n                set_text(ext_field[\"index\"], ext_with_dot)\n        else:\n            # No extension desired, clear the ext field if it has text\n            if current_ext:\n                set_text(ext_field[\"index\"], \"\")\n    else:\n        # No separate extension field: put the full file name in the Name field\n        set_text(name_field[\"index\"], file_name)\n\n    # Confirm with OK\n    ok = device.find(text=\"OK\", clickable=True)\n    if ok is None:\n        ok = device.find(text=\"OK\")\n    if ok is None:\n        ok = device.find(contains=\"OK\", clickable=True)\n    if ok is None:\n        raise RuntimeError(\"OK button not found\")\n    device.click(ok)\n    device.settle(2)\n\n    # 4. Type the note text in the editor\n    elements = device.elements()\n    candidates = [\n        e for e in elements\n        if e.get(\"editable\") and e.get(\"class_name\") == \"EditText\"\n    ]\n    if not candidates:\n        candidates = [e for e in elements if e.get(\"editable\")]\n    if not candidates:\n        raise RuntimeError(\"No editable note content field found\")\n\n    # Prefer an empty editable field (the main editor)\n    target = next(\n        (e for e in candidates if not (e.get(\"text\") or \"\").strip()),\n        candidates[0],\n    )\n    device.input_text(text, index=target[\"index\"])\n    device.settle(2)\n\n    # 5. Save the note explicitly\n    save_idx = device.find(description=\"Save\", clickable=True)\n    if save_idx is None:\n        save_idx = device.find(text=\"Save\", clickable=True)\n    if save_idx is None:\n        save_idx = device.find(contains=\"Save\", clickable=True)\n    if save_idx is None:\n        # If no save button is found, fall back to leaving the editor\n        device.navigate_back()\n    else:\n        device.click(save_idx)\n        device.settle(2)\n        device.navigate_back()\n    device.settle(2)\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The open_app action reported \"Could not open Markor\" even though the app is on the main screen. This is likely a false negative from the automation's readiness check, not an actual failure to open.",
+  "seed 1: The note was created and the text was entered, but the final navigate_back only dismissed the keyboard/left the editor open; the note was not saved, so the oracle rejected it.",
+  "seed 1: The filename was entered as \"friendly_koala_2023_03_02\" plus \".txt\" into a field that already appended \".txt\", producing \"friendly_koala_2023_03_02.txt.txt\". The task oracle expected exactly \"friendly_koala_2023_03_02.txt\"."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2556,
+   "cached_tokens": 0,
+   "completion_tokens": 4417,
+   "total_tokens": 6973,
+   "cost_usd": 0.00442308
+  },
+  "resume_episodes": {
+   "calls": 43,
+   "prompt_tokens": 1167211,
+   "cached_tokens": 698752,
+   "completion_tokens": 10171,
+   "total_tokens": 1177382,
+   "cost_usd": 0.23348745
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 9214,
+   "cached_tokens": 0,
+   "completion_tokens": 40950,
+   "total_tokens": 50164,
+   "cost_usd": 0.05075044
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": null,
+ "test_seed0": {
+  "passed": false,
+  "error": "TypeError: JSONAction.__init__() got an unexpected keyword argument 'key'"
+ },
+ "record_type": "verification"
+}

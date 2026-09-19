@@ -1,0 +1,242 @@
+{
+ "family": "OsmAndMarker",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 20,
+ "instances": [
+  {
+   "family": "OsmAndMarker",
+   "seed": 1,
+   "goal": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 18,
+     "usage": {
+      "prompt_tokens": 984322,
+      "cached_tokens": 685312,
+      "completion_tokens": 1824,
+      "total_tokens": 986146,
+      "cost_usd": 0.05252771,
+      "model_calls": 18
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 1297184,
+      "cached_tokens": 1011456,
+      "completion_tokens": 3721,
+      "total_tokens": 1300905,
+      "cost_usd": 0.07401597,
+      "model_calls": 20
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 1297142,
+      "cached_tokens": 1099008,
+      "completion_tokens": 6054,
+      "total_tokens": 1303196,
+      "cost_usd": 0.06430394,
+      "model_calls": 20
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "- The search for \"Malbun\" never actually selected a result: after typing, the agent clicked the same element (index 10) five times with no screen change instead of tapping the matching entry in the results list.\n- When a click produces no change, stop and re-read the screen; don't repeat it.\n- The coordinate fallback also failed: text was typed into the search field but the search was never confirmed (no search/enter tap), so no result or context menu ever opened.\n- Correct flow: Search \u2192 type \"Malbun\" \u2192 tap the Malbun, Liechtenstein result \u2192 in the map context menu tap \"Add marker\" (or Actions \u2192 Add marker).\n- The agent declared success without any marker existing; verify the marker shows in the top marker bar / marker list before setting status complete.",
+     "usage": {
+      "prompt_tokens": 707,
+      "completion_tokens": 481,
+      "cached_tokens": 0,
+      "cost_usd": 0.0003430845
+     },
+     "cost_usd": 0.0003430845,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- The agent got stuck tapping the same element (index 10) five times with no UI change, then re-searched and repeated the pattern \u2014 clicks were never verified against what appeared on screen.\n- After typing \"Malbun\" in the search field, wait for the results list and tap the row for \"Malbun\" (Liechtenstein) \u2014 not a toolbar or map element.\n- Selecting the result opens the place context menu showing the name and buttons (Directions, etc.).\n- In that context menu, tap the flag icon (\"Add marker\") to create the marker; that is the required final action.\n- Before each click, confirm the foreground screen actually changed; if a tap produces no change, stop retrying and re-read the element tree to find the correct control.\n- Do not tap the map or back/close buttons (index 0/3 style taps) mid-flow \u2014 that dismisses the search results and context menu you need.",
+     "usage": {
+      "prompt_tokens": 738,
+      "completion_tokens": 554,
+      "cached_tokens": 0,
+      "cost_usd": 0.000383823
+     },
+     "cost_usd": 0.000383823,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 2,
+   "goal": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 7,
+     "usage": {
+      "prompt_tokens": 146415,
+      "cached_tokens": 82048,
+      "completion_tokens": 1168,
+      "total_tokens": 147583,
+      "cost_usd": 0.00867241,
+      "model_calls": 7
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s2_a1/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 6,
+     "usage": {
+      "prompt_tokens": 111168,
+      "cached_tokens": 62208,
+      "completion_tokens": 540,
+      "total_tokens": 111708,
+      "cost_usd": 0.00911947,
+      "model_calls": 6
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "The agent claimed success without verifying the marker was actually created; the search flow it used only navigated to the coordinates. After searching \"47.0688832, 9.5061564\", select the coordinate result to move the map there, then long-press the exact point on the map to drop a marker (or use the context menu's \"Add marker\" / \"Marker\" option) and confirm the marker appears in the top marker bar before declaring complete.",
+     "usage": {
+      "prompt_tokens": 392,
+      "completion_tokens": 100,
+      "cached_tokens": 0,
+      "cost_usd": 7.3458e-05
+     },
+     "cost_usd": 7.3458e-05,
+     "stage": "reflection",
+     "for_attempt": 1
+    }
+   ],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s2_a1/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 3,
+   "goal": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 672572,
+      "cached_tokens": 532224,
+      "completion_tokens": 2035,
+      "total_tokens": 674607,
+      "cost_usd": 0.03765598,
+      "model_calls": 15
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 13,
+     "usage": {
+      "prompt_tokens": 479140,
+      "cached_tokens": 353280,
+      "completion_tokens": 7058,
+      "total_tokens": 486198,
+      "cost_usd": 0.03267634,
+      "model_calls": 13
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 735541,
+      "cached_tokens": 601344,
+      "completion_tokens": 2974,
+      "total_tokens": 738515,
+      "cost_usd": 0.0392603,
+      "model_calls": 15
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "- Failure point: after typing \"Nendeln\" the agent clicked the same element (index 10) four times with no screen change, then fell back to coordinates and declared success without ever completing the marker flow.\n- Don't repeat identical clicks when the screen doesn't change \u2014 re-read the UI instead.\n- In OsmAnd search, results appear as a list under the search field; tap the actual \"Nendeln, Liechtenstein\" result row once to open its map context menu.\n- If search finds nothing, the Liechtenstein map may not be downloaded; instead search the coordinates \"47.2167, 9.5667\" and tap the coordinate result that appears.\n- The marker is only added from the location's bottom-sheet context menu: tap the flag/\"Add marker\" button there \u2014 the agent skipped this step entirely.\n- Verify before finishing: a marker widget showing the name/distance appears at the top of the map; only then declare complete.",
+     "usage": {
+      "prompt_tokens": 609,
+      "completion_tokens": 982,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005765265
+     },
+     "cost_usd": 0.0005765265,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- The search text \"Nendeln\" was overwritten with coordinates in the same field, so the place was never actually selected from results.\n- In the search screen, type \"Nendeln\" once, wait for suggestions, and tap the matching result (Nendeln, Eschen, Liechtenstein) \u2014 don't retype into the same field.\n- On the location's map context menu, tap the flag-shaped \"Add marker\" button; backing out (navigate_back) does not create a marker.\n- Verify the orange marker flag is visible on the map (or in the marker list) before declaring the goal complete.",
+     "usage": {
+      "prompt_tokens": 541,
+      "completion_tokens": 834,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004931685
+     },
+     "cost_usd": 0.0004931685,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 8,
+  "retry_episodes": 5,
+  "reused_episodes": 0,
+  "reflection_calls": 5,
+  "prompt_tokens": 5726471,
+  "cached_tokens": 4426880,
+  "completion_tokens": 28325,
+  "total_tokens": 5754796,
+  "cost_usd": 0.32010218
+ },
+ "record_type": "exploration"
+}

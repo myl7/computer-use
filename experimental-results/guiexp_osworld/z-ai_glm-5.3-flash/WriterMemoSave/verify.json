@@ -1,0 +1,248 @@
+{
+ "family": "WriterMemoSave",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Save dialog still open; the save was not confirmed",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Save dialog still open; the save was not confirmed"
+    }
+   ],
+   "analysis": {
+    "cause": "After Ctrl+S opened the Save dialog, the element indices shifted; the second filename input went to index 27 (the \"first run\" infobar text, not the dialog's name field) and the final click hit index 31, the main toolbar Save button instead of the dialog's confirm button. The dialog was therefore never confirmed and the document is still \"Untitled 1\" (unsaved).",
+    "done": "Memo content is fully typed in the new Writer document (title on line 1, empty line, body sentence); Save dialog was opened via Ctrl+S and the filename was entered once into the dialog's name field.",
+    "plan": "1. Work in the still-open Save dialog: click its file-name field, clear it, and type \"training_summary.odt\". 2. Set the destination to the Desktop (select Desktop in the places/path bar, or type the full path /root/Desktop/training_summary.odt). 3. Confirm the file type is ODF Text Document (.odt). 4. Click the dialog's Save button to confirm. 5. If any format/overwrite prompt appears, accept ODF format / overwrite. 6. Verify the window title changed from \"Untitled 1\" to \"training_summary.odt - LibreOffice Writer\", confirming the file is saved on the Desktop.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1252,
+    "cached_tokens": 0,
+    "completion_tokens": 2096,
+    "total_tokens": 3348,
+    "cost_usd": 0.001223442,
+    "usage": {
+     "prompt_tokens": 1252,
+     "completion_tokens": 2096,
+     "cached_tokens": 0,
+     "cost_usd": 0.001223442
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 2,
+    "success": true,
+    "calls": 2,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5567,
+      "cached_tokens": 0,
+      "completion_tokens": 989,
+      "total_tokens": 6556,
+      "cost_usd": 0.0007701705,
+      "usage": {
+       "prompt_tokens": 5567,
+       "completion_tokens": 989,
+       "cached_tokens": 0,
+       "cost_usd": 0.0007701705
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 87}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 10043,
+      "cached_tokens": 0,
+      "completion_tokens": 84,
+      "total_tokens": 10127,
+      "cost_usd": 0.0015329655,
+      "usage": {
+       "prompt_tokens": 10043,
+       "completion_tokens": 84,
+       "cached_tokens": 0,
+       "cost_usd": 0.0015329655
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 98}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 3553,
+    "cached_tokens": 0,
+    "completion_tokens": 25431,
+    "total_tokens": 28984,
+    "cost_usd": 0.00786958,
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3553,
+     "cached_tokens": 0,
+     "completion_tokens": 25431,
+     "total_tokens": 28984,
+     "cost_usd": 0.00786958
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3553,
+      "cached_tokens": 0,
+      "completion_tokens": 25431,
+      "total_tokens": 28984,
+      "cost_usd": 0.0078695793,
+      "usage": {
+       "prompt_tokens": 3553,
+       "completion_tokens": 25431,
+       "cached_tokens": 0,
+       "cost_usd": 0.0078695793
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 1,
+ "replays": 1,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine1",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "import time\n\nPARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Document file name including the .odt extension; the memo is saved on the Desktop under this name.\",\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Title text written on line one of the new Writer document.\",\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Body sentence written on line three; line two is left empty (a pressed Enter).\",\n    },\n}\n\n\ndef _elements(device):\n    try:\n        return device.elements() or []\n    except Exception:\n        return []\n\n\ndef _read_text(device, idx):\n    for el in _elements(device):\n        if el.get(\"index\") == idx:\n            return el.get(\"text\") or el.get(\"name\") or \"\"\n    return \"\"\n\n\ndef _save_dialog_visible(device):\n    \"\"\"True when the LibreOffice/GTK Save dialog is the active screen.\"\"\"\n    win = device.active_window() or \"\"\n    if \"| Save\" in win or win.rstrip().endswith(\"Save\"):\n        return True\n    if device.find(name=\"Name:\", role=\"label\") is not None:\n        return True\n    if device.find(name=\"Name\", role=\"label\") is not None:\n        return True\n    # GTK save-dialog signature: editable filename entry + Save button + places list\n    if (device.find(role=\"text\", editable=True) is not None\n            and device.find(name=\"Save\", role=\"push-button\") is not None\n            and device.find(name=\"Desktop\") is not None):\n        return True\n    return False\n\n\ndef _dialog_name_field(device):\n    \"\"\"Index of the Save dialog's Name entry.\n\n    The element list merges the Writer window and the dialog; the window's\n    own editable widgets (release-note infobar) must never be picked.\n    \"\"\"\n    # The GTK dialog pre-fills its Name entry with \"Untitled ...\".\n    el = device.find(role=\"text\", editable=True, contains=\"Untitled\")\n    if el is not None:\n        return el\n    # Fallback: take the last editable text that is not the first-run\n    # release-note infobar (dialog widgets never carry that text).\n    cands = [e for e in _elements(device)\n             if e.get(\"role\") == \"text\" and e.get(\"editable\")]\n    cands = [e for e in cands\n             if \"running version\" not in (e.get(\"text\") or \"\")\n             and \"release notes\" not in (e.get(\"text\") or \"\").lower()]\n    if cands:\n        return cands[-1][\"index\"]\n    return None\n\n\ndef _dialog_save_button(device, anchor_index=None):\n    \"\"\"Index of the Save dialog's confirm push-button.\n\n    Both the Writer toolbar and the dialog own a 'Save' push-button; only\n    the dialog's may be clicked.  The dialog's is the one flanked by a\n    Cancel button; index order relative to the dialog's Name field is used\n    as a secondary signal.\n    \"\"\"\n    els = _elements(device)\n    saves = [e for e in els\n             if e.get(\"role\") == \"push-button\" and e.get(\"name\") == \"Save\"]\n    if not saves:\n        saves = [e for e in els\n                 if e.get(\"role\") in (\"push button\", \"button\")\n                 and e.get(\"name\") == \"Save\"]\n    if not saves:\n        return None\n    if len(saves) == 1:\n        return saves[0][\"index\"]\n    cancels = [e[\"index\"] for e in els\n               if e.get(\"role\") == \"push-button\" and e.get(\"name\") == \"Cancel\"]\n    if cancels:\n        near = [e for e in saves\n                if any(abs(e[\"index\"] - c) <= 25 for c in cancels)]\n        if near:\n            return near[-1][\"index\"]\n    if anchor_index is not None:\n        later = [e for e in saves if e.get(\"index\", 0) > anchor_index]\n        if later:\n            return later[-1][\"index\"]\n    return saves[-1][\"index\"]\n\n\ndef _desktop_entry(device):\n    for criteria in ({\"name\": \"Desktop\", \"clickable\": True},\n                     {\"name\": \"Desktop\", \"role\": \"table-cell\"},\n                     {\"name\": \"Desktop\"}):\n        el = device.find(**criteria)\n        if el is not None:\n            return el\n    return None\n\n\ndef _click_first_button(device, names):\n    for nm in names:\n        btn = device.find(name=nm, role=\"push-button\", clickable=True)\n        if btn is not None:\n            device.click(index=btn)\n            device.settle(2)\n            return True\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    for key in (\"file_name\", \"title\", \"body\"):\n        if key not in binding:\n            raise KeyError(\"binding missing required key: %r\" % key)\n\n    file_name = binding[\"file_name\"]\n    title = binding[\"title\"]\n    body = binding[\"body\"]\n    base = file_name.rsplit(\".\", 1)[0]\n\n    # ------------------------------------------------------------------\n    # 1) Locate the new (untitled) Writer document's editable text area.\n    #    Matched by role/editable only: its name (\"Untitled 1 - ...\") is volatile.\n    # ------------------------------------------------------------------\n    doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        device.open_app(\"LibreOffice Writer\")\n        device.wait()\n        doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable LibreOffice Writer document-text area found\")\n\n    # ------------------------------------------------------------------\n    # 2) Title on line one.\n    # ------------------------------------------------------------------\n    device.click(index=doc)\n    device.settle(0.5)\n    device.input_text(title, index=doc)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 3) Two Enters: end line one, leave line two EMPTY, caret on line three.\n    # ------------------------------------------------------------------\n    device.press(\"enter\")\n    device.settle(0.3)\n    device.press(\"enter\")\n    device.settle(0.3)\n\n    # ------------------------------------------------------------------\n    # 4) Body sentence on line three.\n    # ------------------------------------------------------------------\n    doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        raise RuntimeError(\"Writer document text area not found before typing the body\")\n    device.input_text(body, index=doc)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 5) Ctrl+S: Writer must hold keyboard focus; then the Save dialog appears.\n    # ------------------------------------------------------------------\n    win = device.active_window() or \"\"\n    if \"LibreOffice\" not in win:\n        doc = device.find(role=\"document-text\", editable=True)\n        if doc is None:\n            raise RuntimeError(\"LibreOffice Writer window not focused; cannot send Ctrl+S\")\n        device.click(index=doc)\n    device.hotkey(\"ctrl\", \"s\")\n\n    deadline = time.time() + 25\n    dialog_up = False\n    while time.time() < deadline:\n        if _save_dialog_visible(device):\n            dialog_up = True\n            break\n        time.sleep(0.5)\n    if not dialog_up:\n        raise RuntimeError(\"Save dialog did not open after Ctrl+S\")\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 6) File name (including the .odt extension) into the DIALOG's Name\n    #    field -- never into the Writer window's own editable widgets.\n    # ------------------------------------------------------------------\n    name_field = _dialog_name_field(device)\n    if name_field is None:\n        raise RuntimeError(\"Save-dialog filename field not found\")\n    device.input_text(file_name, index=name_field)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 7) Switch the save folder to Desktop via the places entry.\n    # ------------------------------------------------------------------\n    desktop = _desktop_entry(device)\n    if desktop is None:\n        raise RuntimeError(\"Save dialog: no 'Desktop' place entry found\")\n    device.click(index=desktop)\n    device.settle(1)\n\n    # Defensive: make sure the file name survived the folder switch -- only\n    # the dialog's own Name field is inspected and re-typed.\n    name_field = _dialog_name_field(device)\n    if name_field is not None:\n        current = _read_text(device, name_field)\n        if base not in current and file_name not in current:\n            device.input_text(file_name, index=name_field)\n            device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 8) Confirm the save with the DIALOG's Save button.  The Writer\n    #    toolbar also exposes a 'Save' push-button; clicking that one while\n    #    the modal dialog is up does nothing (the earlier failure).\n    # ------------------------------------------------------------------\n    save_btn = _dialog_save_button(device, anchor_index=name_field)\n    if save_btn is not None:\n        device.click(index=save_btn)\n    else:\n        if name_field is not None:\n            device.click(index=name_field)\n            device.settle(0.5)\n        device.press(\"enter\")\n    device.settle(2)\n\n    # ------------------------------------------------------------------\n    # 9) Confirm completion: the Writer window title now shows the file\n    #    name.  Absorb format/overwrite prompts and retry a stuck dialog.\n    # ------------------------------------------------------------------\n    deadline = time.time() + 30\n    retries = 0\n    while time.time() < deadline:\n        win = device.active_window() or \"\"\n        if ((file_name in win) or (base and base in win)) and \"| Save\" not in win:\n            return True\n\n        if _click_first_button(device, (\"Use ODF Format!\",)):\n            continue\n        if _click_first_button(device, (\"Overwrite\", \"Replace\")):\n            continue\n        yes = device.find(name=\"Yes\", role=\"push-button\", clickable=True)\n        if yes is not None and (device.find(contains=\"already exists\") is not None\n                                or device.find(contains=\"verwrite\") is not None):\n            device.click(index=yes)\n            device.settle(2)\n            continue\n\n        if _save_dialog_visible(device) and retries < 2:\n            nf = _dialog_name_field(device)\n            btn = _dialog_save_button(device, anchor_index=nf)\n            if btn is not None:\n                device.click(index=btn)\n            elif nf is not None:\n                device.click(index=nf)\n                device.settle(0.5)\n                device.press(\"enter\")\n            device.settle(2)\n            retries += 1\n            continue\n\n        time.sleep(0.5)\n\n    win = device.active_window() or \"\"\n    if \"| Save\" in win or device.find(name=\"Name:\", role=\"label\") is not None:\n        raise RuntimeError(\"Save dialog still open; the save was not confirmed\")\n    if \"LibreOffice\" not in win:\n        raise RuntimeError(\"Unexpected active window after save: %r\" % (win,))\n    # Dialog closed and Writer is active again: best-effort success.\n    return True\n",
+ "last_artifact": "import time\n\nPARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Document file name including the .odt extension; the memo is saved on the Desktop under this name.\",\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Title text written on line one of the new Writer document.\",\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Body sentence written on line three; line two is left empty (a pressed Enter).\",\n    },\n}\n\n\ndef _elements(device):\n    try:\n        return device.elements() or []\n    except Exception:\n        return []\n\n\ndef _read_text(device, idx):\n    for el in _elements(device):\n        if el.get(\"index\") == idx:\n            return el.get(\"text\") or el.get(\"name\") or \"\"\n    return \"\"\n\n\ndef _save_dialog_visible(device):\n    \"\"\"True when the LibreOffice/GTK Save dialog is the active screen.\"\"\"\n    win = device.active_window() or \"\"\n    if \"| Save\" in win or win.rstrip().endswith(\"Save\"):\n        return True\n    if device.find(name=\"Name:\", role=\"label\") is not None:\n        return True\n    if device.find(name=\"Name\", role=\"label\") is not None:\n        return True\n    # GTK save-dialog signature: editable filename entry + Save button + places list\n    if (device.find(role=\"text\", editable=True) is not None\n            and device.find(name=\"Save\", role=\"push-button\") is not None\n            and device.find(name=\"Desktop\") is not None):\n        return True\n    return False\n\n\ndef _dialog_name_field(device):\n    \"\"\"Index of the Save dialog's Name entry.\n\n    The element list merges the Writer window and the dialog; the window's\n    own editable widgets (release-note infobar) must never be picked.\n    \"\"\"\n    # The GTK dialog pre-fills its Name entry with \"Untitled ...\".\n    el = device.find(role=\"text\", editable=True, contains=\"Untitled\")\n    if el is not None:\n        return el\n    # Fallback: take the last editable text that is not the first-run\n    # release-note infobar (dialog widgets never carry that text).\n    cands = [e for e in _elements(device)\n             if e.get(\"role\") == \"text\" and e.get(\"editable\")]\n    cands = [e for e in cands\n             if \"running version\" not in (e.get(\"text\") or \"\")\n             and \"release notes\" not in (e.get(\"text\") or \"\").lower()]\n    if cands:\n        return cands[-1][\"index\"]\n    return None\n\n\ndef _dialog_save_button(device, anchor_index=None):\n    \"\"\"Index of the Save dialog's confirm push-button.\n\n    Both the Writer toolbar and the dialog own a 'Save' push-button; only\n    the dialog's may be clicked.  The dialog's is the one flanked by a\n    Cancel button; index order relative to the dialog's Name field is used\n    as a secondary signal.\n    \"\"\"\n    els = _elements(device)\n    saves = [e for e in els\n             if e.get(\"role\") == \"push-button\" and e.get(\"name\") == \"Save\"]\n    if not saves:\n        saves = [e for e in els\n                 if e.get(\"role\") in (\"push button\", \"button\")\n                 and e.get(\"name\") == \"Save\"]\n    if not saves:\n        return None\n    if len(saves) == 1:\n        return saves[0][\"index\"]\n    cancels = [e[\"index\"] for e in els\n               if e.get(\"role\") == \"push-button\" and e.get(\"name\") == \"Cancel\"]\n    if cancels:\n        near = [e for e in saves\n                if any(abs(e[\"index\"] - c) <= 25 for c in cancels)]\n        if near:\n            return near[-1][\"index\"]\n    if anchor_index is not None:\n        later = [e for e in saves if e.get(\"index\", 0) > anchor_index]\n        if later:\n            return later[-1][\"index\"]\n    return saves[-1][\"index\"]\n\n\ndef _desktop_entry(device):\n    for criteria in ({\"name\": \"Desktop\", \"clickable\": True},\n                     {\"name\": \"Desktop\", \"role\": \"table-cell\"},\n                     {\"name\": \"Desktop\"}):\n        el = device.find(**criteria)\n        if el is not None:\n            return el\n    return None\n\n\ndef _click_first_button(device, names):\n    for nm in names:\n        btn = device.find(name=nm, role=\"push-button\", clickable=True)\n        if btn is not None:\n            device.click(index=btn)\n            device.settle(2)\n            return True\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    for key in (\"file_name\", \"title\", \"body\"):\n        if key not in binding:\n            raise KeyError(\"binding missing required key: %r\" % key)\n\n    file_name = binding[\"file_name\"]\n    title = binding[\"title\"]\n    body = binding[\"body\"]\n    base = file_name.rsplit(\".\", 1)[0]\n\n    # ------------------------------------------------------------------\n    # 1) Locate the new (untitled) Writer document's editable text area.\n    #    Matched by role/editable only: its name (\"Untitled 1 - ...\") is volatile.\n    # ------------------------------------------------------------------\n    doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        device.open_app(\"LibreOffice Writer\")\n        device.wait()\n        doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        raise RuntimeError(\"No editable LibreOffice Writer document-text area found\")\n\n    # ------------------------------------------------------------------\n    # 2) Title on line one.\n    # ------------------------------------------------------------------\n    device.click(index=doc)\n    device.settle(0.5)\n    device.input_text(title, index=doc)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 3) Two Enters: end line one, leave line two EMPTY, caret on line three.\n    # ------------------------------------------------------------------\n    device.press(\"enter\")\n    device.settle(0.3)\n    device.press(\"enter\")\n    device.settle(0.3)\n\n    # ------------------------------------------------------------------\n    # 4) Body sentence on line three.\n    # ------------------------------------------------------------------\n    doc = device.find(role=\"document-text\", editable=True)\n    if doc is None:\n        raise RuntimeError(\"Writer document text area not found before typing the body\")\n    device.input_text(body, index=doc)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 5) Ctrl+S: Writer must hold keyboard focus; then the Save dialog appears.\n    # ------------------------------------------------------------------\n    win = device.active_window() or \"\"\n    if \"LibreOffice\" not in win:\n        doc = device.find(role=\"document-text\", editable=True)\n        if doc is None:\n            raise RuntimeError(\"LibreOffice Writer window not focused; cannot send Ctrl+S\")\n        device.click(index=doc)\n    device.hotkey(\"ctrl\", \"s\")\n\n    deadline = time.time() + 25\n    dialog_up = False\n    while time.time() < deadline:\n        if _save_dialog_visible(device):\n            dialog_up = True\n            break\n        time.sleep(0.5)\n    if not dialog_up:\n        raise RuntimeError(\"Save dialog did not open after Ctrl+S\")\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 6) File name (including the .odt extension) into the DIALOG's Name\n    #    field -- never into the Writer window's own editable widgets.\n    # ------------------------------------------------------------------\n    name_field = _dialog_name_field(device)\n    if name_field is None:\n        raise RuntimeError(\"Save-dialog filename field not found\")\n    device.input_text(file_name, index=name_field)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 7) Switch the save folder to Desktop via the places entry.\n    # ------------------------------------------------------------------\n    desktop = _desktop_entry(device)\n    if desktop is None:\n        raise RuntimeError(\"Save dialog: no 'Desktop' place entry found\")\n    device.click(index=desktop)\n    device.settle(1)\n\n    # Defensive: make sure the file name survived the folder switch -- only\n    # the dialog's own Name field is inspected and re-typed.\n    name_field = _dialog_name_field(device)\n    if name_field is not None:\n        current = _read_text(device, name_field)\n        if base not in current and file_name not in current:\n            device.input_text(file_name, index=name_field)\n            device.settle(0.5)\n\n    # ------------------------------------------------------------------\n    # 8) Confirm the save with the DIALOG's Save button.  The Writer\n    #    toolbar also exposes a 'Save' push-button; clicking that one while\n    #    the modal dialog is up does nothing (the earlier failure).\n    # ------------------------------------------------------------------\n    save_btn = _dialog_save_button(device, anchor_index=name_field)\n    if save_btn is not None:\n        device.click(index=save_btn)\n    else:\n        if name_field is not None:\n            device.click(index=name_field)\n            device.settle(0.5)\n        device.press(\"enter\")\n    device.settle(2)\n\n    # ------------------------------------------------------------------\n    # 9) Confirm completion: the Writer window title now shows the file\n    #    name.  Absorb format/overwrite prompts and retry a stuck dialog.\n    # ------------------------------------------------------------------\n    deadline = time.time() + 30\n    retries = 0\n    while time.time() < deadline:\n        win = device.active_window() or \"\"\n        if ((file_name in win) or (base and base in win)) and \"| Save\" not in win:\n            return True\n\n        if _click_first_button(device, (\"Use ODF Format!\",)):\n            continue\n        if _click_first_button(device, (\"Overwrite\", \"Replace\")):\n            continue\n        yes = device.find(name=\"Yes\", role=\"push-button\", clickable=True)\n        if yes is not None and (device.find(contains=\"already exists\") is not None\n                                or device.find(contains=\"verwrite\") is not None):\n            device.click(index=yes)\n            device.settle(2)\n            continue\n\n        if _save_dialog_visible(device) and retries < 2:\n            nf = _dialog_name_field(device)\n            btn = _dialog_save_button(device, anchor_index=nf)\n            if btn is not None:\n                device.click(index=btn)\n            elif nf is not None:\n                device.click(index=nf)\n                device.settle(0.5)\n                device.press(\"enter\")\n            device.settle(2)\n            retries += 1\n            continue\n\n        time.sleep(0.5)\n\n    win = device.active_window() or \"\"\n    if \"| Save\" in win or device.find(name=\"Name:\", role=\"label\") is not None:\n        raise RuntimeError(\"Save dialog still open; the save was not confirmed\")\n    if \"LibreOffice\" not in win:\n        raise RuntimeError(\"Unexpected active window after save: %r\" % (win,))\n    # Dialog closed and Writer is active again: best-effort success.\n    return True\n",
+ "conclusions": [
+  "seed 1: After Ctrl+S opened the Save dialog, the element indices shifted; the second filename input went to index 27 (the \"first run\" infobar text, not the dialog's name field) and the final click hit index 31, the main toolbar Save button instead of the dialog's confirm button. The dialog was therefore nev"
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 1,
+   "prompt_tokens": 1252,
+   "cached_tokens": 0,
+   "completion_tokens": 2096,
+   "total_tokens": 3348,
+   "cost_usd": 0.00122344
+  },
+  "resume_episodes": {
+   "calls": 2,
+   "prompt_tokens": 15610,
+   "cached_tokens": 0,
+   "completion_tokens": 1073,
+   "total_tokens": 16683,
+   "cost_usd": 0.00230314
+  },
+  "builder_refinements": {
+   "calls": 1,
+   "prompt_tokens": 3553,
+   "cached_tokens": 0,
+   "completion_tokens": 25431,
+   "total_tokens": 28984,
+   "cost_usd": 0.00786958
+  },
+  "program_replays": {
+   "count": 1,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "pipeline_notes.odt",
+     "title": "Release Checklist",
+     "body": "Attendance was high and the recording is available on the portal."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Team Standup Notes",
+     "body": "The archive migration preserved folder permissions without changes."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "travel_sketch.odt",
+     "title": "Maintenance Window",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Meeting Agenda Draft",
+     "body": "The documentation refresh covers all endpoints released this year."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "budget_notes.odt",
+     "title": "Office Move Plan",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

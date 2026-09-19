@@ -1,0 +1,140 @@
+{
+ "family": "OsmAndFavorite",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Favorite control not found on place panel",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    }
+   ],
+   "analysis": {
+    "cause": "No Malbun place panel was opened, so the favorite/star control never appeared. The search result for Malbun was not selected; the attempted click missed the result and hit the status bar.",
+    "done": "Opened OsmAnd and entered \u201cMalbun, Liechtenstein\u201d into search. No favorite marker was added.",
+    "plan": "1. Tap the search field or Clear. 2. Replace the query with \u201cMalbun\u201d or \u201cMalbun Liechtenstein\u201d without the comma, then submit. 3. Tap the correct Malbun search result to open its place panel. 4. Tap the star/Add favorite control. 5. Confirm/save the favorite.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 13,
+    "success": false
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Favorite control not found on place panel",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    }
+   ],
+   "analysis": {
+    "cause": "The search for \"Malbun, Liechtenstein\" returned no results within the default 5 mi radius, so the place panel with the favorite control never appeared.",
+    "done": "OsmAnd is open, the search field contains \"Malbun, Liechtenstein\", and the search has been executed. No favorite marker has been added.",
+    "plan": "\n1. Tap \"INCREASE SEARCH RADIUS\" to expand the search area.\n2. Wait for search results to update; if \"SHOW ON MAP\" becomes clickable, tap it.\n3. On the place panel, tap the favorite/star control to add the marker for Malbun, Liechtenstein.\n4. If the search still finds nothing, switch to online search or use a more specific query, then repeat.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 13,
+    "success": false
+   },
+   "refinement": 2
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Favorite control not found on place panel",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Favorite control not found on place panel"
+    }
+   ],
+   "analysis": {
+    "cause": "The search returned a results list, not the place panel. The automation looked for the favorite control before opening the place details, so it failed.",
+    "done": "Opened OsmAnd, initiated search, entered \"Malbun, Liechtenstein\", and reached the search results screen.",
+    "plan": "\n1. Tap \"SHOW ON MAP\" to open the place panel for Malbun, Liechtenstein.\n2. Tap the favorite/star control (e.g., \"\u2605\" or \"Add\") on the place panel.\n3. If prompted, confirm/save the favorite.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 13,
+    "success": false
+   },
+   "refinement": 3
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "final_artifact": "import re\n\nPARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"description\": \"Place name or 'lat, lon' coordinate pair to add as a favorite location marker in OsmAnd.\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    location = binding[\"location\"]\n    loc_low = location.strip().lower()\n    primary = location.split(\",\")[0].strip().lower()\n\n    time_re = re.compile(r\"^\\d{1,2}:\\d{2}(\\s*[apAP][mM])?$\")\n    status_markers = (\n        \"settings notification\", \"unused apps\", \"location requests\",\n        \"wifi signal\", \"phone signal\", \"battery charging\",\n    )\n    ignore_exact = {\n        \"clear\", \"close\", \"cancel\", \"search\", \"back\", \"show on map\", \"show all\",\n        \"more\", \"settings\", \"clipboard\", \"gif\", \"sticker\", \"keyboard\", \"emoji\",\n        \"enter\", \"done\", \"increase search radius\", \"navigate up\", \"navigate down\",\n        \"menu\", \"layers\", \"next\", \"previous\", \"continue\",\n    }\n\n    # ------------------------------------------------------------------ utils\n    def els():\n        return device.elements() or []\n\n    def txt(e):\n        return ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).strip()\n\n    def is_status(e):\n        low = txt(e).lower()\n        return any(m in low for m in status_markers)\n\n    def is_clock(e):\n        t = (e.get(\"text\") or \"\").strip()\n        d = (e.get(\"description\") or \"\").strip()\n        return bool(time_re.match(t)) or bool(time_re.match(d))\n\n    def is_ignored(e):\n        if is_status(e) or is_clock(e):\n            return True\n        t = (e.get(\"text\") or \"\").strip().lower()\n        d = (e.get(\"description\") or \"\").strip().lower()\n        return t in ignore_exact or d in ignore_exact\n\n    def keyboard_open():\n        for e in els():\n            if is_status(e):\n                continue\n            low = txt(e).lower().strip()\n            if not low:\n                continue\n            if low in (\"keyboard\", \"more features\", \"clipboard\"):\n                return True\n            if low.endswith(\" keyboard\"):\n                return True\n        return False\n\n    def search_field():\n        idx = device.find(hint=\"Type to search all\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(editable=True)\n        if idx is not None:\n            return idx\n        for e in els():\n            if e.get(\"editable\"):\n                return e.get(\"index\")\n        return None\n\n    def rows():\n        field = search_field()\n        out = []\n        for e in els():\n            idx = e.get(\"index\")\n            if idx is None:\n                continue\n            if field is not None and idx <= field:\n                continue\n            if e.get(\"editable\"):\n                continue\n            if is_status(e) or is_clock(e):\n                continue\n            out.append(e)\n        return out\n\n    def matches_location(e):\n        low = txt(e).lower()\n        if not low:\n            return False\n        if loc_low and loc_low in low:\n            return True\n        if primary and primary != loc_low and primary in low:\n            return True\n        return False\n\n    def matching_row():\n        # first pass: rows that the a11y tree flags as clickable\n        for e in rows():\n            if not e.get(\"clickable\"):\n                continue\n            if is_ignored(e):\n                continue\n            if matches_location(e):\n                return e.get(\"index\")\n        # second pass: the tree sometimes omits the clickable flag on result rows\n        for e in rows():\n            if is_ignored(e):\n                continue\n            if matches_location(e):\n                return e.get(\"index\")\n        return None\n\n    def first_row():\n        for e in rows():\n            if is_ignored(e):\n                continue\n            if not txt(e):\n                continue\n            return e.get(\"index\")\n        return None\n\n    def by_text(needle):\n        needle = needle.lower()\n        for e in els():\n            if needle in txt(e).lower():\n                return e.get(\"index\")\n        return None\n\n    def find_favorite_control():\n        best = None\n        for e in els():\n            if is_status(e) or is_clock(e):\n                continue\n            low = txt(e).lower()\n            if not low:\n                continue\n            has_fav = (\"favorit\" in low) or (\"favourite\" in low)\n            has_star = any(s in low for s in (\"\\u2605\", \"\\u2606\", \"\\u2b50\", \"star\"))\n            if not (has_fav or has_star):\n                continue\n            if \"marker\" in low and not has_fav:\n                continue\n            score = 0 if has_fav else 1\n            if e.get(\"clickable\"):\n                score -= 0.5\n            if best is None or score < best[0]:\n                best = (score, e.get(\"index\"))\n        if best is not None:\n            return best[1]\n        # last resort: a bare \"Add\" action that is not the marker control\n        for e in els():\n            if not e.get(\"clickable\"):\n                continue\n            t = (e.get(\"text\") or \"\").strip().lower()\n            d = (e.get(\"description\") or \"\").strip().lower()\n            if t == \"add\" and \"marker\" not in t and \"marker\" not in d:\n                return e.get(\"index\")\n        return None\n\n    def find_save_button():\n        for label in (\"Save\", \"OK\", \"Add\", \"Confirm\", \"Done\"):\n            idx = device.find(text=label, clickable=True)\n            if idx is not None:\n                return idx\n        for e in els():\n            if not e.get(\"clickable\"):\n                continue\n            t = (e.get(\"text\") or \"\").strip().lower()\n            if t in (\"save\", \"ok\", \"add\", \"confirm\", \"done\"):\n                return e.get(\"index\")\n        return None\n\n    # ------------------------------------------------------------------ launch\n    device.open_app(\"OsmAnd\")\n    device.settle(2)\n\n    search_btn = device.find(description=\"Search\", clickable=True)\n    if search_btn is None:\n        search_btn = device.find(text=\"Search\", clickable=True)\n    if search_btn is None:\n        for e in els():\n            if e.get(\"clickable\") and \"search\" in (e.get(\"description\") or \"\").lower():\n                search_btn = e.get(\"index\")\n                break\n    if search_btn is None:\n        raise RuntimeError(\"Search button not found\")\n    device.click(index=search_btn)\n    device.settle(1.5)\n\n    field = search_field()\n    if field is None:\n        raise RuntimeError(\"Search field not found\")\n\n    clear_btn = device.find(description=\"Clear\", clickable=True)\n    if clear_btn is not None:\n        device.click(index=clear_btn)\n        device.settle(0.5)\n        field = search_field()\n        if field is None:\n            raise RuntimeError(\"Search field not found after clearing\")\n\n    device.input_text(location, index=field)\n    device.settle(2.5)\n\n    # ------------------------------------------------------- choose the result\n    selected = False\n\n    for _ in range(3):\n        idx = matching_row()\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(2.5)\n            selected = True\n            break\n        inc = by_text(\"increase search radius\")\n        if inc is not None:\n            device.click(index=inc)\n            device.settle(3)\n            continue\n        break\n\n    if not selected:\n        idx = matching_row()\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(2.5)\n            selected = True\n\n    if not selected and keyboard_open():\n        device.keyboard_enter()\n        device.settle(2.5)\n        idx = matching_row()\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(2.5)\n            selected = True\n\n    # results list did not contain the place: fall back to showing the search on the map\n    if not selected:\n        idx = by_text(\"show on map\")\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(2.5)\n            selected = True\n\n    if not selected:\n        idx = first_row()\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(2.5)\n            selected = True\n\n    # --------------------------------------- reach place panel, tap the star\n    clicked_rows = set()\n    fav_idx = None\n    for _ in range(4):\n        fav_idx = find_favorite_control()\n        if fav_idx is not None:\n            break\n        idx = matching_row()\n        if idx is not None and idx not in clicked_rows:\n            clicked_rows.add(idx)\n            device.click(index=idx)\n            device.settle(2.5)\n            continue\n        idx = first_row()\n        if idx is not None and idx not in clicked_rows:\n            clicked_rows.add(idx)\n            device.click(index=idx)\n            device.settle(2.5)\n            continue\n        break\n\n    if fav_idx is None and keyboard_open():\n        device.keyboard_enter()\n        device.settle(2)\n        fav_idx = find_favorite_control()\n\n    if fav_idx is None:\n        more_idx = None\n        for e in els():\n            if not e.get(\"clickable\"):\n                continue\n            t = (e.get(\"text\") or \"\").strip().lower()\n            d = (e.get(\"description\") or \"\").strip().lower()\n            if t == \"more\" or d == \"more\":\n                more_idx = e.get(\"index\")\n                break\n        if more_idx is not None:\n            device.click(index=more_idx)\n            device.settle(1.5)\n            fav_idx = find_favorite_control()\n\n    if fav_idx is None:\n        raise RuntimeError(\"Favorite control not found on place panel\")\n\n    device.click(index=fav_idx)\n    device.settle(2)\n\n    # ------------------------------------------- accept the proposed name/save\n    for e in els():\n        if e.get(\"editable\"):\n            if not (e.get(\"text\") or \"\").strip():\n                device.input_text(location, index=e.get(\"index\"))\n                device.settle(1)\n            break\n\n    save_idx = find_save_button()\n    if save_idx is not None:\n        device.click(index=save_idx)\n        device.settle(2)\n\n    return True\n",
+ "conclusions": [
+  "seed 1: No Malbun place panel was opened, so the favorite/star control never appeared. The search result for Malbun was not selected; the attempted click missed the result and hit the status bar.",
+  "seed 1: The search for \"Malbun, Liechtenstein\" returned no results within the default 5 mi radius, so the place panel with the favorite control never appeared.",
+  "seed 1: The search returned a results list, not the place panel. The automation looked for the favorite control before opening the place details, so it failed."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 3723,
+   "cached_tokens": 0,
+   "completion_tokens": 5655,
+   "total_tokens": 9378,
+   "cost_usd": 0.00759228
+  },
+  "resume_episodes": {
+   "calls": 39,
+   "prompt_tokens": 637472,
+   "cached_tokens": 495063,
+   "completion_tokens": 154597,
+   "total_tokens": 792069,
+   "cost_usd": 0.13507616
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 12502,
+   "cached_tokens": 0,
+   "completion_tokens": 81058,
+   "total_tokens": 93560,
+   "cost_usd": 0.07839407
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": null,
+ "test_seed0": {
+  "passed": false,
+  "error": "RuntimeError: Favorite control not found on place panel"
+ },
+ "record_type": "verification"
+}

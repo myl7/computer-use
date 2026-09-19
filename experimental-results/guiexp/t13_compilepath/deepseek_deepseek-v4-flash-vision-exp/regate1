@@ -1,0 +1,141 @@
+{
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "n": 5,
+ "uses": [
+  {
+   "goal": "Add a Zeta Standup on 2026-10-01 to the calendar. Description: Daily check-in. Location: Standup Room. Link: https://example.com/zeta. Invite: Heidi.",
+   "expected": {
+    "title": "Zeta Standup",
+    "date": "2026-10-01",
+    "description": "Daily check-in",
+    "location": "Standup Room",
+    "url": "https://example.com/zeta",
+    "invitees": "Heidi"
+   },
+   "extracted": {
+    "title": "Zeta Standup",
+    "date": "2026-10-01",
+    "description": "Daily check-in.",
+    "location": "Standup Room.",
+    "url": "https://example.com/zeta",
+    "invitees": "Heidi"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 425,
+   "cost_usd": 0.00029148,
+   "wall_s": 3.16
+  },
+  {
+   "goal": "Put this on my calendar please: Eta Retro, 2026-10-08, the notes say Sprint postmortem, it happens in Room 12, more info at https://example.com/eta, and Ivan should be invited.",
+   "expected": {
+    "title": "Eta Retro",
+    "date": "2026-10-08",
+    "description": "Sprint postmortem",
+    "location": "Room 12",
+    "url": "https://example.com/eta",
+    "invitees": "Ivan"
+   },
+   "extracted": {
+    "title": "Eta Retro",
+    "date": "2026-10-08",
+    "description": "Sprint postmortem",
+    "location": "Room 12",
+    "url": "https://example.com/eta",
+    "invitees": "Ivan"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 369,
+   "cost_usd": 0.00013264,
+   "wall_s": 2.34
+  },
+  {
+   "goal": "Calendar entry needed: Theta Planning on 2026-10-15; description Quarterly roadmap; venue Room 3; url https://example.com/theta; guest Judy.",
+   "expected": {
+    "title": "Theta Planning",
+    "date": "2026-10-15",
+    "description": "Quarterly roadmap",
+    "location": "Room 3",
+    "url": "https://example.com/theta",
+    "invitees": "Judy"
+   },
+   "extracted": {
+    "title": "Theta Planning",
+    "date": "2026-10-15",
+    "description": "Quarterly roadmap",
+    "location": "Room 3",
+    "url": "https://example.com/theta",
+    "invitees": "Judy"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 336,
+   "cost_usd": 0.00018214,
+   "wall_s": 2.29
+  },
+  {
+   "goal": "Create Iota Review, happening 2026-10-22, described as Design review, in Room 9, link https://example.com/iota, with Karl invited.",
+   "expected": {
+    "title": "Iota Review",
+    "date": "2026-10-22",
+    "description": "Design review",
+    "location": "Room 9",
+    "url": "https://example.com/iota",
+    "invitees": "Karl"
+   },
+   "extracted": {
+    "title": "Iota Review",
+    "date": "2026-10-22",
+    "description": "Design review",
+    "location": "Room 9",
+    "url": "https://example.com/iota",
+    "invitees": "Karl"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 334,
+   "cost_usd": 0.00023174,
+   "wall_s": 2.28
+  },
+  {
+   "goal": "I need an event: Lambda Sync 2026-10-29, summary Weekly sync, place Atrium, details https://example.com/lambda, attendee Lily.",
+   "expected": {
+    "title": "Lambda Sync",
+    "date": "2026-10-29",
+    "description": "Weekly sync",
+    "location": "Atrium",
+    "url": "https://example.com/lambda",
+    "invitees": "Lily"
+   },
+   "extracted": {
+    "title": "Lambda Sync",
+    "date": "2026-10-29",
+    "description": "Weekly sync",
+    "location": "Atrium",
+    "url": "https://example.com/lambda",
+    "invitees": "Lily"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 609,
+   "cost_usd": 0.00053977,
+   "wall_s": 4.54
+  }
+ ],
+ "success_count": 4,
+ "success_rate": 0.8,
+ "d_tokens_mean": 414.6,
+ "total_tokens": 2073,
+ "total_cost_usd": 0.00137777,
+ "record_type": "deploy",
+ "program_path": "/Users/myl/app/computer-use/experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/attempt1/family_program.py",
+ "layout": "wizard",
+ "role": "regate-via-deploy",
+ "attempt": 1
+}

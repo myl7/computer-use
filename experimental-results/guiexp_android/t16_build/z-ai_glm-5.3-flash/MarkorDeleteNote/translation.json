@@ -1,0 +1,238 @@
+{
+ "1": {
+  "family": "MarkorDeleteNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorDeleteNote/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action depends only on Markor being installed and launchable from the launcher; it can fail if the launch is slow (screen check runs too early) or the app isn't installed, so verify the Markor main screen appeared and retry once before erroring.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(2)\non_main = device.find(text=\"Markor\") is not None or \\\n          device.find(description=\"Create a new file or folder\") is not None\nif not on_main:\n    device.navigate_home()\n    device.settle(1)\n    device.open_app(\"Markor\")\n    device.settle(3)\n    on_main = device.find(text=\"Markor\") is not None or \\\n              device.find(description=\"Create a new file or folder\") is not None\nif not on_main:\n    raise RuntimeError(\"Markor did not launch: app missing or main screen not detected\")",
+    "usage": {
+     "prompt_tokens": 933,
+     "completion_tokens": 511,
+     "cached_tokens": 0,
+     "cost_usd": 0.00034451604
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 17
+    },
+    "field": null,
+    "analysis": "The action depends on locating the note's list item by its content description (\"File <name>\"), which Markor sets dynamically per file; indexes vary per screen, and the name may not be visible without scrolling.",
+    "snippet": "file_name = binding[\"file_name\"]\ntarget = device.find(description=\"File %s\" % file_name, contains=True, clickable=True)\nif target is None:\n    device.scroll(\"down\")\n    target = device.find(description=\"File %s\" % file_name, contains=True, clickable=True)\nif target is None:\n    raise LookupError(\"Note item 'File %s' not found on screen\" % file_name)\ndevice.long_press(index=target)",
+    "usage": {
+     "prompt_tokens": 586,
+     "completion_tokens": 270,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001103355
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "The action clicks the context-menu \"Delete\" button, which only deletes the *currently selected* note \u2014 so it depends on the target note ({file_name}) already being selected, and on the Delete control being findable by its description. On another instance the index differs and the selected note may be wrong, so look the button up by description and guard against deleting a different file.",
+    "snippet": "target = binding[\"file_name\"]\nif device.find(description=target, contains=True) is None:\n    raise RuntimeError(f\"Target note '{target}' is not selected/present on screen\")\nidx = device.find(description=\"Delete\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Delete button not found on current screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 816,
+     "completion_tokens": 679,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002286405
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The action is the final confirmation click of Markor's \"Confirm Delete\" dialog; it depends on that dialog being open with a clickable 'OK' button. On another instance indexes shift and the dialog text/path may differ, so we must locate the dialog by its title/confirmation text containing the note name from `binding` before trusting any 'OK' button.",
+    "snippet": "import os\n\nfile_name = binding['file_name']\nstem = os.path.splitext(file_name)[0]\n\nif device.find(text='Confirm Delete') is None or \\\n   (device.find(contains=stem) is None and device.find(contains=file_name) is None):\n    raise LookupError(f\"Delete confirmation dialog for note '{file_name}' not on screen\")\n\nidx = device.find(text='OK', clickable=True)\nif idx is None:\n    raise LookupError(\"No clickable 'OK' confirmation button found in delete dialog\")\n\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 804,
+     "completion_tokens": 853,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004874661
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3139,
+   "cached_tokens": 0,
+   "completion_tokens": 2313,
+   "total_tokens": 5452,
+   "cost_usd": 0.00117096
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "MarkorDeleteNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorDeleteNote/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action is a global app launch with no element dependency, so element-index drift is irrelevant; the only requirements are that Markor is installed/launchable and that we wait for its main screen before the next step. It can fail if the app is missing or slow to start, so verify the Markor UI appeared after launching.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(2)\nif device.find(text=\"Markor\") is None and \\\n   device.find(description=\"Create a new file or folder\") is None:\n    raise RuntimeError(\"Markor did not launch: main activity not detected\")",
+    "usage": {
+     "prompt_tokens": 963,
+     "completion_tokens": 429,
+     "cached_tokens": 0,
+     "cost_usd": 0.00031982445
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "The action opens Markor's search dialog by tapping the toolbar item whose accessibility description is \"Search\"; it depends only on that description being present on the main screen, and breaks on other instances if the toolbar layout, index order, or description changes.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise LookupError(\"Toolbar 'Search' button not found on Markor main screen\")\ndevice.click(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 870,
+     "completion_tokens": 242,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002191068
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action depends only on the presence of the \"Regex search\" CheckBox on the current screen \u2014 it is independent of {file_name}. It can fail if the option's label changes or if it is scrolled off-screen, so the lookup must be semantic with a clear error on failure.",
+    "snippet": "idx = device.find(text=\"Regex search\", clickable=True)\nif idx is None:\n    raise LookupError(\"Markor: 'Regex search' CheckBox not found on current screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 463,
+     "completion_tokens": 417,
+     "cached_tokens": 64,
+     "cost_usd": 0.00013378365
+    }
+   }
+  ],
+  "effective_actions": 3,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 3,
+   "prompt_tokens": 2296,
+   "cached_tokens": 64,
+   "completion_tokens": 1088,
+   "total_tokens": 3384,
+   "cost_usd": 0.00067271
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "MarkorDeleteNote",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorDeleteNote/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "The action is a global app launch \u2014 it depends only on Markor being installed and launchable, not on any element; it can fail if `open_app` returns without the app actually reaching its main screen (slow start, different entry state). Robustness comes from verifying Markor's UI loaded before the task proceeds.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(2)\nif (device.find(description=\"Create a new file or folder\") is None\n        and device.find(text=\"Markor\") is None):\n    raise RuntimeError(\n        \"Markor did not open to its main screen; cannot delete note \"\n        f\"{binding['file_name']!r}\"\n    )",
+    "usage": {
+     "prompt_tokens": 999,
+     "completion_tokens": 433,
+     "cached_tokens": 0,
+     "cost_usd": 0.00032641785
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 15
+    },
+    "field": null,
+    "analysis": "The action depends on the note list item being identifiable by its description \"File {file_name}\" (indexes vary per instance); it can fail if the note isn't rendered on screen (needs scrolling) or if the exact description format differs.",
+    "snippet": "file_name = binding[\"file_name\"]\nidx = device.find(description=f\"File {file_name}\", clickable=True)\nif idx is None:\n    raise LookupError(f\"Note item 'File {file_name}' not found on screen\")\ndevice.long_press(idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 592,
+     "completion_tokens": 506,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003045438
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "The click depends on the target note already being selected so a \"Delete\" option (by content-description) is present on the MainActivity screen; on another instance the index differs and the option may be missing if no note is selected or hidden in an overflow menu.",
+    "snippet": "idx = device.find(description=\"Delete\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Delete option not found - ensure the target note \"\n                       f\"({binding.get('file_name')}) is selected first\")\ndevice.click(idx)\ndevice.settle(1)  # wait for the Confirm Delete dialog",
+    "usage": {
+     "prompt_tokens": 875,
+     "completion_tokens": 428,
+     "cached_tokens": 0,
+     "cost_usd": 0.00030761775
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The action depends only on Markor's \"Confirm Delete\" dialog being open (with the target file named in its message) and an 'OK' button to confirm; indexes may shift and the dialog message text varies per file, so we must verify the dialog names the bound file and locate 'OK' semantically.",
+    "snippet": "file_name = binding[\"file_name\"]\nif device.find(contains=file_name) is None:\n    raise RuntimeError(f\"Delete confirmation dialog for '{file_name}' is not shown\")\nok_index = device.find(text=\"OK\", clickable=True)\nif ok_index is None:\n    raise RuntimeError(\"Confirm-delete dialog 'OK' button not found\")\ndevice.click(index=ok_index)",
+    "usage": {
+     "prompt_tokens": 871,
+     "completion_tokens": 519,
+     "cached_tokens": 0,
+     "cost_usd": 0.00033989868
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3337,
+   "cached_tokens": 0,
+   "completion_tokens": 1886,
+   "total_tokens": 5223,
+   "cost_usd": 0.00127848
+  },
+  "record_type": "translation"
+ }
+}

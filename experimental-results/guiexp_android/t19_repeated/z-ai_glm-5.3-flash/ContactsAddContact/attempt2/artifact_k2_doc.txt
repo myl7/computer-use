@@ -1,0 +1,17 @@
+TASK: Create a new contact for {name}. Their number is {number}.
+
+1. Open the Contacts app and wait for the contacts list screen.
+2. Tap the "Create contact" button (plus icon) on the list screen; the contact editor screen opens.
+3. On the editor screen, tap the field labeled "First name" and type only the FIRST word of {name}.
+4. Tap the field labeled "Last name" and type only the SECOND word of {name}.
+5. Tap the field labeled "Phone" and type {number} exactly as given, without reformatting.
+6. Leave the phone label selector at its default value; do not open or change it.
+7. Tap the Save control (checkmark icon in the top bar). The editor closes and the app returns to the previous list screen.
+8. Confirm the contact for {name} now exists; if a confirmation dialog appears during save, confirm it.
+
+TRAPS:
+- The name is split across TWO fields: first word of {name} goes to "First name", second word to "Last name". Never type the full name into one field.
+- Do not type into the search bar on the contacts list; it is not a contact field and the editor fields are elsewhere.
+- Identify editor fields by their labels ("First name", "Last name", "Phone"), never by on-screen position, which shifts between launches.
+- The number must be typed verbatim into "Phone"; a separate phone-label dropdown sits nearby and must stay untouched.
+- If the editor is still open after tapping Save, the tap did not register; locate the checkmark again and tap it once more.

@@ -1,0 +1,115 @@
+{
+ "family": "WriterMemoSave",
+ "model": "mock",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "import time\n\ndef program(device, binding):\n    doc = device.find(role=\"paragraph\")\n    if doc is None:\n        doc = device.find(role=\"document-text\")\n    if doc is None:\n        raise ValueError(\"no document paragraph to type into\")\n    device.type_at_caret(binding[\"title\"])\n    time.sleep(0.4)\n    device.press(\"enter\")   # end of line 1\n    device.press(\"enter\")   # the empty second line\n    device.type_at_caret(binding[\"body\"])\n    time.sleep(0.4)\n    device.hotkey(\"ctrl\", \"s\")\n    time.sleep(2.0)\n    place = device.find(contains=\"Desktop\", role=\"label\")\n    if place is None:\n        raise ValueError(\"Desktop place not found in save dialog\")\n    device.click(index=place)\n    time.sleep(1.0)\n    field = device.find(role=\"text\", contains=\"Untitled\")\n    if field is None:\n        raise ValueError(\"save-dialog Name entry not found\")\n    device.input_text(binding[\"file_name\"], index=field)\n    time.sleep(0.6)\n    device.press(\"enter\")\n    time.sleep(2.5)\n    return True\n",
+ "last_artifact": "import time\n\ndef program(device, binding):\n    doc = device.find(role=\"paragraph\")\n    if doc is None:\n        doc = device.find(role=\"document-text\")\n    if doc is None:\n        raise ValueError(\"no document paragraph to type into\")\n    device.type_at_caret(binding[\"title\"])\n    time.sleep(0.4)\n    device.press(\"enter\")   # end of line 1\n    device.press(\"enter\")   # the empty second line\n    device.type_at_caret(binding[\"body\"])\n    time.sleep(0.4)\n    device.hotkey(\"ctrl\", \"s\")\n    time.sleep(2.0)\n    place = device.find(contains=\"Desktop\", role=\"label\")\n    if place is None:\n        raise ValueError(\"Desktop place not found in save dialog\")\n    device.click(index=place)\n    time.sleep(1.0)\n    field = device.find(role=\"text\", contains=\"Untitled\")\n    if field is None:\n        raise ValueError(\"save-dialog Name entry not found\")\n    device.input_text(binding[\"file_name\"], index=field)\n    time.sleep(0.6)\n    device.press(\"enter\")\n    time.sleep(2.5)\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "pipeline_notes.odt",
+     "title": "Release Checklist",
+     "body": "Attendance was high and the recording is available on the portal."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Team Standup Notes",
+     "body": "The archive migration preserved folder permissions without changes."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "travel_sketch.odt",
+     "title": "Maintenance Window",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "agenda_draft.odt",
+     "title": "Meeting Agenda Draft",
+     "body": "The documentation refresh covers all endpoints released this year."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "budget_notes.odt",
+     "title": "Office Move Plan",
+     "body": "The migration ran overnight and every record carried over cleanly."
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

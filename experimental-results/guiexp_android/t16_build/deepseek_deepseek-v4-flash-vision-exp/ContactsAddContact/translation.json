@@ -1,0 +1,419 @@
+{
+ "1": {
+  "family": "ContactsAddContact",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The recorded click assumes the launcher's Phone app icon is at index 2; on another instance the index will differ, so the icon must be found by its text/description and clicked. It fails if no clickable Phone icon exists.",
+    "snippet": "idx = device.find(text=\"Phone\", description=\"Phone\", clickable=True)\nif idx is None:\n    idx = device.find(text=\"Phone\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find the clickable Phone app icon on the launcher\")\ndevice.click(index=idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 821,
+     "completion_tokens": 3237,
+     "cached_tokens": 0,
+     "cost_usd": 0.0045877392
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The click only opens the contact editor by finding the dialer\u2019s \u201cCreate new contact\u201d entry; it must not depend on index 1 or on the eventual name/number values, and should fall back to a semantic text lookup.",
+    "snippet": "idx = device.find(text=\"Create new contact\", clickable=True)\nif idx is None:\n    idx = device.find(contains=\"Create new contact\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find 'Create new contact' entry to open the contact editor\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 885,
+     "completion_tokens": 869,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015211152
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 7
+    },
+    "field": null,
+    "analysis": "This action focuses the \"First name\" input field. It depends on the field being present with the hint 'First name'; the index may differ across instances, but the hint should be stable. It can fail if the field is not visible or the hint is localized.",
+    "snippet": "idx = device.find(hint='First name', editable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find First name field\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 981,
+     "completion_tokens": 618,
+     "cached_tokens": 0,
+     "cost_usd": 0.000617463
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "Nikola"
+    },
+    "field": "name",
+    "analysis": "This action depends on locating the \"First name\" input field by its hint text and editable attribute; it can fail if the hint is localized or if multiple editable fields match, so we filter by hint and editable and raise if not found.",
+    "snippet": "first_name_field = device.find(hint='First name', editable=True)\nif first_name_field is None:\n    raise RuntimeError(\"First name field not found\")\ndevice.input_text(binding['name'].split()[0], index=first_name_field)",
+    "usage": {
+     "prompt_tokens": 623,
+     "completion_tokens": 399,
+     "cached_tokens": 0,
+     "cost_usd": 0.000396396
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "Fernandez"
+    },
+    "field": "name",
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 623,
+     "completion_tokens": 159,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002347884
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "This action scrolls down to reveal the phone number field. On another instance, the layout may require more or fewer scrolls, so we must scroll until the phone number field (identified by hint/description containing 'phone' or 'mobile') is visible.",
+    "snippet": "for _ in range(10):\n    elements = device.elements()\n    if any(e.get('editable') and 'EditText' in e.get('class', '') and e.get('hint') and ('phone' in e['hint'].lower() or 'mobile' in e['hint'].lower()) for e in elements):\n        break\n    device.scroll(direction=\"down\")\nelse:\n    raise RuntimeError(\"Phone number field not found\")",
+    "usage": {
+     "prompt_tokens": 805,
+     "completion_tokens": 7993,
+     "cached_tokens": 0,
+     "cost_usd": 0.0053979552
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action focuses the phone number input field by tapping the EditText with hint 'Phone'. It depends on the element being present and editable; on other instances the index may differ but the semantic hint should remain, so look it up by hint/text.",
+    "snippet": "phone = device.find(hint='Phone', editable=True) or device.find(text='Phone', editable=True)\nif phone is None:\n    raise RuntimeError(\"Phone field not found\")\ndevice.click(index=phone)",
+    "usage": {
+     "prompt_tokens": 980,
+     "completion_tokens": 496,
+     "cached_tokens": 0,
+     "cost_usd": 0.000526779792
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "input_text",
+     "index": 5,
+     "text": "+11417776317"
+    },
+    "field": "number",
+    "analysis": "This action depends on locating the phone number EditText by its hint attribute ('Phone') and editable state. It can fail if the hint text differs across app versions or if multiple phone fields are present.",
+    "snippet": "index = device.find(hint='Phone', editable=True)\nif index is None:\n    raise RuntimeError(\"Phone number field not found\")\ndevice.input_text(binding['number'], index=index)",
+    "usage": {
+     "prompt_tokens": 963,
+     "completion_tokens": 393,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004665276
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The action clicks the Save button in the contact editor. It depends on the button being present with text 'Save'; on another instance, the index may differ, so we must locate it by text.",
+    "snippet": "save_btn = device.find(text='Save', clickable=True)\nif save_btn is None:\n    raise RuntimeError(\"Save button not found\")\ndevice.click(index=save_btn)",
+    "usage": {
+     "prompt_tokens": 1029,
+     "completion_tokens": 233,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003763584
+    }
+   }
+  ],
+  "effective_actions": 9,
+  "recorded_actions": 10,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 9,
+   "prompt_tokens": 7710,
+   "cached_tokens": 0,
+   "completion_tokens": 14397,
+   "total_tokens": 22107,
+   "cost_usd": 0.01412512
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "ContactsAddContact",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s2/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Contacts"
+    },
+    "field": null,
+    "analysis": "The action opens the Contacts app, which is a global app launch. It depends on the app being installed and the launcher being present; it can fail if the app name differs or the app is not available.",
+    "snippet": "device.open_app(\"Contacts\")",
+    "usage": {
+     "prompt_tokens": 866,
+     "completion_tokens": 116,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002644092
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "The action clicks the \"Create contact\" button on the empty contacts screen to open the contact editor. It can fail if the button isn't visible or if the screen has existing contacts, so it should be found by description \"Create contact\".",
+    "snippet": "index = device.find(description=\"Create contact\", clickable=True)\nif index is None:\n    raise RuntimeError(\"Create contact button not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 973,
+     "completion_tokens": 186,
+     "cached_tokens": 0,
+     "cost_usd": 0.000326782764
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "Aria"
+    },
+    "field": "name",
+    "analysis": "This action depends on locating the \"First name\" input field by its hint text, then typing the first token of the name. It can fail if the hint is localized or if the field is not present (e.g., different contact editor layout).",
+    "snippet": "first_name_field = device.find(hint='First name', editable=True)\nif first_name_field is None:\n    raise RuntimeError(\"First name field not found\")\ndevice.input_text(binding['name'].split()[0], index=first_name_field)",
+    "usage": {
+     "prompt_tokens": 1049,
+     "completion_tokens": 464,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005316498
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "Ali"
+    },
+    "field": "name",
+    "analysis": "The action depends on the \"Last name\" EditText, identified here only by its position (index 8) and placeholder text; on other instances that index shifts and the visible text may be empty or already filled, so it must be located by its stable hint/label instead. The typed value must come from `binding['name']` split at runtime.",
+    "snippet": "last = binding['name'].split()[1]\nidx = device.find(hint='Last name', class_name='EditText', editable=True)\nif idx is None:\n    idx = device.find(text='Last name', class_name='EditText', editable=True)\nif idx is None:\n    raise LookupError(\"Last name field not found on contact editor screen\")\ndevice.input_text(last, index=idx)",
+    "usage": {
+     "prompt_tokens": 569,
+     "completion_tokens": 302,
+     "cached_tokens": 0,
+     "cost_usd": 0.00064251
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "The recorded action is a global vertical swipe, not tied to any element, so it carries no index to rebind \u2014 but it exists only to reveal the lower form fields (phone/email/date), so it can fail if on another instance the form is already fully visible or the swipe doesn't reach the target block.",
+    "snippet": "# Global gesture: no element lookup needed, only the direction is semantic.\n# Purpose is to reveal the lower half of the editor form (phone/email/date rows).\ndevice.scroll(\"down\")\ndevice.settle(0.5)\n\n# Sanity check: the scroll should have surfaced the lower-field content;\n# if the editor is gone (e.g. we navigated away), fail loudly.\nels = device.elements()\nif not els:\n    raise RuntimeError(\"Contact editor is empty after scrolling down; screen state lost\")",
+    "usage": {
+     "prompt_tokens": 751,
+     "completion_tokens": 581,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010863864
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "input_text",
+     "index": 5,
+     "text": "+11524493909"
+    },
+    "field": "number",
+    "analysis": "This action inputs the phone number into the editable Phone field, identified by its hint. It may fail if the field is not present, not editable, or if the layout exposes a different hint.",
+    "snippet": "index = device.find(hint='Phone', editable=True)\nif index is None:\n    raise RuntimeError(\"Phone input field not found\")\ndevice.input_text(binding['number'], index=index)",
+    "usage": {
+     "prompt_tokens": 1212,
+     "completion_tokens": 506,
+     "cached_tokens": 0,
+     "cost_usd": 0.00058270212
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The action clicks a 'Save' button to submit the contact editor. It depends on a visible button with text 'Save'; it can fail if the button is not yet present/clickable or if required fields are missing, so we should locate it by text and click it.",
+    "snippet": "save_btn = device.find(text='Save', clickable=True)\nif save_btn is None:\n    raise RuntimeError(\"Save button not found\")\ndevice.click(save_btn)",
+    "usage": {
+     "prompt_tokens": 1108,
+     "completion_tokens": 206,
+     "cached_tokens": 0,
+     "cost_usd": 0.000368404344
+    }
+   }
+  ],
+  "effective_actions": 7,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 7,
+   "prompt_tokens": 6528,
+   "cached_tokens": 0,
+   "completion_tokens": 2361,
+   "total_tokens": 8889,
+   "cost_usd": 0.00380284
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "ContactsAddContact",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This is a global scroll gesture (direction \"up\") on the launcher home screen, not targeting any element. It depends on the screen being in a scrollable launcher state; on a different instance it may fail or trigger a different action if the home screen is not present.",
+    "snippet": "device.scroll(\"up\")",
+    "usage": {
+     "prompt_tokens": 964,
+     "completion_tokens": 4651,
+     "cached_tokens": 0,
+     "cost_usd": 0.003183944148
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "The click targets the notification-shade/panel toggle button identified only by its index (13); it assumes the panel is currently expanded so that a Button with description 'Collapse' exists. On another instance the index shifts, and if the panel is already collapsed the button is instead described 'Expand'.",
+    "snippet": "collapse = device.find(description=\"Collapse\", clickable=True)\nif collapse is not None:\n    device.click(collapse)\nelif device.find(description=\"Expand\", clickable=True) is None:\n    raise RuntimeError(\"No panel toggle button ('Collapse'/'Expand') found on screen\")\n# else: panel is already collapsed -> nothing to do",
+    "usage": {
+     "prompt_tokens": 532,
+     "completion_tokens": 832,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013189968
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global `navigate_back`; it addresses no element, so it doesn't depend on any index or on the recorded screen's element list. The only instance-specific risk is that the back press lands on an unexpected screen (e.g. collapsed notification shade vs. app), so it should be followed by a settle and, if the next step needs to be on the launcher/target app, a guard.",
+    "snippet": "# Global back navigation: no element index, so nothing to look up.\ndevice.navigate_back()\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 879,
+     "completion_tokens": 332,
+     "cached_tokens": 0,
+     "cost_usd": 0.00081675
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The recorded action taps the \"Phone\" app from the launcher, which is the entry point to the dialer. The action depends on the launcher showing a \"Phone\" app icon with text 'Phone' and clickable=True. On another instance, the element may have different text, be absent, or not be clickable, so the lookup must find a clickable TextView with text 'Phone'.",
+    "snippet": "element = device.find(text='Phone', clickable=True)\nif element is None:\n    raise RuntimeError(\"Could not find the Phone app icon on the launcher\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 874,
+     "completion_tokens": 262,
+     "cached_tokens": 0,
+     "cost_usd": 0.00035431704
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action clicks the 'Favorites' tab in the contacts app. It can fail if the description is localized or the element isn't visible/clickable on another screen instance.",
+    "snippet": "# Click the Favorites tab\nfav = device.find(description='Favorites', clickable=True)\nif fav is None:\n    raise RuntimeError(\"Favorites tab not found\")\ndevice.click(index=fav)",
+    "usage": {
+     "prompt_tokens": 653,
+     "completion_tokens": 176,
+     "cached_tokens": 0,
+     "cost_usd": 0.000252077364
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "The action depends on a clickable \"Add a favorite\" element being present on the dialer's Favorites tab; it can fail if the screen is in a different state or the element's text changes. It must be found semantically instead of by index.",
+    "snippet": "idx = device.find(text='Add a favorite', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find 'Add a favorite' element\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 716,
+     "completion_tokens": 844,
+     "cached_tokens": 0,
+     "cost_usd": 0.000693266112
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 10,
+  "replay_stopped_at": "step 9: ValueError",
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 4618,
+   "cached_tokens": 0,
+   "completion_tokens": 7097,
+   "total_tokens": 11715,
+   "cost_usd": 0.00661935
+  },
+  "record_type": "translation"
+ }
+}

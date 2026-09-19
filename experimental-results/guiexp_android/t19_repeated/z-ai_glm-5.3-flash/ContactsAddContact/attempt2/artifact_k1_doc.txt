@@ -1,0 +1,18 @@
+OPERATION: Create a new contact in Google Contacts (Android)
+GOAL: Create a new contact for {name}. Their number is {number}.
+SCREENS IN ORDER: Contacts list → New-contact editor → Contacts list.
+
+1. Open the Contacts app and wait for the contacts list screen.
+2. Tap the "Create contact" floating action button to open the new-contact editor.
+3. Tap the "First name" field and type the first word of {name}.
+4. Tap the "Last name" field and type the second word of {name}.
+5. Tap the "Phone" field and type {number} exactly as given.
+6. Leave the phone label next to the Phone field at its default; do not change it.
+7. Tap the Save (checkmark) control at the top of the editor.
+8. Confirm the editor closes and the contacts list is shown again with the new contact.
+
+TRAPS:
+- {name} has exactly two words and must be SPLIT: first word into "First name", second word into "Last name". Never type the full name into a single field.
+- The editor shows several fields; fill only First name, Last name, and Phone, ignoring all other optional fields.
+- Do not modify the phone label selector next to the Phone field; keep its default value.
+- If the list screen shows "No contacts yet", the Create contact button is still present — tap it as usual.

@@ -1,0 +1,584 @@
+{
+ "1": {
+  "family": "OsmAndMarker",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 945,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0858482658
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This is a global scroll gesture, not tied to any element. It depends on the current screen being scrollable upward; on another instance, if the launcher has no scrollable content or quick settings is already expanded, the scroll may have no effect or trigger an unintended action.",
+    "snippet": "device.scroll(\"up\")",
+    "usage": {
+     "prompt_tokens": 833,
+     "completion_tokens": 1822,
+     "cached_tokens": 0,
+     "cost_usd": 0.001344483756
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "The action is a global navigate_back, which depends on the system back stack state. It can fail if the app is not in a state where back navigation is meaningful, or if the screen is already the launcher.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 829,
+     "completion_tokens": 116,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002563506
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back navigation action, independent of any element lookup. It depends on the device having a back stack; on a home screen it may do nothing or exit, but for the task it is used to return from a screen.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 941,
+     "completion_tokens": 522,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005460246
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This is a global scroll gesture with no element target; its effect depends entirely on the current screen (here, the launcher home screen), so it can fail if the screen is not the launcher or if the gesture triggers a different UI response. Since no semantic element is involved, no index lookup is needed.",
+    "snippet": "device.scroll(\"up\")",
+    "usage": {
+     "prompt_tokens": 945,
+     "completion_tokens": 1608,
+     "cached_tokens": 0,
+     "cost_usd": 0.001231358436
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back navigation action, not tied to any element. It can fail if the device is already at the root screen or if the app's back stack is empty, but in the family it is used to return from a screen.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 941,
+     "completion_tokens": 545,
+     "cached_tokens": 940,
+     "cost_usd": 0.000362835
+    }
+   },
+   {
+    "step": 9,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 945,
+     "completion_tokens": 131072,
+     "cached_tokens": 0,
+     "cost_usd": 0.0858482658
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This is a global scroll gesture that does not depend on any specific UI element; it relies on the current screen having scrollable content or a defined response to an upward scroll. On another instance, it may do nothing or trigger unintended navigation if the screen isn't scrollable.",
+    "snippet": "device.scroll(direction=\"up\")",
+    "usage": {
+     "prompt_tokens": 781,
+     "completion_tokens": 3175,
+     "cached_tokens": 0,
+     "cost_usd": 0.002199753864
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "navigate_home"
+    },
+    "field": null,
+    "analysis": "This is a global `navigate_home` action \u2014 it addresses no element and no index, so it is already instance-independent; it only depends on the device being able to reach the launcher. It can fail if the Home intent is absorbed or slow, so allow a settle and a single retry rather than assuming the first call lands (no task value or element lookup applies here, so `binding` is unused).",
+    "snippet": "# Global action: no element/index to remap, and no task value to read.\n# Just go Home and give the launcher time to draw, retrying once if needed.\ndevice.navigate_home()\ndevice.settle(1.0)\nif any(e.get(\"description\") == \"Settings notification\"\n       or e.get(\"text\") == \"Display brightness\" for e in device.elements()):\n    # still on the quick-settings/app surface - nudge again\n    device.navigate_home()\n    device.settle(1.0)\nif not device.elements():\n    raise RuntimeError(\"navigate_home: no elements visible after going Home\")",
+    "usage": {
+     "prompt_tokens": 914,
+     "completion_tokens": 726,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013468752
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "click",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "This action clicks the Google Lens app icon on the home screen. It depends on Google Lens being present and discoverable as a launcher icon; if the icon is in a different location or not visible, the lookup by description should still find it, but if the app isn't installed or the screen isn't the launcher, it fails.",
+    "snippet": "# Click the Google Lens icon on the home screen\nindex = device.find(description=\"Google Lens\", class_name=\"ImageButton\", clickable=True)\nif index is None:\n    raise RuntimeError(\"Google Lens icon not found on the current screen\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 753,
+     "completion_tokens": 270,
+     "cached_tokens": 0,
+     "cost_usd": 0.000333612972
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This action is a global back navigation; it depends on the app's navigation history and can fail if there is no previous screen (e.g., at root), but as part of the task it returns to a prior state.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 730,
+     "completion_tokens": 358,
+     "cached_tokens": 0,
+     "cost_usd": 0.000385052976
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 945,
+     "completion_tokens": 67,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004991976
+    }
+   },
+   {
+    "step": 16,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "The recorded \"scroll down\" is a global, element-less action that was captured while the notification shade was open on the launcher \u2014 not inside OsmAnd \u2014 so replaying it blindly on another instance can scroll the wrong screen or do nothing if the app isn't foregrounded. The only durable semantics are (a) the target app must be OsmAnd and (b) the direction, which should come from the binding rather than being assumed.",
+    "snippet": "direction = binding.get(\"direction\", \"down\") if hasattr(binding, \"get\") else getattr(binding, \"direction\", \"down\")\ndevice.open_app(\"OsmAnd\")\ndevice.settle(2.0)\nels = device.elements()\nif not els:\n    raise RuntimeError(\"OsmAnd did not come to the foreground: element list is empty, refusing to scroll\")\nif any(\"scrollable\" in e for e in els) and not any(e.get(\"scrollable\") for e in els):\n    raise RuntimeError(\"No scrollable surface on the OsmAnd screen; cannot perform scroll(%r)\" % direction)\ndevice.scroll(direction)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 892,
+     "completion_tokens": 1210,
+     "cached_tokens": 0,
+     "cost_usd": 0.0019697832
+    }
+   },
+   {
+    "step": 17,
+    "action": {
+     "action_type": "scroll",
+     "direction": "down"
+    },
+    "field": null,
+    "analysis": "This is a global scroll gesture on the launcher to reveal the app drawer; it depends on being on the home screen and the launcher's scroll behavior. To work on any instance, ensure we are on the home screen first, since the scroll targets no element.",
+    "snippet": "device.navigate_home()\ndevice.scroll(\"down\")",
+    "usage": {
+     "prompt_tokens": 1008,
+     "completion_tokens": 1407,
+     "cached_tokens": 0,
+     "cost_usd": 0.001116098676
+    }
+   },
+   {
+    "step": 18,
+    "action": {
+     "action_type": "click",
+     "index": 27
+    },
+    "field": null,
+    "analysis": "This action opens the OsmAnd app from the launcher by clicking its icon. It depends on the app being present and visible on the current launcher screen; it can fail if the icon is on a different page or the launcher is in search mode.",
+    "snippet": "index = device.find(text='OsmAnd')\nif index is None:\n    index = device.find(description='OsmAnd')\nif index is None:\n    raise LookupError(\"OsmAnd app icon not found on screen\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 1065,
+     "completion_tokens": 1307,
+     "cached_tokens": 0,
+     "cost_usd": 0.001064231784
+    }
+   },
+   {
+    "step": 19,
+    "action": {
+     "action_type": "wait"
+    },
+    "field": null,
+    "analysis": "This wait action is a global stabilization action; it depends only on the screen being in the target state, not on any element. It can fail only if the app has not settled yet, so a fixed wait is the robust generic approach.",
+    "snippet": "device.settle(2)",
+    "usage": {
+     "prompt_tokens": 560,
+     "completion_tokens": 126,
+     "cached_tokens": 0,
+     "cost_usd": 0.000200210472
+    }
+   },
+   {
+    "step": 20,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action depends on the map orientation toggle button being identified by its description \"North is up\". It can fail if the description differs (e.g., when map is rotated to another mode) or if the button is not present on screen.",
+    "snippet": "index = device.find(description='North is up')\nif index is None:\n    raise RuntimeError(\"Map orientation button not found\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 544,
+     "completion_tokens": 305,
+     "cached_tokens": 0,
+     "cost_usd": 0.000311414796
+    }
+   }
+  ],
+  "effective_actions": 17,
+  "recorded_actions": 20,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 17,
+   "prompt_tokens": 14571,
+   "cached_tokens": 940,
+   "completion_tokens": 275708,
+   "total_tokens": 290279,
+   "cost_usd": 0.18486382
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "OsmAndMarker",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "scroll",
+     "direction": "up"
+    },
+    "field": null,
+    "analysis": "This was a global scroll on the launcher home screen, so it depended on the launcher's scrollable workspace to reach an app \u2014 it actually just pulled down the notification shade, which is state- and layout-dependent and never launches OsmAnd. On another instance the same gesture lands on a different launcher state (or nothing), so indexes/screens can't be trusted; the robust equivalent is to launch OsmAnd by name and verify it opened before adding the marker.",
+    "snippet": "OSMAND_APP = \"OsmAnd\"\n\n# The recorded scroll targeted no element and only revealed the notification shade;\n# launch the target app instead of relying on home-screen scroll/gesture state.\ndevice.open_app(OSMAND_APP)\ndevice.settle(3)\n\nif device.find(description=\"Collapse\", clickable=True) is not None:\n    # notification shade was left open by the stray scroll \u2014 dismiss it\n    device.navigate_back()\n    device.settle(1)\n    device.open_app(OSMAND_APP)\n    device.settle(3)\n\nif (device.find(text=OSMAND_APP, contains=True) is None\n        and device.find(description=\"Search\", clickable=True) is None):\n    raise RuntimeError(\"OsmAnd did not open; cannot add marker for %r\" % binding.get(\"location\"))",
+    "usage": {
+     "prompt_tokens": 892,
+     "completion_tokens": 852,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015019488
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 13
+    },
+    "field": null,
+    "analysis": "This action clicks a UI button identified by its description \"Collapse\" to collapse an expanded panel. It can fail if the panel is already collapsed (button shows \"Expand\") or if the button is absent on a different screen.",
+    "snippet": "index = device.find(description='Collapse', clickable=True)\nif index is None:\n    raise RuntimeError(\"Collapse button not found\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 586,
+     "completion_tokens": 1082,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008346096
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This action opens the OsmAnd app from the launcher; it depends on the app being installed and the app name being correct. It can fail if the app is not installed or if the name is not available in binding.",
+    "snippet": "app_name = binding.get(\"app_name\", \"OsmAnd\")\ndevice.open_app(app_name)",
+    "usage": {
+     "prompt_tokens": 538,
+     "completion_tokens": 433,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008001972
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This is a global back navigation action; it depends on the system back behavior to dismiss the current overlay (e.g., notification shade) and return to the map. It can fail if the app is not in a state where back returns to the map, but for the marker-adding family, back is used to close temporary UI.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 840,
+     "completion_tokens": 395,
+     "cached_tokens": 0,
+     "cost_usd": 0.000441045
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 737,
+     "completion_tokens": 65536,
+     "cached_tokens": 0,
+     "cost_usd": 0.085963482
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "47.0688832, 9.5061564"
+    },
+    "field": "location",
+    "analysis": "The action needs an editable text field to type the location into; the recorded index pointed to a mislabeled FrameLayout, so we must find a real text input (editable=True), possibly after opening the search screen via the \"Search\" button.",
+    "snippet": "search_input = device.find(editable=True)\nif search_input is None:\n    device.click(description='Search')\n    device.settle(1)\n    search_input = device.find(editable=True)\nif search_input is None:\n    raise RuntimeError(\"Could not find a text field for location input\")\ndevice.input_text(binding['location'], index=search_input)",
+    "usage": {
+     "prompt_tokens": 752,
+     "completion_tokens": 1274,
+     "cached_tokens": 0,
+     "cost_usd": 0.000976292856
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "The action taps the map to open the \"What's here?\" popup. The recorded element is the map scale bar (a non-clickable TextView showing a distance like '50 mi'), which is always present but its text varies with zoom. We must find it by a distance pattern rather than the exact text.",
+    "snippet": "import re\nelements = device.elements()\nscale = None\nfor el in elements:\n    if el.get('class_name') == 'TextView' and not el.get('clickable') and el.get('text'):\n        if re.match(r'^[\\d,.]+\\s*(mi|km|m)$', el['text']):\n            scale = el\n            break\nif scale is None:\n    raise RuntimeError(\"Map scale bar not found\")\ndevice.click(index=scale['index'])",
+    "usage": {
+     "prompt_tokens": 711,
+     "completion_tokens": 10716,
+     "cached_tokens": 0,
+     "cost_usd": 0.0071566902
+    }
+   }
+  ],
+  "effective_actions": 7,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 7,
+   "prompt_tokens": 5056,
+   "cached_tokens": 0,
+   "completion_tokens": 80288,
+   "total_tokens": 85344,
+   "cost_usd": 0.09767427
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "OsmAndMarker",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "The action opens the OsmAnd app from the launcher, so it depends on the app being installed and launchable by name. It can fail if the app is not installed or if the launcher/app name differs.",
+    "snippet": "device.open_app(\"OsmAnd\")",
+    "usage": {
+     "prompt_tokens": 882,
+     "completion_tokens": 122,
+     "cached_tokens": 0,
+     "cost_usd": 0.000266378112
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "The action is just tapping the magnifier \"Search\" ImageButton, but index 4 only works while that button holds that slot; on other screens the index shifts or a different element sits there. Identify it semantically by description='Search' (clickable ImageButton), and fail loudly if it's absent.",
+    "snippet": "idx = device.find(description=\"Search\", class_name=\"ImageButton\", clickable=True)\nif idx is None:\n    raise LookupError(\"Search ImageButton not found on this screen\")\ndevice.click(index=idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 913,
+     "completion_tokens": 152,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005963364
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action types the target location into the search EditText identified by its placeholder hint \"Type to search all\" and editable flag; it fails if that field is not present or if the hint changes across app versions.",
+    "snippet": "search_idx = device.find(hint='Type to search all', editable=True)\nif search_idx is None:\n    raise RuntimeError(\"Search field not found\")\ndevice.input_text(binding['location'], index=search_idx)",
+    "usage": {
+     "prompt_tokens": 1021,
+     "completion_tokens": 1517,
+     "cached_tokens": 0,
+     "cost_usd": 0.001189309968
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "This action clicks a search suggestion matching the target location. It depends on the suggestion list being present and the location text being visible; it can fail if the location is not in the list or if the exact text is absent and the contains match is ambiguous.",
+    "snippet": "location = binding['location']\nelement = device.find(text=location) or device.find(contains=location)\nif element is None:\n    raise ValueError(f\"Could not find search suggestion for {location}\")\ndevice.click(index=element)",
+    "usage": {
+     "prompt_tokens": 955,
+     "completion_tokens": 1894,
+     "cached_tokens": 0,
+     "cost_usd": 0.0014455386
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "This action is a global back navigation, not tied to any element. It depends on the app's back stack; it will work on any instance as long as there is a previous screen to return to.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 720,
+     "completion_tokens": 663,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005900202
+    }
+   },
+   {
+    "step": 15,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The action taps the \"SHOW ON MAP\" TextView inside OsmAnd's search-results panel, so it depends on that panel being open (a search for `binding[\"location\"]` having been performed) and on the element being reached by text rather than by a non-clickable, index-shifted TextView.",
+    "snippet": "label = device.find(contains=\"SHOW ON MAP\")\nif label is None:\n    raise LookupError(\"OsmAnd: 'SHOW ON MAP' search-result action not found; is the search results panel open?\")\ndevice.click(index=label)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 613,
+     "completion_tokens": 428,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008263332
+    }
+   },
+   {
+    "step": 16,
+    "action": {
+     "action_type": "navigate_back"
+    },
+    "field": null,
+    "analysis": "The action is a global back navigation that depends on the app being in a back-navigable state (e.g., search panel open). It can fail or exit the app if there is no previous screen; it does not depend on element indexes or binding values.",
+    "snippet": "device.navigate_back()",
+    "usage": {
+     "prompt_tokens": 642,
+     "completion_tokens": 3786,
+     "cached_tokens": 0,
+     "cost_usd": 0.002561328
+    }
+   },
+   {
+    "step": 19,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "Nendeln"
+    },
+    "field": null,
+    "analysis": "This action types a location into the search EditText, identified by its hint \"Type to search all\". It must first focus/click the field to ensure the keyboard and input state are ready, then clear any existing text before typing the new value from binding.",
+    "snippet": "field = device.find(hint=\"Type to search all\", editable=True)\nif field is None:\n    raise RuntimeError(\"Search field not found\")\ndevice.click(index=field)\ndevice.input_text(binding[\"location\"], index=field)",
+    "usage": {
+     "prompt_tokens": 916,
+     "completion_tokens": 218,
+     "cached_tokens": 0,
+     "cost_usd": 0.00033510708
+    }
+   },
+   {
+    "step": 20,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action clears the search input by clicking the 'Clear' button, which only appears when the search field has text. It can fail if the search field is already empty (no clear button) or if the search UI is not in the expected state.",
+    "snippet": "search_idx = device.find(hint='Type to search all', editable=True)\nif search_idx is None:\n    raise RuntimeError(\"Search field not found\")\nelements = device.elements()\nsearch_text = elements[search_idx].get('text', '')\nif search_text and search_text != 'Type to search all':\n    clear_idx = device.find(description='Clear', clickable=True)\n    if clear_idx is None:\n        raise RuntimeError(\"Clear button not found\")\n    device.click(clear_idx)",
+    "usage": {
+     "prompt_tokens": 752,
+     "completion_tokens": 4267,
+     "cached_tokens": 0,
+     "cost_usd": 0.0029518434
+    }
+   }
+  ],
+  "effective_actions": 9,
+  "recorded_actions": 20,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 9,
+   "prompt_tokens": 7414,
+   "cached_tokens": 0,
+   "completion_tokens": 13047,
+   "total_tokens": 20461,
+   "cost_usd": 0.01076219
+  },
+  "record_type": "translation"
+ }
+}

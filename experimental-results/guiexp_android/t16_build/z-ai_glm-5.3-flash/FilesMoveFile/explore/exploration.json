@@ -1,0 +1,159 @@
+{
+ "family": "FilesMoveFile",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 20,
+ "instances": [
+  {
+   "family": "FilesMoveFile",
+   "seed": 1,
+   "goal": "Move the file lecture_capture.mp3 from DCIM within the sdk_gphone_x86_64 storage area to the Recordings within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 17,
+     "usage": {
+      "prompt_tokens": 834966,
+      "cached_tokens": 718848,
+      "completion_tokens": 1507,
+      "total_tokens": 836473,
+      "cost_usd": 0.03540535,
+      "model_calls": 19
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 17,
+     "usage": {
+      "prompt_tokens": 747778,
+      "cached_tokens": 612864,
+      "completion_tokens": 1094,
+      "total_tokens": 748872,
+      "cost_usd": 0.03877832,
+      "model_calls": 17
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 12,
+     "usage": {
+      "prompt_tokens": 376580,
+      "cached_tokens": 182272,
+      "completion_tokens": 603,
+      "total_tokens": 377183,
+      "cost_usd": 0.02404469,
+      "model_calls": 12
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "- The move was never confirmed into Recordings: in the folder picker the agent tapped an item by remembered index (18, previously DCIM) instead of reading labels, then left the picker without verifying the destination.\n- In PickActivity, scroll to the \"Recordings\" folder, tap it so it is the open directory, then tap the \"Move here\" button at the bottom \u2014 the picker only closes after this confirm tap.\n- Do not reuse tap indices from earlier screens; index 18 meant DCIM in FilesActivity but something else in the picker. Read each screen's visible labels before tapping.\n- After the picker closes, verify: open the drawer \u2192 sdk_gphone_x86_64 \u2192 Recordings and confirm lecture_capture.mp3 is listed there before declaring complete.\n- If the file is still in DCIM, redo: long-press the file \u2192 overflow menu \u2192 \"Move to\" \u2192 Recordings \u2192 \"Move here\".\n- Always emit valid JSON actions; two unparsable replies wasted steps.",
+     "usage": {
+      "prompt_tokens": 797,
+      "completion_tokens": 1546,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008836245
+     },
+     "cost_usd": 0.0008836245,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "- The move was never verified: after the picker step, the agent wandered back through storage and declared \"complete\" without ever seeing lecture_capture.mp3 inside Recordings.\n- In the PickActivity destination screen, tap the Recordings row so it opens and shows its (empty) contents \u2014 don't just highlight it \u2014 then tap the \"MOVE\" button at the bottom of the picker.\n- If the picker's MOVE button is missing, the destination folder wasn't actually opened; scroll and tap into Recordings first.\n- Before moving, confirm the long-press highlighted the row labeled lecture_capture.mp3 (check the selected item's name in the selection bar), not a neighboring file.\n- After the move returns you to FilesActivity, navigate: storage root \u2192 sdk_gphone_x86_64 \u2192 Recordings, and only call status complete once the mp3 is visibly listed there.",
+     "usage": {
+      "prompt_tokens": 709,
+      "completion_tokens": 1097,
+      "cached_tokens": 0,
+      "cost_usd": 0.0003889809
+     },
+     "cost_usd": 0.0003889809,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "FilesMoveFile",
+   "seed": 2,
+   "goal": "Move the file birthday_party.jpg from Alarms within the sdk_gphone_x86_64 storage area to the DCIM within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 12,
+     "usage": {
+      "prompt_tokens": 868741,
+      "cached_tokens": 721152,
+      "completion_tokens": 1344,
+      "total_tokens": 870085,
+      "cost_usd": 0.04400046,
+      "model_calls": 18
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "FilesMoveFile",
+   "seed": 3,
+   "goal": "Move the file memoir_audio.mp3 from Documents within the sdk_gphone_x86_64 storage area to the Recordings within the same sdk_gphone_x86_64 storage area in the Android filesystem.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 12,
+     "usage": {
+      "prompt_tokens": 370160,
+      "cached_tokens": 309056,
+      "completion_tokens": 923,
+      "total_tokens": 371083,
+      "cost_usd": 0.01646462,
+      "model_calls": 12
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/FilesMoveFile/explore/s3_a0/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 5,
+  "retry_episodes": 2,
+  "reused_episodes": 0,
+  "reflection_calls": 2,
+  "prompt_tokens": 3199731,
+  "cached_tokens": 2544192,
+  "completion_tokens": 8114,
+  "total_tokens": 3207845,
+  "cost_usd": 0.15996605
+ },
+ "record_type": "exploration"
+}

@@ -1,0 +1,238 @@
+{
+ "1": {
+  "family": "MarkorDeleteNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This is a global `open_app` action, so it does not depend on the launcher element list at all \u2014 the recorded index is irrelevant. It can still fail on another instance if the app name is inferred from the screen instead of the task binding, or if the app is not installed/launchable under that exact label.",
+    "snippet": "app_name = binding.get(\"app_name\", \"Markor\")\nif not app_name:\n    raise ValueError(\"No app_name available in binding to open\")\ndevice.open_app(app_name)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1006,
+     "completion_tokens": 333,
+     "cached_tokens": 0,
+     "cost_usd": 0.000873378
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "This action long-presses the file row to open its context menu. It depends on the file item being present in the list and identifiable by its description \"File <name>\". On another instance, the index may differ, so we look up by description from binding. It can fail if the file is scrolled out of view or the description format changes.",
+    "snippet": "file_name = binding['file_name']\ntarget_desc = f\"File {file_name}\"\nelement = device.find(description=target_desc)\nif element is None:\n    raise RuntimeError(f\"File item not found: {target_desc}\")\ndevice.long_press(index=element)",
+    "usage": {
+     "prompt_tokens": 682,
+     "completion_tokens": 987,
+     "cached_tokens": 0,
+     "cost_usd": 0.000777576492
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action clicks the \"Delete\" option in the file context menu. It depends on the context menu being open and the Delete item being present; it can fail if the menu is not shown or if multiple Delete elements exist.",
+    "snippet": "delete_el = device.find(description='Delete', clickable=True)\nif delete_el is None:\n    raise RuntimeError(\"Delete option not found in context menu\")\ndevice.click(index=delete_el)",
+    "usage": {
+     "prompt_tokens": 938,
+     "completion_tokens": 771,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007080678
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The action confirms a delete dialog by clicking the OK button, identified by its constant text 'OK' and button class. It fails if the dialog is not present or if another OK button appears elsewhere; the dialog's existence is guaranteed by the task family.",
+    "snippet": "index = device.find(text='OK', class_name='Button', clickable=True)\nif index is None:\n    raise RuntimeError(\"OK button not found in delete confirmation dialog\")\ndevice.click(index=index)",
+    "usage": {
+     "prompt_tokens": 913,
+     "completion_tokens": 345,
+     "cached_tokens": 0,
+     "cost_usd": 0.000415788912
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3539,
+   "cached_tokens": 0,
+   "completion_tokens": 2436,
+   "total_tokens": 5975,
+   "cost_usd": 0.00277481
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "MarkorDeleteNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action launches the Markor app from the home screen. It depends on the app being installed and launchable; it can fail if the app is missing or the launcher cannot start it.",
+    "snippet": "device.open_app(\"Markor\")",
+    "usage": {
+     "prompt_tokens": 1148,
+     "completion_tokens": 642,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006695172
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "This action depends on the file item being visible in the list and identified by its description \"File {file_name}\". It can fail if the file is not present or the description format differs.",
+    "snippet": "file_desc = f\"File {binding['file_name']}\"\nelement = device.find(description=file_desc)\nif element is None:\n    raise ValueError(f\"File not found: {file_desc}\")\ndevice.long_press(index=element)",
+    "usage": {
+     "prompt_tokens": 694,
+     "completion_tokens": 756,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006451236
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action clicks the \"Delete\" option in the context menu. It depends on the menu being open and the Delete element being present; it can fail if the menu is not shown or the element is not clickable.",
+    "snippet": "idx = device.find(description='Delete', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Delete option not found in context menu\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1034,
+     "completion_tokens": 1162,
+     "cached_tokens": 0,
+     "cost_usd": 0.000984456
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action clicks the confirmation button in the delete dialog. It depends on a button with text 'OK' being present; it can fail if the dialog uses a different label (e.g., \"Delete\") or if the dialog is not shown.",
+    "snippet": "ok = device.find(text='OK', clickable=True)\nif ok is None:\n    raise RuntimeError(\"Confirmation OK button not found\")\ndevice.click(index=ok)",
+    "usage": {
+     "prompt_tokens": 1025,
+     "completion_tokens": 1226,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010243134
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3901,
+   "cached_tokens": 0,
+   "completion_tokens": 3786,
+   "total_tokens": 7687,
+   "cost_usd": 0.00332341
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "MarkorDeleteNote",
+  "model": "deepseek/deepseek-v4-flash-vision-exp",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "",
+    "snippet": "",
+    "usage": {
+     "prompt_tokens": 952,
+     "completion_tokens": 63,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004970196
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 19
+    },
+    "field": null,
+    "analysis": "The recorded action long-pressed a status bar element, which is unrelated to deleting a note; the correct target is the note item with text equal to the file name, so the action must be rewritten to long-press that item.",
+    "snippet": "index = device.find(text=binding['file_name'])\nif index is None:\n    raise ValueError(f\"Note '{binding['file_name']}' not found\")\ndevice.long_press(index=index)",
+    "usage": {
+     "prompt_tokens": 565,
+     "completion_tokens": 3905,
+     "cached_tokens": 0,
+     "cost_usd": 0.002674584
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "The action just taps Markor's toolbar search affordance, so its real anchor is description='Search' + clickable=True; the recorded index 5 breaks whenever the toolbar order, orientation, or extra elements (e.g. a nav/overflow item) shift the element list. The lookup can also accidentally match the non-clickable TextView text='Search' that appears only *after* the tap, so clickable=True is required to disambiguate.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    idx = device.find(description=\"Search\")  # tolerate toolbars that drop the clickable flag\nif idx is None:\n    raise LookupError(\"Markor: toolbar 'Search' affordance not found (description='Search', clickable=True)\")\ndevice.click(index=idx)\ndevice.settle(0.5)\nif device.find(hint=\"Search\", editable=True) is None:\n    raise LookupError(\"Markor: tapping 'Search' did not open the search screen\")",
+    "usage": {
+     "prompt_tokens": 805,
+     "completion_tokens": 639,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011857032
+    }
+   }
+  ],
+  "effective_actions": 3,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 3,
+   "prompt_tokens": 2322,
+   "cached_tokens": 0,
+   "completion_tokens": 4607,
+   "total_tokens": 6929,
+   "cost_usd": 0.00435731
+  },
+  "record_type": "translation"
+ }
+}

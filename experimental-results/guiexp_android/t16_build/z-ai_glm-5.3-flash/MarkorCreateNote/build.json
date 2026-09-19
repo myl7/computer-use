@@ -1,0 +1,493 @@
+{
+ "family": "MarkorCreateNote",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 16,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 5,
+  "retry_episodes": 2,
+  "reused_episodes": 2,
+  "reflection_calls": 2,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 123335,
+    "cached_tokens": 0,
+    "completion_tokens": 437,
+    "total_tokens": 123772,
+    "cost_usd": 0.00417164,
+    "model_calls": 6
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": true,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 123329,
+    "cached_tokens": 0,
+    "completion_tokens": 383,
+    "total_tokens": 123712,
+    "cost_usd": 0.00459112,
+    "model_calls": 6
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 7,
+    "prompt_tokens": 171209,
+    "cached_tokens": 99072,
+    "completion_tokens": 457,
+    "total_tokens": 171666,
+    "cost_usd": 0.013881,
+    "model_calls": 7
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 16,
+    "prompt_tokens": 831330,
+    "cached_tokens": 686592,
+    "completion_tokens": 3891,
+    "total_tokens": 835221,
+    "cost_usd": 0.04381142,
+    "model_calls": 16
+   },
+   {
+    "seed": 3,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 11,
+    "prompt_tokens": 403977,
+    "cached_tokens": 281088,
+    "completion_tokens": 5729,
+    "total_tokens": 409706,
+    "cost_usd": 0.02943319,
+    "model_calls": 11
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 424,
+    "completion_tokens": 805,
+    "cached_tokens": 0,
+    "cost_usd": 0.000461439
+   },
+   {
+    "seed": 3,
+    "for_attempt": 2,
+    "prompt_tokens": 729,
+    "completion_tokens": 1181,
+    "cached_tokens": 0,
+    "cost_usd": 0.0006928515
+   }
+  ],
+  "totals": {
+   "calls": 48,
+   "prompt_tokens": 1654333,
+   "cached_tokens": 1066752,
+   "completion_tokens": 12883,
+   "total_tokens": 1667216,
+   "cost_usd": 0.09704266
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 7223.3,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 6,
+    "calls": 6,
+    "prompt_tokens": 5208,
+    "cached_tokens": 0,
+    "completion_tokens": 3626,
+    "total_tokens": 8834,
+    "cost_usd": 0.00250772
+   },
+   {
+    "seed": 2,
+    "effective_actions": 6,
+    "calls": 6,
+    "prompt_tokens": 5208,
+    "cached_tokens": 128,
+    "completion_tokens": 656,
+    "total_tokens": 5864,
+    "cost_usd": 0.00073276
+   },
+   {
+    "seed": 3,
+    "effective_actions": 10,
+    "calls": 10,
+    "prompt_tokens": 7987,
+    "cached_tokens": 832,
+    "completion_tokens": 6023,
+    "total_tokens": 14010,
+    "cost_usd": 0.00367105
+   }
+  ],
+  "totals": {
+   "calls": 22,
+   "prompt_tokens": 18403,
+   "cached_tokens": 960,
+   "completion_tokens": 10305,
+   "total_tokens": 28708,
+   "cost_usd": 0.00691153
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1716,
+    "completion_tokens": 741,
+    "cached_tokens": 0,
+    "cost_usd": 0.0004266405
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1613,
+    "completion_tokens": 2859,
+    "cached_tokens": 0,
+    "cost_usd": 0.0016547355
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 2663,
+    "completion_tokens": 9141,
+    "cached_tokens": 0,
+    "cost_usd": 0.0049202505
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2560,
+    "completion_tokens": 1920,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011708928
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 4359,
+    "completion_tokens": 724,
+    "cached_tokens": 0,
+    "cost_usd": 0.00050284575
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 4256,
+    "completion_tokens": 2234,
+    "cached_tokens": 0,
+    "cost_usd": 0.00152930448
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 17167,
+   "cached_tokens": 0,
+   "completion_tokens": 17619,
+   "total_tokens": 34786,
+   "cost_usd": 0.01020467
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 16987,
+    "cached_tokens": 0,
+    "completion_tokens": 200152,
+    "total_tokens": 217139,
+    "cost_usd": 0.09869839
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "edited_fierce_owl.txt",
+      "text": "The squeaky wheel gets the grease."
+     },
+     "passed": false,
+     "error": "RuntimeError: No editable text field found in editor after note creation"
+    },
+    {
+     "binding": {
+      "file_name": "2023_07_28_clever_fish.txt",
+      "text": "Inconceivable!"
+     },
+     "passed": false,
+     "error": "RuntimeError: No editable text field found in editor after note creation"
+    },
+    {
+     "binding": {
+      "file_name": "0HAl_eager_pig.txt",
+      "text": "A quick brown fox."
+     },
+     "passed": false,
+     "error": "RuntimeError: No editable text field found in editor after note creation"
+    },
+    {
+     "binding": {
+      "file_name": "fancy_cat_s82K.md",
+      "text": "Reminder to call Grandma for her birthday."
+     },
+     "passed": false,
+     "error": "RuntimeError: No editable text field found in editor after note creation"
+    },
+    {
+     "binding": {
+      "file_name": "DpHs_curious_xylophone.txt",
+      "text": "Beauty is in the eye of the beholder."
+     },
+     "passed": false,
+     "error": "RuntimeError: No editable text field found in editor after note creation"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "edited_fierce_owl.txt",
+      "text": "The squeaky wheel gets the grease."
+     },
+     "passed": false,
+     "error": "RuntimeError: Note editor did not open and note entry not found in list"
+    },
+    {
+     "binding": {
+      "file_name": "2023_07_28_clever_fish.txt",
+      "text": "Inconceivable!"
+     },
+     "passed": false,
+     "error": "RuntimeError: Note editor did not open and note entry not found in list"
+    },
+    {
+     "binding": {
+      "file_name": "0HAl_eager_pig.txt",
+      "text": "A quick brown fox."
+     },
+     "passed": false,
+     "error": "RuntimeError: Note editor did not open and note entry not found in list"
+    },
+    {
+     "binding": {
+      "file_name": "fancy_cat_s82K.md",
+      "text": "Reminder to call Grandma for her birthday."
+     },
+     "passed": false,
+     "error": "RuntimeError: Note editor did not open and note entry not found in list"
+    },
+    {
+     "binding": {
+      "file_name": "DpHs_curious_xylophone.txt",
+      "text": "Beauty is in the eye of the beholder."
+     },
+     "passed": false,
+     "error": "RuntimeError: Note editor did not open and note entry not found in list"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "edited_fierce_owl.txt",
+      "text": "The squeaky wheel gets the grease."
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "2023_07_28_clever_fish.txt",
+      "text": "Inconceivable!"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "0HAl_eager_pig.txt",
+      "text": "A quick brown fox."
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "fancy_cat_s82K.md",
+      "text": "Reminder to call Grandma for her birthday."
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "DpHs_curious_xylophone.txt",
+      "text": "Beauty is in the eye of the beholder."
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2528,
+   "cached_tokens": 0,
+   "completion_tokens": 2907,
+   "total_tokens": 5435,
+   "cost_usd": 0.00173183
+  },
+  "resume_episodes": {
+   "calls": 48,
+   "prompt_tokens": 2756236,
+   "cached_tokens": 1920000,
+   "completion_tokens": 133187,
+   "total_tokens": 2889423,
+   "cost_usd": 0.2053948
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 12628,
+   "cached_tokens": 0,
+   "completion_tokens": 199428,
+   "total_tokens": 212056,
+   "cost_usd": 0.09819554
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": false,
+   "error": "TypeError: _on_main() missing 1 required positional argument: 'device'"
+  },
+  "totals_excluding_refinements": {
+   "calls": 51,
+   "prompt_tokens": 2758764,
+   "cached_tokens": 1920000,
+   "completion_tokens": 136094,
+   "total_tokens": 2894858,
+   "cost_usd": 0.20712663
+  }
+ },
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1525,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 317645,
+    "cached_tokens": 202752,
+    "completion_tokens": 9347,
+    "total_tokens": 326992,
+    "cost_usd": 0.02771011,
+    "model_calls": 10
+   },
+   {
+    "seed": 5,
+    "success": false,
+    "steps": 16,
+    "prompt_tokens": 866051,
+    "cached_tokens": 751808,
+    "completion_tokens": 10277,
+    "total_tokens": 876328,
+    "cost_usd": 0.0443809,
+    "model_calls": 16
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 11,
+    "prompt_tokens": 443129,
+    "cached_tokens": 130816,
+    "completion_tokens": 10781,
+    "total_tokens": 453910,
+    "cost_usd": 0.04386549,
+    "model_calls": 12
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 38,
+   "prompt_tokens": 1626825,
+   "cached_tokens": 1085376,
+   "completion_tokens": 30405,
+   "total_tokens": 1657230,
+   "cost_usd": 0.1159565
+  },
+  "L_doc_tokens_mean": 552410.0
+ },
+ "break_even": {
+  "c_raw_tokens": 139716.7,
+  "c_cache_adjusted_tokens": 113297.3,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.2,
+  "build_totals_raw": {
+   "exploration": 1667216,
+   "translator": 28708,
+   "builder_selected": 217139,
+   "verification": 2894858,
+   "autorpa_build": 4807921
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 813814,
+   "translator": 27940,
+   "builder_selected": 217139,
+   "verification": 1358858,
+   "autorpa_build": 2417751
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 0.535438
+}

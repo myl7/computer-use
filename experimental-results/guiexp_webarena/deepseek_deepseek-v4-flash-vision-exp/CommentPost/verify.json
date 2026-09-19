@@ -1,0 +1,475 @@
+{
+ "family": "CommentPost",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The click at index 35 missed the \"Post\" button because the page updated (preview rendered) after the button was found, shifting element indices; it hit the \"Formatting help\" label instead, so the comment was never submitted.",
+    "done": "Navigated to /f/newhampshire, opened the correct post, located the comment textarea, and entered \"guiexp-1-c2bf6cce\". Comment not submitted.",
+    "plan": "Re-find the submit button (button with text \"Post\" in the reply form), click it, wait for the page to update, and verify the comment appears.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1507,
+    "cached_tokens": 0,
+    "completion_tokens": 9560,
+    "total_tokens": 11067,
+    "cost_usd": 0.0131494572,
+    "usage": {
+     "prompt_tokens": 1507,
+     "completion_tokens": 9560,
+     "cached_tokens": 0,
+     "cost_usd": 0.0131494572
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 2,
+    "success": true,
+    "calls": 2,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2785,
+      "cached_tokens": 0,
+      "completion_tokens": 185,
+      "total_tokens": 2970,
+      "cost_usd": 0.000727452,
+      "usage": {
+       "prompt_tokens": 2785,
+       "completion_tokens": 185,
+       "cached_tokens": 0,
+       "cost_usd": 0.000727452
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 81}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 4879,
+      "cached_tokens": 384,
+      "completion_tokens": 55,
+      "total_tokens": 4934,
+      "cost_usd": 0.00203521824,
+      "usage": {
+       "prompt_tokens": 4879,
+       "completion_tokens": 55,
+       "cached_tokens": 384,
+       "cost_usd": 0.00203521824
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"status\", \"goal_status\": \"complete\"}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 4,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 3092,
+    "cached_tokens": 0,
+    "completion_tokens": 11992,
+    "total_tokens": 15084,
+    "cost_usd": 0.00833883,
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3092,
+     "cached_tokens": 0,
+     "completion_tokens": 11992,
+     "total_tokens": 15084,
+     "cost_usd": 0.00833883
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3092,
+      "cached_tokens": 0,
+      "completion_tokens": 11992,
+      "total_tokens": 15084,
+      "cost_usd": 0.008338830192,
+      "usage": {
+       "prompt_tokens": 3092,
+       "completion_tokens": 11992,
+       "cached_tokens": 0,
+       "cost_usd": 0.008338830192
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  {
+   "seed_added": 2,
+   "seen_seeds": [
+    1,
+    2
+   ],
+   "failure_seed": 2,
+   "error": "RuntimeError: Could not find post titled 'Time for spring cleaning in Jersey City! My office has partnered with the Van Vorst Neighborhood Association to host a community clean-up in the Van Vorst neighborhood. All",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": true,
+     "error": null
+    },
+    {
+     "seed": 2,
+     "passed": false,
+     "error": "RuntimeError: Could not find post titled 'Time for spring cleaning in Jersey City! My office has partnered with the Van Vorst Neighborhood Association to host a community clean-up in the Van Vorst neighborhood. All"
+    }
+   ],
+   "analysis": {
+    "cause": "It looked for the post on /f/jerseycity/new, but the target post is not in that New-sorted listing, so the post lookup failed.",
+    "done": "Navigated to /f/jerseycity and /f/jerseycity/new, waited for page load; post not found and no comment submitted.",
+    "plan": "Use the search box on the current page to search for the exact title, click the matching post link, then find the comment textarea and enter \"guiexp-2-7c22a7d7\", submit the comment, and verify it appears.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1399,
+    "cached_tokens": 0,
+    "completion_tokens": 1563,
+    "total_tokens": 2962,
+    "cost_usd": 0.001299447072,
+    "usage": {
+     "prompt_tokens": 1399,
+     "completion_tokens": 1563,
+     "cached_tokens": 0,
+     "cost_usd": 0.001299447072
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 7,
+    "success": true,
+    "calls": 7,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5075,
+      "cached_tokens": 0,
+      "completion_tokens": 41,
+      "total_tokens": 5116,
+      "cost_usd": 0.0022642488,
+      "usage": {
+       "prompt_tokens": 5075,
+       "completion_tokens": 41,
+       "cached_tokens": 0,
+       "cost_usd": 0.0022642488
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 52}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 5885,
+      "cached_tokens": 384,
+      "completion_tokens": 39,
+      "total_tokens": 5924,
+      "cost_usd": 0.00245252304,
+      "usage": {
+       "prompt_tokens": 5885,
+       "completion_tokens": 39,
+       "cached_tokens": 384,
+       "cost_usd": 0.00245252304
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"navigate_back\"}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 10043,
+      "cached_tokens": 5760,
+      "completion_tokens": 306,
+      "total_tokens": 10349,
+      "cost_usd": 0.0023453892,
+      "usage": {
+       "prompt_tokens": 10043,
+       "completion_tokens": 306,
+       "cached_tokens": 5760,
+       "cost_usd": 0.0023453892
+      },
+      "stage": "react_resume",
+      "action": "The post is visible here. Let me open it via the comments link.\n\naction: {\"action_type\": \"click\", \"index\": 57}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 12713,
+      "cached_tokens": 384,
+      "completion_tokens": 71,
+      "total_tokens": 12784,
+      "cost_usd": 0.00546861744,
+      "usage": {
+       "prompt_tokens": 12713,
+       "completion_tokens": 71,
+       "cached_tokens": 384,
+       "cost_usd": 0.00546861744
+      },
+      "stage": "react_resume",
+      "action": "We're on the post page. Entering the comment text now.\n\naction: {\"action_type\": \"input_text\", \"text\": \"guiexp-2-7c22a7d7\", \"index\": 32}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 15401,
+      "cached_tokens": 9984,
+      "completion_tokens": 25,
+      "total_tokens": 15426,
+      "cost_usd": 0.00253069344,
+      "usage": {
+       "prompt_tokens": 15401,
+       "completion_tokens": 25,
+       "cached_tokens": 9984,
+       "cost_usd": 0.00253069344
+      },
+      "stage": "react_resume",
+      "action": "The text is entered. Now clicking Post.\n\naction: {\"action_type\": \"click\", \"index\": 36}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 18743,
+      "cached_tokens": 15360,
+      "completion_tokens": 74,
+      "total_tokens": 18817,
+      "cost_usd": 0.0017832276,
+      "usage": {
+       "prompt_tokens": 18743,
+       "completion_tokens": 74,
+       "cached_tokens": 15360,
+       "cost_usd": 0.0017832276
+      },
+      "stage": "react_resume",
+      "action": "A preview appeared. Clicking the Post button now.\n\naction: {\"action_type\": \"click\", \"index\": 82}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 20492,
+      "cached_tokens": 18688,
+      "completion_tokens": 45,
+      "total_tokens": 20537,
+      "cost_usd": 0.00110364408,
+      "usage": {
+       "prompt_tokens": 20492,
+       "completion_tokens": 45,
+       "cached_tokens": 18688,
+       "cost_usd": 0.00110364408
+      },
+      "stage": "react_resume",
+      "action": "The comment \"guiexp-2-7c22a7d7\" was posted successfully and is now visible on the post.\n\naction: {\"action_type\": \"status\", \"goal_status\": \"complete\"}"
+     }
+    ]
+   },
+   "refinement": 2,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 3380,
+    "cached_tokens": 0,
+    "completion_tokens": 18241,
+    "total_tokens": 21621,
+    "cost_usd": 0.01240174,
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3380,
+     "cached_tokens": 0,
+     "completion_tokens": 18241,
+     "total_tokens": 21621,
+     "cost_usd": 0.01240174
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3380,
+      "cached_tokens": 0,
+      "completion_tokens": 18241,
+      "total_tokens": 21621,
+      "cost_usd": 0.012401736732,
+      "usage": {
+       "prompt_tokens": 3380,
+       "completion_tokens": 18241,
+       "cached_tokens": 0,
+       "cost_usd": 0.012401736732
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 2,
+ "replays": 4,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine2",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 3,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 4,
+   "total": 5
+  },
+  {
+   "version": "refine2",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "def program(device, binding: dict) -> bool:\n    from urllib.parse import urlparse\n\n    forum = binding[\"forum\"]\n    title = binding[\"title\"]\n    text = binding[\"text\"]\n    title_norm = title.strip()\n\n    def base_url():\n        cur = device.current_url() or \"\"\n        p = urlparse(cur)\n        if p.scheme and p.netloc and \"localhost\" not in p.netloc and \"127.0.0.1\" not in p.netloc:\n            return \"http://localhost:9999\"\n        if p.scheme and p.netloc:\n            return f\"{p.scheme}://{p.netloc}\"\n        return \"http://localhost:9999\"\n\n    def is_title_match(t):\n        if not t:\n            return False\n        t_clean = t.strip().rstrip('\u2026').rstrip('.').strip()\n        if not t_clean:\n            return False\n        if t_clean == title_norm:\n            return True\n        # Listings may truncate long titles.  A truncated title is a\n        # non-trivial substring/prefix of the full title.\n        if len(t_clean) >= 10 and t_clean in title_norm:\n            return True\n        return False\n\n    def find_comments_link():\n        els = device.elements()\n        best_idx = None\n        best_len = -1\n\n        # Find the best title-link match (prefer the longest matching text).\n        for i, e in enumerate(els):\n            if e.get(\"tag\") != \"a\":\n                continue\n            t = (e.get(\"text\") or \"\").strip()\n            if is_title_match(t):\n                if len(t) > best_len:\n                    best_len = len(t)\n                    best_idx = i\n\n        if best_idx is None:\n            return None\n\n        # The row's title link may open the image/external URL. The comments\n        # link after it opens the post page with the comment box.\n        for i in range(best_idx, len(els)):\n            e = els[i]\n            if e.get(\"tag\") == \"a\":\n                t = (e.get(\"text\") or \"\").lower()\n                href = e.get(\"href\") or \"\"\n                if \"comment\" in t and (href.startswith(\"/f/\") or f\"/f/{forum}/\" in href):\n                    return e.get(\"index\", i)\n\n        return None\n\n    base = base_url()\n    comments_idx = None\n\n    # Try the forum's default page, then its /new listing.\n    for path in (f\"/f/{forum}\", f\"/f/{forum}/new\"):\n        device.goto(f\"{base}{path}\")\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is not None:\n            break\n\n    # If the post isn't in the listings, search for it using the site's search box.\n    if comments_idx is None:\n        search_idx = device.find(tag=\"input\", aria=\"Search query\")\n        if search_idx is None:\n            search_idx = device.find(tag=\"input\", name=\"q\")\n        if search_idx is None:\n            raise RuntimeError(\"Could not find search box to search for the post\")\n        device.input_text(title, index=search_idx)\n        device.keyboard_enter()\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is None:\n            raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    if comments_idx is None:\n        raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    device.click(index=comments_idx)\n    device.wait()\n    device.settle(1)\n\n    textarea_idx = device.find(tag=\"textarea\", aria=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", placeholder=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", editable=True)\n    if textarea_idx is None:\n        raise RuntimeError(\"Could not find the comment textarea on the post page\")\n\n    device.input_text(text, index=textarea_idx)\n\n    # The live preview re-renders as you type, shifting element indices.\n    # Wait for it to settle before locating the submit button so the index\n    # we click is not stale.\n    device.settle(1)\n\n    post_idx = device.find(tag=\"button\", text=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(tag=\"button\", contains=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(text=\"Post\")\n    if post_idx is None:\n        raise RuntimeError(\"Could not find the 'Post' button to submit the comment\")\n\n    device.click(index=post_idx)\n    device.wait()\n    device.settle(1)\n\n    return True\n",
+ "last_artifact": "def program(device, binding: dict) -> bool:\n    from urllib.parse import urlparse\n\n    forum = binding[\"forum\"]\n    title = binding[\"title\"]\n    text = binding[\"text\"]\n    title_norm = title.strip()\n\n    def base_url():\n        cur = device.current_url() or \"\"\n        p = urlparse(cur)\n        if p.scheme and p.netloc and \"localhost\" not in p.netloc and \"127.0.0.1\" not in p.netloc:\n            return \"http://localhost:9999\"\n        if p.scheme and p.netloc:\n            return f\"{p.scheme}://{p.netloc}\"\n        return \"http://localhost:9999\"\n\n    def is_title_match(t):\n        if not t:\n            return False\n        t_clean = t.strip().rstrip('\u2026').rstrip('.').strip()\n        if not t_clean:\n            return False\n        if t_clean == title_norm:\n            return True\n        # Listings may truncate long titles.  A truncated title is a\n        # non-trivial substring/prefix of the full title.\n        if len(t_clean) >= 10 and t_clean in title_norm:\n            return True\n        return False\n\n    def find_comments_link():\n        els = device.elements()\n        best_idx = None\n        best_len = -1\n\n        # Find the best title-link match (prefer the longest matching text).\n        for i, e in enumerate(els):\n            if e.get(\"tag\") != \"a\":\n                continue\n            t = (e.get(\"text\") or \"\").strip()\n            if is_title_match(t):\n                if len(t) > best_len:\n                    best_len = len(t)\n                    best_idx = i\n\n        if best_idx is None:\n            return None\n\n        # The row's title link may open the image/external URL. The comments\n        # link after it opens the post page with the comment box.\n        for i in range(best_idx, len(els)):\n            e = els[i]\n            if e.get(\"tag\") == \"a\":\n                t = (e.get(\"text\") or \"\").lower()\n                href = e.get(\"href\") or \"\"\n                if \"comment\" in t and (href.startswith(\"/f/\") or f\"/f/{forum}/\" in href):\n                    return e.get(\"index\", i)\n\n        return None\n\n    base = base_url()\n    comments_idx = None\n\n    # Try the forum's default page, then its /new listing.\n    for path in (f\"/f/{forum}\", f\"/f/{forum}/new\"):\n        device.goto(f\"{base}{path}\")\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is not None:\n            break\n\n    # If the post isn't in the listings, search for it using the site's search box.\n    if comments_idx is None:\n        search_idx = device.find(tag=\"input\", aria=\"Search query\")\n        if search_idx is None:\n            search_idx = device.find(tag=\"input\", name=\"q\")\n        if search_idx is None:\n            raise RuntimeError(\"Could not find search box to search for the post\")\n        device.input_text(title, index=search_idx)\n        device.keyboard_enter()\n        device.wait()\n        device.settle(1)\n        comments_idx = find_comments_link()\n        if comments_idx is None:\n            raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    if comments_idx is None:\n        raise RuntimeError(f\"Could not find post titled {title!r} in forum {forum!r}\")\n\n    device.click(index=comments_idx)\n    device.wait()\n    device.settle(1)\n\n    textarea_idx = device.find(tag=\"textarea\", aria=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", placeholder=\"Comment\", editable=True)\n    if textarea_idx is None:\n        textarea_idx = device.find(tag=\"textarea\", editable=True)\n    if textarea_idx is None:\n        raise RuntimeError(\"Could not find the comment textarea on the post page\")\n\n    device.input_text(text, index=textarea_idx)\n\n    # The live preview re-renders as you type, shifting element indices.\n    # Wait for it to settle before locating the submit button so the index\n    # we click is not stale.\n    device.settle(1)\n\n    post_idx = device.find(tag=\"button\", text=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(tag=\"button\", contains=\"Post\")\n    if post_idx is None:\n        post_idx = device.find(text=\"Post\")\n    if post_idx is None:\n        raise RuntimeError(\"Could not find the 'Post' button to submit the comment\")\n\n    device.click(index=post_idx)\n    device.wait()\n    device.settle(1)\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The click at index 35 missed the \"Post\" button because the page updated (preview rendered) after the button was found, shifting element indices; it hit the \"Formatting help\" label instead, so the comment was never submitted.",
+  "seed 2: It looked for the post on /f/jerseycity/new, but the target post is not in that New-sorted listing, so the post lookup failed."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 2,
+   "prompt_tokens": 2906,
+   "cached_tokens": 0,
+   "completion_tokens": 11123,
+   "total_tokens": 14029,
+   "cost_usd": 0.01444891
+  },
+  "resume_episodes": {
+   "calls": 9,
+   "prompt_tokens": 96016,
+   "cached_tokens": 50944,
+   "completion_tokens": 841,
+   "total_tokens": 96857,
+   "cost_usd": 0.02071101
+  },
+  "builder_refinements": {
+   "calls": 2,
+   "prompt_tokens": 6472,
+   "cached_tokens": 0,
+   "completion_tokens": 30233,
+   "total_tokens": 36705,
+   "cost_usd": 0.02074057
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "forum": "lakewood",
+     "title": "dry cleaning",
+     "text": "guiexp-18186196782894070694-3cadbdb4"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "WritingPrompts",
+     "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+     "text": "guiexp-18186196782894070695-7b33d971"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "Washington",
+     "title": "bald eagle perched on a cow in central washington",
+     "text": "guiexp-18186196782894070696-123b0e74"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "monitor",
+     "title": "IPS vs TN in 2023",
+     "text": "guiexp-18186196782894070697-7ca40616"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "monitor",
+     "title": "Why do my monitors look so completely different?",
+     "text": "guiexp-18186196782894070698-5097d22f"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

@@ -1,0 +1,350 @@
+{
+ "1": {
+  "family": "CommentPost",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "experimental-results/guiexp_webarena/z-ai_glm-5.3-flash/CommentPost/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 4,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"Boston to Manchester\", \"index\": 9}",
+    "analysis": "The recorded step types the task text into the forum's search box; the target is identified semantically (input with aria-label \"Search query\", name \"q\", editable), and the value must come from binding['text'] rather than the recorded literal.",
+    "snippet": "el = device.find(tag='input', aria='Search query', name='q', editable=True)\nif el is None:\n    raise LookupError(\"Search query input (aria='Search query', name='q') not found on page\")\ndevice.input_text(binding['text'], index=el)",
+    "usage": {
+     "prompt_tokens": 487,
+     "completion_tokens": 433,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001719927
+    }
+   },
+   {
+    "step": 5,
+    "action": "{\"action_type\": \"keyboard_enter\"}",
+    "analysis": "The recorded global Enter keypress submitted the header search box after the query was typed, navigating to /search?q=<title>. Reproduce it portably by locating the search input (name=\"q\", editable), typing the target post title from binding, and submitting via the Search button (the Enter equivalent).",
+    "snippet": "box = device.find(tag='input', editable=True, name='q') or \\\n      device.find(tag='input', editable=True, placeholder='Search')\nif box is None:\n    raise LookupError('search input box not found on page')\ndevice.input_text(binding['title'], index=box)\nbtn = device.find(tag='button', aria='Search') or device.find(tag='button', text='Search')\nif btn is None:\n    raise LookupError('search submit button not found')\ndevice.click(index=btn)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1216,
+     "completion_tokens": 3040,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010112256
+    }
+   },
+   {
+    "step": 6,
+    "action": "{\"action_type\": \"click\", \"index\": 35}",
+    "analysis": "The recorded click followed the search-result link whose text is the post title (plus a site suffix). Generalize by locating the anchor whose text contains the bound title, then clicking it.",
+    "snippet": "title = binding['title']\nidx = device.find(tag='a', contains=title)\nif idx is None:\n    raise LookupError(f\"No link found for post titled {title!r}\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 958,
+     "completion_tokens": 684,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002885058
+    }
+   },
+   {
+    "step": 7,
+    "action": "{\"action_type\": \"navigate_back\"}",
+    "analysis": "The recorded `navigate_back()` was a global action whose only purpose was to return from an off-site page to the forum's search results for the post-title query. Reproduce that deterministically by navigating straight to the search URL built from the binding's title (falling back to an explicit query in the binding), so it works regardless of history or element ids.",
+    "snippet": "from urllib.parse import quote\n\n# Reproduce the recorded back-navigation: land on the forum's search\n# results for the post-title query, without relying on browser history.\nquery = str(binding.get(\"query\") or binding[\"title\"]).strip()\nif not query:\n    raise RuntimeError(\"No search query derivable from binding\")\n\ndevice.goto(\"/search?q=\" + quote(query))\ndevice.settle(2)\n\npage = device.page_text()\nif \"Search\" not in page:\n    raise RuntimeError(\"Back-navigation replacement failed: not on search results page for %r\" % query)",
+    "usage": {
+     "prompt_tokens": 909,
+     "completion_tokens": 1382,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008190765
+    }
+   },
+   {
+    "step": 8,
+    "action": "{\"action_type\": \"click\", \"index\": 41}",
+    "analysis": "The click follows the post's comment-count link to open the post page for commenting; match an anchor whose href contains the post id from the target URL in the binding.",
+    "snippet": "post_id = binding[\"url\"].rstrip(\"/\").split(\"/\")[-1]\nidx = device.find(tag=\"a\", href_contains=post_id, contains=\"comment\")\nif idx is None:\n    raise LookupError(f\"No comment link found for post {post_id}\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1154,
+     "completion_tokens": 102,
+     "cached_tokens": 0,
+     "cost_usd": 0.000149589
+    }
+   },
+   {
+    "step": 9,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"guiexp-1-c2bf6cce\", \"index\": 31}",
+    "analysis": "The action types the comment body into the post's comment textarea; the textarea is identified semantically by tag `textarea` with aria label 'Comment' (its name embeds a per-post submission id, so it must not be used), and the text must come from `binding['text']`.",
+    "snippet": "idx = device.find(tag='textarea', aria='Comment', editable=True)\nif idx is None:\n    raise LookupError('comment textarea (aria=\"Comment\") not found on page')\ndevice.input_text(binding['text'], index=idx)",
+    "usage": {
+     "prompt_tokens": 615,
+     "completion_tokens": 248,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001284525
+    }
+   },
+   {
+    "step": 10,
+    "action": "{\"action_type\": \"click\", \"index\": 35}",
+    "analysis": "The click toggles the Markdown formatting-help panel under the comment form; the target is uniquely identified as the label with text \"Formatting help\", independent of any task values in `binding`.",
+    "snippet": "help_label = device.find(tag='label', text='Formatting help')\nif help_label is None:\n    raise LookupError(\"Comment form 'Formatting help' label not found on page\")\ndevice.click(index=help_label)",
+    "usage": {
+     "prompt_tokens": 780,
+     "completion_tokens": 278,
+     "cached_tokens": 0,
+     "cost_usd": 0.000152064
+    }
+   },
+   {
+    "step": 11,
+    "action": "{\"action_type\": \"click\", \"index\": 81}",
+    "analysis": "The click submits the comment form, so the robust version must first ensure the comment text (from `binding`) is in the `aria='Comment'` textarea, then locate and click the submit button by its semantic attributes (`tag='button'`, exact text `'Post'`), never by recorded id.",
+    "snippet": "box = device.find(tag='textarea', aria='Comment')\nif box is None:\n    raise RuntimeError('Comment textarea not found on page')\ndevice.input_text(binding['text'], index=box)\n\nbtn = device.find(tag='button', text='Post')\nif btn is None:\n    raise RuntimeError('Post (submit comment) button not found')\ndevice.click(index=btn)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1010,
+     "completion_tokens": 997,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003861
+    }
+   }
+  ],
+  "effective_actions": 8,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 8,
+   "prompt_tokens": 7129,
+   "cached_tokens": 0,
+   "completion_tokens": 7164,
+   "total_tokens": 14293,
+   "cost_usd": 0.00310701
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "CommentPost",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "experimental-results/guiexp_webarena/z-ai_glm-5.3-flash/CommentPost/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"Time for spring cleaning in Jersey City\", \"index\": 9}",
+    "analysis": "The recorded step types the task's text into the forum's search box; the input must be located by its stable semantics (aria-label \"Search query\", name \"q\") rather than its recorded id, and filled with `binding['text']`.",
+    "snippet": "text = binding['text']\nidx = device.find(tag='input', aria='Search query', editable=True)\nif idx is None:\n    idx = device.find(tag='input', name='q', editable=True)\nif idx is None:\n    raise LookupError(\"Search query input (aria='Search query', name='q') not found on page\")\ndevice.input_text(text, index=idx)",
+    "usage": {
+     "prompt_tokens": 495,
+     "completion_tokens": 1805,
+     "cached_tokens": 0,
+     "cost_usd": 0.00067688775
+    }
+   },
+   {
+    "step": 2,
+    "action": "{\"action_type\": \"keyboard_enter\"}",
+    "analysis": "The recorded Enter keypress submitted the header search form after the post title was typed into it, navigating to the search results for the target post. Robustly: type `binding['title']` into the editable search input and submit via the \"Search\" button instead of relying on a global key event.",
+    "snippet": "title = binding['title']\n\nbox = device.find(tag='input', editable=True)\nif box is None:\n    raise RuntimeError(\"Search query input not found on page\")\ndevice.input_text(title, tag='input', editable=True)\n\nbtn = device.find(tag='button', text='Search')\nif btn is None:\n    raise RuntimeError(\"Search submit button not found on page\")\ndevice.click(index=btn)\n\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1301,
+     "completion_tokens": 803,
+     "cached_tokens": 0,
+     "cost_usd": 0.00041347845
+    }
+   },
+   {
+    "step": 3,
+    "action": "{\"action_type\": \"click\", \"index\": 24}",
+    "analysis": "The recorded click follows the search-result link whose anchor text is the post's title (the image alt text, truncated/whitespace-normalized). Generalize by finding the `<a>` matching the binding title, falling back to a title prefix since result snippets are truncated, and raising if absent.",
+    "snippet": "title = binding[\"title\"]\ntarget = None\nfor probe in (title, title[:40].strip(), title[:25].strip()):\n    try:\n        target = device.find(tag=\"a\", contains=probe)\n    except Exception:\n        target = None\n    if target is not None:\n        break\nif target is None:\n    raise LookupError(f\"No link for post titled {title!r} on {device.current_url()}\")\ndevice.click(target)",
+    "usage": {
+     "prompt_tokens": 817,
+     "completion_tokens": 1141,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006861195
+    }
+   },
+   {
+    "step": 4,
+    "action": "{\"action_type\": \"navigate_back\"}",
+    "analysis": "The recorded step is a global `navigate_back()` from the post's image page back to the search-results page for the post title \u2014 no element is targeted. Robust rewrite: derive the destination from `binding[\"title\"]` (the search query equals the title), navigate there only if we're not already on it, and verify the search page actually loaded.",
+    "snippet": "from urllib.parse import quote\n\ntitle = binding[\"title\"]\ntarget = \"/search?q=\" + quote(title)\ncur = device.current_url() or \"\"\nif \"/search\" not in cur or quote(title) not in cur:\n    device.goto(target)\ndevice.settle(1)\nif device.find(aria=\"Search query\") is None:\n    raise RuntimeError(\n        \"navigate_back: expected search page for post %r, but landed on %r\"\n        % (title, device.current_url())\n    )",
+    "usage": {
+     "prompt_tokens": 727,
+     "completion_tokens": 1429,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004891887
+    }
+   },
+   {
+    "step": 5,
+    "action": "{\"action_type\": \"click\", \"index\": 31}",
+    "analysis": "This click follows the search-result link to the post's comment page; the target is best identified by its `/f/<forum>/<id>/<title-slug>` href derived from `binding['title']`/`binding['forum']`, not by the recorded id or the brittle \"7 comments\" text.",
+    "snippet": "import re\n\ntitle, forum = binding['title'], binding['forum']\nslug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')[:50].rstrip('-')\n\nhits = [e for e in device.elements()\n        if e.get('tag') == 'a' and e.get('href')\n        and '/f/%s/' % forum in e['href'] and slug in e['href']]\nif not hits:\n    raise LookupError('No post link found for title %r in /f/%s' % (title, forum))\ndevice.click(index=hits[0]['index'])\ndevice.settle(1)  # comment form loads on the post page",
+    "usage": {
+     "prompt_tokens": 1174,
+     "completion_tokens": 2416,
+     "cached_tokens": 0,
+     "cost_usd": 0.001370259
+    }
+   },
+   {
+    "step": 6,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"guiexp-2-7c22a7d7\", \"index\": 32}",
+    "analysis": "The recorded step types the task's comment body into the submission's comment box \u2014 uniquely identified as a textarea with aria-label 'Comment' (name pattern `reply_to_submission_*`), not by its page-specific id.",
+    "snippet": "comment_box = device.find(tag='textarea', aria='Comment', editable=True)\nif comment_box is None:\n    raise LookupError(\"Comment textarea (aria='Comment') not found on the submission page\")\ndevice.input_text(binding['text'], index=comment_box)",
+    "usage": {
+     "prompt_tokens": 617,
+     "completion_tokens": 252,
+     "cached_tokens": 64,
+     "cost_usd": 0.0002087613
+    }
+   },
+   {
+    "step": 7,
+    "action": "{\"action_type\": \"click\", \"index\": 36}",
+    "analysis": "The click targets the \"Formatting help\" label that toggles the Markdown cheat-sheet under the comment form; it is independent of the task's title/forum/text values, so look it up by tag and exact text instead of the recorded id.",
+    "snippet": "idx = device.find(tag=\"label\", text=\"Formatting help\")\nif idx is None:\n    raise LookupError(\"'Formatting help' label not found near the comment form\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 776,
+     "completion_tokens": 325,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001932777
+    }
+   },
+   {
+    "step": 8,
+    "action": "{\"action_type\": \"click\", \"index\": 82}",
+    "analysis": "The click submits the comment form; it depends on the comment textarea holding the task's comment text (from `binding`), and the button must be located semantically (tag `button`, text `Post`) instead of by id.",
+    "snippet": "text = binding[\"text\"]\nta = device.find(tag=\"textarea\", aria=\"Comment\")\nif ta is None:\n    raise RuntimeError(\"Comment textarea not found\")\ndevice.input_text(text, index=ta)\n\nbtn = device.find(tag=\"button\", text=\"Post\")\nif btn is None:\n    raise RuntimeError(\"Comment submit button 'Post' not found\")\ndevice.click(index=btn)",
+    "usage": {
+     "prompt_tokens": 1009,
+     "completion_tokens": 757,
+     "cached_tokens": 64,
+     "cost_usd": 0.0005169483
+    }
+   }
+  ],
+  "effective_actions": 8,
+  "recorded_actions": 9,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 8,
+   "prompt_tokens": 6916,
+   "cached_tokens": 128,
+   "completion_tokens": 8928,
+   "total_tokens": 15844,
+   "cost_usd": 0.00455492
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "CommentPost",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "experimental-results/guiexp_webarena/z-ai_glm-5.3-flash/CommentPost/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 3,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"Italy orders ChatGPT blocked citing data protection concerns\", \"index\": 9}",
+    "analysis": "The recorded step types the task's text parameter into the page's search box; generalize by locating that input via its stable semantic attributes (aria \"Search query\", name \"q\", editable) instead of the recorded id, and typing binding['text'].",
+    "snippet": "idx = device.find(tag='input', aria='Search query', name='q', editable=True)\nif idx is None:\n    raise LookupError(\"Search input (aria='Search query', name='q') not found on page\")\ndevice.input_text(binding['text'], index=idx)",
+    "usage": {
+     "prompt_tokens": 499,
+     "completion_tokens": 2194,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006960789
+    }
+   },
+   {
+    "step": 4,
+    "action": "{\"action_type\": \"keyboard_enter\"}",
+    "analysis": "The recorded Enter keypress submitted the post title already typed into the forum's search box, navigating to `/search?q=<title>`. Robustly: locate the search input semantically, make sure it holds `binding[\"title\"]`, then press Enter and let the results page settle.",
+    "snippet": "box = device.find(tag=\"input\", editable=True, placeholder_contains=\"Search\")\nif box is None:\n    raise LookupError(\"search input not found on forum page\")\ndevice.input_text(binding[\"title\"], index=box)\ndevice.keyboard_enter()\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1095,
+     "completion_tokens": 991,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003918915
+    }
+   },
+   {
+    "step": 5,
+    "action": "{\"action_type\": \"click\", \"index\": 24}",
+    "analysis": "The click targets the search-result link for the post titled `binding['title']`; its rendered text is the title with whitespace stripped, so look it up by title text (with a space-stripped fallback) instead of the recorded id.",
+    "snippet": "title = binding['title']\nel = device.find(tag='a', contains=title) or device.find(tag='a', contains=title.replace(' ', ''))\nif el is None:\n    raise LookupError(f\"Link for post titled {title!r} not found on search page\")\ndevice.click(index=el)",
+    "usage": {
+     "prompt_tokens": 1057,
+     "completion_tokens": 873,
+     "cached_tokens": 0,
+     "cost_usd": 0.0003534597
+    }
+   },
+   {
+    "step": 6,
+    "action": "{\"action_type\": \"navigate_back\"}",
+    "analysis": "The action is a global history-back that returns from an external article page to the Postmill forum; generalize it by only going back when the current page isn't the forum (detected via its persistent search box), then verify the forum UI is back before proceeding.",
+    "snippet": "def on_forum():\n    try:\n        device.find(tag='input', aria='Search query')  # Postmill header search box\n        return True\n    except Exception:\n        return False\n\nif not on_forum():\n    device.navigate_back()   # leave any external page (e.g. the linked article)\n    device.settle()\n\nif not on_forum():\n    raise RuntimeError('navigate_back failed to return to the forum page')",
+    "usage": {
+     "prompt_tokens": 1013,
+     "completion_tokens": 2247,
+     "cached_tokens": 0,
+     "cost_usd": 0.00118693377
+    }
+   },
+   {
+    "step": 7,
+    "action": "{\"action_type\": \"click\", \"index\": 30}",
+    "analysis": "The recorded click opens the target post's page via its \"N comment(s)\" link. Generalize by finding, in the element list, an anchor whose href is under `/f/<forum>/` and whose text contains \"comment\", falling back to the post's title link if counts differ.",
+    "snippet": "import re\n\nforum = binding[\"forum\"]\ntitle = binding[\"title\"]\nnorm = lambda s: re.sub(r\"\\s+\", \"\", (s or \"\")).lower()\n\nels = device.elements()\ncands = [e for e in els\n         if e.get(\"tag\") == \"a\"\n         and f\"/f/{forum}/\" in (e.get(\"href\") or \"\")\n         and \"comment\" in (e.get(\"text\") or \"\").lower()]\nif not cands:\n    cands = [e for e in els\n             if e.get(\"tag\") == \"a\"\n             and f\"/f/{forum}/\" in (e.get(\"href\") or \"\")\n             and norm(e.get(\"text\")) == norm(title)]\nif not cands:\n    raise LookupError(f\"No comment/title link for post '{title}' in /f/{forum}/\")\ndevice.click(index=cands[0][\"index\"])\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 982,
+     "completion_tokens": 965,
+     "cached_tokens": 0,
+     "cost_usd": 0.00058609188
+    }
+   },
+   {
+    "step": 8,
+    "action": "{\"action_type\": \"input_text\", \"text\": \"guiexp-3-19134b3a\", \"index\": 31}",
+    "analysis": "The action types the comment body into the post's comment textarea, identified semantically by its aria label \"Comment\" (the recorded name embeds a submission id that varies per instance), with the text taken from binding['text'].",
+    "snippet": "text = binding['text']\nidx = device.find(tag='textarea', aria='Comment', editable=True)\nif idx is None:\n    idx = device.find(tag='textarea', name_contains='reply_to_submission', editable=True)\nif idx is None:\n    raise LookupError('comment textarea not found on page')\ndevice.input_text(text, index=idx)",
+    "usage": {
+     "prompt_tokens": 617,
+     "completion_tokens": 266,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001339767
+    }
+   },
+   {
+    "step": 9,
+    "action": "{\"action_type\": \"click\", \"index\": 35}",
+    "analysis": "The click targets the \"Formatting help\" label in the comment form, which toggles the Markdown cheat-sheet panel; it is identified purely by its label text, independent of element ids.",
+    "snippet": "help_label = device.find(text='Formatting help', tag='label')\nif help_label is None:\n    raise LookupError('Formatting help label not found on comment form')\ndevice.click(index=help_label)",
+    "usage": {
+     "prompt_tokens": 778,
+     "completion_tokens": 354,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001744578
+    }
+   },
+   {
+    "step": 10,
+    "action": "{\"action_type\": \"click\", \"index\": 81}",
+    "analysis": "The click submits the comment form; the button is identified by its exact text \"Post\" (tag button) rather than its id, and the comment body is re-set from binding into the `aria=\"Comment\"` textarea first so the action works regardless of differing ids.",
+    "snippet": "box = device.find(tag='textarea', aria='Comment')\nif box is None:\n    raise LookupError('comment textarea (aria=\"Comment\") not found')\ndevice.input_text(binding['text'], index=box)\n\nbtn = device.find(tag='button', text='Post')\nif btn is None:\n    raise LookupError('comment submit button (button with exact text \"Post\") not found')\ndevice.click(index=btn)",
+    "usage": {
+     "prompt_tokens": 992,
+     "completion_tokens": 1201,
+     "cached_tokens": 0,
+     "cost_usd": 0.00065279016
+    }
+   }
+  ],
+  "effective_actions": 8,
+  "recorded_actions": 11,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 8,
+   "prompt_tokens": 7033,
+   "cached_tokens": 0,
+   "completion_tokens": 9091,
+   "total_tokens": 16124,
+   "cost_usd": 0.00417568
+  },
+  "record_type": "translation"
+ }
+}

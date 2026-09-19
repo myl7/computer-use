@@ -1,0 +1,877 @@
+GOAL GIVEN TO THE AGENT (concrete values of one instance):
+Add an event to the calendar with exactly these values:
+  title: Alice-Carol
+  date: 2026-05-12
+  description: Design review
+  location: Room 7
+  url: https://example.com/design
+  invitees: Alice
+
+APP: OpenApps calendar, create-event form, layout: wizard.
+The program must work for ANY binding dict with exactly the six keys
+title, date, description, location, url, invitees (all non-empty strings).
+
+COMPLETE RECORDED EPISODE -- everything the agent saw and did.
+Each observation is the flattened accessibility tree of the current
+page, one line per interactive element: [bid] role 'name'; it is
+shown exactly as the agent saw it BEFORE taking the action that
+follows it. Screenshots are omitted.
+
+=== observation before step 1 (url path: /) ===
+[13] Section '', visible
+	[15] heading 'Welcome to OpenApps!', visible
+	[16] paragraph '', visible
+	[19] link 'OpenTodos OpenTodos', clickable, visible
+		[21] Section '', visible
+			[23] image 'OpenTodos', visible
+			[24] heading 'OpenTodos', visible
+			[25] paragraph '', visible
+	[26] link 'OpenCalendar OpenCalendar', clickable, visible
+		[28] Section '', visible
+			[30] image 'OpenCalendar', visible
+			[31] heading 'OpenCalendar', visible
+			[32] paragraph '', visible
+	[33] link 'OpenMessages OpenMessages', clickable, visible
+		[35] Section '', visible
+			[37] image 'OpenMessages', visible
+			[38] heading 'OpenMessages', visible
+			[39] paragraph '', visible
+	[40] link 'OpenMaps OpenMaps', clickable, visible
+		[42] Section '', visible
+			[44] image 'OpenMaps', visible
+			[45] heading 'OpenMaps', visible
+			[46] paragraph '', visible
+	[47] link 'OpenCodeEditor OpenCodeEditor', clickable, visible
+		[49] Section '', visible
+			[51] image 'OpenCodeEditor', visible
+--- action 1: click('26')
+
+=== observation before step 2 (url path: /calendar) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'September 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '1', visible
+						StaticText '1'
+					[60] gridcell '2', visible
+						StaticText '2'
+					[62] gridcell '3', visible
+						StaticText '3'
+					[64] gridcell '4', visible
+						StaticText '4'
+					[66] gridcell '5', visible
+						StaticText '5'
+					[68] gridcell '6', visible
+						StaticText '6'
+				[70] row '', visible
+					[71] gridcell '7', visible
+						StaticText '7'
+					[73] gridcell "8 Charlie's Birthday (None)", visible
+						StaticText '8'
+						[75] link "Charlie's Birthday (None)", clickable, visible
+					[76] gridcell '9', visible
+						StaticText '9'
+					[78] gridcell '10', visible
+						StaticText '10'
+					[80] gridcell '11', visible
+						StaticText '11'
+					[82] gridcell '12', visible
+						StaticText '12'
+					[84] gridcell '13', visible
+						StaticText '13'
+				[86] row '', visible
+					[87] gridcell '14', visible
+						StaticText '14'
+					[89] gridcell '15', visible
+						StaticText '15'
+					[91] gridcell '16', visible
+						StaticText '16'
+					[93] gridcell '17', visible
+						StaticText '17'
+					[95] gridcell '18', visible
+						StaticText '18'
+					[97] gridcell '19', visible
+						StaticText '19'
+					[99] gridcell '20', visible
+						StaticText '20'
+				[101] row '', visible
+					[102] gridcell '21', visible
+						StaticText '21'
+					[104] gridcell "22 Jamal's Birthday (None)", visible
+						StaticText '22'
+						[106] link "Jamal's Birthday (None)", clickable, visible
+					[107] gridcell '23', visible
+						StaticText '23'
+					[109] gridcell '24', visible
+						StaticText '24'
+					[111] gridcell '25', visible
+						StaticText '25'
+					[113] gridcell '26', visible
+						StaticText '26'
+					[115] gridcell '27', visible
+						StaticText '27'
+--- action 2: click('39')
+
+=== observation before step 3 (url path: /calendar/calendar_content/2026/9) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'August 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '', visible
+					[59] gridcell '', visible
+					[60] gridcell '', visible
+					[61] gridcell '', visible
+					[62] gridcell '1', visible
+						StaticText '1'
+					[64] gridcell '2', visible
+						StaticText '2'
+				[66] row '', visible
+					[67] gridcell "3 Anna's Birthday (None)", visible
+						StaticText '3'
+						[69] link "Anna's Birthday (None)", clickable, visible
+					[70] gridcell '4', visible
+						StaticText '4'
+					[72] gridcell '5', visible
+						StaticText '5'
+					[74] gridcell '6', visible
+						StaticText '6'
+					[76] gridcell '7', visible
+						StaticText '7'
+					[78] gridcell '8', visible
+						StaticText '8'
+					[80] gridcell '9', visible
+						StaticText '9'
+				[82] row '', visible
+					[83] gridcell '10', visible
+						StaticText '10'
+					[85] gridcell '11', visible
+						StaticText '11'
+					[87] gridcell '12', visible
+						StaticText '12'
+					[89] gridcell '13', visible
+						StaticText '13'
+					[91] gridcell '14', visible
+						StaticText '14'
+					[93] gridcell '15', visible
+						StaticText '15'
+					[95] gridcell '16', visible
+						StaticText '16'
+				[97] row '', visible
+					[98] gridcell '17', visible
+						StaticText '17'
+					[100] gridcell '18', visible
+						StaticText '18'
+					[102] gridcell '19', visible
+						StaticText '19'
+					[104] gridcell "20 Elena's Birthday (None)", visible
+						StaticText '20'
+						[106] link "Elena's Birthday (None)", clickable, visible
+					[107] gridcell '21', visible
+						StaticText '21'
+					[109] gridcell '22', visible
+						StaticText '22'
+					[111] gridcell '23', visible
+						StaticText '23'
+--- action 3: click('39')
+
+=== observation before step 4 (url path: /calendar/calendar_content/2026/8) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'July 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '', visible
+					[59] gridcell '1', visible
+						StaticText '1'
+					[61] gridcell '2', visible
+						StaticText '2'
+					[63] gridcell '3', visible
+						StaticText '3'
+					[65] gridcell '4', visible
+						StaticText '4'
+					[67] gridcell '5', visible
+						StaticText '5'
+				[69] row '', visible
+					[70] gridcell '6', visible
+						StaticText '6'
+					[72] gridcell '7', visible
+						StaticText '7'
+					[74] gridcell '8', visible
+						StaticText '8'
+					[76] gridcell '9', visible
+						StaticText '9'
+					[78] gridcell '10', visible
+						StaticText '10'
+					[80] gridcell '11', visible
+						StaticText '11'
+					[82] gridcell '12', visible
+						StaticText '12'
+				[84] row '', visible
+					[85] gridcell '13', visible
+						StaticText '13'
+					[87] gridcell '14', visible
+						StaticText '14'
+					[89] gridcell '15', visible
+						StaticText '15'
+					[91] gridcell '16', visible
+						StaticText '16'
+					[93] gridcell "17 Luka's Birthday (None)", visible
+						StaticText '17'
+						[95] link "Luka's Birthday (None)", clickable, visible
+					[96] gridcell '18', visible
+						StaticText '18'
+					[98] gridcell '19', visible
+						StaticText '19'
+				[100] row '', visible
+					[101] gridcell '20', visible
+						StaticText '20'
+					[103] gridcell '21', visible
+						StaticText '21'
+					[105] gridcell '22', visible
+						StaticText '22'
+					[107] gridcell '23', visible
+						StaticText '23'
+					[109] gridcell '24', visible
+						StaticText '24'
+					[111] gridcell '25', visible
+						StaticText '25'
+					[113] gridcell '26', visible
+						StaticText '26'
+--- action 4: click('39')
+
+=== observation before step 5 (url path: /calendar/calendar_content/2026/7) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'June 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '1', visible
+						StaticText '1'
+					[59] gridcell '2', visible
+						StaticText '2'
+					[61] gridcell '3', visible
+						StaticText '3'
+					[63] gridcell '4', visible
+						StaticText '4'
+					[65] gridcell '5', visible
+						StaticText '5'
+					[67] gridcell '6', visible
+						StaticText '6'
+					[69] gridcell '7', visible
+						StaticText '7'
+				[71] row '', visible
+					[72] gridcell '8', visible
+						StaticText '8'
+					[74] gridcell '9', visible
+						StaticText '9'
+					[76] gridcell '10', visible
+						StaticText '10'
+					[78] gridcell '11', visible
+						StaticText '11'
+					[80] gridcell '12', visible
+						StaticText '12'
+					[82] gridcell '13', visible
+						StaticText '13'
+					[84] gridcell '14', visible
+						StaticText '14'
+				[86] row '', visible
+					[87] gridcell '15', visible
+						StaticText '15'
+					[89] gridcell '16', visible
+						StaticText '16'
+					[91] gridcell '17', visible
+						StaticText '17'
+					[93] gridcell '18', visible
+						StaticText '18'
+					[95] gridcell '19', visible
+						StaticText '19'
+					[97] gridcell '20', visible
+						StaticText '20'
+					[99] gridcell '21', visible
+						StaticText '21'
+				[101] row '', visible
+					[102] gridcell '22', visible
+						StaticText '22'
+					[104] gridcell "23 Alice's Birthday (None)", visible
+						StaticText '23'
+						[106] link "Alice's Birthday (None)", clickable, visible
+					[107] gridcell '24', visible
+						StaticText '24'
+					[109] gridcell '25', visible
+						StaticText '25'
+					[111] gridcell '26', visible
+						StaticText '26'
+					[113] gridcell '27', visible
+						StaticText '27'
+					[115] gridcell '28', visible
+						StaticText '28'
+--- action 5: click('39')
+
+=== observation before step 6 (url path: /calendar/calendar_content/2026/6) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'May 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '', visible
+					[59] gridcell '', visible
+					[60] gridcell '', visible
+					[61] gridcell '1', visible
+						StaticText '1'
+					[63] gridcell '2', visible
+						StaticText '2'
+					[65] gridcell '3', visible
+						StaticText '3'
+				[67] row '', visible
+					[68] gridcell '4', visible
+						StaticText '4'
+					[70] gridcell '5', visible
+						StaticText '5'
+					[72] gridcell '6', visible
+						StaticText '6'
+					[74] gridcell '7', visible
+						StaticText '7'
+					[76] gridcell '8', visible
+						StaticText '8'
+					[78] gridcell '9', visible
+						StaticText '9'
+					[80] gridcell "10 Greta's Birthday (None)", visible
+						StaticText '10'
+						[82] link "Greta's Birthday (None)", clickable, visible
+				[83] row '', visible
+					[84] gridcell '11', visible
+						StaticText '11'
+					[86] gridcell '12', visible
+						StaticText '12'
+					[88] gridcell '13', visible
+						StaticText '13'
+					[90] gridcell '14', visible
+						StaticText '14'
+					[92] gridcell '15', visible
+						StaticText '15'
+					[94] gridcell '16', visible
+						StaticText '16'
+					[96] gridcell '17', visible
+						StaticText '17'
+				[98] row '', visible
+					[99] gridcell "18 Granni's Birthday (None)", visible
+						StaticText '18'
+						[101] link "Granni's Birthday (None)", clickable, visible
+					[102] gridcell '19', visible
+						StaticText '19'
+					[104] gridcell '20', visible
+						StaticText '20'
+					[106] gridcell '21', visible
+						StaticText '21'
+					[108] gridcell '22', visible
+						StaticText '22'
+					[110] gridcell '23', visible
+						StaticText '23'
+					[112] gridcell '24', visible
+						StaticText '24'
+--- action 6: click('86')
+
+=== observation before step 7 (url path: /calendar/calendar_content/2026/6) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'May 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '', visible
+					[59] gridcell '', visible
+					[60] gridcell '', visible
+					[61] gridcell '1', visible
+						StaticText '1'
+					[63] gridcell '2', visible
+						StaticText '2'
+					[65] gridcell '3', visible
+						StaticText '3'
+				[67] row '', visible
+					[68] gridcell '4', visible
+						StaticText '4'
+					[70] gridcell '5', visible
+						StaticText '5'
+					[72] gridcell '6', visible
+						StaticText '6'
+					[74] gridcell '7', visible
+						StaticText '7'
+					[76] gridcell '8', visible
+						StaticText '8'
+					[78] gridcell '9', visible
+						StaticText '9'
+					[80] gridcell "10 Greta's Birthday (None)", visible
+						StaticText '10'
+						[82] link "Greta's Birthday (None)", clickable, visible
+				[83] row '', visible
+					[84] gridcell '11', visible
+						StaticText '11'
+					[86] gridcell '12', visible
+						StaticText '12'
+					[88] gridcell '13', visible
+						StaticText '13'
+					[90] gridcell '14', visible
+						StaticText '14'
+					[92] gridcell '15', visible
+						StaticText '15'
+					[94] gridcell '16', visible
+						StaticText '16'
+					[96] gridcell '17', visible
+						StaticText '17'
+				[98] row '', visible
+					[99] gridcell "18 Granni's Birthday (None)", visible
+						StaticText '18'
+						[101] link "Granni's Birthday (None)", clickable, visible
+					[102] gridcell '19', visible
+						StaticText '19'
+					[104] gridcell '20', visible
+						StaticText '20'
+					[106] gridcell '21', visible
+						StaticText '21'
+					[108] gridcell '22', visible
+						StaticText '22'
+					[110] gridcell '23', visible
+						StaticText '23'
+					[112] gridcell '24', visible
+						StaticText '24'
+--- action 7: scroll('down')
+
+=== observation before step 8 (url path: /calendar/calendar_content/2026/6) ===
+[28] main '', visible
+	[31] main '', visible
+		[45] table '', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '', visible
+					[59] gridcell '', visible
+					[60] gridcell '', visible
+					[61] gridcell '1', visible
+						StaticText '1'
+					[63] gridcell '2', visible
+						StaticText '2'
+					[65] gridcell '3', visible
+						StaticText '3'
+				[67] row '', visible
+					[68] gridcell '4', visible
+						StaticText '4'
+					[70] gridcell '5', visible
+						StaticText '5'
+					[72] gridcell '6', visible
+						StaticText '6'
+					[74] gridcell '7', visible
+						StaticText '7'
+					[76] gridcell '8', visible
+						StaticText '8'
+					[78] gridcell '9', visible
+						StaticText '9'
+					[80] gridcell "10 Greta's Birthday (None)", visible
+						StaticText '10'
+						[82] link "Greta's Birthday (None)", clickable, visible
+				[83] row '', visible
+					[84] gridcell '11', visible
+						StaticText '11'
+					[86] gridcell '12', visible
+						StaticText '12'
+					[88] gridcell '13', visible
+						StaticText '13'
+					[90] gridcell '14', visible
+						StaticText '14'
+					[92] gridcell '15', visible
+						StaticText '15'
+					[94] gridcell '16', visible
+						StaticText '16'
+					[96] gridcell '17', visible
+						StaticText '17'
+				[98] row '', visible
+					[99] gridcell "18 Granni's Birthday (None)", visible
+						StaticText '18'
+						[101] link "Granni's Birthday (None)", clickable, visible
+					[102] gridcell '19', visible
+						StaticText '19'
+					[104] gridcell '20', visible
+						StaticText '20'
+					[106] gridcell '21', visible
+						StaticText '21'
+					[108] gridcell '22', visible
+						StaticText '22'
+					[110] gridcell '23', visible
+						StaticText '23'
+					[112] gridcell '24', visible
+						StaticText '24'
+				[114] row '', visible
+					[115] gridcell '25', visible
+						StaticText '25'
+					[117] gridcell '26', visible
+						StaticText '26'
+					[119] gridcell '27', visible
+						StaticText '27'
+					[121] gridcell '28', visible
+						StaticText '28'
+					[123] gridcell '29', visible
+						StaticText '29'
+					[125] gridcell '30', visible
+						StaticText '30'
+					[127] gridcell '31', visible
+						StaticText '31'
+		[131] button 'Add Event', clickable, visible
+		[132] button 'Return to List of Apps', clickable, visible
+		[133] main '', visible
+		[135] main '', visible
+--- action 8: click('131')
+
+=== observation before step 9 (url path: /calendar/create_event) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (1 of 3)', visible
+		[35] LabelText '', clickable, visible
+			StaticText 'Title'
+		[36] textbox 'Event title', clickable, visible, required
+		[37] LabelText '', clickable, visible
+			StaticText 'Date'
+		[38] textbox 'Event date, YYYY-MM-DD', clickable, visible, required
+		[39] button 'Next', clickable, visible
+	[42] button 'Return to List of Apps', clickable, visible
+--- action 9: fill('36', 'Alice-Carol')
+
+=== observation before step 10 (url path: /calendar/create_event) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (1 of 3)', visible
+		[35] LabelText '', clickable, visible
+			StaticText 'Title'
+		[36] textbox 'Event title' value='Alice-Carol', clickable, visible, focused, required
+		[37] LabelText '', clickable, visible
+			StaticText 'Date'
+		[38] textbox 'Event date, YYYY-MM-DD', clickable, visible, required
+		[39] button 'Next', clickable, visible
+	[42] button 'Return to List of Apps', clickable, visible
+--- action 10: fill('38', '2026-05-12')
+
+=== observation before step 11 (url path: /calendar/create_event) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (1 of 3)', visible
+		[35] LabelText '', clickable, visible
+			StaticText 'Title'
+		[36] textbox 'Event title' value='Alice-Carol', clickable, visible, required
+		[37] LabelText '', clickable, visible
+			StaticText 'Date'
+		[38] textbox 'Event date, YYYY-MM-DD' value='2026-05-12', clickable, visible, focused, required
+		[39] button 'Next', clickable, visible
+	[42] button 'Return to List of Apps', clickable, visible
+--- action 11: click('39')
+
+=== observation before step 12 (url path: /calendar/create_event/step2) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (2 of 3)', visible
+		[37] LabelText '', visible
+			StaticText 'Description'
+		[38] textbox 'Event description', visible
+		[39] LabelText '', clickable, visible
+			StaticText 'Location'
+		[40] textbox 'Event location', clickable, visible
+		[41] button 'Next', clickable, visible
+	[44] button 'Return to List of Apps', clickable, visible
+--- action 12: fill('38', 'Design review')
+
+=== observation before step 13 (url path: /calendar/create_event/step2) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (2 of 3)', visible
+		[37] LabelText '', visible
+			StaticText 'Description'
+		[38] textbox 'Event description' value='Design review', visible, focused
+		[39] LabelText '', clickable, visible
+			StaticText 'Location'
+		[40] textbox 'Event location', clickable, visible
+		[41] button 'Next', clickable, visible
+	[44] button 'Return to List of Apps', clickable, visible
+--- action 13: fill('40', 'Room 7')
+
+=== observation before step 14 (url path: /calendar/create_event/step2) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (2 of 3)', visible
+		[37] LabelText '', visible
+			StaticText 'Description'
+		[38] textbox 'Event description' value='Design review', visible
+		[39] LabelText '', clickable, visible
+			StaticText 'Location'
+		[40] textbox 'Event location' value='Room 7', clickable, visible, focused
+		[41] button 'Next', clickable, visible
+	[44] button 'Return to List of Apps', clickable, visible
+--- action 14: click('41')
+
+=== observation before step 15 (url path: /calendar/create_event/step3) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (3 of 3)', visible
+		[39] LabelText '', clickable, visible
+			StaticText 'URL'
+		[40] textbox 'Event URL', clickable, visible
+		[41] LabelText '', clickable, visible
+			StaticText 'Invitees'
+		[42] textbox 'Event invitees', clickable, visible
+		[43] LabelText '', visible
+			StaticText 'Recurring'
+		[44] combobox 'Recurring' value='Not Recurring', visible, hasPopup='menu', expanded=False
+		[49] button 'Create', clickable, visible
+	[52] button 'Return to List of Apps', clickable, visible
+--- action 15: fill('40', 'https://example.com/design')
+
+=== observation before step 16 (url path: /calendar/create_event/step3) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (3 of 3)', visible
+		[39] LabelText '', clickable, visible
+			StaticText 'URL'
+		[40] textbox 'Event URL' value='https://example.com/design', clickable, visible, focused
+		[41] LabelText '', clickable, visible
+			StaticText 'Invitees'
+		[42] textbox 'Event invitees', clickable, visible
+		[43] LabelText '', visible
+			StaticText 'Recurring'
+		[44] combobox 'Recurring' value='Not Recurring', visible, hasPopup='menu', expanded=False
+		[49] button 'Create', clickable, visible
+	[52] button 'Return to List of Apps', clickable, visible
+--- action 16: fill('42', 'Alice')
+
+=== observation before step 17 (url path: /calendar/create_event/step3) ===
+[28] main '', visible
+	[31] image '', visible
+	[32] heading 'OpenCalendar', visible
+	[33] Section '', clickable, visible
+		[34] heading 'Create New Event (3 of 3)', visible
+		[39] LabelText '', clickable, visible
+			StaticText 'URL'
+		[40] textbox 'Event URL' value='https://example.com/design', clickable, visible
+		[41] LabelText '', clickable, visible
+			StaticText 'Invitees'
+		[42] textbox 'Event invitees' value='Alice', clickable, visible, focused
+		[43] LabelText '', visible
+			StaticText 'Recurring'
+		[44] combobox 'Recurring' value='Not Recurring', visible, hasPopup='menu', expanded=False
+		[49] button 'Create', clickable, visible
+	[52] button 'Return to List of Apps', clickable, visible
+--- action 17: click('49')
+
+=== final observation after the last action (url path: /calendar) ===
+[28] main '', visible
+	[31] main '', visible
+		[35] image '', visible
+		[36] heading 'OpenCalendar', visible
+		[39] button '< Prev', clickable, visible
+		[40] heading 'September 2026', visible
+		[41] button 'Next >', clickable, visible
+		[43] button 'Calendar', clickable, visible
+		[44] button 'Agenda', clickable, visible
+		[45] table '', visible
+			[46] rowgroup '', visible
+				[47] row '', visible
+					[48] columnheader 'Mon', visible
+					[49] columnheader 'Tue', visible
+					[50] columnheader 'Wed', visible
+					[51] columnheader 'Thu', visible
+					[52] columnheader 'Fri', visible
+					[53] columnheader 'Sat', visible
+					[54] columnheader 'Sun', visible
+			[55] rowgroup '', visible
+				[56] row '', visible
+					[57] gridcell '', visible
+					[58] gridcell '1', visible
+						StaticText '1'
+					[60] gridcell '2', visible
+						StaticText '2'
+					[62] gridcell '3', visible
+						StaticText '3'
+					[64] gridcell '4', visible
+						StaticText '4'
+					[66] gridcell '5', visible
+						StaticText '5'
+					[68] gridcell '6', visible
+						StaticText '6'
+				[70] row '', visible
+					[71] gridcell '7', visible
+						StaticText '7'
+					[73] gridcell "8 Charlie's Birthday (None)", visible
+						StaticText '8'
+						[75] link "Charlie's Birthday (None)", clickable, visible
+					[76] gridcell '9', visible
+						StaticText '9'
+					[78] gridcell '10', visible
+						StaticText '10'
+					[80] gridcell '11', visible
+						StaticText '11'
+					[82] gridcell '12', visible
+						StaticText '12'
+					[84] gridcell '13', visible
+						StaticText '13'
+				[86] row '', visible
+					[87] gridcell '14', visible
+						StaticText '14'
+					[89] gridcell '15', visible
+						StaticText '15'
+					[91] gridcell '16', visible
+						StaticText '16'
+					[93] gridcell '17', visible
+						StaticText '17'
+					[95] gridcell '18', visible
+						StaticText '18'
+					[97] gridcell '19', visible
+						StaticText '19'
+					[99] gridcell '20', visible
+						StaticText '20'
+				[101] row '', visible
+					[102] gridcell '21', visible
+						StaticText '21'
+					[104] gridcell "22 Jamal's Birthday (None)", visible
+						StaticText '22'
+						[106] link "Jamal's Birthday (None)", clickable, visible
+					[107] gridcell '23', visible
+						StaticText '23'
+					[109] gridcell '24', visible
+						StaticText '24'
+					[111] gridcell '25', visible
+						StaticText '25'
+					[113] gridcell '26', visible
+						StaticText '26'
+					[115] gridcell '27', visible
+						StaticText '27'
+
+The episode above ended with the task completed.
+
+Write ONE python function
+
+    def program(page, binding: dict, base_url: str) -> bool
+
+that uses the given Playwright ``page`` (already open; navigate with
+page.goto(base_url + path)) to complete the task for ANY binding, plus
+a module-level PARAMS_SCHEMA dict describing each of the six keys.
+Rules:
+- Use only the Playwright ``page`` object and the standard library.
+- Never hard-code any of the six values; read them from ``binding``.
+- Drive the form through the browser UI, not the app's HTTP API.
+- Re-locate elements per screen as the flow moves on; raise on failure
+  and return True once the flow has completed.
+Reply with ONLY the python source (one ```python block or raw code),
+no explanation.

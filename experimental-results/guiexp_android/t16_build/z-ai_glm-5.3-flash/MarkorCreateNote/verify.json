@@ -1,0 +1,140 @@
+{
+ "family": "MarkorCreateNote",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "AttributeError: 'bool' object has no attribute 'lower'",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    }
+   ],
+   "analysis": {
+    "cause": "The crash is an internal script bug \u2014 after opening Markor, some lookup/check returned a boolean (True/False) instead of an element's text, and the code then called `.lower()` on it. The device state is fine; Markor is open on its main screen.",
+    "done": "Markor was opened successfully and is showing the MainActivity file list.",
+    "plan": "1) Tap the \"Create a new file or folder\" button (index 1). 2) In the new-file dialog, enter the name friendly_koala_2023_03_02.txt and confirm (Create/OK). 3) In the editor that opens, type the text \"The early bird catches the worm.\" 4) Save the note (back button or save action) so the file is written to storage. 5) Verify the file friendly_koala_2023_03_02.txt appears in the file list.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 16,
+    "success": false
+   },
+   "refinement": 1
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Markor editor EditText not found after creating note",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Markor editor EditText not found after creating note"
+    }
+   ],
+   "analysis": {
+    "cause": "The filename was typed in fragments into the wrong element and \".txt\" was entered twice; the create dialog was never properly confirmed, so no editor screen opened (no EditText appeared) and the file \"friendly_koala_2023_03_02.txt\" was never created \u2014 the note text was never entered.",
+    "done": "Markor is open on the main file list; no file was created, so no subtask of the note creation is complete.",
+    "plan": "1) Tap index 1 (\"Create a new file or folder\") to open the create dialog. 2) Wait for the dialog's filename EditText to appear, then input the full name in one action: \"friendly_koala_2023_03_02.txt\". 3) Tap the dialog's OK/Create button and verify a note editor opens containing an EditText. 4) In the editor's EditText, input the text \"The early bird catches the worm.\" 5) Press Back to close the keyboard/leave the editor (Markor auto-saves), then confirm the file appears in the file list.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 16,
+    "success": false
+   },
+   "refinement": 2
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Markor editor EditText not found after creating note",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Markor editor EditText not found after creating note"
+    }
+   ],
+   "analysis": {
+    "cause": "The agent typed the filename into the new-file dialog but then pressed navigate_back, which cancelled the dialog instead of confirming it, so no file was created and the editor EditText never appeared; the note text was never entered either.",
+    "done": "Markor is open on its main file-list screen; no note has been created yet.",
+    "plan": "1) Click index 1 ('Create a new file or folder') to open the new-file dialog (this also clears the 'Press Back again to exit' state). 2) In the dialog, type the full name 'friendly_koala_2023_03_02.txt' into the single filename field as one input (do not split it, do not press back). 3) Tap the dialog's confirm button ('Create file'/'OK') instead of navigate_back. 4) When the editor opens with its EditText, input the text 'The early bird catches the worm.'. 5) Press navigate_back once to save and return to the file list, then verify friendly_koala_2023_03_02.txt is listed.",
+    "decision": "continue"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 16,
+    "success": false
+   },
+   "refinement": 3
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    },\n    \"text\": {\n        \"type\": \"string\",\n        \"description\": \"The note's text content\",\n        \"required\": True,\n    },\n}\n\n\n# ---------------------------------------------------------------------------\n# All matching is done locally on fresh device.elements() dumps.\n#\n# Repairs for the \"editor EditText not found\" failure (the create dialog was\n# cancelled instead of confirmed, so no file and no editor ever appeared):\n#   * the editor is now detected as \"an editable present AND the main\n#     screen's FAB ('Create a new file or folder', which stays in the dump\n#     behind the dialog) gone AND no CANCEL button\" -- the dialog's own\n#     fields are editable elements too and must never be mistaken for the\n#     editor;\n#   * the extension field is verified EXACTLY (with its leading dot): a\n#     pre-filled \"txt\" plus an appended \".txt\" silently produced \"txt.txt\",\n#     after which the OK tap created nothing; a dialog field that does not\n#     hold its wanted value is focused, wiped via keyevents and retyped via\n#     `adb input text`, which addresses the focused field, needs no element\n#     index, and is re-located on a fresh dump before every retry;\n#   * before OK is tapped the IME is hidden and the layout gets an extra\n#     settle, OK is re-located on a fresh dump immediately before the tap,\n#     and the tap is verified (editor open / dialog gone) with bounded\n#     re-taps; CANCEL/EXIT/IME keys can never match the OK lookup;\n#   * retry rounds recover to the main screen without stray navigate_backs\n#     (which armed Markor's \"Press 'Back' again to exit\" state).\n# ---------------------------------------------------------------------------\n\n_OK_TOKENS = (\"ok\", \"yes\", \"done\", \"confirm\", \"save\", \"create\")\n_IME_LABELS = (\"back\", \"del\", \"delete\", \"space\", \"shift\", \"emoji\", \"cancel\",\n               \"exit\", \"num\", \"abc\", \"sym\", \"ime\")\n\n\ndef _text(el):\n    return el.get(\"text\") or \"\"\n\n\ndef _desc(el):\n    return el.get(\"description\") or \"\"\n\n\ndef _hint(el):\n    return el.get(\"hint\") or \"\"\n\n\ndef _find(device, text=None, desc=None, hint=None, clickable=None, editable=None):\n    \"\"\"Case-insensitive substring match on a fresh dump; None = ignore.\"\"\"\n    for el in (device.elements() or []):\n        if clickable is not None and bool(el.get(\"clickable\")) != bool(clickable):\n            continue\n        if editable is not None and bool(el.get(\"editable\")) != bool(editable):\n            continue\n        if text is not None and text.lower() not in _text(el).lower():\n            continue\n        if desc is not None and desc.lower() not in _desc(el).lower():\n            continue\n        if hint is not None and hint.lower() not in _hint(el).lower():\n            continue\n        return el\n    return None\n\n\ndef _wait_for(device, fn, attempts=5, delay=1.0):\n    for _ in range(attempts):\n        el = fn()\n        if el is not None:\n            return el\n        device.settle(delay)\n    return None\n\n\ndef _editables(device):\n    return [el for el in (device.elements() or []) if el.get(\"editable\")]\n\n\ndef _keyboard_visible(device):\n    singles = 0\n    for el in (device.elements() or []):\n        if not el.get(\"clickable\"):\n            continue\n        label = (_text(el) or _desc(el)).strip()\n        if len(label) == 1:\n            singles += 1\n            if singles >= 4:\n                return True\n        if label.lower() in (\"back\", \"del\", \"delete\", \"space\", \"shift\", \"emoji\"):\n            return True\n    return False\n\n\ndef _hide_keyboard(device):\n    \"\"\"Close the IME if it is open (with an IME up, back only hides it).\"\"\"\n    if _keyboard_visible(device):\n        device.navigate_back()\n        device.settle(1.0)\n\n\ndef _looks_like_ext_field(el):\n    blob = (_hint(el) + \" \" + _text(el)).lower().strip()\n    token = blob.strip(\".\").strip()\n    return token in (\"txt\", \"md\", \"ext\", \"extension\", \"csv\", \"html\", \"json\",\n                     \"jpg\", \"jpeg\", \"png\") or \"extension\" in blob\n\n\ndef _split_dialog_fields(fields):\n    \"\"\"Return (name_field, extension_field) of the create dialog.\"\"\"\n    if not fields:\n        return None, None\n    if len(fields) == 1:\n        return fields[0], None\n    ext_i = None\n    for i, el in enumerate(fields):\n        if _looks_like_ext_field(el):\n            ext_i = i\n            break\n    if ext_i is None:\n        return fields[0], fields[1]\n    other = next(i for i in range(len(fields)) if i != ext_i)\n    return fields[other], fields[ext_i]\n\n\ndef _adb_type(device, value):\n    \"\"\"Type into the currently focused field via adb (no element index).\n    adb's `input text` takes %s for spaces; shell metacharacters escaped.\"\"\"\n    specials = \"&()<>|;*\\\\~\\\"'`?$#![]{}\"\n    out = []\n    for ch in value:\n        if ch == \" \":\n            out.append(\"%s\")\n        elif ch in specials:\n            out.append(\"\\\\\" + ch)\n        else:\n            out.append(ch)\n    device.adb_shell(\"input\", \"text\", \"\".join(out))\n\n\ndef _clear_focused_field(device, length_hint=0):\n    \"\"\"Wipe the focused field: cursor to the end, then delete backwards.\"\"\"\n    n = max(16, min(70, int(length_hint or 0) + 10))\n    device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n    for _ in range(n):\n        device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n\n\ndef _current_field_len(device, value):\n    \"\"\"Best-effort length of the text currently in the focused dialog field.\"\"\"\n    v = value.strip()\n    fallback = 0\n    for el in (device.elements() or []):\n        if not el.get(\"editable\"):\n            continue\n        t = _text(el)\n        if v and v in t:\n            return len(t)\n        if el.get(\"focused\"):\n            fallback = max(fallback, len(t))\n    return fallback\n\n\ndef _field_holds_exact(device, value):\n    v = value.strip()\n    if not v:\n        return True\n    for el in (device.elements() or []):\n        if el.get(\"editable\") and _text(el).strip() == v:\n            return True\n    return False\n\n\ndef _ext_holds(device, ext, strict=True):\n    \"\"\"True if some editable holds the extension; strict demands the dot.\"\"\"\n    want = ext.strip()\n    alts = (want,) if strict else (want, want.lstrip(\".\"))\n    for el in (device.elements() or []):\n        if el.get(\"editable\") and _text(el).strip() in alts:\n            return True\n    return False\n\n\ndef _name_field_index(device):\n    fields = _editables(device)\n    if not fields:\n        return None\n    if len(fields) == 1:\n        return fields[0][\"index\"]\n    name_el, _ext_el = _split_dialog_fields(fields)\n    return name_el[\"index\"] if name_el is not None else None\n\n\ndef _ext_field_index(device):\n    fields = _editables(device)\n    if len(fields) < 2:\n        return None\n    _name_el, ext_el = _split_dialog_fields(fields)\n    return ext_el[\"index\"] if ext_el is not None else None\n\n\ndef _fill_field(device, value, kind, locate, rounds=3):\n    \"\"\"Enter `value` into the dialog field located by `locate()` and verify.\n\n    The harness' atomic input_text is tried first; if the field does not hold\n    exactly the wanted value afterwards (text appended to a pre-filled\n    placeholder, value landed in the wrong field after an index shift, ...),\n    the field is focused, wiped via keyevents and retyped via `adb input\n    text`.  `kind` \"name\" demands an exact match; \"ext\" demands the extension\n    including its leading dot, so a pre-filled \"txt\" + appended \".txt\"\n    (\"txt.txt\") is rejected and corrected instead of silently confirmed.\n    \"\"\"\n    v = value.strip()\n    if not v:\n        return True\n\n    def _holds():\n        if kind == \"name\":\n            return _field_holds_exact(device, v)\n        return _ext_holds(device, v, strict=True)\n\n    if _holds():\n        return True\n    for attempt in range(max(1, rounds)):\n        idx = locate(device)\n        if idx is None:\n            break\n        if attempt == 0:\n            device.input_text(v, index=idx)\n        else:\n            device.click(index=idx)\n            device.settle(0.8)\n            _clear_focused_field(device, length_hint=_current_field_len(device, v))\n            _adb_type(device, v)\n        device.settle(0.8)\n        if _holds():\n            return True\n    if kind == \"ext\":\n        return _ext_holds(device, v, strict=False)\n    return _field_holds_exact(device, v)\n\n\ndef _fill_dialog(device, base_name, ext, file_name):\n    if not _editables(device):\n        return False\n    if not _fill_field(device, base_name, \"name\", _name_field_index):\n        return False\n    if not ext:\n        return True\n    if _ext_field_index(device) is None:\n        # no separate extension field: the single field holds the full name\n        if _field_holds_exact(device, file_name):\n            return True\n        return _fill_field(device, file_name, \"name\", _name_field_index)\n    if not _fill_field(device, ext, \"ext\", _ext_field_index):\n        return False\n    # correction pass: a mis-directed tap may have put a value into the wrong\n    # field; re-locate on fresh dumps and re-fill whatever slipped.\n    if not _field_holds_exact(device, base_name):\n        _fill_field(device, base_name, \"name\", _name_field_index, rounds=2)\n    if not _ext_holds(device, ext, strict=True):\n        _fill_field(device, ext, \"ext\", _ext_field_index, rounds=2)\n    return (_field_holds_exact(device, base_name)\n            and _ext_holds(device, ext, strict=False))\n\n\ndef _ok_button(device):\n    \"\"\"The create dialog's confirm button; CANCEL/EXIT/IME keys never match.\"\"\"\n    fallback = None\n    for el in (device.elements() or []):\n        label = (_text(el) or _desc(el)).strip().lower()\n        if not label or len(label) == 1 or \".\" in label:\n            continue\n        if label in _IME_LABELS:\n            continue\n        if not any(label == t or (label.startswith(t) and len(label) <= len(t) + 5)\n                   for t in _OK_TOKENS):\n            continue\n        if el.get(\"clickable\"):\n            return el\n        if fallback is None:\n            fallback = el\n    return fallback\n\n\ndef _harness_ok_index(device):\n    for probe in ({\"text\": \"OK\"}, {\"description\": \"OK\"}, {\"text\": \"Ok\"},\n                  {\"description\": \"ok\"}, {\"contains\": \"OK\"}):\n        try:\n            idx = device.find(**probe)\n        except Exception:\n            idx = None\n        if idx is not None:\n            return idx\n    return None\n\n\ndef _in_editor(device):\n    \"\"\"True when a note editor is open (not the create dialog, whose fields\n    are editable elements as well, and behind which the main screen's FAB\n    stays visible in the dump).\"\"\"\n    if _find(device, editable=True) is None:\n        return False\n    if _find(device, desc=\"Create a new file or folder\") is not None:\n        return False\n    if _find(device, text=\"cancel\", clickable=True) is not None:\n        return False\n    return True\n\n\ndef _create_dialog_open(device):\n    if not _editables(device):\n        return False\n    return (_find(device, desc=\"Create a new file or folder\") is not None\n            or _ok_button(device) is not None)\n\n\ndef _on_main(device):\n    return ((_find(device, desc=\"Create a new file or folder\", clickable=True)\n             is not None)\n            or _find(device, desc=\"create\", clickable=True) is not None)\n\n\ndef _open_main(device):\n    device.open_app(\"Markor\")\n    for _ in range(3):\n        if _wait_for(device, _on_main, attempts=2) is not None:\n            _hide_keyboard(device)\n            return True\n        device.navigate_back()  # leave a stale editor / settings screen\n        device.settle(1.0)\n    device.open_app(\"Markor\")\n    device.settle(1.0)\n    return _on_main(device)\n\n\ndef _recover_main(device):\n    for _ in range(2):\n        if _on_main(device):\n            return True\n        device.navigate_back()\n        device.settle(1.0)\n    if not _on_main(device):\n        device.open_app(\"Markor\")\n        device.settle(1.0)\n    return _on_main(device)\n\n\ndef _open_create_dialog(device):\n    if _create_dialog_open(device):\n        return True\n    for _ in range(3):\n        fab = (_find(device, desc=\"Create a new file or folder\", clickable=True)\n               or _find(device, desc=\"create\", clickable=True))\n        if fab is None:\n            return False\n        device.click(index=fab[\"index\"])\n        if _wait_for(device, lambda: _editables(device) or None, attempts=3):\n            return True\n        device.settle(1.0)\n    return False\n\n\ndef _cancel_dialog(device):\n    for _ in range(2):\n        if not _editables(device):\n            return\n        device.navigate_back()\n        device.settle(1.0)\n\n\ndef _confirm_dialog(device):\n    \"\"\"Hide the IME, tap the dialog's OK button, verify the outcome.\n    Returns 'editor' (note editor open), 'closed' (dialog gone) or 'stuck'.\"\"\"\n    _hide_keyboard(device)\n    device.settle(1.0)  # let the layout settle so the OK tap cannot land stale\n    for attempt in range(3):\n        if _in_editor(device):\n            return \"editor\"\n        if not _editables(device):\n            return \"closed\"\n        ok_el = _ok_button(device)\n        if ok_el is not None:\n            device.click(index=ok_el[\"index\"])\n        elif attempt >= 1:\n            idx = _harness_ok_index(device)\n            if idx is None:\n                device.settle(1.0)\n                continue\n            device.click(index=idx)\n        else:\n            device.settle(1.0)\n            continue\n        device.settle(1.5)\n        for _ in range(2):\n            if _in_editor(device):\n                return \"editor\"\n            if not _editables(device):\n                return \"closed\"\n            device.settle(1.0)\n    return \"stuck\"\n\n\ndef _find_file_item(device, file_name, base_name):\n    lookups = [\n        lambda: _find(device, text=file_name, clickable=True),\n        lambda: _find(device, text=file_name),\n        lambda: _find(device, desc=file_name),\n    ]\n    if base_name:\n        lookups += [\n            lambda: _find(device, text=base_name, clickable=True),\n            lambda: _find(device, text=base_name),\n        ]\n    for lookup in lookups:\n        el = lookup()\n        if el is not None:\n            return el\n    return None\n\n\ndef _wait_for_editor(device, file_name, base_name, attempts=4):\n    for _ in range(attempts):\n        if _in_editor(device):\n            return True\n        item = _find_file_item(device, file_name, base_name)\n        if item is not None:\n            device.click(index=item[\"index\"])\n            device.settle(1.5)\n            if _in_editor(device):\n                return True\n        device.settle(1.0)\n    return _in_editor(device)\n\n\ndef _open_file_from_list(device, file_name, base_name, attempts=3):\n    for _ in range(attempts):\n        if _in_editor(device):\n            return True\n        item = _find_file_item(device, file_name, base_name)\n        if item is not None:\n            device.click(index=item[\"index\"])\n            device.settle(1.5)\n        else:\n            device.scroll(direction=\"up\")\n            device.settle(1.0)\n    return _in_editor(device)\n\n\ndef _type_into_editor(device, text):\n    target = text.strip()\n    if not target:\n        return True\n    for attempt in range(3):\n        el = _find(device, editable=True)\n        if el is None:\n            return False\n        if target in _text(el):\n            return True\n        idx = el[\"index\"]\n        if attempt:\n            # focus and wipe first so a retry cannot duplicate the text\n            device.click(index=idx)\n            device.settle(0.8)\n            _clear_focused_field(device, length_hint=len(target) + 12)\n        device.input_text(target, index=idx)\n        device.settle(1.0)\n        el = _find(device, editable=True)\n        if el is not None and target in _text(el):\n            return True\n    return False\n\n\ndef _save_and_leave_editor(device):\n    \"\"\"Markor auto-saves on back: the first back hides the IME, the next one\n    leaves the editor.\"\"\"\n    for _ in range(4):\n        if _find(device, editable=True) is None:\n            return\n        device.navigate_back()\n        device.settle(1.0)\n\n\ndef _blob_listed(device, substr):\n    s = substr.lower()\n    if not s:\n        return False\n    for el in (device.elements() or []):\n        blob = (_text(el) + \" \" + _desc(el)).lower()\n        if s in blob:\n            return True\n    return False\n\n\ndef _note_listed(device, file_name, base_name):\n    for direction in (None, \"up\", \"down\"):\n        if _blob_listed(device, file_name.lower()):\n            return True\n        if base_name and _blob_listed(device, base_name.lower()):\n            return True\n        if direction:\n            device.scroll(direction=direction)\n            device.settle(1.0)\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n    text = binding[\"text\"]\n\n    # Split into base name and extension (extension keeps the dot).\n    if \".\" in file_name:\n        base_name, ext = file_name.rsplit(\".\", 1)\n        ext = \".\" + ext\n    else:\n        base_name, ext = file_name, \"\"\n    if not base_name:\n        base_name, ext = file_name, \"\"\n\n    # ---- Step 1: open Markor on its main screen --------------------------\n    if not _open_main(device):\n        raise RuntimeError(\"Markor did not open: main screen not found\")\n\n    # ---- Steps 2-4: create dialog -> name/ext fields -> OK ---------------\n    editor_ready = False\n    for _round in range(3):\n        if not _on_main(device):\n            _recover_main(device)\n        if not _open_create_dialog(device):\n            _cancel_dialog(device)\n            continue\n        if not _fill_dialog(device, base_name, ext, file_name):\n            _cancel_dialog(device)  # cancel the dialog and retry fresh\n            continue\n        state = _confirm_dialog(device)\n        if state == \"editor\":\n            editor_ready = True\n            break\n        if state == \"closed\" and _wait_for_editor(device, file_name, base_name):\n            editor_ready = True\n            break\n        _cancel_dialog(device)\n    if not _in_editor(device):\n        _cancel_dialog(device)\n        if not _open_file_from_list(device, file_name, base_name):\n            raise RuntimeError(\"Markor editor EditText not found after creating note\")\n\n    # ---- Step 5: type the note text into the editor ----------------------\n    if not _type_into_editor(device, text):\n        raise RuntimeError(\"Failed to enter the note text into the editor\")\n\n    # ---- Step 6: save by leaving the editor (auto-save on back) ----------\n    _save_and_leave_editor(device)\n    device.settle(1.0)\n\n    # ---- Step 7: verify the note shows up in the file list ---------------\n    if not _note_listed(device, file_name, base_name):\n        device.open_app(\"Markor\")\n        device.settle(1.0)\n    if not _note_listed(device, file_name, base_name):\n        raise RuntimeError(f\"Note '{file_name}' not visible in the file list after creation\")\n\n    return True\n",
+ "conclusions": [
+  "seed 1: The crash is an internal script bug \u2014 after opening Markor, some lookup/check returned a boolean (True/False) instead of an element's text, and the code then called `.lower()` on it. The device state is fine; Markor is open on its main screen.",
+  "seed 1: The filename was typed in fragments into the wrong element and \".txt\" was entered twice; the create dialog was never properly confirmed, so no editor screen opened (no EditText appeared) and the file \"friendly_koala_2023_03_02.txt\" was never created \u2014 the note text was never entered.",
+  "seed 1: The agent typed the filename into the new-file dialog but then pressed navigate_back, which cancelled the dialog instead of confirming it, so no file was created and the editor EditText never appeared; the note text was never entered either."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 2528,
+   "cached_tokens": 0,
+   "completion_tokens": 2907,
+   "total_tokens": 5435,
+   "cost_usd": 0.00173183
+  },
+  "resume_episodes": {
+   "calls": 48,
+   "prompt_tokens": 2756236,
+   "cached_tokens": 1920000,
+   "completion_tokens": 133187,
+   "total_tokens": 2889423,
+   "cost_usd": 0.2053948
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 12628,
+   "cached_tokens": 0,
+   "completion_tokens": 199428,
+   "total_tokens": 212056,
+   "cost_usd": 0.09819554
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": null,
+ "test_seed0": {
+  "passed": false,
+  "error": "TypeError: _on_main() missing 1 required positional argument: 'device'"
+ },
+ "record_type": "verification"
+}

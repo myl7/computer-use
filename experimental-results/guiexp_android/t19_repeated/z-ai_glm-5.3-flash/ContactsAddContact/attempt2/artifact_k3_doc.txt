@@ -1,0 +1,19 @@
+GOAL: Create a new contact named {name} whose phone number is {number} in Google Contacts.
+
+1. Open the Contacts app and wait for the contacts list screen.
+2. On the contacts list, tap the floating "Create contact" button, found by its "Create contact" label, not by position.
+3. Wait for the contact editor screen showing the First name, Last name, and Phone fields.
+4. Tap the "First name" field and type the FIRST word of {name}.
+5. Tap the "Last name" field and type the SECOND word of {name}.
+6. Tap the "Phone" field and type {number} exactly as given.
+7. Leave the phone label at its default; do not open or change the label selector.
+8. Locate the "Save" button on the editor; if it is not visible, scroll down and look again.
+9. Tap "Save" and wait; the app returns to the contacts list once the contact is stored.
+10. Confirm the contact {name} appears in the list; if the editor is still open, the save did not register, so tap "Save" again.
+
+TRAPS:
+- The name is split across TWO fields: first word of {name} goes to "First name", second word to "Last name". Never type the full name into one field.
+- Identify every field by its hint or label text ("First name", "Last name", "Phone") together with being editable, never by element index; indexes shift between screens and runs.
+- Do not type into the search bar or any dialer or dialpad control; only the editor's First name, Last name, and Phone fields receive text.
+- If any editor field already contains text, clear it before typing the value.
+- The Save button can sit below the fold; scroll the editor if it is not on screen.

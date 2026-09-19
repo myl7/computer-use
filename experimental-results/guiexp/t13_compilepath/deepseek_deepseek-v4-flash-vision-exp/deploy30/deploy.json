@@ -1,0 +1,766 @@
+{
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "n": 30,
+ "uses": [
+  {
+   "goal": "Add a Zeta Standup on 2026-10-01 to the calendar. Description: Daily check-in. Location: Standup Room. Link: https://example.com/zeta. Invite: Heidi.",
+   "expected": {
+    "title": "Zeta Standup",
+    "date": "2026-10-01",
+    "description": "Daily check-in",
+    "location": "Standup Room",
+    "url": "https://example.com/zeta",
+    "invitees": "Heidi"
+   },
+   "extracted": {
+    "title": "Zeta Standup",
+    "date": "2026-10-01",
+    "description": "Daily check-in.",
+    "location": "Standup Room",
+    "url": "https://example.com/zeta",
+    "invitees": "Heidi"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 343,
+   "cost_usd": 0.0001159,
+   "wall_s": 2.35
+  },
+  {
+   "goal": "Put this on my calendar please: Eta Retro, 2026-10-08, the notes say Sprint postmortem, it happens in Room 12, more info at https://example.com/eta, and Ivan should be invited.",
+   "expected": {
+    "title": "Eta Retro",
+    "date": "2026-10-08",
+    "description": "Sprint postmortem",
+    "location": "Room 12",
+    "url": "https://example.com/eta",
+    "invitees": "Ivan"
+   },
+   "extracted": {
+    "title": "Eta Retro",
+    "date": "2026-10-08",
+    "description": "Sprint postmortem",
+    "location": "Room 12",
+    "url": "https://example.com/eta",
+    "invitees": "Ivan"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 480,
+   "cost_usd": 0.00020106,
+   "wall_s": 5.59
+  },
+  {
+   "goal": "Calendar entry needed: Theta Planning on 2026-10-15; description Quarterly roadmap; venue Room 3; url https://example.com/theta; guest Judy.",
+   "expected": {
+    "title": "Theta Planning",
+    "date": "2026-10-15",
+    "description": "Quarterly roadmap",
+    "location": "Room 3",
+    "url": "https://example.com/theta",
+    "invitees": "Judy"
+   },
+   "extracted": {
+    "title": "Theta Planning",
+    "date": "2026-10-15",
+    "description": "Quarterly roadmap",
+    "location": "Room 3",
+    "url": "https://example.com/theta",
+    "invitees": "Judy"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 337,
+   "cost_usd": 0.00023566,
+   "wall_s": 2.53
+  },
+  {
+   "goal": "Create Iota Review, happening 2026-10-22, described as Design review, in Room 9, link https://example.com/iota, with Karl invited.",
+   "expected": {
+    "title": "Iota Review",
+    "date": "2026-10-22",
+    "description": "Design review",
+    "location": "Room 9",
+    "url": "https://example.com/iota",
+    "invitees": "Karl"
+   },
+   "extracted": {
+    "title": "Iota Review",
+    "date": "2026-10-22",
+    "description": "Design review",
+    "location": "Room 9",
+    "url": "https://example.com/iota",
+    "invitees": "Karl"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 360,
+   "cost_usd": 0.00013286,
+   "wall_s": 2.27
+  },
+  {
+   "goal": "I need an event: Lambda Sync 2026-10-29, summary Weekly sync, place Atrium, details https://example.com/lambda, attendee Lily.",
+   "expected": {
+    "title": "Lambda Sync",
+    "date": "2026-10-29",
+    "description": "Weekly sync",
+    "location": "Atrium",
+    "url": "https://example.com/lambda",
+    "invitees": "Lily"
+   },
+   "extracted": {
+    "title": "Lambda Sync",
+    "date": "2026-10-29",
+    "description": "Weekly sync",
+    "location": "Atrium",
+    "url": "https://example.com/lambda",
+    "invitees": "Lily"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 620,
+   "cost_usd": 0.00055415,
+   "wall_s": 4.81
+  },
+  {
+   "goal": "Schedule Mu Demo for 2026-11-05. It is a Feature demo, located in Hall C, url is https://example.com/mu, invite Mallory.",
+   "expected": {
+    "title": "Mu Demo",
+    "date": "2026-11-05",
+    "description": "Feature demo",
+    "location": "Hall C",
+    "url": "https://example.com/mu",
+    "invitees": "Mallory"
+   },
+   "extracted": {
+    "title": "Mu Demo",
+    "date": "2026-11-05",
+    "description": "Feature demo",
+    "location": "Hall C",
+    "url": "https://example.com/mu",
+    "invitees": "Mallory"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 348,
+   "cost_usd": 0.00025003,
+   "wall_s": 2.86
+  },
+  {
+   "goal": "New calendar item: Nu Audit, 2026-11-12, Compliance check, Suite 4, https://example.com/nu, guest Ned.",
+   "expected": {
+    "title": "Nu Audit",
+    "date": "2026-11-12",
+    "description": "Compliance check",
+    "location": "Suite 4",
+    "url": "https://example.com/nu",
+    "invitees": "Ned"
+   },
+   "extracted": {
+    "title": "Nu Audit",
+    "date": "2026-11-12",
+    "description": "Compliance check",
+    "location": "Suite 4",
+    "url": "https://example.com/nu",
+    "invitees": "Ned"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 702,
+   "cost_usd": 0.00033107,
+   "wall_s": 5.14
+  },
+  {
+   "goal": "Add Xi Workshop on 2026-11-19 with description Training day at Lab 2, see https://example.com/xi, invite Olivia.",
+   "expected": {
+    "title": "Xi Workshop",
+    "date": "2026-11-19",
+    "description": "Training day",
+    "location": "Lab 2",
+    "url": "https://example.com/xi",
+    "invitees": "Olivia"
+   },
+   "extracted": {
+    "title": "Xi Workshop",
+    "date": "2026-11-19",
+    "description": "Training day at Lab 2, see https://example.com/xi",
+    "location": "Lab 2",
+    "url": "https://example.com/xi",
+    "invitees": "Olivia"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 1484,
+   "cost_usd": 0.00085207,
+   "wall_s": 29.04
+  },
+  {
+   "goal": "Please create Omicron Sync, date 2026-11-26, notes say Budget review, room Finance 1, link https://example.com/omicron, invite Pat.",
+   "expected": {
+    "title": "Omicron Sync",
+    "date": "2026-11-26",
+    "description": "Budget review",
+    "location": "Finance 1",
+    "url": "https://example.com/omicron",
+    "invitees": "Pat"
+   },
+   "extracted": {
+    "title": "Omicron Sync",
+    "date": "2026-11-26",
+    "description": "Budget review",
+    "location": "Finance 1",
+    "url": "https://example.com/omicron",
+    "invitees": "Pat"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 383,
+   "cost_usd": 0.00012046,
+   "wall_s": 2.54
+  },
+  {
+   "goal": "Calendar: Pi Retro on 2026-12-03, Team retrospective, Room 5, https://example.com/pi, invite Quinn.",
+   "expected": {
+    "title": "Pi Retro",
+    "date": "2026-12-03",
+    "description": "Team retrospective",
+    "location": "Room 5",
+    "url": "https://example.com/pi",
+    "invitees": "Quinn"
+   },
+   "extracted": {
+    "title": "Pi Retro",
+    "date": "2026-12-03",
+    "description": "Team retrospective",
+    "location": "Room 5",
+    "url": "https://example.com/pi",
+    "invitees": "Quinn"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 329,
+   "cost_usd": 0.00023043,
+   "wall_s": 2.38
+  },
+  {
+   "goal": "Add Rho Planning on 2026-12-10 for me. It is a Roadmap session, held in Room 21, details at https://example.com/rho, with Rosa invited.",
+   "expected": {
+    "title": "Rho Planning",
+    "date": "2026-12-10",
+    "description": "Roadmap session",
+    "location": "Room 21",
+    "url": "https://example.com/rho",
+    "invitees": "Rosa"
+   },
+   "extracted": {
+    "title": "Rho Planning",
+    "date": "2026-12-10",
+    "description": "Roadmap session",
+    "location": "Room 21",
+    "url": "https://example.com/rho",
+    "invitees": "Rosa"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 370,
+   "cost_usd": 0.00013765,
+   "wall_s": 2.02
+  },
+  {
+   "goal": "New calendar item: Sigma Review, 2026-12-17, described as Architecture review, it happens in Hall D, link https://example.com/sigma, guest Sam.",
+   "expected": {
+    "title": "Sigma Review",
+    "date": "2026-12-17",
+    "description": "Architecture review",
+    "location": "Hall D",
+    "url": "https://example.com/sigma",
+    "invitees": "Sam"
+   },
+   "extracted": {
+    "title": "Sigma Review",
+    "date": "2026-12-17",
+    "description": "Architecture review",
+    "location": "Hall D",
+    "url": "https://example.com/sigma",
+    "invitees": "Sam"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 334,
+   "cost_usd": 0.00011543,
+   "wall_s": 1.81
+  },
+  {
+   "goal": "Schedule Tau Sync on 2027-01-07. Description: Weekly alignment. Location: Atrium North. Url: https://example.com/tau. Invite: Tara.",
+   "expected": {
+    "title": "Tau Sync",
+    "date": "2027-01-07",
+    "description": "Weekly alignment",
+    "location": "Atrium North",
+    "url": "https://example.com/tau",
+    "invitees": "Tara"
+   },
+   "extracted": {
+    "title": "Tau Sync",
+    "date": "2027-01-07",
+    "description": "Weekly alignment",
+    "location": "Atrium North",
+    "url": "https://example.com/tau",
+    "invitees": "Tara"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 338,
+   "cost_usd": 0.00011805,
+   "wall_s": 2.08
+  },
+  {
+   "goal": "I need an event: Upsilon Workshop 2027-01-14, it is a Hands-on lab, located at Lab 7, more info https://example.com/upsilon, invite Ugo.",
+   "expected": {
+    "title": "Upsilon Workshop",
+    "date": "2027-01-14",
+    "description": "Hands-on lab",
+    "location": "Lab 7",
+    "url": "https://example.com/upsilon",
+    "invitees": "Ugo"
+   },
+   "extracted": {
+    "title": "Upsilon Workshop",
+    "date": "2027-01-14",
+    "description": "Hands-on lab",
+    "location": "Lab 7",
+    "url": "https://example.com/upsilon",
+    "invitees": "Ugo"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 350,
+   "cost_usd": 0.00012327,
+   "wall_s": 1.9
+  },
+  {
+   "goal": "Create Phi Demo, happening 2027-01-21, described as Feature preview, in Room 14, link https://example.com/phi, with Pia invited.",
+   "expected": {
+    "title": "Phi Demo",
+    "date": "2027-01-21",
+    "description": "Feature preview",
+    "location": "Room 14",
+    "url": "https://example.com/phi",
+    "invitees": "Pia"
+   },
+   "extracted": {
+    "title": "Phi Demo",
+    "date": "2027-01-21",
+    "description": "Feature preview",
+    "location": "Room 14",
+    "url": "https://example.com/phi",
+    "invitees": "Pia"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 335,
+   "cost_usd": 0.00011652,
+   "wall_s": 2.15
+  },
+  {
+   "goal": "Put this on my calendar please: Chi Audit, 2027-01-28, the notes say Compliance drill, it happens in Suite 12, details https://example.com/chi, and Chad should be invited.",
+   "expected": {
+    "title": "Chi Audit",
+    "date": "2027-01-28",
+    "description": "Compliance drill",
+    "location": "Suite 12",
+    "url": "https://example.com/chi",
+    "invitees": "Chad"
+   },
+   "extracted": {
+    "title": "Chi Audit",
+    "date": "2027-01-28",
+    "description": "Compliance drill",
+    "location": "Suite 12",
+    "url": "https://example.com/chi",
+    "invitees": "Chad"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 348,
+   "cost_usd": 9.411e-05,
+   "wall_s": 2.42
+  },
+  {
+   "goal": "Calendar entry needed: Psi Retro on 2027-02-04; description Incident review; venue Room 8; url https://example.com/psi; guest Petra.",
+   "expected": {
+    "title": "Psi Retro",
+    "date": "2027-02-04",
+    "description": "Incident review",
+    "location": "Room 8",
+    "url": "https://example.com/psi",
+    "invitees": "Petra"
+   },
+   "extracted": {
+    "title": "Psi Retro",
+    "date": "2027-02-04",
+    "description": "Incident review",
+    "location": "Room 8",
+    "url": "https://example.com/psi",
+    "invitees": "Petra"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 336,
+   "cost_usd": 9.019e-05,
+   "wall_s": 2.43
+  },
+  {
+   "goal": "Schedule Omega Planning for 2027-02-11. It is a Quarterly sync, located in Hall A, url is https://example.com/omega, invite Otto.",
+   "expected": {
+    "title": "Omega Planning",
+    "date": "2027-02-11",
+    "description": "Quarterly sync",
+    "location": "Hall A",
+    "url": "https://example.com/omega",
+    "invitees": "Otto"
+   },
+   "extracted": {
+    "title": "Omega Planning",
+    "date": "2027-02-11",
+    "description": "Quarterly sync",
+    "location": "Hall A",
+    "url": "https://example.com/omega",
+    "invitees": "Otto"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 330,
+   "cost_usd": 8.67e-05,
+   "wall_s": 2.12
+  },
+  {
+   "goal": "Add Atlas Standup on 2027-02-18. Description: Daily check-in. Location: Standup Room 2. Link: https://example.com/atlas. Invite: Amy.",
+   "expected": {
+    "title": "Atlas Standup",
+    "date": "2027-02-18",
+    "description": "Daily check-in",
+    "location": "Standup Room 2",
+    "url": "https://example.com/atlas",
+    "invitees": "Amy"
+   },
+   "extracted": {
+    "title": "Atlas Standup",
+    "date": "2027-02-18",
+    "description": "Daily check-in.",
+    "location": "Standup Room 2",
+    "url": "https://example.com/atlas",
+    "invitees": "Amy"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 352,
+   "cost_usd": 0.00025003,
+   "wall_s": 2.56
+  },
+  {
+   "goal": "New calendar item: Boreas Review, 2027-02-25, Design critique, Room 11, https://example.com/boreas, guest Ben.",
+   "expected": {
+    "title": "Boreas Review",
+    "date": "2027-02-25",
+    "description": "Design critique",
+    "location": "Room 11",
+    "url": "https://example.com/boreas",
+    "invitees": "Ben"
+   },
+   "extracted": {
+    "title": "Boreas Review",
+    "date": "2027-02-25",
+    "description": "Design critique",
+    "location": "Room 11",
+    "url": "https://example.com/boreas",
+    "invitees": "Ben"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 852,
+   "cost_usd": 0.0004552,
+   "wall_s": 5.55
+  },
+  {
+   "goal": "Please create Chronos Sync on 2027-03-04. Description: Timezone alignment. Location: Atrium South. Link: https://example.com/chronos. Invite: Cleo.",
+   "expected": {
+    "title": "Chronos Sync",
+    "date": "2027-03-04",
+    "description": "Timezone alignment",
+    "location": "Atrium South",
+    "url": "https://example.com/chronos",
+    "invitees": "Cleo"
+   },
+   "extracted": {
+    "title": "Chronos Sync",
+    "date": "2027-03-04",
+    "description": "Timezone alignment.",
+    "location": "Atrium South",
+    "url": "https://example.com/chronos",
+    "invitees": "Cleo"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 376,
+   "cost_usd": 0.00013788,
+   "wall_s": 2.9
+  },
+  {
+   "goal": "I need an event: Dione Workshop 2027-03-11, summary Onboarding lab, place Lab 4, details https://example.com/dione, attendee Dora.",
+   "expected": {
+    "title": "Dione Workshop",
+    "date": "2027-03-11",
+    "description": "Onboarding lab",
+    "location": "Lab 4",
+    "url": "https://example.com/dione",
+    "invitees": "Dora"
+   },
+   "extracted": {
+    "title": "Dione Workshop",
+    "date": "2027-03-11",
+    "description": "Onboarding lab",
+    "location": "Lab 4",
+    "url": "https://example.com/dione",
+    "invitees": "Dora"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 386,
+   "cost_usd": 0.00024487,
+   "wall_s": 2.77
+  },
+  {
+   "goal": "Create Echo Demo, happening 2027-03-18, described as Live walkthrough, in Hall F, link https://example.com/echo, with Evan invited.",
+   "expected": {
+    "title": "Echo Demo",
+    "date": "2027-03-18",
+    "description": "Live walkthrough",
+    "location": "Hall F",
+    "url": "https://example.com/echo",
+    "invitees": "Evan"
+   },
+   "extracted": {
+    "title": "Create Echo Demo",
+    "date": "2027-03-18",
+    "description": "Live walkthrough",
+    "location": "Hall F",
+    "url": "https://example.com/echo",
+    "invitees": "Evan"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 873,
+   "cost_usd": 0.0004415,
+   "wall_s": 6.42
+  },
+  {
+   "goal": "Calendar: Focalor Audit on 2027-03-25, Security patch review, Suite 3, https://example.com/focalor, invite Fay.",
+   "expected": {
+    "title": "Focalor Audit",
+    "date": "2027-03-25",
+    "description": "Security patch review",
+    "location": "Suite 3",
+    "url": "https://example.com/focalor",
+    "invitees": "Fay"
+   },
+   "extracted": {
+    "title": "Focalor Audit",
+    "date": "2027-03-25",
+    "description": "Security patch review",
+    "location": "Suite 3",
+    "url": "https://example.com/focalor",
+    "invitees": "Fay"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 426,
+   "cost_usd": 0.00014986,
+   "wall_s": 2.83
+  },
+  {
+   "goal": "Put this on my calendar please: Golem Sync, 2027-04-01, the notes say Infrastructure sync, it happens in Room 6, more info at https://example.com/golem, and Gus should be invited.",
+   "expected": {
+    "title": "Golem Sync",
+    "date": "2027-04-01",
+    "description": "Infrastructure sync",
+    "location": "Room 6",
+    "url": "https://example.com/golem",
+    "invitees": "Gus"
+   },
+   "extracted": {
+    "title": "Golem Sync",
+    "date": "2027-04-01",
+    "description": "Infrastructure sync",
+    "location": "Room 6",
+    "url": "https://example.com/golem",
+    "invitees": "Gus"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 673,
+   "cost_usd": 0.00033214,
+   "wall_s": 3.36
+  },
+  {
+   "goal": "Calendar entry needed: Helios Review on 2027-04-08; description Lighting design review; venue Room 17; url https://example.com/helios; guest Hana.",
+   "expected": {
+    "title": "Helios Review",
+    "date": "2027-04-08",
+    "description": "Lighting design review",
+    "location": "Room 17",
+    "url": "https://example.com/helios",
+    "invitees": "Hana"
+   },
+   "extracted": {
+    "title": "Helios Review",
+    "date": "2027-04-08",
+    "description": "Lighting design review",
+    "location": "Room 17",
+    "url": "https://example.com/helios",
+    "invitees": "Hana"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 346,
+   "cost_usd": 0.0001224,
+   "wall_s": 1.97
+  },
+  {
+   "goal": "Schedule Icarus Demo for 2027-04-15. It is a Flight test demo, located in Hall B, url is https://example.com/icarus, invite Iris.",
+   "expected": {
+    "title": "Icarus Demo",
+    "date": "2027-04-15",
+    "description": "Flight test demo",
+    "location": "Hall B",
+    "url": "https://example.com/icarus",
+    "invitees": "Iris"
+   },
+   "extracted": {
+    "title": "Icarus Demo",
+    "date": "2027-04-15",
+    "description": "Flight test demo",
+    "location": "Hall B",
+    "url": "https://example.com/icarus",
+    "invitees": "Iris"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 344,
+   "cost_usd": 0.0001211,
+   "wall_s": 2.04
+  },
+  {
+   "goal": "Add Janus Workshop on 2027-04-22 with description Dual-track training at Lab 9, see https://example.com/janus, invite Jade.",
+   "expected": {
+    "title": "Janus Workshop",
+    "date": "2027-04-22",
+    "description": "Dual-track training",
+    "location": "Lab 9",
+    "url": "https://example.com/janus",
+    "invitees": "Jade"
+   },
+   "extracted": {
+    "title": "Janus Workshop",
+    "date": "2027-04-22",
+    "description": "Dual-track training at Lab 9",
+    "location": "Lab 9",
+    "url": "https://example.com/janus",
+    "invitees": "Jade"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 1,
+   "tokens": 1172,
+   "cost_usd": 0.00050097,
+   "wall_s": 7.29
+  },
+  {
+   "goal": "New calendar item: Kestrel Sync, 2027-04-29, Sprint coordination, Room 23, https://example.com/kestrel, guest Kai.",
+   "expected": {
+    "title": "Kestrel Sync",
+    "date": "2027-04-29",
+    "description": "Sprint coordination",
+    "location": "Room 23",
+    "url": "https://example.com/kestrel",
+    "invitees": "Kai"
+   },
+   "extracted": {
+    "title": "Kestrel Sync",
+    "date": "2027-04-29",
+    "description": "Sprint coordination",
+    "location": "Room 23",
+    "url": "https://example.com/kestrel",
+    "invitees": "guest Kai"
+   },
+   "success": false,
+   "error_type": "oracle_fail",
+   "retries": 0,
+   "tokens": 380,
+   "cost_usd": 0.00029272,
+   "wall_s": 4.61
+  },
+  {
+   "goal": "Please create Lyra Retro on 2027-05-06, Team harmony retrospective, Room 19, https://example.com/lyra, invite Lena.",
+   "expected": {
+    "title": "Lyra Retro",
+    "date": "2027-05-06",
+    "description": "Team harmony retrospective",
+    "location": "Room 19",
+    "url": "https://example.com/lyra",
+    "invitees": "Lena"
+   },
+   "extracted": {
+    "title": "Lyra Retro",
+    "date": "2027-05-06",
+    "description": "Team harmony retrospective",
+    "location": "Room 19",
+    "url": "https://example.com/lyra",
+    "invitees": "Lena"
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 411,
+   "cost_usd": 0.0001405,
+   "wall_s": 2.76
+  }
+ ],
+ "success_count": 23,
+ "success_rate": 0.7666666666666667,
+ "d_tokens_mean": 490.6,
+ "total_tokens": 14718,
+ "total_cost_usd": 0.00709478,
+ "record_type": "deploy",
+ "program_path": "/Users/myl/app/computer-use/experimental-results/guiexp/t13_compilepath/deepseek_deepseek-v4-flash-vision-exp/attempt2/family_program.py",
+ "layout": "wizard",
+ "role": "deploy30-best",
+ "best_attempt": 2
+}

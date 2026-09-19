@@ -1,0 +1,302 @@
+{
+ "family": "CommentPost",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: action failed: ValueError: no element with id {'tag': 'a', 'text': '1 comment', 'role': '', 'placeholder': '', 'aria': '', 'name': '', 'id': '', 'href': '/f/newhampshire/129025/boston-to-manchester-n-",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: action failed: ValueError: no element with id {'tag': 'a', 'text': '1 comment', 'role': '', 'placeholder': '', 'aria': '', 'name': '', 'id': '', 'href': '/f/newhampshire/129025/boston-to-manchester-n-"
+    }
+   ],
+   "analysis": {
+    "cause": "The click targeted the search-result link via a full element descriptor, but the framework could not resolve it to an element id (the truncated search-result entry made the reference ambiguous/stale), so the click raised before ever leaving the search page. The post itself is fine and reachable from this page.",
+    "done": "Search performed and the target post located; logged in (user MarvelsGrantMan136); post URL identified (/f/newhampshire/129025/boston-to-manchester-n-h-rail-service-could-cost-782m-to).",
+    "plan": "1) From the current page, go directly to the post page by clicking element 30 (or goto its href: /f/newhampshire/129025/boston-to-manchester-n-h-rail-service-could-cost-782m-to). 2) On the post page, locate the comment textarea/form. 3) Type \"guiexp-1-c2bf6cce\" into the comment box. 4) Submit the comment form. 5) Verify the comment appears under the post.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1502,
+    "cached_tokens": 0,
+    "completion_tokens": 889,
+    "total_tokens": 2391,
+    "cost_usd": 0.000663102,
+    "usage": {
+     "prompt_tokens": 1502,
+     "completion_tokens": 889,
+     "cached_tokens": 0,
+     "cost_usd": 0.000663102
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 5,
+    "success": true,
+    "calls": 5,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3089,
+      "cached_tokens": 0,
+      "completion_tokens": 73,
+      "total_tokens": 3162,
+      "cost_usd": 0.0004948515,
+      "usage": {
+       "prompt_tokens": 3089,
+       "completion_tokens": 73,
+       "cached_tokens": 0,
+       "cost_usd": 0.0004948515
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 30}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 5486,
+      "cached_tokens": 3072,
+      "completion_tokens": 62,
+      "total_tokens": 5548,
+      "cost_usd": 0.0004804074,
+      "usage": {
+       "prompt_tokens": 5486,
+       "completion_tokens": 62,
+       "cached_tokens": 3072,
+       "cost_usd": 0.0004804074
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"input_text\", \"text\": \"guiexp-1-c2bf6cce\", \"index\": 31}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 7898,
+      "cached_tokens": 5440,
+      "completion_tokens": 50,
+      "total_tokens": 7948,
+      "cost_usd": 0.000551331,
+      "usage": {
+       "prompt_tokens": 7898,
+       "completion_tokens": 50,
+       "cached_tokens": 5440,
+       "cost_usd": 0.000551331
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 35}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 10957,
+      "cached_tokens": 7872,
+      "completion_tokens": 68,
+      "total_tokens": 11025,
+      "cost_usd": 0.0007255809,
+      "usage": {
+       "prompt_tokens": 10957,
+       "completion_tokens": 68,
+       "cached_tokens": 7872,
+       "cost_usd": 0.0007255809
+      },
+      "stage": "react_resume",
+      "action": "action: {\"action_type\": \"click\", \"index\": 81}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 13516,
+      "cached_tokens": 10944,
+      "completion_tokens": 109,
+      "total_tokens": 13625,
+      "cost_usd": 0.0007609338,
+      "usage": {
+       "prompt_tokens": 13516,
+       "completion_tokens": 109,
+       "cached_tokens": 10944,
+       "cost_usd": 0.0007609338
+      },
+      "stage": "react_resume",
+      "action": "The comment has been successfully posted \u2014 the page now shows \"MarvelsGrantMan136 wrote 0 seconds ago\" with the comment text \"guiexp-1-c2bf6cce\" visible under the post.\n\naction: {\"action_type\": \"status\", \"goal_status\": \"complete\"}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 5,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 3817,
+    "cached_tokens": 0,
+    "completion_tokens": 17292,
+    "total_tokens": 21109,
+    "cost_usd": 0.00547582,
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3817,
+     "cached_tokens": 0,
+     "completion_tokens": 17292,
+     "total_tokens": 21109,
+     "cost_usd": 0.00547582
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3817,
+      "cached_tokens": 0,
+      "completion_tokens": 17292,
+      "total_tokens": 21109,
+      "cost_usd": 0.0054758187,
+      "usage": {
+       "prompt_tokens": 3817,
+       "completion_tokens": 17292,
+       "cached_tokens": 0,
+       "cost_usd": 0.0054758187
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 1,
+ "replays": 1,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine1",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "import re\nfrom urllib.parse import quote\n\n\ndef program(device, binding: dict) -> bool:\n    forum = str(binding.get('forum') or '').strip()\n    title = str(binding.get('title') or '').strip()\n    text = str(binding.get('text') or '')\n\n    if not forum:\n        raise ValueError(\"binding['forum'] (forum short name) is required\")\n    if not title:\n        raise ValueError(\"binding['title'] (post title) is required\")\n\n    def norm(s):\n        return re.sub(r'\\s+', '', (s or '')).lower()\n\n    ntitle = norm(title)\n    ntitle_prefix = ntitle[:40]\n    base_slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')\n    slugs = [base_slug[:50].rstrip('-'), base_slug[:40].rstrip('-'), base_slug[:25].rstrip('-')]\n    slugs = [s for s in slugs if len(s) >= 5]\n\n    def eid(el):\n        \"\"\"Reduce a lookup result or an entry from device.elements() to the\n        bare integer element id the action calls expect.  Handing the full\n        descriptor dict to click/input_text makes the framework re-match\n        every stored attribute and fail (listing text/href are truncated),\n        so always pass the index number itself.\"\"\"\n        if isinstance(el, dict):\n            idx = el.get('index')\n            if idx is None:\n                raise LookupError('element entry has no index: %r' % (el,))\n            return idx\n        return el\n\n    def first(*lookups):\n        for lk in lookups:\n            try:\n                el = device.find(**lk)\n            except Exception:\n                el = None\n            if el is not None:\n                return el\n        return None\n\n    def is_forum_href(href):\n        href = (href or '').lower()\n        return ('/f/%s/' % forum.lower()) in href or ('/f/%s' % forum.lower()) in href\n\n    def locate_post_link():\n        \"\"\"Walk the element list, find the row whose title matches the target\n        post, and return (element_id, href) of that row's comments link\n        (never the title link, which opens the image/external URL).\"\"\"\n        els = device.elements()\n        anchors = [e for e in els if e.get('tag') == 'a']\n\n        title_idx = None\n        for e in anchors:\n            txt = norm(e.get('text'))\n            if ntitle and (ntitle in txt or (ntitle_prefix and ntitle_prefix in txt)):\n                title_idx = e.get('index')\n                break\n\n        after, anywhere = [], []\n        for e in anchors:\n            href = e.get('href') or ''\n            if not is_forum_href(href):\n                continue\n            txt = norm(e.get('text'))\n            comment_hit = 'comment' in txt          # 'No comments' / 'N comments'\n            slug_hit = any(s in href.lower() for s in slugs)\n            if e.get('index') == title_idx:\n                # the row's title link; only usable if it stays inside /f/\n                if slug_hit or comment_hit:\n                    anywhere.append((e.get('index'), href))\n                continue\n            if not (comment_hit or slug_hit):\n                continue\n            item = (e.get('index'), href)\n            anywhere.append(item)\n            if title_idx is not None and (e.get('index') or 0) > title_idx:\n                after.append(item)\n\n        for lst in (after, anywhere):\n            if lst:\n                return lst[0]\n        return None\n\n    def comment_box():\n        return first(\n            dict(tag='textarea', aria='Comment', editable=True),\n            dict(tag='textarea', name='comment[comment]', editable=True),\n            dict(tag='textarea', editable=True),\n        )\n\n    # 1) Locate the post via the site search (full title first, then\n    #    progressively shorter prefixes as fallbacks).\n    hit = None\n    queries = []\n    for q in (title, title[:60].strip(), title[:40].strip(), title[:25].strip()):\n        if q and q not in queries:\n            queries.append(q)\n    for q in queries:\n        device.goto('/search?q=' + quote(q))\n        device.settle(2)\n        hit = locate_post_link()\n        if hit:\n            break\n\n    # 2) Fallback: scan the forum's own listings for the post row.\n    if hit is None:\n        for path in ('/f/%s/new' % forum, '/f/%s' % forum):\n            device.goto(path)\n            device.settle(2)\n            hit = locate_post_link()\n            if hit:\n                break\n    if hit is None:\n        raise LookupError(\n            'Post titled %r not found via site search or /f/%s listings' % (title, forum))\n\n    # 3) Open the post page through the row's comments link, addressed by\n    #    its integer element id (a full descriptor dict is not resolvable\n    #    by the framework and was the cause of the previous failure).\n    el_id, href = hit\n    device.click(index=el_id)\n    device.settle(2)\n\n    box = comment_box()\n    if box is None and href:\n        # Recovery: go straight to the post page URL from the row.\n        device.goto(href)\n        device.settle(2)\n        box = comment_box()\n    if box is None:\n        raise LookupError('Comment textarea not found on post page (url=%r)'\n                          % (device.current_url(),))\n\n    device.input_text(text, index=eid(box))\n\n    # Mirror the recorded flow: toggle 'Formatting help', then re-enter the\n    # text before submitting (toggle skipped if the label is absent).\n    help_label = first(dict(tag='label', text='Formatting help'))\n    if help_label is not None:\n        device.click(index=eid(help_label))\n        device.settle(1)\n        box = comment_box()\n        if box is not None:\n            device.input_text(text, index=eid(box))\n\n    btn = first(dict(tag='button', text='Post'), dict(tag='button', contains='Post'))\n    if btn is None:\n        raise LookupError('Comment submit button labelled \"Post\" not found')\n    device.click(index=eid(btn))\n    device.settle(2)\n\n    # 4) Verify the comment is visible on the returned page (Postmill lands\n    #    on the post/comment page showing the newly posted comment).\n    needle = norm(text)\n    if not needle:\n        return True\n    page = norm(device.page_text())\n    if needle not in page:\n        device.scroll()\n        device.settle(1)\n        page = norm(device.page_text())\n    if needle not in page:\n        raise RuntimeError('Could not verify the comment was posted (url=%r)'\n                           % (device.current_url(),))\n    return True\n",
+ "last_artifact": "import re\nfrom urllib.parse import quote\n\n\ndef program(device, binding: dict) -> bool:\n    forum = str(binding.get('forum') or '').strip()\n    title = str(binding.get('title') or '').strip()\n    text = str(binding.get('text') or '')\n\n    if not forum:\n        raise ValueError(\"binding['forum'] (forum short name) is required\")\n    if not title:\n        raise ValueError(\"binding['title'] (post title) is required\")\n\n    def norm(s):\n        return re.sub(r'\\s+', '', (s or '')).lower()\n\n    ntitle = norm(title)\n    ntitle_prefix = ntitle[:40]\n    base_slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')\n    slugs = [base_slug[:50].rstrip('-'), base_slug[:40].rstrip('-'), base_slug[:25].rstrip('-')]\n    slugs = [s for s in slugs if len(s) >= 5]\n\n    def eid(el):\n        \"\"\"Reduce a lookup result or an entry from device.elements() to the\n        bare integer element id the action calls expect.  Handing the full\n        descriptor dict to click/input_text makes the framework re-match\n        every stored attribute and fail (listing text/href are truncated),\n        so always pass the index number itself.\"\"\"\n        if isinstance(el, dict):\n            idx = el.get('index')\n            if idx is None:\n                raise LookupError('element entry has no index: %r' % (el,))\n            return idx\n        return el\n\n    def first(*lookups):\n        for lk in lookups:\n            try:\n                el = device.find(**lk)\n            except Exception:\n                el = None\n            if el is not None:\n                return el\n        return None\n\n    def is_forum_href(href):\n        href = (href or '').lower()\n        return ('/f/%s/' % forum.lower()) in href or ('/f/%s' % forum.lower()) in href\n\n    def locate_post_link():\n        \"\"\"Walk the element list, find the row whose title matches the target\n        post, and return (element_id, href) of that row's comments link\n        (never the title link, which opens the image/external URL).\"\"\"\n        els = device.elements()\n        anchors = [e for e in els if e.get('tag') == 'a']\n\n        title_idx = None\n        for e in anchors:\n            txt = norm(e.get('text'))\n            if ntitle and (ntitle in txt or (ntitle_prefix and ntitle_prefix in txt)):\n                title_idx = e.get('index')\n                break\n\n        after, anywhere = [], []\n        for e in anchors:\n            href = e.get('href') or ''\n            if not is_forum_href(href):\n                continue\n            txt = norm(e.get('text'))\n            comment_hit = 'comment' in txt          # 'No comments' / 'N comments'\n            slug_hit = any(s in href.lower() for s in slugs)\n            if e.get('index') == title_idx:\n                # the row's title link; only usable if it stays inside /f/\n                if slug_hit or comment_hit:\n                    anywhere.append((e.get('index'), href))\n                continue\n            if not (comment_hit or slug_hit):\n                continue\n            item = (e.get('index'), href)\n            anywhere.append(item)\n            if title_idx is not None and (e.get('index') or 0) > title_idx:\n                after.append(item)\n\n        for lst in (after, anywhere):\n            if lst:\n                return lst[0]\n        return None\n\n    def comment_box():\n        return first(\n            dict(tag='textarea', aria='Comment', editable=True),\n            dict(tag='textarea', name='comment[comment]', editable=True),\n            dict(tag='textarea', editable=True),\n        )\n\n    # 1) Locate the post via the site search (full title first, then\n    #    progressively shorter prefixes as fallbacks).\n    hit = None\n    queries = []\n    for q in (title, title[:60].strip(), title[:40].strip(), title[:25].strip()):\n        if q and q not in queries:\n            queries.append(q)\n    for q in queries:\n        device.goto('/search?q=' + quote(q))\n        device.settle(2)\n        hit = locate_post_link()\n        if hit:\n            break\n\n    # 2) Fallback: scan the forum's own listings for the post row.\n    if hit is None:\n        for path in ('/f/%s/new' % forum, '/f/%s' % forum):\n            device.goto(path)\n            device.settle(2)\n            hit = locate_post_link()\n            if hit:\n                break\n    if hit is None:\n        raise LookupError(\n            'Post titled %r not found via site search or /f/%s listings' % (title, forum))\n\n    # 3) Open the post page through the row's comments link, addressed by\n    #    its integer element id (a full descriptor dict is not resolvable\n    #    by the framework and was the cause of the previous failure).\n    el_id, href = hit\n    device.click(index=el_id)\n    device.settle(2)\n\n    box = comment_box()\n    if box is None and href:\n        # Recovery: go straight to the post page URL from the row.\n        device.goto(href)\n        device.settle(2)\n        box = comment_box()\n    if box is None:\n        raise LookupError('Comment textarea not found on post page (url=%r)'\n                          % (device.current_url(),))\n\n    device.input_text(text, index=eid(box))\n\n    # Mirror the recorded flow: toggle 'Formatting help', then re-enter the\n    # text before submitting (toggle skipped if the label is absent).\n    help_label = first(dict(tag='label', text='Formatting help'))\n    if help_label is not None:\n        device.click(index=eid(help_label))\n        device.settle(1)\n        box = comment_box()\n        if box is not None:\n            device.input_text(text, index=eid(box))\n\n    btn = first(dict(tag='button', text='Post'), dict(tag='button', contains='Post'))\n    if btn is None:\n        raise LookupError('Comment submit button labelled \"Post\" not found')\n    device.click(index=eid(btn))\n    device.settle(2)\n\n    # 4) Verify the comment is visible on the returned page (Postmill lands\n    #    on the post/comment page showing the newly posted comment).\n    needle = norm(text)\n    if not needle:\n        return True\n    page = norm(device.page_text())\n    if needle not in page:\n        device.scroll()\n        device.settle(1)\n        page = norm(device.page_text())\n    if needle not in page:\n        raise RuntimeError('Could not verify the comment was posted (url=%r)'\n                           % (device.current_url(),))\n    return True\n",
+ "conclusions": [
+  "seed 1: The click targeted the search-result link via a full element descriptor, but the framework could not resolve it to an element id (the truncated search-result entry made the reference ambiguous/stale), so the click raised before ever leaving the search page. The post itself is fine and reachable from"
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 1,
+   "prompt_tokens": 1502,
+   "cached_tokens": 0,
+   "completion_tokens": 889,
+   "total_tokens": 2391,
+   "cost_usd": 0.0006631
+  },
+  "resume_episodes": {
+   "calls": 5,
+   "prompt_tokens": 40946,
+   "cached_tokens": 27328,
+   "completion_tokens": 362,
+   "total_tokens": 41308,
+   "cost_usd": 0.0030131
+  },
+  "builder_refinements": {
+   "calls": 1,
+   "prompt_tokens": 3817,
+   "cached_tokens": 0,
+   "completion_tokens": 17292,
+   "total_tokens": 21109,
+   "cost_usd": 0.00547582
+  },
+  "program_replays": {
+   "count": 1,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "forum": "lakewood",
+     "title": "dry cleaning",
+     "text": "guiexp-18186196782894070694-3cadbdb4"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "WritingPrompts",
+     "title": "[WP] A new teacher at the school sees ghostly messages written on the blackboard, but they're always warm and friendly. One afternoon however they see the messages with a messy script saying: \"Run, beware, hide!\"",
+     "text": "guiexp-18186196782894070695-7b33d971"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "Washington",
+     "title": "bald eagle perched on a cow in central washington",
+     "text": "guiexp-18186196782894070696-123b0e74"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "monitor",
+     "title": "IPS vs TN in 2023",
+     "text": "guiexp-18186196782894070697-7ca40616"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "forum": "monitor",
+     "title": "Why do my monitors look so completely different?",
+     "text": "guiexp-18186196782894070698-5097d22f"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

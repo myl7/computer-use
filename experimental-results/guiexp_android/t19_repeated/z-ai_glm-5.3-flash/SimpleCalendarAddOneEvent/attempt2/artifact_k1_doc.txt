@@ -1,0 +1,15 @@
+Open Simple Calendar Pro and wait for the main screen.
+Tap the floating "New Event" (plus) button; if a menu asks what to create, choose "Event" so the event editor opens.
+In the event editor, tap the Title field at the top and type {event_title}.
+Tap the Description field directly below it and type {event_description}.
+The date and time rows sit BELOW the text fields; scroll down if they are not visible.
+Tap the start-date row: a date picker dialog opens. Set it to {year}-{month}-{day} and confirm with OK.
+Tap the start-time row: a time picker dialog opens. Set {hour}:00 (24-hour clock, minutes zero) and confirm with OK.
+TRAP: there is no duration field — the length is expressed by the END time.
+Compute the end time as {hour}:00 plus {duration_mins} minutes; carry any minutes over 60 into the next hour.
+Tap the end-time row: the time picker dialog opens. Set the computed end time and confirm with OK.
+Every date/time change only applies after tapping OK in its dialog — a dismissed dialog discards the change.
+Leave the end-date row unchanged unless the computed end time passes midnight; in that case set the end date to the following day.
+Do not trust any pre-filled date or time: always open both the start and end pickers and set them explicitly.
+Tap the Save (floppy/check) action to store the event.
+You return to the main screen; verify the event appears on {year}-{month}-{day} with the right title, description, start {hour}:00, and end time equal to start plus {duration_mins} minutes.

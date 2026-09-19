@@ -1,0 +1,338 @@
+{
+ "schema": "t2sim.constants/1",
+ "notes": "T2 simulation constants. Fill measured numbers here as T1.1-T1.4 land; set status to 'measured' when a number is real. Placeholder cells carry provisional values so the pipeline runs end-to-end today; every output JSON records which statuses were used. OpenApps GLM/DS wizard numbers are the measured methods-v2 section-6 values. m=91 is measured (three methods agree); tau0 waits on d_full. Units: cache-adjusted tokens (fresh + r*cached).",
+ "cost_sets": {
+  "openapps_glm": {
+   "label": "OpenApps wizard layouts, GLM 5.3 Flash (cache-adjusted)",
+   "status": "measured",
+   "source": "T1.1/T1.3 cache-adjusted + d_full",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 95296,
+     "L": 22018,
+     "rho": 0.769,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "single_page": {
+     "status": "measured",
+     "c": 68655,
+     "L": 34813,
+     "rho": 0.493,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    },
+    "sectioned": {
+     "status": "measured",
+     "c": 55793,
+     "L": 25235,
+     "rho": 0.548,
+     "C": 14549,
+     "p": 1.0,
+     "d": 347,
+     "q0": 0.17
+    }
+   }
+  },
+  "openapps_ds": {
+   "label": "OpenApps wizard layouts, DeepSeek v4 flash vision-exp (cache-adjusted)",
+   "status": "measured",
+   "source": "T1.1/T1.3 cache-adjusted + d_full",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "wizard": {
+     "status": "measured",
+     "c": 114518,
+     "L": 31626,
+     "rho": 0.724,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "single_page": {
+     "status": "measured",
+     "c": 131076,
+     "L": 35112,
+     "rho": 0.732,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    },
+    "sectioned": {
+     "status": "measured",
+     "c": 135685,
+     "L": 41811,
+     "rho": 0.692,
+     "C": 13361,
+     "p": 1.0,
+     "d": 491,
+     "q0": 0.23
+    }
+   }
+  },
+  "android_glm": {
+   "label": "AndroidWorld 3 families, GLM 5.3 Flash (T1.2/T1.4)",
+   "status": "measured",
+   "source": "T1.2/T1.4 cache-adjusted",
+   "r_cache": 0.2,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "contacts": {
+     "status": "measured",
+     "c": 75629,
+     "L": 69436,
+     "rho": 0.08,
+     "C": 9864,
+     "p": 1.0,
+     "d": 225,
+     "q0": 0.0
+    },
+    "calendar": {
+     "status": "measured",
+     "note": "rho negative = told-text defect (pending user ruling); p=0 gate kills compilation anyway",
+     "c": 207260,
+     "L": 297246,
+     "rho": -0.43,
+     "C": 63052,
+     "p": 0.0,
+     "d": 321,
+     "q0": 1.0
+    },
+    "markor": {
+     "status": "measured",
+     "c": 108566,
+     "L": 81593,
+     "rho": 0.25,
+     "C": 5378,
+     "p": 0.0,
+     "d": 215,
+     "q0": 1.0
+    }
+   }
+  },
+  "android_ds": {
+   "label": "AndroidWorld 3 families, DeepSeek v4 flash vision-exp (T1.2/T1.4)",
+   "status": "measured",
+   "source": "T1.2/T1.4 cache-adjusted",
+   "r_cache": 0.318,
+   "m": 91,
+   "tau0": 368,
+   "layouts": {
+    "contacts": {
+     "status": "measured",
+     "c": 136183,
+     "L": 82949,
+     "rho": 0.39,
+     "C": 11986,
+     "p": 0.67,
+     "d": 277,
+     "q0": 0.0
+    },
+    "calendar": {
+     "status": "measured",
+     "c": 592877,
+     "L": 545982,
+     "rho": 0.08,
+     "C": 39088,
+     "p": 0.07,
+     "d": 360,
+     "q0": 0.77
+    },
+    "markor": {
+     "status": "measured",
+     "note": "rho negative = told-text defect; p=0 anyway",
+     "c": 66666,
+     "L": 101770,
+     "rho": -0.53,
+     "C": 20796,
+     "p": 0.0,
+     "d": 287,
+     "q0": 1.0
+    }
+   }
+  }
+ },
+ "price_ladder": [
+  {
+   "name": "native",
+   "C": null,
+   "note": "the cost set's own measured C"
+  },
+  {
+   "name": "autorpa_233k",
+   "C": 233000,
+   "note": "AutoRPA published offline build price"
+  },
+  {
+   "name": "1M",
+   "C": 1000000
+  },
+  {
+   "name": "5M",
+   "C": 5000000
+  },
+  {
+   "name": "xu_10M",
+   "C": 10000000
+  }
+ ],
+ "epsilon_cliff": {
+  "enabled": false,
+  "eps0": 0.3,
+  "cliff_start": 100,
+  "cliff_slope": 20,
+  "note": "eps(n) = eps0*sigmoid((n-cliff_start)/cliff_slope). Measured eps=0 for n<=100, so headline runs keep it off; E8 sweeps eps0/cliff_start/cliff_slope."
+ },
+ "streams": {
+  "synthetic": {
+   "patterns": [
+    "poisson",
+    "zipf",
+    "bursty"
+   ],
+   "n_arrivals": 300,
+   "n_arrivals_long": 30000
+  },
+  "wiki_A": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_tool_hot_tail.jsonl",
+   "window": null,
+   "label": "Wikipedia-A tool hot+tail (65,564 arrivals, 2,529 families)",
+   "role": "main"
+  },
+  "wiki_B": {
+   "format": "wiki_jsonl",
+   "path": "datasets/wiki-stream/stream_content_tail.jsonl",
+   "window": 100000,
+   "label": "Wikipedia-B content tail (161,830 total; first 100k by ts)",
+   "role": "main"
+  },
+  "sepsis": {
+   "format": "old_real_streams",
+   "key": "sepsis",
+   "label": "Sepsis process log (1,050 arrivals, 846 families)",
+   "role": "main"
+  },
+  "helpdesk": {
+   "format": "old_real_streams",
+   "key": "helpdesk",
+   "label": "Helpdesk process log (4,580 arrivals, 226 families)",
+   "role": "e5_selection"
+  },
+  "bpi2019": {
+   "format": "old_real_streams",
+   "key": "bpi2019",
+   "label": "BPI Challenge 2019 (251,734 arrivals, 11,973 families)",
+   "role": "held_out"
+  }
+ },
+ "trigger": {
+  "cooldown": "inflate",
+  "cooldown_len": 3,
+  "half_life": 120.0,
+  "prior_mode": "population",
+  "prior_shape": 1.0,
+  "prior_rate": 5.0,
+  "horizon_mode": "capped_doubling",
+  "horizon_cap": 50.0,
+  "horizon_fixed": 60,
+  "note": "horizon_cap = 1/h at the old engine's drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); the projection is H=lambda_hat*min-uses capped at it. The threshold also carries the manifest externality m*t (methods-v2 section 2 one-line extension), inert at m=0."
+ },
+ "e3": {
+  "cost_sets": [
+   "openapps_glm",
+   "android_glm"
+  ],
+  "price": "native"
+ },
+ "e4": {
+  "cost_set": "openapps_glm",
+  "streams": [
+   "wiki_A",
+   "wiki_B",
+   "sepsis"
+  ],
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M"
+  ],
+  "bpi_heldout": true,
+  "bpi_reps": null
+ },
+ "e5": {
+  "cost_set": "openapps_glm",
+  "selection_streams": [
+   "sepsis",
+   "helpdesk"
+  ],
+  "real_prices": [
+   "native",
+   "1M",
+   "5M"
+  ],
+  "stress_prices": [
+   "native",
+   "5M"
+  ],
+  "gate_rates": [
+   0.3,
+   0.6,
+   1.0
+  ],
+  "long_n": 30000,
+  "bpi_horizon_heldout": true,
+  "bpi_reps": 5
+ },
+ "e8": {
+  "cost_set": "openapps_glm",
+  "prices": [
+   "native",
+   "autorpa_233k",
+   "1M",
+   "5M",
+   "xu_10M"
+  ],
+  "strengths": [
+   0.5,
+   0.75,
+   1.0
+  ],
+  "include_native_strength": true,
+  "tau_modes": [
+   "off",
+   "measured",
+   "10x"
+  ],
+  "eps_modes": [
+   "off",
+   "cliff",
+   "harsh"
+  ],
+  "sens_prices": [
+   "native",
+   "5M"
+  ]
+ },
+ "extras": {
+  "C_fullread": {
+   "z-ai/glm-5.3-flash": 20633,
+   "deepseek/deepseek-v4-flash-vision-exp": 18760
+  },
+  "tau_law": "prompt(n)=368+90.0n (d_full); tax n=846 -> 76,737"
+ }
+}

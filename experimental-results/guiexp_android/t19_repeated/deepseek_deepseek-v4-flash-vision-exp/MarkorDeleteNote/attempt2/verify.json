@@ -1,0 +1,105 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n\n    # Launch Markor\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    # Locate the target file row, scrolling if necessary.\n    target = None\n    # Exact text match first, then content-desc fallback.\n    target = device.find(text=file_name)\n    if target is None:\n        target = device.find(description=f\"File {file_name}\")\n\n    if target is None:\n        # Scroll down a few pages to find the note.\n        for _ in range(5):\n            device.scroll(direction=\"down\")\n            target = device.find(text=file_name)\n            if target is None:\n                target = device.find(description=f\"File {file_name}\")\n            if target is not None:\n                break\n\n    if target is None:\n        # Scroll up in case the note is above the current viewport.\n        for _ in range(10):\n            device.scroll(direction=\"up\")\n            target = device.find(text=file_name)\n            if target is None:\n                target = device.find(description=f\"File {file_name}\")\n            if target is not None:\n                break\n\n    if target is None:\n        raise RuntimeError(f\"Note '{file_name}' not found in Markor\")\n\n    # Long-press the row to select it and show the selection toolbar.\n    device.long_press(index=target)\n\n    # Find the Delete action in the selection toolbar / context menu.\n    delete_el = device.find(description=\"Delete\", clickable=True)\n    if delete_el is None:\n        delete_el = device.find(text=\"Delete\", clickable=True)\n    if delete_el is None:\n        delete_el = device.find(text=\"Delete\")\n    if delete_el is None:\n        delete_el = device.find(description=\"Delete\")\n    if delete_el is None:\n        raise RuntimeError(\"Delete option not found after long press\")\n\n    device.click(index=delete_el)\n\n    # Confirm the deletion dialog.\n    ok_el = device.find(text=\"OK\", clickable=True)\n    if ok_el is None:\n        ok_el = device.find(text=\"OK\")\n    if ok_el is None:\n        ok_el = device.find(text=\"Yes\", clickable=True)\n    if ok_el is None:\n        raise RuntimeError(\"Confirmation button not found in delete dialog\")\n\n    device.click(index=ok_el)\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n\n    # Launch Markor\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    # Locate the target file row, scrolling if necessary.\n    target = None\n    # Exact text match first, then content-desc fallback.\n    target = device.find(text=file_name)\n    if target is None:\n        target = device.find(description=f\"File {file_name}\")\n\n    if target is None:\n        # Scroll down a few pages to find the note.\n        for _ in range(5):\n            device.scroll(direction=\"down\")\n            target = device.find(text=file_name)\n            if target is None:\n                target = device.find(description=f\"File {file_name}\")\n            if target is not None:\n                break\n\n    if target is None:\n        # Scroll up in case the note is above the current viewport.\n        for _ in range(10):\n            device.scroll(direction=\"up\")\n            target = device.find(text=file_name)\n            if target is None:\n                target = device.find(description=f\"File {file_name}\")\n            if target is not None:\n                break\n\n    if target is None:\n        raise RuntimeError(f\"Note '{file_name}' not found in Markor\")\n\n    # Long-press the row to select it and show the selection toolbar.\n    device.long_press(index=target)\n\n    # Find the Delete action in the selection toolbar / context menu.\n    delete_el = device.find(description=\"Delete\", clickable=True)\n    if delete_el is None:\n        delete_el = device.find(text=\"Delete\", clickable=True)\n    if delete_el is None:\n        delete_el = device.find(text=\"Delete\")\n    if delete_el is None:\n        delete_el = device.find(description=\"Delete\")\n    if delete_el is None:\n        raise RuntimeError(\"Delete option not found after long press\")\n\n    device.click(index=delete_el)\n\n    # Confirm the deletion dialog.\n    ok_el = device.find(text=\"OK\", clickable=True)\n    if ok_el is None:\n        ok_el = device.find(text=\"OK\")\n    if ok_el is None:\n        ok_el = device.find(text=\"Yes\", clickable=True)\n    if ok_el is None:\n        raise RuntimeError(\"Confirmation button not found in delete dialog\")\n\n    device.click(index=ok_el)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "hot_sun_4RHp"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "eager_zebra_2023_07_18"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "final_happy_penguin"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "happy_vase_SixC"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "backup_alert_xylophone"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

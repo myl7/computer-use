@@ -1,0 +1,327 @@
+{
+ "1": {
+  "family": "ContactsAddContact",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s1/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Contacts"
+    },
+    "field": null,
+    "analysis": "This action only depends on launching the Contacts app; it can fail if the app is named differently (e.g. \"Contacts\", \"Google Contacts\") or the launch silently fails, so we verify the PeopleActivity UI appeared (e.g. \"Create contact\") afterwards.",
+    "snippet": "device.open_app(binding.get(\"app_name\", \"Contacts\"))\ndevice.settle(2)\nif device.find(description=\"Create contact\") is None and device.find(text=\"No contacts yet\") is None:\n    raise RuntimeError(\"Contacts app did not open; PeopleActivity not detected\")",
+    "usage": {
+     "prompt_tokens": 757,
+     "completion_tokens": 119,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001161765
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "Nikola"
+    },
+    "field": "name",
+    "analysis": "The action depends on the contacts search input \u2014 the only editable field on screen, stable by its hint 'Search contacts' \u2014 while the recorded index 7 pointed at the non-editable 'No contacts yet' placeholder, which only exists on an empty contacts screen and whose index shifts on any other instance. Rebuild the text from binding and fail loudly if the search box is absent.",
+    "snippet": "idx = device.find(hint='Search contacts', editable=True)\nif idx is None:\n    raise RuntimeError(\"Contacts search field (hint='Search contacts') not found\")\ndevice.input_text(binding['name'].split()[0], index=idx)",
+    "usage": {
+     "prompt_tokens": 907,
+     "completion_tokens": 474,
+     "cached_tokens": 0,
+     "cost_usd": 0.00018465975
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "Fernandez"
+    },
+    "field": "name",
+    "analysis": "The action types the contact's last name (second word of `binding['name']`) into the contact-search EditText, identified by its hint 'Search contacts' and editable state \u2014 the recorded index 8 is unstable. It fails if the search field is absent (different screen) or the hint is localized, so look up by hint/editable and raise if not found.",
+    "snippet": "field = device.find(hint='Search contacts', editable=True)\nif field is None:\n    raise RuntimeError(\"Contact search field (hint='Search contacts') not found\")\ndevice.input_text(binding['name'].split()[1], index=field)",
+    "usage": {
+     "prompt_tokens": 590,
+     "completion_tokens": 327,
+     "cached_tokens": 0,
+     "cost_usd": 0.00012474
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 10,
+     "text": "+11417776317"
+    },
+    "field": "number",
+    "analysis": "The action appends the task phone number into the contacts search box, identified semantically by hint='Search contacts' + editable=True (the recorded index 10 actually pointed at a nearby frame; the diff shows the text landing in that EditText). On another instance indexes shift, and it fails if the search field isn't open or the hint differs \u2014 so look the field up by its hint and raise if absent.",
+    "snippet": "field = device.find(hint='Search contacts', editable=True)\nif field is None:\n    raise RuntimeError(\"Contacts search field (hint='Search contacts') not found; is the search bar open?\")\ndevice.input_text(binding['number'], index=field)",
+    "usage": {
+     "prompt_tokens": 587,
+     "completion_tokens": 523,
+     "cached_tokens": 0,
+     "cost_usd": 0.00030452796
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "This click clears the text in the contacts search field; it depends only on the \"Clear text\" ImageButton being present, which exists solely while the search EditText contains text. On another instance the index differs (so we look it up by description/class), and if the search field is empty the button won't exist and the lookup must fail loudly.",
+    "snippet": "clear_btn = device.find(description=\"Clear text\", clickable=True)\nif clear_btn is None:\n    raise LookupError(\"Search 'Clear text' button not found (search field may already be empty)\")\ndevice.click(clear_btn)",
+    "usage": {
+     "prompt_tokens": 730,
+     "completion_tokens": 307,
+     "cached_tokens": 0,
+     "cost_usd": 0.0002291256
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 3571,
+   "cached_tokens": 0,
+   "completion_tokens": 1750,
+   "total_tokens": 5321,
+   "cost_usd": 0.00095923
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "ContactsAddContact",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s2/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The action depends on a clickable launcher shortcut labeled \"Phone\" opening the dialer as the first step toward adding a contact; on another instance the icon may not be in the dock/predicted apps or may only expose a description, so the lookup should fall back and fail loudly if absent.",
+    "snippet": "idx = device.find(text='Phone', description='Phone', clickable=True)\nif idx is None:\n    idx = device.find(description='Phone', clickable=True)\nif idx is None:\n    raise LookupError(\"Phone app shortcut not found on the home screen\")\ndevice.click(idx)",
+    "usage": {
+     "prompt_tokens": 801,
+     "completion_tokens": 499,
+     "cached_tokens": 64,
+     "cost_usd": 0.00017917515
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This click depends solely on the dialer's \"key pad\" toggle button, identified by its content description; element indexes shift between screens/instances, and the failure mode is the button missing or being renamed (e.g., \"dial pad\"), so we look it up by description and error out clearly if absent.",
+    "snippet": "index = device.find(description='key pad', clickable=True)\nif index is None:\n    raise LookupError(\"Dialer 'key pad' button not found on screen\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 877,
+     "completion_tokens": 200,
+     "cached_tokens": 64,
+     "cost_usd": 0.00011081565
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "Aria"
+    },
+    "field": "name",
+    "analysis": "The action types the contact's first name (rebuilt from `binding['name']`) into the screen's text input; the recorded index 7 actually pointed at a fixed dialpad key ('5,JKL'), so it only works when that exact key exists at that index. On another instance we must instead locate whatever editable text field is present and type the first name there, failing clearly if none exists.",
+    "snippet": "first = binding['name'].split()[0]\nidx = device.find(editable=True)\nif idx is None:\n    raise LookupError(\"No editable text field found to enter the contact's first name\")\ndevice.click(index=idx)\ndevice.input_text(first, index=idx)",
+    "usage": {
+     "prompt_tokens": 534,
+     "completion_tokens": 1143,
+     "cached_tokens": 64,
+     "cost_usd": 0.0003187404
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "Ali"
+    },
+    "field": "name",
+    "analysis": "The action types a name-derived token into the dialer's number entry (the recorded index pointed at a dialpad key frame whose position and digit label shift between instances). Robust lookup: dialer screens have exactly one editable EditText (the number field), so target that and fail if it's missing.",
+    "snippet": "text = binding['name'].split()[1]\nidx = device.find(editable=True)\nif idx is None:\n    raise RuntimeError(\"Dialer number-entry EditText not found on dialpad screen\")\ndevice.input_text(text, index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 906,
+     "completion_tokens": 1045,
+     "cached_tokens": 0,
+     "cost_usd": 0.00057359808
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 10,
+     "text": "+11524493909"
+    },
+    "field": "number",
+    "analysis": "The action's intent is to type the task phone number into the contact editor's Phone field; the recorded index 10 was stale, pointing at a non-editable notification ImageView, so the field must be found by its semantic 'Phone' hint/editability instead. It can fail on another instance if the Phone field is absent, off-screen, or labeled differently, so the lookup must be verified before typing.",
+    "snippet": "number = binding['number']\nidx = device.find(hint='Phone', editable=True)\nif idx is None:\n    idx = device.find(contains='Phone', editable=True)\nif idx is None:\n    raise LookupError(\"Phone number input (hint 'Phone') not found on contact editor\")\ndevice.input_text(number, index=idx)",
+    "usage": {
+     "prompt_tokens": 904,
+     "completion_tokens": 626,
+     "cached_tokens": 64,
+     "cost_usd": 0.0002182554
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 4022,
+   "cached_tokens": 256,
+   "completion_tokens": 3513,
+   "total_tokens": 7535,
+   "cost_usd": 0.00140058
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "ContactsAddContact",
+  "model": "z-ai/glm-5.3-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Contacts"
+    },
+    "field": null,
+    "analysis": "This is a global launch action depending only on the Contacts app being launchable by name; it can fail if the app opens slowly or the launcher resolves a different app, so verify the Contacts UI actually appeared before proceeding.",
+    "snippet": "device.open_app(\"Contacts\")\ndevice.settle(2)\nif (device.find(description=\"Create contact\") is None\n        and device.find(description=\"Contacts\") is None):\n    raise RuntimeError(\"Failed to open Contacts app: no Contacts UI detected\")",
+    "usage": {
+     "prompt_tokens": 757,
+     "completion_tokens": 384,
+     "cached_tokens": 64,
+     "cost_usd": 0.00014744565
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "This action depends only on the floating \"Create contact\" button being identifiable by its content-description; indexes may shift across screens/instances, so it must be looked up semantically and the run aborted with a clear error if absent.",
+    "snippet": "index = device.find(description=\"Create contact\", clickable=True)\nif index is None:\n    raise LookupError(\"'Create contact' button not found; cannot open the contact editor\")\ndevice.click(index)",
+    "usage": {
+     "prompt_tokens": 849,
+     "completion_tokens": 221,
+     "cached_tokens": 64,
+     "cost_usd": 0.00011393415
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "input_text",
+     "index": 7,
+     "text": "Nora"
+    },
+    "field": "name",
+    "analysis": "The action depends on locating the \"First name\" EditText (by hint, editable) and typing the first token of binding['name']; on other instances the index differs but the hint stays stable. Fail if no editable First-name field is found.",
+    "snippet": "idx = device.find(hint='First name', editable=True)\nif idx is None:\n    raise RuntimeError(\"First name field not found on contact editor screen\")\ndevice.input_text(binding['name'].split()[0], index=idx)",
+    "usage": {
+     "prompt_tokens": 929,
+     "completion_tokens": 106,
+     "cached_tokens": 0,
+     "cost_usd": 0.0001287
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 8,
+     "text": "Gonzalez"
+    },
+    "field": "name",
+    "analysis": "The action depends on locating the editable \"Last name\" field in the contact editor by its hint, not its recorded index, then typing the second token of `binding['name']` (the surname). It can fail if the hint differs across instances, the field isn't visible without scrolling, or the binding name has no second token.",
+    "snippet": "idx = device.find(hint='Last name', editable=True)\nif idx is None:\n    idx = device.find(text='Last name', editable=True)\nif idx is None:\n    raise LookupError(\"Last name EditText not found on contact editor screen\")\nlast = binding['name'].split()[1] if len(binding['name'].split()) > 1 else binding['name']\ndevice.input_text(last, index=idx)",
+    "usage": {
+     "prompt_tokens": 523,
+     "completion_tokens": 323,
+     "cached_tokens": 0,
+     "cost_usd": 0.00020904444
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 10,
+     "text": "+18259791907"
+    },
+    "field": "number",
+    "analysis": "The action depends on finding the phone-number EditText in the contact editor; the recorded index 10 is unstable across instances, so look it up by hint/text 'Phone' with editable=True, and fail clearly if absent.",
+    "snippet": "idx = device.find(hint=\"Phone\", editable=True)\nif idx is None:\n    raise LookupError(\"Phone number EditText not found in contact editor\")\ndevice.input_text(binding[\"number\"], index=idx)",
+    "usage": {
+     "prompt_tokens": 1100,
+     "completion_tokens": 96,
+     "cached_tokens": 0,
+     "cost_usd": 0.000142164
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The click depends only on a \"Save\" button existing on the contact editor form (fields being pre-filled is a precondition of the recorded flow, not of the lookup). It fails on other instances because the button's index differs per screen and the button can sit below the fold, so the lookup must be semantic with a scroll fallback and an explicit error if absent.",
+    "snippet": "idx = device.find(text=\"Save\", clickable=True)\nif idx is None:\n    device.scroll(\"down\")\n    idx = device.find(text=\"Save\", clickable=True)\nif idx is None:\n    raise LookupError(\"Contact editor 'Save' button not found on screen\")\ndevice.click(idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 977,
+     "completion_tokens": 530,
+     "cached_tokens": 0,
+     "cost_usd": 0.00035854236
+    }
+   }
+  ],
+  "effective_actions": 6,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 6,
+   "prompt_tokens": 5135,
+   "cached_tokens": 128,
+   "completion_tokens": 1660,
+   "total_tokens": 6795,
+   "cost_usd": 0.00109983
+  },
+  "record_type": "translation"
+ }
+}

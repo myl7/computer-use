@@ -1,0 +1,401 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "title": "t2sim constants (methods-v2 T2 simulation inputs)",
+ "type": "object",
+ "required": [
+  "schema",
+  "cost_sets",
+  "price_ladder",
+  "epsilon_cliff",
+  "streams",
+  "trigger"
+ ],
+ "properties": {
+  "schema": {
+   "const": "t2sim.constants/1"
+  },
+  "notes": {
+   "type": "string"
+  },
+  "cost_sets": {
+   "type": "object",
+   "description": "Per-dataset, per-model measured constants. Each set: family-level costs {c, L, rho, C, p, d, q0} per layout, plus the manifest tax {m, tau0} and the cache price ratio r (reference only).",
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "label",
+     "status",
+     "r_cache",
+     "m",
+     "tau0",
+     "layouts"
+    ],
+    "properties": {
+     "label": {
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "measured",
+       "placeholder"
+      ]
+     },
+     "source": {
+      "type": "string"
+     },
+     "r_cache": {
+      "type": "number",
+      "minimum": 0,
+      "description": "official cache-read/input price ratio; reference only (units are already cache-adjusted tokens)"
+     },
+     "m": {
+      "type": "number",
+      "minimum": 0,
+      "description": "manifest tokens per library entry; tau(n) = m*n + tau0"
+     },
+     "tau0": {
+      "type": "number",
+      "minimum": 0,
+      "description": "fixed part of the routing tax per arrival (from d_full; 0 until measured)"
+     },
+     "layouts": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+       "type": "object",
+       "required": [
+        "status",
+        "c",
+        "L",
+        "rho",
+        "C",
+        "p",
+        "d",
+        "q0"
+       ],
+       "properties": {
+        "status": {
+         "enum": [
+          "measured",
+          "placeholder"
+         ]
+        },
+        "note": {
+         "type": "string"
+        },
+        "c": {
+         "type": "number",
+         "exclusiveMinimum": 0,
+         "description": "one reactive episode"
+        },
+        "L": {
+         "type": "number",
+         "minimum": 0,
+         "description": "pure execution cost"
+        },
+        "rho": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": "discovery share = (c-L)/c"
+        },
+        "C": {
+         "type": "number",
+         "exclusiveMinimum": 0,
+         "description": "marginal compile price (stepview distillation)"
+        },
+        "C_fullread": {
+         "type": "number",
+         "description": "optional LLM-readin compile variant, reported alongside"
+        },
+        "p": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": "gate pass rate; 0 is legal and means the family can never be compiled (8 of the 14 t16_build cells)"
+        },
+        "d": {
+         "type": "number",
+         "minimum": 0,
+         "description": "per-use marginal cost (extraction call)"
+        },
+        "q0": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": "extraction/execution failure rate"
+        },
+        "k_table": {
+         "type": "object",
+         "description": "Optional C(k), p(k) for a compiler that reads k demonstrations: {\"3\": {\"C_scale\": 1.4, \"p_scale\": 1.0}}. The largest key <= k applies. Prefer the _scale form: the price ladder overwrites an absolute C."
+        },
+        "C_fail": {
+         "type": "number",
+         "exclusiveMinimum": 0,
+         "description": "tokens for an attempt that MISSES the gate; absent, C_fail = C * C_fail_mult (sim.C_FAIL_DOC)"
+        },
+        "C_fail_mult": {
+         "type": "number",
+         "minimum": 0,
+         "default": 1,
+         "description": "C_fail / C. The price ladder overwrites C, so the multiplier is the form that survives a price sweep. Measured placeholder for the build batch: 3"
+        },
+        "pi": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "default": 1,
+         "description": "fraction of the k demonstrations that succeeded, known before the first compile attempt; read by the pi-stratified gate prior (sim.GATE_PRIOR_DOC)"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "price_ladder": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "name",
+     "C"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "C": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "null = native: keep each cost set's own measured C"
+     },
+     "note": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "epsilon_cliff": {
+   "type": "object",
+   "required": [
+    "enabled",
+    "eps0",
+    "cliff_start",
+    "cliff_slope"
+   ],
+   "description": "Selection-failure cliff eps(n) = eps0 * sigmoid((n - cliff_start)/cliff_slope); q(n) = eps(n) + (1-eps(n))*q0. Measured eps = 0 for n<=100, so the headline runs keep enabled=false; E8 sweeps it.",
+   "properties": {
+    "enabled": {
+     "type": "boolean"
+    },
+    "eps0": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "cliff_start": {
+     "type": "number"
+    },
+    "cliff_slope": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    }
+   }
+  },
+  "streams": {
+   "type": "object",
+   "required": [
+    "synthetic"
+   ],
+   "properties": {
+    "synthetic": {
+     "type": "object",
+     "required": [
+      "patterns",
+      "n_arrivals",
+      "n_arrivals_long"
+     ],
+     "properties": {
+      "patterns": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "n_arrivals": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "n_arrivals_long": {
+       "type": "integer",
+       "minimum": 1
+      }
+     }
+    }
+   },
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "format"
+    ],
+    "properties": {
+     "format": {
+      "enum": [
+       "wiki_jsonl",
+       "old_real_streams"
+      ]
+     },
+     "path": {
+      "type": "string",
+      "description": "repo-relative path for wiki_jsonl ({ts, family_id} per line)"
+     },
+     "key": {
+      "type": "string",
+      "description": "entry key inside the old real_streams.json"
+     },
+     "window": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "first N arrivals after sorting by ts; null/absent = full"
+     },
+     "role": {
+      "type": "string"
+     },
+     "label": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "trigger": {
+   "type": "object",
+   "description": "Algorithm 1 mechanism settings for 'ours' (the deployed configuration).",
+   "required": [
+    "cooldown",
+    "cooldown_len",
+    "half_life",
+    "prior_mode",
+    "prior_shape",
+    "prior_rate",
+    "horizon_mode",
+    "horizon_fixed"
+   ],
+   "properties": {
+    "cooldown": {
+     "enum": [
+      "fixed",
+      "inflate",
+      "blacklist"
+     ]
+    },
+    "cooldown_len": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "half_life": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "description": "arrivals; null = no decay"
+    },
+    "prior_mode": {
+     "enum": [
+      "gamma",
+      "population"
+     ]
+    },
+    "prior_shape": {
+     "type": "number"
+    },
+    "prior_rate": {
+     "type": "number"
+    },
+    "horizon_mode": {
+     "enum": [
+      "fixed",
+      "doubling",
+      "capped_doubling",
+      "capped_fixed"
+     ]
+    },
+    "horizon_cap": {
+     "type": "number",
+     "description": "expected uses a program can serve (old engine Theorem 2: 1/h at h=0.02 -> 50); the capped horizon modes clip the projection to it when the legacy h = 0"
+    },
+    "horizon_fixed": {
+     "type": "number",
+     "description": "the fixed projection window (steps/arrivals)"
+    },
+    "gate_prior": {
+     "enum": [
+      "true",
+      "add_one",
+      "pi"
+     ],
+     "default": "true",
+     "description": "how p_hat is estimated. 'true' hands the policy the family's real p (historical default, keeps every published cell); 'add_one' is Algorithm 1's (passes+1)/(attempts+2); 'pi' stratifies the Beta prior by the demonstration success rate"
+    },
+    "buy_formula": {
+     "enum": [
+      "full",
+      "narrow"
+     ],
+     "default": "full",
+     "description": "how the trigger turns p_hat into the attempt's buy price (sim.BUY_FORMULA_DOC). 'full' = Algorithm 1's B_hat = C + (1/p_hat - 1)*C_fail (default since W1.5, 2026-09-19; at C_fail = C it evaluates C/p_hat exactly, so rows without a measured C_fail_mult are unchanged); 'narrow' = the pre-W1.5 C/p_hat for bitwise reproduction"
+    },
+    "spend_cap": {
+     "type": "boolean",
+     "default": false,
+     "description": "attempt-spend cap: stop attempting once the tokens burned on FAILED attempts reach spend_cap_mult times the family's current expected saving (sim.SPEND_CAP_DOC)"
+    },
+    "spend_cap_mult": {
+     "type": "number",
+     "minimum": 0,
+     "default": 1
+    }
+   }
+  },
+  "e3": {
+   "type": "object"
+  },
+  "e4": {
+   "type": "object"
+  },
+  "e5": {
+   "type": "object"
+  },
+  "e8": {
+   "type": "object"
+  },
+  "deployment": {
+   "type": "object",
+   "description": "Optional deployment options (router, library residency, minimum demonstrations). Absent keys fall back to the defaults in sim.py, which are the measured full-listing router, a monotone library and the one-demonstration compiler. Only the E4_crn / E4_evict / E4_retrieval / E4_kmin3 experiments read this block.",
+   "properties": {
+    "retrieval_router": {
+     "type": "object",
+     "description": "tau = tau0 + m*min(k,n); keys k, eps_select, eps_recall_per_decade, n_ref, eps_max, eps_enabled."
+    },
+    "hierarchical_router": {
+     "type": "object",
+     "description": "tau = 2*tau0 + m_g*G + m*ceil(n/G) at G = sqrt(n*m/m_g); key m_group (null means m_g = m)."
+    },
+    "eviction": {
+     "type": "object",
+     "description": "Residency bound. T is a number of stream arrivals or the string 't_star' for T* = (1/lambda) ln(C_eff*lambda/m); v_min is the evidence floor, t_min/t_max clip T*."
+    },
+    "k_min_demo": {
+     "type": "integer",
+     "minimum": 1,
+     "description": "Demonstrations the compiler needs; 1 is the deployed protocol and is inert."
+    }
+   }
+  }
+ }
+}

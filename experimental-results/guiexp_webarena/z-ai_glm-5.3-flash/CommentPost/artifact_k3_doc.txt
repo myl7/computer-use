@@ -1,0 +1,19 @@
+CommentPost — leave comment <text> on post <title> in forum <forum>
+
+1. START on any page with the header search box. If it is not visible, scroll down slightly.
+2. Find the search input (attribute aria "Search query", name "q") and type <title> into it.
+3. Submit the search: press Enter, or click the "Search" button. Wait for the search results page.
+4. On the results page, click the link whose text contains <title>.
+5. SITE QUIRK: this link opens the post's image or external article, NOT the post page. Do not type anything there.
+6. Return to the search results page: go back one page; if that fails, open /search?q=<title> directly. Confirm the search box is present again.
+7. On the results page, find the comments link for the post: an anchor whose href contains /f/<forum>/ and whose text is "No comments" or "N comments". Fallback: the anchor in /f/<forum>/ whose text matches <title>.
+8. Click that link. The post page opens, containing the comment form. Wait for it to settle.
+9. Find the big comment textarea (aria "Comment", editable; fallback: name containing "reply_to_submission").
+10. Type <text> into the textarea.
+11. Click the "Formatting help" label next to the comment form (recorded behavior; it toggles the form).
+12. Re-type <text> into the same textarea — the toggle can clear or re-render it.
+13. Click the submit button labelled exactly "Post" (the comment form's Post button).
+14. Wait for the page to settle. Verify the page now shows the comment containing <text>; if the form is still showing with errors, repeat steps 9–13 once.
+15. Report status and finish.
+
+Notes for the driver: always locate elements by text/attributes (aria label, name, href, visible text), never by position or index. Do not open the listing row's title link from a forum page — it never leads to the post page; only the comments link does.

@@ -1,0 +1,489 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 10,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 50154,
+    "cached_tokens": 15424,
+    "completion_tokens": 314,
+    "total_tokens": 50468,
+    "cost_usd": 0.00517762,
+    "model_calls": 4
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 51258,
+    "cached_tokens": 0,
+    "completion_tokens": 264,
+    "total_tokens": 51522,
+    "cost_usd": 0.00598409,
+    "model_calls": 4
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 49074,
+    "cached_tokens": 30592,
+    "completion_tokens": 230,
+    "total_tokens": 49304,
+    "cost_usd": 0.0018835,
+    "model_calls": 4
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 150486,
+   "cached_tokens": 46016,
+   "completion_tokens": 808,
+   "total_tokens": 151294,
+   "cost_usd": 0.01304521
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 2020.5,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3139,
+    "cached_tokens": 0,
+    "completion_tokens": 2313,
+    "total_tokens": 5452,
+    "cost_usd": 0.00117096
+   },
+   {
+    "seed": 2,
+    "effective_actions": 3,
+    "calls": 3,
+    "prompt_tokens": 2296,
+    "cached_tokens": 64,
+    "completion_tokens": 1088,
+    "total_tokens": 3384,
+    "cost_usd": 0.00067271
+   },
+   {
+    "seed": 3,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3337,
+    "cached_tokens": 0,
+    "completion_tokens": 1886,
+    "total_tokens": 5223,
+    "cost_usd": 0.00127848
+   }
+  ],
+  "totals": {
+   "calls": 11,
+   "prompt_tokens": 8772,
+   "cached_tokens": 64,
+   "completion_tokens": 5287,
+   "total_tokens": 14059,
+   "cost_usd": 0.00312215
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1500,
+    "completion_tokens": 4149,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011382525
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1397,
+    "completion_tokens": 820,
+    "cached_tokens": 0,
+    "cost_usd": 0.00055201905
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 2013,
+    "completion_tokens": 3806,
+    "cached_tokens": 0,
+    "cost_usd": 0.00192095244
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 1910,
+    "completion_tokens": 986,
+    "cached_tokens": 0,
+    "cost_usd": 0.0006945345
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 2714,
+    "completion_tokens": 2974,
+    "cached_tokens": 0,
+    "cost_usd": 0.0009375795
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 2611,
+    "completion_tokens": 1145,
+    "cached_tokens": 0,
+    "cost_usd": 0.00047725425
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 12145,
+   "cached_tokens": 0,
+   "completion_tokens": 13880,
+   "total_tokens": 26025,
+   "cost_usd": 0.00572058
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 0,
+    "prompt_tokens": 2714,
+    "cached_tokens": 0,
+    "completion_tokens": 2974,
+    "total_tokens": 5688,
+    "cost_usd": 0.00093758
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": false,
+     "error": "RuntimeError: Target note 'hot_sun_4RHp' is not selected/present on screen"
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": false,
+     "error": "RuntimeError: Target note 'eager_zebra_2023_07_18' is not selected/present on screen"
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": false,
+     "error": "RuntimeError: Target note 'final_happy_penguin' is not selected/present on screen"
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": false,
+     "error": "RuntimeError: Target note 'happy_vase_SixC' is not selected/present on screen"
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": false,
+     "error": "RuntimeError: Target note 'backup_alert_xylophone' is not selected/present on screen"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": false,
+     "error": "AttributeError: 'bool' object has no attribute 'lower'"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 0,
+  "program_replays": 6,
+  "unautomatable": false,
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "gate_after_repair": {
+   "bindings_passed": 4,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": false,
+     "error": "LookupError: Note item for 'hot_sun_4RHp' not found on screen (tried scrolling)"
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 24,
+  "success_rate": 0.8,
+  "d_tokens_mean": 157.96666666666667,
+  "total_tokens": 4739,
+  "cost_usd": 0.00090015
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1328,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 51739,
+    "cached_tokens": 0,
+    "completion_tokens": 158,
+    "total_tokens": 51897,
+    "cost_usd": 0.00553368,
+    "model_calls": 4
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 52349,
+    "cached_tokens": 10752,
+    "completion_tokens": 195,
+    "total_tokens": 52544,
+    "cost_usd": 0.00493045,
+    "model_calls": 4
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 52322,
+    "cached_tokens": 16000,
+    "completion_tokens": 255,
+    "total_tokens": 52577,
+    "cost_usd": 0.00503795,
+    "model_calls": 4
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 156410,
+   "cached_tokens": 26752,
+   "completion_tokens": 608,
+   "total_tokens": 157018,
+   "cost_usd": 0.01550208
+  },
+  "L_doc_tokens_mean": 52339.333333333336
+ },
+ "break_even": {
+  "c_raw_tokens": 50431.3,
+  "c_cache_adjusted_tokens": 38160.3,
+  "d_tokens": 157.96666666666667,
+  "q": 0.19999999999999996,
+  "cache_ratio_r": 0.2,
+  "build_totals_raw": {
+   "exploration": 151294,
+   "translator": 14059,
+   "builder_selected": 5688,
+   "verification": 0,
+   "autorpa_build": 171041
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 114481,
+   "translator": 14008,
+   "builder_selected": 5688,
+   "verification": 0,
+   "autorpa_build": 134177
+  },
+  "s_raw": 40187.1,
+  "nstar_raw": {
+   "marginal": 0.1415,
+   "autorpa_build": 4.2561
+  },
+  "s_cache_adjusted": 30370.3,
+  "nstar_cache_adjusted": {
+   "marginal": 0.1873,
+   "autorpa_build": 4.418
+  }
+ },
+ "total_cost_usd": 0.03829
+}

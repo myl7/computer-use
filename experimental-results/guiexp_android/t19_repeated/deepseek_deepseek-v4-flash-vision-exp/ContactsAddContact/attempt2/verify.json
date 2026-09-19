@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last).\"\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, copied verbatim.\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(f\"Name must contain at least two words: {name!r}\")\n    first_name = parts[0]\n    last_name = parts[1]\n\n    def try_click(*args, **kwargs):\n        idx = device.find(*args, **kwargs)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(1.0)\n            return True\n        return False\n\n    def editor_open():\n        return (\n            device.find(hint='First name', editable=True) is not None\n            or device.find(text='First name', editable=True) is not None\n        )\n\n    # --- 1. Open the contact editor ---\n    opened = False\n\n    # Try the Contacts app first (works for instance 2).\n    try:\n        device.open_app(\"Contacts\")\n        device.settle(2.0)\n    except Exception:\n        pass\n\n    if editor_open():\n        opened = True\n    else:\n        # People app / Contacts empty state: \"Create contact\"\n        for kwargs in [\n            {\"description\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Create contact\", \"clickable\": True},\n            {\"contains\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add\", \"clickable\": True},\n            {\"text\": \"Add\", \"clickable\": True},\n        ]:\n            if try_click(**kwargs):\n                device.settle(1.0)\n                if editor_open():\n                    opened = True\n                    break\n\n    # Fallback: dialer route (instances 1 and 3).\n    if not opened:\n        try:\n            device.open_app(\"Phone\")\n            device.settle(2.0)\n        except Exception:\n            pass\n\n        if editor_open():\n            opened = True\n        else:\n            # Direct \"Create new contact\" in dialer.\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"description\": \"Create new contact\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            # Maybe we need to switch to Favorites tab first (instance 3).\n            for kwargs in [\n                {\"description\": \"Favorites\", \"clickable\": True},\n                {\"text\": \"Favorites\", \"clickable\": True},\n                {\"contains\": \"Favorites\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n\n            # Now try \"Add a favorite\" (opens editor in instance 3).\n            for kwargs in [\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n                {\"description\": \"Add a favorite\", \"clickable\": True},\n                {\"contains\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            # Maybe switch to Contacts tab in dialer and try again.\n            for kwargs in [\n                {\"description\": \"Contacts\", \"clickable\": True},\n                {\"text\": \"Contacts\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n    if not opened or not editor_open():\n        raise RuntimeError(\"Could not open the contact editor (First name field not found)\")\n\n    # --- 2. Fill in the name fields ---\n    first_idx = device.find(hint='First name', editable=True)\n    if first_idx is None:\n        first_idx = device.find(text='First name', editable=True)\n    if first_idx is None:\n        raise RuntimeError(\"First name field not found\")\n    device.input_text(first_name, index=first_idx)\n    device.settle(0.5)\n\n    last_idx = device.find(hint='Last name', editable=True)\n    if last_idx is None:\n        last_idx = device.find(text='Last name', editable=True)\n    if last_idx is None:\n        raise RuntimeError(\"Last name field not found\")\n    device.input_text(last_name, index=last_idx)\n    device.settle(0.5)\n\n    # --- 3. Fill in the phone number ---\n    phone_idx = None\n    for _ in range(10):\n        phone_idx = device.find(hint='Phone', editable=True)\n        if phone_idx is None:\n            phone_idx = device.find(hint='Mobile', editable=True)\n        if phone_idx is None:\n            phone_idx = device.find(text='Phone', editable=True)\n        if phone_idx is not None:\n            break\n        device.scroll(\"down\")\n        device.settle(0.5)\n\n    if phone_idx is None:\n        raise RuntimeError(\"Phone number field not found\")\n\n    device.input_text(number, index=phone_idx)\n    device.settle(0.5)\n\n    # --- 4. Save ---\n    save_idx = device.find(text='Save', clickable=True)\n    if save_idx is None:\n        save_idx = device.find(description='Save', clickable=True)\n    if save_idx is None:\n        save_idx = device.find(contains='Save', clickable=True)\n    if save_idx is None:\n        # try scrolling up to reveal top bar\n        for _ in range(5):\n            device.scroll(\"up\")\n            device.settle(0.5)\n            save_idx = device.find(text='Save', clickable=True)\n            if save_idx is None:\n                save_idx = device.find(description='Save', clickable=True)\n            if save_idx is not None:\n                break\n    if save_idx is None:\n        raise RuntimeError(\"Save button not found\")\n    device.click(index=save_idx)\n    device.settle(1.5)\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last).\"\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, copied verbatim.\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(f\"Name must contain at least two words: {name!r}\")\n    first_name = parts[0]\n    last_name = parts[1]\n\n    def try_click(*args, **kwargs):\n        idx = device.find(*args, **kwargs)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(1.0)\n            return True\n        return False\n\n    def editor_open():\n        return (\n            device.find(hint='First name', editable=True) is not None\n            or device.find(text='First name', editable=True) is not None\n        )\n\n    # --- 1. Open the contact editor ---\n    opened = False\n\n    # Try the Contacts app first (works for instance 2).\n    try:\n        device.open_app(\"Contacts\")\n        device.settle(2.0)\n    except Exception:\n        pass\n\n    if editor_open():\n        opened = True\n    else:\n        # People app / Contacts empty state: \"Create contact\"\n        for kwargs in [\n            {\"description\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Create contact\", \"clickable\": True},\n            {\"contains\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add\", \"clickable\": True},\n            {\"text\": \"Add\", \"clickable\": True},\n        ]:\n            if try_click(**kwargs):\n                device.settle(1.0)\n                if editor_open():\n                    opened = True\n                    break\n\n    # Fallback: dialer route (instances 1 and 3).\n    if not opened:\n        try:\n            device.open_app(\"Phone\")\n            device.settle(2.0)\n        except Exception:\n            pass\n\n        if editor_open():\n            opened = True\n        else:\n            # Direct \"Create new contact\" in dialer.\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"description\": \"Create new contact\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            # Maybe we need to switch to Favorites tab first (instance 3).\n            for kwargs in [\n                {\"description\": \"Favorites\", \"clickable\": True},\n                {\"text\": \"Favorites\", \"clickable\": True},\n                {\"contains\": \"Favorites\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n\n            # Now try \"Add a favorite\" (opens editor in instance 3).\n            for kwargs in [\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n                {\"description\": \"Add a favorite\", \"clickable\": True},\n                {\"contains\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            # Maybe switch to Contacts tab in dialer and try again.\n            for kwargs in [\n                {\"description\": \"Contacts\", \"clickable\": True},\n                {\"text\": \"Contacts\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    if editor_open():\n                        opened = True\n                        break\n\n    if not opened or not editor_open():\n        raise RuntimeError(\"Could not open the contact editor (First name field not found)\")\n\n    # --- 2. Fill in the name fields ---\n    first_idx = device.find(hint='First name', editable=True)\n    if first_idx is None:\n        first_idx = device.find(text='First name', editable=True)\n    if first_idx is None:\n        raise RuntimeError(\"First name field not found\")\n    device.input_text(first_name, index=first_idx)\n    device.settle(0.5)\n\n    last_idx = device.find(hint='Last name', editable=True)\n    if last_idx is None:\n        last_idx = device.find(text='Last name', editable=True)\n    if last_idx is None:\n        raise RuntimeError(\"Last name field not found\")\n    device.input_text(last_name, index=last_idx)\n    device.settle(0.5)\n\n    # --- 3. Fill in the phone number ---\n    phone_idx = None\n    for _ in range(10):\n        phone_idx = device.find(hint='Phone', editable=True)\n        if phone_idx is None:\n            phone_idx = device.find(hint='Mobile', editable=True)\n        if phone_idx is None:\n            phone_idx = device.find(text='Phone', editable=True)\n        if phone_idx is not None:\n            break\n        device.scroll(\"down\")\n        device.settle(0.5)\n\n    if phone_idx is None:\n        raise RuntimeError(\"Phone number field not found\")\n\n    device.input_text(number, index=phone_idx)\n    device.settle(0.5)\n\n    # --- 4. Save ---\n    save_idx = device.find(text='Save', clickable=True)\n    if save_idx is None:\n        save_idx = device.find(description='Save', clickable=True)\n    if save_idx is None:\n        save_idx = device.find(contains='Save', clickable=True)\n    if save_idx is None:\n        # try scrolling up to reveal top bar\n        for _ in range(5):\n            device.scroll(\"up\")\n            device.settle(0.5)\n            save_idx = device.find(text='Save', clickable=True)\n            if save_idx is None:\n                save_idx = device.find(description='Save', clickable=True)\n            if save_idx is not None:\n                break\n    if save_idx is None:\n        raise RuntimeError(\"Save button not found\")\n    device.click(index=save_idx)\n    device.settle(1.5)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

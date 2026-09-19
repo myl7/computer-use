@@ -1,0 +1,489 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 10,
+ "cache_ratio_r": 0.318,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 22703,
+    "cached_tokens": 11674,
+    "completion_tokens": 258,
+    "total_tokens": 22961,
+    "cost_usd": 0.00333941,
+    "model_calls": 4
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 28863,
+    "cached_tokens": 15744,
+    "completion_tokens": 264,
+    "total_tokens": 29127,
+    "cost_usd": 0.00564337,
+    "model_calls": 4
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 23389,
+    "cached_tokens": 12032,
+    "completion_tokens": 277,
+    "total_tokens": 23666,
+    "cost_usd": 0.00268317,
+    "model_calls": 4
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 74955,
+   "cached_tokens": 39450,
+   "completion_tokens": 799,
+   "total_tokens": 75754,
+   "cost_usd": 0.01166595
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 1871.1,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3539,
+    "cached_tokens": 0,
+    "completion_tokens": 2436,
+    "total_tokens": 5975,
+    "cost_usd": 0.00277481
+   },
+   {
+    "seed": 2,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3901,
+    "cached_tokens": 0,
+    "completion_tokens": 3786,
+    "total_tokens": 7687,
+    "cost_usd": 0.00332341
+   },
+   {
+    "seed": 3,
+    "effective_actions": 3,
+    "calls": 3,
+    "prompt_tokens": 2322,
+    "cached_tokens": 0,
+    "completion_tokens": 4607,
+    "total_tokens": 6929,
+    "cost_usd": 0.00435731
+   }
+  ],
+  "totals": {
+   "calls": 11,
+   "prompt_tokens": 9762,
+   "cached_tokens": 0,
+   "completion_tokens": 10829,
+   "total_tokens": 20591,
+   "cost_usd": 0.01045553
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1392,
+    "completion_tokens": 2415,
+    "cached_tokens": 0,
+    "cost_usd": 0.0018811386
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1267,
+    "completion_tokens": 1937,
+    "cached_tokens": 0,
+    "cost_usd": 0.0030831768
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 1965,
+    "completion_tokens": 10349,
+    "cached_tokens": 0,
+    "cost_usd": 0.007046213328
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 1840,
+    "completion_tokens": 1673,
+    "cached_tokens": 0,
+    "cost_usd": 0.0014938902
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 2417,
+    "completion_tokens": 7937,
+    "cached_tokens": 0,
+    "cost_usd": 0.0114249168
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 2345,
+    "completion_tokens": 1999,
+    "cached_tokens": 0,
+    "cost_usd": 0.001780549848
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 11226,
+   "cached_tokens": 0,
+   "completion_tokens": 26310,
+   "total_tokens": 37536,
+   "cost_usd": 0.02670989
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 0,
+    "prompt_tokens": 2417,
+    "cached_tokens": 0,
+    "completion_tokens": 7937,
+    "total_tokens": 10354,
+    "cost_usd": 0.01142492
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 0,
+  "program_replays": 6,
+  "unautomatable": false,
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "gate_after_repair": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 29,
+  "success_rate": 0.9666666666666667,
+  "d_tokens_mean": 228.6,
+  "total_tokens": 6858,
+  "cost_usd": 0.00265364
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 594,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 45778,
+    "cached_tokens": 31488,
+    "completion_tokens": 932,
+    "total_tokens": 46710,
+    "cost_usd": 0.00787909,
+    "model_calls": 5
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 40621,
+    "cached_tokens": 1152,
+    "completion_tokens": 671,
+    "total_tokens": 41292,
+    "cost_usd": 0.01709468,
+    "model_calls": 5
+   },
+   {
+    "seed": 6,
+    "success": false,
+    "steps": 5,
+    "prompt_tokens": 43527,
+    "cached_tokens": 26880,
+    "completion_tokens": 391,
+    "total_tokens": 43918,
+    "cost_usd": 0.0074867,
+    "model_calls": 5
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 15,
+   "prompt_tokens": 129926,
+   "cached_tokens": 59520,
+   "completion_tokens": 1994,
+   "total_tokens": 131920,
+   "cost_usd": 0.03246047
+  },
+  "L_doc_tokens_mean": 43973.333333333336
+ },
+ "break_even": {
+  "c_raw_tokens": 25251.3,
+  "c_cache_adjusted_tokens": 16283.0,
+  "d_tokens": 228.6,
+  "q": 0.033333333333333326,
+  "cache_ratio_r": 0.318,
+  "build_totals_raw": {
+   "exploration": 75754,
+   "translator": 20591,
+   "builder_selected": 10354,
+   "verification": 0,
+   "autorpa_build": 106699
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 48849,
+   "translator": 20591,
+   "builder_selected": 10354,
+   "verification": 0,
+   "autorpa_build": 79794
+  },
+  "s_raw": 24181.0,
+  "nstar_raw": {
+   "marginal": 0.4282,
+   "autorpa_build": 4.4125
+  },
+  "s_cache_adjusted": 15511.6,
+  "nstar_cache_adjusted": {
+   "marginal": 0.6675,
+   "autorpa_build": 5.1441
+  }
+ },
+ "total_cost_usd": 0.083945
+}

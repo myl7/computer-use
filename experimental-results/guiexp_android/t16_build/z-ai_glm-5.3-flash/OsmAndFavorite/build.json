@@ -1,0 +1,520 @@
+{
+ "family": "OsmAndFavorite",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 13,
+ "cache_ratio_r": 0.2,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 549388,
+    "cached_tokens": 347200,
+    "completion_tokens": 2415,
+    "total_tokens": 551803,
+    "cost_usd": 0.02669933,
+    "model_calls": 13
+   },
+   {
+    "seed": 1,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 545343,
+    "cached_tokens": 418496,
+    "completion_tokens": 4597,
+    "total_tokens": 549940,
+    "cost_usd": 0.01769448,
+    "model_calls": 13
+   },
+   {
+    "seed": 1,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 554760,
+    "cached_tokens": 473152,
+    "completion_tokens": 2983,
+    "total_tokens": 557743,
+    "cost_usd": 0.01382399,
+    "model_calls": 13
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 8,
+    "prompt_tokens": 200880,
+    "cached_tokens": 152384,
+    "completion_tokens": 828,
+    "total_tokens": 201708,
+    "cost_usd": 0.00606866,
+    "model_calls": 8
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 532206,
+    "cached_tokens": 443328,
+    "completion_tokens": 3024,
+    "total_tokens": 535230,
+    "cost_usd": 0.01432977,
+    "model_calls": 13
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 559059,
+    "cached_tokens": 408896,
+    "completion_tokens": 2594,
+    "total_tokens": 561653,
+    "cost_usd": 0.03174693,
+    "model_calls": 13
+   },
+   {
+    "seed": 3,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 558766,
+    "cached_tokens": 444416,
+    "completion_tokens": 2876,
+    "total_tokens": 561642,
+    "cost_usd": 0.03075888,
+    "model_calls": 13
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 1,
+    "for_attempt": 1,
+    "prompt_tokens": 544,
+    "completion_tokens": 581,
+    "cached_tokens": 0,
+    "cost_usd": 0.0003315411
+   },
+   {
+    "seed": 1,
+    "for_attempt": 2,
+    "prompt_tokens": 540,
+    "completion_tokens": 617,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001928025
+   },
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 535,
+    "completion_tokens": 933,
+    "cached_tokens": 0,
+    "cost_usd": 0.00027064125
+   },
+   {
+    "seed": 3,
+    "for_attempt": 2,
+    "prompt_tokens": 536,
+    "completion_tokens": 448,
+    "cached_tokens": 0,
+    "cost_usd": 0.000150678
+   }
+  ],
+  "totals": {
+   "calls": 90,
+   "prompt_tokens": 3502557,
+   "cached_tokens": 2687872,
+   "completion_tokens": 21896,
+   "total_tokens": 3524453,
+   "cost_usd": 0.1420677
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 8216.0,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 10,
+    "calls": 10,
+    "prompt_tokens": 6664,
+    "cached_tokens": 128,
+    "completion_tokens": 5787,
+    "total_tokens": 12451,
+    "cost_usd": 0.00262099
+   },
+   {
+    "seed": 2,
+    "effective_actions": 5,
+    "calls": 5,
+    "prompt_tokens": 3898,
+    "cached_tokens": 0,
+    "completion_tokens": 2854,
+    "total_tokens": 6752,
+    "cost_usd": 0.00176726
+   },
+   {
+    "seed": 3,
+    "effective_actions": 11,
+    "calls": 11,
+    "prompt_tokens": 7227,
+    "cached_tokens": 128,
+    "completion_tokens": 4259,
+    "total_tokens": 11486,
+    "cost_usd": 0.00248467
+   }
+  ],
+  "totals": {
+   "calls": 26,
+   "prompt_tokens": 17789,
+   "cached_tokens": 256,
+   "completion_tokens": 12900,
+   "total_tokens": 30689,
+   "cost_usd": 0.00687292
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 2361,
+    "completion_tokens": 9187,
+    "cached_tokens": 0,
+    "cost_usd": 0.00244908675
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 2258,
+    "completion_tokens": 300,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002419065
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 3416,
+    "completion_tokens": 20928,
+    "cached_tokens": 0,
+    "cost_usd": 0.0097799724
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 3313,
+    "completion_tokens": 2260,
+    "cached_tokens": 0,
+    "cost_usd": 0.0016106805
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 5246,
+    "completion_tokens": 86526,
+    "cached_tokens": 0,
+    "cost_usd": 0.043609401
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 5143,
+    "completion_tokens": 1299,
+    "cached_tokens": 0,
+    "cost_usd": 0.00070337025
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 21737,
+   "cached_tokens": 0,
+   "completion_tokens": 120500,
+   "total_tokens": 142237,
+   "cost_usd": 0.05839442
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 26214,
+    "cached_tokens": 0,
+    "completion_tokens": 188029,
+    "total_tokens": 214243,
+    "cost_usd": 0.08948295
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to launch OsmAnd; is it installed?"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Schaan, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for location 'Schaan, Liechtenstein'"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for location '47.1303814, 9.5930117'"
+    },
+    {
+     "binding": {
+      "location": "Schaanwald, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for location 'Schaanwald, Liechtenstein'"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for location '47.2122151, 9.5062101'"
+    },
+    {
+     "binding": {
+      "location": "Balzers, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: OsmAnd search returned no results for location 'Balzers, Liechtenstein'"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 4933,
+   "cached_tokens": 0,
+   "completion_tokens": 2126,
+   "total_tokens": 7059,
+   "cost_usd": 0.00095851
+  },
+  "resume_episodes": {
+   "calls": 39,
+   "prompt_tokens": 1583613,
+   "cached_tokens": 1204352,
+   "completion_tokens": 17752,
+   "total_tokens": 1601365,
+   "cost_usd": 0.07682325
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 20968,
+   "cached_tokens": 0,
+   "completion_tokens": 101503,
+   "total_tokens": 122471,
+   "cost_usd": 0.04587355
+  },
+  "gate_after_repair": null,
+  "test_seed0": {
+   "passed": false,
+   "error": "RuntimeError: OsmAnd search screen did not open for location 'Rotenboden, Liechtenstein'"
+  },
+  "totals_excluding_refinements": {
+   "calls": 42,
+   "prompt_tokens": 1588546,
+   "cached_tokens": 1204352,
+   "completion_tokens": 19878,
+   "total_tokens": 1608424,
+   "cost_usd": 0.07778176
+  }
+ },
+ "deploy": {
+  "skipped": "the type was declared unautomatable"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1282,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 8,
+    "prompt_tokens": 204115,
+    "cached_tokens": 112000,
+    "completion_tokens": 1992,
+    "total_tokens": 206107,
+    "cost_usd": 0.01799152,
+    "model_calls": 8
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 261186,
+    "cached_tokens": 107520,
+    "completion_tokens": 1951,
+    "total_tokens": 263137,
+    "cost_usd": 0.02697849,
+    "model_calls": 9
+   },
+   {
+    "seed": 6,
+    "success": false,
+    "steps": 13,
+    "prompt_tokens": 560327,
+    "cached_tokens": 442368,
+    "completion_tokens": 2159,
+    "total_tokens": 562486,
+    "cost_usd": 0.03172395,
+    "model_calls": 13
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 30,
+   "prompt_tokens": 1025628,
+   "cached_tokens": 661888,
+   "completion_tokens": 6102,
+   "total_tokens": 1031730,
+   "cost_usd": 0.07669396
+  },
+  "L_doc_tokens_mean": 343910.0
+ },
+ "break_even": {
+  "c_raw_tokens": 429580.3,
+  "c_cache_adjusted_tokens": 178137.3,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.2,
+  "build_totals_raw": {
+   "exploration": 3524453,
+   "translator": 30689,
+   "builder_selected": 214243,
+   "verification": 1608424,
+   "autorpa_build": 5377809
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 1374155,
+   "translator": 30484,
+   "builder_selected": 214243,
+   "verification": 644942,
+   "autorpa_build": 2263825
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 0.407684
+}

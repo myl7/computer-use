@@ -1,0 +1,132 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "z-ai/glm-5.3-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 34,
+ "instances": [
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 1,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 14,
+     "usage": {
+      "prompt_tokens": 640858,
+      "cached_tokens": 0,
+      "completion_tokens": 940,
+      "total_tokens": 641798,
+      "cost_usd": 0.01452194,
+      "model_calls": 14
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 2,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+     "reused": true,
+     "success": true,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 716033,
+      "cached_tokens": 0,
+      "completion_tokens": 2075,
+      "total_tokens": 718108,
+      "cost_usd": 0.01665523,
+      "model_calls": 15
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 3,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 34,
+     "usage": {
+      "prompt_tokens": 2690674,
+      "cached_tokens": 2430720,
+      "completion_tokens": 5486,
+      "total_tokens": 2696160,
+      "cost_usd": 0.11351112,
+      "model_calls": 34
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 16,
+     "usage": {
+      "prompt_tokens": 787011,
+      "cached_tokens": 624512,
+      "completion_tokens": 1464,
+      "total_tokens": 788475,
+      "cost_usd": 0.04340379,
+      "model_calls": 16
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "The agent never opened the event editor \u2014 that's the core failure. In Simple Calendar Pro's month view, tapping a day only selects it (steps 31/34 stayed in MainActivity); after selecting 2023-10-22 you must tap the floating \"+\" button (bottom-right) to open the New Event screen.\n\n1. Stop waiting/reopening: from step 7 on, MainActivity was already foreground \u2014 waits and re-opens did nothing. Act on the visible screen.\n2. Verify the month header reads \"October 2023\" after swiping; blindly swiping right 7 times can overshoot. Swipe one month at a time and check the title.\n3. Tap the target day (its number in the grid), then tap the \"+\" FAB to open the New Event form.\n4. In the form: type the title, open the Description field and type the text, tap the start time and set 18:00, set the end time to 18:30 (or duration 30 min), confirm date is 2023-10-22.\n5. Save with the checkmark/disk icon in the top action bar, then confirm the event appears on Oct 22.\n6. Avoid tapping unlabeled indices that exited to the launcher/resolver (steps 2\u20135); choose controls by their visible label/icon.",
+     "usage": {
+      "prompt_tokens": 1244,
+      "completion_tokens": 888,
+      "cached_tokens": 0,
+      "cost_usd": 0.000624294
+     },
+     "cost_usd": 0.000624294,
+     "stage": "reflection",
+     "for_attempt": 1
+    }
+   ],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a1/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 4,
+  "retry_episodes": 1,
+  "reused_episodes": 2,
+  "reflection_calls": 1,
+  "prompt_tokens": 4835820,
+  "cached_tokens": 3055232,
+  "completion_tokens": 10853,
+  "total_tokens": 4846673,
+  "cost_usd": 0.18871637
+ },
+ "record_type": "exploration"
+}

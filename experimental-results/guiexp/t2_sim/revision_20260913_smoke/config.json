@@ -1,0 +1,441 @@
+{
+  "assumptions": [
+    "Known measured/imputed costs and known scenario hazard; online arrival/admission estimates only.",
+    "Admission modes are assumptions, not estimates of independent build probability.",
+    "Serving costs use floor-adjusted PW estimates; d retains historical bill conversion uncertainty.",
+    "Family IDs and archived-artifact lookup are supplied without error; router fees are a scenario.",
+    "Serving precedes compilation; three completed reactive attempts (including fallback) are required.",
+    "All policies use free relisting and the same fixed idle TTL; no policy sees future arrivals.",
+    "Compilation coins are keyed by seed/family/attempt; service coins by seed/family/arrival/channel.",
+    "Cost mapping on real streams is shuffled across repetitions and paired across policies.",
+    "Bootstrap intervals include arrival/mapping/outcome variation, not uncertainty in measured costs.",
+    "Cap reserves the next failed-attempt cost, and is a heuristic without competitive guarantee."
+  ],
+  "jobs": [
+    {
+      "admission_mode": "binary_replay",
+      "h": 0.02,
+      "k_min": 3,
+      "key": "deepseek/deepseek-v4-flash-vision-exp/binary_replay/poisson/base",
+      "m": 91.0,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "n": 30,
+      "policies": [
+        "reactive",
+        "earliest",
+        "earliest_cap",
+        "fixed10_cap",
+        "success10_cap",
+        "breakeven_cap",
+        "projected",
+        "projected_cap"
+      ],
+      "profiles": {
+        "ContactsAddContact": {
+          "C": 143912.0,
+          "C_fail": 1177449.2545454546,
+          "c": 65044.73580066963,
+          "c_unsubtracted": 67334.73580066963,
+          "d": 430.2621212121212,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "FilesMoveFile": {
+          "C": 106194.5,
+          "C_fail": 1709094.959090909,
+          "c": 51611.678787878795,
+          "c_unsubtracted": 53901.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "MarkorCreateNote": {
+          "C": 106194.5,
+          "C_fail": 1177449.2545454546,
+          "c": 154564.8142119386,
+          "c_unsubtracted": 156854.8142119386,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.75,
+          "q": 0.033333333333333326
+        },
+        "MarkorDeleteNote": {
+          "C": 68477.0,
+          "C_fail": 1177449.2545454546,
+          "c": 10762.40909090909,
+          "c_unsubtracted": 13052.40909090909,
+          "d": 402.06666666666666,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "OsmAndFavorite": {
+          "C": 106194.5,
+          "C_fail": 1033913.0045454545,
+          "c": 48991.678787878795,
+          "c_unsubtracted": 51281.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.3333333333333333,
+          "q": 0.033333333333333326
+        },
+        "OsmAndMarker": {
+          "C": 106194.5,
+          "C_fail": 2502646.7636363637,
+          "c": 152788.89220779223,
+          "c_unsubtracted": 155078.89220779223,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.14285714285714285,
+          "q": 0.033333333333333326
+        },
+        "SimpleCalendarAddOneEvent": {
+          "C": 106194.5,
+          "C_fail": 1100308.6590909092,
+          "c": 146345.62945635445,
+          "c_unsubtracted": 148635.62945635445,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        }
+      },
+      "quick": true,
+      "reps": 2,
+      "scale": 1.0,
+      "seed": 20260913,
+      "silent": 0.0,
+      "stream": "poisson",
+      "tau0": 368.0,
+      "ttl": 100
+    },
+    {
+      "admission_mode": "binary_replay",
+      "h": 0.02,
+      "k_min": 3,
+      "key": "deepseek/deepseek-v4-flash-vision-exp/binary_replay/zipf/base",
+      "m": 91.0,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "n": 30,
+      "policies": [
+        "reactive",
+        "earliest",
+        "earliest_cap",
+        "fixed10_cap",
+        "success10_cap",
+        "breakeven_cap",
+        "projected",
+        "projected_cap"
+      ],
+      "profiles": {
+        "ContactsAddContact": {
+          "C": 143912.0,
+          "C_fail": 1177449.2545454546,
+          "c": 65044.73580066963,
+          "c_unsubtracted": 67334.73580066963,
+          "d": 430.2621212121212,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "FilesMoveFile": {
+          "C": 106194.5,
+          "C_fail": 1709094.959090909,
+          "c": 51611.678787878795,
+          "c_unsubtracted": 53901.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "MarkorCreateNote": {
+          "C": 106194.5,
+          "C_fail": 1177449.2545454546,
+          "c": 154564.8142119386,
+          "c_unsubtracted": 156854.8142119386,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.75,
+          "q": 0.033333333333333326
+        },
+        "MarkorDeleteNote": {
+          "C": 68477.0,
+          "C_fail": 1177449.2545454546,
+          "c": 10762.40909090909,
+          "c_unsubtracted": 13052.40909090909,
+          "d": 402.06666666666666,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "OsmAndFavorite": {
+          "C": 106194.5,
+          "C_fail": 1033913.0045454545,
+          "c": 48991.678787878795,
+          "c_unsubtracted": 51281.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.3333333333333333,
+          "q": 0.033333333333333326
+        },
+        "OsmAndMarker": {
+          "C": 106194.5,
+          "C_fail": 2502646.7636363637,
+          "c": 152788.89220779223,
+          "c_unsubtracted": 155078.89220779223,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.14285714285714285,
+          "q": 0.033333333333333326
+        },
+        "SimpleCalendarAddOneEvent": {
+          "C": 106194.5,
+          "C_fail": 1100308.6590909092,
+          "c": 146345.62945635445,
+          "c_unsubtracted": 148635.62945635445,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        }
+      },
+      "quick": true,
+      "reps": 2,
+      "scale": 1.0,
+      "seed": 20260913,
+      "silent": 0.0,
+      "stream": "zipf",
+      "tau0": 368.0,
+      "ttl": 100
+    },
+    {
+      "admission_mode": "binary_replay",
+      "h": 0.02,
+      "k_min": 3,
+      "key": "deepseek/deepseek-v4-flash-vision-exp/binary_replay/bursty/base",
+      "m": 91.0,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "n": 30,
+      "policies": [
+        "reactive",
+        "earliest",
+        "earliest_cap",
+        "fixed10_cap",
+        "success10_cap",
+        "breakeven_cap",
+        "projected",
+        "projected_cap"
+      ],
+      "profiles": {
+        "ContactsAddContact": {
+          "C": 143912.0,
+          "C_fail": 1177449.2545454546,
+          "c": 65044.73580066963,
+          "c_unsubtracted": 67334.73580066963,
+          "d": 430.2621212121212,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "FilesMoveFile": {
+          "C": 106194.5,
+          "C_fail": 1709094.959090909,
+          "c": 51611.678787878795,
+          "c_unsubtracted": 53901.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "MarkorCreateNote": {
+          "C": 106194.5,
+          "C_fail": 1177449.2545454546,
+          "c": 154564.8142119386,
+          "c_unsubtracted": 156854.8142119386,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.75,
+          "q": 0.033333333333333326
+        },
+        "MarkorDeleteNote": {
+          "C": 68477.0,
+          "C_fail": 1177449.2545454546,
+          "c": 10762.40909090909,
+          "c_unsubtracted": 13052.40909090909,
+          "d": 402.06666666666666,
+          "imputed": [
+            "C_fail"
+          ],
+          "observed_admitted": true,
+          "p": 1.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        },
+        "OsmAndFavorite": {
+          "C": 106194.5,
+          "C_fail": 1033913.0045454545,
+          "c": 48991.678787878795,
+          "c_unsubtracted": 51281.678787878795,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.3333333333333333,
+          "q": 0.033333333333333326
+        },
+        "OsmAndMarker": {
+          "C": 106194.5,
+          "C_fail": 2502646.7636363637,
+          "c": 152788.89220779223,
+          "c_unsubtracted": 155078.89220779223,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 0.14285714285714285,
+          "q": 0.033333333333333326
+        },
+        "SimpleCalendarAddOneEvent": {
+          "C": 106194.5,
+          "C_fail": 1100308.6590909092,
+          "c": 146345.62945635445,
+          "c_unsubtracted": 148635.62945635445,
+          "d": 416.1643939393939,
+          "imputed": [
+            "d",
+            "q",
+            "C"
+          ],
+          "observed_admitted": false,
+          "p": 0.0,
+          "pi": 1.0,
+          "q": 0.033333333333333326
+        }
+      },
+      "quick": true,
+      "reps": 2,
+      "scale": 1.0,
+      "seed": 20260913,
+      "silent": 0.0,
+      "stream": "bursty",
+      "tau0": 368.0,
+      "ttl": 100
+    }
+  ],
+  "reps": 20,
+  "schema": "gui-revision-sim/1",
+  "seed": 20260913,
+  "source_sha256": {
+    "computer-use/t2sim/constants.measured.v2.json": "29a1fa27f19c3d7f7feb1050508025f92fed1ed6db4c4f80761fea8ef72c028e",
+    "computer-use/t2sim/revision_sim.py": "98a4e99a665d157b7b620379027513d70b02d896f6bc6331a832390d94fe9b53",
+    "computer-use/t2sim/run_revision.py": "9ce01ef7394be7118bd6aed51b85a884bcddadb5225831a886a58544ff6e9c93",
+    "computer-use/t2sim/stats.py": "0ba9491d235ca03d0bf4dd4f2561b3cf35fa2751b036b4bd62956541141395c1",
+    "computer-use/t2sim/streams.py": "5ff55e159080ac963b9fd8805b84789f9ec147d3a811bad98a67c89c12456a86",
+    "datasets/wiki-stream/stream_content_tail.jsonl": "10b78e4de6e20527c8ef6220908ed24a98ad23f210c4c96b10407a188d40cced",
+    "datasets/wiki-stream/stream_tool_hot_tail.jsonl": "d5ef7156879a050f7a08e4766728a9ec261fb8d43c618b5f93ddb2f5ef1bc0a9",
+    "experimental-results/guiexp_android/t16_build/constants_table.json": "c7b38055bd57e013c19511f48fdfed782237966d5c34a3cef81c1495c8c64d80",
+    "experimental-results/openapps/real-streams/real_streams.json": "341e1c1086390f45ac1a578c1101c18783f171b4b27af86ccc1a4b7ec6eede73"
+  }
+}

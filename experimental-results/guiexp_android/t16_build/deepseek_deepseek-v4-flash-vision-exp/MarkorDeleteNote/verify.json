@@ -1,0 +1,94 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 6,
+ "unautomatable": false,
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = binding[\"file_name\"]\n    if not file_name:\n        raise ValueError(\"binding['file_name'] must be non-empty\")\n\n    device.open_app(\"Markor\")\n    device.settle(2)\n\n    def find_target():\n        idx = device.find(description=f\"File {file_name}\")\n        if idx is not None:\n            return idx\n        idx = device.find(description=file_name)\n        if idx is not None:\n            return idx\n        idx = device.find(text=file_name)\n        if idx is not None:\n            return idx\n\n        best = None\n        for e in device.elements():\n            t = (e.get(\"text\") or \"\").strip()\n            d = (e.get(\"description\") or \"\").strip()\n            if t == file_name or d == file_name or d == f\"File {file_name}\":\n                if e.get(\"clickable\") or e.get(\"long_clickable\"):\n                    return e.get(\"index\")\n                if best is None:\n                    best = e.get(\"index\")\n        return best\n\n    target_idx = find_target()\n    if target_idx is None:\n        for _ in range(15):\n            device.scroll(direction=\"down\")\n            target_idx = find_target()\n            if target_idx is not None:\n                break\n    if target_idx is None:\n        for _ in range(30):\n            device.scroll(direction=\"up\")\n            target_idx = find_target()\n            if target_idx is not None:\n                break\n    if target_idx is None:\n        raise RuntimeError(f\"Note not found: {file_name}\")\n\n    if hasattr(device, \"long_press\"):\n        device.long_press(index=target_idx)\n    else:\n        device.execute({\"action_type\": \"long_press\", \"index\": target_idx})\n    device.settle(1)\n\n    delete_idx = device.find(description=\"Delete\", clickable=True)\n    if delete_idx is None:\n        delete_idx = device.find(text=\"Delete\", clickable=True)\n    if delete_idx is None:\n        delete_idx = device.find(description=\"Delete\")\n    if delete_idx is None:\n        delete_idx = device.find(text=\"Delete\")\n    if delete_idx is None:\n        for e in device.elements():\n            d = (e.get(\"description\") or \"\").strip()\n            t = (e.get(\"text\") or \"\").strip()\n            if (d == \"Delete\" or t == \"Delete\") and (\n                e.get(\"clickable\") or e.get(\"long_clickable\")\n            ):\n                delete_idx = e.get(\"index\")\n                break\n    if delete_idx is None:\n        raise RuntimeError(\"Delete action not found in selection toolbar\")\n    device.click(index=delete_idx)\n    device.settle(1)\n\n    ok_idx = device.find(text=\"OK\", clickable=True)\n    if ok_idx is None:\n        ok_idx = device.find(text=\"OK\")\n    if ok_idx is None:\n        ok_idx = device.find(description=\"OK\", clickable=True)\n    if ok_idx is None:\n        ok_idx = device.find(description=\"OK\")\n    if ok_idx is None:\n        for e in device.elements():\n            t = (e.get(\"text\") or \"\").strip()\n            d = (e.get(\"description\") or \"\").strip()\n            if (t == \"OK\" or d == \"OK\") and e.get(\"clickable\"):\n                ok_idx = e.get(\"index\")\n                break\n    if ok_idx is None:\n        raise RuntimeError(\"Confirmation OK button not found\")\n    device.click(index=ok_idx)\n    device.settle(1)\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 6,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "hot_sun_4RHp"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "eager_zebra_2023_07_18"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "final_happy_penguin"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "happy_vase_SixC"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "backup_alert_xylophone"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

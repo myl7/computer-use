@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "z-ai/glm-5.3-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number as a single string, copied verbatim\",\n    },\n}\n\n\ndef _split_name(name):\n    \"\"\"Split a two-word full name into (first, last).\"\"\"\n    words = (name or \"\").strip().split()\n    if not words:\n        return \"\", \"\"\n    if len(words) == 1:\n        return words[0], \"\"\n    return words[0], \" \".join(words[1:])\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    first, last = _split_name(name)\n\n    # ---- Step 1: open the Contacts app -------------------------------------\n    device.open_app(\"Contacts\")\n    device.settle(2)\n    if (device.find(description=\"Create contact\") is None\n            and device.find(text=\"Create contact\") is None\n            and device.find(description=\"Contacts\") is None):\n        # Retry once in case the launch was slow.\n        device.open_app(\"Contacts\")\n        device.settle(2)\n        if (device.find(description=\"Create contact\") is None\n                and device.find(text=\"Create contact\") is None\n                and device.find(description=\"Contacts\") is None):\n            raise RuntimeError(\"Contacts app did not open (PeopleActivity not detected)\")\n\n    # ---- Step 2: tap the \"Create contact\" button ---------------------------\n    create = device.find(description=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(text=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(contains=\"Create contact\", clickable=True)\n    if create is None:\n        raise LookupError(\"'Create contact' button not found on the Contacts screen\")\n    device.click(create)\n    device.settle(2)\n\n    # ---- Step 3: type the first name ---------------------------------------\n    first_field = device.find(hint=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(text=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(contains=\"First\", editable=True)\n    if first_field is None:\n        # Fallback: the first editable field on the editor form.\n        first_field = device.find(editable=True)\n    if first_field is None:\n        raise RuntimeError(\"First name field not found on contact editor screen\")\n    device.input_text(first, index=first_field)\n\n    # ---- Step 4: type the last name ----------------------------------------\n    last_field = device.find(hint=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(text=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(contains=\"Last\", editable=True)\n    if last_field is None:\n        # Fallback: the second editable field on the editor form.\n        editables = [e for e in device.elements() if e.get(\"editable\")]\n        if len(editables) >= 2:\n            last_field = editables[1][\"index\"]\n    if last_field is None:\n        raise LookupError(\"Last name field not found on contact editor screen\")\n    device.input_text(last, index=last_field)\n\n    # ---- Step 5: type the phone number -------------------------------------\n    phone_field = device.find(hint=\"Phone\", editable=True)\n    if phone_field is None:\n        phone_field = device.find(contains=\"Phone\", editable=True)\n    if phone_field is None:\n        device.scroll(\"down\")\n        phone_field = device.find(hint=\"Phone\", editable=True)\n    if phone_field is None:\n        phone_field = device.find(contains=\"Phone\", editable=True)\n    if phone_field is None:\n        raise LookupError(\"Phone number field not found in contact editor\")\n    device.input_text(number, index=phone_field)\n\n    # ---- Step 6: save the contact ------------------------------------------\n    save = device.find(text=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(description=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(contains=\"Save\", clickable=True)\n    if save is None:\n        device.scroll(\"down\")\n        save = device.find(text=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(description=\"Save\", clickable=True)\n    if save is None:\n        raise LookupError(\"Contact editor 'Save' button not found on screen\")\n    device.click(save)\n    device.settle(2)\n\n    # Verify the editor closed (save succeeded).\n    if device.find(text=\"Save\", clickable=True) is not None:\n        raise RuntimeError(\"Saving the contact did not complete; editor still open\")\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number as a single string, copied verbatim\",\n    },\n}\n\n\ndef _split_name(name):\n    \"\"\"Split a two-word full name into (first, last).\"\"\"\n    words = (name or \"\").strip().split()\n    if not words:\n        return \"\", \"\"\n    if len(words) == 1:\n        return words[0], \"\"\n    return words[0], \" \".join(words[1:])\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    first, last = _split_name(name)\n\n    # ---- Step 1: open the Contacts app -------------------------------------\n    device.open_app(\"Contacts\")\n    device.settle(2)\n    if (device.find(description=\"Create contact\") is None\n            and device.find(text=\"Create contact\") is None\n            and device.find(description=\"Contacts\") is None):\n        # Retry once in case the launch was slow.\n        device.open_app(\"Contacts\")\n        device.settle(2)\n        if (device.find(description=\"Create contact\") is None\n                and device.find(text=\"Create contact\") is None\n                and device.find(description=\"Contacts\") is None):\n            raise RuntimeError(\"Contacts app did not open (PeopleActivity not detected)\")\n\n    # ---- Step 2: tap the \"Create contact\" button ---------------------------\n    create = device.find(description=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(text=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(contains=\"Create contact\", clickable=True)\n    if create is None:\n        raise LookupError(\"'Create contact' button not found on the Contacts screen\")\n    device.click(create)\n    device.settle(2)\n\n    # ---- Step 3: type the first name ---------------------------------------\n    first_field = device.find(hint=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(text=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(contains=\"First\", editable=True)\n    if first_field is None:\n        # Fallback: the first editable field on the editor form.\n        first_field = device.find(editable=True)\n    if first_field is None:\n        raise RuntimeError(\"First name field not found on contact editor screen\")\n    device.input_text(first, index=first_field)\n\n    # ---- Step 4: type the last name ----------------------------------------\n    last_field = device.find(hint=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(text=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(contains=\"Last\", editable=True)\n    if last_field is None:\n        # Fallback: the second editable field on the editor form.\n        editables = [e for e in device.elements() if e.get(\"editable\")]\n        if len(editables) >= 2:\n            last_field = editables[1][\"index\"]\n    if last_field is None:\n        raise LookupError(\"Last name field not found on contact editor screen\")\n    device.input_text(last, index=last_field)\n\n    # ---- Step 5: type the phone number -------------------------------------\n    phone_field = device.find(hint=\"Phone\", editable=True)\n    if phone_field is None:\n        phone_field = device.find(contains=\"Phone\", editable=True)\n    if phone_field is None:\n        device.scroll(\"down\")\n        phone_field = device.find(hint=\"Phone\", editable=True)\n    if phone_field is None:\n        phone_field = device.find(contains=\"Phone\", editable=True)\n    if phone_field is None:\n        raise LookupError(\"Phone number field not found in contact editor\")\n    device.input_text(number, index=phone_field)\n\n    # ---- Step 6: save the contact ------------------------------------------\n    save = device.find(text=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(description=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(contains=\"Save\", clickable=True)\n    if save is None:\n        device.scroll(\"down\")\n        save = device.find(text=\"Save\", clickable=True)\n    if save is None:\n        save = device.find(description=\"Save\", clickable=True)\n    if save is None:\n        raise LookupError(\"Contact editor 'Save' button not found on screen\")\n    device.click(save)\n    device.settle(2)\n\n    # Verify the editor closed (save succeeded).\n    if device.find(text=\"Save\", clickable=True) is not None:\n        raise RuntimeError(\"Saving the contact did not complete; editor still open\")\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}
