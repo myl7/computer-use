@@ -643,14 +643,10 @@ The gap to the offline optimum spans 0.21 to 0.91 across the table, the residual
 \subsection{Robustness across regimes}
 \label{sec:regimes}
 A whole stream sitting in one regime is where a fixed rule is right by construction, so it bounds what the trigger can lose.
-We sweep the four quantities that place a deployment in a regime, the drift hazard, the failure rate, the verification rate down to zero, and the price of a failed attempt relative to a verified one, together with the fallback multiple and a silent-failure share, over the four real streams at the measured price and at AutoRPA's 233k.
-Appendix~\ref{app:sim} lists the full grid, and every rule is scored against the better of the two fixed rules in each cell.
-The measured failed-attempt multiple is 10.5 under the DeepSeek constants and unidentified under the GLM constants, where no compilation is rejected and the axis collapses, so the sweep covers 400 cells under the DeepSeek constants and 240 under GLM, at 10 repetitions with 2{,}000 bootstrap resamples per cell.
-Each fixed rule loses by multiples somewhere, staying reactive up to 2.8 times the better fixed rule on hot streams with long-lived programs, always compiling up to 3.3 times under the GLM constants and 28 times under DeepSeek, and the estimated-price break-even rule up to 6.9 times under DeepSeek, concentrated where verification fails and attempts are expensive.
-Our policy's worst cell is 1.15 times the better fixed rule under the GLM constants, a BPI 2019 cell where verification never fails and the only error is buying later than always compiling, and 1.38 under DeepSeek on a tool-edit Wikipedia cell at the raised price with a lowered verification rate, with median 1.00 on both models and both means within half a percent of parity.
-The form of the spend cap decides the worst case: a cap that counts failed spend against the projected saving alone pays up to 1.76 under the GLM constants and 1.78 under DeepSeek, a cap that resets at each observed break pays 1.38 on both, and crediting the saving already delivered pays 1.15 and 1.38, so Algorithm~\ref{alg:policy} credits the realized saving.
-Pricing the failed attempt inside the buy estimate is what holds this axis, and on the 64 DeepSeek cells where verification always fails at the measured multiple the naive compiling rule averages 82{,}000 failed attempts per cell and reaches 240{,}000 in its worst BPI 2019 cell, against our 144 per cell and 918 in that cell.
-Raising the multiple from one to 10.5 moves our rule's mean ratio to the better fixed rule only from 0.99 to 1.01, while the naive rule's failure bill on those cells grows tenfold, from 22 billion to 226 billion tokens per cell.
+We sweep the drift hazard, the failure rate, the verification rate, the failed-attempt price, the fallback multiple, and a silent-failure share over the four real streams at the measured price and at AutoRPA's 233k, scoring every rule against the better of the two fixed rules in each cell (Appendix~\ref{app:sim}).
+The sweep covers 400 cells under the DeepSeek constants and 240 under the GLM constants, where the failed-attempt multiple is unidentified because no compilation is rejected, and each fixed rule loses by multiples somewhere: staying reactive up to 2.8 times the better fixed rule, always compiling up to 3.3 times under the GLM constants and 28 under DeepSeek, the estimated-price break-even rule up to 6.9, concentrated where verification fails and attempts are expensive.
+Our policy's worst cell is 1.15 times the better fixed rule under the GLM constants and 1.38 under DeepSeek, with median 1.00 on both and both means within half a percent of parity.
+A spend cap that counts failed spend against the projected saving alone pays up to 1.76 under the GLM constants and 1.78 under DeepSeek, so Algorithm~\ref{alg:policy} credits the realized saving.
 The policy's value across regimes is therefore a bounded loss against rules that are right by construction, and not a margin over the best rule in any one of them.
 
 \subsection{Fragility of deployed programs}
@@ -662,21 +658,14 @@ Appearance changes break 0.06 of the clean-passing replays on GLM and 0.10 on De
 \section{Limitations}
 \label{sec:limitations}
 
-The measurement covers seven selected families on three interfaces and two models.
-The desktop and web extensions use custom parameterized tasks, so they do not support benchmark-wide conclusions.
-The retained Android costs use estimated missing cache counts and a bill-based deployment proxy, while the desktop and web costs use recorded token counts.
-Interrupted desktop calls with lost records are absent from the reported cost.
-Verification uses only five bindings, so a high pass fraction gives limited evidence about later execution.
-The re-runs show that the same program can fall from five passes to one when execution conditions change.
-The compilation price includes up to three repair rounds, and the repair loop is a large part of a failed attempt, so a cheaper loop lowers $C^{\mathrm{fail}}$ and the spend cap stops attempts later without changing the rule.
-The unit weights cached and output tokens by list-price ratios, and a provider that prices differently changes the two ratios and none of the measurements.
-The real arrival streams are process logs replayed as task arrivals, so they supply recurrence structure and not computer-use tasks, and a log of real agent traffic would replace them without touching the policy.
-The fragility probe injects ten perturbations from two published benchmarks, and the change frequency that turns its break rate into a hazard is a deployment property, which a log of interface updates supplies without rerunning the probe.
-Verification injects known parameters, whereas deployment extracts them from the goal.
-The Android extraction check shows that this difference can change whether a program meets the threshold.
-Three compilation observations per Android cell and one agent replay per binding do not establish independent retries or isolate within-binding execution variance.
-The decision rules use supplied costs and hazards, with only arrivals and verification estimated online.
-Online cost learning has not been evaluated in a live deployment.
+The measurement covers seven selected families on three interfaces and two models, and the desktop and web extensions use custom parameterized tasks, so it does not support benchmark-wide conclusions.
+The Android costs use estimated missing cache counts and a bill-based deployment proxy, the desktop and web costs use recorded token counts, and interrupted desktop calls with lost records are absent.
+Verification rests on five bindings, three compilations per Android cell, and one replay per binding, so it does not establish independent retries or within-binding execution variance.
+The same program can fall from five passes to one when execution conditions change, and the change frequency that turns this break rate into a hazard is a deployment property.
+The compilation price includes up to three repair rounds, and the repair loop is a large part of a failed attempt, so a cheaper loop lowers the failed-attempt price without changing the rule.
+The unit weights cached and output tokens by list-price ratios. A provider that prices differently changes these two ratios and none of the measurements.
+The real arrival streams are process logs replayed as task arrivals, so they supply recurrence structure and not computer-use tasks.
+The rules use supplied costs and hazards, with only arrivals and verification estimated online, and online cost learning has not been evaluated in a live deployment.
 
 \section{Related Work}
 \label{sec:related}
@@ -1174,4 +1163,6 @@ A core block varies each axis from a base point, and further blocks pair the fai
 The sweep runs over the four real streams and two compilation prices, the measured price and AutoRPA's 233k, for 400 cells under the DeepSeek constants and 240 under the GLM constants, whose failed-attempt price axis collapses to its single measured level, at 10 repetitions with 2{,}000 bootstrap resamples per cell.
 Drift breaks a deployed program on a use, loudly, and removes its manifest entry, so the family must recompile.
 The failure rate acts on every live use independently.
+On the DeepSeek cells where verification always fails at the measured failed-attempt multiple, the naive compiling rule averages 82{,}000 failed attempts per cell and reaches 240{,}000 in its worst BPI 2019 cell, against our 144 per cell and 918 in that cell, and raising the multiple from one to 10.5 moves our mean ratio to the better fixed rule only from 0.99 to 1.01 while the naive failure bill grows from 22 billion to 226 billion tokens per cell.
+A spend cap that resets at each observed break pays 1.38 on both models, between the failed-spend-only cap and the realized-saving credit of Algorithm~\ref{alg:policy}.
 The full grid, the per-cell means, and the bootstrap intervals are in the result files.

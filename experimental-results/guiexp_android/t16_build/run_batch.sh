@@ -9,7 +9,7 @@
 # Progress is rewritten to t16_build/progress.json after every cell.
 set -u
 
-cd /Users/myl/app/computer-use/computer-use || exit 1
+cd /Users/myl/app/computer-use/code || exit 1
 
 # API keys: the runner reads OPENROUTER_* straight out of the environment.
 ENV_FILE=/Users/myl/app/.env
