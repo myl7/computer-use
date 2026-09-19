@@ -20,8 +20,17 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WIKI_DIR = REPO_ROOT / "datasets" / "wiki-stream"
-OLD_REAL_STREAMS = (REPO_ROOT / "experimental-results" / "openapps"
-                    / "real-streams" / "real_streams.json")
+# The old harness's replay logs.  First location is the pre-2026-09-20 repo
+# layout; the fallback is where the 2026-09-20 reorganization moved them
+# (misc/ is the not-part-of-the-supplementary graveyard).
+_OLD_REAL_STREAMS_CANDIDATES = (
+    REPO_ROOT / "experimental-results" / "openapps" / "real-streams"
+    / "real_streams.json",
+    REPO_ROOT / "misc" / "results-dead" / "openapps" / "real-streams"
+    / "real_streams.json",
+)
+OLD_REAL_STREAMS = next((p for p in _OLD_REAL_STREAMS_CANDIDATES
+                         if p.exists()), _OLD_REAL_STREAMS_CANDIDATES[0])
 
 _CACHE: dict = {}
 

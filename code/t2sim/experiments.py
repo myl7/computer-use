@@ -73,7 +73,7 @@ E4_EVICT_POLICIES = ["always_reactive", "always_compile",
 OUT_NAME = {"E3_TAX": "E3_tax", "E4_TAX": "E4_tax",
             "E4_CRN": "E4_crn", "E4_EVICT": "E4_evict",
             "E4_RETRIEVAL": "E4_retrieval", "E4_KMIN3": "E4_kmin3",
-            "E5_TAX": "E5_tax"}
+            "E5_TAX": "E5_tax", "E12": "E12_ablation"}
 
 
 # ---------------------------------------------------------------------------
@@ -979,13 +979,101 @@ def _e5_tax_cells(constants: dict, reps: int, seed: int) -> list[dict]:
     return cells
 
 
+# E12 (2026-09-20): one-at-a-time mechanism ablation of Algorithm 1 on the
+# real streams.  Every cell runs the full mechanism (the E4 "ours" row and
+# its always_reactive anchor) plus six rows that each remove ONE piece: five
+# mechanism blocks switched via mech_with (E5's stress axes), and the
+# Theorem-1 narrow-price accumulated-excess rule run as its own policy, so
+# the table can put formula ablation next to mechanism ablation.
+#
+# The ours / always_reactive rows of the cost set E4 ran on are bit-identical
+# to the authoritative E4 file's cells by construction -- same constants
+# fingerprint (the config is built by build_constants_e12.py to hash exactly
+# like the E4 run's), same cell construction, same paired seeds, no CRN.
+# e12_postcheck.py verifies that against the E4 result file and records
+# meta.e4_identity_ok.
+E12_ROW_ORDER = ["ours", "always_reactive", "narrow_trigger",
+                 "fixed_cooldown", "no_decay", "gamma_prior",
+                 "fixed_horizon", "no_spend_cap"]
+
+
+def _e12_cells(constants: dict, reps: int, seed: int) -> list[dict]:
+    e4 = constants.get("e4", {})
+    e12 = constants.get("e12", {})
+    mech = trigger_mech(constants)
+    eps = eps_cfg(constants)
+    horizon = constants["trigger"]["horizon_fixed"]
+    cs_names = e12.get("cost_sets", ["android_glm", "android_ds"])
+    stream_names = e12.get(
+        "streams",
+        list(e4.get("streams", ["wiki_A", "wiki_B", "sepsis"]))
+        + (["bpi2019"] if e4.get("bpi_heldout", True) else []))
+    prices = e12.get("prices", ["native", "5M"])
+    bpi_reps = e4.get("bpi_reps") or reps
+    variants = {
+        "fixed_cooldown": sim.mech_with(mech, cooldown="fixed"),
+        "no_decay": sim.mech_with(mech, half_life=None),
+        # E5's c_prior gamma_1_20 row: the Gamma(1, 20) arrival prior.
+        "gamma_prior": sim.mech_with(mech, prior_mode="gamma",
+                                     prior_shape=1.0, prior_rate=20.0),
+        "fixed_horizon": sim.mech_with(mech, horizon_mode="fixed"),
+        "no_spend_cap": sim.mech_with(mech, spend_cap=False),
+        # Not a mechanism change: the same cells under the Theorem-1
+        # narrow-price rule, so formula vs mechanism ablation share a table.
+        "narrow_trigger": mech,
+    }
+    variant_policies = {"narrow_trigger": "breakeven"}
+    cells = []
+    for cs_name in cs_names:
+        layouts, tau_cfg, _ = cost_set_profiles(constants, cs_name)
+        for sname in stream_names:
+            reps_here = bpi_reps if sname == "bpi2019" else reps
+            for pname in prices:
+                cells.append({
+                    "kind": "real",
+                    "key": f"{cs_name}/{sname}/price={pname}",
+                    "stream_spec": constants["streams"][sname],
+                    "layouts": layouts, "tau": tau_cfg, "epsilon": eps,
+                    "horizon": horizon,
+                    "price_C": price_C(constants, pname),
+                    "price_name": pname,
+                    "reps": reps_here, "seed": seed,
+                    "policies": ["always_reactive", "ours"],
+                    "variants": variants,
+                    "variant_policies": variant_policies,
+                    "mech": mech,
+                    "offline": False,
+                })
+    return cells
+
+
+def _assemble_e12(results: dict, B: int) -> dict:
+    out = {}
+    for key, res in sorted(results.items()):
+        table = assemble_table(key, res["rows"], E12_ROW_ORDER, "ours",
+                               None, B, res["extra"])
+        table["_n_star"] = res["n_star"]
+        table["_stream"] = res["stream_summary"]
+        # The ablation summary column: variant mean over the ours mean,
+        # emitted under its table name (assemble_table already stored the
+        # same quantity as rel_to_ours).
+        m_ours = table["ours"]["mean_tokens"]
+        for name, rec in table.items():
+            if not name.startswith("_"):
+                rec["ratio_to_ours"] = rec["mean_tokens"] / m_ours
+        out[key] = table
+        _print_cell(key, table, E12_ROW_ORDER)
+    return out
+
+
 CELL_BUILDERS = {"E3": _e3_cells, "E4": _e4_cells, "E5": _e5_cells,
                  "E8": _e8_cells,
                  "E3_TAX": _e3_tax_cells, "E4_TAX": _e4_tax_cells,
                  "E4_CRN": _e4_crn_cells, "E4_EVICT": _e4_evict_cells,
                  "E4_RETRIEVAL": _e4_retrieval_cells,
                  "E4_KMIN3": _e4_kmin3_cells,
-                 "E5_TAX": _e5_tax_cells}
+                 "E5_TAX": _e5_tax_cells,
+                 "E12": _e12_cells}
 
 
 def apply_quick(constants: dict) -> dict:
@@ -1007,6 +1095,8 @@ def apply_quick(constants: dict) -> dict:
     c["e8"]["include_native_strength"] = False
     c["e8"]["tau_modes"] = ["off", "measured"]
     c["e8"]["eps_modes"] = ["off", "cliff"]
+    c.setdefault("e12", {})["cost_sets"] = ["android_ds"]
+    c["e12"]["prices"] = ["native"]
     return c
 
 
@@ -1300,7 +1390,8 @@ ASSEMBLERS = {"E3": _assemble_e3, "E4": _assemble_e4, "E5": _assemble_e5,
               "E4_EVICT": _assemble_e4_deploy,
               "E4_RETRIEVAL": _assemble_e4_deploy,
               "E4_KMIN3": _assemble_e4_deploy,
-              "E5_TAX": _assemble_e5}
+              "E5_TAX": _assemble_e5,
+              "E12": _assemble_e12}
 
 
 # ---------------------------------------------------------------------------

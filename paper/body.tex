@@ -642,6 +642,41 @@ The full buy price matters most on the Sepsis log, where it cuts the DeepSeek tr
 Across both tables, no competitor that differs from our policy has a 95 percent bootstrap interval covering parity with it.
 The gap to the offline optimum spans 0.21 to 0.91 across the table, the residual cost of not knowing which families will return and which programs will verify.
 
+\subsection{Ablation}
+\label{sec:ablation}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Removing one designed mechanism at a time.}
+Each row removes one mechanism from Algorithm~\ref{alg:policy} and reruns the same four real streams at both compilation prices; the always-reactive row anchors the scale.
+Each cell reports the cost relative to the full rule: the mean over the four streams, with the worst single stream after the slash.}
+\label{tab:ablation}
+\small
+\begin{tabular}{l>{\columncolor{glmTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{dsTint}}c}
+\toprule
+ & \multicolumn{2}{c}{GLM} & \multicolumn{2}{c}{DeepSeek} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variant & measured & 5M & measured & 5M \\
+\midrule
+always reactive & 4.22 / 11.75 & 2.02 / 4.02 & 0.98 / 1.00 & 1.00 / 1.00 \\
+narrow price & 1.08 / 1.25 & 0.70 / 1.00 & 1.15 / 1.24 & 1.21 / 1.56 \\
+fixed cooldown & 1.00 / 1.00 & 1.00 / 1.00 & 1.05 / 1.13 & 1.00 / 1.00 \\
+no evidence decay & 0.94 / 1.00 & 1.00 / 1.06 & 0.99 / 1.00 & 1.00 / 1.00 \\
+gamma-only prior & 1.00 / 1.00 & 1.00 / 1.01 & 1.00 / 1.00 & 1.00 / 1.00 \\
+fixed horizon & 1.10 / 1.28 & 1.30 / 1.97 & 0.98 / 1.01 & 1.00 / 1.00 \\
+no spend cap & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The buy formula carries the measured price: the narrow Theorem~\ref{thm:ski} price pays 1.08 on GLM and 1.15 on DeepSeek on average, with worst streams at 1.25 and 1.24.
+At the raised price the direction reverses on GLM, where the narrow rule pays 0.70 of the full rule.
+Its buy waits for realized savings to reach the price, and at five million that admits only the hottest families, while the projected-savings trigger also buys on estimated future use, and some of those buys do not pay back.
+The capped doubling horizon carries the raised price in the other direction: a fixed horizon pays 1.30 on average and 1.97 in its worst stream on GLM at five million.
+The inflate cooldown matters only under the DeepSeek constants, 1.13 in its worst stream at the measured price.
+Two mechanisms leave these streams unchanged: the population prior moves no cell by more than 1 percent, and the spend cap never binds, because its value is the failure-heavy regimes of Section~\ref{sec:regimes}, where it holds the worst case at 1.15 and 1.38 against 1.76 and 1.78 without it.
+Removing evidence decay lowers the GLM mean at the measured price to 0.94 and raises no mean in any cell of this sweep.
+
 \subsection{Robustness across regimes}
 \label{sec:regimes}
 A whole stream sitting in one regime is where a fixed rule is right by construction, so it bounds what the trigger can lose.

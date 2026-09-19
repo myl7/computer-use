@@ -67,9 +67,13 @@
  },
  "stages_done": [
   "exploration",
-  "translator"
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy"
  ],
- "wall_s": 648.3,
+ "wall_s": 2964.2,
  "translator": {
   "per_trajectory": [
    {
@@ -111,5 +115,444 @@
    "total_tokens": 41512,
    "cost_usd": 0.01314921
   }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1772,
+    "completion_tokens": 30244,
+    "cached_tokens": 0,
+    "cost_usd": 0.0143356752,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1772,
+      "cached_tokens": 0,
+      "completion_tokens": 30244,
+      "total_tokens": 32016,
+      "cost_usd": 0.0143356752,
+      "usage": {
+       "prompt_tokens": 1772,
+       "completion_tokens": 30244,
+       "cached_tokens": 0,
+       "cost_usd": 0.0143356752
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1661,
+    "completion_tokens": 742,
+    "cached_tokens": 0,
+    "cost_usd": 0.0005919111,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1661,
+      "cached_tokens": 0,
+      "completion_tokens": 742,
+      "total_tokens": 2403,
+      "cost_usd": 0.0005919111,
+      "usage": {
+       "prompt_tokens": 1661,
+       "completion_tokens": 742,
+       "cached_tokens": 0,
+       "cost_usd": 0.0005919111
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 2852,
+    "completion_tokens": 20995,
+    "cached_tokens": 0,
+    "cost_usd": 0.0101924955,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2852,
+      "cached_tokens": 0,
+      "completion_tokens": 20995,
+      "total_tokens": 23847,
+      "cost_usd": 0.0101924955,
+      "usage": {
+       "prompt_tokens": 2852,
+       "completion_tokens": 20995,
+       "cached_tokens": 0,
+       "cost_usd": 0.0101924955
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2741,
+    "completion_tokens": 1052,
+    "cached_tokens": 0,
+    "cost_usd": 0.0008965341,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2741,
+      "cached_tokens": 0,
+      "completion_tokens": 1052,
+      "total_tokens": 3793,
+      "cost_usd": 0.0008965341,
+      "usage": {
+       "prompt_tokens": 2741,
+       "completion_tokens": 1052,
+       "cached_tokens": 0,
+       "cost_usd": 0.0008965341
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 3897,
+    "completion_tokens": 14110,
+    "cached_tokens": 0,
+    "cost_usd": 0.0071440875,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3897,
+      "cached_tokens": 0,
+      "completion_tokens": 14110,
+      "total_tokens": 18007,
+      "cost_usd": 0.0071440875,
+      "usage": {
+       "prompt_tokens": 3897,
+       "completion_tokens": 14110,
+       "cached_tokens": 0,
+       "cost_usd": 0.0071440875
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 3786,
+    "completion_tokens": 572,
+    "cached_tokens": 0,
+    "cost_usd": 0.0008283726,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3786,
+      "cached_tokens": 0,
+      "completion_tokens": 572,
+      "total_tokens": 4358,
+      "cost_usd": 0.0008283726,
+      "usage": {
+       "prompt_tokens": 3786,
+       "completion_tokens": 572,
+       "cached_tokens": 0,
+       "cost_usd": 0.0008283726
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 16709,
+   "cached_tokens": 0,
+   "completion_tokens": 67715,
+   "total_tokens": 84424,
+   "cost_usd": 0.03398908
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 0,
+    "prompt_tokens": 3897,
+    "cached_tokens": 0,
+    "completion_tokens": 14110,
+    "total_tokens": 18007,
+    "cost_usd": 0.00714409
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 2,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": false,
+     "error": "RuntimeError: Phone field not found"
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": false,
+     "error": "reset: RuntimeError: Could not get a11y tree."
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": false,
+     "error": "RuntimeError: Phone field not found"
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 0,
+  "program_replays": 0,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "initial",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "gate_after_repair": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "name": "Victoria Martin",
+      "number": "+15420613181"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Jack Mohamed",
+      "number": "+11399709684"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Amir Muller",
+      "number": "+12955199377"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Maryam Pereira",
+      "number": "+14219393608"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "name": "Nora Gonzalez",
+      "number": "+13444195278"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "p_after": 1.0,
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 29,
+  "success_rate": 0.9666666666666667,
+  "d_tokens_mean": 309.43333333333334,
+  "total_tokens": 9283,
+  "cost_usd": 0.00245945
  }
 }

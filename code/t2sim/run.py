@@ -5,7 +5,7 @@
         --exp E3 --reps 20 --jobs 8
 
     --exp E3|E4|E5|E8|E3_tax|E4_tax|E5_tax|E4_crn|E4_evict|E4_retrieval|
-    E4_kmin3, a comma list (E3,E4), or 'all'.
+    E4_kmin3|E12, a comma list (E3,E4), or 'all'.
 
     The _tax variants rerun E3/E4 with the clairvoyant reference split into
     tax-blind and tax-aware rows (E3_tax.json / E4_tax.json); E5_tax rebuilds
@@ -17,6 +17,14 @@
     E4_retrieval swaps the full-listing router for top-k retrieval, and
     E4_kmin3 gives the compiler an AutoRPA-style three-demonstration
     requirement.
+
+    E12 is the one-at-a-time mechanism ablation of Algorithm 1 on the real
+    streams (E12_ablation.json): ours + always_reactive + five mech_with
+    variants + the Theorem-1 narrow rule, per cost set x stream x price.
+    Run it against constants.measured.v3.a1k3dsprices.json (built by
+    build_constants_e12.py), whose fingerprint is byte-identical to the
+    authoritative E4 run's, so the shared cells reproduce E4 bit for bit;
+    e12_postcheck.py verifies that and writes the CSV.
 
     --quick shrinks every stream/grid for a smoke run.  Outputs land under
     experimental-results/guiexp/t2_sim/.
@@ -44,8 +52,8 @@ def main() -> int:
                     help="constants JSON (see constants.template.json)")
     ap.add_argument("--exp", required=True,
                     help="E3, E4, E5, E8, E3_tax, E4_tax, E5_tax, E4_crn, "
-                         "E4_evict, E4_retrieval, E4_kmin3, a comma list, "
-                         "or 'all'")
+                         "E4_evict, E4_retrieval, E4_kmin3, E12, a comma "
+                         "list, or 'all'")
     ap.add_argument("--reps", type=int, default=20)
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--jobs", type=int, default=None,

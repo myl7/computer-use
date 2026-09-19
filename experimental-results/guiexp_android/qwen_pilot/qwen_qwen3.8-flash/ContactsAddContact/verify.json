@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name with exactly two whitespace-separated words.\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim.\",\n        \"required\": True,\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = str(binding[\"name\"])\n    number = str(binding[\"number\"])\n\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n\n    first_name = parts[0]\n    last_name = parts[1]\n    app_name = str(binding.get(\"app_name\") or \"Contacts\")\n\n    def norm(value):\n        return str(value or \"\").strip().lower()\n\n    def scroll(direction):\n        try:\n            device.scroll(direction=direction)\n        except Exception:\n            pass\n\n    def go_back():\n        try:\n            device.navigate_back()\n        except Exception:\n            pass\n\n    def find_any(*criteria):\n        for crit in criteria:\n            if not crit:\n                continue\n            idx = device.find(**crit)\n            if idx is not None:\n                return idx\n        return None\n\n    def find_contains(needles, editable=False, clickable=False):\n        for el in device.elements():\n            if editable and not el.get(\"editable\"):\n                continue\n            if clickable and not el.get(\"clickable\"):\n                continue\n\n            haystacks = [\n                norm(el.get(\"text\")),\n                norm(el.get(\"hint\")),\n                norm(el.get(\"description\")),\n            ]\n\n            for needle in needles:\n                n = norm(needle)\n                if not n:\n                    continue\n                for hay in haystacks:\n                    if n in hay:\n                        return el.get(\"index\")\n        return None\n\n    def find_field(labels):\n        criteria = []\n        for label in labels:\n            criteria.extend([\n                {\"hint\": label, \"editable\": True},\n                {\"text\": label, \"editable\": True},\n                {\"contains\": label, \"editable\": True},\n                {\"description\": label, \"editable\": True},\n            ])\n\n        idx = find_any(*criteria)\n        if idx is not None:\n            return idx\n        return find_contains(labels, editable=True)\n\n    def input_field(labels, value):\n        for _ in range(3):\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            scroll(\"down\")\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            scroll(\"up\")\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            device.settle(0.5)\n\n        return False\n\n    def click_save():\n        criteria = [\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"contains\": \"Save\", \"clickable\": True},\n        ]\n\n        idx = find_any(*criteria)\n        if idx is None:\n            idx = find_contains([\"Save\"], clickable=True)\n\n        if idx is None:\n            scroll(\"up\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains([\"Save\"], clickable=True)\n\n        if idx is None:\n            return False\n\n        device.click(index=idx)\n        return True\n\n    def click_create():\n        labels = [\"Create contact\", \"Add contact\", \"Create new contact\", \"New contact\"]\n        criteria = []\n        for label in labels:\n            criteria.extend([\n                {\"description\": label, \"clickable\": True},\n                {\"text\": label, \"clickable\": True},\n                {\"contains\": label, \"clickable\": True},\n            ])\n\n        idx = find_any(*criteria)\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            scroll(\"down\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            scroll(\"up\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            return False\n\n        device.click(index=idx)\n        return True\n\n    device.open_app(app_name)\n    device.settle(1.0)\n\n    if not click_create():\n        for _ in range(2):\n            idx = find_any(\n                {\"text\": \"Allow\", \"clickable\": True},\n                {\"text\": \"Allow all\", \"clickable\": True},\n                {\"text\": \"Allow all the time\", \"clickable\": True},\n                {\"text\": \"Continue\", \"clickable\": True},\n                {\"text\": \"Next\", \"clickable\": True},\n                {\"text\": \"Skip\", \"clickable\": True},\n                {\"text\": \"Got it\", \"clickable\": True},\n            )\n            if idx is None:\n                break\n            device.click(index=idx)\n            device.settle(1.0)\n\n        if not click_create():\n            if find_field([\"First name\", \"Given name\"]) is None:\n                raise RuntimeError(\"Could not find the Create contact button\")\n\n    if not input_field([\"First name\", \"Given name\"], first_name):\n        raise RuntimeError(\"Could not find or fill the First name field\")\n\n    if not input_field([\"Last name\", \"Family name\"], last_name):\n        raise RuntimeError(\"Could not find or fill the Last name field\")\n\n    if not input_field([\"Phone\", \"Phone number\", \"Mobile\", \"Cell\"], number):\n        raise RuntimeError(\"Could not find or fill the Phone field\")\n\n    if not click_save():\n        go_back()\n        device.settle(0.5)\n        if not click_save():\n            raise RuntimeError(\"Could not find the Save button\")\n\n    device.settle(1.0)\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name with exactly two whitespace-separated words.\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim.\",\n        \"required\": True,\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = str(binding[\"name\"])\n    number = str(binding[\"number\"])\n\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n\n    first_name = parts[0]\n    last_name = parts[1]\n    app_name = str(binding.get(\"app_name\") or \"Contacts\")\n\n    def norm(value):\n        return str(value or \"\").strip().lower()\n\n    def scroll(direction):\n        try:\n            device.scroll(direction=direction)\n        except Exception:\n            pass\n\n    def go_back():\n        try:\n            device.navigate_back()\n        except Exception:\n            pass\n\n    def find_any(*criteria):\n        for crit in criteria:\n            if not crit:\n                continue\n            idx = device.find(**crit)\n            if idx is not None:\n                return idx\n        return None\n\n    def find_contains(needles, editable=False, clickable=False):\n        for el in device.elements():\n            if editable and not el.get(\"editable\"):\n                continue\n            if clickable and not el.get(\"clickable\"):\n                continue\n\n            haystacks = [\n                norm(el.get(\"text\")),\n                norm(el.get(\"hint\")),\n                norm(el.get(\"description\")),\n            ]\n\n            for needle in needles:\n                n = norm(needle)\n                if not n:\n                    continue\n                for hay in haystacks:\n                    if n in hay:\n                        return el.get(\"index\")\n        return None\n\n    def find_field(labels):\n        criteria = []\n        for label in labels:\n            criteria.extend([\n                {\"hint\": label, \"editable\": True},\n                {\"text\": label, \"editable\": True},\n                {\"contains\": label, \"editable\": True},\n                {\"description\": label, \"editable\": True},\n            ])\n\n        idx = find_any(*criteria)\n        if idx is not None:\n            return idx\n        return find_contains(labels, editable=True)\n\n    def input_field(labels, value):\n        for _ in range(3):\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            scroll(\"down\")\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            scroll(\"up\")\n            idx = find_field(labels)\n            if idx is not None:\n                device.input_text(value, index=idx)\n                return True\n\n            device.settle(0.5)\n\n        return False\n\n    def click_save():\n        criteria = [\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"contains\": \"Save\", \"clickable\": True},\n        ]\n\n        idx = find_any(*criteria)\n        if idx is None:\n            idx = find_contains([\"Save\"], clickable=True)\n\n        if idx is None:\n            scroll(\"up\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains([\"Save\"], clickable=True)\n\n        if idx is None:\n            return False\n\n        device.click(index=idx)\n        return True\n\n    def click_create():\n        labels = [\"Create contact\", \"Add contact\", \"Create new contact\", \"New contact\"]\n        criteria = []\n        for label in labels:\n            criteria.extend([\n                {\"description\": label, \"clickable\": True},\n                {\"text\": label, \"clickable\": True},\n                {\"contains\": label, \"clickable\": True},\n            ])\n\n        idx = find_any(*criteria)\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            scroll(\"down\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            scroll(\"up\")\n            idx = find_any(*criteria)\n\n        if idx is None:\n            idx = find_contains(labels, clickable=True)\n\n        if idx is None:\n            return False\n\n        device.click(index=idx)\n        return True\n\n    device.open_app(app_name)\n    device.settle(1.0)\n\n    if not click_create():\n        for _ in range(2):\n            idx = find_any(\n                {\"text\": \"Allow\", \"clickable\": True},\n                {\"text\": \"Allow all\", \"clickable\": True},\n                {\"text\": \"Allow all the time\", \"clickable\": True},\n                {\"text\": \"Continue\", \"clickable\": True},\n                {\"text\": \"Next\", \"clickable\": True},\n                {\"text\": \"Skip\", \"clickable\": True},\n                {\"text\": \"Got it\", \"clickable\": True},\n            )\n            if idx is None:\n                break\n            device.click(index=idx)\n            device.settle(1.0)\n\n        if not click_create():\n            if find_field([\"First name\", \"Given name\"]) is None:\n                raise RuntimeError(\"Could not find the Create contact button\")\n\n    if not input_field([\"First name\", \"Given name\"], first_name):\n        raise RuntimeError(\"Could not find or fill the First name field\")\n\n    if not input_field([\"Last name\", \"Family name\"], last_name):\n        raise RuntimeError(\"Could not find or fill the Last name field\")\n\n    if not input_field([\"Phone\", \"Phone number\", \"Mobile\", \"Cell\"], number):\n        raise RuntimeError(\"Could not find or fill the Phone field\")\n\n    if not click_save():\n        go_back()\n        device.settle(0.5)\n        if not click_save():\n            raise RuntimeError(\"Could not find the Save button\")\n\n    device.settle(1.0)\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

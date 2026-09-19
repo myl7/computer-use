@@ -35,8 +35,14 @@ import sim
 import streams as streams_mod
 from experiments import DEFAULT_OUT_DIR
 
-OLD_RESULTS = (streams_mod.REPO_ROOT / "experimental-results" / "openapps"
-               / "results")
+# The old harness's result directory.  First location is the pre-2026-09-20
+# repo layout; the fallback is where the 2026-09-20 reorganization moved it.
+_OLD_RESULTS_CANDIDATES = (
+    streams_mod.REPO_ROOT / "experimental-results" / "openapps" / "results",
+    streams_mod.REPO_ROOT / "misc" / "results-dead" / "openapps" / "results",
+)
+OLD_RESULTS = next((p for p in _OLD_RESULTS_CANDIDATES if p.exists()),
+                   _OLD_RESULTS_CANDIDATES[0])
 OLD_SIM_PARAMS = OLD_RESULTS / "sim_params.json"
 OLD_POLICY_SIM = OLD_RESULTS / "policy_sim.json"
 

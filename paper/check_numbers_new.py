@@ -1743,6 +1743,115 @@ if group(19, "tab:realstreams DeepSeek half + bold argmins + parity scope (2026-
     eq_round("g19 abstract extension: max ours/best-same-info over DS cells",
              max(_abst), 1.1, 1)
 
+# ================================================================ G20
+if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (2026-09-20)"):
+    # E12_ablation.json: one-at-a-time ablation of Algorithm 1's mechanism
+    # blocks on the four real streams, both measured cost sets, native and 5M
+    # (rows: ours, always_reactive anchor, five mech_with variants, and
+    # narrow_trigger = the Theorem-1 breakeven rule run as a policy).  The
+    # run used constants.measured.v3.a1k3dsprices.json, built by
+    # build_constants_e12.py to hash byte-identically to the authoritative
+    # E4_full_v3_a1k3_e4dsprices.json run (reps 20 / seed 7 / add_one / k3),
+    # so E12's ours and always_reactive cells on that run's cost set
+    # (android_ds) must equal the E4 file's cells bit for bit -- asserted
+    # below both directly and via the meta.e4_identity_ok the t2sim
+    # post-check recorded.  Variant cells are frozen as literals read once
+    # from E12_ablation.json; nothing is read out of body.tex.
+    V3 = os.path.join(GUI, "t2_sim_v3")          # redefined for --group 20
+    with open(os.path.join(V3, "E12_ablation.json")) as fh:
+        e12j = json.load(fh)
+    with open(os.path.join(V3, "E4_full_v3_a1k3_e4dsprices.json")) as fh:
+        e4dpj = json.load(fh)
+    e12m, e12c = e12j["meta"], e12j["cells"]
+    e4dpm, e4dpc = e4dpj["meta"], e4dpj["cells"]
+    # cross-file identity guard: run.py hashes the loaded constants dict and
+    # both runs must carry the same hash
+    eq_int("g20 E12 constants_fingerprint == 16ddf469bfb42b98",
+           e12m["constants_fingerprint"], "16ddf469bfb42b98")
+    eq_int("g20 E4 file constants_fingerprint == 16ddf469bfb42b98",
+           e4dpm["constants_fingerprint"], "16ddf469bfb42b98")
+    eq_int("g20 E12 meta records e4_identity_ok", e12m["e4_identity_ok"], True)
+    # shared cells vs the E4 file: android_ds (the E4 run's cost set) x 4
+    # streams x {native, 5M} x {ours, always_reactive}, exact float equality
+    STREAMS4E = ("sepsis", "bpi2019", "wiki_A", "wiki_B")
+    E12KEYS = [f"{_cs}/{_s}/price={_p}"
+               for _cs in ("android_glm", "android_ds")
+               for _s in STREAMS4E for _p in ("native", "5M")]
+    for _s in STREAMS4E:
+        for _p in ("native", "5M"):
+            for _r in ("ours", "always_reactive"):
+                eq_int(f"g20 shared cell android_ds/{_s}/price={_p} {_r} "
+                       f"== E4 file",
+                       e12c[f"android_ds/{_s}/price={_p}"][_r]["mean_tokens"],
+                       e4dpc[f"{_s}/price={_p}"][_r]["mean_tokens"])
+    # frozen mean_tokens, read once from E12_ablation.json (2026-09-20 run);
+    # cell order = E12KEYS: glm/ds x sepsis/bpi2019/wiki_A/wiki_B x native/5M
+    E12MT = {
+        "ours": (194887109.56787893, 226098156.76587048, 15965918931.86382, 23251016331.77835, 1586773857.3817372, 4638786898.18381, 19203454153.882515, 19274226829.85438, 197145955.61914468, 187135368.5645987, 28373294669.605865, 28364744721.457897, 19441549398.73463, 19487424199.809628, 17838546420.467144, 16977748066.618664,),
+        "always_reactive": (226623379.80364805, 226623379.80364805, 45569286836.35857, 45569286836.35857, 18647813056.4936, 18647813056.4936, 20990872303.51029, 20990872303.51029, 187135368.5645987, 187135368.5645987, 28364744721.457897, 28364744721.457897, 19487424199.809628, 19487424199.809628, 16977748066.618664, 16977748066.618664,),
+        "narrow_trigger": (194998161.88587183, 227083368.62661117, 19959147073.414467, 10503829276.63754, 1584219900.337519, 1907293419.3643737, 20555923942.292023, 18353938849.30387, 244798304.93063682, 292229260.83829105, 31901162547.574074, 29848750795.07134, 19543144842.29762, 19938251197.630413, 21985293190.666218, 20149246355.833767,),
+        "fixed_cooldown": (194887109.56787893, 226098156.76587048, 15965918931.86382, 23251016331.77835, 1586773857.3817372, 4638786898.18381, 19203454153.882515, 19274226829.85438, 222172423.2555088, 187135368.5645987, 29077166091.885864, 28364744721.457897, 19744093217.004173, 19487424199.809628, 18506782376.488182, 16977748066.618664,),
+        "no_decay": (194853961.20587182, 227083368.62661117, 13809444149.538696, 24664963101.947952, 1545275844.607056, 4564619844.244683, 18021404830.09183, 18573811792.83555, 197145955.61914468, 187135368.5645987, 28002220144.24897, 28364744721.457897, 19345682263.41358, 19487424199.809628, 17213673650.545994, 16977748066.618664,),
+        "gamma_prior": (194887109.56787893, 226098156.76587048, 15892531359.778233, 23256222984.212387, 1594479197.8900533, 4672274079.488786, 19161733388.104424, 19288996538.515003, 197145955.61914468, 187135368.5645987, 28373511526.946552, 28364744721.457897, 19435003650.787918, 19487424199.809628, 17836044569.91498, 16977748066.618664,),
+        "fixed_horizon": (201516720.02438918, 226623379.80364805, 20455128512.91166, 45714284743.81479, 1680175181.5882661, 5255994873.731812, 19560192281.310337, 21009759287.667377, 187135368.5645987, 187135368.5645987, 28115410529.093834, 28364744721.457897, 19561355188.029617, 19487424199.809628, 17015287768.073145, 16977748066.618664,),
+        "no_spend_cap": (194887109.56787893, 226098156.76587048, 15965918931.86382, 23251016331.77835, 1586773857.3817372, 4638786898.18381, 19203454153.882515, 19274226829.85438, 197145955.61914468, 187135368.5645987, 28373294669.605865, 28364744721.457897, 19441549398.73463, 19487424199.809628, 17838546420.467144, 16977748066.618664,),
+    }
+    for _row, _wants in E12MT.items():
+        for _k, _want in zip(E12KEYS, _wants):
+            eq_int(f"g20 {_k} {_row} frozen mean_tokens",
+                   e12c[_k][_row]["mean_tokens"], _want)
+    # every ratio_to_ours in the file must equal row_mean / ours_mean exactly
+    for _k in E12KEYS:
+        for _row in E12MT:
+            eq_int(f"g20 {_k} {_row} ratio_to_ours recomputed",
+                   e12c[_k][_row]["ratio_to_ours"],
+                   e12c[_k][_row]["mean_tokens"]
+                   / e12c[_k]["ours"]["mean_tokens"])
+
+    # tab:ablation body numbers: per variant, cost relative to the full rule
+    # as mean over the four streams of ratio_to_ours, worst stream after the
+    # slash (2dp display).  Every printed cell is frozen here.
+    _STREAMS4 = ("sepsis", "bpi2019", "wiki_A", "wiki_B")
+    _TAB_ROWS = ("always_reactive", "narrow_trigger", "fixed_cooldown",
+                 "no_decay", "gamma_prior", "fixed_horizon", "no_spend_cap")
+    _TAB_WANT = {  # (row, costset, price): (mean, worst) as printed
+        ("always_reactive", "glm", "native"): (4.22, 11.75),
+        ("always_reactive", "glm", "5M"): (2.02, 4.02),
+        ("always_reactive", "ds", "native"): (0.98, 1.00),
+        ("always_reactive", "ds", "5M"): (1.00, 1.00),
+        ("narrow_trigger", "glm", "native"): (1.08, 1.25),
+        ("narrow_trigger", "glm", "5M"): (0.70, 1.00),
+        ("narrow_trigger", "ds", "native"): (1.15, 1.24),
+        ("narrow_trigger", "ds", "5M"): (1.21, 1.56),
+        ("fixed_cooldown", "glm", "native"): (1.00, 1.00),
+        ("fixed_cooldown", "glm", "5M"): (1.00, 1.00),
+        ("fixed_cooldown", "ds", "native"): (1.05, 1.13),
+        ("fixed_cooldown", "ds", "5M"): (1.00, 1.00),
+        ("no_decay", "glm", "native"): (0.94, 1.00),
+        ("no_decay", "glm", "5M"): (1.00, 1.06),
+        ("no_decay", "ds", "native"): (0.99, 1.00),
+        ("no_decay", "ds", "5M"): (1.00, 1.00),
+        ("gamma_prior", "glm", "native"): (1.00, 1.00),
+        ("gamma_prior", "glm", "5M"): (1.00, 1.01),
+        ("gamma_prior", "ds", "native"): (1.00, 1.00),
+        ("gamma_prior", "ds", "5M"): (1.00, 1.00),
+        ("fixed_horizon", "glm", "native"): (1.10, 1.28),
+        ("fixed_horizon", "glm", "5M"): (1.30, 1.97),
+        ("fixed_horizon", "ds", "native"): (0.98, 1.01),
+        ("fixed_horizon", "ds", "5M"): (1.00, 1.00),
+        ("no_spend_cap", "glm", "native"): (1.00, 1.00),
+        ("no_spend_cap", "glm", "5M"): (1.00, 1.00),
+        ("no_spend_cap", "ds", "native"): (1.00, 1.00),
+        ("no_spend_cap", "ds", "5M"): (1.00, 1.00),
+    }
+    for (_row, _cs, _pr), (_wm, _ww) in _TAB_WANT.items():
+        _rs = [e12c[f"android_{_cs}/{_s}/price={_pr}"][_row]["ratio_to_ours"]
+               for _s in _STREAMS4]
+        eq_round(f"g20 tab:ablation {_cs}/{_pr} {_row} mean-of-ratios",
+                 sum(_rs) / len(_rs), _wm, 2)
+        eq_round(f"g20 tab:ablation {_cs}/{_pr} {_row} worst-stream",
+                 max(_rs), _ww, 2)
+
 # ================================================================ summary
 print()
 if FAILURES:
