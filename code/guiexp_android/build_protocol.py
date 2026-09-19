@@ -59,6 +59,7 @@ CACHE_RATIO = {  # r = cache-read price / input price
     "z-ai/glm-5.3-flash": 0.20,
     "z-ai/glm-5v-turbo": 0.20,
     "deepseek/deepseek-v4-flash-vision-exp": 0.318,
+    "qwen/qwen3.8-flash": 0.107,
 }
 DEFAULT_K_VALUES = (1, 2, 3)
 DEPLOY_USES = 30

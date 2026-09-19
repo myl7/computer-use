@@ -536,6 +536,7 @@ The agent cost varies substantially across the thirty bindings, with coefficient
 DeepSeek Markor delete costs 22.3k tokens per replay, compared with 10.8k in the initial exploration sample, yet the estimated program saving remains 0.949.
 For GLM Calendar and OsmAnd marker, the agent succeeds on fourteen and twelve of thirty bindings, respectively, while each original program succeeds on all thirty.
 The program advantage therefore persists in both estimated serving cost and observed success on these two families.
+Pooled per model, the program arm succeeds on 114 of 120 uses on GLM and 58 of 60 on DeepSeek, against 86 and 50 agent replays, and Appendix~\ref{app:success} reports the paired test.
 The replay uses a different emulator profile from the original deployment, and the initial Android exploration costs include cache estimates where counts were missing.
 Consequently, differences from the original agent means cannot be assigned to model randomness alone.
 
@@ -923,6 +924,11 @@ For a cell with $\pi = 1$ the per-success break-even equals the per-arrival one 
 GLM OsmAnd marker falls from 3.46 uses to 0.43 delivered successes, because an agent success there costs eight attempts, and DeepSeek Writer memo falls from 11.69 to 8.74 at three successes in four attempts.
 Where the program itself fails uses, the per-success reading charges the fallback, so on GLM Markor delete, whose program fails six of thirty uses, a delivered success through the program costs 6940 tokens against 33.7k through the agent.
 The per-arrival reading of the main text keeps the objective on tokens, and this table records that the same programs also change what a success costs.
+
+The paired replays of Table~\ref{tab:paired-replays} also give the success side of the same question.
+On the same bindings, serving by the program succeeds on 114 of 120 uses on GLM against 86 of 120 agent replays, and 58 of 60 against 50 of 60 on DeepSeek.
+The discordant bindings favor the program, 34 to 6 on GLM and 9 to 1 on DeepSeek, with exact binomial $p$ below 0.001 and at 0.022, so the measured savings do not come at the price of the success rate.
+The one regression is GLM Markor delete, 24 of 30 under the program, the same six failed uses behind its per-success price above, and the verified desktop and web programs pass thirty of thirty deployment uses.
 
 \section{Accounting Boundaries in Published Studies}
 \label{app:reconcile}

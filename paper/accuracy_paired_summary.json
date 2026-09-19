@@ -1,0 +1,253 @@
+{
+  "record_type": "accuracy_paired_summary",
+  "date": "2026-09-19",
+  "sources": {
+    "paired_replay": "experimental-results/guiexp_android/t21_paired_replay/<model>/<Family>/use_XX/summary.json",
+    "t16_constants": "experimental-results/guiexp_android/t16_build/constants_table.json",
+    "osworld": "experimental-results/guiexp_osworld/<model>/<Family>/{build.json,deploy.json}",
+    "webarena": "experimental-results/guiexp_webarena/<model>/<Family>/{build.json,deploy.json}",
+    "checker": "paper/check_accuracy_appendix.py"
+  },
+  "definitions": {
+    "agent_arm": "top-level success of the t21 summary.json (reactive agent replay, no compiled program)",
+    "program_arm": "deploy_use.success of the t21 summary.json (same binding served by the compiled program)",
+    "paired": "same binding use_index replayed both ways; only_agent/only_program are the McNemar discordant cells",
+    "exact_binomial_p": "two-sided exact binomial on the discordant pairs, min(1, 2*P(X <= min(b,c))), X~Bin(b+c, 0.5); null when no discordant pairs",
+    "deploy_q": "successes/n of the deploy.json uses (program use-time pass rate, different use sample than t21)",
+    "sampling_note": "t21 replays a fresh 30-use sample per family; t16 headline q is measured on the build-time deploy sample; osworld/webarena deploy.json on their own 30-use samples. They measure different use samples; reported side by side, not asserted equal."
+  },
+  "per_family": {
+    "deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact": {
+      "benchmark": "android",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "family": "ContactsAddContact",
+      "n_pairs": 30,
+      "agent_successes": 27,
+      "agent_pass_rate": 0.9,
+      "program_successes": 29,
+      "program_pass_rate": 0.9666666666666667,
+      "paired": {
+        "both_success": 26,
+        "only_agent": 1,
+        "only_program": 3,
+        "both_fail": 0
+      }
+    },
+    "deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote": {
+      "benchmark": "android",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "family": "MarkorDeleteNote",
+      "n_pairs": 30,
+      "agent_successes": 23,
+      "agent_pass_rate": 0.7666666666666667,
+      "program_successes": 29,
+      "program_pass_rate": 0.9666666666666667,
+      "paired": {
+        "both_success": 23,
+        "only_agent": 0,
+        "only_program": 6,
+        "both_fail": 1
+      }
+    },
+    "z-ai_glm-5.3-flash/ContactsAddContact": {
+      "benchmark": "android",
+      "model": "z-ai/glm-5.3-flash",
+      "family": "ContactsAddContact",
+      "n_pairs": 30,
+      "agent_successes": 30,
+      "agent_pass_rate": 1.0,
+      "program_successes": 30,
+      "program_pass_rate": 1.0,
+      "paired": {
+        "both_success": 30,
+        "only_agent": 0,
+        "only_program": 0,
+        "both_fail": 0
+      }
+    },
+    "z-ai_glm-5.3-flash/MarkorDeleteNote": {
+      "benchmark": "android",
+      "model": "z-ai/glm-5.3-flash",
+      "family": "MarkorDeleteNote",
+      "n_pairs": 30,
+      "agent_successes": 30,
+      "agent_pass_rate": 1.0,
+      "program_successes": 24,
+      "program_pass_rate": 0.8,
+      "paired": {
+        "both_success": 24,
+        "only_agent": 6,
+        "only_program": 0,
+        "both_fail": 0
+      }
+    },
+    "z-ai_glm-5.3-flash/OsmAndMarker": {
+      "benchmark": "android",
+      "model": "z-ai/glm-5.3-flash",
+      "family": "OsmAndMarker",
+      "n_pairs": 30,
+      "agent_successes": 12,
+      "agent_pass_rate": 0.4,
+      "program_successes": 30,
+      "program_pass_rate": 1.0,
+      "paired": {
+        "both_success": 12,
+        "only_agent": 0,
+        "only_program": 18,
+        "both_fail": 0
+      }
+    },
+    "z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent": {
+      "benchmark": "android",
+      "model": "z-ai/glm-5.3-flash",
+      "family": "SimpleCalendarAddOneEvent",
+      "n_pairs": 30,
+      "agent_successes": 14,
+      "agent_pass_rate": 0.4666666666666667,
+      "program_successes": 30,
+      "program_pass_rate": 1.0,
+      "paired": {
+        "both_success": 14,
+        "only_agent": 0,
+        "only_program": 16,
+        "both_fail": 0
+      }
+    }
+  },
+  "pooled_per_model": {
+    "z-ai_glm-5.3-flash": {
+      "n_pairs": 120,
+      "families": [
+        "ContactsAddContact",
+        "MarkorDeleteNote",
+        "OsmAndMarker",
+        "SimpleCalendarAddOneEvent"
+      ],
+      "agent_successes": 86,
+      "agent_pass_rate": 0.7166666666666667,
+      "program_successes": 114,
+      "program_pass_rate": 0.95,
+      "discordant": {
+        "only_agent": 6,
+        "only_program": 34
+      },
+      "discordant_total": 40,
+      "exact_binomial_p": 8.364584573428147e-06
+    },
+    "deepseek_deepseek-v4-flash-vision-exp": {
+      "n_pairs": 60,
+      "families": [
+        "ContactsAddContact",
+        "MarkorDeleteNote"
+      ],
+      "agent_successes": 50,
+      "agent_pass_rate": 0.8333333333333334,
+      "program_successes": 58,
+      "program_pass_rate": 0.9666666666666667,
+      "discordant": {
+        "only_agent": 1,
+        "only_program": 9
+      },
+      "discordant_total": 10,
+      "exact_binomial_p": 0.021484375
+    }
+  },
+  "cross_check": {
+    "android_t21_vs_t16": {
+      "z-ai_glm-5.3-flash/ContactsAddContact": {
+        "t21_program_pass_rate": 1.0,
+        "t16_headline_q": 0.0,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "z-ai_glm-5.3-flash/MarkorDeleteNote": {
+        "t21_program_pass_rate": 0.8,
+        "t16_headline_q": 0.19999999999999996,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "z-ai_glm-5.3-flash/OsmAndMarker": {
+        "t21_program_pass_rate": 1.0,
+        "t16_headline_q": 0.0,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent": {
+        "t21_program_pass_rate": 1.0,
+        "t16_headline_q": 0.0,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact": {
+        "t21_program_pass_rate": 0.9666666666666667,
+        "t16_headline_q": 0.033333333333333326,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote": {
+        "t21_program_pass_rate": 0.9666666666666667,
+        "t16_headline_q": 0.033333333333333326,
+        "t16_admitted": true,
+        "n_t21_pairs": 30
+      },
+      "deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker": {
+        "t21_program_pass_rate": null,
+        "t16_headline_q": null,
+        "t16_admitted": false,
+        "n_t21_pairs": 0
+      },
+      "deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent": {
+        "t21_program_pass_rate": null,
+        "t16_headline_q": null,
+        "t16_admitted": false,
+        "n_t21_pairs": 0
+      }
+    },
+    "osworld": {
+      "deepseek_deepseek-v4-flash-vision-exp/CalcTableSave": {
+        "admitted": false,
+        "deploy_n": 0,
+        "deploy_successes": null,
+        "deploy_q": null,
+        "benchmark": "osworld"
+      },
+      "deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave": {
+        "admitted": true,
+        "deploy_n": 30,
+        "deploy_successes": 30,
+        "deploy_q": 1.0,
+        "benchmark": "osworld"
+      },
+      "z-ai_glm-5.3-flash/CalcTableSave": {
+        "admitted": true,
+        "deploy_n": 30,
+        "deploy_successes": 30,
+        "deploy_q": 1.0,
+        "benchmark": "osworld"
+      },
+      "z-ai_glm-5.3-flash/WriterMemoSave": {
+        "admitted": true,
+        "deploy_n": 30,
+        "deploy_successes": 30,
+        "deploy_q": 1.0,
+        "benchmark": "osworld"
+      }
+    },
+    "webarena": {
+      "deepseek_deepseek-v4-flash-vision-exp/CommentPost": {
+        "admitted": true,
+        "deploy_n": 30,
+        "deploy_successes": 30,
+        "deploy_q": 1.0,
+        "benchmark": "webarena"
+      },
+      "z-ai_glm-5.3-flash/CommentPost": {
+        "admitted": true,
+        "deploy_n": 30,
+        "deploy_successes": 30,
+        "deploy_q": 1.0,
+        "benchmark": "webarena"
+      }
+    }
+  }
+}

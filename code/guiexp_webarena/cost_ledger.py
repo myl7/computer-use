@@ -29,6 +29,7 @@ from __future__ import annotations
 PRICE_WEIGHTS = {
     "z-ai/glm-5.3-flash": {"r_c": 0.20, "r_o": 3.33},
     "deepseek/deepseek-v4-flash-vision-exp": {"r_c": 0.032, "r_o": 3.00},
+    "qwen/qwen3.8-flash": {"r_c": 0.107, "r_o": 3.13},
     "mock": {"r_c": 0.20, "r_o": 3.33},  # tests only
 }
 

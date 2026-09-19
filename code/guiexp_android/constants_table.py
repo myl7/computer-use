@@ -81,6 +81,7 @@ PRICE_SHEET_SOURCE = "https://openrouter.ai/api/v1/models"
 PRICE_SHEET = {
     "z-ai/glm-5.3-flash": {"p_in": 1.5e-7, "p_c": 3e-8, "p_o": 5e-7},
     "deepseek/deepseek-v4-flash-vision-exp": {"p_in": 2.2e-7, "p_c": 7e-9, "p_o": 6.6e-7},
+    "qwen/qwen3.8-flash": {"p_in": 1.5e-7, "p_c": 1.6e-8, "p_o": 4.7e-7},
 }
 
 # Per-model global floor, in RAW tokens: the tokens an episode spends before it
