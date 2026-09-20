@@ -24,11 +24,18 @@ What changes vs constants.measured.v3.json (and nothing else):
       / price_ladder / epsilon_cliff / streams / trigger / e3 / e4 / e5 /
       e8 / extras -- is copied verbatim from v3 (the e12 builder's rule).
 
-Known gaps carried over from the measurement layer (block `note`):
+Known conventions carried over from the measurement layer (block `note`):
 
-  * no qwen Android no-task floor has been measured (GLM 5090 / DeepSeek
-    2290 have no qwen counterpart), so the AndroidWorld rows' c and L_doc
-    are UNSUBTRACTED and floor_raw_tokens is null;
+  * the Android no-task floor for qwen (t12_grid, 18 no-task runs) is
+    subtracted at the DOCUMENTED price weights (r_c 0.107, r_o 3.13, the
+    build cells' price_weights): floor = mean pw(per_run) AS RECORDED =
+    1031.76 pw, far below the 4432.28 raw-token mean of the same runs
+    because 16/18 runs hit the repeated 4352-token cached prefix (one
+    partial 512, one cold).  The glm/ds floors (5090 / 2290) are
+    raw-uncached, so absolute floor comparisons across models are NOT
+    like-for-like; `floor_raw_tokens` carries the pw value actually
+    subtracted.  Per-run numbers: measurement_update_20260918.json
+    `qwen_android_floor`;
   * the L_doc median spans the 5 rows that have a doc arm (CalcTableSave
     terminated before its doc stage).
 
@@ -73,25 +80,33 @@ RHO_NEG_NOTE = ("rho < 0: the doc arm costs MORE than a reactive episode "
                 "hold. rho and L are documentation only; the engine reads "
                 "neither.")
 
-BLOCK_NOTE = ("Third model, measured 2026-09-20; body/table integration "
+BLOCK_NOTE = ("Third model, measured 2026-09-20 (Android no-task floor "
+              "calibrated 2026-09-21 in t12_grid); body/table integration "
               "pending (rows live under measurement_update_20260918.json "
-              "`qwen_rows`). floor_raw_tokens is null: no qwen Android "
-              "no-task floor has been measured (GLM 5090 / DeepSeek 2290 "
-              "predate this model), so the AndroidWorld rows' c and L_doc "
-              "are UNSUBTRACTED; the two OSWorld floors are per-cell (18 "
-              "runs each) and already subtracted. The L_doc median spans "
-              "the 5 rows with a doc arm. OsmAndMarker was rejected at "
-              "verification after repair rounds under the image-413-guard "
-              "completion (no deploy stage); its engine-facing C/d/q0 are "
-              "the model median over the admitted rows and its own "
-              "failed-build price is under measured.C_with_repair. "
-              "CalcTableSave was TERMINATED by operator ruling inside the "
-              "gate stage (" + TERMINATED_REASON + "); verification/deploy/"
-              "doc_arm never ran, so its C is the PARTIAL translator+builder "
-              "spend (the gate stage makes no model calls) and is a LOWER "
-              "BOUND on a failed build. WebArena CommentPost is absent: "
-              "provider content-filter refusal (400 data_inspection_failed), "
-              "deterministic, floor 18/18 passed, single Alibaba endpoint.")
+              "`qwen_rows`). Floor convention (2026-09-21 ruling): floor = "
+              "mean pw(per_run) AS RECORDED over the 18 t12_grid no-task "
+              "runs, cached tokens charged AT the documented cache ratio "
+              "(r_c 0.107, r_o 3.13, the build cells' price_weights) = "
+              "1031.76 pw, which `floor_raw_tokens` carries; the RAW-token "
+              "mean of the same runs is 4432.28 and the two diverge because "
+              "16/18 runs hit the repeated 4352-token cached prefix (one "
+              "partial 512, one cold). The GLM 5090 / DeepSeek 2290 floors "
+              "are raw-uncached, so absolute floor comparisons across "
+              "models are not like-for-like. The two OSWorld floors are "
+              "per-cell (18 runs each) and already subtracted. The L_doc "
+              "median spans the 5 rows with a doc arm. OsmAndMarker was "
+              "rejected at verification after repair rounds under the "
+              "image-413-guard completion (no deploy stage); its "
+              "engine-facing C/d/q0 are the model median over the admitted "
+              "rows and its own failed-build price is under "
+              "measured.C_with_repair. CalcTableSave was TERMINATED by "
+              "operator ruling inside the gate stage (" + TERMINATED_REASON +
+              "); verification/deploy/doc_arm never ran, so its C is the "
+              "PARTIAL translator+builder spend (the gate stage makes no "
+              "model calls) and is a LOWER BOUND on a failed build. "
+              "WebArena CommentPost is absent: provider content-filter "
+              "refusal (400 data_inspection_failed), deterministic, floor "
+              "18/18 passed, single Alibaba endpoint.")
 
 
 def fmt(x: float) -> str:
@@ -197,6 +212,12 @@ def build_block(v3_android_block: dict, rows: list[dict],
     layouts = {r["family"]: build_layout(r, c_fail_mult, fill)
                for r in sorted(rows, key=lambda r: r["family"])}
 
+    # The AndroidWorld rows share the t12_grid no-task floor (subtracted at
+    # the documented price weights); the OSWorld floors are per-cell.
+    android_floors = {r["floor"] for r in rows if r["platform"] == "Android"}
+    assert len(android_floors) == 1, android_floors
+    qwen_android_floor = android_floors.pop()
+
     # Rows with a REAL deployment stage (the rejected row's d is the fill
     # median, so `d is not None` would over-count).
     deploy_rows = [r for r in rows if r.get("deploy_n") is not None]
@@ -233,7 +254,9 @@ def build_block(v3_android_block: dict, rows: list[dict],
         "r_cache": QWEN_PRICES["p_c"] / QWEN_PRICES["p_in"],
         "m": v3_android_block["m"],
         "tau0": v3_android_block["tau0"],
-        "floor_raw_tokens": None,
+        # the pw floor actually subtracted (NOT a raw-token count; the raw
+        # mean of the same runs is 4432.28 -- see the block note)
+        "floor_raw_tokens": qwen_android_floor,
         "price_sheet": dict(QWEN_PRICES),
         "note": BLOCK_NOTE,
         "per_model": per_model,
@@ -262,6 +285,15 @@ def build_constants(v3: dict, meas: dict) -> dict:
         if (r["family"] == "CalcTableSave") != r.get("C_partial", False):
             raise AssertionError("C_partial must be set exactly on the "
                                  "terminated CalcTableSave row")
+    floor_rec = meas.get("qwen_android_floor")
+    android_rows = [r for r in qwen_rows if r["platform"] == "Android"]
+    if not floor_rec or any(r["floor"] is None for r in android_rows):
+        raise AssertionError("qwen_rows missing the t12_grid Android floor; "
+                             "rerun paper/measurement_update_20260918.py")
+    if any(abs(r["floor"] - floor_rec["floor_pw"]) > 1e-9
+           for r in android_rows):
+        raise AssertionError("Android rows' floor disagrees with "
+                             "qwen_android_floor.floor_pw")
 
     sha_prefix = hashlib.sha256(MEAS_PATH.read_bytes()).hexdigest()[:16]
     out = json.loads(json.dumps(v3))            # deep copy, verbatim default
@@ -289,6 +321,7 @@ def frozen_checks(out: dict) -> None:
     assert blk["per_model"]["n_cells"] == 6
     assert abs(blk["per_model"]["C_median_admitted"]
                - 346595.7266666667) < 1e-6
+    assert abs(blk["floor_raw_tokens"] - 1031.7576666666666) < 1e-9
     mult = lay["ContactsAddContact"]["C_fail_mult"]
     assert abs(mult - 3.5099146923507942) < 1e-9
     for fam in ("ContactsAddContact", "MarkorDeleteNote",
@@ -302,6 +335,13 @@ def frozen_checks(out: dict) -> None:
     assert abs(lay["CalcTableSave"]["measured"]["C_with_repair"]
                - 847543.8933333333) < 1e-6
     assert abs(lay["WriterMemoSave"]["c"] - 36984.96888888889) < 1e-6
+    # AndroidWorld rows carry the floored c and the matching c_unsubtracted
+    assert abs(lay["ContactsAddContact"]["c"] - 39168.48233333334) < 1e-6
+    for fam in ("ContactsAddContact", "MarkorDeleteNote",
+                "SimpleCalendarAddOneEvent"):
+        l = lay[fam]
+        assert abs(l["measured"]["c_unsubtracted"]
+                   - (l["c"] + 1031.7576666666666)) < 1e-6, fam
     # verbatim propagation: nothing outside cost_sets.android_qw moved
     v3 = json.loads(V3_PATH.read_text())
     for k, v in v3.items():

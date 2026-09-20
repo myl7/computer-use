@@ -3,11 +3,13 @@
 Run from any directory. --check also compares the rendered rows with body.tex.
 The older number generators retain their historical Android-only scope.
 
-A third model layer, qwen/qwen3.8-flash (measured 2026-09-20), exists since
+A third model layer, qwen/qwen3.8-flash (measured 2026-09-20, Android no-task
+floor calibrated 2026-09-21 in t12_grid), exists since
 2026-09-20: its six rows (4 AndroidWorld + 2 OSWorld; the WebArena cell
 provider-refused before producing stage data and has no row) are always
 computed from the raw cell records and written under the top-level
-`qwen_rows` / `aggregate['qwen/qwen3.8-flash']` / `qwen_disclosures` keys.
+`qwen_rows` / `aggregate['qwen/qwen3.8-flash']` / `qwen_disclosures` /
+`qwen_android_floor` keys.
 The body.tex tables and every legacy count remain glm/ds-only; the qwen
 body/table integration is PENDING (--include-qwen previews a merged `rows`
 array in the JSON only).  --check-qwen pins the qwen rows against frozen
@@ -76,10 +78,15 @@ def read_source(path):
 # d, q, C, floor, doc_share, program_share, nstar, gates and admitted use the
 # same formulas, derived from each cell's own build.json/deploy.json instead
 # of the frozen table's headline. Fields that map differently:
-#   * floor: the Android no-task floor is a per-model constant measured on 18
-#     idle episodes (GLM 5090 / DeepSeek 2290 raw tokens). No such measurement
-#     exists for qwen, so floor is None and c/L_doc stay UNSUBTRACTED
-#     (nstar_incl_observed_floored is therefore None too).
+#   * floor: measured 2026-09-21 in t12_grid (18 no-task runs, 3 families x
+#     6 seeds), parsed exactly like the glm/ds floor reader -- the single
+#     model call's usage per run -- and priced per the floor-convention
+#     ruling: mean pw(per_run) AS RECORDED, cached tokens AT the model's
+#     documented cache ratio (r_c 0.107, r_o 3.13, the build cells'
+#     price_weights). This gives 1031.8 pw against a 4432.3 raw mean,
+#     because 16/18 runs hit the repeated 4352-token cached prefix (the
+#     glm/ds floors are raw-uncached). Per-run numbers are frozen under
+#     `qwen_android_floor`.
 #   * d: deployment bill / p_in proxy (mean use cost_usd / p_in), i.e. the
 #     same bill convention the table's headline d carries.
 #   * C: translator + selected builder arm + refinements + analyzer + resume
@@ -105,21 +112,41 @@ qwen_files=[]
 def qread(p):
  qwen_files.append(p);return json.loads(p.read_text())
 prices[QWEN]={'p_in':1.5e-07,'p_c':1.6e-08,'p_o':4.7e-07}   # OpenRouter list 2026-09-20 (r_c 0.107, r_o 3.13); out['prices'] shares this dict
+# Floor calibration: t12_grid 18 no-task runs, glm/ds reader parsing (one
+# model call per run), floor = mean pw(per_run) at the DOCUMENTED price
+# weights (cached AT the cache ratio), per the 2026-09-21 convention ruling.
+QWEN_R_C_DOC=0.107;QWEN_R_O_DOC=3.13   # the build cells' recorded price_weights
+QWEN_FLOOR_CACHE_FULL=4352
+floor_runs=[]
+for p in sorted((ROOT/'experimental-results/guiexp_android/t12_grid/qwen_qwen3.8-flash').glob('floor__*/trajectory.jsonl')):
+ recs=[json.loads(l) for l in p.read_text().splitlines() if l.strip()]
+ uses=[r['usage'] for r in recs if r.get('usage')]
+ assert len(uses)==1,(p,len(uses))
+ u=uses[0];cached=u.get('cached_tokens') or 0
+ fam,seed=p.parent.name.split('__')[1:]
+ floor_runs.append(dict(family=fam,seed=int(seed[1:]),prompt_tokens=u['prompt_tokens'],cached_tokens=cached,completion_tokens=u['completion_tokens'],raw_tokens=u['prompt_tokens']+u['completion_tokens'],pw_tokens=(u['prompt_tokens']-cached)+QWEN_R_C_DOC*cached+QWEN_R_O_DOC*u['completion_tokens'],pw_tokens_exact_price_ratios=(u['prompt_tokens']-cached)+(prices[QWEN]['p_c']/prices[QWEN]['p_in'])*cached+(prices[QWEN]['p_o']/prices[QWEN]['p_in'])*u['completion_tokens'],cache_state='full' if cached>=QWEN_FLOOR_CACHE_FULL else ('partial' if cached>0 else 'cold'),source=str(p.relative_to(ROOT))))
+ qwen_files.append(p)
+QWEN_FLOOR=statistics.mean(r['pw_tokens'] for r in floor_runs)
+QWEN_FLOOR_RAW=statistics.mean(r['raw_tokens'] for r in floor_runs)
+QWEN_FLOOR_EXACT=statistics.mean(r['pw_tokens_exact_price_ratios'] for r in floor_runs)
+QWEN_FLOOR_N_FULL=sum(r['cache_state']=='full' for r in floor_runs)
+QWEN_FLOOR_NOTE=(f'Android no-task floor {QWEN_FLOOR:.1f} pw (raw mean {QWEN_FLOOR_RAW:.1f} tokens), mean of {len(floor_runs)} t12_grid no-task runs (3 families x 6 seeds), each run parsed as its single model call and priced per the floor convention with the documented price weights r_c 0.107 / r_o 3.13: cached tokens charged AT the cache ratio, not as uncached raw (the GLM 5090 / DeepSeek 2290 floors are raw-uncached). Cache-state divergence: {QWEN_FLOOR_N_FULL}/{len(floor_runs)} runs hit the repeated {QWEN_FLOOR_CACHE_FULL}-token cached prefix, one partial (512), one cold, so the pw floor sits far below the raw floor. Per-run numbers: qwen_android_floor.')
+out['qwen_android_floor']={'source':'experimental-results/guiexp_android/t12_grid/qwen_qwen3.8-flash/floor__<Family>__s<K>/trajectory.jsonl','runs':len(floor_runs),'price_weights':{'r_c':QWEN_R_C_DOC,'r_o':QWEN_R_O_DOC},'floor_pw':QWEN_FLOOR,'floor_raw_tokens':QWEN_FLOOR_RAW,'floor_pw_exact_price_ratios':QWEN_FLOOR_EXACT,'cache_state':{'full':QWEN_FLOOR_N_FULL,'partial':sum(r['cache_state']=='partial' for r in floor_runs),'cold':sum(r['cache_state']=='cold' for r in floor_runs)},'convention':QWEN_FLOOR_NOTE,'per_run':floor_runs}
 qwen_rows=[];qwen_android={}
 for fam in ['ContactsAddContact','MarkorDeleteNote','SimpleCalendarAddOneEvent','OsmAndMarker']:
  cell=ROOT/'experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash'/fam
  x=qread(cell/'build.json');v=x['verification']
  ex=x['exploration'];n=len(ex['per_episode']);et=pw(ex['totals'],QWEN)
- floor=None   # no qwen Android no-task floor has been measured; see mapping note
- c=et/n-(floor if floor is not None else 0)
- doc=x['doc_arm'];ld=pw(doc['totals'],QWEN)/len(doc['episodes'])-(floor if floor is not None else 0)
+ floor=QWEN_FLOOR
+ c=et/n-floor
+ doc=x['doc_arm'];ld=pw(doc['totals'],QWEN)/len(doc['episodes'])-floor
  sel=x['builder']['selected_arm'];init=x['builder']['initial'][f"k{sel['k']}_{sel['artifact']}"]
  Cparts={'translator':pw(x['translator']['totals'],QWEN),'builder_initial':pw(init,QWEN),'builder_refinements':pw(v['builder_refinements'],QWEN),'verification_analyzer':pw(v['analyzer'],QWEN),'verification_resume':pw(v['resume_episodes'],QWEN)};C=sum(Cparts.values())
  dp=cell/'deploy.json';d=q=None;dn=ds=None
  if v['admitted']:
   de=qread(dp);assert all(u.get('calls_detail') for u in de['uses']);d=statistics.mean(u['cost_usd'] for u in de['uses'])/prices[QWEN]['p_in'];dn=de['n'];ds=de['success_count'];q=1-ds/dn
  s=(1-q)*c-d if q is not None else None
- row=dict(platform='Android',model=QWEN,family=fam,source=str((cell/'build.json').relative_to(ROOT)),deploy_source=str(dp.relative_to(ROOT)) if v['admitted'] else None,c=c,L_doc=ld,d=d,q=q,C=C,C_parts=Cparts,floor=floor,doc_share=(c-ld)/c,program_share=ratio(s,c),nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+et-n*floor,s) if floor is not None else None,n_exploration_episodes=n,agent_successes=sum(bool(e['success']) for e in ex['per_episode']),doc_successes=doc['success_count'],deploy_n=dn,deploy_successes=ds,admitted=v['admitted'],gates=[x['gate_per_k'][f'k{k}']['bindings_passed'] for k in (1,2,3)],final_gate=v['gate_after_repair']['bindings_passed'],refinements=v['refinements'],cost_counts_limitation='No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.',cache_imputed_episodes=0,cache_imputation_share=0.0)
+ row=dict(platform='Android',model=QWEN,family=fam,source=str((cell/'build.json').relative_to(ROOT)),deploy_source=str(dp.relative_to(ROOT)) if v['admitted'] else None,c=c,L_doc=ld,d=d,q=q,C=C,C_parts=Cparts,floor=floor,doc_share=(c-ld)/c,program_share=ratio(s,c),nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+et-n*floor,s),n_exploration_episodes=n,agent_successes=sum(bool(e['success']) for e in ex['per_episode']),doc_successes=doc['success_count'],deploy_n=dn,deploy_successes=ds,admitted=v['admitted'],gates=[x['gate_per_k'][f'k{k}']['bindings_passed'] for k in (1,2,3)],final_gate=v['gate_after_repair']['bindings_passed'],refinements=v['refinements'],floor_note=QWEN_FLOOR_NOTE,cost_counts_limitation='Android no-task floor for qwen measured in t12_grid (18 no-task runs) and subtracted from c and L_doc at the documented price weights; see floor_note and qwen_android_floor. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.',cache_imputed_episodes=0,cache_imputation_share=0.0)
  qwen_rows.append(row);qwen_android[fam]=row
 wm=ROOT/'experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/build.json'
 qwen_files+=[wm,wm.with_name('deploy.json')]
@@ -308,10 +335,10 @@ if args.check_qwen:
     qw={(r['platform'],r['family']):r for r in out['qwen_rows']}
     assert set(qw)=={('Android','ContactsAddContact'),('Android','MarkorDeleteNote'),('Android','SimpleCalendarAddOneEvent'),('Android','OsmAndMarker'),('Desktop','WriterMemoSave'),('Desktop','CalcTableSave')},set(qw)
     QW_FROZEN={
-     ('Android','ContactsAddContact'):dict(admitted=True,c=40200.240000000005,C=136655.21333333335,d=546.5444444444445,q=0.033333333333333326,nstar=3.566746561139038,doc_share=-0.18609175799282127,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[2,5,5],final_gate=5,refinements=0,floor=None),
-     ('Android','MarkorDeleteNote'):dict(admitted=True,c=22519.017777777775,C=207527.08000000002,d=384.2266666666667,q=0.0,nstar=9.375605984184176,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,5,5],final_gate=5,refinements=0,floor=None),
-     ('Android','SimpleCalendarAddOneEvent'):dict(admitted=True,c=135664.08444444442,C=1541962.3466666667,d=835.6733333333334,q=0.0,nstar=11.43647940340962,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,0,0],final_gate=4,refinements=3,floor=None),
-     ('Android','OsmAndMarker'):dict(admitted=False,c=123297.55238095239,L_doc=43148.15111111111,C=346595.7266666667,d=660.6433333333334,q=0.0,nstar=None,program_share=None,agent_successes=1,doc_successes=2,n_exploration_episodes=7,gates=[0,0,3],final_gate=1,refinements=3,floor=None),
+     ('Android','ContactsAddContact'):dict(admitted=True,c=39168.48233333334,C=136655.21333333335,d=546.5444444444445,q=0.033333333333333326,nstar=3.6620761827775743,nstar_incl_observed_floored=6.810978360081989,doc_share=-0.1909936992112374,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[2,5,5],final_gate=5,refinements=0,floor=1031.7576666666666),
+     ('Android','MarkorDeleteNote'):dict(admitted=True,c=21487.260111111107,C=207527.08000000002,d=384.2266666666667,q=0.0,nstar=9.833992849716747,nstar_incl_observed_floored=12.888614380930944,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,5,5],final_gate=5,refinements=0,floor=1031.7576666666666),
+     ('Android','SimpleCalendarAddOneEvent'):dict(admitted=True,c=134632.32677777775,C=1541962.3466666667,d=835.6733333333334,q=0.0,nstar=11.524670512831074,nstar_incl_observed_floored=14.5434080517415,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,0,0],final_gate=4,refinements=3,floor=1031.7576666666666),
+     ('Android','OsmAndMarker'):dict(admitted=False,c=122265.79471428572,L_doc=42116.393444444446,C=346595.7266666667,d=660.6433333333334,q=0.0,nstar=None,program_share=None,agent_successes=1,doc_successes=2,n_exploration_episodes=7,gates=[0,0,3],final_gate=1,refinements=3,floor=1031.7576666666666),
      ('Desktop','WriterMemoSave'):dict(admitted=True,c=36984.96888888889,C=485664.3733333333,d=774.7422222222223,q=0.0,nstar=13.41235385804452,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[0,0,5],final_gate=5,refinements=0,floor=531.7155555555557),
      ('Desktop','CalcTableSave'):dict(admitted=False,c=168641.09703703705,L_doc=None,d=None,q=None,C=847543.8933333333,nstar=None,agent_successes=3,doc_successes=None,n_exploration_episodes=3,gates=[None,None,None],final_gate=None,refinements=None,terminated_reason=QWEN_TERMINATED_REASON),
     }
@@ -329,8 +356,13 @@ if args.check_qwen:
     qclose(ag['C_admitted_median'],346595.7266666667,'aggregate.C_admitted_median')
     qclose(ag['C_rejected_median'],1216521.4333333333,'aggregate.C_rejected_median')
     qclose(ag['C_fail_multiple'],3.5099146923507942,'aggregate.C_fail_multiple')
-    qclose(ag['nstar_range'][0],3.566746561139038,'aggregate.nstar_range[0]')
+    qclose(ag['nstar_range'][0],3.6620761827775743,'aggregate.nstar_range[0]')
     qclose(ag['nstar_range'][1],13.41235385804452,'aggregate.nstar_range[1]')
+    fl=out['qwen_android_floor']
+    assert fl['runs']==18 and fl['cache_state']=={'full':16,'partial':1,'cold':1}
+    qclose(fl['floor_pw'],1031.7576666666666,'qwen_android_floor.floor_pw')
+    qclose(fl['floor_raw_tokens'],4432.277777777777,'qwen_android_floor.floor_raw_tokens')
+    assert len(fl['per_run'])==18
     assert out['qwen_disclosures']['calc']==QWEN_TERMINATED_REASON and 'data_inspection_failed' in out['qwen_disclosures']['webarena'] and 'image-413-guard' in out['qwen_disclosures']['osmand']
     assert prices[QWEN]=={'p_in':1.5e-07,'p_c':1.6e-08,'p_o':4.7e-07}
     assert 'CommentPost' not in {r['family'] for r in out['qwen_rows']}

@@ -433,19 +433,19 @@
    "label": "Three-dataset build 2026-09-20, 6 measured families (4 AndroidWorld + 2 OSWorld; WebArena CommentPost provider-refused, no cell), qwen/qwen3.8-flash (price-weighted tokens)",
    "status": "measured",
    "source": "paper/measurement_update_20260918.json qwen_rows (2026-09-20)",
-   "source_sha256": "af3f4fe1cc850e4b",
+   "source_sha256": "b49d8d04733deadf",
    "source_unit": "HEADLINE: price-weighted tokens (pw), tokens_pw = (prompt_tokens - cached_tokens) + r_c * cached_tokens + r_o * completion_tokens, per stage and per cell, for c, C, L_doc and every derived quantity",
    "unit": "price-weighted tokens (pw) = (prompt - cached) + r_c*cached + r_o*completion, r_c/r_o from the model's price sheet",
    "r_cache": 0.10666666666666667,
    "m": 91,
    "tau0": 368,
-   "floor_raw_tokens": null,
+   "floor_raw_tokens": 1031.7576666666666,
    "price_sheet": {
     "p_in": 1.5e-07,
     "p_c": 1.6e-08,
     "p_o": 4.7e-07
    },
-   "note": "Third model, measured 2026-09-20; body/table integration pending (rows live under measurement_update_20260918.json `qwen_rows`). floor_raw_tokens is null: no qwen Android no-task floor has been measured (GLM 5090 / DeepSeek 2290 predate this model), so the AndroidWorld rows' c and L_doc are UNSUBTRACTED; the two OSWorld floors are per-cell (18 runs each) and already subtracted. The L_doc median spans the 5 rows with a doc arm. OsmAndMarker was rejected at verification after repair rounds under the image-413-guard completion (no deploy stage); its engine-facing C/d/q0 are the model median over the admitted rows and its own failed-build price is under measured.C_with_repair. CalcTableSave was TERMINATED by operator ruling inside the gate stage (artifact wedge: exception-swallowing retry loops defeat the replay deadline (wedge.md)); verification/deploy/doc_arm never ran, so its C is the PARTIAL translator+builder spend (the gate stage makes no model calls) and is a LOWER BOUND on a failed build. WebArena CommentPost is absent: provider content-filter refusal (400 data_inspection_failed), deterministic, floor 18/18 passed, single Alibaba endpoint.",
+   "note": "Third model, measured 2026-09-20 (Android no-task floor calibrated 2026-09-21 in t12_grid); body/table integration pending (rows live under measurement_update_20260918.json `qwen_rows`). Floor convention (2026-09-21 ruling): floor = mean pw(per_run) AS RECORDED over the 18 t12_grid no-task runs, cached tokens charged AT the documented cache ratio (r_c 0.107, r_o 3.13, the build cells' price_weights) = 1031.76 pw, which `floor_raw_tokens` carries; the RAW-token mean of the same runs is 4432.28 and the two diverge because 16/18 runs hit the repeated 4352-token cached prefix (one partial 512, one cold). The GLM 5090 / DeepSeek 2290 floors are raw-uncached, so absolute floor comparisons across models are not like-for-like. The two OSWorld floors are per-cell (18 runs each) and already subtracted. The L_doc median spans the 5 rows with a doc arm. OsmAndMarker was rejected at verification after repair rounds under the image-413-guard completion (no deploy stage); its engine-facing C/d/q0 are the model median over the admitted rows and its own failed-build price is under measured.C_with_repair. CalcTableSave was TERMINATED by operator ruling inside the gate stage (artifact wedge: exception-swallowing retry loops defeat the replay deadline (wedge.md)); verification/deploy/doc_arm never ran, so its C is the PARTIAL translator+builder spend (the gate stage makes no model calls) and is a LOWER BOUND on a failed build. WebArena CommentPost is absent: provider content-filter refusal (400 data_inspection_failed), deterministic, floor 18/18 passed, single Alibaba endpoint.",
    "per_model": {
     "model": "qwen/qwen3.8-flash",
     "n_cells": 6,
@@ -453,11 +453,11 @@
     "cells_not_admitted": 2,
     "cells_with_measured_deploy": 4,
     "p_model_admitted_rate": 0.6666666666666666,
-    "c_median_admitted": 38592.60444444445,
-    "c_median_all": 81748.8961904762,
+    "c_median_admitted": 38076.72561111112,
+    "c_median_all": 80717.13852380952,
     "d_median_measured_deploy": 660.6433333333334,
     "q_median_measured_deploy": 0.0,
-    "L_doc_median_all": 47681.17333333334,
+    "L_doc_median_all": 46649.415666666675,
     "C_median_admitted": 346595.7266666667,
     "C_fail_median_not_admitted": 1216521.4333333333,
     "C_fail_over_C_ratio": 3.5099146923507942,
@@ -470,8 +470,8 @@
     "CalcTableSave": {
      "status": "measured",
      "c": 168641.09703703705,
-     "L": 52832.23333333334,
-     "rho": -0.07279998995917791,
+     "L": 52316.35450000001,
+     "rho": -0.07509580577211535,
      "C": 346595.7266666667,
      "p": 0.0,
      "d": 660.6433333333334,
@@ -488,9 +488,9 @@
     },
     "ContactsAddContact": {
      "status": "measured",
-     "c": 40200.240000000005,
-     "L": 47681.17333333334,
-     "rho": -0.18609175799282127,
+     "c": 39168.48233333334,
+     "L": 46649.415666666675,
+     "rho": -0.1909936992112374,
      "C": 136655.21333333335,
      "p": 1.0,
      "d": 546.5444444444445,
@@ -502,16 +502,16 @@
       "C_with_repair": 136655.21333333335,
       "C_eff_table": 136655.21333333335,
       "c_unsubtracted": 40200.240000000005,
-      "s_arrival": 38313.68755555556,
-      "nstar_marginal": 3.566746561139038
+      "s_arrival": 37316.32181111112,
+      "nstar_marginal": 3.6620761827775743
      },
      "note": "rho < 0: the doc arm costs MORE than a reactive episode (L_doc > c), so the schema's [0,1] bound on rho does not hold. rho and L are documentation only; the engine reads neither."
     },
     "MarkorDeleteNote": {
      "status": "measured",
-     "c": 22519.017777777775,
-     "L": 19646.404444444448,
-     "rho": 0.12756388230076715,
+     "c": 21487.260111111107,
+     "L": 18614.64677777778,
+     "rho": 0.13368914037801838,
      "C": 207527.08000000002,
      "p": 1.0,
      "d": 384.2266666666667,
@@ -523,15 +523,15 @@
       "C_with_repair": 207527.08000000002,
       "C_eff_table": 207527.08000000002,
       "c_unsubtracted": 22519.017777777775,
-      "s_arrival": 22134.79111111111,
-      "nstar_marginal": 9.375605984184176
+      "s_arrival": 21103.03344444444,
+      "nstar_marginal": 9.833992849716747
      }
     },
     "OsmAndMarker": {
      "status": "measured",
-     "c": 123297.55238095239,
-     "L": 43148.15111111111,
-     "rho": 0.6500485996851235,
+     "c": 122265.79471428572,
+     "L": 42116.393444444446,
+     "rho": 0.6555341292070831,
      "C": 346595.7266666667,
      "p": 0.0,
      "d": 660.6433333333334,
@@ -546,9 +546,9 @@
     },
     "SimpleCalendarAddOneEvent": {
      "status": "measured",
-     "c": 135664.08444444442,
-     "L": 130170.80444444444,
-     "rho": 0.040491778074465454,
+     "c": 134632.32677777775,
+     "L": 129139.04677777777,
+     "rho": 0.04080208766700672,
      "C": 1541962.3466666667,
      "p": 1.0,
      "d": 835.6733333333334,
@@ -560,8 +560,8 @@
       "C_with_repair": 1541962.3466666667,
       "C_eff_table": 1541962.3466666667,
       "c_unsubtracted": 135664.08444444442,
-      "s_arrival": 134828.41111111108,
-      "nstar_marginal": 11.43647940340962
+      "s_arrival": 133796.6534444444,
+      "nstar_marginal": 11.524670512831074
      }
     },
     "WriterMemoSave": {

@@ -112,6 +112,33 @@ def test_qwen_price_sheet_and_verbatim_blocks(built):
         assert out[k] == v3[k], k
 
 
+def test_android_floor_subtracted(built):
+    """The t12_grid floor (1031.76 pw, documented price weights) is wired
+    into every AndroidWorld row and into the block metadata."""
+    out, _, meas = built
+    blk = out["cost_sets"]["android_qw"]
+    floor = blk["floor_raw_tokens"]
+    assert floor == pytest.approx(1031.7576666666666)
+    assert floor == pytest.approx(meas["qwen_android_floor"]["floor_pw"])
+    rec = meas["qwen_android_floor"]
+    assert rec["runs"] == 18
+    assert rec["cache_state"] == {"full": 16, "partial": 1, "cold": 1}
+    assert rec["floor_raw_tokens"] == pytest.approx(4432.277777777777)
+    lay = blk["layouts"]
+    for fam in ("ContactsAddContact", "MarkorDeleteNote",
+                "SimpleCalendarAddOneEvent", "OsmAndMarker"):
+        row = next(r for r in meas["qwen_rows"] if r["family"] == fam)
+        assert row["floor"] == pytest.approx(floor)
+        assert lay[fam]["c"] == pytest.approx(row["c"])
+    for fam in ("ContactsAddContact", "MarkorDeleteNote",
+                "SimpleCalendarAddOneEvent"):
+        assert lay[fam]["measured"]["c_unsubtracted"] == \
+            pytest.approx(lay[fam]["c"] + floor)
+    # WriterMemoSave's floor is its own per-cell OSWorld calibration
+    assert lay["WriterMemoSave"]["measured"]["c_unsubtracted"] == \
+        pytest.approx(lay["WriterMemoSave"]["c"] + 531.7155555555557)
+
+
 def test_frozen_literals(built):
     bq.frozen_checks(built[0])
 
