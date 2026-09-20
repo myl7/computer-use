@@ -1,0 +1,1286 @@
+{
+ "family": "OsmAndMarker",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The agent searched for Malbun but then used blind index clicks and never confirmed/selected the Marker or Add-to-map action; it ended on the map with no marker created.",
+    "done": "OsmAnd is open on the map and a Malbun search was attempted; the marker has not been added.",
+    "plan": "Tap the Map element to reveal the OsmAnd UI. Open Search, type \u201cMalbun, Liechtenstein\u201d, and select the exact result. Long-press the map at Malbun to open the context menu, choose Add to map/Marker, confirm/save the marker, and verify it appears.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 1090,
+    "cached_tokens": 0,
+    "completion_tokens": 7617,
+    "total_tokens": 8707,
+    "cost_usd": 0.0037060551,
+    "usage": {
+     "prompt_tokens": 1090,
+     "completion_tokens": 7617,
+     "cached_tokens": 0,
+     "cost_usd": 0.0037060551
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 20,
+    "success": false,
+    "calls": 20,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3945,
+      "cached_tokens": 0,
+      "completion_tokens": 515,
+      "total_tokens": 4460,
+      "cost_usd": 0.000825462,
+      "usage": {
+       "prompt_tokens": 3945,
+       "completion_tokens": 515,
+       "cached_tokens": 0,
+       "cost_usd": 0.000825462
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"long_press\",\"index\":1}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 7655,
+      "cached_tokens": 3840,
+      "completion_tokens": 344,
+      "total_tokens": 7999,
+      "cost_usd": 0.0007874163,
+      "usage": {
+       "prompt_tokens": 7655,
+       "completion_tokens": 344,
+       "cached_tokens": 3840,
+       "cost_usd": 0.0007874163
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"navigate_back\"}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 11184,
+      "cached_tokens": 7424,
+      "completion_tokens": 203,
+      "total_tokens": 11387,
+      "cost_usd": 0.00077041206,
+      "usage": {
+       "prompt_tokens": 11184,
+       "completion_tokens": 203,
+       "cached_tokens": 7424,
+       "cost_usd": 0.00077041206
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":2}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 14898,
+      "cached_tokens": 11008,
+      "completion_tokens": 46,
+      "total_tokens": 14944,
+      "cost_usd": 0.00077343552,
+      "usage": {
+       "prompt_tokens": 14898,
+       "completion_tokens": 46,
+       "cached_tokens": 11008,
+       "cost_usd": 0.00077343552
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 21293,
+      "cached_tokens": 14848,
+      "completion_tokens": 145,
+      "total_tokens": 21438,
+      "cost_usd": 0.00125974332,
+      "usage": {
+       "prompt_tokens": 21293,
+       "completion_tokens": 145,
+       "cached_tokens": 14848,
+       "cost_usd": 0.00125974332
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 27681,
+      "cached_tokens": 21248,
+      "completion_tokens": 538,
+      "total_tokens": 28219,
+      "cost_usd": 0.00154220022,
+      "usage": {
+       "prompt_tokens": 27681,
+       "completion_tokens": 538,
+       "cached_tokens": 21248,
+       "cost_usd": 0.00154220022
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":3}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 34184,
+      "cached_tokens": 27648,
+      "completion_tokens": 178,
+      "total_tokens": 34362,
+      "cost_usd": 0.00149136372,
+      "usage": {
+       "prompt_tokens": 34184,
+       "completion_tokens": 178,
+       "cached_tokens": 27648,
+       "cost_usd": 0.00149136372
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":11}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 38010,
+      "cached_tokens": 34048,
+      "completion_tokens": 1423,
+      "total_tokens": 39433,
+      "cost_usd": 0.00178979922,
+      "usage": {
+       "prompt_tokens": 38010,
+       "completion_tokens": 1423,
+       "cached_tokens": 34048,
+       "cost_usd": 0.00178979922
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"navigate_back\"}"
+     },
+     {
+      "step": 9,
+      "call": 9,
+      "first_call": false,
+      "prompt_tokens": 41719,
+      "cached_tokens": 37888,
+      "completion_tokens": 98,
+      "total_tokens": 41817,
+      "cost_usd": 0.00121464882,
+      "usage": {
+       "prompt_tokens": 41719,
+       "completion_tokens": 98,
+       "cached_tokens": 37888,
+       "cost_usd": 0.00121464882
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun Liechtenstein\"}"
+     },
+     {
+      "step": 10,
+      "call": 10,
+      "first_call": false,
+      "prompt_tokens": 48120,
+      "cached_tokens": 41472,
+      "completion_tokens": 557,
+      "total_tokens": 48677,
+      "cost_usd": 0.00190331658,
+      "usage": {
+       "prompt_tokens": 48120,
+       "completion_tokens": 557,
+       "cached_tokens": 41472,
+       "cost_usd": 0.00190331658
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 11,
+      "call": 11,
+      "first_call": false,
+      "prompt_tokens": 54443,
+      "cached_tokens": 47872,
+      "completion_tokens": 282,
+      "total_tokens": 54725,
+      "cost_usd": 0.00186530058,
+      "usage": {
+       "prompt_tokens": 54443,
+       "completion_tokens": 282,
+       "cached_tokens": 47872,
+       "cost_usd": 0.00186530058
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":6}"
+     },
+     {
+      "step": 12,
+      "call": 12,
+      "first_call": false,
+      "prompt_tokens": 40639,
+      "cached_tokens": 0,
+      "completion_tokens": 1,
+      "total_tokens": 40640,
+      "cost_usd": 0,
+      "usage": {
+       "prompt_tokens": 40639,
+       "completion_tokens": 1,
+       "cached_tokens": 0,
+       "cost_usd": 0
+      },
+      "stage": "react_resume",
+      "action": ""
+     },
+     {
+      "step": 13,
+      "call": 13,
+      "first_call": false,
+      "prompt_tokens": 62095,
+      "cached_tokens": 58112,
+      "completion_tokens": 777,
+      "total_tokens": 62872,
+      "cost_usd": 0.00187350768,
+      "usage": {
+       "prompt_tokens": 62095,
+       "completion_tokens": 777,
+       "cached_tokens": 58112,
+       "cost_usd": 0.00187350768
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"navigate_back\"}"
+     },
+     {
+      "step": 14,
+      "call": 14,
+      "first_call": false,
+      "prompt_tokens": 65623,
+      "cached_tokens": 61952,
+      "completion_tokens": 230,
+      "total_tokens": 65853,
+      "cost_usd": 0.00163348218,
+      "usage": {
+       "prompt_tokens": 65623,
+       "completion_tokens": 230,
+       "cached_tokens": 61952,
+       "cost_usd": 0.00163348218
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 15,
+      "call": 15,
+      "first_call": false,
+      "prompt_tokens": 69156,
+      "cached_tokens": 65536,
+      "completion_tokens": 685,
+      "total_tokens": 69841,
+      "cost_usd": 0.00189439074,
+      "usage": {
+       "prompt_tokens": 69156,
+       "completion_tokens": 685,
+       "cached_tokens": 65536,
+       "cost_usd": 0.00189439074
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 16,
+      "call": 16,
+      "first_call": false,
+      "prompt_tokens": 72689,
+      "cached_tokens": 69120,
+      "completion_tokens": 185,
+      "total_tokens": 72874,
+      "cost_usd": 0.0017109378,
+      "usage": {
+       "prompt_tokens": 72689,
+       "completion_tokens": 185,
+       "cached_tokens": 69120,
+       "cost_usd": 0.0017109378
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":2}"
+     },
+     {
+      "step": 17,
+      "call": 17,
+      "first_call": false,
+      "prompt_tokens": 76403,
+      "cached_tokens": 72448,
+      "completion_tokens": 170,
+      "total_tokens": 76573,
+      "cost_usd": 0.00181399482,
+      "usage": {
+       "prompt_tokens": 76403,
+       "completion_tokens": 170,
+       "cached_tokens": 72448,
+       "cost_usd": 0.00181399482
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":11}"
+     },
+     {
+      "step": 18,
+      "call": 18,
+      "first_call": false,
+      "prompt_tokens": 80229,
+      "cached_tokens": 76288,
+      "completion_tokens": 360,
+      "total_tokens": 80589,
+      "cost_usd": 0.00196114842,
+      "usage": {
+       "prompt_tokens": 80229,
+       "completion_tokens": 360,
+       "cached_tokens": 76288,
+       "cost_usd": 0.00196114842
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":1}"
+     },
+     {
+      "step": 19,
+      "call": 19,
+      "first_call": false,
+      "prompt_tokens": 84054,
+      "cached_tokens": 80128,
+      "completion_tokens": 187,
+      "total_tokens": 84241,
+      "cost_usd": 0.00193924962,
+      "usage": {
+       "prompt_tokens": 84054,
+       "completion_tokens": 187,
+       "cached_tokens": 80128,
+       "cost_usd": 0.00193924962
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":1}"
+     },
+     {
+      "step": 20,
+      "call": 20,
+      "first_call": false,
+      "prompt_tokens": 87879,
+      "cached_tokens": 83968,
+      "completion_tokens": 861,
+      "total_tokens": 88740,
+      "cost_usd": 0.00231145992,
+      "usage": {
+       "prompt_tokens": 87879,
+       "completion_tokens": 861,
+       "cached_tokens": 83968,
+       "cost_usd": 0.00231145992
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"navigate_back\"}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 0,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 6074,
+    "cached_tokens": 0,
+    "completion_tokens": 35575,
+    "total_tokens": 41649,
+    "cost_usd": 0.0174550365,
+    "usage": {
+     "prompt_tokens": 6074,
+     "completion_tokens": 35575,
+     "cached_tokens": 0,
+     "cost_usd": 0.0174550365
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6074,
+      "cached_tokens": 0,
+      "completion_tokens": 35575,
+      "total_tokens": 41649,
+      "cost_usd": 0.0174550365,
+      "usage": {
+       "prompt_tokens": 6074,
+       "completion_tokens": 35575,
+       "cached_tokens": 0,
+       "cost_usd": 0.0174550365
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Could not add the OsmAnd location marker",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Could not add the OsmAnd location marker"
+    }
+   ],
+   "analysis": {
+    "cause": "The run never found OsmAnd's search field or marker controls; it typed into a non-editable status/time element and ended on a bare map/system-bar screen, so no marker could be added.",
+    "done": "OsmAnd was launched and remained on MapActivity; no search was successfully performed and no location marker was created.",
+    "plan": "Restart to a clean OsmAnd map, dismiss any startup dialogs, tap the search control or 'Type to search all' field, enter 'Malbun, Liechtenstein', wait for results, tap the Malbun result, then tap the marker/context-menu action ('Add marker', 'Marker', or 'Map marker') and confirm the marker was added.",
+    "decision": "restart",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 23071,
+    "cached_tokens": 0,
+    "completion_tokens": 2332,
+    "total_tokens": 25403,
+    "cost_usd": 0.0045111231,
+    "usage": {
+     "prompt_tokens": 23071,
+     "completion_tokens": 2332,
+     "cached_tokens": 0,
+     "cost_usd": 0.0045111231
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": true,
+    "steps": 15,
+    "success": false,
+    "calls": 15,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4479,
+      "cached_tokens": 0,
+      "completion_tokens": 49,
+      "total_tokens": 4528,
+      "cost_usd": 0.0006879312,
+      "usage": {
+       "prompt_tokens": 4479,
+       "completion_tokens": 49,
+       "cached_tokens": 0,
+       "cost_usd": 0.0006879312
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 8163,
+      "cached_tokens": 4352,
+      "completion_tokens": 40,
+      "total_tokens": 8203,
+      "cost_usd": 0.00065348118,
+      "usage": {
+       "prompt_tokens": 8163,
+       "completion_tokens": 40,
+       "cached_tokens": 4352,
+       "cost_usd": 0.00065348118
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 11988,
+      "cached_tokens": 7936,
+      "completion_tokens": 43,
+      "total_tokens": 12031,
+      "cost_usd": 0.00074743614,
+      "usage": {
+       "prompt_tokens": 11988,
+       "completion_tokens": 43,
+       "cached_tokens": 7936,
+       "cost_usd": 0.00074743614
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":6}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 18280,
+      "cached_tokens": 11776,
+      "completion_tokens": 55,
+      "total_tokens": 18335,
+      "cost_usd": 0.00117796734,
+      "usage": {
+       "prompt_tokens": 18280,
+       "completion_tokens": 55,
+       "cached_tokens": 11776,
+       "cost_usd": 0.00117796734
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun, Liechtenstein\"}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 24614,
+      "cached_tokens": 18176,
+      "completion_tokens": 184,
+      "total_tokens": 24798,
+      "cost_usd": 0.00132956604,
+      "usage": {
+       "prompt_tokens": 24614,
+       "completion_tokens": 184,
+       "cached_tokens": 18176,
+       "cost_usd": 0.00132956604
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 30935,
+      "cached_tokens": 24576,
+      "completion_tokens": 64,
+      "total_tokens": 30999,
+      "cost_usd": 0.00136337454,
+      "usage": {
+       "prompt_tokens": 30935,
+       "completion_tokens": 64,
+       "cached_tokens": 24576,
+       "cost_usd": 0.00136337454
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 37256,
+      "cached_tokens": 30720,
+      "completion_tokens": 64,
+      "total_tokens": 37320,
+      "cost_usd": 0.00148698,
+      "usage": {
+       "prompt_tokens": 37256,
+       "completion_tokens": 64,
+       "cached_tokens": 30720,
+       "cost_usd": 0.00148698
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":1,\"text\":\"Malbun\"}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 43657,
+      "cached_tokens": 37120,
+      "completion_tokens": 45,
+      "total_tokens": 43702,
+      "cost_usd": 0.0015796638,
+      "usage": {
+       "prompt_tokens": 43657,
+       "completion_tokens": 45,
+       "cached_tokens": 37120,
+       "cost_usd": 0.0015796638
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":3}"
+     },
+     {
+      "step": 9,
+      "call": 9,
+      "first_call": false,
+      "prompt_tokens": 50065,
+      "cached_tokens": 43520,
+      "completion_tokens": 87,
+      "total_tokens": 50152,
+      "cost_usd": 0.0017017704,
+      "usage": {
+       "prompt_tokens": 50065,
+       "completion_tokens": 87,
+       "cached_tokens": 43520,
+       "cost_usd": 0.0017017704
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+     },
+     {
+      "step": 10,
+      "call": 10,
+      "first_call": false,
+      "prompt_tokens": 56458,
+      "cached_tokens": 49920,
+      "completion_tokens": 123,
+      "total_tokens": 56581,
+      "cost_usd": 0.0018188577,
+      "usage": {
+       "prompt_tokens": 56458,
+       "completion_tokens": 123,
+       "cached_tokens": 49920,
+       "cost_usd": 0.0018188577
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 11,
+      "call": 11,
+      "first_call": false,
+      "prompt_tokens": 62844,
+      "cached_tokens": 56320,
+      "completion_tokens": 138,
+      "total_tokens": 62982,
+      "cost_usd": 0.0019251342,
+      "usage": {
+       "prompt_tokens": 62844,
+       "completion_tokens": 138,
+       "cached_tokens": 56320,
+       "cost_usd": 0.0019251342
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 12,
+      "call": 12,
+      "first_call": false,
+      "prompt_tokens": 65910,
+      "cached_tokens": 62720,
+      "completion_tokens": 87,
+      "total_tokens": 65997,
+      "cost_usd": 0.0015076809,
+      "usage": {
+       "prompt_tokens": 65910,
+       "completion_tokens": 87,
+       "cached_tokens": 62720,
+       "cost_usd": 0.0015076809
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"wait\"}"
+     },
+     {
+      "step": 13,
+      "call": 13,
+      "first_call": false,
+      "prompt_tokens": 68970,
+      "cached_tokens": 65792,
+      "completion_tokens": 352,
+      "total_tokens": 69322,
+      "cost_usd": 0.00167786388,
+      "usage": {
+       "prompt_tokens": 68970,
+       "completion_tokens": 352,
+       "cached_tokens": 65792,
+       "cost_usd": 0.00167786388
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"long_press\",\"index\":1}"
+     },
+     {
+      "step": 14,
+      "call": 14,
+      "first_call": false,
+      "prompt_tokens": 72678,
+      "cached_tokens": 68864,
+      "completion_tokens": 197,
+      "total_tokens": 72875,
+      "cost_usd": 0.00174884886,
+      "usage": {
+       "prompt_tokens": 72678,
+       "completion_tokens": 197,
+       "cached_tokens": 68864,
+       "cost_usd": 0.00174884886
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 15,
+      "call": 15,
+      "first_call": false,
+      "prompt_tokens": 75744,
+      "cached_tokens": 72448,
+      "completion_tokens": 113,
+      "total_tokens": 75857,
+      "cost_usd": 0.00168961122,
+      "usage": {
+       "prompt_tokens": 75744,
+       "completion_tokens": 113,
+       "cached_tokens": 72448,
+       "cost_usd": 0.00168961122
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}"
+     }
+    ]
+   },
+   "refinement": 2,
+   "gate": {
+    "passed": 2,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 29675,
+    "cached_tokens": 0,
+    "completion_tokens": 54251,
+    "total_tokens": 83926,
+    "cost_usd": 0.0296497278,
+    "usage": {
+     "prompt_tokens": 29675,
+     "completion_tokens": 54251,
+     "cached_tokens": 0,
+     "cost_usd": 0.0296497278
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 29675,
+      "cached_tokens": 0,
+      "completion_tokens": 54251,
+      "total_tokens": 83926,
+      "cost_usd": 0.0296497278,
+      "usage": {
+       "prompt_tokens": 29675,
+       "completion_tokens": 54251,
+       "cached_tokens": 0,
+       "cost_usd": 0.0296497278
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "It entered \u201cMalbun, Liechtenstein\u201d and pressed Enter, but never selected a search result or opened the map context menu where \u201cAdd marker\u201d appears; it then looped looking for marker labels while the accessibility tree was empty, so no marker was created.",
+    "done": "OsmAnd is open; a search query for Malbun, Liechtenstein was typed and submitted; no marker has been added.",
+    "plan": "From the current map screen, tap the search bar/magnifier (use coordinates if accessibility is empty), clear and re-enter \u201cMalbun, Liechtenstein\u201d, wait for results, tap the first Malbun result to center the map, then long-press the map at that location and tap \u201cAdd marker\u201d / \u201cAdd to map\u201d and confirm. If no result appears, move the map to Malbun coordinates (about 47.1508, 9.5850), long-press, and add the marker manually.",
+    "decision": "restart",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 27447,
+    "cached_tokens": 0,
+    "completion_tokens": 1941,
+    "total_tokens": 29388,
+    "cost_usd": 0.0049790268,
+    "usage": {
+     "prompt_tokens": 27447,
+     "completion_tokens": 1941,
+     "cached_tokens": 0,
+     "cost_usd": 0.0049790268
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": true,
+    "steps": 15,
+    "success": false,
+    "calls": 15,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4479,
+      "cached_tokens": 0,
+      "completion_tokens": 47,
+      "total_tokens": 4526,
+      "cost_usd": 0.0006870006,
+      "usage": {
+       "prompt_tokens": 4479,
+       "completion_tokens": 47,
+       "cached_tokens": 0,
+       "cost_usd": 0.0006870006
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 8165,
+      "cached_tokens": 4352,
+      "completion_tokens": 42,
+      "total_tokens": 8207,
+      "cost_usd": 0.00065470878,
+      "usage": {
+       "prompt_tokens": 8165,
+       "completion_tokens": 42,
+       "cached_tokens": 4352,
+       "cost_usd": 0.00065470878
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 11990,
+      "cached_tokens": 7936,
+      "completion_tokens": 46,
+      "total_tokens": 12036,
+      "cost_usd": 0.00074912904,
+      "usage": {
+       "prompt_tokens": 11990,
+       "completion_tokens": 46,
+       "cached_tokens": 7936,
+       "cost_usd": 0.00074912904
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":6}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 18282,
+      "cached_tokens": 11776,
+      "completion_tokens": 55,
+      "total_tokens": 18337,
+      "cost_usd": 0.00117826434,
+      "usage": {
+       "prompt_tokens": 18282,
+       "completion_tokens": 55,
+       "cached_tokens": 11776,
+       "cost_usd": 0.00117826434
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun, Liechtenstein\"}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 24616,
+      "cached_tokens": 18176,
+      "completion_tokens": 76,
+      "total_tokens": 24692,
+      "cost_usd": 0.00127961064,
+      "usage": {
+       "prompt_tokens": 24616,
+       "completion_tokens": 76,
+       "cached_tokens": 18176,
+       "cost_usd": 0.00127961064
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 30937,
+      "cached_tokens": 24576,
+      "completion_tokens": 143,
+      "total_tokens": 31080,
+      "cost_usd": 0.00140043024,
+      "usage": {
+       "prompt_tokens": 30937,
+       "completion_tokens": 143,
+       "cached_tokens": 24576,
+       "cost_usd": 0.00140043024
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 37258,
+      "cached_tokens": 30720,
+      "completion_tokens": 118,
+      "total_tokens": 37376,
+      "cost_usd": 0.0015124032,
+      "usage": {
+       "prompt_tokens": 37258,
+       "completion_tokens": 118,
+       "cached_tokens": 30720,
+       "cost_usd": 0.0015124032
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":1,\"text\":\"Malbun\"}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 43659,
+      "cached_tokens": 37120,
+      "completion_tokens": 66,
+      "total_tokens": 43725,
+      "cost_usd": 0.0015897321,
+      "usage": {
+       "prompt_tokens": 43659,
+       "completion_tokens": 66,
+       "cached_tokens": 37120,
+       "cost_usd": 0.0015897321
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":3}"
+     },
+     {
+      "step": 9,
+      "call": 9,
+      "first_call": false,
+      "prompt_tokens": 50067,
+      "cached_tokens": 43520,
+      "completion_tokens": 203,
+      "total_tokens": 50270,
+      "cost_usd": 0.0017560422,
+      "usage": {
+       "prompt_tokens": 50067,
+       "completion_tokens": 203,
+       "cached_tokens": 43520,
+       "cost_usd": 0.0017560422
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+     },
+     {
+      "step": 10,
+      "call": 10,
+      "first_call": false,
+      "prompt_tokens": 56460,
+      "cached_tokens": 49920,
+      "completion_tokens": 104,
+      "total_tokens": 56564,
+      "cost_usd": 0.001810314,
+      "usage": {
+       "prompt_tokens": 56460,
+       "completion_tokens": 104,
+       "cached_tokens": 49920,
+       "cost_usd": 0.001810314
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 11,
+      "call": 11,
+      "first_call": false,
+      "prompt_tokens": 62846,
+      "cached_tokens": 56320,
+      "completion_tokens": 310,
+      "total_tokens": 63156,
+      "cost_usd": 0.0020054628,
+      "usage": {
+       "prompt_tokens": 62846,
+       "completion_tokens": 310,
+       "cached_tokens": 56320,
+       "cost_usd": 0.0020054628
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 12,
+      "call": 12,
+      "first_call": false,
+      "prompt_tokens": 65912,
+      "cached_tokens": 62720,
+      "completion_tokens": 249,
+      "total_tokens": 66161,
+      "cost_usd": 0.0015833565,
+      "usage": {
+       "prompt_tokens": 65912,
+       "completion_tokens": 249,
+       "cached_tokens": 62720,
+       "cost_usd": 0.0015833565
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"wait\"}"
+     },
+     {
+      "step": 13,
+      "call": 13,
+      "first_call": false,
+      "prompt_tokens": 68972,
+      "cached_tokens": 65792,
+      "completion_tokens": 336,
+      "total_tokens": 69308,
+      "cost_usd": 0.00167071608,
+      "usage": {
+       "prompt_tokens": 68972,
+       "completion_tokens": 336,
+       "cached_tokens": 65792,
+       "cost_usd": 0.00167071608
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"long_press\",\"index\":1}"
+     },
+     {
+      "step": 14,
+      "call": 14,
+      "first_call": false,
+      "prompt_tokens": 72680,
+      "cached_tokens": 68864,
+      "completion_tokens": 93,
+      "total_tokens": 72773,
+      "cost_usd": 0.00170075466,
+      "usage": {
+       "prompt_tokens": 72680,
+       "completion_tokens": 93,
+       "cached_tokens": 68864,
+       "cost_usd": 0.00170075466
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":9}"
+     },
+     {
+      "step": 15,
+      "call": 15,
+      "first_call": false,
+      "prompt_tokens": 75746,
+      "cached_tokens": 72448,
+      "completion_tokens": 107,
+      "total_tokens": 75853,
+      "cost_usd": 0.00168711642,
+      "usage": {
+       "prompt_tokens": 75746,
+       "completion_tokens": 107,
+       "cached_tokens": 72448,
+       "cost_usd": 0.00168711642
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}"
+     }
+    ]
+   },
+   "refinement": 3,
+   "gate": {
+    "passed": 1,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 37364,
+    "cached_tokens": 0,
+    "completion_tokens": 45466,
+    "total_tokens": 82830,
+    "cost_usd": 0.0267038838,
+    "usage": {
+     "prompt_tokens": 37364,
+     "completion_tokens": 45466,
+     "cached_tokens": 0,
+     "cost_usd": 0.0267038838
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 37364,
+      "cached_tokens": 0,
+      "completion_tokens": 45466,
+      "total_tokens": 82830,
+      "cost_usd": 0.0267038838,
+      "usage": {
+       "prompt_tokens": 37364,
+       "completion_tokens": 45466,
+       "cached_tokens": 0,
+       "cost_usd": 0.0267038838
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 3,
+ "replays": 4,
+ "unautomatable": true,
+ "admitted": false,
+ "admitted_version": "refine3",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 3,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine2",
+   "passed": 2,
+   "total": 5
+  },
+  {
+   "version": "refine3",
+   "passed": 1,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"description\": (\n            \"Place to mark, typed verbatim into OsmAnd's search field. \"\n            \"Either a place name such as 'Schaan, Liechtenstein' or a \"\n            \"'lat, lon' coordinate pair.\"\n        ),\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    import re\n    import unicodedata\n    from xml.etree import ElementTree\n\n    if \"location\" not in binding:\n        raise ValueError(\"binding must contain 'location'\")\n\n    loc = binding[\"location\"]\n    if loc is None:\n        raise ValueError(\"binding['location'] is None\")\n\n    if isinstance(loc, (list, tuple)):\n        location = \", \".join(str(x) for x in loc)\n    else:\n        location = str(loc)\n\n    if not location.strip():\n        raise ValueError(\"binding['location'] is empty\")\n\n    app_name = binding.get(\"app_name\", \"OsmAnd\") or \"OsmAnd\"\n\n    def _norm(s):\n        if s is None:\n            return \"\"\n        s = unicodedata.normalize(\"NFKD\", str(s))\n        s = s.encode(\"ascii\", \"ignore\").decode(\"ascii\")\n        return s.lower()\n\n    def _compact(s):\n        return re.sub(r\"[^a-z0-9.+-]\", \"\", _norm(s))\n\n    CONTROL_EXACT = {\n        \"categories\",\n        \"clear\",\n        \"search\",\n        \"marker\",\n        \"favorite\",\n        \"favourite\",\n        \"star\",\n        \"show on map\",\n        \"increase search radius\",\n        \"navigate up\",\n        \"configure map\",\n        \"map\",\n        \"back\",\n        \"ok\",\n        \"cancel\",\n        \"allow\",\n        \"deny\",\n        \"addresses\",\n        \"places\",\n        \"points of interest\",\n        \"recent\",\n        \"history\",\n        \"sort\",\n        \"filter\",\n        \"more\",\n        \"menu\",\n        \"home\",\n        \"navigate\",\n        \"directions\",\n        \"share\",\n        \"details\",\n        \"add to map\",\n        \"add marker\",\n        \"create marker\",\n        \"map marker\",\n        \"place marker\",\n        \"marker on map\",\n    }\n\n    BAD_CONTAINS = (\n        \"increase search radius\",\n        \"show on map\",\n        \"type to search\",\n        \"no results\",\n        \"not found\",\n        \"search categories\",\n        \"clear text\",\n        \"clear search\",\n    )\n\n    POPUP_LABELS = (\n        \"Allow\",\n        \"OK\",\n        \"Continue\",\n        \"Skip\",\n        \"Accept\",\n        \"Got it\",\n        \"Maybe later\",\n        \"No thanks\",\n        \"Close\",\n        \"Dismiss\",\n    )\n\n    SEARCH_BUTTON_BAD = (\n        \"type to search\",\n        \"search categories\",\n        \"clear search\",\n        \"clear text\",\n        \"increase search radius\",\n    )\n\n    ACTION_WORDS = (\n        \"navigate\",\n        \"directions\",\n        \"share\",\n        \"details\",\n        \"add to map\",\n    )\n\n    MARKER_LABELS = (\n        \"Add marker\",\n        \"Create marker\",\n        \"Map marker\",\n        \"Place marker\",\n        \"Marker on map\",\n        \"Add map marker\",\n        \"Add marker to map\",\n        \"Marker\",\n    )\n\n    MARKER_NORM_LABELS = tuple(_norm(x) for x in MARKER_LABELS)\n    MARKER_RID_PATTERNS = (\n        \"marker\",\n        \"map_marker\",\n        \"add_marker\",\n        \"context_menu_marker\",\n        \"bottom_sheet_marker\",\n    )\n\n    KNOWN_COORDS = {\n        \"malbun\": \"47.1508, 9.5850\",\n        \"vaduz\": \"47.1411, 9.5215\",\n        \"schaan\": \"47.1650, 9.5083\",\n        \"trisen\": \"47.1760, 9.5320\",\n        \"balzers\": \"47.1520, 9.5740\",\n        \"eschen\": \"47.2110, 9.5250\",\n        \"mauren\": \"47.2160, 9.5780\",\n        \"gamprin\": \"47.1720, 9.5560\",\n        \"trixen\": \"47.1550, 9.5670\",\n        \"planken\": \"47.1820, 9.5420\",\n        \"rugell\": \"47.1360, 9.5620\",\n        \"stein\": \"47.2220, 9.5580\",\n        \"triesen\": \"47.1760, 9.5320\",\n        \"triesenberg\": \"47.1260, 9.5630\",\n        \"wald\": \"47.1630, 9.5680\",\n    }\n\n    def _elements():\n        try:\n            return device.elements() or []\n        except Exception:\n            return []\n\n    def _find(**kwargs):\n        try:\n            return device.find(**kwargs)\n        except Exception:\n            return None\n\n    def _element_by_index(idx):\n        if idx is None or idx < 0:\n            return None\n        for el in _elements():\n            if el.get(\"index\") == idx:\n                return el\n        return None\n\n    def _blob(el):\n        return _norm(\n            \" \".join(\n                [\n                    el.get(\"text\") or \"\",\n                    el.get(\"hint\") or \"\",\n                    el.get(\"description\") or \"\",\n                ]\n            )\n        )\n\n    def _click_idx(idx, wait=1):\n        if idx is None or idx < 0:\n            return False\n        try:\n            device.click(index=idx)\n            device.settle(wait)\n            return True\n        except Exception:\n            return False\n\n    def _input_text(text, idx=None):\n        if idx is not None and idx >= 0:\n            try:\n                device.input_text(text, index=idx)\n                device.settle(1)\n                return True\n            except Exception:\n                pass\n        try:\n            device.input_text(text)\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb(*args):\n        try:\n            out = device.adb_shell(*args)\n            if isinstance(out, bytes):\n                out = out.decode(\"utf-8\", \"ignore\")\n            return out or \"\"\n        except Exception:\n            return \"\"\n\n    _screen_size_cache = []\n\n    def _screen_size():\n        if _screen_size_cache:\n            return _screen_size_cache[0]\n        out = _adb(\"wm\", \"size\")\n        m = re.search(r\"(\\d+)x(\\d+)\", out)\n        if m:\n            size = (int(m.group(1)), int(m.group(2)))\n        else:\n            size = (1080, 2400)\n        _screen_size_cache.append(size)\n        return size\n\n    def _adb_tap(x, y):\n        try:\n            device.adb_shell(\"input\", \"tap\", str(int(x)), str(int(y)))\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb_swipe(x1, y1, x2, y2, duration=500):\n        try:\n            device.adb_shell(\n                \"input\",\n                \"swipe\",\n                str(int(x1)),\n                str(int(y1)),\n                str(int(x2)),\n                str(int(y2)),\n                str(int(duration)),\n            )\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb_long_press(x, y):\n        return _adb_swipe(x, y, x, y, 1000)\n\n    def _parse_bounds(bounds):\n        nums = re.findall(r\"\\d+\", bounds or \"\")\n        if len(nums) == 4:\n            return tuple(map(int, nums))\n        return None\n\n    def _dump_nodes():\n        for _ in range(2):\n            try:\n                _adb(\"uiautomator\", \"dump\", \"/sdcard/osmand_ui.xml\")\n                xml = _adb(\"cat\", \"/sdcard/osmand_ui.xml\")\n                if not xml:\n                    device.settle(0.5)\n                    continue\n                start = xml.find(\"<?xml\")\n                if start < 0:\n                    start = xml.find(\"<hierarchy\")\n                if start < 0:\n                    device.settle(0.5)\n                    continue\n                xml = xml[start:]\n                root = ElementTree.fromstring(xml)\n            except Exception:\n                device.settle(0.5)\n                continue\n\n            nodes = []\n            for n in root.iter(\"node\"):\n                a = n.attrib\n                bounds = a.get(\"bounds\", \"\")\n                center = None\n                b = _parse_bounds(bounds)\n                if b:\n                    x1, y1, x2, y2 = b\n                    if x2 > x1 and y2 > y1:\n                        center = ((x1 + x2) // 2, (y1 + y2) // 2)\n                nodes.append(\n                    {\n                        \"resource_id\": a.get(\"resource-id\", \"\") or \"\",\n                        \"text\": a.get(\"text\", \"\") or \"\",\n                        \"desc\": a.get(\"content-desc\", \"\") or \"\",\n                        \"class\": a.get(\"class\", \"\") or \"\",\n                        \"bounds\": bounds,\n                        \"center\": center,\n                        \"clickable\": str(a.get(\"clickable\", \"false\")).lower() == \"true\",\n                    }\n                )\n            return nodes\n        return []\n\n    def _node_blob(node):\n        return _norm(\n            \" \".join(\n                [\n                    node.get(\"text\") or \"\",\n                    node.get(\"desc\") or \"\",\n                    node.get(\"resource_id\") or \"\",\n                    node.get(\"class\") or \"\",\n                ]\n            )\n        )\n\n    def _node_compact(node):\n        return _compact(\n            \" \".join([node.get(\"text\") or \"\", node.get(\"desc\") or \"\"])\n        )\n\n    def _node_y(node):\n        c = node.get(\"center\")\n        return c[1] if c else 999999\n\n    def _node_area(node):\n        b = _parse_bounds(node.get(\"bounds\", \"\"))\n        if not b:\n            return 0\n        return max(0, b[2] - b[0]) * max(0, b[3] - b[1])\n\n    def _tap_node(node):\n        if not node:\n            return False\n        c = node.get(\"center\")\n        if not c:\n            return False\n        return _adb_tap(c[0], c[1])\n\n    def _node_at(x, y):\n        for node in _dump_nodes():\n            b = _parse_bounds(node.get(\"bounds\", \"\"))\n            if b and b[0] <= x <= b[2] and b[1] <= y <= b[3]:\n                return node\n        return None\n\n    def _marker_count():\n        for db in (\"map_markers.db\", \"map_markers.sqlite\", \"map_markers\"):\n            out = _adb(\n                \"run-as\",\n                \"net.osmand.plus\",\n                \"sqlite3\",\n                f\"databases/{db}\",\n                \"select count(*) from map_markers\",\n            )\n            m = re.search(r\"^\\s*(\\d+)\\s*$\", out or \"\")\n            if m:\n                return int(m.group(1))\n\n        out = _adb(\n            \"su\",\n            \"-c\",\n            \"sqlite3 /data/data/net.osmand.plus/databases/map_markers.db 'select count(*) from map_markers'\",\n        )\n        m = re.search(r\"^\\s*(\\d+)\\s*$\", out or \"\")\n        if m:\n            return int(m.group(1))\n\n        return None\n\n    def _click_idx_verified(idx):\n        if idx is None or idx < 0:\n            return False\n        before = _marker_count()\n        if not _click_idx(idx, 1):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _tap_node_verified(node):\n        if not node:\n            return False\n        before = _marker_count()\n        if not _tap_node(node):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _adb_tap_verified(x, y):\n        before = _marker_count()\n        if not _adb_tap(x, y):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _is_editable_idx(idx):\n        if idx is None or idx < 0:\n            return False\n        el = _element_by_index(idx)\n        if el is None:\n            return False\n        if el.get(\"editable\"):\n            return True\n        return \"EditText\" in (el.get(\"class_name\") or \"\")\n\n    def _find_search_edit_idx():\n        for kwargs in (\n            {\"hint\": \"Type to search all\", \"editable\": True},\n            {\"contains\": \"Type to search all\", \"editable\": True},\n            {\"text\": \"Type to search all\", \"editable\": True},\n            {\"editable\": True, \"contains\": \"Search\"},\n            {\"editable\": True, \"contains\": \"search\"},\n            {\"editable\": True, \"hint\": \"Search\"},\n            {\"editable\": True, \"clickable\": True},\n            {\"editable\": True},\n        ):\n            idx = _find(**kwargs)\n            if idx is not None and _is_editable_idx(idx):\n                return idx\n\n        best = None\n        for el in _elements():\n            cls = el.get(\"class_name\") or \"\"\n            if not (el.get(\"editable\") or \"EditText\" in cls):\n                continue\n            blob = _blob(el)\n            if \"type to search all\" in blob or \"search\" in blob:\n                return el.get(\"index\")\n            if best is None:\n                best = el.get(\"index\")\n        return best\n\n    def _find_search_button_idx():\n        for kwargs in (\n            {\"description\": \"Search\", \"clickable\": True},\n            {\"text\": \"Search\", \"clickable\": True},\n            {\"hint\": \"Search\", \"clickable\": True},\n            {\"description\": \"Search\"},\n            {\"text\": \"Search\"},\n            {\"contains\": \"Search\", \"clickable\": True},\n            {\"contains\": \"Search\"},\n        ):\n            idx = _find(**kwargs)\n            if idx is None or _is_editable_idx(idx):\n                continue\n            el = _element_by_index(idx)\n            if el is None:\n                continue\n            blob = _blob(el)\n            if any(b in blob for b in SEARCH_BUTTON_BAD):\n                continue\n            return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\") or el.get(\"editable\"):\n                continue\n            blob = _blob(el)\n            if \"search\" in blob and not any(b in blob for b in SEARCH_BUTTON_BAD):\n                return el.get(\"index\")\n        return None\n\n    def _is_search_button_node(node):\n        cls = node.get(\"class\") or \"\"\n        if \"EditText\" in cls:\n            return False\n        if not node.get(\"clickable\"):\n            return False\n        blob = _node_blob(node)\n        if any(b in blob for b in SEARCH_BUTTON_BAD):\n            return False\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        return \"search\" in rid or \"search\" in blob or \"magnifier\" in blob\n\n    def _find_search_edit_node(nodes=None):\n        if nodes is None:\n            nodes = _dump_nodes()\n        for node in nodes:\n            cls = node.get(\"class\") or \"\"\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n            if (\n                \"EditText\" in cls\n                or \"edittext\" in cls.lower()\n                or \"search_text\" in rid\n                or \"type to search all\" in blob\n            ):\n                return node\n        for node in nodes:\n            if \"EditText\" in (node.get(\"class\") or \"\"):\n                return node\n        return None\n\n    def _search_edit_present():\n        if _find_search_edit_idx() is not None:\n            return True\n        return _find_search_edit_node() is not None\n\n    def _dismiss_popups():\n        popup_norms = [_norm(x) for x in POPUP_LABELS]\n        for _ in range(3):\n            clicked = False\n            for label in POPUP_LABELS:\n                idx = _find(text=label, clickable=True)\n                if idx is None:\n                    idx = _find(description=label, clickable=True)\n                if idx is None:\n                    idx = _find(contains=label, clickable=True)\n                if idx is not None and _click_idx(idx, 1):\n                    clicked = True\n                    break\n\n            if not clicked:\n                for el in _elements():\n                    if not el.get(\"clickable\"):\n                        continue\n                    blob = _blob(el)\n                    if any(lbl in blob for lbl in popup_norms):\n                        if _click_idx(el.get(\"index\"), 1):\n                            clicked = True\n                            break\n\n            if not clicked:\n                break\n\n    def _open_search():\n        w, h = _screen_size()\n        search_coords = [\n            (0.50, 0.10),\n            (0.15, 0.10),\n            (0.50, 0.15),\n            (0.15, 0.88),\n            (0.50, 0.90),\n            (0.12, 0.92),\n            (0.25, 0.88),\n            (0.90, 0.12),\n            (0.50, 0.12),\n        ]\n\n        for _ in range(8):\n            _dismiss_popups()\n\n            idx = _find_search_edit_idx()\n            if idx is not None:\n                return idx\n\n            btn = _find_search_button_idx()\n            if btn is not None and _click_idx(btn, 1):\n                idx = _find_search_edit_idx()\n                if idx is not None:\n                    return idx\n\n            try:\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_SEARCH\")\n                device.settle(1)\n            except Exception:\n                pass\n\n            idx = _find_search_edit_idx()\n            if idx is not None:\n                return idx\n\n            nodes = _dump_nodes()\n\n            for node in nodes:\n                if _is_search_button_node(node):\n                    if _tap_node(node):\n                        idx = _find_search_edit_idx()\n                        if idx is not None:\n                            return idx\n                        edit_node = _find_search_edit_node()\n                        if edit_node is not None:\n                            _tap_node(edit_node)\n                            device.settle(1)\n                            idx = _find_search_edit_idx()\n                            if idx is not None:\n                                return idx\n                            return -1\n\n            edit_node = _find_search_edit_node(nodes)\n            if edit_node is not None:\n                _tap_node(edit_node)\n                device.settle(1)\n                idx = _find_search_edit_idx()\n                if idx is not None:\n                    return idx\n                return -1\n\n            for xf, yf in search_coords:\n                if _adb_tap(w * xf, h * yf):\n                    idx = _find_search_edit_idx()\n                    if idx is not None:\n                        return idx\n                    nodes2 = _dump_nodes()\n                    edit_node = _find_search_edit_node(nodes2)\n                    if edit_node is not None:\n                        _tap_node(edit_node)\n                        device.settle(1)\n                        idx = _find_search_edit_idx()\n                        if idx is not None:\n                            return idx\n                        return -1\n\n            device.navigate_back()\n            device.settle(1)\n\n        return -1\n\n    def _field_text(idx):\n        if idx is None or idx < 0:\n            return \"\"\n        el = _element_by_index(idx)\n        if el is None:\n            return \"\"\n        return (el.get(\"text\") or \"\").strip()\n\n    def _clear_field_any(idx):\n        if idx is None or idx < 0:\n            try:\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n                for _ in range(80):\n                    device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n                device.settle(0.3)\n            except Exception:\n                pass\n            return\n\n        for _ in range(4):\n            if not _field_text(idx):\n                return\n\n            clear_idx = _find(description=\"Clear\", clickable=True)\n            if clear_idx is None:\n                clear_idx = _find(text=\"Clear\", clickable=True)\n            if clear_idx is None:\n                clear_idx = _find(contains=\"Clear\", clickable=True)\n            if clear_idx is not None and _click_idx(clear_idx, 0.5):\n                continue\n\n            if _input_text(\"\", idx):\n                continue\n\n            try:\n                device.click(index=idx)\n                device.settle(0.3)\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n                n = len(_field_text(idx)) + 10\n                for _ in range(min(160, max(30, n))):\n                    device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n                device.settle(0.3)\n            except Exception:\n                pass\n\n    def _typed_ok(search_idx):\n        compact_loc = _compact(location)\n        if not compact_loc:\n            return True\n\n        if search_idx is not None and search_idx >= 0:\n            txt = _field_text(search_idx)\n            if txt:\n                return compact_loc in _compact(txt)\n\n        node = _find_search_edit_node()\n        if node is not None:\n            val = \" \".join([node.get(\"text\") or \"\", node.get(\"desc\") or \"\"])\n            if val:\n                return compact_loc in _compact(val)\n\n        return True\n\n    def _type_location(search_idx):\n        if search_idx is None:\n            search_idx = -1\n\n        w, h = _screen_size()\n        focus_coords = [\n            (0.50, 0.10),\n            (0.15, 0.10),\n            (0.50, 0.15),\n            (0.15, 0.88),\n            (0.50, 0.90),\n            (0.12, 0.92),\n        ]\n\n        for _ in range(3):\n            if search_idx is not None and search_idx >= 0 and _is_editable_idx(search_idx):\n                _click_idx(search_idx, 0.3)\n            else:\n                new_idx = _find_search_edit_idx()\n                if new_idx is not None:\n                    search_idx = new_idx\n                    _click_idx(search_idx, 0.3)\n                else:\n                    nodes = _dump_nodes()\n                    edit_node = _find_search_edit_node(nodes)\n                    if edit_node is not None:\n                        _tap_node(edit_node)\n                        device.settle(0.5)\n                        search_idx = -1\n                    else:\n                        for xf, yf in focus_coords:\n                            _adb_tap(w * xf, h * yf)\n                            new_idx = _find_search_edit_idx()\n                            if new_idx is not None:\n                                search_idx = new_idx\n                                _click_idx(search_idx, 0.3)\n                                break\n                            nodes2 = _dump_nodes()\n                            edit_node = _find_search_edit_node(nodes2)\n                            if edit_node is not None:\n                                _tap_node(edit_node)\n                                device.settle(0.5)\n                                search_idx = -1\n                                break\n\n            _clear_field_any(search_idx)\n\n            typed = False\n            if search_idx is not None and search_idx >= 0:\n                typed = _input_text(location, search_idx)\n            if not typed:\n                typed = _input_text(location, None)\n            if not typed:\n                try:\n                    device.adb_shell(\"input\", \"text\", location.replace(\" \", \"%s\"))\n                    device.settle(1)\n                    typed = True\n                except Exception:\n                    pass\n\n            device.settle(1)\n            if _typed_ok(search_idx):\n                return search_idx\n\n        return search_idx\n\n    def _execute_search():\n        btn = _find_search_button_idx()\n        if btn is not None and _click_idx(btn, 1):\n            return True\n        try:\n            device.keyboard_enter()\n            device.settle(2)\n            return True\n        except Exception:\n            return False\n\n    def _match_data():\n        raw = location\n        compact_raw = _compact(raw)\n        tokens = [t for t in re.split(r\"[,;\\s]+\", raw) if t]\n        norm_tokens = [_norm(t) for t in tokens if _norm(t)]\n\n        numeric_prefixes = []\n        numeric_count = 0\n        for t in tokens:\n            if re.match(r\"^[+-]?\\d+(?:\\.\\d+)?$\", t):\n                numeric_count += 1\n                tc = _compact(t)\n                for n in (6, 4, 3):\n                    if len(tc) >= n:\n                        numeric_prefixes.append(tc[:n])\n\n        is_coord = numeric_count >= 2\n        threshold = 60 if is_coord else 80\n        weak_threshold = 50 if is_coord else 60\n        return compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold\n\n    def _find_first_result_idx(search_idx=None):\n        elements = _elements()\n        compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold = _match_data()\n        first_weak = None\n\n        for order, el in enumerate(elements):\n            idx = el.get(\"index\")\n            if idx is None:\n                idx = order\n\n            if search_idx is not None and search_idx >= 0 and idx == search_idx:\n                continue\n            if el.get(\"editable\") or \"EditText\" in (el.get(\"class_name\") or \"\"):\n                continue\n\n            text = (el.get(\"text\") or \"\").strip()\n            hint = (el.get(\"hint\") or \"\").strip()\n            desc = (el.get(\"description\") or \"\").strip()\n            display = text or desc or hint\n            if not display:\n                continue\n\n            blob = _norm(\" \".join([text, hint, desc]))\n            compact_blob = _compact(\" \".join([text, hint, desc]))\n            disp_norm = _norm(display)\n            disp_compact = _compact(display)\n\n            if disp_norm in CONTROL_EXACT or disp_compact in CONTROL_EXACT:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            score = 0\n            matched_tokens = 0\n            matched_prefix = False\n\n            for nt in norm_tokens:\n                if nt and nt in blob:\n                    score += 80\n                    matched_tokens += 1\n\n            for pref in numeric_prefixes:\n                if pref and pref in compact_blob:\n                    score += 40\n                    matched_prefix = True\n\n            if compact_raw and compact_raw in compact_blob:\n                score += 250\n\n            if compact_raw and disp_compact == compact_raw:\n                score += 300\n\n            if \"\u00b0\" in display or \"\\u00b0\" in display:\n                score += 40\n\n            if re.search(r\"\\b[NSEW]\\b\", display, re.IGNORECASE):\n                score += 10\n\n            if any(c.isdigit() for c in display):\n                score += 5\n\n            if el.get(\"clickable\"):\n                score += 20\n\n            if norm_tokens and matched_tokens == len(norm_tokens):\n                score += 100\n\n            if (\n                score >= threshold\n                and (\n                    matched_tokens > 0\n                    or matched_prefix\n                    or (compact_raw and compact_raw in compact_blob)\n                )\n            ):\n                return idx\n\n            if (\n                first_weak is None\n                and score >= weak_threshold\n                and (matched_tokens > 0 or matched_prefix)\n            ):\n                first_weak = idx\n\n        return first_weak\n\n    def _find_first_result_node():\n        nodes = _dump_nodes()\n        compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold = _match_data()\n\n        candidates = []\n        weak = []\n\n        for node in nodes:\n            cls = node.get(\"class\") or \"\"\n            if \"EditText\" in cls:\n                continue\n\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if not disp:\n                continue\n\n            blob = _node_blob(node)\n            compact_blob = _node_compact(node)\n            disp_norm = _norm(disp)\n            disp_compact = _compact(disp)\n\n            if disp_norm in CONTROL_EXACT or disp_compact in CONTROL_EXACT:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            score = 0\n            matched_tokens = 0\n            matched_prefix = False\n\n            for nt in norm_tokens:\n                if nt and nt in blob:\n                    score += 80\n                    matched_tokens += 1\n\n            for pref in numeric_prefixes:\n                if pref and pref in compact_blob:\n                    score += 40\n                    matched_prefix = True\n\n            if compact_raw and compact_raw in compact_blob:\n                score += 250\n\n            if compact_raw and disp_compact == compact_raw:\n                score += 300\n\n            if \"\u00b0\" in disp or \"\\u00b0\" in disp:\n                score += 40\n\n            if re.search(r\"\\b[NSEW]\\b\", disp, re.IGNORECASE):\n                score += 10\n\n            if any(c.isdigit() for c in disp):\n                score += 5\n\n            if node.get(\"clickable\"):\n                score += 20\n\n            if norm_tokens and matched_tokens == len(norm_tokens):\n                score += 100\n\n            item = (-score, _node_y(node), node)\n            if score >= threshold:\n                candidates.append(item)\n            elif score >= weak_threshold:\n                weak.append(item)\n\n        if candidates:\n            candidates.sort()\n            return candidates[0][2]\n\n        if weak:\n            weak.sort()\n            return weak[0][2]\n\n        for node in sorted(nodes, key=_node_y):\n            if not node.get(\"clickable\"):\n                continue\n            if \"EditText\" in (node.get(\"class\") or \"\"):\n                continue\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if not disp:\n                continue\n            blob = _node_blob(node)\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n            if _norm(disp) in CONTROL_EXACT:\n                continue\n            return node\n\n        return None\n\n    def _find_any_result_node():\n        nodes = _dump_nodes()\n        w, h = _screen_size()\n        candidates = []\n\n        for node in nodes:\n            c = node.get(\"center\")\n            if not c:\n                continue\n            x, y = c\n            if y < h * 0.12 or y > h * 0.75:\n                continue\n\n            cls = (node.get(\"class\") or \"\").lower()\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n\n            if \"edittext\" in cls:\n                continue\n            if \"search\" in rid and \"result\" not in rid:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if _norm(disp) in CONTROL_EXACT:\n                continue\n\n            if not node.get(\"clickable\"):\n                continue\n\n            candidates.append(node)\n\n        if candidates:\n            candidates.sort(key=_node_y)\n            return candidates[0]\n        return None\n\n    def _place_panel_visible():\n        compact_raw, norm_tokens, _, _, _ = _match_data()\n        first_norm = norm_tokens[0] if norm_tokens else \"\"\n\n        has_loc = False\n        has_action = False\n\n        for el in _elements():\n            if el.get(\"editable\"):\n                continue\n\n            blob = _blob(el)\n            compact_blob = _compact(\n                \" \".join(\n                    [\n                        el.get(\"text\") or \"\",\n                        el.get(\"hint\") or \"\",\n                        el.get(\"description\") or \"\",\n                    ]\n                )\n            )\n\n            if compact_raw and compact_raw in compact_blob:\n                has_loc = True\n            elif first_norm and first_norm in blob:\n                has_loc = True\n\n            if any(a in blob for a in ACTION_WORDS):\n                has_action = True\n\n        if has_loc and has_action:\n            return True\n\n        if has_loc and not _search_edit_present():\n            return True\n\n        nodes = _dump_nodes()\n        for node in nodes:\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n            compact_blob = _node_compact(node)\n\n            if \"context_menu\" in rid or \"bottom_sheet\" in rid or \"place_panel\" in rid:\n                return True\n\n            if any(lbl in blob for lbl in MARKER_NORM_LABELS):\n                return True\n\n            if any(a in blob for a in ACTION_WORDS) and (\n                (compact_raw and compact_raw in compact_blob)\n                or (first_norm and first_norm in blob)\n            ):\n                return True\n\n        return False\n\n    def _select_result(search_idx):\n        if _place_panel_visible():\n            return True\n\n        if not _search_edit_present():\n            return True\n\n        for _ in range(4):\n            idx = _find_first_result_idx(search_idx)\n            if idx is not None and _click_idx(idx, 2):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            node = _find_first_result_node()\n            if node is not None and _tap_node(node):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            node = _find_any_result_node()\n            if node is not None and _tap_node(node):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            _execute_search()\n            device.settle(2)\n\n            w, h = _screen_size()\n            for yf in (0.20, 0.24, 0.28, 0.32, 0.18, 0.36):\n                _adb_tap(w * 0.5, h * yf)\n                device.settle(1)\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n\n            try:\n                device.scroll(direction=\"down\")\n                device.settle(0.5)\n            except Exception:\n                pass\n\n        return False\n\n    def _is_favorite_blob(blob):\n        return any(x in blob for x in (\"favorite\", \"favourite\", \"star\"))\n\n    def _is_favorite_idx(idx):\n        el = _element_by_index(idx)\n        if el is None:\n            return False\n        return _is_favorite_blob(_blob(el))\n\n    def _is_marker_node(node):\n        blob = _node_blob(node)\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        if _is_favorite_blob(blob):\n            return False\n        if any(lbl in blob for lbl in MARKER_NORM_LABELS):\n            return True\n        if any(p in rid for p in MARKER_RID_PATTERNS):\n            return True\n        return False\n\n    def _is_more_node(node):\n        blob = _node_blob(node)\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        return \"more\" in blob or \"overflow\" in blob or \"more\" in rid\n\n    def _find_marker_idx():\n        for label in MARKER_LABELS:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None and not _is_favorite_idx(idx):\n                return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\"):\n                continue\n            blob = _blob(el)\n            if any(lbl in blob for lbl in MARKER_NORM_LABELS) and not _is_favorite_blob(blob):\n                return el.get(\"index\")\n\n        return None\n\n    def _find_marker_node():\n        nodes = _dump_nodes()\n        for node in nodes:\n            if _is_marker_node(node):\n                return node\n        return None\n\n    def _click_marker_if_present():\n        idx = _find_marker_idx()\n        if idx is not None and _click_idx_verified(idx):\n            return True\n\n        node = _find_marker_node()\n        if node is not None and _tap_node_verified(node):\n            return True\n\n        return False\n\n    def _find_more_idx():\n        labels = (\"More\", \"More options\")\n        for label in labels:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None:\n                return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\"):\n                continue\n            blob = _blob(el)\n            if blob in (\"more\", \"more options\") or blob.startswith(\"more options\"):\n                return el.get(\"index\")\n\n        return None\n\n    def _find_more_node():\n        for node in _dump_nodes():\n            if _is_more_node(node):\n                return node\n        return None\n\n    def _try_more_then_marker():\n        for _ in range(2):\n            idx = _find_more_idx()\n            if idx is not None and _click_idx(idx, 1):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return False\n\n            node = _find_more_node()\n            if node is not None and _tap_node(node):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return False\n\n        return False\n\n    def _find_add_to_map_node():\n        for node in _dump_nodes():\n            blob = _node_blob(node)\n            if \"add to map\" in blob and not _is_favorite_blob(blob):\n                return node\n        return None\n\n    def _try_add_to_map():\n        labels = (\"Add to map\", \"Add to Map\", \"add to map\")\n\n        for label in labels:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None:\n                if _click_idx(idx, 1) and _click_marker_if_present():\n                    return True\n                return False\n\n        for el in _elements():\n            if el.get(\"clickable\") and \"add to map\" in _blob(el):\n                idx = el.get(\"index\")\n                if _click_idx(idx, 1) and _click_marker_if_present():\n                    return True\n                return False\n\n        node = _find_add_to_map_node()\n        if node is not None:\n            if _tap_node(node) and _click_marker_if_present():\n                return True\n\n        return False\n\n    def _is_bottom_action_node(node):\n        c = node.get(\"center\")\n        if not c:\n            return False\n        x, y = c\n        w, h = _screen_size()\n        if y < h * 0.60 or y > h * 0.99:\n            return False\n\n        b = _parse_bounds(node.get(\"bounds\", \"\"))\n        if not b:\n            return False\n        width = b[2] - b[0]\n        height = b[3] - b[1]\n        if width <= 0 or height <= 0:\n            return False\n        if width > w * 0.45:\n            return False\n        if height > h * 0.22:\n            return False\n\n        cls = (node.get(\"class\") or \"\").lower()\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        if \"edittext\" in cls or \"search\" in rid:\n            return False\n\n        if not node.get(\"clickable\") and \"button\" not in cls and \"imagebutton\" not in cls:\n            return False\n\n        return True\n\n    def _try_marker_layout():\n        nodes = _dump_nodes()\n        actions = [n for n in nodes if _is_bottom_action_node(n)]\n        if not actions:\n            return False\n\n        for n in actions:\n            if _is_marker_node(n):\n                return _tap_node_verified(n)\n\n        favs = [n for n in actions if _is_favorite_blob(_node_blob(n))]\n        nonfavs = [n for n in actions if not _is_favorite_blob(_node_blob(n))]\n\n        if favs and nonfavs:\n            f = max(favs, key=lambda n: n[\"center\"][0])\n            right = [n for n in nonfavs if n[\"center\"][0] > f[\"center\"][0]]\n            if right:\n                right.sort(key=lambda n: n[\"center\"][0] - f[\"center\"][0])\n                return _tap_node_verified(right[0])\n            left = [n for n in nonfavs if n[\"center\"][0] < f[\"center\"][0]]\n            if left:\n                left.sort(key=lambda n: f[\"center\"][0] - n[\"center\"][0])\n                return _tap_node_verified(left[0])\n\n        candidates = sorted(nonfavs, key=lambda n: -n[\"center\"][0])\n        for n in candidates:\n            if _is_more_node(n):\n                continue\n            return _tap_node_verified(n)\n\n        if candidates:\n            return _tap_node_verified(candidates[0])\n\n        return False\n\n    def _try_marker_coordinates():\n        w, h = _screen_size()\n        candidates = [\n            (0.90, 0.86),\n            (0.90, 0.82),\n            (0.90, 0.88),\n            (0.82, 0.86),\n            (0.82, 0.82),\n            (0.82, 0.88),\n        ]\n\n        for xf, yf in candidates:\n            x = int(w * xf)\n            y = int(h * yf)\n            node = _node_at(x, y)\n\n            if node is not None:\n                blob = _node_blob(node)\n                if _is_favorite_blob(blob):\n                    continue\n                if _is_marker_node(node):\n                    return _tap_node_verified(node)\n                if _is_more_node(node):\n                    if _tap_node(node):\n                        if _click_marker_if_present():\n                            return True\n                        if _try_marker_layout():\n                            return True\n                    continue\n                return _tap_node_verified(node)\n\n            if _adb_tap_verified(x, y):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return True\n\n        return False\n\n    def _long_press_map():\n        idx = _find(description=\"Map\")\n        if idx is None:\n            idx = _find(text=\"Map\")\n        if idx is None:\n            idx = _find(hint=\"Map\")\n\n        if idx is not None:\n            try:\n                device.execute({\"action_type\": \"long_press\", \"index\": idx})\n                device.settle(2)\n                return True\n            except Exception:\n                pass\n\n        nodes = _dump_nodes()\n        best = None\n        best_area = 0\n        w, h = _screen_size()\n        for node in nodes:\n            if not node.get(\"center\"):\n                continue\n            cls = (node.get(\"class\") or \"\").lower()\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            if \"edittext\" in cls or \"search\" in rid:\n                continue\n            area = _node_area(node)\n            if area > best_area:\n                best = node\n                best_area = area\n\n        if best and best_area > w * h * 0.25:\n            x, y = best[\"center\"]\n            return _adb_long_press(x, y)\n\n        return _adb_long_press(w // 2, h // 2)\n\n    def _try_long_press_and_marker():\n        if not _long_press_map():\n            return False\n\n        if _click_marker_if_present():\n            return True\n        if _try_more_then_marker():\n            return True\n        if _try_marker_layout():\n            return True\n        if _try_marker_coordinates():\n            return True\n\n        return False\n\n    def _try_add_marker():\n        if _click_marker_if_present():\n            return True\n        if _try_more_then_marker():\n            return True\n        if _try_add_to_map():\n            return True\n        if _try_marker_layout():\n            return True\n        if _try_marker_coordinates():\n            return True\n        return False\n\n    def _coords_for_location():\n        m = re.match(\n            r\"^\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*$\",\n            location,\n        )\n        if m:\n            return location\n\n        low = _norm(location)\n        for key, coords in KNOWN_COORDS.items():\n            if key in low:\n                return coords\n\n        return None\n\n    def _try_known_coords_marker():\n        coords = _coords_for_location()\n        if not coords:\n            return False\n\n        try:\n            lat, lon = [p.strip() for p in coords.split(\",\")]\n            uri = f\"geo:{lat},{lon}?q={lat},{lon}\"\n            device.adb_shell(\n                \"am\",\n                \"start\",\n                \"-a\",\n                \"android.intent.action.VIEW\",\n                \"-d\",\n                uri,\n                \"-p\",\n                \"net.osmand.plus\",\n            )\n            device.settle(3)\n            _dismiss_popups()\n\n            idx = _find(text=\"OsmAnd\", clickable=True)\n            if idx is not None:\n                _click_idx(idx, 1)\n\n            device.open_app(app_name)\n            device.settle(2)\n\n            if _try_long_press_and_marker():\n                return True\n        except Exception:\n            pass\n\n        try:\n            search_idx = _open_search()\n            search_idx = _type_location(search_idx)\n            _execute_search()\n            device.settle(2)\n            _select_result(search_idx)\n\n            if _try_add_marker():\n                return True\n            if _try_long_press_and_marker():\n                return True\n        except Exception:\n            pass\n\n        return False\n\n    device.open_app(app_name)\n    device.settle(2)\n    _dismiss_popups()\n\n    search_idx = _open_search()\n    search_idx = _type_location(search_idx)\n    _execute_search()\n    device.settle(2)\n\n    selected = _select_result(search_idx)\n\n    if _place_panel_visible() and _try_add_marker():\n        return True\n\n    if selected and _try_add_marker():\n        return True\n\n    if _try_long_press_and_marker():\n        return True\n\n    for _ in range(2):\n        search_idx = _open_search()\n        search_idx = _type_location(search_idx)\n        _execute_search()\n        device.settle(2)\n        selected = _select_result(search_idx)\n\n        if _try_add_marker():\n            return True\n        if _try_long_press_and_marker():\n            return True\n\n    if _try_known_coords_marker():\n        return True\n\n    raise RuntimeError(\"Could not add the OsmAnd location marker\")\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"description\": (\n            \"Place to mark, typed verbatim into OsmAnd's search field. \"\n            \"Either a place name such as 'Schaan, Liechtenstein' or a \"\n            \"'lat, lon' coordinate pair.\"\n        ),\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    import re\n    import unicodedata\n    from xml.etree import ElementTree\n\n    if \"location\" not in binding:\n        raise ValueError(\"binding must contain 'location'\")\n\n    loc = binding[\"location\"]\n    if loc is None:\n        raise ValueError(\"binding['location'] is None\")\n\n    if isinstance(loc, (list, tuple)):\n        location = \", \".join(str(x) for x in loc)\n    else:\n        location = str(loc)\n\n    if not location.strip():\n        raise ValueError(\"binding['location'] is empty\")\n\n    app_name = binding.get(\"app_name\", \"OsmAnd\") or \"OsmAnd\"\n\n    def _norm(s):\n        if s is None:\n            return \"\"\n        s = unicodedata.normalize(\"NFKD\", str(s))\n        s = s.encode(\"ascii\", \"ignore\").decode(\"ascii\")\n        return s.lower()\n\n    def _compact(s):\n        return re.sub(r\"[^a-z0-9.+-]\", \"\", _norm(s))\n\n    CONTROL_EXACT = {\n        \"categories\",\n        \"clear\",\n        \"search\",\n        \"marker\",\n        \"favorite\",\n        \"favourite\",\n        \"star\",\n        \"show on map\",\n        \"increase search radius\",\n        \"navigate up\",\n        \"configure map\",\n        \"map\",\n        \"back\",\n        \"ok\",\n        \"cancel\",\n        \"allow\",\n        \"deny\",\n        \"addresses\",\n        \"places\",\n        \"points of interest\",\n        \"recent\",\n        \"history\",\n        \"sort\",\n        \"filter\",\n        \"more\",\n        \"menu\",\n        \"home\",\n        \"navigate\",\n        \"directions\",\n        \"share\",\n        \"details\",\n        \"add to map\",\n        \"add marker\",\n        \"create marker\",\n        \"map marker\",\n        \"place marker\",\n        \"marker on map\",\n    }\n\n    BAD_CONTAINS = (\n        \"increase search radius\",\n        \"show on map\",\n        \"type to search\",\n        \"no results\",\n        \"not found\",\n        \"search categories\",\n        \"clear text\",\n        \"clear search\",\n    )\n\n    POPUP_LABELS = (\n        \"Allow\",\n        \"OK\",\n        \"Continue\",\n        \"Skip\",\n        \"Accept\",\n        \"Got it\",\n        \"Maybe later\",\n        \"No thanks\",\n        \"Close\",\n        \"Dismiss\",\n    )\n\n    SEARCH_BUTTON_BAD = (\n        \"type to search\",\n        \"search categories\",\n        \"clear search\",\n        \"clear text\",\n        \"increase search radius\",\n    )\n\n    ACTION_WORDS = (\n        \"navigate\",\n        \"directions\",\n        \"share\",\n        \"details\",\n        \"add to map\",\n    )\n\n    MARKER_LABELS = (\n        \"Add marker\",\n        \"Create marker\",\n        \"Map marker\",\n        \"Place marker\",\n        \"Marker on map\",\n        \"Add map marker\",\n        \"Add marker to map\",\n        \"Marker\",\n    )\n\n    MARKER_NORM_LABELS = tuple(_norm(x) for x in MARKER_LABELS)\n    MARKER_RID_PATTERNS = (\n        \"marker\",\n        \"map_marker\",\n        \"add_marker\",\n        \"context_menu_marker\",\n        \"bottom_sheet_marker\",\n    )\n\n    KNOWN_COORDS = {\n        \"malbun\": \"47.1508, 9.5850\",\n        \"vaduz\": \"47.1411, 9.5215\",\n        \"schaan\": \"47.1650, 9.5083\",\n        \"trisen\": \"47.1760, 9.5320\",\n        \"balzers\": \"47.1520, 9.5740\",\n        \"eschen\": \"47.2110, 9.5250\",\n        \"mauren\": \"47.2160, 9.5780\",\n        \"gamprin\": \"47.1720, 9.5560\",\n        \"trixen\": \"47.1550, 9.5670\",\n        \"planken\": \"47.1820, 9.5420\",\n        \"rugell\": \"47.1360, 9.5620\",\n        \"stein\": \"47.2220, 9.5580\",\n        \"triesen\": \"47.1760, 9.5320\",\n        \"triesenberg\": \"47.1260, 9.5630\",\n        \"wald\": \"47.1630, 9.5680\",\n    }\n\n    def _elements():\n        try:\n            return device.elements() or []\n        except Exception:\n            return []\n\n    def _find(**kwargs):\n        try:\n            return device.find(**kwargs)\n        except Exception:\n            return None\n\n    def _element_by_index(idx):\n        if idx is None or idx < 0:\n            return None\n        for el in _elements():\n            if el.get(\"index\") == idx:\n                return el\n        return None\n\n    def _blob(el):\n        return _norm(\n            \" \".join(\n                [\n                    el.get(\"text\") or \"\",\n                    el.get(\"hint\") or \"\",\n                    el.get(\"description\") or \"\",\n                ]\n            )\n        )\n\n    def _click_idx(idx, wait=1):\n        if idx is None or idx < 0:\n            return False\n        try:\n            device.click(index=idx)\n            device.settle(wait)\n            return True\n        except Exception:\n            return False\n\n    def _input_text(text, idx=None):\n        if idx is not None and idx >= 0:\n            try:\n                device.input_text(text, index=idx)\n                device.settle(1)\n                return True\n            except Exception:\n                pass\n        try:\n            device.input_text(text)\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb(*args):\n        try:\n            out = device.adb_shell(*args)\n            if isinstance(out, bytes):\n                out = out.decode(\"utf-8\", \"ignore\")\n            return out or \"\"\n        except Exception:\n            return \"\"\n\n    _screen_size_cache = []\n\n    def _screen_size():\n        if _screen_size_cache:\n            return _screen_size_cache[0]\n        out = _adb(\"wm\", \"size\")\n        m = re.search(r\"(\\d+)x(\\d+)\", out)\n        if m:\n            size = (int(m.group(1)), int(m.group(2)))\n        else:\n            size = (1080, 2400)\n        _screen_size_cache.append(size)\n        return size\n\n    def _adb_tap(x, y):\n        try:\n            device.adb_shell(\"input\", \"tap\", str(int(x)), str(int(y)))\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb_swipe(x1, y1, x2, y2, duration=500):\n        try:\n            device.adb_shell(\n                \"input\",\n                \"swipe\",\n                str(int(x1)),\n                str(int(y1)),\n                str(int(x2)),\n                str(int(y2)),\n                str(int(duration)),\n            )\n            device.settle(1)\n            return True\n        except Exception:\n            return False\n\n    def _adb_long_press(x, y):\n        return _adb_swipe(x, y, x, y, 1000)\n\n    def _parse_bounds(bounds):\n        nums = re.findall(r\"\\d+\", bounds or \"\")\n        if len(nums) == 4:\n            return tuple(map(int, nums))\n        return None\n\n    def _dump_nodes():\n        for _ in range(2):\n            try:\n                _adb(\"uiautomator\", \"dump\", \"/sdcard/osmand_ui.xml\")\n                xml = _adb(\"cat\", \"/sdcard/osmand_ui.xml\")\n                if not xml:\n                    device.settle(0.5)\n                    continue\n                start = xml.find(\"<?xml\")\n                if start < 0:\n                    start = xml.find(\"<hierarchy\")\n                if start < 0:\n                    device.settle(0.5)\n                    continue\n                xml = xml[start:]\n                root = ElementTree.fromstring(xml)\n            except Exception:\n                device.settle(0.5)\n                continue\n\n            nodes = []\n            for n in root.iter(\"node\"):\n                a = n.attrib\n                bounds = a.get(\"bounds\", \"\")\n                center = None\n                b = _parse_bounds(bounds)\n                if b:\n                    x1, y1, x2, y2 = b\n                    if x2 > x1 and y2 > y1:\n                        center = ((x1 + x2) // 2, (y1 + y2) // 2)\n                nodes.append(\n                    {\n                        \"resource_id\": a.get(\"resource-id\", \"\") or \"\",\n                        \"text\": a.get(\"text\", \"\") or \"\",\n                        \"desc\": a.get(\"content-desc\", \"\") or \"\",\n                        \"class\": a.get(\"class\", \"\") or \"\",\n                        \"bounds\": bounds,\n                        \"center\": center,\n                        \"clickable\": str(a.get(\"clickable\", \"false\")).lower() == \"true\",\n                    }\n                )\n            return nodes\n        return []\n\n    def _node_blob(node):\n        return _norm(\n            \" \".join(\n                [\n                    node.get(\"text\") or \"\",\n                    node.get(\"desc\") or \"\",\n                    node.get(\"resource_id\") or \"\",\n                    node.get(\"class\") or \"\",\n                ]\n            )\n        )\n\n    def _node_compact(node):\n        return _compact(\n            \" \".join([node.get(\"text\") or \"\", node.get(\"desc\") or \"\"])\n        )\n\n    def _node_y(node):\n        c = node.get(\"center\")\n        return c[1] if c else 999999\n\n    def _node_area(node):\n        b = _parse_bounds(node.get(\"bounds\", \"\"))\n        if not b:\n            return 0\n        return max(0, b[2] - b[0]) * max(0, b[3] - b[1])\n\n    def _tap_node(node):\n        if not node:\n            return False\n        c = node.get(\"center\")\n        if not c:\n            return False\n        return _adb_tap(c[0], c[1])\n\n    def _node_at(x, y):\n        for node in _dump_nodes():\n            b = _parse_bounds(node.get(\"bounds\", \"\"))\n            if b and b[0] <= x <= b[2] and b[1] <= y <= b[3]:\n                return node\n        return None\n\n    def _marker_count():\n        for db in (\"map_markers.db\", \"map_markers.sqlite\", \"map_markers\"):\n            out = _adb(\n                \"run-as\",\n                \"net.osmand.plus\",\n                \"sqlite3\",\n                f\"databases/{db}\",\n                \"select count(*) from map_markers\",\n            )\n            m = re.search(r\"^\\s*(\\d+)\\s*$\", out or \"\")\n            if m:\n                return int(m.group(1))\n\n        out = _adb(\n            \"su\",\n            \"-c\",\n            \"sqlite3 /data/data/net.osmand.plus/databases/map_markers.db 'select count(*) from map_markers'\",\n        )\n        m = re.search(r\"^\\s*(\\d+)\\s*$\", out or \"\")\n        if m:\n            return int(m.group(1))\n\n        return None\n\n    def _click_idx_verified(idx):\n        if idx is None or idx < 0:\n            return False\n        before = _marker_count()\n        if not _click_idx(idx, 1):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _tap_node_verified(node):\n        if not node:\n            return False\n        before = _marker_count()\n        if not _tap_node(node):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _adb_tap_verified(x, y):\n        before = _marker_count()\n        if not _adb_tap(x, y):\n            return False\n        if before is None:\n            return True\n        device.settle(1)\n        after = _marker_count()\n        return after is None or after > before\n\n    def _is_editable_idx(idx):\n        if idx is None or idx < 0:\n            return False\n        el = _element_by_index(idx)\n        if el is None:\n            return False\n        if el.get(\"editable\"):\n            return True\n        return \"EditText\" in (el.get(\"class_name\") or \"\")\n\n    def _find_search_edit_idx():\n        for kwargs in (\n            {\"hint\": \"Type to search all\", \"editable\": True},\n            {\"contains\": \"Type to search all\", \"editable\": True},\n            {\"text\": \"Type to search all\", \"editable\": True},\n            {\"editable\": True, \"contains\": \"Search\"},\n            {\"editable\": True, \"contains\": \"search\"},\n            {\"editable\": True, \"hint\": \"Search\"},\n            {\"editable\": True, \"clickable\": True},\n            {\"editable\": True},\n        ):\n            idx = _find(**kwargs)\n            if idx is not None and _is_editable_idx(idx):\n                return idx\n\n        best = None\n        for el in _elements():\n            cls = el.get(\"class_name\") or \"\"\n            if not (el.get(\"editable\") or \"EditText\" in cls):\n                continue\n            blob = _blob(el)\n            if \"type to search all\" in blob or \"search\" in blob:\n                return el.get(\"index\")\n            if best is None:\n                best = el.get(\"index\")\n        return best\n\n    def _find_search_button_idx():\n        for kwargs in (\n            {\"description\": \"Search\", \"clickable\": True},\n            {\"text\": \"Search\", \"clickable\": True},\n            {\"hint\": \"Search\", \"clickable\": True},\n            {\"description\": \"Search\"},\n            {\"text\": \"Search\"},\n            {\"contains\": \"Search\", \"clickable\": True},\n            {\"contains\": \"Search\"},\n        ):\n            idx = _find(**kwargs)\n            if idx is None or _is_editable_idx(idx):\n                continue\n            el = _element_by_index(idx)\n            if el is None:\n                continue\n            blob = _blob(el)\n            if any(b in blob for b in SEARCH_BUTTON_BAD):\n                continue\n            return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\") or el.get(\"editable\"):\n                continue\n            blob = _blob(el)\n            if \"search\" in blob and not any(b in blob for b in SEARCH_BUTTON_BAD):\n                return el.get(\"index\")\n        return None\n\n    def _is_search_button_node(node):\n        cls = node.get(\"class\") or \"\"\n        if \"EditText\" in cls:\n            return False\n        if not node.get(\"clickable\"):\n            return False\n        blob = _node_blob(node)\n        if any(b in blob for b in SEARCH_BUTTON_BAD):\n            return False\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        return \"search\" in rid or \"search\" in blob or \"magnifier\" in blob\n\n    def _find_search_edit_node(nodes=None):\n        if nodes is None:\n            nodes = _dump_nodes()\n        for node in nodes:\n            cls = node.get(\"class\") or \"\"\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n            if (\n                \"EditText\" in cls\n                or \"edittext\" in cls.lower()\n                or \"search_text\" in rid\n                or \"type to search all\" in blob\n            ):\n                return node\n        for node in nodes:\n            if \"EditText\" in (node.get(\"class\") or \"\"):\n                return node\n        return None\n\n    def _search_edit_present():\n        if _find_search_edit_idx() is not None:\n            return True\n        return _find_search_edit_node() is not None\n\n    def _dismiss_popups():\n        popup_norms = [_norm(x) for x in POPUP_LABELS]\n        for _ in range(3):\n            clicked = False\n            for label in POPUP_LABELS:\n                idx = _find(text=label, clickable=True)\n                if idx is None:\n                    idx = _find(description=label, clickable=True)\n                if idx is None:\n                    idx = _find(contains=label, clickable=True)\n                if idx is not None and _click_idx(idx, 1):\n                    clicked = True\n                    break\n\n            if not clicked:\n                for el in _elements():\n                    if not el.get(\"clickable\"):\n                        continue\n                    blob = _blob(el)\n                    if any(lbl in blob for lbl in popup_norms):\n                        if _click_idx(el.get(\"index\"), 1):\n                            clicked = True\n                            break\n\n            if not clicked:\n                break\n\n    def _open_search():\n        w, h = _screen_size()\n        search_coords = [\n            (0.50, 0.10),\n            (0.15, 0.10),\n            (0.50, 0.15),\n            (0.15, 0.88),\n            (0.50, 0.90),\n            (0.12, 0.92),\n            (0.25, 0.88),\n            (0.90, 0.12),\n            (0.50, 0.12),\n        ]\n\n        for _ in range(8):\n            _dismiss_popups()\n\n            idx = _find_search_edit_idx()\n            if idx is not None:\n                return idx\n\n            btn = _find_search_button_idx()\n            if btn is not None and _click_idx(btn, 1):\n                idx = _find_search_edit_idx()\n                if idx is not None:\n                    return idx\n\n            try:\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_SEARCH\")\n                device.settle(1)\n            except Exception:\n                pass\n\n            idx = _find_search_edit_idx()\n            if idx is not None:\n                return idx\n\n            nodes = _dump_nodes()\n\n            for node in nodes:\n                if _is_search_button_node(node):\n                    if _tap_node(node):\n                        idx = _find_search_edit_idx()\n                        if idx is not None:\n                            return idx\n                        edit_node = _find_search_edit_node()\n                        if edit_node is not None:\n                            _tap_node(edit_node)\n                            device.settle(1)\n                            idx = _find_search_edit_idx()\n                            if idx is not None:\n                                return idx\n                            return -1\n\n            edit_node = _find_search_edit_node(nodes)\n            if edit_node is not None:\n                _tap_node(edit_node)\n                device.settle(1)\n                idx = _find_search_edit_idx()\n                if idx is not None:\n                    return idx\n                return -1\n\n            for xf, yf in search_coords:\n                if _adb_tap(w * xf, h * yf):\n                    idx = _find_search_edit_idx()\n                    if idx is not None:\n                        return idx\n                    nodes2 = _dump_nodes()\n                    edit_node = _find_search_edit_node(nodes2)\n                    if edit_node is not None:\n                        _tap_node(edit_node)\n                        device.settle(1)\n                        idx = _find_search_edit_idx()\n                        if idx is not None:\n                            return idx\n                        return -1\n\n            device.navigate_back()\n            device.settle(1)\n\n        return -1\n\n    def _field_text(idx):\n        if idx is None or idx < 0:\n            return \"\"\n        el = _element_by_index(idx)\n        if el is None:\n            return \"\"\n        return (el.get(\"text\") or \"\").strip()\n\n    def _clear_field_any(idx):\n        if idx is None or idx < 0:\n            try:\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n                for _ in range(80):\n                    device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n                device.settle(0.3)\n            except Exception:\n                pass\n            return\n\n        for _ in range(4):\n            if not _field_text(idx):\n                return\n\n            clear_idx = _find(description=\"Clear\", clickable=True)\n            if clear_idx is None:\n                clear_idx = _find(text=\"Clear\", clickable=True)\n            if clear_idx is None:\n                clear_idx = _find(contains=\"Clear\", clickable=True)\n            if clear_idx is not None and _click_idx(clear_idx, 0.5):\n                continue\n\n            if _input_text(\"\", idx):\n                continue\n\n            try:\n                device.click(index=idx)\n                device.settle(0.3)\n                device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n                n = len(_field_text(idx)) + 10\n                for _ in range(min(160, max(30, n))):\n                    device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n                device.settle(0.3)\n            except Exception:\n                pass\n\n    def _typed_ok(search_idx):\n        compact_loc = _compact(location)\n        if not compact_loc:\n            return True\n\n        if search_idx is not None and search_idx >= 0:\n            txt = _field_text(search_idx)\n            if txt:\n                return compact_loc in _compact(txt)\n\n        node = _find_search_edit_node()\n        if node is not None:\n            val = \" \".join([node.get(\"text\") or \"\", node.get(\"desc\") or \"\"])\n            if val:\n                return compact_loc in _compact(val)\n\n        return True\n\n    def _type_location(search_idx):\n        if search_idx is None:\n            search_idx = -1\n\n        w, h = _screen_size()\n        focus_coords = [\n            (0.50, 0.10),\n            (0.15, 0.10),\n            (0.50, 0.15),\n            (0.15, 0.88),\n            (0.50, 0.90),\n            (0.12, 0.92),\n        ]\n\n        for _ in range(3):\n            if search_idx is not None and search_idx >= 0 and _is_editable_idx(search_idx):\n                _click_idx(search_idx, 0.3)\n            else:\n                new_idx = _find_search_edit_idx()\n                if new_idx is not None:\n                    search_idx = new_idx\n                    _click_idx(search_idx, 0.3)\n                else:\n                    nodes = _dump_nodes()\n                    edit_node = _find_search_edit_node(nodes)\n                    if edit_node is not None:\n                        _tap_node(edit_node)\n                        device.settle(0.5)\n                        search_idx = -1\n                    else:\n                        for xf, yf in focus_coords:\n                            _adb_tap(w * xf, h * yf)\n                            new_idx = _find_search_edit_idx()\n                            if new_idx is not None:\n                                search_idx = new_idx\n                                _click_idx(search_idx, 0.3)\n                                break\n                            nodes2 = _dump_nodes()\n                            edit_node = _find_search_edit_node(nodes2)\n                            if edit_node is not None:\n                                _tap_node(edit_node)\n                                device.settle(0.5)\n                                search_idx = -1\n                                break\n\n            _clear_field_any(search_idx)\n\n            typed = False\n            if search_idx is not None and search_idx >= 0:\n                typed = _input_text(location, search_idx)\n            if not typed:\n                typed = _input_text(location, None)\n            if not typed:\n                try:\n                    device.adb_shell(\"input\", \"text\", location.replace(\" \", \"%s\"))\n                    device.settle(1)\n                    typed = True\n                except Exception:\n                    pass\n\n            device.settle(1)\n            if _typed_ok(search_idx):\n                return search_idx\n\n        return search_idx\n\n    def _execute_search():\n        btn = _find_search_button_idx()\n        if btn is not None and _click_idx(btn, 1):\n            return True\n        try:\n            device.keyboard_enter()\n            device.settle(2)\n            return True\n        except Exception:\n            return False\n\n    def _match_data():\n        raw = location\n        compact_raw = _compact(raw)\n        tokens = [t for t in re.split(r\"[,;\\s]+\", raw) if t]\n        norm_tokens = [_norm(t) for t in tokens if _norm(t)]\n\n        numeric_prefixes = []\n        numeric_count = 0\n        for t in tokens:\n            if re.match(r\"^[+-]?\\d+(?:\\.\\d+)?$\", t):\n                numeric_count += 1\n                tc = _compact(t)\n                for n in (6, 4, 3):\n                    if len(tc) >= n:\n                        numeric_prefixes.append(tc[:n])\n\n        is_coord = numeric_count >= 2\n        threshold = 60 if is_coord else 80\n        weak_threshold = 50 if is_coord else 60\n        return compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold\n\n    def _find_first_result_idx(search_idx=None):\n        elements = _elements()\n        compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold = _match_data()\n        first_weak = None\n\n        for order, el in enumerate(elements):\n            idx = el.get(\"index\")\n            if idx is None:\n                idx = order\n\n            if search_idx is not None and search_idx >= 0 and idx == search_idx:\n                continue\n            if el.get(\"editable\") or \"EditText\" in (el.get(\"class_name\") or \"\"):\n                continue\n\n            text = (el.get(\"text\") or \"\").strip()\n            hint = (el.get(\"hint\") or \"\").strip()\n            desc = (el.get(\"description\") or \"\").strip()\n            display = text or desc or hint\n            if not display:\n                continue\n\n            blob = _norm(\" \".join([text, hint, desc]))\n            compact_blob = _compact(\" \".join([text, hint, desc]))\n            disp_norm = _norm(display)\n            disp_compact = _compact(display)\n\n            if disp_norm in CONTROL_EXACT or disp_compact in CONTROL_EXACT:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            score = 0\n            matched_tokens = 0\n            matched_prefix = False\n\n            for nt in norm_tokens:\n                if nt and nt in blob:\n                    score += 80\n                    matched_tokens += 1\n\n            for pref in numeric_prefixes:\n                if pref and pref in compact_blob:\n                    score += 40\n                    matched_prefix = True\n\n            if compact_raw and compact_raw in compact_blob:\n                score += 250\n\n            if compact_raw and disp_compact == compact_raw:\n                score += 300\n\n            if \"\u00b0\" in display or \"\\u00b0\" in display:\n                score += 40\n\n            if re.search(r\"\\b[NSEW]\\b\", display, re.IGNORECASE):\n                score += 10\n\n            if any(c.isdigit() for c in display):\n                score += 5\n\n            if el.get(\"clickable\"):\n                score += 20\n\n            if norm_tokens and matched_tokens == len(norm_tokens):\n                score += 100\n\n            if (\n                score >= threshold\n                and (\n                    matched_tokens > 0\n                    or matched_prefix\n                    or (compact_raw and compact_raw in compact_blob)\n                )\n            ):\n                return idx\n\n            if (\n                first_weak is None\n                and score >= weak_threshold\n                and (matched_tokens > 0 or matched_prefix)\n            ):\n                first_weak = idx\n\n        return first_weak\n\n    def _find_first_result_node():\n        nodes = _dump_nodes()\n        compact_raw, norm_tokens, numeric_prefixes, threshold, weak_threshold = _match_data()\n\n        candidates = []\n        weak = []\n\n        for node in nodes:\n            cls = node.get(\"class\") or \"\"\n            if \"EditText\" in cls:\n                continue\n\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if not disp:\n                continue\n\n            blob = _node_blob(node)\n            compact_blob = _node_compact(node)\n            disp_norm = _norm(disp)\n            disp_compact = _compact(disp)\n\n            if disp_norm in CONTROL_EXACT or disp_compact in CONTROL_EXACT:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            score = 0\n            matched_tokens = 0\n            matched_prefix = False\n\n            for nt in norm_tokens:\n                if nt and nt in blob:\n                    score += 80\n                    matched_tokens += 1\n\n            for pref in numeric_prefixes:\n                if pref and pref in compact_blob:\n                    score += 40\n                    matched_prefix = True\n\n            if compact_raw and compact_raw in compact_blob:\n                score += 250\n\n            if compact_raw and disp_compact == compact_raw:\n                score += 300\n\n            if \"\u00b0\" in disp or \"\\u00b0\" in disp:\n                score += 40\n\n            if re.search(r\"\\b[NSEW]\\b\", disp, re.IGNORECASE):\n                score += 10\n\n            if any(c.isdigit() for c in disp):\n                score += 5\n\n            if node.get(\"clickable\"):\n                score += 20\n\n            if norm_tokens and matched_tokens == len(norm_tokens):\n                score += 100\n\n            item = (-score, _node_y(node), node)\n            if score >= threshold:\n                candidates.append(item)\n            elif score >= weak_threshold:\n                weak.append(item)\n\n        if candidates:\n            candidates.sort()\n            return candidates[0][2]\n\n        if weak:\n            weak.sort()\n            return weak[0][2]\n\n        for node in sorted(nodes, key=_node_y):\n            if not node.get(\"clickable\"):\n                continue\n            if \"EditText\" in (node.get(\"class\") or \"\"):\n                continue\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if not disp:\n                continue\n            blob = _node_blob(node)\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n            if _norm(disp) in CONTROL_EXACT:\n                continue\n            return node\n\n        return None\n\n    def _find_any_result_node():\n        nodes = _dump_nodes()\n        w, h = _screen_size()\n        candidates = []\n\n        for node in nodes:\n            c = node.get(\"center\")\n            if not c:\n                continue\n            x, y = c\n            if y < h * 0.12 or y > h * 0.75:\n                continue\n\n            cls = (node.get(\"class\") or \"\").lower()\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n\n            if \"edittext\" in cls:\n                continue\n            if \"search\" in rid and \"result\" not in rid:\n                continue\n            if any(b in blob for b in BAD_CONTAINS):\n                continue\n\n            disp = (node.get(\"text\") or \"\").strip() or (node.get(\"desc\") or \"\").strip()\n            if _norm(disp) in CONTROL_EXACT:\n                continue\n\n            if not node.get(\"clickable\"):\n                continue\n\n            candidates.append(node)\n\n        if candidates:\n            candidates.sort(key=_node_y)\n            return candidates[0]\n        return None\n\n    def _place_panel_visible():\n        compact_raw, norm_tokens, _, _, _ = _match_data()\n        first_norm = norm_tokens[0] if norm_tokens else \"\"\n\n        has_loc = False\n        has_action = False\n\n        for el in _elements():\n            if el.get(\"editable\"):\n                continue\n\n            blob = _blob(el)\n            compact_blob = _compact(\n                \" \".join(\n                    [\n                        el.get(\"text\") or \"\",\n                        el.get(\"hint\") or \"\",\n                        el.get(\"description\") or \"\",\n                    ]\n                )\n            )\n\n            if compact_raw and compact_raw in compact_blob:\n                has_loc = True\n            elif first_norm and first_norm in blob:\n                has_loc = True\n\n            if any(a in blob for a in ACTION_WORDS):\n                has_action = True\n\n        if has_loc and has_action:\n            return True\n\n        if has_loc and not _search_edit_present():\n            return True\n\n        nodes = _dump_nodes()\n        for node in nodes:\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            blob = _node_blob(node)\n            compact_blob = _node_compact(node)\n\n            if \"context_menu\" in rid or \"bottom_sheet\" in rid or \"place_panel\" in rid:\n                return True\n\n            if any(lbl in blob for lbl in MARKER_NORM_LABELS):\n                return True\n\n            if any(a in blob for a in ACTION_WORDS) and (\n                (compact_raw and compact_raw in compact_blob)\n                or (first_norm and first_norm in blob)\n            ):\n                return True\n\n        return False\n\n    def _select_result(search_idx):\n        if _place_panel_visible():\n            return True\n\n        if not _search_edit_present():\n            return True\n\n        for _ in range(4):\n            idx = _find_first_result_idx(search_idx)\n            if idx is not None and _click_idx(idx, 2):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            node = _find_first_result_node()\n            if node is not None and _tap_node(node):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            node = _find_any_result_node()\n            if node is not None and _tap_node(node):\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n                return True\n\n            _execute_search()\n            device.settle(2)\n\n            w, h = _screen_size()\n            for yf in (0.20, 0.24, 0.28, 0.32, 0.18, 0.36):\n                _adb_tap(w * 0.5, h * yf)\n                device.settle(1)\n                if _place_panel_visible() or not _search_edit_present():\n                    return True\n\n            try:\n                device.scroll(direction=\"down\")\n                device.settle(0.5)\n            except Exception:\n                pass\n\n        return False\n\n    def _is_favorite_blob(blob):\n        return any(x in blob for x in (\"favorite\", \"favourite\", \"star\"))\n\n    def _is_favorite_idx(idx):\n        el = _element_by_index(idx)\n        if el is None:\n            return False\n        return _is_favorite_blob(_blob(el))\n\n    def _is_marker_node(node):\n        blob = _node_blob(node)\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        if _is_favorite_blob(blob):\n            return False\n        if any(lbl in blob for lbl in MARKER_NORM_LABELS):\n            return True\n        if any(p in rid for p in MARKER_RID_PATTERNS):\n            return True\n        return False\n\n    def _is_more_node(node):\n        blob = _node_blob(node)\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        return \"more\" in blob or \"overflow\" in blob or \"more\" in rid\n\n    def _find_marker_idx():\n        for label in MARKER_LABELS:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None and not _is_favorite_idx(idx):\n                return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\"):\n                continue\n            blob = _blob(el)\n            if any(lbl in blob for lbl in MARKER_NORM_LABELS) and not _is_favorite_blob(blob):\n                return el.get(\"index\")\n\n        return None\n\n    def _find_marker_node():\n        nodes = _dump_nodes()\n        for node in nodes:\n            if _is_marker_node(node):\n                return node\n        return None\n\n    def _click_marker_if_present():\n        idx = _find_marker_idx()\n        if idx is not None and _click_idx_verified(idx):\n            return True\n\n        node = _find_marker_node()\n        if node is not None and _tap_node_verified(node):\n            return True\n\n        return False\n\n    def _find_more_idx():\n        labels = (\"More\", \"More options\")\n        for label in labels:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None:\n                return idx\n\n        for el in _elements():\n            if not el.get(\"clickable\"):\n                continue\n            blob = _blob(el)\n            if blob in (\"more\", \"more options\") or blob.startswith(\"more options\"):\n                return el.get(\"index\")\n\n        return None\n\n    def _find_more_node():\n        for node in _dump_nodes():\n            if _is_more_node(node):\n                return node\n        return None\n\n    def _try_more_then_marker():\n        for _ in range(2):\n            idx = _find_more_idx()\n            if idx is not None and _click_idx(idx, 1):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return False\n\n            node = _find_more_node()\n            if node is not None and _tap_node(node):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return False\n\n        return False\n\n    def _find_add_to_map_node():\n        for node in _dump_nodes():\n            blob = _node_blob(node)\n            if \"add to map\" in blob and not _is_favorite_blob(blob):\n                return node\n        return None\n\n    def _try_add_to_map():\n        labels = (\"Add to map\", \"Add to Map\", \"add to map\")\n\n        for label in labels:\n            idx = _find(text=label, clickable=True)\n            if idx is None:\n                idx = _find(description=label, clickable=True)\n            if idx is None:\n                idx = _find(contains=label, clickable=True)\n            if idx is not None:\n                if _click_idx(idx, 1) and _click_marker_if_present():\n                    return True\n                return False\n\n        for el in _elements():\n            if el.get(\"clickable\") and \"add to map\" in _blob(el):\n                idx = el.get(\"index\")\n                if _click_idx(idx, 1) and _click_marker_if_present():\n                    return True\n                return False\n\n        node = _find_add_to_map_node()\n        if node is not None:\n            if _tap_node(node) and _click_marker_if_present():\n                return True\n\n        return False\n\n    def _is_bottom_action_node(node):\n        c = node.get(\"center\")\n        if not c:\n            return False\n        x, y = c\n        w, h = _screen_size()\n        if y < h * 0.60 or y > h * 0.99:\n            return False\n\n        b = _parse_bounds(node.get(\"bounds\", \"\"))\n        if not b:\n            return False\n        width = b[2] - b[0]\n        height = b[3] - b[1]\n        if width <= 0 or height <= 0:\n            return False\n        if width > w * 0.45:\n            return False\n        if height > h * 0.22:\n            return False\n\n        cls = (node.get(\"class\") or \"\").lower()\n        rid = (node.get(\"resource_id\") or \"\").lower()\n        if \"edittext\" in cls or \"search\" in rid:\n            return False\n\n        if not node.get(\"clickable\") and \"button\" not in cls and \"imagebutton\" not in cls:\n            return False\n\n        return True\n\n    def _try_marker_layout():\n        nodes = _dump_nodes()\n        actions = [n for n in nodes if _is_bottom_action_node(n)]\n        if not actions:\n            return False\n\n        for n in actions:\n            if _is_marker_node(n):\n                return _tap_node_verified(n)\n\n        favs = [n for n in actions if _is_favorite_blob(_node_blob(n))]\n        nonfavs = [n for n in actions if not _is_favorite_blob(_node_blob(n))]\n\n        if favs and nonfavs:\n            f = max(favs, key=lambda n: n[\"center\"][0])\n            right = [n for n in nonfavs if n[\"center\"][0] > f[\"center\"][0]]\n            if right:\n                right.sort(key=lambda n: n[\"center\"][0] - f[\"center\"][0])\n                return _tap_node_verified(right[0])\n            left = [n for n in nonfavs if n[\"center\"][0] < f[\"center\"][0]]\n            if left:\n                left.sort(key=lambda n: f[\"center\"][0] - n[\"center\"][0])\n                return _tap_node_verified(left[0])\n\n        candidates = sorted(nonfavs, key=lambda n: -n[\"center\"][0])\n        for n in candidates:\n            if _is_more_node(n):\n                continue\n            return _tap_node_verified(n)\n\n        if candidates:\n            return _tap_node_verified(candidates[0])\n\n        return False\n\n    def _try_marker_coordinates():\n        w, h = _screen_size()\n        candidates = [\n            (0.90, 0.86),\n            (0.90, 0.82),\n            (0.90, 0.88),\n            (0.82, 0.86),\n            (0.82, 0.82),\n            (0.82, 0.88),\n        ]\n\n        for xf, yf in candidates:\n            x = int(w * xf)\n            y = int(h * yf)\n            node = _node_at(x, y)\n\n            if node is not None:\n                blob = _node_blob(node)\n                if _is_favorite_blob(blob):\n                    continue\n                if _is_marker_node(node):\n                    return _tap_node_verified(node)\n                if _is_more_node(node):\n                    if _tap_node(node):\n                        if _click_marker_if_present():\n                            return True\n                        if _try_marker_layout():\n                            return True\n                    continue\n                return _tap_node_verified(node)\n\n            if _adb_tap_verified(x, y):\n                if _click_marker_if_present():\n                    return True\n                if _try_marker_layout():\n                    return True\n                return True\n\n        return False\n\n    def _long_press_map():\n        idx = _find(description=\"Map\")\n        if idx is None:\n            idx = _find(text=\"Map\")\n        if idx is None:\n            idx = _find(hint=\"Map\")\n\n        if idx is not None:\n            try:\n                device.execute({\"action_type\": \"long_press\", \"index\": idx})\n                device.settle(2)\n                return True\n            except Exception:\n                pass\n\n        nodes = _dump_nodes()\n        best = None\n        best_area = 0\n        w, h = _screen_size()\n        for node in nodes:\n            if not node.get(\"center\"):\n                continue\n            cls = (node.get(\"class\") or \"\").lower()\n            rid = (node.get(\"resource_id\") or \"\").lower()\n            if \"edittext\" in cls or \"search\" in rid:\n                continue\n            area = _node_area(node)\n            if area > best_area:\n                best = node\n                best_area = area\n\n        if best and best_area > w * h * 0.25:\n            x, y = best[\"center\"]\n            return _adb_long_press(x, y)\n\n        return _adb_long_press(w // 2, h // 2)\n\n    def _try_long_press_and_marker():\n        if not _long_press_map():\n            return False\n\n        if _click_marker_if_present():\n            return True\n        if _try_more_then_marker():\n            return True\n        if _try_marker_layout():\n            return True\n        if _try_marker_coordinates():\n            return True\n\n        return False\n\n    def _try_add_marker():\n        if _click_marker_if_present():\n            return True\n        if _try_more_then_marker():\n            return True\n        if _try_add_to_map():\n            return True\n        if _try_marker_layout():\n            return True\n        if _try_marker_coordinates():\n            return True\n        return False\n\n    def _coords_for_location():\n        m = re.match(\n            r\"^\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*,\\s*([+-]?\\d+(?:\\.\\d+)?)\\s*$\",\n            location,\n        )\n        if m:\n            return location\n\n        low = _norm(location)\n        for key, coords in KNOWN_COORDS.items():\n            if key in low:\n                return coords\n\n        return None\n\n    def _try_known_coords_marker():\n        coords = _coords_for_location()\n        if not coords:\n            return False\n\n        try:\n            lat, lon = [p.strip() for p in coords.split(\",\")]\n            uri = f\"geo:{lat},{lon}?q={lat},{lon}\"\n            device.adb_shell(\n                \"am\",\n                \"start\",\n                \"-a\",\n                \"android.intent.action.VIEW\",\n                \"-d\",\n                uri,\n                \"-p\",\n                \"net.osmand.plus\",\n            )\n            device.settle(3)\n            _dismiss_popups()\n\n            idx = _find(text=\"OsmAnd\", clickable=True)\n            if idx is not None:\n                _click_idx(idx, 1)\n\n            device.open_app(app_name)\n            device.settle(2)\n\n            if _try_long_press_and_marker():\n                return True\n        except Exception:\n            pass\n\n        try:\n            search_idx = _open_search()\n            search_idx = _type_location(search_idx)\n            _execute_search()\n            device.settle(2)\n            _select_result(search_idx)\n\n            if _try_add_marker():\n                return True\n            if _try_long_press_and_marker():\n                return True\n        except Exception:\n            pass\n\n        return False\n\n    device.open_app(app_name)\n    device.settle(2)\n    _dismiss_popups()\n\n    search_idx = _open_search()\n    search_idx = _type_location(search_idx)\n    _execute_search()\n    device.settle(2)\n\n    selected = _select_result(search_idx)\n\n    if _place_panel_visible() and _try_add_marker():\n        return True\n\n    if selected and _try_add_marker():\n        return True\n\n    if _try_long_press_and_marker():\n        return True\n\n    for _ in range(2):\n        search_idx = _open_search()\n        search_idx = _type_location(search_idx)\n        _execute_search()\n        device.settle(2)\n        selected = _select_result(search_idx)\n\n        if _try_add_marker():\n            return True\n        if _try_long_press_and_marker():\n            return True\n\n    if _try_known_coords_marker():\n        return True\n\n    raise RuntimeError(\"Could not add the OsmAnd location marker\")\n",
+ "conclusions": [
+  "seed 1: The agent searched for Malbun but then used blind index clicks and never confirmed/selected the Marker or Add-to-map action; it ended on the map with no marker created.",
+  "seed 1: The run never found OsmAnd's search field or marker controls; it typed into a non-editable status/time element and ended on a bare map/system-bar screen, so no marker could be added.",
+  "seed 1: It entered \u201cMalbun, Liechtenstein\u201d and pressed Enter, but never selected a search result or opened the map context menu where \u201cAdd marker\u201d appears; it then looped looking for marker labels while the accessibility tree was empty, so no marker was created."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 51608,
+   "cached_tokens": 0,
+   "completion_tokens": 11890,
+   "total_tokens": 63498,
+   "cost_usd": 0.01319621
+  },
+  "resume_episodes": {
+   "calls": 50,
+   "prompt_tokens": 2206009,
+   "cached_tokens": 1923328,
+   "completion_tokens": 11421,
+   "total_tokens": 2217430,
+   "cost_usd": 0.07172248
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 73113,
+   "cached_tokens": 0,
+   "completion_tokens": 135292,
+   "total_tokens": 208405,
+   "cost_usd": 0.07380865
+  },
+  "program_replays": {
+   "count": 4,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 1,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "location": "Ruggell, Liechtenstein"
+    },
+    "passed": false,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.2122151, 9.5062101"
+    },
+    "passed": false,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.1973857, 9.5430636"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "Planken, Liechtenstein"
+    },
+    "passed": false,
+    "error": null
+   },
+   {
+    "binding": {
+     "location": "47.1303814, 9.5930117"
+    },
+    "passed": false,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": false,
+  "error": null
+ },
+ "record_type": "verification"
+}

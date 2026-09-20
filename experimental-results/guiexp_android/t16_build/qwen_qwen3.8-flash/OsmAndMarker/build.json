@@ -154,9 +154,12 @@
   "exploration",
   "translator",
   "builder",
-  "gate_per_k"
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
  ],
- "wall_s": 6272.2,
+ "wall_s": 11394.1,
  "translator": {
   "per_trajectory": [
    {
@@ -377,6 +380,18 @@
    "completion_tokens": 132304,
    "total_tokens": 158139,
    "cost_usd": 0.06526171
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 78901,
+    "cached_tokens": 256,
+    "completion_tokens": 186696,
+    "total_tokens": 265597,
+    "cost_usd": 0.09855249
+   }
   }
  },
  "gate_per_k": {
@@ -503,5 +518,196 @@
     }
    ]
   }
- }
+ },
+ "resumed_from_stages": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k"
+ ],
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 4,
+  "unautomatable": true,
+  "admitted": false,
+  "admitted_version": "refine3",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 3,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine2",
+    "passed": 2,
+    "total": 5
+   },
+   {
+    "version": "refine3",
+    "passed": 1,
+    "total": 5
+   }
+  ],
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 51608,
+   "cached_tokens": 0,
+   "completion_tokens": 11890,
+   "total_tokens": 63498,
+   "cost_usd": 0.01319621
+  },
+  "resume_episodes": {
+   "calls": 50,
+   "prompt_tokens": 2206009,
+   "cached_tokens": 1923328,
+   "completion_tokens": 11421,
+   "total_tokens": 2217430,
+   "cost_usd": 0.07172248
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 73113,
+   "cached_tokens": 0,
+   "completion_tokens": 135292,
+   "total_tokens": 208405,
+   "cost_usd": 0.07380865
+  },
+  "gate_after_repair": {
+   "bindings_passed": 1,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": null
+    }
+   ]
+  },
+  "p_after": 0.2,
+  "test_seed0": {
+   "passed": false,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 53,
+   "prompt_tokens": 2257617,
+   "cached_tokens": 1923328,
+   "completion_tokens": 23311,
+   "total_tokens": 2280928,
+   "cost_usd": 0.08491869
+  }
+ },
+ "deploy": {
+  "skipped": "no version passed the held-out gate: best 1/5, threshold 4/5"
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 751,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 97087,
+    "cached_tokens": 68096,
+    "completion_tokens": 470,
+    "total_tokens": 97557,
+    "cost_usd": 0.0056025,
+    "model_calls": 6
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 6,
+    "prompt_tokens": 97411,
+    "cached_tokens": 68608,
+    "completion_tokens": 485,
+    "total_tokens": 97896,
+    "cost_usd": 0.00558967,
+    "model_calls": 6
+   },
+   {
+    "seed": 6,
+    "success": false,
+    "steps": 8,
+    "prompt_tokens": 172298,
+    "cached_tokens": 134144,
+    "completion_tokens": 515,
+    "total_tokens": 172813,
+    "cost_usd": 0.00803034,
+    "model_calls": 8
+   }
+  ],
+  "success_count": 2,
+  "totals": {
+   "calls": 20,
+   "prompt_tokens": 366796,
+   "cached_tokens": 270848,
+   "completion_tokens": 1470,
+   "total_tokens": 368266,
+   "cost_usd": 0.01922251
+  },
+  "L_doc_tokens_mean": 122755.33333333333
+ },
+ "break_even": {
+  "c_raw_tokens": 502730.0,
+  "c_cache_adjusted_tokens": 113029.7,
+  "d_tokens": null,
+  "q": null,
+  "cache_ratio_r": 0.107,
+  "build_totals_raw": {
+   "exploration": 3448557,
+   "translator": 115800,
+   "builder_selected": 265597,
+   "verification": 2280928,
+   "autorpa_build": 6110882
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 825280,
+   "translator": 111914,
+   "builder_selected": 265368,
+   "verification": 563396,
+   "autorpa_build": 1765958
+  },
+  "note": "no deploy arm: s could not be formed, so N* is undefined"
+ },
+ "total_cost_usd": 0.412007,
+ "accounting_problems": []
 }
