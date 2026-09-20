@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two whitespace-separated words (first and last).\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim into the Phone field.\",\n        \"required\": True,\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    if \"name\" not in binding or \"number\" not in binding:\n        raise ValueError(\"binding must contain 'name' and 'number'\")\n    if binding[\"name\"] is None or binding[\"number\"] is None:\n        raise ValueError(\"binding['name'] and binding['number'] must not be None\")\n\n    name = str(binding[\"name\"])\n    number = str(binding[\"number\"])\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n    if not number.strip():\n        raise ValueError(\"binding['number'] must not be empty\")\n\n    first_name, last_name = parts[0], parts[1]\n\n    def _lower(value):\n        return str(value).lower() if value is not None else \"\"\n\n    def _combined(el):\n        return \" \".join(\n            [\n                _lower(el.get(\"text\")),\n                _lower(el.get(\"hint\")),\n                _lower(el.get(\"description\")),\n            ]\n        )\n\n    def _find_clickable(labels):\n        for label in labels:\n            idx = device.find(description=label, clickable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(text=label, clickable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(contains=label, clickable=True)\n            if idx is not None:\n                return idx\n\n        for el in device.elements():\n            if not el.get(\"clickable\"):\n                continue\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            if any(label.lower() in _combined(el) for label in labels):\n                return idx\n\n        return None\n\n    def _find_editable_once(labels, fallback_order=None):\n        for label in labels:\n            idx = device.find(hint=label, editable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(text=label, editable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(contains=label, editable=True)\n            if idx is not None:\n                return idx\n\n        editable_elements = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            editable_elements.append(el)\n            if any(label.lower() in _combined(el) for label in labels):\n                return idx\n\n        if fallback_order is not None and fallback_order < len(editable_elements):\n            editable_elements.sort(key=lambda item: item.get(\"index\", 0))\n            return editable_elements[fallback_order].get(\"index\")\n\n        return None\n\n    def _find_editable(labels, fallback_order=None):\n        idx = _find_editable_once(labels, fallback_order)\n        if idx is not None:\n            return idx\n\n        for direction in (\"down\", \"up\", \"down\"):\n            device.scroll(direction=direction)\n            idx = _find_editable_once(labels, fallback_order)\n            if idx is not None:\n                return idx\n\n        return None\n\n    def _looks_like_editor():\n        if _find_clickable([\"Save\", \"Save contact\"]) is not None:\n            return True\n\n        editable = [\n            el\n            for el in device.elements()\n            if el.get(\"editable\") and el.get(\"index\") is not None\n        ]\n        return len(editable) >= 3\n\n    device.open_app(\"Contacts\")\n    device.settle(1.0)\n\n    create_idx = _find_clickable([\"Create contact\", \"Add contact\", \"New contact\"])\n    if create_idx is None:\n        if not _looks_like_editor():\n            raise RuntimeError(\"Could not find the Create contact button\")\n    else:\n        device.click(index=create_idx)\n        device.settle(1.0)\n        if (\n            _find_clickable([\"Create contact\", \"Add contact\", \"New contact\"]) is not None\n            and not _looks_like_editor()\n        ):\n            raise RuntimeError(\"Create contact did not open the contact editor\")\n\n    first_idx = _find_editable([\"First name\", \"First\"], fallback_order=0)\n    if first_idx is None:\n        raise RuntimeError(\"Could not find the First name field\")\n    device.input_text(first_name, index=first_idx)\n\n    last_idx = _find_editable([\"Last name\", \"Last\"], fallback_order=1)\n    if last_idx is None:\n        raise RuntimeError(\"Could not find the Last name field\")\n    device.input_text(last_name, index=last_idx)\n\n    phone_idx = _find_editable([\"Phone\", \"Phone number\", \"Mobile\"], fallback_order=2)\n    if phone_idx is None:\n        raise RuntimeError(\"Could not find the Phone field\")\n    device.input_text(number, index=phone_idx)\n\n    save_idx = _find_clickable([\"Save\", \"Save contact\"])\n    if save_idx is None:\n        device.scroll(direction=\"up\")\n        save_idx = _find_clickable([\"Save\", \"Save contact\"])\n    if save_idx is None:\n        raise RuntimeError(\"Could not find the Save button\")\n\n    device.click(index=save_idx)\n    device.settle(1.0)\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two whitespace-separated words (first and last).\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim into the Phone field.\",\n        \"required\": True,\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    if \"name\" not in binding or \"number\" not in binding:\n        raise ValueError(\"binding must contain 'name' and 'number'\")\n    if binding[\"name\"] is None or binding[\"number\"] is None:\n        raise ValueError(\"binding['name'] and binding['number'] must not be None\")\n\n    name = str(binding[\"name\"])\n    number = str(binding[\"number\"])\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n    if not number.strip():\n        raise ValueError(\"binding['number'] must not be empty\")\n\n    first_name, last_name = parts[0], parts[1]\n\n    def _lower(value):\n        return str(value).lower() if value is not None else \"\"\n\n    def _combined(el):\n        return \" \".join(\n            [\n                _lower(el.get(\"text\")),\n                _lower(el.get(\"hint\")),\n                _lower(el.get(\"description\")),\n            ]\n        )\n\n    def _find_clickable(labels):\n        for label in labels:\n            idx = device.find(description=label, clickable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(text=label, clickable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(contains=label, clickable=True)\n            if idx is not None:\n                return idx\n\n        for el in device.elements():\n            if not el.get(\"clickable\"):\n                continue\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            if any(label.lower() in _combined(el) for label in labels):\n                return idx\n\n        return None\n\n    def _find_editable_once(labels, fallback_order=None):\n        for label in labels:\n            idx = device.find(hint=label, editable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(text=label, editable=True)\n            if idx is not None:\n                return idx\n            idx = device.find(contains=label, editable=True)\n            if idx is not None:\n                return idx\n\n        editable_elements = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            editable_elements.append(el)\n            if any(label.lower() in _combined(el) for label in labels):\n                return idx\n\n        if fallback_order is not None and fallback_order < len(editable_elements):\n            editable_elements.sort(key=lambda item: item.get(\"index\", 0))\n            return editable_elements[fallback_order].get(\"index\")\n\n        return None\n\n    def _find_editable(labels, fallback_order=None):\n        idx = _find_editable_once(labels, fallback_order)\n        if idx is not None:\n            return idx\n\n        for direction in (\"down\", \"up\", \"down\"):\n            device.scroll(direction=direction)\n            idx = _find_editable_once(labels, fallback_order)\n            if idx is not None:\n                return idx\n\n        return None\n\n    def _looks_like_editor():\n        if _find_clickable([\"Save\", \"Save contact\"]) is not None:\n            return True\n\n        editable = [\n            el\n            for el in device.elements()\n            if el.get(\"editable\") and el.get(\"index\") is not None\n        ]\n        return len(editable) >= 3\n\n    device.open_app(\"Contacts\")\n    device.settle(1.0)\n\n    create_idx = _find_clickable([\"Create contact\", \"Add contact\", \"New contact\"])\n    if create_idx is None:\n        if not _looks_like_editor():\n            raise RuntimeError(\"Could not find the Create contact button\")\n    else:\n        device.click(index=create_idx)\n        device.settle(1.0)\n        if (\n            _find_clickable([\"Create contact\", \"Add contact\", \"New contact\"]) is not None\n            and not _looks_like_editor()\n        ):\n            raise RuntimeError(\"Create contact did not open the contact editor\")\n\n    first_idx = _find_editable([\"First name\", \"First\"], fallback_order=0)\n    if first_idx is None:\n        raise RuntimeError(\"Could not find the First name field\")\n    device.input_text(first_name, index=first_idx)\n\n    last_idx = _find_editable([\"Last name\", \"Last\"], fallback_order=1)\n    if last_idx is None:\n        raise RuntimeError(\"Could not find the Last name field\")\n    device.input_text(last_name, index=last_idx)\n\n    phone_idx = _find_editable([\"Phone\", \"Phone number\", \"Mobile\"], fallback_order=2)\n    if phone_idx is None:\n        raise RuntimeError(\"Could not find the Phone field\")\n    device.input_text(number, index=phone_idx)\n\n    save_idx = _find_clickable([\"Save\", \"Save contact\"])\n    if save_idx is None:\n        device.scroll(direction=\"up\")\n        save_idx = _find_clickable([\"Save\", \"Save contact\"])\n    if save_idx is None:\n        raise RuntimeError(\"Could not find the Save button\")\n\n    device.click(index=save_idx)\n    device.settle(1.0)\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

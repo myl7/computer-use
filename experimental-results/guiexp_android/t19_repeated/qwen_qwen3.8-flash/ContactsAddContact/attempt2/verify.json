@@ -1,0 +1,110 @@
+{
+ "family": "ContactsAddContact",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two whitespace-separated words (first name and last name).\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim.\",\n        \"required\": True,\n    },\n}\n\ndef program(device, binding: dict) -> bool:\n    if not isinstance(binding, dict):\n        raise TypeError(\"binding must be a dict\")\n    if \"name\" not in binding or \"number\" not in binding:\n        raise KeyError(\"binding must contain 'name' and 'number'\")\n\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    if name is None:\n        raise ValueError(\"binding['name'] must not be None\")\n    if number is None:\n        raise ValueError(\"binding['number'] must not be None\")\n\n    parts = str(name).split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n    first_name = parts[0]\n    last_name = parts[1]\n    number_str = str(number)\n\n    def _is_true(value):\n        if isinstance(value, str):\n            return value.strip().lower() in (\"true\", \"1\", \"yes\")\n        return bool(value)\n\n    def _elem_index(elem):\n        idx = elem.get(\"index\")\n        if idx is None:\n            return None\n        try:\n            return int(idx)\n        except (TypeError, ValueError):\n            return idx\n\n    def _scroll(direction):\n        try:\n            device.scroll(direction=direction)\n        except Exception:\n            pass\n\n    def _find_first(candidates, retries=3, scroll_steps=None):\n        attempts = max(1, retries)\n        for attempt in range(attempts):\n            for crit in candidates:\n                idx = device.find(**crit)\n                if idx is not None:\n                    try:\n                        return int(idx)\n                    except (TypeError, ValueError):\n                        return idx\n            if attempt < attempts - 1:\n                if scroll_steps:\n                    _scroll(scroll_steps[attempt % len(scroll_steps)])\n                device.settle(0.3)\n        return None\n\n    def _manual_find_editable(label):\n        wanted = label.lower()\n        for elem in (device.elements() or []):\n            if not _is_true(elem.get(\"editable\")):\n                continue\n            for attr in (\"hint\", \"text\", \"description\"):\n                value = elem.get(attr)\n                if value and wanted in str(value).lower():\n                    return _elem_index(elem)\n        return None\n\n    def _find_editable_field(label):\n        candidates = [\n            {\"hint\": label, \"editable\": True},\n            {\"text\": label, \"editable\": True},\n            {\"contains\": label, \"editable\": True},\n        ]\n        idx = _find_first(candidates, retries=4, scroll_steps=(\"down\", \"up\", \"down\"))\n        if idx is not None:\n            return idx\n        return _manual_find_editable(label)\n\n    def _manual_find_clickable(*keywords):\n        for elem in (device.elements() or []):\n            if not _is_true(elem.get(\"clickable\")):\n                continue\n            combined = \" \".join(\n                str(elem.get(attr) or \"\")\n                for attr in (\"text\", \"description\", \"hint\")\n            ).lower()\n            if all(word in combined for word in keywords):\n                return _elem_index(elem)\n        return None\n\n    def _find_create_contact():\n        candidates = [\n            {\"description\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Create contact\", \"clickable\": True},\n            {\"contains\": \"Create contact\", \"clickable\": True},\n        ]\n        idx = _find_first(candidates, retries=3, scroll_steps=(\"down\", \"up\"))\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"create\", \"contact\")\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"add\", \"contact\")\n        if idx is not None:\n            return idx\n        idx = _find_first(\n            [\n                {\"description\": \"Create contact\"},\n                {\"text\": \"Create contact\"},\n            ],\n            retries=1,\n        )\n        return idx\n\n    def _find_save():\n        candidates = [\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"contains\": \"Save\", \"clickable\": True},\n        ]\n        idx = _find_first(candidates, retries=3, scroll_steps=(\"up\", \"down\"))\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"save\")\n        if idx is not None:\n            return idx\n        idx = _find_first(\n            [\n                {\"text\": \"Save\"},\n                {\"description\": \"Save\"},\n            ],\n            retries=1,\n        )\n        return idx\n\n    def _editor_visible():\n        return (\n            device.find(hint=\"First name\", editable=True) is not None\n            or device.find(text=\"First name\", editable=True) is not None\n            or device.find(hint=\"Last name\", editable=True) is not None\n            or device.find(text=\"Last name\", editable=True) is not None\n            or device.find(text=\"Save\", clickable=True) is not None\n            or device.find(description=\"Save\", clickable=True) is not None\n            or device.find(text=\"Save\") is not None\n            or device.find(description=\"Save\") is not None\n        )\n\n    def _home_visible():\n        return (\n            device.find(description=\"Create contact\", clickable=True) is not None\n            or device.find(text=\"Create contact\", clickable=True) is not None\n            or device.find(text=\"No contacts yet\") is not None\n            or device.find(description=\"Open navigation drawer\") is not None\n        )\n\n    app_name = binding.get(\"app_name\") or \"Contacts\"\n    device.open_app(app_name)\n    device.settle(1.0)\n\n    for _ in range(8):\n        if _editor_visible() or _home_visible():\n            break\n        device.settle(0.5)\n\n    if not _editor_visible():\n        opened = False\n        for _ in range(5):\n            create_idx = _find_create_contact()\n            if create_idx is not None:\n                device.click(index=create_idx)\n                device.settle(1.0)\n            if _editor_visible():\n                opened = True\n                break\n            device.settle(0.5)\n        if not opened:\n            raise RuntimeError(\"Could not open the contact editor\")\n\n    idx = _find_editable_field(\"First name\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable First name field\")\n    device.input_text(first_name, index=idx)\n    device.settle(0.5)\n\n    idx = _find_editable_field(\"Last name\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable Last name field\")\n    device.input_text(last_name, index=idx)\n    device.settle(0.5)\n\n    idx = _find_editable_field(\"Phone\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable Phone field\")\n    device.input_text(number_str, index=idx)\n    device.settle(0.5)\n\n    save_idx = _find_save()\n    if save_idx is None:\n        raise RuntimeError(\"Could not find the Save button\")\n    device.click(index=save_idx)\n    device.settle(1.0)\n\n    for _ in range(5):\n        if _home_visible() or not _editor_visible():\n            return True\n        save_idx = _find_save()\n        if save_idx is not None:\n            device.click(index=save_idx)\n        device.settle(1.0)\n\n    if _home_visible() or not _editor_visible():\n        return True\n    raise RuntimeError(\"Contact editor remained open after Save\")\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two whitespace-separated words (first name and last name).\",\n        \"required\": True,\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number to enter verbatim.\",\n        \"required\": True,\n    },\n}\n\ndef program(device, binding: dict) -> bool:\n    if not isinstance(binding, dict):\n        raise TypeError(\"binding must be a dict\")\n    if \"name\" not in binding or \"number\" not in binding:\n        raise KeyError(\"binding must contain 'name' and 'number'\")\n\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    if name is None:\n        raise ValueError(\"binding['name'] must not be None\")\n    if number is None:\n        raise ValueError(\"binding['number'] must not be None\")\n\n    parts = str(name).split()\n    if len(parts) < 2:\n        raise ValueError(\"binding['name'] must contain a first and last name\")\n    first_name = parts[0]\n    last_name = parts[1]\n    number_str = str(number)\n\n    def _is_true(value):\n        if isinstance(value, str):\n            return value.strip().lower() in (\"true\", \"1\", \"yes\")\n        return bool(value)\n\n    def _elem_index(elem):\n        idx = elem.get(\"index\")\n        if idx is None:\n            return None\n        try:\n            return int(idx)\n        except (TypeError, ValueError):\n            return idx\n\n    def _scroll(direction):\n        try:\n            device.scroll(direction=direction)\n        except Exception:\n            pass\n\n    def _find_first(candidates, retries=3, scroll_steps=None):\n        attempts = max(1, retries)\n        for attempt in range(attempts):\n            for crit in candidates:\n                idx = device.find(**crit)\n                if idx is not None:\n                    try:\n                        return int(idx)\n                    except (TypeError, ValueError):\n                        return idx\n            if attempt < attempts - 1:\n                if scroll_steps:\n                    _scroll(scroll_steps[attempt % len(scroll_steps)])\n                device.settle(0.3)\n        return None\n\n    def _manual_find_editable(label):\n        wanted = label.lower()\n        for elem in (device.elements() or []):\n            if not _is_true(elem.get(\"editable\")):\n                continue\n            for attr in (\"hint\", \"text\", \"description\"):\n                value = elem.get(attr)\n                if value and wanted in str(value).lower():\n                    return _elem_index(elem)\n        return None\n\n    def _find_editable_field(label):\n        candidates = [\n            {\"hint\": label, \"editable\": True},\n            {\"text\": label, \"editable\": True},\n            {\"contains\": label, \"editable\": True},\n        ]\n        idx = _find_first(candidates, retries=4, scroll_steps=(\"down\", \"up\", \"down\"))\n        if idx is not None:\n            return idx\n        return _manual_find_editable(label)\n\n    def _manual_find_clickable(*keywords):\n        for elem in (device.elements() or []):\n            if not _is_true(elem.get(\"clickable\")):\n                continue\n            combined = \" \".join(\n                str(elem.get(attr) or \"\")\n                for attr in (\"text\", \"description\", \"hint\")\n            ).lower()\n            if all(word in combined for word in keywords):\n                return _elem_index(elem)\n        return None\n\n    def _find_create_contact():\n        candidates = [\n            {\"description\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Create contact\", \"clickable\": True},\n            {\"contains\": \"Create contact\", \"clickable\": True},\n        ]\n        idx = _find_first(candidates, retries=3, scroll_steps=(\"down\", \"up\"))\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"create\", \"contact\")\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"add\", \"contact\")\n        if idx is not None:\n            return idx\n        idx = _find_first(\n            [\n                {\"description\": \"Create contact\"},\n                {\"text\": \"Create contact\"},\n            ],\n            retries=1,\n        )\n        return idx\n\n    def _find_save():\n        candidates = [\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"contains\": \"Save\", \"clickable\": True},\n        ]\n        idx = _find_first(candidates, retries=3, scroll_steps=(\"up\", \"down\"))\n        if idx is not None:\n            return idx\n        idx = _manual_find_clickable(\"save\")\n        if idx is not None:\n            return idx\n        idx = _find_first(\n            [\n                {\"text\": \"Save\"},\n                {\"description\": \"Save\"},\n            ],\n            retries=1,\n        )\n        return idx\n\n    def _editor_visible():\n        return (\n            device.find(hint=\"First name\", editable=True) is not None\n            or device.find(text=\"First name\", editable=True) is not None\n            or device.find(hint=\"Last name\", editable=True) is not None\n            or device.find(text=\"Last name\", editable=True) is not None\n            or device.find(text=\"Save\", clickable=True) is not None\n            or device.find(description=\"Save\", clickable=True) is not None\n            or device.find(text=\"Save\") is not None\n            or device.find(description=\"Save\") is not None\n        )\n\n    def _home_visible():\n        return (\n            device.find(description=\"Create contact\", clickable=True) is not None\n            or device.find(text=\"Create contact\", clickable=True) is not None\n            or device.find(text=\"No contacts yet\") is not None\n            or device.find(description=\"Open navigation drawer\") is not None\n        )\n\n    app_name = binding.get(\"app_name\") or \"Contacts\"\n    device.open_app(app_name)\n    device.settle(1.0)\n\n    for _ in range(8):\n        if _editor_visible() or _home_visible():\n            break\n        device.settle(0.5)\n\n    if not _editor_visible():\n        opened = False\n        for _ in range(5):\n            create_idx = _find_create_contact()\n            if create_idx is not None:\n                device.click(index=create_idx)\n                device.settle(1.0)\n            if _editor_visible():\n                opened = True\n                break\n            device.settle(0.5)\n        if not opened:\n            raise RuntimeError(\"Could not open the contact editor\")\n\n    idx = _find_editable_field(\"First name\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable First name field\")\n    device.input_text(first_name, index=idx)\n    device.settle(0.5)\n\n    idx = _find_editable_field(\"Last name\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable Last name field\")\n    device.input_text(last_name, index=idx)\n    device.settle(0.5)\n\n    idx = _find_editable_field(\"Phone\")\n    if idx is None:\n        raise RuntimeError(\"Could not find the editable Phone field\")\n    device.input_text(number_str, index=idx)\n    device.settle(0.5)\n\n    save_idx = _find_save()\n    if save_idx is None:\n        raise RuntimeError(\"Could not find the Save button\")\n    device.click(index=save_idx)\n    device.settle(1.0)\n\n    for _ in range(5):\n        if _home_visible() or not _editor_visible():\n            return True\n        save_idx = _find_save()\n        if save_idx is not None:\n            device.click(index=save_idx)\n        device.settle(1.0)\n\n    if _home_visible() or not _editor_visible():\n        return True\n    raise RuntimeError(\"Contact editor remained open after Save\")\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

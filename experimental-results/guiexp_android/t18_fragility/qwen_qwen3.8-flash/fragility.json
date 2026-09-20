@@ -1,0 +1,2504 @@
+{
+ "model": "qwen/qwen3.8-flash",
+ "families": [
+  "ContactsAddContact"
+ ],
+ "k": 5,
+ "gate_seed": 0,
+ "binding_namespace": "gate",
+ "arms": [
+  {
+   "name": "clean",
+   "kind": "baseline",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "baseline"
+  },
+  {
+   "name": "font_large",
+   "kind": "config",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "B-MoCA A8 (font size)"
+  },
+  {
+   "name": "font_small",
+   "kind": "config",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "B-MoCA A8 (font size)"
+  },
+  {
+   "name": "density_small",
+   "kind": "config",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "B-MoCA A8 (device configuration)"
+  },
+  {
+   "name": "locale_fr",
+   "kind": "config",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "B-MoCA A8 (system language)"
+  },
+  {
+   "name": "dark_theme",
+   "kind": "config",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "B-MoCA A8 (appearance), our own drift probe dark_theme arm"
+  },
+  {
+   "name": "notification",
+   "kind": "interruption",
+   "scope": "step",
+   "at_step": 2,
+   "stand_in": false,
+   "source": "D-GARA A3 (UX disruption)"
+  },
+  {
+   "name": "low_battery",
+   "kind": "interruption",
+   "scope": "step",
+   "at_step": 2,
+   "stand_in": false,
+   "source": "D-GARA A3 (system resource)"
+  },
+  {
+   "name": "permission_dialog",
+   "kind": "interruption",
+   "scope": "session",
+   "at_step": null,
+   "stand_in": false,
+   "source": "D-GARA A3 (permission control)"
+  },
+  {
+   "name": "update_prompt",
+   "kind": "interruption",
+   "scope": "step",
+   "at_step": 2,
+   "stand_in": true,
+   "source": "D-GARA A3 (UX disruption), stand-in for the APK dialog"
+  }
+ ],
+ "results": [
+  {
+   "family": "ContactsAddContact",
+   "program": "/home/myl/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/verified_program.py",
+   "k": 5,
+   "gate_seed": 0,
+   "binding_namespace": "gate",
+   "bindings": [
+    {
+     "name": "Victoria Martin",
+     "number": "+15420613181"
+    },
+    {
+     "name": "Jack Mohamed",
+     "number": "+11399709684"
+    },
+    {
+     "name": "Amir Muller",
+     "number": "+12955199377"
+    },
+    {
+     "name": "Maryam Pereira",
+     "number": "+14219393608"
+    },
+    {
+     "name": "Nora Gonzalez",
+     "number": "+13444195278"
+    }
+   ],
+   "arms": [
+    {
+     "arm": {
+      "name": "clean",
+      "kind": "baseline",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "baseline"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "clean",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.97
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "clean",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.84
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "clean",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.88
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "clean",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 26.13
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "clean",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.95
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": null,
+       "system.system_locales": null,
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "system.font_scale": null,
+       "system.system_locales": null,
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "after": {
+       "system.font_scale": null,
+       "system.system_locales": null,
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "ed76f8c26d18",
+      "applied_hash": "ed76f8c26d18",
+      "after_hash": "ed76f8c26d18",
+      "reverted_clean": true
+     },
+     "pass": 5,
+     "loud": 0,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 1.0,
+     "loud_share": null
+    },
+    {
+     "arm": {
+      "name": "font_large",
+      "kind": "config",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "B-MoCA A8 (font size)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "font_large",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "text",
+        "criteria": {
+         "text": "Phone",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 28,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 33.03
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "font_large",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "text",
+        "criteria": {
+         "text": "Phone",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 28,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 31.07
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "font_large",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "text",
+        "criteria": {
+         "text": "Phone",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 28,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 31.3
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "font_large",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "text",
+        "criteria": {
+         "text": "Phone",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 28,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.26
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "font_large",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "text",
+        "criteria": {
+         "text": "Phone",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 28,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.48
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": null,
+       "system.system_locales": null,
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "system.font_scale": "1.3"
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "ed76f8c26d18",
+      "applied_hash": "9e089d219444",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": false
+     },
+     "pass": 0,
+     "loud": 0,
+     "silent_wrong": 5,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 0.0,
+     "loud_share": 0.0
+    },
+    {
+     "arm": {
+      "name": "font_small",
+      "kind": "config",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "B-MoCA A8 (font size)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "font_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.29
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "font_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.93
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "font_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.95
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "font_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 26.84
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "font_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.73
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "system.font_scale": "0.85"
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": "501b5966f413",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 5,
+     "loud": 0,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 1.0,
+     "loud_share": null
+    },
+    {
+     "arm": {
+      "name": "density_small",
+      "kind": "config",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "B-MoCA A8 (device configuration)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "density_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.48
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "density_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.24
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "density_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.02
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "density_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.03
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "density_small",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.23
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "wm_density": {
+        "physical": 420,
+        "override": 357
+       }
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": "256e2d1468d6",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 5,
+     "loud": 0,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 1.0,
+     "loud_share": null
+    },
+    {
+     "arm": {
+      "name": "locale_fr",
+      "kind": "config",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "B-MoCA A8 (system language)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "locale_fr",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.07
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "locale_fr",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 27.15
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "locale_fr",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.86
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "locale_fr",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 26.85
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "locale_fr",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.86
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "system.system_locales": "fr-FR"
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": "e5a1295e6fa0",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 5,
+     "loud": 0,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 1.0,
+     "loud_share": null
+    },
+    {
+     "arm": {
+      "name": "dark_theme",
+      "kind": "config",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "B-MoCA A8 (appearance), our own drift probe dark_theme arm"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "dark_theme",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 30.22
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "dark_theme",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 26.72
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "dark_theme",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 26.94
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "dark_theme",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.76
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "dark_theme",
+       "outcome": "PASS",
+       "passed": true,
+       "loud": false,
+       "reward": 1.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": null,
+        "reason": "passed"
+       },
+       "actions": 6,
+       "locator_calls": 10,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 25.8
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "secure.ui_night_mode": "2"
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": "9589f39c36a2",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 5,
+     "loud": 0,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 1.0,
+     "loud_share": null
+    },
+    {
+     "arm": {
+      "name": "notification",
+      "kind": "interruption",
+      "scope": "step",
+      "at_step": 2,
+      "stand_in": false,
+      "source": "D-GARA A3 (UX disruption)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "notification",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Family name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 3,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 18,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "notification",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 31.28
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "notification",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Family name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 3,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 18,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "notification",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 31.6
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "notification",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Family name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 3,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 18,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "notification",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 30.07
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "notification",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Family name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 3,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 18,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "notification",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 31.09
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "notification",
+       "outcome": "SILENT_WRONG",
+       "passed": false,
+       "loud": false,
+       "reward": 0.0,
+       "error": null,
+       "exception_type": null,
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Family name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 3,
+        "reason": "last locator miss"
+       },
+       "actions": 7,
+       "locator_calls": 18,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "notification",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 31.44
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": null,
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": null,
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 0,
+     "loud": 0,
+     "silent_wrong": 5,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 0.0,
+     "loud_share": 0.0
+    },
+    {
+     "arm": {
+      "name": "low_battery",
+      "kind": "interruption",
+      "scope": "step",
+      "at_step": 2,
+      "stand_in": false,
+      "source": "D-GARA A3 (system resource)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "low_battery",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find or fill the Phone field",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Cell",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 10,
+        "reason": "last locator miss"
+       },
+       "actions": 10,
+       "locator_calls": 150,
+       "locator_kinds_used": [
+        "content_desc",
+        "coordinate",
+        "text"
+       ],
+       "injection": {
+        "arm": "low_battery",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "battery": {
+          "level": 5,
+          "plugged": false
+         }
+        }
+       },
+       "wall_s": 59.98
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "low_battery",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "low_battery",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "battery": {
+          "level": 5,
+          "plugged": false
+         }
+        }
+       },
+       "wall_s": 34.26
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "low_battery",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "low_battery",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "battery": {
+          "level": 5,
+          "plugged": false
+         }
+        }
+       },
+       "wall_s": 35.31
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "low_battery",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "low_battery",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "battery": {
+          "level": 5,
+          "plugged": false
+         }
+        }
+       },
+       "wall_s": 34.27
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "low_battery",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "low_battery",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "battery": {
+          "level": 5,
+          "plugged": false
+         }
+        }
+       },
+       "wall_s": 35.34
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": null,
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": null,
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 0,
+     "loud": 5,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 0.0,
+     "loud_share": 1.0
+    },
+    {
+     "arm": {
+      "name": "permission_dialog",
+      "kind": "interruption",
+      "scope": "session",
+      "at_step": null,
+      "stand_in": false,
+      "source": "D-GARA A3 (permission control)"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "permission_dialog",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.39
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "permission_dialog",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.44
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "permission_dialog",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.4
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "permission_dialog",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.54
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "permission_dialog",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": null,
+       "wall_s": 32.08
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": {
+       "permissions": {
+        "com.google.android.contacts:POST_NOTIFICATIONS": false,
+        "net.osmand:ACCESS_FINE_LOCATION": true,
+        "com.simplemobiletools.calendar.pro:POST_NOTIFICATIONS": true
+       }
+      },
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": "831a0470e70b",
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 0,
+     "loud": 5,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 0.0,
+     "loud_share": 1.0
+    },
+    {
+     "arm": {
+      "name": "update_prompt",
+      "kind": "interruption",
+      "scope": "step",
+      "at_step": 2,
+      "stand_in": true,
+      "source": "D-GARA A3 (UX disruption), stand-in for the APK dialog"
+     },
+     "skipped": null,
+     "runs": [
+      {
+       "binding": {
+        "name": "Victoria Martin",
+        "number": "+15420613181"
+       },
+       "arm": "update_prompt",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "update_prompt",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 33.8
+      },
+      {
+       "binding": {
+        "name": "Jack Mohamed",
+        "number": "+11399709684"
+       },
+       "arm": "update_prompt",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "update_prompt",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 33.62
+      },
+      {
+       "binding": {
+        "name": "Amir Muller",
+        "number": "+12955199377"
+       },
+       "arm": "update_prompt",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "update_prompt",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 34.17
+      },
+      {
+       "binding": {
+        "name": "Maryam Pereira",
+        "number": "+14219393608"
+       },
+       "arm": "update_prompt",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "update_prompt",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 33.9
+      },
+      {
+       "binding": {
+        "name": "Nora Gonzalez",
+        "number": "+13444195278"
+       },
+       "arm": "update_prompt",
+       "outcome": "LOUD",
+       "passed": false,
+       "loud": true,
+       "reward": 0.0,
+       "error": "RuntimeError: Could not find the Create contact button",
+       "exception_type": "RuntimeError",
+       "locator": {
+        "kind": "content_desc",
+        "criteria": {
+         "description": "Given name",
+         "editable": true
+        },
+        "what": "find",
+        "after_actions": 5,
+        "reason": "last locator miss"
+       },
+       "actions": 5,
+       "locator_calls": 87,
+       "locator_kinds_used": [
+        "content_desc",
+        "text"
+       ],
+       "injection": {
+        "arm": "update_prompt",
+        "at_step": 2,
+        "fired_at": 2,
+        "fired": true,
+        "error": null,
+        "fingerprint": {
+         "shell_notifications": 1
+        }
+       },
+       "wall_s": 33.41
+      }
+     ],
+     "fingerprint": {
+      "before": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "applied": null,
+      "after": {
+       "system.font_scale": "1.0",
+       "system.system_locales": "en-US",
+       "secure.ui_night_mode": null,
+       "wm_density": {
+        "physical": 420,
+        "override": null
+       },
+       "battery": {
+        "level": 100,
+        "plugged": true
+       },
+       "shell_notifications": 1
+      },
+      "before_hash": "16e5dcaa6ca7",
+      "applied_hash": null,
+      "after_hash": "16e5dcaa6ca7",
+      "reverted_clean": true
+     },
+     "pass": 0,
+     "loud": 5,
+     "silent_wrong": 0,
+     "false_alarm": 0,
+     "n": 5,
+     "pass_rate": 0.0,
+     "loud_share": 1.0
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "per_arm": {
+   "clean": {
+    "pass": 5,
+    "loud": 0,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 1.0,
+    "loud_share": null,
+    "rsr": 1.0,
+    "break_given_change": 0.0
+   },
+   "font_large": {
+    "pass": 0,
+    "loud": 0,
+    "silent_wrong": 5,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 0.0,
+    "loud_share": 0.0,
+    "rsr": 0.0,
+    "break_given_change": 1.0
+   },
+   "font_small": {
+    "pass": 5,
+    "loud": 0,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 1.0,
+    "loud_share": null,
+    "rsr": 1.0,
+    "break_given_change": 0.0
+   },
+   "density_small": {
+    "pass": 5,
+    "loud": 0,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 1.0,
+    "loud_share": null,
+    "rsr": 1.0,
+    "break_given_change": 0.0
+   },
+   "locale_fr": {
+    "pass": 5,
+    "loud": 0,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 1.0,
+    "loud_share": null,
+    "rsr": 1.0,
+    "break_given_change": 0.0
+   },
+   "dark_theme": {
+    "pass": 5,
+    "loud": 0,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 1.0,
+    "loud_share": null,
+    "rsr": 1.0,
+    "break_given_change": 0.0
+   },
+   "notification": {
+    "pass": 0,
+    "loud": 0,
+    "silent_wrong": 5,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 0.0,
+    "loud_share": 0.0,
+    "rsr": 0.0,
+    "break_given_change": 1.0
+   },
+   "low_battery": {
+    "pass": 0,
+    "loud": 5,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 0.0,
+    "loud_share": 1.0,
+    "rsr": 0.0,
+    "break_given_change": 1.0
+   },
+   "permission_dialog": {
+    "pass": 0,
+    "loud": 5,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 0.0,
+    "loud_share": 1.0,
+    "rsr": 0.0,
+    "break_given_change": 1.0
+   },
+   "update_prompt": {
+    "pass": 0,
+    "loud": 5,
+    "silent_wrong": 0,
+    "false_alarm": 0,
+    "n": 5,
+    "pass_rate": 0.0,
+    "loud_share": 1.0,
+    "rsr": 0.0,
+    "break_given_change": 1.0
+   }
+  },
+  "arms": [
+   "clean",
+   "font_large",
+   "font_small",
+   "density_small",
+   "locale_fr",
+   "dark_theme",
+   "notification",
+   "low_battery",
+   "permission_dialog",
+   "update_prompt"
+  ],
+  "families": [
+   "ContactsAddContact"
+  ],
+  "break_given_change_uniform": 0.5555555555555556,
+  "q_clean": 0.0,
+  "loud_share_overall": 0.6,
+  "silent_total": 10,
+  "loud_total": 15,
+  "runs_total": 50,
+  "locator_blame": {
+   "clean": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "font_large": {
+    "resource_id": 0,
+    "text": 5,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "font_small": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "density_small": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "locale_fr": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "dark_theme": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 0,
+    "coordinate": 0,
+    "none": 0
+   },
+   "notification": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 5,
+    "coordinate": 0,
+    "none": 0
+   },
+   "low_battery": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 5,
+    "coordinate": 0,
+    "none": 0
+   },
+   "permission_dialog": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 5,
+    "coordinate": 0,
+    "none": 0
+   },
+   "update_prompt": {
+    "resource_id": 0,
+    "text": 0,
+    "content_desc": 5,
+    "coordinate": 0,
+    "none": 0
+   }
+  }
+ },
+ "reactive": [],
+ "reactive_cost_usd": 0,
+ "replay_tokens": 0,
+ "wall_s": 1524.1,
+ "record_type": "fragility"
+}
