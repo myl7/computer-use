@@ -13,6 +13,7 @@ flat CSV next to the JSON.
 
     python3 computer-use/t2sim/e12_postcheck.py \
         [--e12 PATH] [--e4 PATH] [--csv PATH] [--constants PATH]
+        [--provenance TEXT]
 
 Exits non-zero if any shared cell differs (the spec diverged from E4 -- fix
 the spec, do not ship) or if meta.constants_fingerprint does not equal the
@@ -60,6 +61,9 @@ def main() -> int:
     ap.add_argument("--e4", default=str(E4_PATH))
     ap.add_argument("--csv", default=str(CSV_PATH))
     ap.add_argument("--constants", default=str(CONSTANTS_PATH))
+    ap.add_argument("--provenance", default=None,
+                    help="override the provenance note written into the E12 "
+                         "meta (default: the DS anchor text, unchanged)")
     args = ap.parse_args()
 
     e12 = json.loads(Path(args.e12).read_text())
@@ -100,7 +104,7 @@ def main() -> int:
 
     meta = e12["meta"]
     meta["e4_identity_ok"] = identity_ok
-    meta["provenance"] = PROVENANCE
+    meta["provenance"] = args.provenance or PROVENANCE
     Path(args.e12).write_text(json.dumps(e12, indent=1))
 
     with open(args.csv, "w", newline="") as fh:

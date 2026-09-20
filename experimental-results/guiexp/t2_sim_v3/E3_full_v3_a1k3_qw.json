@@ -1,0 +1,505 @@
+{
+ "meta": {
+  "experiment": "E3",
+  "generated": "2026-09-21T02:14:45",
+  "constants_fingerprint": "7655f7ca8d01cf4a",
+  "reps": 20,
+  "seed": 7,
+  "jobs": null,
+  "bootstrap_B": 2000,
+  "quick": false,
+  "n_cells": 3,
+  "cells_wall_s_sum": 0.279,
+  "wall_s": 0.175,
+  "cost_set_status": {
+   "openapps_glm": {
+    "status": "measured",
+    "layouts": {
+     "wizard": "measured",
+     "single_page": "measured",
+     "sectioned": "measured"
+    }
+   },
+   "openapps_ds": {
+    "status": "measured",
+    "layouts": {
+     "wizard": "measured",
+     "single_page": "measured",
+     "sectioned": "measured"
+    }
+   },
+   "android_glm": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "CommentPost": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   },
+   "android_ds": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "CommentPost": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   },
+   "android_qw": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   }
+  },
+  "trigger": {
+   "cooldown": "inflate",
+   "cooldown_len": 3,
+   "half_life": 120.0,
+   "prior_mode": "population",
+   "prior_shape": 1.0,
+   "prior_rate": 5.0,
+   "horizon_mode": "capped_doubling",
+   "horizon_cap": 50.0,
+   "horizon_fixed": 60,
+   "note": "horizon_cap = 1/h at the old engine's drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); the projection is H=lambda_hat*min-uses capped at it. The threshold also carries the manifest externality m*t (methods-v2 section 2 one-line extension), inert at m=0. v2: gate_prior='pi' and spend_cap=on are Algorithm 1 as decided 2026-09-11; cooldown='inflate' and half_life=120 are left at their published values (methods-v3 section 3 removes the cooldown, which is a separate change and is NOT made here).",
+   "gate_prior": "add_one",
+   "spend_cap": true,
+   "spend_cap_mult": 1.0,
+   "buy_formula": "full"
+  },
+  "units": "cache-adjusted tokens (fresh + r*cached)",
+  "tag": "full_v3_a1k3_qw",
+  "constants_file": "code/t2sim/constants.measured.v3.qwen.e3qw.json",
+  "deployment": {
+   "crn": false,
+   "router": {
+    "kind": "listing"
+   },
+   "eviction": null,
+   "k_min": 3
+  }
+ },
+ "cells": {
+  "bursty/android_qw": {
+   "always_reactive": {
+    "mean_tokens": 27500460.880028598,
+    "n_reps": 20,
+    "rel_to_ours": 0.9081276675003299,
+    "rel_to_ours_ci95": [
+     0.8940908924101794,
+     0.9228901159879578
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 110400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0
+   },
+   "always_compile": {
+    "mean_tokens": 145379564.54393426,
+    "n_reps": 20,
+    "rel_to_ours": 4.800763355474332,
+    "rel_to_ours_ci95": [
+     4.3849750022888525,
+     5.173725937857067
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 193319.2,
+    "mean_wasted": 104.25,
+    "mean_n_compiles": 107.8
+   },
+   "on_second": {
+    "mean_tokens": 145379564.54393426,
+    "n_reps": 20,
+    "rel_to_ours": 4.800763355474332,
+    "rel_to_ours_ci95": [
+     4.38592442213683,
+     5.1644627405087835
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 193319.2,
+    "mean_wasted": 104.25,
+    "mean_n_compiles": 107.8
+   },
+   "success_count": {
+    "mean_tokens": 127430326.73363975,
+    "n_reps": 20,
+    "rel_to_ours": 4.208038763069082,
+    "rel_to_ours_ci95": [
+     3.7968351708044685,
+     4.594126205471372
+    ],
+    "mean_final_library": 3.5,
+    "mean_tau_total": 175301.2,
+    "mean_wasted": 88.1,
+    "mean_n_compiles": 91.3
+   },
+   "toolpro_port": {
+    "mean_tokens": 26865315.712700836,
+    "n_reps": 20,
+    "rel_to_ours": 0.8871537317599167,
+    "rel_to_ours_ci95": [
+     0.8778702508428762,
+     0.897184521160456
+    ],
+    "mean_final_library": 4.6,
+    "mean_tau_total": 195794.4,
+    "mean_wasted": 2.65,
+    "mean_n_compiles": 4.6
+   },
+   "ours": {
+    "mean_tokens": 30282593.366773076,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     28026409.01784245,
+     32418759.252725415
+    ],
+    "mean_final_library": 1.35,
+    "mean_tau_total": 130410.9,
+    "mean_wasted": 3.4,
+    "mean_n_compiles": 4.6
+   },
+   "oracle": {
+    "mean_tokens": 18979789.264734097,
+    "n_reps": 20,
+    "rel_to_ours": 0.6267557416518779,
+    "rel_to_ours_ci95": [
+     0.5816037201390306,
+     0.6684102717383377
+    ],
+    "mean_final_library": 3.55,
+    "mean_tau_total": 187963.85,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 3.55
+   },
+   "breakeven": {
+    "mean_tokens": 34809581.70110637,
+    "n_reps": 20,
+    "rel_to_ours": 1.149491434881546,
+    "rel_to_ours_ci95": [
+     1.0915322108123398,
+     1.203449828232185
+    ],
+    "mean_final_library": 3.1,
+    "mean_tau_total": 161828.65,
+    "mean_wasted": 10.4,
+    "mean_n_compiles": 13.25
+   },
+   "breakeven_cap": {
+    "mean_tokens": 34809581.70110637,
+    "n_reps": 20,
+    "rel_to_ours": 1.149491434881546,
+    "rel_to_ours_ci95": [
+     1.0940629302405764,
+     1.20366803689165
+    ],
+    "mean_final_library": 3.1,
+    "mean_tau_total": 161828.65,
+    "mean_wasted": 10.4,
+    "mean_n_compiles": 13.25
+   },
+   "offline_opt": {
+    "mean_tokens": 18460983.89855691,
+    "rel_to_ours": 0.6096236103349335,
+    "rel_to_ours_ci95": [
+     0.5667643242209451,
+     0.6506240250699737
+    ]
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 300,
+    "families": 6,
+    "singleton_families": 0,
+    "singleton_family_pct": 0.0,
+    "top_family_n": 93,
+    "top_family_share_pct": 31.0
+   }
+  },
+  "poisson/android_qw": {
+   "always_reactive": {
+    "mean_tokens": 26479262.105990253,
+    "n_reps": 20,
+    "rel_to_ours": 0.8811941717804261,
+    "rel_to_ours_ci95": [
+     0.8730758406626762,
+     0.8903930347962923
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 110400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0
+   },
+   "always_compile": {
+    "mean_tokens": 135938469.56909022,
+    "n_reps": 20,
+    "rel_to_ours": 4.523849139962783,
+    "rel_to_ours_ci95": [
+     4.431741692909875,
+     4.626697260175298
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 213179.95,
+    "mean_wasted": 97.0,
+    "mean_n_compiles": 101.0
+   },
+   "on_second": {
+    "mean_tokens": 135938469.56909022,
+    "n_reps": 20,
+    "rel_to_ours": 4.523849139962783,
+    "rel_to_ours_ci95": [
+     4.425208184400597,
+     4.628696569444513
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 213179.95,
+    "mean_wasted": 97.0,
+    "mean_n_compiles": 101.0
+   },
+   "success_count": {
+    "mean_tokens": 118273581.03202908,
+    "n_reps": 20,
+    "rel_to_ours": 3.9359854464164403,
+    "rel_to_ours_ci95": [
+     3.8307935588821294,
+     4.042073345936129
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 196322.2,
+    "mean_wasted": 81.0,
+    "mean_n_compiles": 85.0
+   },
+   "toolpro_port": {
+    "mean_tokens": 26479262.105990253,
+    "n_reps": 20,
+    "rel_to_ours": 0.8811941717804261,
+    "rel_to_ours_ci95": [
+     0.8732495105729727,
+     0.8905975327266068
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 110400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0
+   },
+   "ours": {
+    "mean_tokens": 30049293.281740285,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     29682062.639171634,
+     30415712.896020018
+    ],
+    "mean_final_library": 1.5,
+    "mean_tau_total": 129246.1,
+    "mean_wasted": 4.25,
+    "mean_n_compiles": 5.3
+   },
+   "oracle": {
+    "mean_tokens": 17926098.415173523,
+    "n_reps": 20,
+    "rel_to_ours": 0.5965564064052872,
+    "rel_to_ours_ci95": [
+     0.5843727316071834,
+     0.6099444994666583
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 213179.95,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 4.0
+   },
+   "breakeven": {
+    "mean_tokens": 36460354.863618,
+    "n_reps": 20,
+    "rel_to_ours": 1.2133514928876366,
+    "rel_to_ours_ci95": [
+     1.1968088351752173,
+     1.2308977869982598
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 175419.5,
+    "mean_wasted": 11.65,
+    "mean_n_compiles": 15.6
+   },
+   "breakeven_cap": {
+    "mean_tokens": 36460354.863618,
+    "n_reps": 20,
+    "rel_to_ours": 1.2133514928876366,
+    "rel_to_ours_ci95": [
+     1.1973521316452627,
+     1.2297491691996656
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 175419.5,
+    "mean_wasted": 11.65,
+    "mean_n_compiles": 15.6
+   },
+   "offline_opt": {
+    "mean_tokens": 17372928.794025213,
+    "rel_to_ours": 0.5781476666069223,
+    "rel_to_ours_ci95": [
+     0.5651626352047241,
+     0.5916109657915745
+    ]
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 300,
+    "families": 6,
+    "singleton_families": 0,
+    "singleton_family_pct": 0.0,
+    "top_family_n": 68,
+    "top_family_share_pct": 22.666666666666668
+   }
+  },
+  "zipf/android_qw": {
+   "always_reactive": {
+    "mean_tokens": 34033572.71994627,
+    "n_reps": 20,
+    "rel_to_ours": 0.943354184578555,
+    "rel_to_ours_ci95": [
+     0.9413214745141518,
+     0.9455254113853997
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 110400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0
+   },
+   "always_compile": {
+    "mean_tokens": 234339669.10138583,
+    "n_reps": 20,
+    "rel_to_ours": 6.495506930131525,
+    "rel_to_ours_ci95": [
+     6.433097986908198,
+     6.559940171426195
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 205349.4,
+    "mean_wasted": 168.1,
+    "mean_n_compiles": 171.15
+   },
+   "on_second": {
+    "mean_tokens": 234339669.10138583,
+    "n_reps": 20,
+    "rel_to_ours": 6.495506930131525,
+    "rel_to_ours_ci95": [
+     6.436015463042496,
+     6.560110911919879
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 205349.4,
+    "mean_wasted": 168.1,
+    "mean_n_compiles": 171.15
+   },
+   "success_count": {
+    "mean_tokens": 216411887.64811343,
+    "n_reps": 20,
+    "rel_to_ours": 5.998578564916361,
+    "rel_to_ours_ci95": [
+     5.934186960667246,
+     6.063287627222415
+    ],
+    "mean_final_library": 3.75,
+    "mean_tau_total": 167243.15,
+    "mean_wasted": 152.75,
+    "mean_n_compiles": 154.9
+   },
+   "toolpro_port": {
+    "mean_tokens": 34033572.71994627,
+    "n_reps": 20,
+    "rel_to_ours": 0.943354184578555,
+    "rel_to_ours_ci95": [
+     0.941205948696431,
+     0.9455309543720468
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 110400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0
+   },
+   "ours": {
+    "mean_tokens": 36077194.83976299,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     35421836.12840384,
+     36705236.37907917
+    ],
+    "mean_final_library": 1.0,
+    "mean_tau_total": 130019.6,
+    "mean_wasted": 3.0,
+    "mean_n_compiles": 4.0
+   },
+   "oracle": {
+    "mean_tokens": 30797514.932312943,
+    "n_reps": 20,
+    "rel_to_ours": 0.853656030328861,
+    "rel_to_ours_ci95": [
+     0.8485153201051461,
+     0.8585148829668446
+    ],
+    "mean_final_library": 3.05,
+    "mean_tau_total": 185529.6,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 3.05
+   },
+   "breakeven": {
+    "mean_tokens": 43947192.83631858,
+    "n_reps": 20,
+    "rel_to_ours": 1.2181432905609824,
+    "rel_to_ours_ci95": [
+     1.2082288257316773,
+     1.2280025326542598
+    ],
+    "mean_final_library": 2.0,
+    "mean_tau_total": 143696.9,
+    "mean_wasted": 10.1,
+    "mean_n_compiles": 11.8
+   },
+   "breakeven_cap": {
+    "mean_tokens": 43947192.83631858,
+    "n_reps": 20,
+    "rel_to_ours": 1.2181432905609824,
+    "rel_to_ours_ci95": [
+     1.2081325756301402,
+     1.227658088427048
+    ],
+    "mean_final_library": 2.0,
+    "mean_tau_total": 143696.9,
+    "mean_wasted": 10.1,
+    "mean_n_compiles": 11.8
+   },
+   "offline_opt": {
+    "mean_tokens": 30369544.068770725,
+    "rel_to_ours": 0.8417933878633629,
+    "rel_to_ours_ci95": [
+     0.8359886508625388,
+     0.8473441302865417
+    ]
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 300,
+    "families": 6,
+    "singleton_families": 0,
+    "singleton_family_pct": 0.0,
+    "top_family_n": 152,
+    "top_family_share_pct": 50.666666666666664
+   }
+  }
+ }
+}

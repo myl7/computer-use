@@ -126,7 +126,8 @@ def main() -> int:
         experiments.run_experiment(exp, constants, out_dir=out_dir,
                                    reps=args.reps, seed=args.seed,
                                    jobs=args.jobs, quick=args.quick,
-                                   B=args.B, tag=args.tag)
+                                   B=args.B, tag=args.tag,
+                                   constants_path=args.constants)
     print(f"\ntotal wall {time.time() - t0:.1f}s for {','.join(exps)}")
     return 0
 

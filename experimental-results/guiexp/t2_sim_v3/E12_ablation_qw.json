@@ -1,0 +1,1083 @@
+{
+ "meta": {
+  "experiment": "E12",
+  "generated": "2026-09-21T02:20:12",
+  "constants_fingerprint": "09b897c127ee7834",
+  "reps": 20,
+  "seed": 7,
+  "jobs": null,
+  "bootstrap_B": 2000,
+  "quick": false,
+  "n_cells": 8,
+  "cells_wall_s_sum": 366.123,
+  "wall_s": 93.368,
+  "cost_set_status": {
+   "openapps_glm": {
+    "status": "measured",
+    "layouts": {
+     "wizard": "measured",
+     "single_page": "measured",
+     "sectioned": "measured"
+    }
+   },
+   "openapps_ds": {
+    "status": "measured",
+    "layouts": {
+     "wizard": "measured",
+     "single_page": "measured",
+     "sectioned": "measured"
+    }
+   },
+   "android_glm": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "CommentPost": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   },
+   "android_ds": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "CommentPost": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   },
+   "android_qw": {
+    "status": "measured",
+    "layouts": {
+     "CalcTableSave": "measured",
+     "ContactsAddContact": "measured",
+     "MarkorDeleteNote": "measured",
+     "OsmAndMarker": "measured",
+     "SimpleCalendarAddOneEvent": "measured",
+     "WriterMemoSave": "measured"
+    }
+   }
+  },
+  "trigger": {
+   "cooldown": "inflate",
+   "cooldown_len": 3,
+   "half_life": 120.0,
+   "prior_mode": "population",
+   "prior_shape": 1.0,
+   "prior_rate": 5.0,
+   "horizon_mode": "capped_doubling",
+   "horizon_cap": 50.0,
+   "horizon_fixed": 60,
+   "note": "horizon_cap = 1/h at the old engine's drift hazard h=0.02 (Theorem 2 lifetime, 50 uses); the projection is H=lambda_hat*min-uses capped at it. The threshold also carries the manifest externality m*t (methods-v2 section 2 one-line extension), inert at m=0. v2: gate_prior='pi' and spend_cap=on are Algorithm 1 as decided 2026-09-11; cooldown='inflate' and half_life=120 are left at their published values (methods-v3 section 3 removes the cooldown, which is a separate change and is NOT made here).",
+   "gate_prior": "add_one",
+   "spend_cap": true,
+   "spend_cap_mult": 1.0,
+   "buy_formula": "full"
+  },
+  "units": "cache-adjusted tokens (fresh + r*cached)",
+  "tag": "qw",
+  "constants_file": "code/t2sim/constants.measured.v3.a1k3qwprices.json",
+  "deployment": {
+   "crn": false,
+   "router": {
+    "kind": "listing"
+   },
+   "eviction": null,
+   "k_min": 3
+  },
+  "e4_identity_ok": true,
+  "provenance": "Shared-cell anchor: E4_full_v3_a1k3_qw.json (the authoritative qw-constants real-stream E4 run: reps=20, seed=7, add_one gate prior, buy_formula full, deployment k_min=3, B=2000).  E12 was run on constants.measured.v3.a1k3qwprices.json (build_configs_qwen.py), whose constants_fingerprint equals that run's; the ours and always_reactive native-price cells of E4's cost set (android_qw) are therefore bit-identical to its cells, verified by e12_postcheck.py and recorded in e4_identity_ok."
+ },
+ "cells": {
+  "android_qw/bpi2019/price=5M": {
+   "ours": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     26637063944.788517,
+     26637063944.788517
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "narrow_trigger": {
+    "mean_tokens": 22778804370.080353,
+    "n_reps": 20,
+    "rel_to_ours": 0.8551544726286162,
+    "rel_to_ours_ci95": [
+     0.8551389593765,
+     0.8551693278541622
+    ],
+    "mean_final_library": 57.0,
+    "mean_tau_total": 663635994.0,
+    "mean_wasted": 58.0,
+    "mean_n_compiles": 101.0,
+    "ratio_to_ours": 0.8551544726286162
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_decay": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "gamma_prior": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_horizon": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_spend_cap": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 251734,
+    "families": 11973,
+    "singleton_families": 9030,
+    "singleton_family_pct": 75.41969431220245,
+    "top_family_n": 50286,
+    "top_family_share_pct": 19.97584752159025
+   }
+  },
+  "android_qw/bpi2019/price=native": {
+   "ours": {
+    "mean_tokens": 26263209363.203045,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     26262666781.801517,
+     26263699018.192818
+    ],
+    "mean_final_library": 5.0,
+    "mean_tau_total": 205179723.0,
+    "mean_wasted": 85.0,
+    "mean_n_compiles": 90.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 26637063944.788517,
+    "n_reps": 20,
+    "rel_to_ours": 1.014234916091758,
+    "rel_to_ours_ci95": [
+     1.0142164549998445,
+     1.0142551155348853
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 92638112.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.014234916091758
+   },
+   "narrow_trigger": {
+    "mean_tokens": 25346855513.648106,
+    "n_reps": 20,
+    "rel_to_ours": 0.9651088396363764,
+    "rel_to_ours_ci95": [
+     0.96508509445449,
+     0.9651359933235147
+    ],
+    "mean_final_library": 289.0,
+    "mean_tau_total": 3627358574.0,
+    "mean_wasted": 1173.0,
+    "mean_n_compiles": 1400.0,
+    "ratio_to_ours": 0.9651088396363764
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 26351827419.121605,
+    "n_reps": 20,
+    "rel_to_ours": 1.0033742279815474,
+    "rel_to_ours_ci95": [
+     1.003350236798639,
+     1.0033987970710554
+    ],
+    "mean_final_library": 5.0,
+    "mean_tau_total": 205179723.0,
+    "mean_wasted": 158.0,
+    "mean_n_compiles": 163.0,
+    "ratio_to_ours": 1.0033742279815474
+   },
+   "no_decay": {
+    "mean_tokens": 26197509154.42237,
+    "n_reps": 20,
+    "rel_to_ours": 0.9974983937464731,
+    "rel_to_ours_ci95": [
+     0.9974774836337789,
+     0.9975213263825593
+    ],
+    "mean_final_library": 2.0,
+    "mean_tau_total": 138332761.0,
+    "mean_wasted": 32.0,
+    "mean_n_compiles": 34.0,
+    "ratio_to_ours": 0.9974983937464731
+   },
+   "gamma_prior": {
+    "mean_tokens": 26263087058.151276,
+    "n_reps": 20,
+    "rel_to_ours": 0.9999953431033475,
+    "rel_to_ours_ci95": [
+     0.9999849035621039,
+     1.0000043659651716
+    ],
+    "mean_final_library": 5.0,
+    "mean_tau_total": 205058420.0,
+    "mean_wasted": 85.0,
+    "mean_n_compiles": 90.0,
+    "ratio_to_ours": 0.9999953431033475
+   },
+   "fixed_horizon": {
+    "mean_tokens": 26663562482.934753,
+    "n_reps": 20,
+    "rel_to_ours": 1.0152438764887828,
+    "rel_to_ours_ci95": [
+     1.0152249805542224,
+     1.015264771569213
+    ],
+    "mean_final_library": 4.0,
+    "mean_tau_total": 183319612.0,
+    "mean_wasted": 46.0,
+    "mean_n_compiles": 49.0,
+    "ratio_to_ours": 1.0152438764887828
+   },
+   "no_spend_cap": {
+    "mean_tokens": 26263209363.203045,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 5.0,
+    "mean_tau_total": 205179723.0,
+    "mean_wasted": 85.0,
+    "mean_n_compiles": 90.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 251734,
+    "families": 11973,
+    "singleton_families": 9030,
+    "singleton_family_pct": 75.41969431220245,
+    "top_family_n": 50286,
+    "top_family_share_pct": 19.97584752159025
+   }
+  },
+  "android_qw/sepsis/price=5M": {
+   "ours": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     92482526.97386195,
+     92482526.97386195
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "narrow_trigger": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_decay": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "gamma_prior": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_horizon": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_spend_cap": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 1050,
+    "families": 846,
+    "singleton_families": 784,
+    "singleton_family_pct": 92.67139479905437,
+    "top_family_n": 35,
+    "top_family_share_pct": 3.3333333333333335
+   }
+  },
+  "android_qw/sepsis/price=native": {
+   "ours": {
+    "mean_tokens": 94915569.84052859,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     94915569.84052859,
+     94915569.84052859
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 2.0,
+    "mean_n_compiles": 2.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 0.9743662407468606,
+    "rel_to_ours_ci95": [
+     0.9743662407468611,
+     0.9743662407468611
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 0.9743662407468606
+   },
+   "narrow_trigger": {
+    "mean_tokens": 103660387.97886196,
+    "n_reps": 20,
+    "rel_to_ours": 1.092132599035394,
+    "rel_to_ours_ci95": [
+     1.092132599035395,
+     1.092132599035395
+    ],
+    "mean_final_library": 2.0,
+    "mean_tau_total": 422254.0,
+    "mean_wasted": 11.0,
+    "mean_n_compiles": 11.0,
+    "ratio_to_ours": 1.092132599035394
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 97348612.70719527,
+    "n_reps": 20,
+    "rel_to_ours": 1.0256337592531397,
+    "rel_to_ours_ci95": [
+     1.0256337592531402,
+     1.0256337592531402
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 4.0,
+    "mean_n_compiles": 4.0,
+    "ratio_to_ours": 1.0256337592531397
+   },
+   "no_decay": {
+    "mean_tokens": 94915569.84052859,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 2.0,
+    "mean_n_compiles": 2.0,
+    "ratio_to_ours": 1.0
+   },
+   "gamma_prior": {
+    "mean_tokens": 94915569.84052859,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 2.0,
+    "mean_n_compiles": 2.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_horizon": {
+    "mean_tokens": 92482526.97386195,
+    "n_reps": 20,
+    "rel_to_ours": 0.9743662407468606,
+    "rel_to_ours_ci95": [
+     0.9743662407468611,
+     0.9743662407468611
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 0.9743662407468606
+   },
+   "no_spend_cap": {
+    "mean_tokens": 94915569.84052859,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 386400.0,
+    "mean_wasted": 2.0,
+    "mean_n_compiles": 2.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 1050,
+    "families": 846,
+    "singleton_families": 784,
+    "singleton_family_pct": 92.67139479905437,
+    "top_family_n": 35,
+    "top_family_share_pct": 3.3333333333333335
+   }
+  },
+  "android_qw/wiki_A/price=5M": {
+   "ours": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     6806978566.41046,
+     6806978566.41046
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "narrow_trigger": {
+    "mean_tokens": 6056768369.591497,
+    "n_reps": 20,
+    "rel_to_ours": 0.8897880771182488,
+    "rel_to_ours_ci95": [
+     0.8897253495198186,
+     0.8898568465906248
+    ],
+    "mean_final_library": 14.0,
+    "mean_tau_total": 86808443.0,
+    "mean_wasted": 17.0,
+    "mean_n_compiles": 28.0,
+    "ratio_to_ours": 0.8897880771182488
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_decay": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "gamma_prior": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_horizon": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_spend_cap": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 65564,
+    "families": 2529,
+    "singleton_families": 2057,
+    "singleton_family_pct": 81.33649663898774,
+    "top_family_n": 23543,
+    "top_family_share_pct": 35.90842535537795
+   }
+  },
+  "android_qw/wiki_A/price=native": {
+   "ours": {
+    "mean_tokens": 6824946592.072709,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     6824807543.960424,
+     6825091515.457345
+    ],
+    "mean_final_library": 7.0,
+    "mean_tau_total": 63122599.0,
+    "mean_wasted": 47.0,
+    "mean_n_compiles": 54.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 6806978566.41046,
+    "n_reps": 20,
+    "rel_to_ours": 0.9973673016455369,
+    "rel_to_ours_ci95": [
+     0.9973449789056041,
+     0.9973887667609213
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 24127552.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 0.9973673016455369
+   },
+   "narrow_trigger": {
+    "mean_tokens": 5990186408.65055,
+    "n_reps": 20,
+    "rel_to_ours": 0.8776898584976844,
+    "rel_to_ours_ci95": [
+     0.8776453934692857,
+     0.8777318668201997
+    ],
+    "mean_final_library": 55.0,
+    "mean_tau_total": 223503911.0,
+    "mean_wasted": 230.0,
+    "mean_n_compiles": 279.0,
+    "ratio_to_ours": 0.8776898584976844
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 6884661897.208479,
+    "n_reps": 20,
+    "rel_to_ours": 1.008749563726276,
+    "rel_to_ours_ci95": [
+     1.0087267143124568,
+     1.0087715932355912
+    ],
+    "mean_final_library": 7.0,
+    "mean_tau_total": 63122599.0,
+    "mean_wasted": 96.0,
+    "mean_n_compiles": 103.0,
+    "ratio_to_ours": 1.008749563726276
+   },
+   "no_decay": {
+    "mean_tokens": 6796766956.681654,
+    "n_reps": 20,
+    "rel_to_ours": 0.995871083383453,
+    "rel_to_ours_ci95": [
+     0.9958490543683327,
+     0.9958950600091269
+    ],
+    "mean_final_library": 5.0,
+    "mean_tau_total": 52682260.0,
+    "mean_wasted": 30.0,
+    "mean_n_compiles": 35.0,
+    "ratio_to_ours": 0.995871083383453
+   },
+   "gamma_prior": {
+    "mean_tokens": 6823127700.584657,
+    "n_reps": 20,
+    "rel_to_ours": 0.9997334936671644,
+    "rel_to_ours_ci95": [
+     0.9997116878753798,
+     0.9997564457520112
+    ],
+    "mean_final_library": 7.0,
+    "mean_tau_total": 63117958.0,
+    "mean_wasted": 45.0,
+    "mean_n_compiles": 52.0,
+    "ratio_to_ours": 0.9997334936671644
+   },
+   "fixed_horizon": {
+    "mean_tokens": 6783206745.699782,
+    "n_reps": 20,
+    "rel_to_ours": 0.9938842237356981,
+    "rel_to_ours_ci95": [
+     0.9938633411286792,
+     0.9939059592098212
+    ],
+    "mean_final_library": 1.0,
+    "mean_tau_total": 30051015.0,
+    "mean_wasted": 17.0,
+    "mean_n_compiles": 18.0,
+    "ratio_to_ours": 0.9938842237356981
+   },
+   "no_spend_cap": {
+    "mean_tokens": 6824946592.072709,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 7.0,
+    "mean_tau_total": 63122599.0,
+    "mean_wasted": 47.0,
+    "mean_n_compiles": 54.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 65564,
+    "families": 2529,
+    "singleton_families": 2057,
+    "singleton_family_pct": 81.33649663898774,
+    "top_family_n": 23543,
+    "top_family_share_pct": 35.90842535537795
+   }
+  },
+  "android_qw/wiki_B/price=5M": {
+   "ours": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     8817731316.245646,
+     8817731316.245646
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "narrow_trigger": {
+    "mean_tokens": 9050516642.063774,
+    "n_reps": 20,
+    "rel_to_ours": 1.0263996846206063,
+    "rel_to_ours_ci95": [
+     1.026384581774403,
+     1.02641478746681
+    ],
+    "mean_final_library": 18.0,
+    "mean_tau_total": 117963264.0,
+    "mean_wasted": 26.0,
+    "mean_n_compiles": 37.0,
+    "ratio_to_ours": 1.0263996846206063
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_decay": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "gamma_prior": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "fixed_horizon": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "no_spend_cap": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 100000,
+    "families": 68773,
+    "singleton_families": 65653,
+    "singleton_family_pct": 95.46333590217091,
+    "top_family_n": 2342,
+    "top_family_share_pct": 2.342
+   }
+  },
+  "android_qw/wiki_B/price=native": {
+   "ours": {
+    "mean_tokens": 9006568662.68588,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "ci95_tokens": [
+     9006429614.573597,
+     9006695960.253466
+    ],
+    "mean_final_library": 9.0,
+    "mean_tau_total": 112100953.0,
+    "mean_wasted": 139.0,
+    "mean_n_compiles": 147.0,
+    "ratio_to_ours": 1.0
+   },
+   "always_reactive": {
+    "mean_tokens": 8817731316.245646,
+    "n_reps": 20,
+    "rel_to_ours": 0.9790333751384602,
+    "rel_to_ours_ci95": [
+     0.9790191120571832,
+     0.979048495522821
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 0.0,
+    "mean_n_compiles": 0.0,
+    "ratio_to_ours": 0.9790333751384602
+   },
+   "narrow_trigger": {
+    "mean_tokens": 9935648314.413258,
+    "n_reps": 20,
+    "rel_to_ours": 1.1031557840197836,
+    "rel_to_ours_ci95": [
+     1.1031239488062454,
+     1.1031866982437792
+    ],
+    "mean_final_library": 183.0,
+    "mean_tau_total": 852673331.0,
+    "mean_wasted": 737.0,
+    "mean_n_compiles": 870.0,
+    "ratio_to_ours": 1.1031557840197836
+   },
+   "fixed_cooldown": {
+    "mean_tokens": 9112237602.911907,
+    "n_reps": 20,
+    "rel_to_ours": 1.0117324304275626,
+    "rel_to_ours_ci95": [
+     1.0117116157166592,
+     1.0117529782000767
+    ],
+    "mean_final_library": 9.0,
+    "mean_tau_total": 112100953.0,
+    "mean_wasted": 226.0,
+    "mean_n_compiles": 234.0,
+    "ratio_to_ours": 1.0117324304275626
+   },
+   "no_decay": {
+    "mean_tokens": 8842920903.472904,
+    "n_reps": 20,
+    "rel_to_ours": 0.9818301769139931,
+    "rel_to_ours_ci95": [
+     0.9818128362321412,
+     0.981850092159372
+    ],
+    "mean_final_library": 3.0,
+    "mean_tau_total": 61793332.0,
+    "mean_wasted": 29.0,
+    "mean_n_compiles": 32.0,
+    "ratio_to_ours": 0.9818301769139931
+   },
+   "gamma_prior": {
+    "mean_tokens": 9005503782.036053,
+    "n_reps": 20,
+    "rel_to_ours": 0.9998817662208872,
+    "rel_to_ours_ci95": [
+     0.999868937014083,
+     0.9998941594056716
+    ],
+    "mean_final_library": 9.0,
+    "mean_tau_total": 112078203.0,
+    "mean_wasted": 138.0,
+    "mean_n_compiles": 146.0,
+    "ratio_to_ours": 0.9998817662208872
+   },
+   "fixed_horizon": {
+    "mean_tokens": 8821380880.545654,
+    "n_reps": 20,
+    "rel_to_ours": 0.9794385865387939,
+    "rel_to_ours_ci95": [
+     0.9794234656876541,
+     0.9794528559391755
+    ],
+    "mean_final_library": 0.0,
+    "mean_tau_total": 36800000.0,
+    "mean_wasted": 3.0,
+    "mean_n_compiles": 3.0,
+    "ratio_to_ours": 0.9794385865387939
+   },
+   "no_spend_cap": {
+    "mean_tokens": 9006568662.68588,
+    "n_reps": 20,
+    "rel_to_ours": 1.0,
+    "rel_to_ours_ci95": [
+     1.0,
+     1.0
+    ],
+    "mean_final_library": 9.0,
+    "mean_tau_total": 112100953.0,
+    "mean_wasted": 139.0,
+    "mean_n_compiles": 147.0,
+    "ratio_to_ours": 1.0
+   },
+   "_n_star": Infinity,
+   "_stream": {
+    "n_arrivals": 100000,
+    "families": 68773,
+    "singleton_families": 65653,
+    "singleton_family_pct": 95.46333590217091,
+    "top_family_n": 2342,
+    "top_family_share_pct": 2.342
+   }
+  }
+ }
+}

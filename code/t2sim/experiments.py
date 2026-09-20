@@ -1401,7 +1401,8 @@ ASSEMBLERS = {"E3": _assemble_e3, "E4": _assemble_e4, "E5": _assemble_e5,
 def run_experiment(exp: str, constants: dict, out_dir: Path | None = None,
                    reps: int = 20, seed: int = 7, jobs: int | None = None,
                    quick: bool = False, B: int = 2000,
-                   tag: str = "") -> Path:
+                   tag: str = "",
+                   constants_path: str | None = None) -> Path:
     """Run one experiment and write its JSON.
 
     `tag` suffixes the output file name, for a rerun that must not land on
@@ -1475,6 +1476,10 @@ def run_experiment(exp: str, constants: dict, out_dir: Path | None = None,
     }
     if tag:
         meta["tag"] = tag
+    if constants_path:
+        # Provenance: which constants file the run loaded (the fingerprint
+        # above hashes the patched dict, which several files can produce).
+        meta["constants_file"] = constants_path
     dep = next((c.get("deployment") for c in cells if c.get("deployment")),
                None)
     if dep or any(c.get("crn") for c in cells):
