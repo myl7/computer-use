@@ -18,6 +18,11 @@
       "p_in": 2.2e-07,
       "p_c": 7e-09,
       "p_o": 6.6e-07
+    },
+    "qwen/qwen3.8-flash": {
+      "p_in": 1.5e-07,
+      "p_c": 1.6e-08,
+      "p_o": 4.7e-07
     }
   },
   "rows": [
@@ -708,6 +713,27 @@
         5.429402887151389,
         14.732703983463194
       ]
+    },
+    "qwen/qwen3.8-flash": {
+      "admitted": 4,
+      "total": 6,
+      "attempted": 7,
+      "attempted_note": "includes WebArena CommentPost, which provider-refused before exploration and has no row (qwen_disclosures.webarena)",
+      "C_admitted_median": 346595.7266666667,
+      "C_rejected_median": 1216521.4333333333,
+      "C_fail_side": {
+        "Android/OsmAndMarker": "measured.C_with_repair (the cell's own failed-build price)",
+        "Desktop/CalcTableSave": "C (partial translator+builder spend, C_partial=true)"
+      },
+      "C_fail_multiple": 3.5099146923507942,
+      "nstar_range": [
+        3.566746561139038,
+        13.41235385804452
+      ],
+      "nstar_incl_3c_range": [
+        6.714465501664581,
+        16.476540881452642
+      ]
     }
   },
   "overall": {
@@ -734,8 +760,22 @@
     "experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/WriterMemoSave/deploy.json": "c50e0a7bc52c31faae3bc41aac8e712a49a2ba65acc7bd933871d3629a2a8409",
     "experimental-results/guiexp_webarena/z-ai_glm-5.3-flash/CommentPost/build.json": "e270144656abe7651718a381d7c2840c845836b9c00b2fc9bb7b04da26ed916c",
     "experimental-results/guiexp_webarena/z-ai_glm-5.3-flash/CommentPost/deploy.json": "a99888e3336a23615596cc145cf75c6334c6093e60564a6523d78aa94cd9adf5",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/build.json": "0530c165b286527583a542a7a08b67f8537ba872ca3bd87414c46198080dc7d2",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/deploy.json": "df0b7173146f6409c4ea5c8722bb7423eb6244e43c05406363859bb854dbb3e6",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/build.json": "f309e0384316a0b30910135b53547a4a4dad56c36c6f16bfbbb340194e1d388c",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/deploy.json": "fc60826b00cd5ebd8242653b4908930106fdd7fff5b78ff70bf2d3074da31f4d",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/build.json": "7b47a4d3207651e4d3e8954ffe37de07f1fbc363b4cd5220ed3a7b279bf03339",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/deploy.json": "859de926d6f8f0a54caa12a1f23e2be05e67b147d2051c2b6e80437c93288a06",
+    "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/build.json": "4b6d1c36f013f0ab26cc3cdff9aa99461042208f4f488aae374721dbc4b52e60",
+    "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/build.json": "7196cd9853dc7d58ccd230db2253dce82fc8a57790b63b3ded6e13974fed8629",
+    "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/deploy.json": "065df0708b306fa2e2cb4755730ea98b6ca5d00817c03e402da4f65e58ef876d",
+    "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/build.json": "83e0f816a693901e67e18bfe1e7d7468cb06612b31e328f219ec5ec8a0dbbbbc",
+    "experimental-results/guiexp_webarena/qwen_qwen3.8-flash/CommentPost/build.json": "9e7e4b73709bc28c6b2bf9507b16371b460e6c5c2b935da8d6f5807d7060d72d",
+    "experimental-results/guiexp_webarena/qwen_qwen3.8-flash/CommentPost/provider_refused.md": "78d3b96c95135eb64fd901309ec118c8a9c539f602c6bed4c92185599363bd0d",
+    "experimental-results/guiexp_webarena/qwen_qwen3.8-flash/CommentPost/floor/floor.json": "cfae545526775d9f92ca78cbde99a8ae98e9b7579d37fd25b14fe6e2e9230ac6",
+    "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/wedge.md": "b6563a979a74f557e12cb8e59423499cff117affd0d6fd6e7e868323f3dccef1",
     "experimental-results/guiexp_android/t19_repeated/_lane_summary.json": "6f387576c31b4063de4d1fb73543dd83b5b26147a31171fc1998077a74a89814",
-    "experimental-results/guiexp_android/t20_gate_extraction/summary.json": "7838c0fb76216964293e6c0ab300d480a7d345798d1b96ade58d4817bb7c69b0",
+    "experimental-results/guiexp_android/t20_gate_extraction/summary.json": "abdad3f4674c4a03bc1991bc181ac896be389ace44c97ea6609e7052dfb305b8",
     "experimental-results/guiexp_android/t21_paired_replay/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/use_00/summary.json": "3d06874f26ce0fc76be6e2776cf6f1e3846030b8b352a571d75b61a0c334870c",
     "experimental-results/guiexp_android/t21_paired_replay/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/use_01/summary.json": "b4ba0a4ccf0ca64377d4da6cafdb3d9d00e502c65747925b4c6791fcfac24939",
     "experimental-results/guiexp_android/t21_paired_replay/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/use_02/summary.json": "e11d7c692c35615f58c1760bfbbcc23e403e6b698a8380d0cb37ae91f6006ef3",
@@ -922,6 +962,298 @@
     "experimental-results/guiexp_android/t21_paired_replay/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/use_28/summary.json": "271244cc4e4c6e7418c7d91633087080eb181ef6888534c4ca4b46ba647369a1",
     "experimental-results/guiexp_android/t21_paired_replay/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/use_29/summary.json": "0cbd56df1169dd8f1dc5312c3e3f90cd6c8e90adcfc00cf1f90c364bd78a0482",
     "experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/deploy.json": "d8049744259cd7877d5075f9230fba6d0ee864896e4bea1b2cba2909d5d08b2b"
+  },
+  "qwen_rows": [
+    {
+      "platform": "Android",
+      "model": "qwen/qwen3.8-flash",
+      "family": "ContactsAddContact",
+      "source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/build.json",
+      "deploy_source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/deploy.json",
+      "c": 40200.240000000005,
+      "L_doc": 47681.17333333334,
+      "d": 546.5444444444445,
+      "q": 0.033333333333333326,
+      "C": 136655.21333333335,
+      "C_parts": {
+        "translator": 88546.88,
+        "builder_initial": 48108.333333333336,
+        "builder_refinements": 0.0,
+        "verification_analyzer": 0.0,
+        "verification_resume": 0.0
+      },
+      "floor": null,
+      "doc_share": -0.18609175799282127,
+      "program_share": 0.9530711148877608,
+      "nstar": 3.566746561139038,
+      "nstar_incl_3c": 6.714465501664581,
+      "nstar_incl_observed_floored": null,
+      "n_exploration_episodes": 3,
+      "agent_successes": 3,
+      "doc_successes": 3,
+      "deploy_n": 30,
+      "deploy_successes": 29,
+      "admitted": true,
+      "gates": [
+        2,
+        5,
+        5
+      ],
+      "final_gate": 5,
+      "refinements": 0,
+      "cost_counts_limitation": "No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.",
+      "cache_imputed_episodes": 0,
+      "cache_imputation_share": 0.0
+    },
+    {
+      "platform": "Android",
+      "model": "qwen/qwen3.8-flash",
+      "family": "MarkorDeleteNote",
+      "source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/build.json",
+      "deploy_source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/deploy.json",
+      "c": 22519.017777777775,
+      "L_doc": 19646.404444444448,
+      "d": 384.2266666666667,
+      "q": 0.0,
+      "C": 207527.08000000002,
+      "C_parts": {
+        "translator": 126892.14666666667,
+        "builder_initial": 80634.93333333333,
+        "builder_refinements": 0.0,
+        "verification_analyzer": 0.0,
+        "verification_resume": 0.0
+      },
+      "floor": null,
+      "doc_share": 0.12756388230076715,
+      "program_share": 0.9829376809211533,
+      "nstar": 9.375605984184176,
+      "nstar_incl_3c": 12.427681469975473,
+      "nstar_incl_observed_floored": null,
+      "n_exploration_episodes": 3,
+      "agent_successes": 3,
+      "doc_successes": 3,
+      "deploy_n": 30,
+      "deploy_successes": 30,
+      "admitted": true,
+      "gates": [
+        5,
+        5,
+        5
+      ],
+      "final_gate": 5,
+      "refinements": 0,
+      "cost_counts_limitation": "No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.",
+      "cache_imputed_episodes": 0,
+      "cache_imputation_share": 0.0
+    },
+    {
+      "platform": "Android",
+      "model": "qwen/qwen3.8-flash",
+      "family": "OsmAndMarker",
+      "source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/build.json",
+      "deploy_source": null,
+      "c": 123297.55238095239,
+      "L_doc": 43148.15111111111,
+      "d": 660.6433333333334,
+      "q": 0.0,
+      "C": 346595.7266666667,
+      "C_parts": {
+        "translator": 309360.74666666664,
+        "builder_initial": 166625.17333333334,
+        "builder_refinements": 497027.93333333335,
+        "verification_analyzer": 88863.33333333334,
+        "verification_resume": 523621.7866666668
+      },
+      "floor": null,
+      "doc_share": 0.6500485996851235,
+      "program_share": null,
+      "nstar": null,
+      "nstar_incl_3c": null,
+      "nstar_incl_observed_floored": null,
+      "n_exploration_episodes": 7,
+      "agent_successes": 1,
+      "doc_successes": 2,
+      "deploy_n": null,
+      "deploy_successes": null,
+      "admitted": false,
+      "gates": [
+        0,
+        0,
+        3
+      ],
+      "final_gate": 1,
+      "refinements": 3,
+      "cost_counts_limitation": "No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.",
+      "cache_imputed_episodes": 0,
+      "cache_imputation_share": 0.0,
+      "measured": {
+        "admitted": false,
+        "C_with_repair": 1585498.9733333334,
+        "fill": "model median over the admitted qwen rows (C, d, q); the row's c/L_doc/doc_share stay the cell's own measurements",
+        "gate_history": [
+          3,
+          0,
+          2,
+          1
+        ]
+      },
+      "rejected_note": "unautomatable at verification after the repair rounds; deploy skipped (no version passed the held-out gate)"
+    },
+    {
+      "platform": "Android",
+      "model": "qwen/qwen3.8-flash",
+      "family": "SimpleCalendarAddOneEvent",
+      "source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/build.json",
+      "deploy_source": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/deploy.json",
+      "c": 135664.08444444442,
+      "L_doc": 130170.80444444444,
+      "d": 835.6733333333334,
+      "q": 0.0,
+      "C": 1541962.3466666667,
+      "C_parts": {
+        "translator": 604382.5866666667,
+        "builder_initial": 194351.77333333335,
+        "builder_refinements": 533966.3866666667,
+        "verification_analyzer": 41519.8,
+        "verification_resume": 167741.8
+      },
+      "floor": null,
+      "doc_share": 0.040491778074465454,
+      "program_share": 0.9938401284558438,
+      "nstar": 11.43647940340962,
+      "nstar_incl_3c": 14.455073555631248,
+      "nstar_incl_observed_floored": null,
+      "n_exploration_episodes": 3,
+      "agent_successes": 3,
+      "doc_successes": 3,
+      "deploy_n": 30,
+      "deploy_successes": 30,
+      "admitted": true,
+      "gates": [
+        5,
+        0,
+        0
+      ],
+      "final_gate": 4,
+      "refinements": 3,
+      "cost_counts_limitation": "No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.",
+      "cache_imputed_episodes": 0,
+      "cache_imputation_share": 0.0
+    },
+    {
+      "platform": "Desktop",
+      "model": "qwen/qwen3.8-flash",
+      "family": "CalcTableSave",
+      "source": "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/build.json",
+      "deploy_source": null,
+      "c": 168641.09703703705,
+      "L_doc": null,
+      "d": null,
+      "q": null,
+      "C": 847543.8933333333,
+      "C_partial": true,
+      "terminated_reason": "artifact wedge: exception-swallowing retry loops defeat the replay deadline (wedge.md)",
+      "floor": 558.0007407407409,
+      "doc_share": null,
+      "program_share": null,
+      "nstar": null,
+      "nstar_incl_3c": null,
+      "nstar_incl_observed_floored": null,
+      "n_exploration_episodes": 3,
+      "agent_successes": 3,
+      "doc_successes": null,
+      "deploy_n": null,
+      "deploy_successes": null,
+      "admitted": false,
+      "gates": [
+        null,
+        null,
+        null
+      ],
+      "final_gate": null,
+      "refinements": null,
+      "original_port_break_even": null,
+      "cost_counts_limitation": "Cell TERMINATED by operator ruling inside the held-out gate stage (wedge.md): the qwen-compiled artifact swallows the one-shot replay timeout inside exception retry loops, so verification/deploy/doc_arm never ran. C is the PARTIAL translator+builder spend; builder covers all six unselected arms because no gate ranking happened; the gate stage itself makes no model calls.",
+      "measured": {
+        "admitted": false,
+        "terminated": true,
+        "C_with_repair": 847543.8933333333
+      }
+    },
+    {
+      "platform": "Desktop",
+      "model": "qwen/qwen3.8-flash",
+      "family": "WriterMemoSave",
+      "source": "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/build.json",
+      "deploy_source": "experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/deploy.json",
+      "c": 36984.96888888889,
+      "L_doc": 57983.29333333334,
+      "d": 774.7422222222223,
+      "q": 0.0,
+      "C": 485664.3733333333,
+      "C_parts": {
+        "translator": 271787.6666666666,
+        "builder_initial": 213876.70666666667,
+        "builder_refinements": 0.0,
+        "verification_analyzer": 0.0,
+        "verification_resume": 0.0
+      },
+      "floor": 531.7155555555557,
+      "doc_share": -0.5677529297788003,
+      "program_share": 0.9790525111823205,
+      "nstar": 13.41235385804452,
+      "nstar_incl_3c": 16.476540881452642,
+      "nstar_incl_observed_floored": 16.476540881452642,
+      "n_exploration_episodes": 3,
+      "agent_successes": 3,
+      "doc_successes": 3,
+      "deploy_n": 30,
+      "deploy_successes": 30,
+      "admitted": true,
+      "gates": [
+        0,
+        0,
+        5
+      ],
+      "final_gate": 5,
+      "refinements": 0,
+      "original_port_break_even": {
+        "c_unit_floored": 36289.6,
+        "floor_unit": 532.1,
+        "d_unit": 407.6666666666667,
+        "q": 0.0,
+        "price_weights": {
+          "r_c": 0.107,
+          "r_o": 3.13
+        },
+        "build_totals_raw": {
+          "exploration": 297714,
+          "translator": 93537,
+          "builder_selected": 71443,
+          "verification_analyzer": 0,
+          "verification_resume": 0,
+          "autorpa_build": 462694
+        },
+        "build_totals_priced": {
+          "exploration_floored": 108868.70000000001,
+          "translator": 271509,
+          "builder_selected": 213654,
+          "verification_analyzer_plus_floored_resume": 0,
+          "autorpa_build": 594031.7
+        },
+        "s_unit": 35881.9,
+        "nstar": {
+          "marginal": 5.9544,
+          "autorpa_build": 16.5552
+        }
+      },
+      "cost_counts_limitation": "Recomputed provider-counts unit; no cold-host cache imputation; original port break_even values deliberately not used. C excludes exploration and unselected k/code/document builder arms, includes selected code refinement and all logged analyzer/resume calls. Interrupted lost calls absent."
+    }
+  ],
+  "qwen_disclosures": {
+    "webarena": "provider content-filter refusal (400 data_inspection_failed), deterministic, floor 18/18 passed; single Alibaba endpoint",
+    "osmand": "rejected at verification after repair rounds under the image-413-guard completion",
+    "calc": "artifact wedge: exception-swallowing retry loops defeat the replay deadline (wedge.md)"
   },
   "repeated_and_extraction": [
     {

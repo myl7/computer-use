@@ -2,6 +2,16 @@
 
 Run from any directory. --check also compares the rendered rows with body.tex.
 The older number generators retain their historical Android-only scope.
+
+A third model layer, qwen/qwen3.8-flash (measured 2026-09-20), exists since
+2026-09-20: its six rows (4 AndroidWorld + 2 OSWorld; the WebArena cell
+provider-refused before producing stage data and has no row) are always
+computed from the raw cell records and written under the top-level
+`qwen_rows` / `aggregate['qwen/qwen3.8-flash']` / `qwen_disclosures` keys.
+The body.tex tables and every legacy count remain glm/ds-only; the qwen
+body/table integration is PENDING (--include-qwen previews a merged `rows`
+array in the JSON only).  --check-qwen pins the qwen rows against frozen
+literals.
 """
 from pathlib import Path
 import json, statistics, argparse, hashlib
@@ -9,6 +19,14 @@ parser=argparse.ArgumentParser()
 parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parent.parent)
 parser.add_argument('--output', type=Path, default=Path(__file__).with_suffix('.json'))
 parser.add_argument('--check', action='store_true')
+parser.add_argument('--include-qwen', action='store_true',
+ help='also merge the qwen rows into the JSON `rows` array (sorted). '
+ 'OFF by default: the JSON always carries qwen_rows regardless, the '
+ 'body.tex comparison stays glm/ds, and the rendered latex tables are '
+ 'unaffected (body/table integration pending).')
+parser.add_argument('--check-qwen', action='store_true',
+ help='assert internal consistency of the qwen layer only: recompute the '
+ 'rows from the same raw sources and compare them against frozen literals.')
 args=parser.parse_args()
 ROOT=args.root.resolve()
 OLD=ROOT/'experimental-results/guiexp_android/t16_build/constants_table.json'
@@ -22,14 +40,20 @@ for x in old['cells']:
  if x['family'] not in keep:continue
  h=x['headline'];g=x['gate'];c=h['c'];C=h['C_with_repair'];s=h['s_arrival'];f=h['floor_pw'];n=x['exploration']['attempts']
  rows.append(dict(platform='Android',model=x['model'],family=x['family'],source=str(OLD.relative_to(ROOT)),c=c,L_doc=h['L_doc'],d=h['d'],q=h['q'],C=C,floor=f,doc_share=h['share_doc'],program_share=h['share_prog'],nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+h['exploration_total']-n*f,s),n_exploration_episodes=n,agent_successes=x['exploration']['successes'],doc_successes=x['doc_arm']['successes'],admitted=h['admitted'],gates=[g[f'gate_k{k}_passed'] for k in (1,2,3)],final_gate=g['p_headline']*5 if g.get('p_headline') is not None else None,refinements=x['verification']['refinements'],cost_counts_limitation='Exploration cached counts imputed for reused episodes where missing; deployment uses recorded bill divided by fresh-input price.',cache_imputed_episodes=x['exploration']['reused_episodes_cache_imputed'],cache_imputation_share=x['exploration']['reused_cache_share_used']))
-for platform,dirname in [('Desktop','guiexp_osworld'),('Web','guiexp_webarena')]:
- for path in sorted((ROOT/'experimental-results'/dirname).glob('*/*/build.json')):
-  if 'mock' in str(path):continue
+def desktop_web_row(platform,path):
+  """The 2026-09-18 Desktop/Web mapping, shared verbatim by the glm/ds loop
+  below and by the qwen WriterMemoSave row. Reads path's build.json (and its
+  sibling deploy.json when admitted); returns one row dict."""
   x=json.loads(path.read_text());m=x['model'];n=x['exploration']['totals']['episodes'];f=statistics.mean(pw(u,m) for u in x['floor']['per_run']);et=pw(x['exploration']['totals'],m);c=et/n-f;doc=x['doc_arm'];ld=pw(doc['totals'],m)/len(doc['episodes'])-f;v=x['verification'];vt=v['totals'];sel=x['builder']['selected_arm'];init=x['builder']['initial'][f"k{sel['k']}_{sel['artifact']}"]['usage'];Cparts={'translator':pw(x['translator']['totals'],m),'builder_initial':pw(init,m),'builder_refinements':pw(vt['builder_refinements'],m),'verification_analyzer':pw(vt['analyzer'],m),'verification_resume':pw(vt['resume_episodes'],m)};C=sum(Cparts.values());dp=path.with_name('deploy.json');d=q=None;dn=ds=None
   if v['admitted']:
    de=json.loads(dp.read_text()); assert all(u.get('calls_detail') for u in de['uses']);d=statistics.mean(sum(pw(call,m) for call in u['calls_detail']) for u in de['uses']);dn=de['n'];ds=de['success_count'];q=1-ds/dn
   s=(1-q)*c-d if q is not None else None
-  rows.append(dict(platform=platform,model=m,family=x['family'],source=str(path.relative_to(ROOT)),deploy_source=str(dp.relative_to(ROOT)) if v['admitted'] else None,c=c,L_doc=ld,d=d,q=q,C=C,C_parts=Cparts,floor=f,doc_share=(c-ld)/c,program_share=ratio(s,c),nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+et-n*f,s),n_exploration_episodes=n,agent_successes=sum(bool(a.get('success')) for inst in x['exploration']['instances'] for a in inst['attempts']),doc_successes=doc['success_count'],deploy_n=dn,deploy_successes=ds,admitted=v['admitted'],gates=[x['gate_per_k'][f'k{k}']['bindings_passed'] for k in (1,2,3)],final_gate=v['gate']['bindings_passed'],refinements=v['refinements'],original_port_break_even=x['break_even'],cost_counts_limitation='Recomputed provider-counts unit; no cold-host cache imputation; original port break_even values deliberately not used. C excludes exploration and unselected k/code/document builder arms, includes selected code refinement and all logged analyzer/resume calls. Interrupted lost calls absent.'))
+  return dict(platform=platform,model=m,family=x['family'],source=str(path.relative_to(ROOT)),deploy_source=str(dp.relative_to(ROOT)) if v['admitted'] else None,c=c,L_doc=ld,d=d,q=q,C=C,C_parts=Cparts,floor=f,doc_share=(c-ld)/c,program_share=ratio(s,c),nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+et-n*f,s),n_exploration_episodes=n,agent_successes=sum(bool(a.get('success')) for inst in x['exploration']['instances'] for a in inst['attempts']),doc_successes=doc['success_count'],deploy_n=dn,deploy_successes=ds,admitted=v['admitted'],gates=[x['gate_per_k'][f'k{k}']['bindings_passed'] for k in (1,2,3)],final_gate=v['gate']['bindings_passed'],refinements=v['refinements'],original_port_break_even=x['break_even'],cost_counts_limitation='Recomputed provider-counts unit; no cold-host cache imputation; original port break_even values deliberately not used. C excludes exploration and unselected k/code/document builder arms, includes selected code refinement and all logged analyzer/resume calls. Interrupted lost calls absent.')
+for platform,dirname in [('Desktop','guiexp_osworld'),('Web','guiexp_webarena')]:
+ for path in sorted((ROOT/'experimental-results'/dirname).glob('*/*/build.json')):
+  if 'mock' in str(path):continue
+  if json.loads(path.read_text())['model'] not in prices:continue
+  rows.append(desktop_web_row(platform,path))
 rows.sort(key=lambda r:(r['model'],['Android','Desktop','Web'].index(r['platform']),r['family']))
 ag={}
 for m in prices:
@@ -41,6 +65,87 @@ out['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).he
 def read_source(path):
     out['source_sha256'][str(path.relative_to(ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()
     return json.loads(path.read_text())
+
+# ------------------------------------------------------------------ qwen layer
+# Third model qwen/qwen3.8-flash, measured 2026-09-20. DATA LAYER ONLY: the
+# rows live under `qwen_rows` (never in `rows`), so the glm/ds tables,
+# `overall`, repeated/paired sections and every legacy count are unchanged;
+# body/table integration is PENDING.
+#
+# Field mapping vs the frozen Android reader (constants_table.json): c, L_doc,
+# d, q, C, floor, doc_share, program_share, nstar, gates and admitted use the
+# same formulas, derived from each cell's own build.json/deploy.json instead
+# of the frozen table's headline. Fields that map differently:
+#   * floor: the Android no-task floor is a per-model constant measured on 18
+#     idle episodes (GLM 5090 / DeepSeek 2290 raw tokens). No such measurement
+#     exists for qwen, so floor is None and c/L_doc stay UNSUBTRACTED
+#     (nstar_incl_observed_floored is therefore None too).
+#   * d: deployment bill / p_in proxy (mean use cost_usd / p_in), i.e. the
+#     same bill convention the table's headline d carries.
+#   * C: translator + selected builder arm + refinements + analyzer + resume
+#     from the raw stage records (= the table's C_with_repair definition).
+#     qwen builder arms carry their usage at the top level (the Desktop
+#     records wrap it in a 'usage' dict).
+#   * final gate: verification.gate_after_repair.bindings_passed (the table's
+#     p_headline*5); per-k gates come from gate_per_k as before.
+#   * no cache imputation: qwen episodes record complete prompt/cached/
+#     completion counts, so cache_imputed_episodes is 0.
+#   * rejected row (OsmAndMarker): C/d/q carry the model median over the
+#     ADMITTED qwen rows (the t2sim rejected-row convention; the engine and
+#     the constants builder need a price for an attempt that passes); the
+#     cell's own failed-build price is kept under measured.C_with_repair.
+#   * terminated row (CalcTableSave): C is the PARTIAL translator+builder
+#     spend flagged C_partial (the gate stage makes no model calls), with
+#     terminated_reason set and program fields None.
+#   * WebArena CommentPost has NO row: provider-refused at exploration seed 1
+#     (qwen_disclosures.webarena).
+QWEN='qwen/qwen3.8-flash'
+QWEN_TERMINATED_REASON='artifact wedge: exception-swallowing retry loops defeat the replay deadline (wedge.md)'
+qwen_files=[]
+def qread(p):
+ qwen_files.append(p);return json.loads(p.read_text())
+prices[QWEN]={'p_in':1.5e-07,'p_c':1.6e-08,'p_o':4.7e-07}   # OpenRouter list 2026-09-20 (r_c 0.107, r_o 3.13); out['prices'] shares this dict
+qwen_rows=[];qwen_android={}
+for fam in ['ContactsAddContact','MarkorDeleteNote','SimpleCalendarAddOneEvent','OsmAndMarker']:
+ cell=ROOT/'experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash'/fam
+ x=qread(cell/'build.json');v=x['verification']
+ ex=x['exploration'];n=len(ex['per_episode']);et=pw(ex['totals'],QWEN)
+ floor=None   # no qwen Android no-task floor has been measured; see mapping note
+ c=et/n-(floor if floor is not None else 0)
+ doc=x['doc_arm'];ld=pw(doc['totals'],QWEN)/len(doc['episodes'])-(floor if floor is not None else 0)
+ sel=x['builder']['selected_arm'];init=x['builder']['initial'][f"k{sel['k']}_{sel['artifact']}"]
+ Cparts={'translator':pw(x['translator']['totals'],QWEN),'builder_initial':pw(init,QWEN),'builder_refinements':pw(v['builder_refinements'],QWEN),'verification_analyzer':pw(v['analyzer'],QWEN),'verification_resume':pw(v['resume_episodes'],QWEN)};C=sum(Cparts.values())
+ dp=cell/'deploy.json';d=q=None;dn=ds=None
+ if v['admitted']:
+  de=qread(dp);assert all(u.get('calls_detail') for u in de['uses']);d=statistics.mean(u['cost_usd'] for u in de['uses'])/prices[QWEN]['p_in'];dn=de['n'];ds=de['success_count'];q=1-ds/dn
+ s=(1-q)*c-d if q is not None else None
+ row=dict(platform='Android',model=QWEN,family=fam,source=str((cell/'build.json').relative_to(ROOT)),deploy_source=str(dp.relative_to(ROOT)) if v['admitted'] else None,c=c,L_doc=ld,d=d,q=q,C=C,C_parts=Cparts,floor=floor,doc_share=(c-ld)/c,program_share=ratio(s,c),nstar=ratio(C,s),nstar_incl_3c=ratio(C+3*c,s),nstar_incl_observed_floored=ratio(C+et-n*floor,s) if floor is not None else None,n_exploration_episodes=n,agent_successes=sum(bool(e['success']) for e in ex['per_episode']),doc_successes=doc['success_count'],deploy_n=dn,deploy_successes=ds,admitted=v['admitted'],gates=[x['gate_per_k'][f'k{k}']['bindings_passed'] for k in (1,2,3)],final_gate=v['gate_after_repair']['bindings_passed'],refinements=v['refinements'],cost_counts_limitation='No per-model Android no-task floor exists for qwen (the GLM 5090 / DeepSeek 2290 constants predate this model), so c and L_doc are UNSUBTRACTED. d uses the deployment-bill/p_in proxy, matching the Android convention. Raw prompt/cached/completion counts are recorded for every call, so no cache imputation was needed.',cache_imputed_episodes=0,cache_imputation_share=0.0)
+ qwen_rows.append(row);qwen_android[fam]=row
+wm=ROOT/'experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/build.json'
+qwen_files+=[wm,wm.with_name('deploy.json')]
+qwen_rows.append(desktop_web_row('Desktop',wm))     # admitted; identical Desktop mapping as the glm/ds rows
+calc_path=ROOT/'experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/build.json'
+x=qread(calc_path)
+fc=statistics.mean(pw(u,QWEN) for u in x['floor']['per_run']);nc=x['exploration']['totals']['episodes'];c=pw(x['exploration']['totals'],QWEN)/nc-fc
+C_partial=pw(x['translator']['totals'],QWEN)+sum(pw(a['usage'] if 'usage' in a else a,QWEN) for a in x['builder']['initial'].values())   # gate stage makes no model calls (wedge.md)
+calc_row=dict(platform='Desktop',model=QWEN,family='CalcTableSave',source=str(calc_path.relative_to(ROOT)),deploy_source=None,c=c,L_doc=None,d=None,q=None,C=C_partial,C_partial=True,terminated_reason=QWEN_TERMINATED_REASON,floor=fc,doc_share=None,program_share=None,nstar=None,nstar_incl_3c=None,nstar_incl_observed_floored=None,n_exploration_episodes=nc,agent_successes=sum(bool(a.get('success')) for inst in x['exploration']['instances'] for a in inst['attempts']),doc_successes=None,deploy_n=None,deploy_successes=None,admitted=False,gates=[None,None,None],final_gate=None,refinements=None,original_port_break_even=None,cost_counts_limitation='Cell TERMINATED by operator ruling inside the held-out gate stage (wedge.md): the qwen-compiled artifact swallows the one-shot replay timeout inside exception retry loops, so verification/deploy/doc_arm never ran. C is the PARTIAL translator+builder spend; builder covers all six unselected arms because no gate ranking happened; the gate stage itself makes no model calls.',measured={'admitted':False,'terminated':True,'C_with_repair':C_partial})
+qwen_rows.append(calc_row)
+qok=[r for r in qwen_rows if r['admitted']]
+fill={'C':statistics.median([r['C'] for r in qok]),'d':statistics.median([r['d'] for r in qok if r['d'] is not None]),'q':statistics.median([r['q'] for r in qok if r['q'] is not None])}
+osm=qwen_android['OsmAndMarker'];osm_own_C=osm['C']
+osm['C']=fill['C'];osm['d']=fill['d'];osm['q']=fill['q']
+osm['measured']={'admitted':False,'C_with_repair':osm_own_C,'fill':"model median over the admitted qwen rows (C, d, q); the row's c/L_doc/doc_share stay the cell's own measurements",'gate_history':[g['passed'] for g in json.loads((ROOT/osm['source']).read_text())['verification']['gate_history']]}
+osm['rejected_note']='unautomatable at verification after the repair rounds; deploy skipped (no version passed the held-out gate)'
+qwen_rows.sort(key=lambda r:(r['model'],['Android','Desktop','Web'].index(r['platform']),r['family']))
+C_adm=statistics.median([r['C'] for r in qok]);C_fail=statistics.median([osm_own_C,C_partial])
+qwen_aggregate={'admitted':len(qok),'total':len(qwen_rows),'attempted':len(qwen_rows)+1,'attempted_note':'includes WebArena CommentPost, which provider-refused before exploration and has no row (qwen_disclosures.webarena)','C_admitted_median':C_adm,'C_rejected_median':C_fail,'C_fail_side':{'Android/OsmAndMarker':"measured.C_with_repair (the cell's own failed-build price)",'Desktop/CalcTableSave':'C (partial translator+builder spend, C_partial=true)'},'C_fail_multiple':C_fail/C_adm,'nstar_range':[min(r['nstar'] for r in qok),max(r['nstar'] for r in qok)],'nstar_incl_3c_range':[min(r['nstar_incl_3c'] for r in qok),max(r['nstar_incl_3c'] for r in qok)]}
+out['qwen_rows']=qwen_rows
+out['aggregate'][QWEN]=qwen_aggregate
+out['qwen_disclosures']={'webarena':'provider content-filter refusal (400 data_inspection_failed), deterministic, floor 18/18 passed; single Alibaba endpoint','osmand':'rejected at verification after repair rounds under the image-413-guard completion','calc':QWEN_TERMINATED_REASON}
+cp=ROOT/'experimental-results/guiexp_webarena/qwen_qwen3.8-flash/CommentPost'
+qwen_files+=[cp/'build.json',cp/'provider_refused.md',cp/'floor/floor.json',ROOT/'experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/wedge.md']
+for p in qwen_files:
+ out['source_sha256'][str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
 
 android = ROOT / 'experimental-results/guiexp_android'
 repeated = read_source(android / 't19_repeated/_lane_summary.json')['cells']
@@ -191,5 +296,44 @@ if args.check:
     assert sum(r['verified_extra'] for r in out['repeated_and_extraction']) == 9
     assert sum(r['provider_errors'] for r in out['repeated_and_extraction']) == 3
     print(f'PASS: {sum(len(v) for v in dual_rows.values())} dual rows ({dual_model_cells} model cells), 180 binding matches, and measurement counts.')
+if args.include_qwen:
+    # Preview of the pending body/table integration: merge the qwen rows into
+    # the JSON `rows` array only. The latex tables above and the glm/ds
+    # checks are untouched (consumers bucket `rows` by model prefix, so this
+    # mode is NOT read by paper/check_numbers_new.py or the body renderer).
+    out['rows']=sorted(rows+qwen_rows,key=lambda r:(r['model'],['Android','Desktop','Web'].index(r['platform']),r['family']))
+if args.check_qwen:
+    def qclose(got,want,tag):
+        assert got is not None and abs(got-want)<=1e-9*max(1.0,abs(want)),(tag,got,want)
+    qw={(r['platform'],r['family']):r for r in out['qwen_rows']}
+    assert set(qw)=={('Android','ContactsAddContact'),('Android','MarkorDeleteNote'),('Android','SimpleCalendarAddOneEvent'),('Android','OsmAndMarker'),('Desktop','WriterMemoSave'),('Desktop','CalcTableSave')},set(qw)
+    QW_FROZEN={
+     ('Android','ContactsAddContact'):dict(admitted=True,c=40200.240000000005,C=136655.21333333335,d=546.5444444444445,q=0.033333333333333326,nstar=3.566746561139038,doc_share=-0.18609175799282127,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[2,5,5],final_gate=5,refinements=0,floor=None),
+     ('Android','MarkorDeleteNote'):dict(admitted=True,c=22519.017777777775,C=207527.08000000002,d=384.2266666666667,q=0.0,nstar=9.375605984184176,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,5,5],final_gate=5,refinements=0,floor=None),
+     ('Android','SimpleCalendarAddOneEvent'):dict(admitted=True,c=135664.08444444442,C=1541962.3466666667,d=835.6733333333334,q=0.0,nstar=11.43647940340962,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[5,0,0],final_gate=4,refinements=3,floor=None),
+     ('Android','OsmAndMarker'):dict(admitted=False,c=123297.55238095239,L_doc=43148.15111111111,C=346595.7266666667,d=660.6433333333334,q=0.0,nstar=None,program_share=None,agent_successes=1,doc_successes=2,n_exploration_episodes=7,gates=[0,0,3],final_gate=1,refinements=3,floor=None),
+     ('Desktop','WriterMemoSave'):dict(admitted=True,c=36984.96888888889,C=485664.3733333333,d=774.7422222222223,q=0.0,nstar=13.41235385804452,doc_successes=3,agent_successes=3,n_exploration_episodes=3,gates=[0,0,5],final_gate=5,refinements=0,floor=531.7155555555557),
+     ('Desktop','CalcTableSave'):dict(admitted=False,c=168641.09703703705,L_doc=None,d=None,q=None,C=847543.8933333333,nstar=None,agent_successes=3,doc_successes=None,n_exploration_episodes=3,gates=[None,None,None],final_gate=None,refinements=None,terminated_reason=QWEN_TERMINATED_REASON),
+    }
+    for key,exp in QW_FROZEN.items():
+        r=qw[key]
+        for k,want in exp.items():
+            if isinstance(want,bool) or not isinstance(want,(int,float)) or isinstance(want,int) and not isinstance(want,bool) and k in ('admitted','doc_successes','agent_successes','n_exploration_episodes','gates','final_gate','refinements'):
+                assert r.get(k)==want,(key,k,r.get(k),want)
+            else:
+                qclose(r.get(k),want,f'{key}.{k}')
+    assert qw[('Desktop','CalcTableSave')]['C_partial'] is True
+    assert abs(qw[('Android','OsmAndMarker')]['measured']['C_with_repair']-1585498.9733333334)<=1e-6
+    ag=out['aggregate'][QWEN]
+    assert ag['admitted']==4 and ag['total']==6 and ag['attempted']==7
+    qclose(ag['C_admitted_median'],346595.7266666667,'aggregate.C_admitted_median')
+    qclose(ag['C_rejected_median'],1216521.4333333333,'aggregate.C_rejected_median')
+    qclose(ag['C_fail_multiple'],3.5099146923507942,'aggregate.C_fail_multiple')
+    qclose(ag['nstar_range'][0],3.566746561139038,'aggregate.nstar_range[0]')
+    qclose(ag['nstar_range'][1],13.41235385804452,'aggregate.nstar_range[1]')
+    assert out['qwen_disclosures']['calc']==QWEN_TERMINATED_REASON and 'data_inspection_failed' in out['qwen_disclosures']['webarena'] and 'image-413-guard' in out['qwen_disclosures']['osmand']
+    assert prices[QWEN]=={'p_in':1.5e-07,'p_c':1.6e-08,'p_o':4.7e-07}
+    assert 'CommentPost' not in {r['family'] for r in out['qwen_rows']}
+    print('PASS qwen: 6 rows (4 admitted) recomputed from the raw cells match the frozen literals; aggregate, prices and disclosures consistent.')
 args.output.write_text(json.dumps(out, indent=2)+'\n')
 print('Wrote', args.output)
