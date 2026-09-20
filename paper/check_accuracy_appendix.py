@@ -130,6 +130,8 @@ def binom_two_sided(b: int, c: int):
 # t21: per (model_slug, family) -> {use_index: summary dict}
 T21_RAW: dict = {}
 for _f in sorted(glob.glob(os.path.join(T21, "*", "*", "use_*", "summary.json"))):
+    if "qwen" in _f:
+        continue  # qwen rows enter the paper later; literals cover glm/ds only
     _d = json.load(open(_f))
     _slug = _d["cell"].split("/")[0]
     T21_RAW.setdefault((_slug, _d["family"]), {})[_d["use_index"]] = _d

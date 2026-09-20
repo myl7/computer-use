@@ -1049,14 +1049,14 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
     # ---------------- tab:policysim: all 72 printed cells ----------------
     PATS = ("poisson", "zipf", "bursty")
     E3TAB = {  # printed cells: GLM pois/zipf/bursty then DS pois/zipf/bursty
-        "always_reactive": ("6.1", "9.4", "5.6", "0.83", "0.92", "0.85"),
-        "always_compile": ("0.64", "0.64", "0.60", "6.1", "4.7", "6.6"),
-        "success_count": ("1.73", "1.72", "1.56", "5.1", "4.1", "5.5"),
-        "toolpro_port": ("4.3", "2.4", "3.0", "0.83", "0.92", "0.83"),
-        "breakeven": ("0.97", "0.96", "0.90", "1.50", "1.25", "1.41"),
-        "ours": ("1.00",) * 6,
-        "oracle": ("0.64", "0.64", "0.59", "0.74", "0.89", "0.76"),
-        "offline_opt": ("0.34", "0.34", "0.32", "0.73", "0.89", "0.75"),
+        "always_reactive": ("6.06", "9.42", "5.60", "0.830", "0.923", "0.850"),
+        "always_compile": ("0.636", "0.642", "0.595", "6.11", "4.66", "6.57"),
+        "success_count": ("1.73", "1.72", "1.56", "5.11", "4.14", "5.54"),
+        "toolpro_port": ("4.26", "2.37", "2.95", "0.829", "0.923", "0.832"),
+        "breakeven": ("0.974", "0.963", "0.899", "1.50", "1.25", "1.41"),
+        "ours": ("1.00", "1.00", "1.00", "1.00", "1.00", "1.00"),
+        "oracle": ("0.636", "0.641", "0.594", "0.742", "0.889", "0.756"),
+        "offline_opt": ("0.341", "0.339", "0.323", "0.735", "0.886", "0.750"),
     }
     E3COLS = [(p, cs) for cs in ("android_glm", "android_ds") for p in PATS]
     for _row, _printed in E3TAB.items():
@@ -1120,15 +1120,15 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
 
     # ---------------- tab:realstreams: all 72 printed cells ----------------
     STREAMS4 = ("sepsis", "bpi2019", "wiki_A", "wiki_B")
-    E4TAB = {  # printed cells: sepsis/bpi/wiki_A/wiki_B, measured then 5M
-        "always_reactive": ("1.16", "1.00", "2.9", "1.96", "12", "4.0", "1.09", "1.09"),
-        "always_compile": ("1.01", "1.42", "1.75", "1.58", "1.18", "0.71", "1.23", "1.64"),
-        "success_count": ("1.06", "1.02", "0.82", "0.68", "0.93", "0.43", "0.96", "1.06"),
-        "toolpro_port": ("1.16", "1.00", "1.35", "1.96", "1.74", "4.0", "1.07", "1.09"),
-        "breakeven": ("1.00", "1.00", "1.25", "0.45", "1.00", "0.41", "1.07", "0.95"),
-        "ours": ("1.00",) * 8,
-        "oracle": ("0.99", "0.92", "1.41", "0.48", "1.04", "0.34", "1.12", "0.94"),
-        "offline_opt": ("0.88", "0.91", "0.21", "0.27", "0.42", "0.26", "0.72", "0.87"),
+    E4TAB = {
+        "always_reactive": ("1.16", "1.00", "2.85", "1.96", "11.8", "4.02", "1.09", "1.09"),
+        "always_compile": ("1.01", "1.42", "1.75", "1.58", "1.18", "0.712", "1.23", "1.64"),
+        "success_count": ("1.06", "1.02", "0.815", "0.683", "0.934", "0.433", "0.959", "1.06"),
+        "toolpro_port": ("1.16", "1.00", "1.35", "1.96", "1.74", "4.02", "1.07", "1.09"),
+        "breakeven": ("1.00", "1.00", "1.25", "0.452", "0.998", "0.411", "1.07", "0.952"),
+        "ours": ("1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00"),
+        "oracle": ("0.990", "0.925", "1.41", "0.482", "1.04", "0.342", "1.12", "0.942"),
+        "offline_opt": ("0.882", "0.915", "0.205", "0.267", "0.420", "0.263", "0.720", "0.870"),
     }
     E4COLS = [f"{_s}/price={_p}" for _s in STREAMS4 for _p in ("native", "5M")]
     for _row, _printed in E4TAB.items():
@@ -1492,30 +1492,42 @@ if group(18, "tab:success per-success column + t18 fragility probe (2026-09-19)"
     per18 = {(r["family"], "glm" if "z-ai" in r["model"] else "ds"): r
              for r in mu18["rows"]}
     T7 = [
-        ("ContactsAddContact", "glm", 1.00, 98.7, 179, 0.42),
-        ("MarkorDeleteNote", "glm", 1.00, 33.7, 6940, 1.46),
-        ("SimpleCalendarAddOneEvent", "glm", 1.00, 313.8, 558, 2.93),
-        ("OsmAndMarker", "glm", 0.13, 2238.7, 475, 0.43),
-        ("CalcTableSave", "glm", 1.00, 505.1, 672, 0.95),
-        ("WriterMemoSave", "glm", 1.00, 70.2, 547, 3.65),
-        ("CommentPost", "glm", 1.00, 123.9, 651, 2.05),
-        ("ContactsAddContact", "ds", 1.00, 65.0, 2598, 2.30),
-        ("MarkorDeleteNote", "ds", 1.00, 10.8, 761, 6.85),
-        ("SimpleCalendarAddOneEvent", "ds", 1.00, 146.3, None, None),
-        ("OsmAndMarker", "ds", 0.14, 1069.5, None, None),
-        ("CalcTableSave", "ds", 0.75, 862.3, None, None),
-        ("WriterMemoSave", "ds", 0.75, 67.6, 650, 8.74),
-        ("CommentPost", "ds", 1.00, 40.0, 654, 8.44),
+        ("ContactsAddContact", "glm", "1.00", "98.7k", "179", "0.416"),
+        ("MarkorDeleteNote", "glm", "1.00", "33.7k", "6.94k", "1.46"),
+        ("SimpleCalendarAddOneEvent", "glm", "1.00", "314k", "558", "2.93"),
+        ("OsmAndMarker", "glm", "0.13", "2240k", "475", "0.432"),
+        ("CalcTableSave", "glm", "1.00", "505k", "672", "0.954"),
+        ("WriterMemoSave", "glm", "1.00", "70.2k", "547", "3.65"),
+        ("CommentPost", "glm", "1.00", "124k", "651", "2.05"),
+        ("ContactsAddContact", "ds", "1.00", "65.0k", "2.60k", "2.30"),
+        ("MarkorDeleteNote", "ds", "1.00", "10.8k", "761", "6.85"),
+        ("SimpleCalendarAddOneEvent", "ds", "1.00", "146k", None, None),
+        ("OsmAndMarker", "ds", "0.14", "1070k", None, None),
+        ("CalcTableSave", "ds", "0.75", "862k", None, None),
+        ("WriterMemoSave", "ds", "0.75", "67.6k", "650", "8.74"),
+        ("CommentPost", "ds", "1.00", "40.0k", "654", "8.44"),
     ]
+    def _nd(s):
+        return len(s.split(".")[1]) if "." in s else 0
     for fam, mk, pi_w, ag_w, pr_w, ns_w in T7:
         r = per18[(fam, mk)]
         pi = r["agent_successes"] / r["n_exploration_episodes"]
-        approx(f"{mk}/{fam}: pi", pi, pi_w, 0.0051)
-        eq_round(f"{mk}/{fam}: agent per success (k)", r["c"] / pi / 1000, ag_w, 1)
+        approx(f"{mk}/{fam}: pi", pi, float(pi_w), 0.0051)
+        agm = ag_w[:-1] if ag_w.endswith("k") else ag_w
+        agv = r["c"] / pi / 1000
+        agnd = _nd(agm)
+        if agnd == 0 and agv != 0:
+            agnd = 2 - math.floor(math.log10(abs(agv)))  # 3 s.f. rounding digit
+        eq_round(f"{mk}/{fam}: agent per success (k)", r["c"] / pi / 1000,
+                 float(agm), agnd)
         if pr_w is not None:
             prog = (r["d"] + r["q"] * r["c"]) / ((1 - r["q"]) + r["q"] * pi)
-            eq_round(f"{mk}/{fam}: program per success (tok)", prog, pr_w, 0)
-            eq_round(f"{mk}/{fam}: Nstar_succ", r["C"] / (r["c"] / pi - prog), ns_w, 2)
+            pv = prog / 1000 if pr_w.endswith("k") else prog
+            eq_round(f"{mk}/{fam}: program per success (tok)", pv,
+                     float(pr_w[:-1] if pr_w.endswith("k") else pr_w),
+                     _nd(pr_w[:-1] if pr_w.endswith("k") else pr_w))
+            eq_round(f"{mk}/{fam}: Nstar_succ", r["C"] / (r["c"] / pi - prog),
+                     float(ns_w), _nd(ns_w))
         else:
             eq_int(f"{mk}/{fam}: rejected cell has no program columns",
                    r["admitted"], False)
@@ -1569,14 +1581,14 @@ if group(19, "tab:realstreams DeepSeek half + bold argmins + parity scope (2026-
            all(e4dp[f"{_s}/price=native"] == e4da[f"{_s}/price=native"]
                for _s in STREAMS4), True)
     E4DSTAB = {  # printed DS cells: sepsis/bpi/wiki_A/wiki_B, meas. then 5M
-        "always_reactive": ("0.95", "1.00", "1.00", "1.00", "1.00", "1.00", "0.95", "1.00"),
-        "always_compile":  ("1.93", "23", "9.41", "172", "5.09", "87", "2.98", "41"),
-        "success_count":   ("1.48", "13", "8.76", "165", "4.99", "85", "2.34", "31"),
-        "toolpro_port":    ("0.95", "1.00", "1.07", "1.00", "0.99", "1.00", "0.96", "1.00"),
-        "breakeven":       ("1.24", "1.56", "1.12", "1.05", "1.01", "1.02", "1.23", "1.19"),
-        "ours": ("1.00",) * 8,
-        "oracle":          ("0.95", "1.00", "1.03", "0.86", "0.96", "0.95", "1.03", "0.99"),
-        "offline_opt":     ("0.94", "1.00", "0.80", "0.82", "0.94", "0.95", "0.92", "0.99"),
+        "always_reactive": ("0.949", "1.00", "1.00", "1.00", "1.00", "1.00", "0.952", "1.00"),
+        "always_compile": ("1.93", "22.8", "9.41", "172", "5.09", "87.3", "2.98", "41.1"),
+        "success_count": ("1.48", "12.8", "8.76", "165", "4.99", "85.5", "2.34", "30.8"),
+        "toolpro_port": ("0.949", "1.00", "1.07", "1.00", "0.993", "1.00", "0.955", "1.00"),
+        "breakeven": ("1.24", "1.56", "1.12", "1.05", "1.01", "1.02", "1.23", "1.19"),
+        "ours": ("1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00"),
+        "oracle": ("0.946", "1.00", "1.03", "0.861", "0.957", "0.949", "1.03", "0.995"),
+        "offline_opt": ("0.942", "1.00", "0.798", "0.820", "0.941", "0.945", "0.922", "0.986"),
     }
     for _row, _printed in E4DSTAB.items():
         for _k, _s in zip(E4COLS, _printed):
@@ -1815,21 +1827,21 @@ if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (20
     _TAB_ROWS = ("always_reactive", "narrow_trigger", "fixed_cooldown",
                  "no_decay", "gamma_prior", "fixed_horizon", "no_spend_cap")
     _TAB_WANT = {  # (row, costset, price): (mean, worst) as printed
-        ("always_reactive", "glm", "native"): (4.22, 11.75),
+        ("always_reactive", "glm", "native"): (4.22, 11.8),
         ("always_reactive", "glm", "5M"): (2.02, 4.02),
-        ("always_reactive", "ds", "native"): (0.98, 1.00),
+        ("always_reactive", "ds", "native"): (0.976, 1.00),
         ("always_reactive", "ds", "5M"): (1.00, 1.00),
         ("narrow_trigger", "glm", "native"): (1.08, 1.25),
-        ("narrow_trigger", "glm", "5M"): (0.70, 1.00),
+        ("narrow_trigger", "glm", "5M"): (0.705, 1.00),
         ("narrow_trigger", "ds", "native"): (1.15, 1.24),
         ("narrow_trigger", "ds", "5M"): (1.21, 1.56),
         ("fixed_cooldown", "glm", "native"): (1.00, 1.00),
         ("fixed_cooldown", "glm", "5M"): (1.00, 1.00),
         ("fixed_cooldown", "ds", "native"): (1.05, 1.13),
         ("fixed_cooldown", "ds", "5M"): (1.00, 1.00),
-        ("no_decay", "glm", "native"): (0.94, 1.00),
+        ("no_decay", "glm", "native"): (0.944, 1.00),
         ("no_decay", "glm", "5M"): (1.00, 1.06),
-        ("no_decay", "ds", "native"): (0.99, 1.00),
+        ("no_decay", "ds", "native"): (0.987, 1.00),
         ("no_decay", "ds", "5M"): (1.00, 1.00),
         ("gamma_prior", "glm", "native"): (1.00, 1.00),
         ("gamma_prior", "glm", "5M"): (1.00, 1.01),
@@ -1837,7 +1849,7 @@ if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (20
         ("gamma_prior", "ds", "5M"): (1.00, 1.00),
         ("fixed_horizon", "glm", "native"): (1.10, 1.28),
         ("fixed_horizon", "glm", "5M"): (1.30, 1.97),
-        ("fixed_horizon", "ds", "native"): (0.98, 1.01),
+        ("fixed_horizon", "ds", "native"): (0.975, 1.01),
         ("fixed_horizon", "ds", "5M"): (1.00, 1.00),
         ("no_spend_cap", "glm", "native"): (1.00, 1.00),
         ("no_spend_cap", "glm", "5M"): (1.00, 1.00),
@@ -1848,9 +1860,11 @@ if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (20
         _rs = [e12c[f"android_{_cs}/{_s}/price={_pr}"][_row]["ratio_to_ours"]
                for _s in _STREAMS4]
         eq_round(f"g20 tab:ablation {_cs}/{_pr} {_row} mean-of-ratios",
-                 sum(_rs) / len(_rs), _wm, 2)
+                 sum(_rs) / len(_rs), _wm,
+                 len(str(_wm).split(".")[1]) if "." in str(_wm) else 0)
         eq_round(f"g20 tab:ablation {_cs}/{_pr} {_row} worst-stream",
-                 max(_rs), _ww, 2)
+                 max(_rs), _ww,
+                 len(str(_ww).split(".")[1]) if "." in str(_ww) else 0)
 
 # ================================================================ summary
 print()

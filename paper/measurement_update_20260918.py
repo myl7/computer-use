@@ -94,21 +94,57 @@ def prefix(row):
     return ('\\rowcolor{glmTint}' if row['model'].startswith('z-ai/') else '\\rowcolor{dsTint}') + ' ' + names[row['family']]
 def fmt(value, nd=2):
     return '--' if value is None else f'{value:.{nd}f}'
+def sig3(value):
+    """3 significant figures, ROUND_HALF_UP on the raw value, rendered with
+    the fewest characters that carry exactly 3 significant digits."""
+    from decimal import Decimal, ROUND_HALF_UP
+    if value is None:
+        return '--'
+    d = Decimal(repr(float(value)))
+    if d == 0:
+        return '0'
+    neg = d < 0
+    d = abs(d)
+    exp = d.adjusted()                      # floor(log10|d|)
+    q = d.scaleb(2 - exp).quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    if q >= 1000:                           # 999.6 carried into a fourth digit
+        q //= 10
+        exp += 1
+    digits = str(q)                         # exactly 3 digits
+    point = exp + 1                         # digits left of the decimal point
+    if point <= 0:
+        s = '0.' + '0' * (-point) + digits
+    elif point >= len(digits):
+        s = digits + '0' * (point - len(digits))
+    else:
+        s = digits[:point] + '.' + digits[point:]
+    return ('-' if neg else '') + s
+def tok3(value):
+    """Token counts at 3 significant figures: plain below 1k, k-suffixed above."""
+    if value is None:
+        return '--'
+    v = float(value)
+    if abs(v) < 1000:
+        return sig3(v)
+    return sig3(v / 1000) + 'k'
+def tok3k(value):
+    """k-units column (value already in raw tokens): 3 significant figures in k."""
+    return '--' if value is None else sig3(float(value) / 1000) + 'k'
 def line(values):
     return ' & '.join(values) + r' \\'
 
 def value_cells(table, row):
     if table == 'share':
-        return [f"{row['c']/1000:.1f}k", f"{row['L_doc']/1000:.1f}k", fmt(row['d'], 0), fmt(row['q']), fmt(row['doc_share']), fmt(row['program_share'])]
+        return [tok3k(row['c']), tok3k(row['L_doc']), tok3(row['d']), fmt(row['q']), fmt(row['doc_share']), fmt(row['program_share'])]
     if table == 'price':
         final = '--' if row['platform']=='Android' and not row['admitted'] else fmt(row['final_gate']/5)
-        return [f"{row['C']/1000:.1f}k", *[fmt(g/5) for g in row['gates']], final, fmt(row['nstar']), fmt(row['nstar_incl_3c'])]
+        return [tok3k(row['C']), *[fmt(g/5) for g in row['gates']], final, sig3(row['nstar']), sig3(row['nstar_incl_3c'])]
     if table == 'verification':
         pe = row['provider_errors']
         mark = {0: '', 1: '$^{\\dagger}$', 2: '$^{\\dagger\\dagger}$'}[pe]
         return [str(row['verified_initial'] + row['verified_extra']) + '/3' + mark,
                 str(row['injection_now']) + '/5', str(row['extraction']) + '/5']
-    return [f"{row['c']/1000:.1f}k", fmt(row['cv']), str(row['agent_success'])+'/30', str(row['program_success'])+'/30', fmt(row['share'],3)]
+    return [tok3k(row['c']), sig3(row['cv']), str(row['agent_success'])+'/30', str(row['program_success'])+'/30', fmt(row['share'],3)]
 
 def _dual_cell(g, d):
     """One merged body cell: dual when both models have a value; a
