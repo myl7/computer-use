@@ -20,10 +20,11 @@ Screenshots are saved as PNG files next to the JSONL. With --mock (or a
 client passed programmatically) the deterministic MockOpenAI is used and no
 network call is made.
 
-When the per-request image budget freezes screenshots mid-episode (large
-map screenshots vs the model channel's 30MB limit; see guiexp.agent), the
-freeze step's record carries ``usage.image_budget_freeze`` and the final
-record adds ``image_budget_frozen`` plus the full ``image_budget_event``.
+When the model channel rejects a request with 413 (image payload over its
+30MB limit; see guiexp.agent), the agent strips that step's screenshot,
+retries once, and freezes images off for the rest of the episode. The
+affected call's record carries ``usage.image_413_events`` and the final
+record adds ``image_413_frozen`` plus the full ``image_413_events`` list.
 """
 
 from __future__ import annotations
@@ -143,10 +144,11 @@ def run_episode(
         total_prompt += usage.get("prompt_tokens") or 0
         total_completion += usage.get("completion_tokens") or 0
         total_cost += usage.get("cost_usd") or 0.0
-        if "image_budget_freeze" in usage:
-            # The event is the same dict the agent keeps; stamping here also
-            # fills the step index into the final record's event below.
-            usage["image_budget_freeze"]["step"] = step
+        if "image_413_events" in usage:
+            # Same dicts the agent keeps; stamping here also fills the step
+            # index into the final record's events below.
+            for ev in usage["image_413_events"]:
+                ev["step"] = step
         obs_meta = {
             "url": obs.get("url"),
             "screenshot_file": shot_file,
@@ -241,12 +243,12 @@ def run_episode(
             "model_calls": len(records),
             "record_type": "final",
         }
-        if agent.image_budget_event is not None:
-            # Footnote for experiment runners: this episode's screenshots
-            # crossed the per-request image budget mid-run (see guiexp.agent);
-            # from the freeze step on, observations were text-only.
-            final["image_budget_frozen"] = True
-            final["image_budget_event"] = dict(agent.image_budget_event)
+        if agent.image_413_events:
+            # Footnote for experiment runners: the channel 413-rejected this
+            # episode's request(s) (see guiexp.agent); from the first strip
+            # step on, observations were text-only.
+            final["image_413_frozen"] = True
+            final["image_413_events"] = [dict(ev) for ev in agent.image_413_events]
         records.append(final)
     finally:
         env.close()

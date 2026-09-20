@@ -12,23 +12,30 @@ when the provider reports it), and the ``usage.cost`` field OpenRouter
 returns when present (USD) -- and returned to the caller for the trajectory.
 The API key is read from the environment and never logged or printed.
 
-Per-request image budget: map-canvas screenshots run 1.8-1.95MB apiece, and
-an accumulated history once crossed the model channel's 30MB image limit
-(OpenRouter 413), killing whole episodes. Each request therefore carries at
-most ``GUIEXP_IMAGE_BUDGET_MB`` (default 25, safety margin) MB of image
-payload. Images accumulate while they fit; at the FIRST observation whose
-screenshot would cross the budget, that image is omitted (its interface-tree
-text is kept) and the image set is FROZEN -- every later observation is
-text-only. Already-sent images are never dropped, so the request prefix up
-to the freeze point stays byte-identical for the rest of the episode and
-provider prefix caching is not invalidated. The freeze is recorded on the
-agent (``image_budget_event``) and marked in that call's usage dict
-(``image_budget_freeze``) so episode JSON can footnote affected runs.
+Reactive image-budget guard: map-canvas screenshots run 1.8-1.95MB apiece,
+and an accumulated history once crossed the model channel's 30MB image limit
+(OpenRouter 413, "Downloaded image content cannot exceed 30MB"), killing
+whole verification episodes deterministically. Requests are therefore sent
+normally -- no proactive truncation, byte-identical to the unguarded client.
+When a request IS rejected with HTTP 413 (or, safety net, "cannot exceed"
+wording), the guard strips the CURRENT step's screenshot part (its
+interface-tree text stays), retries that request immediately once -- the 413
+is rejected pre-routing and unbilled -- and freezes the episode's image set
+after the first successful post-strip retry: every later observation is
+text-only, already-sent history images are never removed, and the request
+prefix up to the strip point stays byte-identical (provider prefix caching
+is not invalidated). Degenerate fallback (not expected to fire): a request
+still 413ing with no current image left strips the most recent HISTORY
+image, repeating as needed -- this breaks prefix stability, so each such
+strip is recorded as a distinct degenerate event and logged loudly. Events
+land on the agent (``image_413_events``) and in that call's usage dict so
+episode JSON can footnote affected runs.
 """
 
 from __future__ import annotations
 
 import os
+import sys
 
 from .actions import ACTION_SPACE_DESCRIPTION
 
@@ -36,16 +43,26 @@ OBS_MODES = ("screenshot", "screenshot+ax")
 
 SYSTEM_PROMPT = "You are a GUI agent operating a web application.\n\n" + ACTION_SPACE_DESCRIPTION
 
-# Per-request image budget in effect (bytes). Measured on the base64 image
-# payload as transmitted -- an upper bound on the decoded bytes -- so the
-# margin under the channel's decoded-bytes limit is if anything larger.
-DEFAULT_IMAGE_BUDGET_MB = 25.0
+
+def _strip_image_part(content: list[dict]) -> int | None:
+    """Remove the first image part of a content list; its data-URL length
+    (an upper bound on the decoded bytes), or None if there was no image."""
+    for i, part in enumerate(content):
+        if isinstance(part, dict) and part.get("type") == "image_url":
+            size = len(part["image_url"]["url"])
+            content.pop(i)
+            return size
+    return None
 
 
-def image_budget_bytes() -> int:
-    """Current per-request image budget; env override exists for tests."""
-    mb = float(os.environ.get("GUIEXP_IMAGE_BUDGET_MB", DEFAULT_IMAGE_BUDGET_MB))
-    return int(mb * 1024 * 1024)
+def _is_image_channel_error(exc: BaseException) -> bool:
+    """The channel's image-budget rejection: HTTP 413, or (safety net) the
+    "cannot exceed" wording wherever the client surfaces it."""
+    if getattr(exc, "status_code", None) == 413:
+        return True
+    parts = [str(v) for v in (getattr(exc, "message", None), getattr(exc, "body", None)) if v]
+    text = " ".join(parts) if parts else str(exc)
+    return "cannot exceed" in text.lower()
 
 
 class GuiAgent:
@@ -73,39 +90,42 @@ class GuiAgent:
         if manifest:
             self.system_prompt = SYSTEM_PROMPT + "\n\n" + manifest
         self.history: list[dict] = []  # user/assistant turns after the first
-        # Image-budget guard state (freeze policy; see module docstring):
-        # at the first screenshot that would cross the budget the image set
-        # freezes and later observations go text-only. History is never
-        # rewritten, so request prefixes stay byte-identical after the freeze.
+        # Reactive image-413 guard state (see module docstring): requests go
+        # out untouched until the channel rejects one with 413; the first
+        # post-strip success freezes the episode's image set (all later
+        # observations text-only, history images never removed).
         self._images_frozen = False
-        self.image_budget_event: dict | None = None
+        self.image_413_events: list[dict] = []
 
     def act(self, goal_prompt: str | None, obs: dict, note: str | None = None) -> tuple[str, dict]:
         """One model call. Returns (raw_reply, usage_dict).
 
         ``note`` is a generic system-level nudge appended to this turn's
         user message (e.g. the anti-flail repetition warning). It must never
-        carry task- or procedure-specific content. When this call freezes
-        the image set, the freeze event is also stored under
-        ``usage["image_budget_freeze"]`` (absent otherwise).
+        carry task- or procedure-specific content. If the channel rejects
+        the request with 413, this call strips the current screenshot,
+        retries immediately once, and freezes images off for the rest of the
+        episode; the events are returned under ``usage["image_413_events"]``
+        (absent otherwise).
         """
         content = self._observation_parts(goal_prompt, obs, note)
-        freeze = self._guard_image_budget(content)
+        if self._images_frozen:
+            # Frozen episode: every observation goes out text-only; the
+            # screenshot part is omitted before the request ever leaves.
+            _strip_image_part(content)
+            if self.image_413_events:
+                self.image_413_events[0]["text_only_turns_after_freeze"] += 1
         messages = [{"role": "system", "content": self.system_prompt}]
         if self.history:
             messages.extend(self.history)
         messages.append({"role": "user", "content": content})
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=self.temperature,
-        )
+        response, events = self._create_with_image_413_guard(messages)
         usage = self._usage(response)
-        if freeze is not None:
-            # Same dict object as self.image_budget_event, so the runner can
-            # stamp the step index into it when writing the trajectory.
-            usage["image_budget_freeze"] = freeze
+        if events:
+            # The same dicts as self.image_413_events, so the runner can
+            # stamp the step index into them when writing the trajectory.
+            usage["image_413_events"] = events
         reply = response.choices[0].message.content or ""
 
         self.history.append({"role": "user", "content": content})
@@ -114,64 +134,74 @@ class GuiAgent:
 
     # -- helpers -----------------------------------------------------------
 
-    def _guard_image_budget(self, content: list[dict]) -> dict | None:
-        """Freeze-style per-request image budget (module docstring).
+    def _create_with_image_413_guard(self, messages: list[dict]):
+        """chat.completions.create with the reactive 413 guard.
 
-        Under budget -- the common case -- this is a read-only no-op: the
-        outgoing request is byte-identical to the unguarded build. At the
-        first observation whose screenshot would push the accumulated image
-        payload over the budget, that image part is removed from the NEW
-        turn only (its observation text is kept), the image set freezes for
-        the rest of the episode, and the freeze event dict is returned (and
-        stored as ``self.image_budget_event``). Already-sent images are
-        never dropped and ``self.history`` is never mutated, so the request
-        prefix up to the freeze point stays byte-identical -- dropping the
-        oldest image each step would invalidate provider prefix caching and
-        re-bill the whole history every step. Returns None when this call
-        changed nothing.
+        Normally a single straight-through call (no overhead, byte-identical
+        request). On the channel's image-budget rejection: strip the CURRENT
+        step's image part from the pending user turn and retry immediately
+        once (413s are rejected pre-routing and unbilled). If the retry is
+        rejected too -- the degenerate path, not expected to fire -- strip
+        the most recent REMAINING history image and retry again, repeating
+        as needed; this breaks request-prefix stability and is logged
+        loudly. Non-image errors propagate exactly as before. Returns
+        (response, events) where events lists the 413 strips this call made
+        (empty in the normal case).
         """
-        if self._images_frozen:
-            # Frozen: the screenshot part of every new observation is omitted
-            # entirely (text only); no new image ever enters the request.
-            idx = next(
-                (i for i, p in enumerate(content) if isinstance(p, dict) and p.get("type") == "image_url"),
-                None,
-            )
-            if idx is not None:
-                content.pop(idx)
-            self.image_budget_event["text_only_turns_after_freeze"] += 1
-            return None
-        image_idx = next(
-            (i for i, p in enumerate(content) if isinstance(p, dict) and p.get("type") == "image_url"),
-            None,
-        )
-        if image_idx is None:
-            return None  # no screenshot in this observation: nothing to add
-        used = 0
-        images = 0
-        for msg in self.history:
+        events: list[dict] = []
+        while True:
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    temperature=self.temperature,
+                )
+                return response, events
+            except Exception as exc:
+                if not _is_image_channel_error(exc):
+                    raise
+                trigger = "http_413" if getattr(exc, "status_code", None) == 413 else "cannot_exceed_message"
+                stripped = _strip_image_part(messages[-1]["content"])  # current step
+                source = "current"
+                if stripped is None:
+                    source = "history"
+                    stripped = self._strip_latest_history_image()
+                if stripped is None:
+                    raise  # nothing image-shaped left: a genuine channel error
+                event = {
+                    "step": None,  # stamped by the runner's _record_step
+                    "trigger": trigger,
+                    "source": source,
+                    "images_stripped": 1,
+                    "bytes_stripped": stripped,
+                    "degenerate": source == "history",
+                    "frozen": True,  # the image set is frozen from this event on
+                }
+                if not self._images_frozen:
+                    self._images_frozen = True
+                    event["text_only_turns_after_freeze"] = 0
+                self.image_413_events.append(event)
+                events.append(event)
+                if event["degenerate"]:
+                    print(
+                        "guiexp: WARNING degenerate image-413 strip: request still "
+                        f"rejected after the current-step strip; removed a HISTORY "
+                        f"image ({stripped} bytes) -- request prefix stability is "
+                        "broken for the rest of this episode",
+                        file=sys.stderr,
+                    )
+
+    def _strip_latest_history_image(self) -> int | None:
+        """Degenerate path only: remove the most recent image still in
+        history (walking backwards). MUTATES history -- breaks the request
+        prefix, so callers must record the strip as a degenerate event."""
+        for msg in reversed(self.history):
             if msg.get("role") != "user":
                 continue
-            for part in msg.get("content") or []:
-                if isinstance(part, dict) and part.get("type") == "image_url":
-                    used += len(part["image_url"]["url"])
-                    images += 1
-        new_bytes = len(content[image_idx]["image_url"]["url"])
-        budget = image_budget_bytes()
-        if used + new_bytes <= budget:
-            return None  # still fits: byte-identical to the unguarded build
-        # Budget crossed: omit this screenshot, freeze from here on. The
-        # observation text (URL line, AX tree, error note) is untouched.
-        content.pop(image_idx)
-        self._images_frozen = True
-        self.image_budget_event = {
-            "images_kept": images,
-            "bytes_kept": used,
-            "bytes_omitted": new_bytes,
-            "budget_bytes": budget,
-            "text_only_turns_after_freeze": 0,
-        }
-        return self.image_budget_event
+            size = _strip_image_part(msg["content"])
+            if size is not None:
+                return size
+        return None
 
     def _observation_parts(
         self, goal_prompt: str | None, obs: dict, note: str | None = None
