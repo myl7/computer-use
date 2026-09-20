@@ -487,7 +487,7 @@ Three observations per cell do not establish independence or a stable verificati
 Verified counts verified compilations out of three attempts per family and model; each $\dagger$ marks one of the three attempts lost to repeated empty model replies, which count as unsuccessful.
 The held-out columns re-run the original program on five new bindings, either injecting the known parameters or extracting them from the goal.
 They test the same original artifact, not the newly compiled artifacts; for the two DeepSeek families with no verified program, this artifact is the rejected one.
-The four families are the Android tasks; the Qwen OsmAnd program never verifies, so its held-out columns show the GLM and Qwen readings only, and the Qwen Reddit family is absent because the provider refused the task prompt.}
+The four families are the Android tasks; the Qwen column is absent for OsmAnd, whose compilation never verified so no repeated compilations were attempted, and the Reddit family is out of scope for Qwen because the provider refused the task prompt.}
 \label{tab:verification-repeat}
 \small
 \begin{tabular}{lccc}
@@ -499,7 +499,7 @@ Family & Verified (of 3) & Injected & Extracted \\
 Contacts & \tri{3/3}{3/3}{3/3} & \tri{4/5}{3/5}{5/5} & \tri{5/5}{5/5}{5/5} \\
 Markor delete & \tri{3/3}{3/3}{3/3} & \tri{5/5}{5/5}{5/5} & \tri{3/5}{2/5}{5/5} \\
 Calendar & \tri{2/3$^{\dagger}$}{0/3$^{\dagger\dagger}$}{2/3} & \tri{4/5}{0/5}{4/5} & \tri{4/5}{0/5}{4/5} \\
-OsmAnd marker & \tri{1/3}{0/3}{1/3} & \triGQ{1/5}{4/5} & \triGQ{4/5}{4/5} \\
+OsmAnd marker & \dual{1/3}{0/3} & \dual{1/5}{0/5} & \dual{4/5}{0/5} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -538,7 +538,7 @@ Family & $c$ & CV & Agent success & Program success & Share \\
 Contacts & \tri{67.1k}{67.3k}{42.2k} & \tri{0.326}{1.06}{0.0993} & \tri{30/30}{27/30}{30/30} & \tri{30/30}{29/30}{29/30} & \tri{0.997}{0.960}{0.954} \\
 Markor delete & \tri{35.4k}{22.3k}{19.3k} & \tri{0.373}{1.04}{0.128} & \tri{30/30}{23/30}{30/30} & \tri{24/30}{29/30}{30/30} & \tri{0.794}{0.949}{0.980} \\
 Calendar & \triGQ{535k}{316k} & \triGQ{0.485}{0.504} & \triGQ{14/30}{15/30} & \triGQ{30/30}{30/30} & \triGQ{0.999}{0.997} \\
-OsmAnd marker & \triG{259k} & \triG{0.657} & \triG{12/30} & \triG{30/30} & \triG{0.998} \\
+OsmAnd marker & \dualG{259k} & \dualG{0.657} & \dualG{12/30} & \dualG{30/30} & \dualG{0.998} \\
 \bottomrule
 \end{tabular}
 \end{table}
