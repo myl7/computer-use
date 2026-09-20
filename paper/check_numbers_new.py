@@ -971,6 +971,8 @@ if group(16, "Expanded-table replacement lottery: B_pop, N*, and break rates (20
     mu16 = json.load(open(os.path.join(HERE, "measurement_update_20260918.json")))
     per16 = {}
     for _r in mu16["rows"]:
+        if "qwen" in _r["model"]:
+            continue  # --include-qwen merges qw rows here; skip them (g21/g18 own qw)
         per16.setdefault("GLM" if "z-ai" in _r["model"] else "DS", []).append(_r)
     _n16, _f16, _d16 = [], [], []
     for _mtok, _rs in per16.items():
@@ -1067,6 +1069,38 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
            [e3a[f"{_p}/{_cs}"]["_stream"]["n_arrivals"] for _p, _cs in E3COLS],
            [300] * 6)
 
+    # ------------- tab:policysim qw half: third model, same printed cells ----
+    # E3_full_v3_a1k3_qw.json is the qw-constants rerun of tab:policysim
+    # (android_qw cost set, reps 20 / seed 7 / add_one / k3).  The qw half of
+    # Table 5 prints these cells after the GLM and DS halves in every row.
+    with open(os.path.join(V3, "E3_full_v3_a1k3_qw.json")) as fh:
+        e3qj = json.load(fh)
+    e3q = e3qj["cells"]
+    eq_int("g17qw E3qw meta fingerprint", e3qj["meta"]["constants_fingerprint"],
+           "7655f7ca8d01cf4a")
+    eq_int("g17qw E3qw reps", e3qj["meta"]["reps"], 20)
+    E3TABQW = {  # printed qw cells: poisson/zipf/bursty
+        "always_reactive": ("0.881", "0.943", "0.908"),
+        "always_compile": ("4.52", "6.50", "4.80"),
+        "success_count": ("3.94", "6.00", "4.21"),
+        "toolpro_port": ("0.881", "0.943", "0.887"),
+        "breakeven": ("1.21", "1.22", "1.15"),
+        "ours": ("1.00", "1.00", "1.00"),
+        "oracle": ("0.597", "0.854", "0.627"),
+        "offline_opt": ("0.578", "0.842", "0.610"),
+    }
+    E3QCOLS = [(p, "android_qw") for p in PATS]
+    for _row, _printed in E3TABQW.items():
+        for (_p, _cs), _s in zip(E3QCOLS, _printed):
+            eq_round(f"g17qw E3 tab {_p}/{_cs} {_row}", rela(e3q, f"{_p}/{_cs}", _row),
+                     float(_s), nd_of(_s))
+    eq_int("g17qw E3qw 300-arrival streams, all 3 reported cells",
+           [e3q[f"{_p}/android_qw"]["_stream"]["n_arrivals"] for _p in PATS],
+           [300] * 3)
+    eq_int("g17qw E3qw _n_star infinite on all 3 patterns (p=0 android families)",
+           [math.isinf(e3q[f"{_p}/android_qw"]["_n_star"]) for _p in PATS],
+           [True] * 3)
+
     # ---------------- ss5.3 prose ----------------
     _rr = [rela(e3a, f"{_p}/android_glm", "always_reactive") for _p in PATS]
     eq_round("g17 E3 reactive GLM min 5.6x", min(_rr), 5.6, 1)
@@ -1135,6 +1169,38 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
         for _k, _s in zip(E4COLS, _printed):
             eq_round(f"g17 E4 tab {_k} {_row}", rela(e4a, _k, _row),
                      float(_s), nd_of(_s))
+
+    # ------------- tab:realstreams qw half: native + 5M, same 8 columns -----
+    # E4_full_v3_a1k3_qw.json: the qw-constants real-stream run over the full
+    # four-price ladder; Table 6 prints the native and 5M cells for GLM, DS,
+    # and now qw in per-model half-columns.  Loaded alongside e3q above.
+    with open(os.path.join(V3, "E4_full_v3_a1k3_qw.json")) as fh:
+        e4qj = json.load(fh)
+    e4q = e4qj["cells"]
+    eq_int("g17qw E4qw meta fingerprint", e4qj["meta"]["constants_fingerprint"],
+           "09b897c127ee7834")
+    eq_int("g17qw E4qw reps", e4qj["meta"]["reps"], 20)
+    E4TABQW = {  # printed qw cells: sepsis/bpi2019/wiki_A/wiki_B, native then 5M
+        "always_reactive": ("0.974", "1.00", "1.01", "1.00", "0.997", "1.00", "0.979", "1.00"),
+        "always_compile": ("1.64", "10.9", "6.59", "75.5", "6.51", "82.1", "2.88", "21.4"),
+        "success_count": ("1.16", "4.11", "6.03", "73.1", "6.35", "80.6", "2.10", "16.4"),
+        "toolpro_port": ("0.974", "1.00", "1.07", "1.00", "0.913", "1.00", "0.980", "1.00"),
+        "breakeven": ("1.09", "1.00", "0.965", "0.855", "0.878", "0.890", "1.10", "1.03"),
+        "ours": ("1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00", "1.00"),
+        "oracle": ("0.943", "1.00", "1.02", "0.838", "0.846", "0.837", "1.14", "0.986"),
+        "offline_opt": ("0.938", "1.00", "0.766", "0.780", "0.799", "0.822", "0.894", "0.954"),
+    }
+    E4QCOLS = list(E4COLS)
+    for _row, _printed in E4TABQW.items():
+        for _k, _s in zip(E4QCOLS, _printed):
+            eq_round(f"g17qw E4 tab {_k} {_row}", rela(e4q, _k, _row),
+                     float(_s), nd_of(_s))
+    eq_int("g17qw E4qw native cells priced on all four streams",
+           [e4q[f"{_s}/price=native"]["_stream"]["n_arrivals"] for _s in STREAMS4],
+           [1050, 251734, 65564, 100000])
+    eq_int("g17qw E4qw offline_opt rows carry no ci95 in all 16 qw cells",
+           all("rel_to_ours_ci95" not in e4q[_k]["offline_opt"]
+               for _k in e4q if not _k.startswith("_")), True)
 
     # ---------------- tab half-widths: every printed "\pm hw" cell -----------
     # tab:policysim prints each competitor cell (except ours) as value $\pm$
@@ -1490,7 +1556,9 @@ if group(18, "tab:success per-success column + t18 fragility probe (2026-09-19)"
     # Nothing is read out of body.tex; the printed value sits in the want slot.
     mu18 = json.load(open(os.path.join(HERE, "measurement_update_20260918.json")))
     per18 = {(r["family"], "glm" if "z-ai" in r["model"] else "ds"): r
-             for r in mu18["rows"]}
+             for r in mu18["rows"] if "qwen" not in r["model"]}
+    # (the --include-qwen preview merges qw rows into `rows`; the qw per-success
+    # cells come from `qwen_rows` below, so they are skipped here)
     T7 = [
         ("ContactsAddContact", "glm", "1.00", "98.7k", "179", "0.416"),
         ("MarkorDeleteNote", "glm", "1.00", "33.7k", "6.94k", "1.46"),
@@ -1565,6 +1633,74 @@ if group(18, "tab:success per-success column + t18 fragility probe (2026-09-19)"
                93 if mk == "glm" else 82, 0.501)
         eq_int(f"t18 {mk} silent breaks", s["silent_total"], 4 if mk == "glm" else 7)
         eq_int(f"t18 {mk} replays", s["runs_total"], 195 if mk == "glm" else 95)
+
+    # tab:success qw column: same formulas over measurement_update json
+    # qwen_rows (keyed by family + platform; Calc/Writer are Desktop cells).
+    # pi = agent_successes / n_exploration_episodes; agent per success c/pi;
+    # program per success (d+q*c)/((1-q)+q*pi); N*_succ = C/(c/pi - prog).
+    per18q = {(r["family"], r["platform"]): r for r in mu18["qwen_rows"]}
+    QW_T7 = [
+        ("ContactsAddContact", "Android", "1.00", "39.2k", "1.85k", "3.66"),
+        ("MarkorDeleteNote", "Android", "1.00", "21.5k", "384", "9.83"),
+        ("SimpleCalendarAddOneEvent", "Android", "1.00", "135k", "836", "11.5"),
+        ("OsmAndMarker", "Android", "0.14", "856k", None, None),
+        ("WriterMemoSave", "Desktop", "1.00", "37.0k", "775", "13.4"),
+        ("CalcTableSave", "Desktop", "1.00", "169k", None, None),
+    ]
+    for fam, plat, pi_w, ag_w, pr_w, ns_w in QW_T7:
+        r = per18q[(fam, plat)]
+        pi = r["agent_successes"] / r["n_exploration_episodes"]
+        approx(f"qw/{fam}: pi", pi, float(pi_w), 0.0051)
+        agm = ag_w[:-1] if ag_w.endswith("k") else ag_w
+        agv = r["c"] / pi / 1000
+        agnd = _nd(agm)
+        if agnd == 0 and agv != 0:
+            agnd = 2 - math.floor(math.log10(abs(agv)))  # 3 s.f. rounding digit
+        eq_round(f"qw/{fam}: agent per success (k)", r["c"] / pi / 1000,
+                 float(agm), agnd)
+        if pr_w is not None:
+            prog = (r["d"] + r["q"] * r["c"]) / ((1 - r["q"]) + r["q"] * pi)
+            pv = prog / 1000 if pr_w.endswith("k") else prog
+            eq_round(f"qw/{fam}: program per success (tok)", pv,
+                     float(pr_w[:-1] if pr_w.endswith("k") else pr_w),
+                     _nd(pr_w[:-1] if pr_w.endswith("k") else pr_w))
+            eq_round(f"qw/{fam}: Nstar_succ", r["C"] / (r["c"] / pi - prog),
+                     float(ns_w), _nd(ns_w))
+        else:
+            eq_int(f"qw/{fam}: rejected cell has no program columns",
+                   r["admitted"], False)
+
+    # t18 fragility probe, qw rerun: three families (no OsmAndMarker -- that
+    # cell was rejected at verification, so no compiled artifact exists to
+    # fragility-test), ten arms, with the Markor permission_dialog arm
+    # legitimately skipped (the family offers no permission dialog to
+    # trigger), so permission_dialog replays 2/3 of the families (n=10 not
+    # 15) and runs_total is 145 rather than 150.
+    with open(os.path.join(AW, "t18_fragility", "qwen_qwen3.8-flash",
+                           "fragility.json")) as fh:
+        t18q = json.load(fh)
+    paq = t18q["summary"]["per_arm"]
+    eq_int("t18 qw families", t18q["families"],
+           ["ContactsAddContact", "MarkorDeleteNote", "SimpleCalendarAddOneEvent"])
+    PASS18QW = {"clean": 0.93, "font_large": 0.60, "font_small": 0.93,
+                "density_small": 0.93, "locale_fr": 0.93, "dark_theme": 0.93,
+                "notification": 0.00, "low_battery": 0.33,
+                "permission_dialog": 0.00, "update_prompt": 0.00}
+    for arm, want in PASS18QW.items():
+        eq_round(f"t18 qw/{arm} pass rate", paq[arm]["pass_rate"], want, 2)
+    eq_int("t18 qw Markor permission_dialog arm legitimately skipped",
+           paq["permission_dialog"]["n"], 10)
+    eq_round("t18 qw appearance class robust break rate",
+             1 - sum(paq[a]["rsr"] for a in APP18) / len(APP18), 0.07, 2)
+    eq_round("t18 qw interruption class robust break rate",
+             1 - sum(paq[a]["rsr"] for a in INT18) / len(INT18), 0.92, 2)
+    s18q = t18q["summary"]
+    eq_round("t18 qw uniform break-given-change",
+             s18q["break_given_change_uniform"], 0.44, 2)
+    approx("t18 qw loud share (%)", s18q["loud_share_overall"] * 100, 77, 0.501)
+    eq_int("t18 qw silent breaks", s18q["silent_total"], 14)
+    eq_int("t18 qw loud breaks", s18q["loud_total"], 47)
+    eq_int("t18 qw replays", s18q["runs_total"], 145)
 
 # ================================================================ G19
 if group(19, "tab:realstreams DeepSeek half + bold argmins + parity scope (2026-09-20)"):
@@ -1755,6 +1891,108 @@ if group(19, "tab:realstreams DeepSeek half + bold argmins + parity scope (2026-
     eq_round("g19 abstract extension: max ours/best-same-info over DS cells",
              max(_abst), 1.1, 1)
 
+    # ---------------- qw half-columns: emphasis marks over the six rules ----
+    # Same competition-ranking semantics as the glm/ds halves above, applied
+    # to the third model's printed cells (e3q/e4q loaded in g17): bold =
+    # exact argmin set; underline = smallest value strictly above a UNIQUE
+    # best (a shared best marks no second); red = raw rel_to_ours >= 3.0.
+    EXPECTED_BOLD_QW = {  # (cell, source) -> rows printed bold in the qw half
+        ("poisson/android_qw", "e3qw"): {"always_reactive", "toolpro_port"},
+        ("zipf/android_qw", "e3qw"): {"always_reactive", "toolpro_port"},
+        ("bursty/android_qw", "e3qw"): {"toolpro_port"},
+        ("sepsis/price=native", "e4qw"): {"always_reactive", "toolpro_port"},
+        ("sepsis/price=5M", "e4qw"): {"always_reactive", "breakeven", "ours",
+                                      "toolpro_port"},
+        ("bpi2019/price=native", "e4qw"): {"breakeven"},
+        ("bpi2019/price=5M", "e4qw"): {"breakeven"},
+        ("wiki_A/price=native", "e4qw"): {"breakeven"},
+        ("wiki_A/price=5M", "e4qw"): {"breakeven"},
+        ("wiki_B/price=native", "e4qw"): {"always_reactive"},
+        ("wiki_B/price=5M", "e4qw"): {"always_reactive", "ours", "toolpro_port"},
+    }
+    for (_k, _m), _exp in EXPECTED_BOLD_QW.items():
+        _cells = e3q if _m == "e3qw" else e4q
+        _best = min(rela(_cells, _k, _r) for _r in RULESET)
+        _got = {_r for _r in RULESET if rela(_cells, _k, _r) == _best}
+        eq_int(f"g19qw bold argmin set {_k}", sorted(_got), sorted(_exp))
+    EXPECTED_SECOND_QW = {
+        ("poisson/android_qw", "e3qw"): set(),   # shared best marks no second
+        ("zipf/android_qw", "e3qw"): set(),
+        ("bursty/android_qw", "e3qw"): {"always_reactive"},
+        ("sepsis/price=native", "e4qw"): set(),
+        ("sepsis/price=5M", "e4qw"): set(),
+        ("bpi2019/price=native", "e4qw"): {"ours"},
+        ("bpi2019/price=5M", "e4qw"): {"always_reactive", "ours", "toolpro_port"},
+        ("wiki_A/price=native", "e4qw"): {"toolpro_port"},
+        ("wiki_A/price=5M", "e4qw"): {"always_reactive", "ours", "toolpro_port"},
+        ("wiki_B/price=native", "e4qw"): {"toolpro_port"},
+        ("wiki_B/price=5M", "e4qw"): set(),
+    }
+    for (_k, _m), _exp in EXPECTED_SECOND_QW.items():
+        _cells = e3q if _m == "e3qw" else e4q
+        _vals = [rela(_cells, _k, _r) for _r in RULESET]
+        _best = min(_vals)
+        _best_set = {_r for _r in RULESET if rela(_cells, _k, _r) == _best}
+        if len(_best_set) > 1:
+            _got = set()
+        else:
+            _sec = min(_v for _v in _vals if _v > _best)
+            _got = {_r for _r in RULESET if rela(_cells, _k, _r) == _sec}
+        eq_int(f"g19qw underline second-best set {_k}", sorted(_got), sorted(_exp))
+    EXPECTED_RED_QW = {
+        ("poisson/android_qw", "e3qw"): {"always_compile", "success_count"},
+        ("zipf/android_qw", "e3qw"): {"always_compile", "success_count"},
+        ("bursty/android_qw", "e3qw"): {"always_compile", "success_count"},
+        ("sepsis/price=5M", "e4qw"): {"always_compile", "success_count"},
+        ("bpi2019/price=native", "e4qw"): {"always_compile", "success_count"},
+        ("bpi2019/price=5M", "e4qw"): {"always_compile", "success_count"},
+        ("wiki_A/price=native", "e4qw"): {"always_compile", "success_count"},
+        ("wiki_A/price=5M", "e4qw"): {"always_compile", "success_count"},
+        ("wiki_B/price=5M", "e4qw"): {"always_compile", "success_count"},
+    }
+    for (_k, _m), _exp in EXPECTED_RED_QW.items():
+        _cells = e3q if _m == "e3qw" else e4q
+        _got = {_r for _r in RULESET if rela(_cells, _k, _r) >= 3.0}
+        eq_int(f"g19qw red penalty set {_k}", sorted(_got), sorted(_exp))
+    # the red channel never collides with bold/underline in a qw half-column
+    for (_k, _m), _red in EXPECTED_RED_QW.items():
+        _mark = (EXPECTED_BOLD_QW.get((_k, _m), set())
+                 | EXPECTED_SECOND_QW.get((_k, _m), set()))
+        eq_int(f"g19qw red disjoint from bold/underline {_k}",
+               sorted(_red & _mark), [])
+    # parity-scope statement extended to the qw halves: every differing qw
+    # competitor's printed interval excludes parity, and the printed-cell
+    # half-widths stay within the caption's 0.01 bound on tab:realstreams
+    _hwqw = 0.0
+    _notieqw = True
+    for _row in ("always_reactive", "always_compile", "success_count",
+                 "toolpro_port", "breakeven", "oracle"):
+        for _p in PATS:
+            _lo, _hi = e3q[f"{_p}/android_qw"][_row]["rel_to_ours_ci95"]
+            _notieqw = _notieqw and (_lo > 1.0 or _hi < 1.0)
+        for _k in E4QCOLS:
+            _lo, _hi = e4q[_k][_row]["rel_to_ours_ci95"]
+            _hwqw = max(_hwqw, (_hi - _lo) / 2)
+            _same = e4q[_k][_row]["mean_tokens"] == e4q[_k]["ours"]["mean_tokens"]
+            _notieqw = _notieqw and (_same or _lo > 1.0 or _hi < 1.0)
+    eq_int("g19qw no differing competitor's qw interval covers parity, both tables",
+           _notieqw, True)
+    eq_int("g19qw E4qw printed-cell half-widths at most 0.01 (max 0.0015)",
+           _hwqw <= 0.01, True)
+    # abstract 2.4x claim extended over the printed qw cells
+    _abstq = [1.0 / min(e3q[f"{_p}/android_qw"][_row]["rel_to_ours"]
+                        for _row in ("always_reactive", "always_compile",
+                                     "success_count", "toolpro_port",
+                                     "breakeven"))
+              for _p in PATS]
+    _abstq += [1.0 / min(e4q[_k][_row]["rel_to_ours"]
+                         for _row in ("always_reactive", "always_compile",
+                                      "success_count", "toolpro_port",
+                                      "breakeven"))
+               for _k in E4QCOLS]
+    eq_round("g19qw abstract extension: max ours/best-same-info over qw cells",
+             max(_abstq), 1.2, 1)
+
 # ================================================================ G20
 if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (2026-09-20)"):
     # E12_ablation.json: one-at-a-time ablation of Algorithm 1's mechanism
@@ -1865,6 +2103,156 @@ if group(20, "E12 mechanism ablation: E4 shared-cell identity + frozen cells (20
         eq_round(f"g20 tab:ablation {_cs}/{_pr} {_row} worst-stream",
                  max(_rs), _ww,
                  len(str(_ww).split(".")[1]) if "." in str(_ww) else 0)
+
+    # ---------------- qw rerun: E12_ablation_qw.json (2026-09-21) -----------
+    # Same construction as the ds run above but on the qw-constants cost set
+    # (android_qw only, so no glm/ds split): built by build_configs_qwen.py
+    # to hash byte-identically to the authoritative E4_full_v3_a1k3_qw.json
+    # run, giving the same shared-cell identity, plus the frozen
+    # mean-of-ratios / worst-stream cells for the qw half of tab:ablation.
+    with open(os.path.join(V3, "E12_ablation_qw.json")) as fh:
+        e12qj = json.load(fh)
+    with open(os.path.join(V3, "E4_full_v3_a1k3_qw.json")) as fh:
+        e4qwj = json.load(fh)
+    e12qm, e12qc = e12qj["meta"], e12qj["cells"]
+    e4qwc = e4qwj["cells"]
+    eq_int("g20qw E12qw constants_fingerprint == 09b897c127ee7834",
+           e12qm["constants_fingerprint"], "09b897c127ee7834")
+    eq_int("g20qw E4qw file constants_fingerprint == 09b897c127ee7834",
+           e4qwj["meta"]["constants_fingerprint"], "09b897c127ee7834")
+    eq_int("g20qw E12qw meta records e4_identity_ok", e12qm["e4_identity_ok"], True)
+    QWKEYS = [f"android_qw/{_s}/price={_p}"
+              for _s in _STREAMS4 for _p in ("native", "5M")]
+    for _s in _STREAMS4:
+        for _p in ("native", "5M"):
+            for _r in ("ours", "always_reactive"):
+                eq_int(f"g20qw shared cell android_qw/{_s}/price={_p} {_r} "
+                       f"== E4qw file",
+                       e12qc[f"android_qw/{_s}/price={_p}"][_r]["mean_tokens"],
+                       e4qwc[f"{_s}/price={_p}"][_r]["mean_tokens"])
+    for _k in QWKEYS:
+        for _row in _TAB_ROWS:
+            eq_int(f"g20qw {_k} {_row} ratio_to_ours recomputed",
+                   e12qc[_k][_row]["ratio_to_ours"],
+                   e12qc[_k][_row]["mean_tokens"]
+                   / e12qc[_k]["ours"]["mean_tokens"])
+    _TAB_WANT_QW = {  # (row, price): (mean-of-ratios, worst-stream) as printed
+        ("always_reactive", "native"): (0.991, 1.01),
+        ("always_reactive", "5M"): (1.00, 1.00),
+        ("narrow_trigger", "native"): (1.01, 1.10),
+        ("narrow_trigger", "5M"): (0.943, 1.03),
+        ("fixed_cooldown", "native"): (1.01, 1.03),
+        ("fixed_cooldown", "5M"): (1.00, 1.00),
+        ("no_decay", "native"): (0.994, 1.00),
+        ("no_decay", "5M"): (1.00, 1.00),
+        ("gamma_prior", "native"): (1.00, 1.00),
+        ("gamma_prior", "5M"): (1.00, 1.00),
+        ("fixed_horizon", "native"): (0.991, 1.02),
+        ("fixed_horizon", "5M"): (1.00, 1.00),
+        ("no_spend_cap", "native"): (1.00, 1.00),
+        ("no_spend_cap", "5M"): (1.00, 1.00),
+    }
+    for (_row, _pr), (_wm, _ww) in _TAB_WANT_QW.items():
+        _rs = [e12qc[f"android_qw/{_s}/price={_pr}"][_row]["ratio_to_ours"]
+               for _s in _STREAMS4]
+        eq_round(f"g20qw tab:ablation qw/{_pr} {_row} mean-of-ratios",
+                 sum(_rs) / len(_rs), _wm,
+                 len(str(_wm).split(".")[1]) if "." in str(_wm) else 0)
+        eq_round(f"g20qw tab:ablation qw/{_pr} {_row} worst-stream",
+                 max(_rs), _ww,
+                 len(str(_ww).split(".")[1]) if "." in str(_ww) else 0)
+
+# ================================================================ G21
+if group(21, "third model (qwen) verification/paired facts: t19 + t20 + t21 + t18 (2026-09-21)"):
+    # The qwen facts the paper will cite around Tables 3/4 and app:success,
+    # recomputed from the raw qwen records (the _lane_summary.json has no
+    # qwen cells, so t19 comes from the per-family summaries).  Frozen
+    # literals: verified-of-3 = initial admission + t19 extra admissions,
+    # provider errors (expected 0), exhausted repairs, t20 injection vs
+    # extraction, t21 paired agent/program successes (program arm counted
+    # BOTH from the replay summaries and the original t16 deploy uses -- the
+    # two samples agree per family), and the t18 summary stats (per-arm
+    # detail lives in g18).
+    QWDIR = "qwen_qwen3.8-flash"
+    QW_T19 = {  # family -> (initial_admitted, t19 attempts admitted True/False, provider_errors)
+        "ContactsAddContact": (1, 2, 0, 0),
+        "MarkorDeleteNote": (1, 2, 0, 0),
+        "SimpleCalendarAddOneEvent": (1, 1, 1, 0),
+    }
+    QW_T20 = {  # family -> (injection_now, injection_t16, extraction, type_check_fails)
+        "ContactsAddContact": (5, 5, 5, 0),
+        "MarkorDeleteNote": (5, 5, 5, 0),
+        "SimpleCalendarAddOneEvent": (4, 4, 4, 0),
+    }
+    QW_T21 = {  # family -> (agent, program_replay, program_t16, only_agent, only_program, both_fail)
+        "ContactsAddContact": (30, 29, 29, 1, 0, 0),
+        "MarkorDeleteNote": (30, 30, 30, 0, 0, 0),
+        "SimpleCalendarAddOneEvent": (15, 30, 30, 0, 15, 0),
+    }
+    gate21 = json.load(open(os.path.join(AW, "t20_gate_extraction", "summary.json")))["cells"]
+    n_pairs = 0
+    for fam, (vi, ve, vf, pe) in QW_T19.items():
+        t19 = json.load(open(os.path.join(AW, "t19_repeated", QWDIR, fam,
+                                          "summary.json")))
+        attempts = t19["attempts"]
+        eq_int(f"g21 qw t19 {fam}: initial admission recorded",
+               int(json.load(open(os.path.join(AW, "t16_build", QWDIR, fam,
+                                               "build.json")))["verification"]["admitted"]),
+               vi)
+        eq_int(f"g21 qw t19 {fam}: verified of 3",
+               f"{vi + sum(a['admitted'] is True for a in attempts)}/3",
+               f"{vi + ve}/3")
+        eq_int(f"g21 qw t19 {fam}: attempts admitted True/False",
+               (sum(a['admitted'] is True for a in attempts),
+                sum(a['admitted'] is False for a in attempts)), (ve, vf))
+        eq_int(f"g21 qw t19 {fam}: provider errors (expected 0)",
+               sum(bool(a.get("error")) for a in attempts), pe)
+        ext = gate21[f"{QWDIR}/{fam}"]
+        eq_int(f"g21 qw t20 {fam}: injection/extraction/type-fails",
+               (ext["injection_passed_now"], ext["injection_passed_t16"],
+                ext["extraction_passed"], ext["extraction_type_check_fails"]),
+               QW_T20[fam])
+        files = sorted(glob.glob(os.path.join(AW, "t21_paired_replay", QWDIR,
+                                              fam, "use_*", "summary.json")))
+        recs = [json.load(open(f)) for f in files]
+        n_pairs += len(recs)
+        eq_int(f"g21 qw t21 {fam}: 30 paired bindings", len(recs), 30)
+        eq_int(f"g21 qw t21 {fam}: use_index coverage contiguous 0..29",
+               [r["use_index"] for r in recs], list(range(30)))
+        deploy = json.load(open(os.path.join(AW, "t16_build", QWDIR, fam,
+                                             "deploy.json")))["uses"]
+        eq_int(f"g21 qw t21 {fam}: deploy covers the same 30 bindings",
+               len(deploy), 30)
+        agent = sum(bool(r["success"]) for r in recs)
+        prog_replay = sum(bool(r["deploy_use"]["success"]) for r in recs)
+        prog_t16 = sum(bool(u["success"]) for u in deploy)
+        oa = sum(1 for r in recs if r["success"] and not r["deploy_use"]["success"])
+        op = sum(1 for r in recs if r["deploy_use"]["success"] and not r["success"])
+        bf = sum(1 for r in recs if not r["success"] and not r["deploy_use"]["success"])
+        eq_int(f"g21 qw t21 {fam}: agent/program(replay)/program(t16) successes",
+               (agent, prog_replay, prog_t16), QW_T21[fam][:3])
+        eq_int(f"g21 qw t21 {fam}: discordant only_agent/only_program/both_fail",
+               (oa, op, bf), tuple(QW_T21[fam][3:]))
+        eq_int(f"g21 qw t21 {fam}: paired cells sum to 30",
+               oa + op + bf + sum(1 for r in recs
+                                  if r["success"] and r["deploy_use"]["success"]), 30)
+        eq_int(f"g21 qw t21 {fam}: replay program arm agrees with t16 deploy",
+               prog_replay, prog_t16)
+    eq_int("g21 qw t21: 90 paired replays total", n_pairs, 90)
+    # discordant summary: program arm loses 1 agent-only replay on Contacts,
+    # gains 15 program-only replays on Calendar (agent 15/30 there); the
+    # exact two-sided McNemar p on the qw pooled discordants (1, 15) is
+    # 34/65536, frozen in check_accuracy_appendix.py
+    eq_int("g21 qw t21: discordant totals (only_agent, only_program)",
+           (sum(v[3] for v in QW_T21.values()), sum(v[4] for v in QW_T21.values())),
+           (1, 15))
+    with open(os.path.join(AW, "t18_fragility", QWDIR, "fragility.json")) as fh:
+        t18g = json.load(fh)
+    s21 = t18g["summary"]
+    eq_round("g21 qw t18 clean-arm failure rate q_clean", s21["q_clean"], 0.07, 2)
+    eq_int("g21 qw t18 clean-arm breaks loud-only (no silent)",
+           (s21["per_arm"]["clean"]["loud"], s21["per_arm"]["clean"]["silent_wrong"]),
+           (1, 0))
 
 # ================================================================ summary
 print()

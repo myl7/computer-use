@@ -22,7 +22,10 @@ Design rules (same contract as check_numbers_new.py):
    divergence is a FAIL.  That is the point.
 3. Group G3 additionally loads paper/accuracy_paired_summary.json and asserts
    every one of its numbers equals the recompute, so the JSON and this file
-   cannot drift apart.
+   cannot drift apart.  That summary stays glm/ds-only; the third model's
+   families (qwen_qwen3.8-flash, added 2026-09-21) carry their frozen
+   literals directly in G1/G2 -- the paper's appendix sentence cites them
+   from there, not from the JSON.
 
 Semantics of the t21 paired summary.json (verified against
 t21_paired_replay/analysis.json, whose agent_ok/deploy_ok fields are built
@@ -53,6 +56,7 @@ WEB = os.path.join(ROOT, "experimental-results", "guiexp_webarena")
 SUMJSON = os.path.join(HERE, "accuracy_paired_summary.json")
 
 MODELS = ("z-ai_glm-5.3-flash", "deepseek_deepseek-v4-flash-vision-exp")
+QWEN = "qwen_qwen3.8-flash"          # third model: literals only, no JSON row
 FAMS = ("ContactsAddContact", "MarkorDeleteNote", "OsmAndMarker",
         "SimpleCalendarAddOneEvent")
 
@@ -130,8 +134,6 @@ def binom_two_sided(b: int, c: int):
 # t21: per (model_slug, family) -> {use_index: summary dict}
 T21_RAW: dict = {}
 for _f in sorted(glob.glob(os.path.join(T21, "*", "*", "use_*", "summary.json"))):
-    if "qwen" in _f:
-        continue  # qwen rows enter the paper later; literals cover glm/ds only
     _d = json.load(open(_f))
     _slug = _d["cell"].split("/")[0]
     T21_RAW.setdefault((_slug, _d["family"]), {})[_d["use_index"]] = _d
@@ -163,7 +165,7 @@ for (_slug, _fam), _runs in sorted(T21_RAW.items()):
 
 # recompute pooled-per-model stats
 POOL: dict = {}
-for _slug in MODELS:
+for _slug in MODELS + (QWEN,):
     _all = [r for (s, _), runs in T21_RAW.items() if s == _slug
             for r in runs.values()]
     _n = len(_all)
@@ -213,7 +215,8 @@ for _bench, _root in (("osworld", OSW), ("webarena", WEB)):
 SUM_D = json.load(open(SUMJSON))
 
 SHORT = {"z-ai_glm-5.3-flash": "glm",
-         "deepseek_deepseek-v4-flash-vision-exp": "ds"}
+         "deepseek_deepseek-v4-flash-vision-exp": "ds",
+         "qwen_qwen3.8-flash": "qw"}
 
 # ================================================================ G1 t21 cells
 if group(1, "t21 per-family paired replays vs literals (agent vs program arm)"):
@@ -233,9 +236,23 @@ if group(1, "t21 per-family paired replays vs literals (agent vs program arm)"):
             (30, 27, 29, 26, 1, 3, 0, 0.9, 0.9667),
         ("deepseek_deepseek-v4-flash-vision-exp", "MarkorDeleteNote"):
             (30, 23, 29, 23, 0, 6, 1, 0.7667, 0.9667),
+        # third model (2026-09-21): three qwen families; Calendar's agent
+        # arm succeeds on only 15 of 30 replays while the program holds 30/30
+        ("qwen_qwen3.8-flash", "ContactsAddContact"):
+            (30, 30, 29, 29, 1, 0, 0, 1.0, 0.9667),
+        ("qwen_qwen3.8-flash", "MarkorDeleteNote"):
+            (30, 30, 30, 30, 0, 0, 0, 1.0, 1.0),
+        ("qwen_qwen3.8-flash", "SimpleCalendarAddOneEvent"):
+            (30, 15, 30, 15, 0, 15, 0, 0.5, 1.0),
     }
-    eq_int("t21: 180 paired summary.json files parsed",
-           sum(len(v) for v in T21_RAW.values()), 180)
+    eq_int("t21: 270 paired summary.json files parsed (180 glm/ds + 90 qw)",
+           sum(len(v) for v in T21_RAW.values()), 270)
+    eq_int("t21: 90 qw paired files parsed",
+           sum(len(v) for (s, _), v in T21_RAW.items() if s == QWEN), 90)
+    eq_int("t21: qw families with replays (OsmAndMarker rejected -> none)",
+           sorted(f for (s, f) in T21_RAW if s == QWEN),
+           ["ContactsAddContact", "MarkorDeleteNote",
+            "SimpleCalendarAddOneEvent"])
     for key, (n, na, np_, both, oa, op, bf, ra, rp) in WANT.items():
         mk, fam = SHORT[key[0]], key[1]
         c = PER[key]
@@ -263,13 +280,21 @@ if group(2, "t21 pooled per model vs literals (McNemar discordants, exact p)"):
                                8.364584573428147e-06, 0.7167, 0.95),
         "deepseek_deepseek-v4-flash-vision-exp": (60, 50, 58, 1, 9,
                                                   0.021484375, 0.8333, 0.9667),
+        # qw pooled over its three families: 16 discordants (1 agent-only,
+        # 15 program-only), exact p = 2*(1+16)/2^16 = 34/65536
+        "qwen_qwen3.8-flash": (90, 75, 89, 1, 15,
+                               0.000518798828125, 0.8333, 0.9889),
     }
-    eq_int("t21: pooled pairs == 180",
+    eq_int("t21: pooled pairs == 180 over glm/ds",
            sum(POOL[s]["n"] for s in MODELS), 180)
+    eq_int("t21: pooled pairs == 270 over all three models",
+           sum(POOL[s]["n"] for s in MODELS + (QWEN,)), 270)
     eq_int("t21: pooled families (glm covers all four)",
            POOL["z-ai_glm-5.3-flash"]["n"] // 30, 4)
     eq_int("t21: pooled families (ds covers two)",
            POOL["deepseek_deepseek-v4-flash-vision-exp"]["n"] // 30, 2)
+    eq_int("t21: pooled families (qw covers three)",
+           POOL[QWEN]["n"] // 30, 3)
     for slug, (n, na, np_, oa, op, p, ra, rp) in WANT.items():
         mk = SHORT[slug]
         c = POOL[slug]
@@ -292,6 +317,8 @@ if group(2, "t21 pooled per model vs literals (McNemar discordants, exact p)"):
 if group(3, "accuracy_paired_summary.json agrees with the recompute"):
     for key, c in PER.items():
         slug, fam = key
+        if slug not in MODELS:
+            continue  # the JSON stays glm/ds-only; qw literals live in G1/G2
         e = SUM_D["per_family"][f"{slug}/{fam}"]
         mk = SHORT[slug]
         eq_int(f"{mk}/{fam}: json n_pairs", e["n_pairs"], c["n"])

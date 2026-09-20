@@ -14,6 +14,16 @@ The body.tex tables and every legacy count remain glm/ds-only; the qwen
 body/table integration is PENDING (--include-qwen previews a merged `rows`
 array in the JSON only).  --check-qwen pins the qwen rows against frozen
 literals.
+
+The triple renderer (2026-09-21) prepares the body integration: the qwen
+t19/t20 verification halves (`qwen_repeated_and_extraction`) and t21 paired
+halves (`qwen_paired_replays`) are computed from the same raw records, and
+`latex_rows_qwen` / `qw_halves` / `latex_triples` carry the THIRD half for
+Tables 1/2/3/4 under the established cell conventions (program-outcome
+cells masked for non-admitted rows; single-model color cells where a model
+half is absent).  --check-qwen-rows freezes the qwen half-strings against
+literals so the body edit can be diffed against them; --check still
+compares the glm/ds dual rows only.
 """
 from pathlib import Path
 import json, statistics, argparse, hashlib
@@ -29,6 +39,11 @@ parser.add_argument('--include-qwen', action='store_true',
 parser.add_argument('--check-qwen', action='store_true',
  help='assert internal consistency of the qwen layer only: recompute the '
  'rows from the same raw sources and compare them against frozen literals.')
+parser.add_argument('--check-qwen-rows', action='store_true',
+ help='assert the rendered qwen half-strings of Tables 1/2/3/4 (share, '
+ 'price, verification, paired) against frozen literals, so the pending '
+ 'body.tex triple edit can be diffed against them.  Does NOT touch --check, '
+ 'which keeps comparing the glm/ds dual rows only.')
 args=parser.parse_args()
 ROOT=args.root.resolve()
 OLD=ROOT/'experimental-results/guiexp_android/t16_build/constants_table.json'
@@ -218,11 +233,59 @@ for row in rows:
         share=(1-q)-statistics.mean(ds)/c,
         observed_failure_proxy_share=sum((r_cost if deploy[r['use_index']]['success'] else 0)-d for r,r_cost,d in zip(records,costs,ds))/sum(costs)))
 
+# ------------------------------------------------------------------ qwen t19/t20/t21 halves
+# The verification and paired-replay halves for the triple renderer: same
+# formulas as the two loops above, read from the qwen per-family t19
+# summaries because _lane_summary.json carries no qwen cells (the t20
+# summary does).  Data layer only: out['repeated_and_extraction'] and
+# out['paired_replays'] stay glm/ds, so every legacy count is unchanged.
+qwen_rep=[]
+for fam in ['ContactsAddContact','MarkorDeleteNote','SimpleCalendarAddOneEvent']:
+ t19=qread(android/'t19_repeated/qwen_qwen3.8-flash'/fam/'summary.json');attempts=t19['attempts']
+ ext=gate[f'qwen_qwen3.8-flash/{fam}']   # gate = the t20 summary's cells dict
+ qwen_rep.append(dict(model=QWEN,family=fam,
+  verified_initial=int(qwen_android[fam]['admitted']),
+  verified_extra=sum(a['admitted'] is True for a in attempts),
+  provider_errors=sum(bool(a.get('error')) for a in attempts),
+  exhausted_repairs=sum(a['admitted'] is False for a in attempts),
+  injection_now=ext['injection_passed_now'],
+  extraction=ext['extraction_passed'],
+  extraction_type_check_fails=ext['extraction_type_check_fails']))
+out['qwen_repeated_and_extraction']=qwen_rep
+qwen_paired=[]
+for fam in ['ContactsAddContact','MarkorDeleteNote','SimpleCalendarAddOneEvent']:
+ row=qwen_android[fam];key=f'qwen_qwen3.8-flash/{fam}'
+ records=[read_source(p) for p in sorted((android/'t21_paired_replay'/key).glob('use_*/summary.json'))]
+ assert len(records)==30 and all(r['model_calls']>0 for r in records)
+ costs=[pw(r['usage'],QWEN)-row['floor'] for r in records]
+ deploy=read_source(android/'t16_build'/key/'deploy.json')['uses']
+ assert len(deploy)==len(records)
+ ds=[]
+ for record in records:
+  use=deploy[record['use_index']]
+  assert record['goal']==use['goal']
+  assert record['binding']==use['expected']
+  ds.append(use['cost_usd']/prices[QWEN]['p_in'])
+ c=statistics.mean(costs)
+ q=sum(not u['success'] for u in deploy)/len(deploy)
+ qwen_paired.append(dict(model=QWEN,family=fam,n=len(records),
+  c=c,cv=statistics.stdev(costs)/c,
+  agent_success=sum(bool(r['success']) for r in records),
+  program_success=sum(bool(u['success']) for u in deploy),
+  q=q,d=statistics.mean(ds),
+  share=(1-q)-statistics.mean(ds)/c,
+  observed_failure_proxy_share=sum((r_cost if deploy[r['use_index']]['success'] else 0)-d for r,r_cost,d in zip(records,costs,ds))/sum(costs)))
+out['qwen_paired_replays']=qwen_paired
+for p in qwen_files:   # hash the t19/t21 qwen files qread/read_source just touched
+ out['source_sha256'].setdefault(str(p.relative_to(ROOT)),hashlib.sha256(p.read_bytes()).hexdigest())
+
 family_order = ['ContactsAddContact', 'MarkorDeleteNote', 'SimpleCalendarAddOneEvent', 'OsmAndMarker', 'CalcTableSave', 'WriterMemoSave', 'CommentPost']
 names = dict(zip(family_order, ['Contacts', 'Markor delete', 'Calendar', 'OsmAnd marker', 'Calc table', 'Writer memo', 'Reddit comment']))
 def order(row):
     return (0 if row['model'].startswith('z-ai/') else 1, family_order.index(row['family']))
 def prefix(row):
+    if row['model'] == QWEN:
+        return '\\rowcolor{qwTint} ' + names[row['family']]
     return ('\\rowcolor{glmTint}' if row['model'].startswith('z-ai/') else '\\rowcolor{dsTint}') + ' ' + names[row['family']]
 def fmt(value, nd=2):
     return '--' if value is None else f'{value:.{nd}f}'
@@ -267,10 +330,28 @@ def line(values):
 
 def value_cells(table, row):
     if table == 'share':
-        return [tok3k(row['c']), tok3k(row['L_doc']), tok3(row['d']), fmt(row['q']), fmt(row['doc_share']), fmt(row['program_share'])]
+        # d/q are masked for non-admitted rows: the qwen fill convention
+        # records simulator-price d/q in rejected rows, while the paper's
+        # program columns are measured only (the glm/ds rejected rows carry
+        # None here, so the mask changes nothing for them).
+        adm = row['admitted']
+        return [tok3k(row['c']), tok3k(row['L_doc']),
+                tok3(row['d']) if adm else '--', fmt(row['q']) if adm else '--',
+                fmt(row['doc_share']), fmt(row['program_share'])]
     if table == 'price':
-        final = '--' if row['platform']=='Android' and not row['admitted'] else fmt(row['final_gate']/5)
-        return [tok3k(row['C']), *[fmt(g/5) for g in row['gates']], final, sig3(row['nstar']), sig3(row['nstar_incl_3c'])]
+        C = row['C']
+        m = row.get('measured') or {}
+        if not row['admitted'] and m.get('C_with_repair') is not None:
+            # the qwen rejected row carries the admitted-median fill in C; the
+            # column prints the cell's own recorded build price (Calc's
+            # top-level C is already its partial recorded spend)
+            C = m['C_with_repair']
+        final = '--' if (row['final_gate'] is None
+                         or (row['platform']=='Android' and not row['admitted'])
+                         ) else fmt(row['final_gate']/5)
+        return [tok3k(C),
+                *[fmt(g/5) if g is not None else '--' for g in row['gates']],
+                final, sig3(row['nstar']), sig3(row['nstar_incl_3c'])]
     if table == 'verification':
         pe = row['provider_errors']
         mark = {0: '', 1: '$^{\\dagger}$', 2: '$^{\\dagger\\dagger}$'}[pe]
@@ -288,6 +369,28 @@ def _dual_cell(g, d):
     if d is None or d == '--':
         return r'\dualG{' + g + '}'
     return r'\dual{' + g + '}{' + d + '}'
+
+def _tri_cell(g, d, q):
+    """One merged body cell over the three models, extending the dual
+    convention with a qwTint third half: \\tri{G}{DS}{QW} when all three
+    have a value; the unchanged dual forms when qwen has none; \\triGQ /
+    \\triDQ when exactly one of glm/ds is present next to qwen; a
+    single-model \\triG/\\triD/\\triQ color cell otherwise.  Absent means
+    the row is missing or the cell rendered as '--'."""
+    gp = g is not None and g != '--'
+    dp = d is not None and d != '--'
+    qp = q is not None and q != '--'
+    if qp and gp and dp:
+        return r'\tri{' + g + '}{' + d + '}{' + q + '}'
+    if not qp:
+        return _dual_cell(g, d)
+    if gp and dp:
+        raise AssertionError((g, d, q))          # handled by the \tri branch
+    if gp:
+        return r'\triGQ{' + g + '}{' + q + '}'
+    if dp:
+        return r'\triDQ{' + d + '}{' + q + '}'
+    return r'\triQ{' + q + '}'
 
 # Per-model rows are kept in the JSON output; body.tex now prints one dual row
 # per family with \dual{GLM cell}{DS cell}, so the same cells are merged for the
@@ -313,6 +416,40 @@ for table, source in [('share', rows), ('price', rows), ('verification', out['re
         dual_rows[table].append(line([names[family], *merged]))
         dual_model_cells += sum(h is not None for h in (glm_cells, ds_cells))
 assert len(rows) == 14 and len(out['paired_replays']) == 6
+
+# Triple renderer: the same merge over glm+ds+qw halves, kept OUT of --check
+# (the body lands separately).  out['latex_rows_qwen'] holds the per-family
+# qw rows under the qwTint prefix, out['qw_halves'] the raw qw cell strings
+# per table/family (frozen by --check-qwen-rows), and out['latex_triples']
+# the merged triple rows the body edit can be diffed against.
+out['latex_rows_qwen'] = dict(share=[], price=[], verification=[], paired=[])
+qw_halves = {}
+triple_rows = dict(share=[], price=[], verification=[], paired=[])
+for table, qw_source in [('share', qwen_rows), ('price', qwen_rows),
+                         ('verification', out['qwen_repeated_and_extraction']),
+                         ('paired', out['qwen_paired_replays'])]:
+    halves3 = {}
+    for row in sorted(rows if table in ('share', 'price') else
+                      (out['repeated_and_extraction'] if table == 'verification'
+                       else out['paired_replays']), key=order):
+        halves3.setdefault(row['family'], {})[
+            'glm' if row['model'].startswith('z-ai/') else 'ds'] = value_cells(table, row)
+    for row in sorted(qw_source, key=order):
+        cells = value_cells(table, row)
+        out['latex_rows_qwen'][table].append(line([prefix(row), *cells]))
+        halves3.setdefault(row['family'], {})['qw'] = cells
+        qw_halves.setdefault(table, {})[row['family']] = cells
+    for family in family_order:
+        half = halves3.get(family)
+        if half is None:
+            continue
+        g, d, q = half.get('glm'), half.get('ds'), half.get('qw')
+        n = len(g or d or q)
+        merged = [_tri_cell(g[i] if g else None, d[i] if d else None,
+                            q[i] if q else None) for i in range(n)]
+        triple_rows[table].append(line([names[family], *merged]))
+out['qw_halves'] = qw_halves
+out['latex_triples'] = triple_rows
 if args.check:
     body = (Path(__file__).parent / 'body.tex').read_text().split('\\appendix\n', 1)[0]
     for table, expected in dual_rows.items():
@@ -367,5 +504,51 @@ if args.check_qwen:
     assert prices[QWEN]=={'p_in':1.5e-07,'p_c':1.6e-08,'p_o':4.7e-07}
     assert 'CommentPost' not in {r['family'] for r in out['qwen_rows']}
     print('PASS qwen: 6 rows (4 admitted) recomputed from the raw cells match the frozen literals; aggregate, prices and disclosures consistent.')
+if args.check_qwen_rows:
+    # The rendered qwen half-strings of Tables 1/2/3/4, frozen so the
+    # operator's body.tex triple edit can be diffed against them.  Program
+    # columns of the two rejected/terminated cells are '--' by design (the
+    # fill d/q in the OsmAnd row exists only for simulator pricing), and the
+    # OsmAnd C cell prints the cell's own recorded build price
+    # (measured.C_with_repair), not the admitted-median fill.
+    QW_HALF_FROZEN={
+     'share':{
+      'ContactsAddContact':['39.2k','46.6k','547','0.03','-0.19','0.95'],
+      'MarkorDeleteNote':['21.5k','18.6k','384','0.00','0.13','0.98'],
+      'SimpleCalendarAddOneEvent':['135k','129k','836','0.00','0.04','0.99'],
+      'OsmAndMarker':['122k','42.1k','--','--','0.66','--'],
+      'WriterMemoSave':['37.0k','58.0k','775','0.00','-0.57','0.98'],
+      'CalcTableSave':['169k','--','--','--','--','--'],
+     },
+     'price':{
+      'ContactsAddContact':['137k','0.40','1.00','1.00','1.00','3.66','6.81'],
+      'MarkorDeleteNote':['208k','1.00','1.00','1.00','1.00','9.83','12.9'],
+      'SimpleCalendarAddOneEvent':['1540k','1.00','0.00','0.00','0.80','11.5','14.5'],
+      'OsmAndMarker':['1590k','0.00','0.00','0.60','--','--','--'],
+      'WriterMemoSave':['486k','0.00','0.00','1.00','1.00','13.4','16.5'],
+      'CalcTableSave':['848k','--','--','--','--','--','--'],
+     },
+     'verification':{
+      'ContactsAddContact':['3/3','5/5','5/5'],
+      'MarkorDeleteNote':['3/3','5/5','5/5'],
+      'SimpleCalendarAddOneEvent':['2/3','4/5','4/5'],
+     },
+     'paired':{
+      'ContactsAddContact':['42.2k','0.0993','30/30','29/30','0.954'],
+      'MarkorDeleteNote':['19.3k','0.128','30/30','30/30','0.980'],
+      'SimpleCalendarAddOneEvent':['316k','0.504','15/30','30/30','0.997'],
+     },
+    }
+    got=out['qw_halves']
+    assert got==QW_HALF_FROZEN,{t:{f:(got.get(t,{}).get(f),QW_HALF_FROZEN[t].get(f)) for f in set(got.get(t,{}))|set(QW_HALF_FROZEN[t]) if got.get(t,{}).get(f)!=QW_HALF_FROZEN[t].get(f)} for t in set(got)|set(QW_HALF_FROZEN)}
+    assert {t:len(v) for t,v in out['latex_rows_qwen'].items()}=={'share':6,'price':6,'verification':3,'paired':3}
+    assert {t:len(v) for t,v in out['latex_triples'].items()}=={'share':7,'price':7,'verification':4,'paired':4}
+    ntri=sum(''.join(v).count('\\tri{') for v in out['latex_triples'].values())
+    ngq=sum(''.join(v).count('\\triGQ') for v in out['latex_triples'].values())
+    ndual=sum(''.join(v).count('\\dual') for v in out['latex_triples'].values())
+    nsgl=sum(sum(''.join(v).count(f'\\tri{m}') for v in out['latex_triples'].values()) for m in ('G','D','Q'))
+    print(f"PASS qwen-rows: 18 frozen qw half-rows over 4 tables match the recompute; "
+          f"22 triple rows carry {ntri} \\tri, {ngq} \\triGQ, {ndual} unchanged \\dual, {nsgl} single-color cells; "
+          f"the merged rows are in out['latex_triples'].")
 args.output.write_text(json.dumps(out, indent=2)+'\n')
 print('Wrote', args.output)
