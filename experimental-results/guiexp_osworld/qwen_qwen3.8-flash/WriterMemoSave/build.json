@@ -1,0 +1,1277 @@
+{
+ "family": "WriterMemoSave",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 18,
+ "price_weights": {
+  "r_c": 0.107,
+  "r_o": 3.13
+ },
+ "record_type": "build",
+ "floor": {
+  "model": "qwen/qwen3.8-flash",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 0,
+    "completion_tokens": 53,
+    "cost_usd": 0.00027637
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 34,
+    "cost_usd": 6.376e-05
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 34,
+    "cost_usd": 6.376e-05
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 41,
+    "cost_usd": 6.702e-05
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 43,
+    "cost_usd": 6.795e-05
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 34,
+    "cost_usd": 6.376e-05
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 91,
+    "cost_usd": 9.028e-05
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 34,
+    "cost_usd": 6.376e-05
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 55,
+    "cost_usd": 7.353e-05
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 39,
+    "cost_usd": 6.609e-05
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 47,
+    "cost_usd": 6.981e-05
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 47,
+    "cost_usd": 6.981e-05
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   }
+  ],
+  "unit_tokens_per_run": [
+   1861,
+   430,
+   430,
+   452,
+   458,
+   430,
+   608,
+   430,
+   496,
+   433,
+   433,
+   433,
+   445,
+   470,
+   433,
+   470,
+   433,
+   433
+  ],
+  "floor_unit_mean": 532.1,
+  "cost_usd_mean": 7.896e-05,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 19314.0,
+ "exploration": {
+  "family": "WriterMemoSave",
+  "model": "qwen/qwen3.8-flash",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 18,
+  "instances": [
+   {
+    "family": "WriterMemoSave",
+    "seed": 1,
+    "goal": "Please draft a short memo in a new LibreOffice Writer document: the title 'Quarterly Goals Draft' on line one, an empty line, then the sentence 'Queue times dropped by half after the staffing change last week.'. Save the finished document on the Desktop as training_summary.odt.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s1_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 6,
+      "usage": {
+       "prompt_tokens": 88826,
+       "cached_tokens": 62976,
+       "completion_tokens": 620,
+       "total_tokens": 89446,
+       "cost_usd": 0.00512475,
+       "model_calls": 6,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4576,
+         "cached_tokens": 512,
+         "completion_tokens": 76,
+         "cost_usd": 0.00064697688
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 8362,
+         "cached_tokens": 4352,
+         "completion_tokens": 73,
+         "cost_usd": 0.00069838758
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 12296,
+         "cached_tokens": 8192,
+         "completion_tokens": 54,
+         "cost_usd": 0.00076433148
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 16762,
+         "cached_tokens": 12288,
+         "completion_tokens": 298,
+         "cost_usd": 0.00099769032
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 21195,
+         "cached_tokens": 16640,
+         "completion_tokens": 64,
+         "cost_usd": 0.0009697743
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 25635,
+         "cached_tokens": 20992,
+         "completion_tokens": 55,
+         "cost_usd": 0.00104759028
+        }
+       ]
+      },
+      "unit_floored": 33347.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s1_a0/trajectory.jsonl"
+   },
+   {
+    "family": "WriterMemoSave",
+    "seed": 2,
+    "goal": "Open a new document in LibreOffice Writer. Start with the title 'Recruiting Pipeline Notes' on the first line, keep the second line blank, and write 'All action items from the last session were closed on schedule.' on the third line. Then save it to the Desktop under the name feedback_summary.odt.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s2_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 6,
+      "usage": {
+       "prompt_tokens": 89721,
+       "cached_tokens": 63488,
+       "completion_tokens": 624,
+       "total_tokens": 90345,
+       "cost_usd": 0.0051916,
+       "model_calls": 6,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4583,
+         "cached_tokens": 512,
+         "completion_tokens": 90,
+         "cost_usd": 0.00065453058
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 8422,
+         "cached_tokens": 4352,
+         "completion_tokens": 120,
+         "cost_usd": 0.00072916668
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 12417,
+         "cached_tokens": 8192,
+         "completion_tokens": 102,
+         "cost_usd": 0.00080463438
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 16944,
+         "cached_tokens": 12288,
+         "completion_tokens": 101,
+         "cost_usd": 0.00093305322
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 21431,
+         "cached_tokens": 16896,
+         "completion_tokens": 109,
+         "cost_usd": 0.00099179784
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 25924,
+         "cached_tokens": 21248,
+         "completion_tokens": 102,
+         "cost_usd": 0.00107841492
+        }
+       ]
+      },
+      "unit_floored": 33712.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "WriterMemoSave",
+    "seed": 3,
+    "goal": "New Writer document: first line 'Budget Revision Notes', second line left empty, third line 'The workshop will run twice to cover both product lines.'. Save it as kickoff_brief.odt on the Desktop.",
+    "step_cap": 18,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s3_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 7,
+      "usage": {
+       "prompt_tokens": 116665,
+       "cached_tokens": 86784,
+       "completion_tokens": 1258,
+       "total_tokens": 117923,
+       "cost_usd": 0.00639733,
+       "model_calls": 7,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 4560,
+         "cached_tokens": 512,
+         "completion_tokens": 145,
+         "cost_usd": 0.00067670658
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 8346,
+         "cached_tokens": 4352,
+         "completion_tokens": 71,
+         "cost_usd": 0.00069508098
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 12275,
+         "cached_tokens": 8192,
+         "completion_tokens": 799,
+         "cost_usd": 0.00110786148
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 16188,
+         "cached_tokens": 12032,
+         "completion_tokens": 61,
+         "cost_usd": 0.00083613618
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 20664,
+         "cached_tokens": 16128,
+         "completion_tokens": 67,
+         "cost_usd": 0.00096023862
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 25095,
+         "cached_tokens": 20480,
+         "completion_tokens": 71,
+         "cost_usd": 0.001042767
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 29537,
+         "cached_tokens": 25088,
+         "completion_tokens": 44,
+         "cost_usd": 0.00107854362
+        }
+       ]
+      },
+      "unit_floored": 41807.9
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 3,
+   "retry_episodes": 0,
+   "reflection_calls": 0,
+   "prompt_tokens": 295212,
+   "cached_tokens": 213248,
+   "completion_tokens": 2502,
+   "total_tokens": 297714,
+   "cost_usd": 0.01671368
+  },
+  "record_type": "exploration"
+ },
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 5,
+    "recorded_actions": 6,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 5,
+     "prompt_tokens": 3339,
+     "cached_tokens": 0,
+     "completion_tokens": 18356,
+     "total_tokens": 21695,
+     "cost_usd": 0.00903689
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 5,
+    "recorded_actions": 6,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 5,
+     "prompt_tokens": 3371,
+     "cached_tokens": 0,
+     "completion_tokens": 35605,
+     "total_tokens": 38976,
+     "cost_usd": 0.0170676
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 5,
+    "recorded_actions": 7,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 5,
+     "prompt_tokens": 3272,
+     "cached_tokens": 0,
+     "completion_tokens": 29594,
+     "total_tokens": 32866,
+     "cost_usd": 0.01425598
+    }
+   }
+  ],
+  "totals": {
+   "calls": 15,
+   "prompt_tokens": 9982,
+   "cached_tokens": 0,
+   "completion_tokens": 83555,
+   "total_tokens": 93537,
+   "cost_usd": 0.04036047
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1934,
+     "cached_tokens": 0,
+     "completion_tokens": 43949,
+     "total_tokens": 45883,
+     "cost_usd": 0.02073667
+    },
+    "cost_usd": 0.02073667,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1934,
+      "cached_tokens": 0,
+      "completion_tokens": 43949,
+      "total_tokens": 45883,
+      "cost_usd": 0.0207366687,
+      "usage": {
+       "prompt_tokens": 1934,
+       "completion_tokens": 43949,
+       "cached_tokens": 0,
+       "cost_usd": 0.0207366687
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 1757,
+     "cached_tokens": 0,
+     "completion_tokens": 2960,
+     "total_tokens": 4717,
+     "cost_usd": 0.0016382
+    },
+    "cost_usd": 0.0016382,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1757,
+      "cached_tokens": 0,
+      "completion_tokens": 2960,
+      "total_tokens": 4717,
+      "cost_usd": 0.0016382025,
+      "usage": {
+       "prompt_tokens": 1757,
+       "completion_tokens": 2960,
+       "cached_tokens": 0,
+       "cost_usd": 0.0016382025
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3375,
+     "cached_tokens": 256,
+     "completion_tokens": 54002,
+     "total_tokens": 57377,
+     "cost_usd": 0.02559436
+    },
+    "cost_usd": 0.02559436,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3375,
+      "cached_tokens": 256,
+      "completion_tokens": 54002,
+      "total_tokens": 57377,
+      "cost_usd": 0.02559435714,
+      "usage": {
+       "prompt_tokens": 3375,
+       "completion_tokens": 54002,
+       "cached_tokens": 256,
+       "cost_usd": 0.02559435714
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 3198,
+     "cached_tokens": 256,
+     "completion_tokens": 1411,
+     "total_tokens": 4609,
+     "cost_usd": 0.00109748
+    },
+    "cost_usd": 0.00109748,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3198,
+      "cached_tokens": 256,
+      "completion_tokens": 1411,
+      "total_tokens": 4609,
+      "cost_usd": 0.00109748034,
+      "usage": {
+       "prompt_tokens": 3198,
+       "completion_tokens": 1411,
+       "cached_tokens": 256,
+       "cost_usd": 0.00109748034
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4570,
+     "cached_tokens": 256,
+     "completion_tokens": 66873,
+     "total_tokens": 71443,
+     "cost_usd": 0.03176069
+    },
+    "cost_usd": 0.03176069,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4570,
+      "cached_tokens": 256,
+      "completion_tokens": 66873,
+      "total_tokens": 71443,
+      "cost_usd": 0.03176069094,
+      "usage": {
+       "prompt_tokens": 4570,
+       "completion_tokens": 66873,
+       "cached_tokens": 256,
+       "cost_usd": 0.03176069094
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4393,
+     "cached_tokens": 256,
+     "completion_tokens": 1727,
+     "total_tokens": 6120,
+     "cost_usd": 0.00142197
+    },
+    "cost_usd": 0.00142197,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4393,
+      "cached_tokens": 256,
+      "completion_tokens": 1727,
+      "total_tokens": 6120,
+      "cost_usd": 0.00142197264,
+      "usage": {
+       "prompt_tokens": 4393,
+       "completion_tokens": 1727,
+       "cached_tokens": 256,
+       "cost_usd": 0.00142197264
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 1,
+    "prompt_tokens": 4570,
+    "cached_tokens": 256,
+    "completion_tokens": 66873,
+    "total_tokens": 71443,
+    "cost_usd": 0.03176069
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": false,
+     "error": "RuntimeError: The Save dialog did not close after confirming"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": false,
+     "error": "RuntimeError: The Save dialog did not close after confirming"
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "RuntimeError: The Save dialog did not close after confirming"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": false,
+     "error": "RuntimeError: The Save dialog did not close after confirming"
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "RuntimeError: The Save dialog did not close after confirming"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": false,
+     "error": "RuntimeError: Document was not saved"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": false,
+     "error": "RuntimeError: Document was not saved"
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "RuntimeError: Document was not saved"
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": false,
+     "error": "RuntimeError: Document was not saved"
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": false,
+     "error": "RuntimeError: Document was not saved"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "family": "WriterMemoSave",
+  "model": "qwen/qwen3.8-flash",
+  "artifact": "code",
+  "m_max": 3,
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "rounds": [],
+  "refinements": 0,
+  "replays": 0,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "initial",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Document file name ending in .odt\",\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"Title text for line one\",\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"Body sentence for line three\",\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    required = (\"file_name\", \"title\", \"body\")\n    for key in required:\n        if key not in binding:\n            raise KeyError(f\"binding missing required key: {key}\")\n        if binding[key] is None:\n            raise ValueError(f\"binding key {key} must not be None\")\n\n    file_name = str(binding[\"file_name\"]).strip()\n    if not file_name:\n        raise ValueError(\"file_name must be non-empty\")\n    if not file_name.lower().endswith(\".odt\"):\n        file_name = file_name + \".odt\"\n\n    title = (\n        str(binding[\"title\"])\n        .replace(\"\\n\", \" \")\n        .replace(\"\\r\", \" \")\n        .replace(\"\\t\", \" \")\n        .strip()\n    )\n    body = (\n        str(binding[\"body\"])\n        .replace(\"\\n\", \" \")\n        .replace(\"\\r\", \" \")\n        .replace(\"\\t\", \" \")\n        .strip()\n    )\n    stem = file_name[:-4] if file_name.lower().endswith(\".odt\") else file_name\n\n    def find_writer_doc():\n        idx = device.find(role=\"document-text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"document-text\")\n        if idx is not None:\n            return idx\n\n        candidates = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            name = str(el.get(\"name\") or \"\")\n            text = str(el.get(\"text\") or \"\")\n            score = 0\n\n            if \"document-text\" in role:\n                score += 20\n            elif \"text\" in role:\n                score += 10\n\n            if \"LibreOffice\" in name or \"LibreOffice\" in text:\n                score += 10\n            if \"Untitled\" in name or \"Untitled\" in text:\n                score += 5\n            if \"Writer\" in name or \"Writer\" in text:\n                score += 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n        return None\n\n    def is_save_dialog_open():\n        try:\n            aw = str(device.active_window() or \"\")\n        except Exception:\n            aw = \"\"\n\n        if \"Save\" in aw:\n            return True\n\n        if device.find(name=\"Name:\", role=\"label\") is not None:\n            return True\n\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").lower()\n            name = str(el.get(\"name\") or \"\")\n            if role == \"dialog\" and \"Save\" in name:\n                return True\n\n        return False\n\n    def find_location_entry(target=\"Desktop\"):\n        candidates = []\n        for el in device.elements():\n            if el.get(\"editable\"):\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            blob = \" \".join((name, text, desc))\n\n            if target not in blob:\n                continue\n\n            score = 0\n            if name == target or text == target:\n                score += 20\n            elif blob == target:\n                score += 15\n\n            if el.get(\"clickable\"):\n                score += 5\n\n            if role in (\"label\", \"toggle-button\", \"push-button\"):\n                score += 10\n            elif role in (\"table-cell\", \"list-item\", \"tree-item\", \"icon\"):\n                score += 4\n\n            lower_blob = blob.lower()\n            if \"place\" in lower_blob or \"bookmark\" in lower_blob or \"sidebar\" in lower_blob:\n                score += 8\n            if \"path\" in lower_blob or \"folder\" in lower_blob:\n                score += 2\n            if \"writer\" in lower_blob or \"document\" in lower_blob:\n                score -= 20\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(name=target, clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=target)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"label\")\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"table-cell\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"toggle-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        return None\n\n    def select_desktop():\n        desktop_idx = find_location_entry(\"Desktop\")\n        if desktop_idx is None:\n            for direction in (\"down\", \"up\", \"left\", \"right\"):\n                try:\n                    device.scroll(direction=direction)\n                except Exception:\n                    pass\n                device.settle(0.5)\n                desktop_idx = find_location_entry(\"Desktop\")\n                if desktop_idx is not None:\n                    break\n\n        if desktop_idx is None:\n            raise RuntimeError(\"Could not find Desktop in Save dialog\")\n\n        device.click(index=desktop_idx)\n        device.settle(0.5)\n\n    def find_name_field():\n        candidates = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if \"document-text\" in role:\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            blob = (name + \" \" + text + \" \" + desc).lower()\n\n            score = 0\n            if role in (\"text\", \"entry\"):\n                score += 15\n            elif role in (\"combo-box\", \"combo box\"):\n                score += 5\n            else:\n                score += 2\n\n            if \"Name\" in name or \"Name\" in desc:\n                score += 15\n            if \"Untitled\" in text:\n                score += 10\n            if text == \"\" or text.endswith(\".odt\") or text.endswith(\".txt\"):\n                score += 3\n            if file_name.lower() in text or stem.lower() in text:\n                score += 10\n            if el.get(\"clickable\"):\n                score += 2\n\n            if \"search\" in blob:\n                score -= 20\n            if \"path\" in blob:\n                score -= 10\n            if \"libreoffice\" in blob or \"writer\" in blob:\n                score -= 30\n            if \"Desktop\" in text and \"Untitled\" not in text:\n                score -= 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(role=\"text\", editable=True, contains=\"Untitled\")\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"entry\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Name:\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Name:\", role=\"text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"text\", contains=\"Untitled\")\n        if idx is not None:\n            return idx\n        return None\n\n    def enter_filename(text):\n        name_idx = find_name_field()\n        if name_idx is None:\n            raise RuntimeError(\"Could not find filename field in Save dialog\")\n\n        device.click(index=name_idx)\n        device.settle(0.2)\n        device.hotkey(\"ctrl\", \"a\")\n        device.press(\"delete\")\n        if text:\n            device.type_at_caret(text)\n        device.settle(0.3)\n\n    def find_save_button():\n        candidates = []\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if role != \"push-button\":\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            score = 0\n\n            if name == \"Save\" or text == \"Save\":\n                score += 20\n            elif \"Save\" in name or \"Save\" in text:\n                score += 10\n            else:\n                continue\n\n            if el.get(\"clickable\"):\n                score += 5\n            if \"As\" in name or \"As\" in text:\n                score -= 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(name=\"Save\", role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Save\", role=\"push-button\")\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", role=\"push-button\")\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Save\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", clickable=True)\n        if idx is not None:\n            return idx\n        return None\n\n    def confirm_save():\n        save_idx = find_save_button()\n        if save_idx is not None:\n            device.click(index=save_idx)\n        elif is_save_dialog_open():\n            device.press(\"enter\")\n        else:\n            raise RuntimeError(\"Could not find Save button\")\n        device.settle(1.0)\n\n    def find_confirm_button():\n        wanted = (\"OK\", \"Use\", \"Yes\", \"Overwrite\", \"Keep\", \"ODF\")\n        candidates = []\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if role != \"push-button\":\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            label = name or text\n            if not label:\n                continue\n            if label in (\"Cancel\", \"No\"):\n                continue\n\n            score = 0\n            if label in wanted:\n                score += 20\n            elif any(word in label for word in wanted):\n                score += 10\n            else:\n                continue\n\n            if \"ODF\" in label.upper():\n                score += 10\n            if el.get(\"clickable\"):\n                score += 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n        return None\n\n    def current_aw():\n        try:\n            return str(device.active_window() or \"\").strip()\n        except Exception:\n            return \"\"\n\n    def has_double_extension(aw):\n        if not aw or not file_name.lower().endswith(\".odt\"):\n            return False\n        return aw.lower().startswith(file_name.lower() + \".odt\")\n\n    def saved_ok(aw):\n        if not aw:\n            return False\n        lower = aw.lower()\n        return file_name.lower() in lower or stem.lower() in lower\n\n    def resolve_save_state():\n        for _ in range(3):\n            aw = current_aw()\n            if saved_ok(aw) and not has_double_extension(aw):\n                return\n\n            confirm_idx = find_confirm_button()\n            if confirm_idx is not None:\n                device.click(index=confirm_idx)\n                device.settle(1.0)\n                continue\n\n            if is_save_dialog_open():\n                save_idx = find_save_button()\n                if save_idx is not None:\n                    device.click(index=save_idx)\n                    device.settle(1.0)\n                    continue\n                device.press(\"enter\")\n                device.settle(1.0)\n                continue\n\n            break\n\n    doc_idx = find_writer_doc()\n    if doc_idx is None:\n        raise RuntimeError(\"Could not find editable LibreOffice Writer document\")\n\n    device.click(index=doc_idx)\n    device.settle(0.2)\n    device.hotkey(\"ctrl\", \"a\")\n    device.press(\"delete\")\n    device.settle(0.2)\n\n    if title:\n        device.type_at_caret(title)\n    device.press(\"enter\")\n    device.press(\"enter\")\n    if body:\n        device.type_at_caret(body)\n    device.settle(0.5)\n\n    doc_idx = find_writer_doc()\n    if doc_idx is None:\n        raise RuntimeError(\"Could not re-find LibreOffice Writer document before saving\")\n\n    device.click(index=doc_idx)\n    device.settle(0.2)\n    device.hotkey(\"ctrl\", \"s\")\n    device.wait()\n\n    if not is_save_dialog_open():\n        doc_idx = find_writer_doc()\n        if doc_idx is not None:\n            device.click(index=doc_idx)\n            device.settle(0.2)\n        device.hotkey(\"ctrl\", \"shift\", \"s\")\n        device.wait()\n        if not is_save_dialog_open():\n            raise RuntimeError(\"Save dialog did not open\")\n\n    select_desktop()\n    enter_filename(file_name)\n    confirm_save()\n    resolve_save_state()\n\n    aw = current_aw()\n    if has_double_extension(aw):\n        doc_idx = find_writer_doc()\n        if doc_idx is None:\n            raise RuntimeError(\"Could not find Writer document while correcting extension\")\n\n        device.click(index=doc_idx)\n        device.settle(0.2)\n        device.hotkey(\"ctrl\", \"shift\", \"s\")\n        device.wait()\n\n        if not is_save_dialog_open():\n            raise RuntimeError(\"Save As dialog did not open while correcting extension\")\n\n        select_desktop()\n        enter_filename(stem)\n        confirm_save()\n        resolve_save_state()\n\n        aw = current_aw()\n        if has_double_extension(aw):\n            raise RuntimeError(\"Document saved with a doubled extension\")\n\n    if aw and not saved_ok(aw):\n        raise RuntimeError(\"Document does not appear to be saved with the requested name\")\n\n    return True\n",
+  "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Document file name ending in .odt\",\n    },\n    \"title\": {\n        \"type\": \"string\",\n        \"description\": \"Title text for line one\",\n    },\n    \"body\": {\n        \"type\": \"string\",\n        \"description\": \"Body sentence for line three\",\n    },\n}\n\n\ndef program(device, binding: dict) -> bool:\n    required = (\"file_name\", \"title\", \"body\")\n    for key in required:\n        if key not in binding:\n            raise KeyError(f\"binding missing required key: {key}\")\n        if binding[key] is None:\n            raise ValueError(f\"binding key {key} must not be None\")\n\n    file_name = str(binding[\"file_name\"]).strip()\n    if not file_name:\n        raise ValueError(\"file_name must be non-empty\")\n    if not file_name.lower().endswith(\".odt\"):\n        file_name = file_name + \".odt\"\n\n    title = (\n        str(binding[\"title\"])\n        .replace(\"\\n\", \" \")\n        .replace(\"\\r\", \" \")\n        .replace(\"\\t\", \" \")\n        .strip()\n    )\n    body = (\n        str(binding[\"body\"])\n        .replace(\"\\n\", \" \")\n        .replace(\"\\r\", \" \")\n        .replace(\"\\t\", \" \")\n        .strip()\n    )\n    stem = file_name[:-4] if file_name.lower().endswith(\".odt\") else file_name\n\n    def find_writer_doc():\n        idx = device.find(role=\"document-text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"document-text\")\n        if idx is not None:\n            return idx\n\n        candidates = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n            role = str(el.get(\"role\") or \"\")\n            name = str(el.get(\"name\") or \"\")\n            text = str(el.get(\"text\") or \"\")\n            score = 0\n\n            if \"document-text\" in role:\n                score += 20\n            elif \"text\" in role:\n                score += 10\n\n            if \"LibreOffice\" in name or \"LibreOffice\" in text:\n                score += 10\n            if \"Untitled\" in name or \"Untitled\" in text:\n                score += 5\n            if \"Writer\" in name or \"Writer\" in text:\n                score += 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n        return None\n\n    def is_save_dialog_open():\n        try:\n            aw = str(device.active_window() or \"\")\n        except Exception:\n            aw = \"\"\n\n        if \"Save\" in aw:\n            return True\n\n        if device.find(name=\"Name:\", role=\"label\") is not None:\n            return True\n\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").lower()\n            name = str(el.get(\"name\") or \"\")\n            if role == \"dialog\" and \"Save\" in name:\n                return True\n\n        return False\n\n    def find_location_entry(target=\"Desktop\"):\n        candidates = []\n        for el in device.elements():\n            if el.get(\"editable\"):\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            blob = \" \".join((name, text, desc))\n\n            if target not in blob:\n                continue\n\n            score = 0\n            if name == target or text == target:\n                score += 20\n            elif blob == target:\n                score += 15\n\n            if el.get(\"clickable\"):\n                score += 5\n\n            if role in (\"label\", \"toggle-button\", \"push-button\"):\n                score += 10\n            elif role in (\"table-cell\", \"list-item\", \"tree-item\", \"icon\"):\n                score += 4\n\n            lower_blob = blob.lower()\n            if \"place\" in lower_blob or \"bookmark\" in lower_blob or \"sidebar\" in lower_blob:\n                score += 8\n            if \"path\" in lower_blob or \"folder\" in lower_blob:\n                score += 2\n            if \"writer\" in lower_blob or \"document\" in lower_blob:\n                score -= 20\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(name=target, clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=target)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"label\")\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"table-cell\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"toggle-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=target, role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        return None\n\n    def select_desktop():\n        desktop_idx = find_location_entry(\"Desktop\")\n        if desktop_idx is None:\n            for direction in (\"down\", \"up\", \"left\", \"right\"):\n                try:\n                    device.scroll(direction=direction)\n                except Exception:\n                    pass\n                device.settle(0.5)\n                desktop_idx = find_location_entry(\"Desktop\")\n                if desktop_idx is not None:\n                    break\n\n        if desktop_idx is None:\n            raise RuntimeError(\"Could not find Desktop in Save dialog\")\n\n        device.click(index=desktop_idx)\n        device.settle(0.5)\n\n    def find_name_field():\n        candidates = []\n        for el in device.elements():\n            if not el.get(\"editable\"):\n                continue\n\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if \"document-text\" in role:\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            blob = (name + \" \" + text + \" \" + desc).lower()\n\n            score = 0\n            if role in (\"text\", \"entry\"):\n                score += 15\n            elif role in (\"combo-box\", \"combo box\"):\n                score += 5\n            else:\n                score += 2\n\n            if \"Name\" in name or \"Name\" in desc:\n                score += 15\n            if \"Untitled\" in text:\n                score += 10\n            if text == \"\" or text.endswith(\".odt\") or text.endswith(\".txt\"):\n                score += 3\n            if file_name.lower() in text or stem.lower() in text:\n                score += 10\n            if el.get(\"clickable\"):\n                score += 2\n\n            if \"search\" in blob:\n                score -= 20\n            if \"path\" in blob:\n                score -= 10\n            if \"libreoffice\" in blob or \"writer\" in blob:\n                score -= 30\n            if \"Desktop\" in text and \"Untitled\" not in text:\n                score -= 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(role=\"text\", editable=True, contains=\"Untitled\")\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"entry\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Name:\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Name:\", role=\"text\", editable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(role=\"text\", contains=\"Untitled\")\n        if idx is not None:\n            return idx\n        return None\n\n    def enter_filename(text):\n        name_idx = find_name_field()\n        if name_idx is None:\n            raise RuntimeError(\"Could not find filename field in Save dialog\")\n\n        device.click(index=name_idx)\n        device.settle(0.2)\n        device.hotkey(\"ctrl\", \"a\")\n        device.press(\"delete\")\n        if text:\n            device.type_at_caret(text)\n        device.settle(0.3)\n\n    def find_save_button():\n        candidates = []\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if role != \"push-button\":\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            score = 0\n\n            if name == \"Save\" or text == \"Save\":\n                score += 20\n            elif \"Save\" in name or \"Save\" in text:\n                score += 10\n            else:\n                continue\n\n            if el.get(\"clickable\"):\n                score += 5\n            if \"As\" in name or \"As\" in text:\n                score -= 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n\n        idx = device.find(name=\"Save\", role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Save\", role=\"push-button\")\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", role=\"push-button\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", role=\"push-button\")\n        if idx is not None:\n            return idx\n        idx = device.find(name=\"Save\", clickable=True)\n        if idx is not None:\n            return idx\n        idx = device.find(contains=\"Save\", clickable=True)\n        if idx is not None:\n            return idx\n        return None\n\n    def confirm_save():\n        save_idx = find_save_button()\n        if save_idx is not None:\n            device.click(index=save_idx)\n        elif is_save_dialog_open():\n            device.press(\"enter\")\n        else:\n            raise RuntimeError(\"Could not find Save button\")\n        device.settle(1.0)\n\n    def find_confirm_button():\n        wanted = (\"OK\", \"Use\", \"Yes\", \"Overwrite\", \"Keep\", \"ODF\")\n        candidates = []\n        for el in device.elements():\n            role = str(el.get(\"role\") or \"\").strip().lower()\n            if role != \"push-button\":\n                continue\n\n            name = str(el.get(\"name\") or \"\").strip()\n            text = str(el.get(\"text\") or \"\").strip()\n            label = name or text\n            if not label:\n                continue\n            if label in (\"Cancel\", \"No\"):\n                continue\n\n            score = 0\n            if label in wanted:\n                score += 20\n            elif any(word in label for word in wanted):\n                score += 10\n            else:\n                continue\n\n            if \"ODF\" in label.upper():\n                score += 10\n            if el.get(\"clickable\"):\n                score += 5\n\n            if score > 0:\n                candidates.append((score, el[\"index\"]))\n\n        if candidates:\n            candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)\n            return candidates[0][1]\n        return None\n\n    def current_aw():\n        try:\n            return str(device.active_window() or \"\").strip()\n        except Exception:\n            return \"\"\n\n    def has_double_extension(aw):\n        if not aw or not file_name.lower().endswith(\".odt\"):\n            return False\n        return aw.lower().startswith(file_name.lower() + \".odt\")\n\n    def saved_ok(aw):\n        if not aw:\n            return False\n        lower = aw.lower()\n        return file_name.lower() in lower or stem.lower() in lower\n\n    def resolve_save_state():\n        for _ in range(3):\n            aw = current_aw()\n            if saved_ok(aw) and not has_double_extension(aw):\n                return\n\n            confirm_idx = find_confirm_button()\n            if confirm_idx is not None:\n                device.click(index=confirm_idx)\n                device.settle(1.0)\n                continue\n\n            if is_save_dialog_open():\n                save_idx = find_save_button()\n                if save_idx is not None:\n                    device.click(index=save_idx)\n                    device.settle(1.0)\n                    continue\n                device.press(\"enter\")\n                device.settle(1.0)\n                continue\n\n            break\n\n    doc_idx = find_writer_doc()\n    if doc_idx is None:\n        raise RuntimeError(\"Could not find editable LibreOffice Writer document\")\n\n    device.click(index=doc_idx)\n    device.settle(0.2)\n    device.hotkey(\"ctrl\", \"a\")\n    device.press(\"delete\")\n    device.settle(0.2)\n\n    if title:\n        device.type_at_caret(title)\n    device.press(\"enter\")\n    device.press(\"enter\")\n    if body:\n        device.type_at_caret(body)\n    device.settle(0.5)\n\n    doc_idx = find_writer_doc()\n    if doc_idx is None:\n        raise RuntimeError(\"Could not re-find LibreOffice Writer document before saving\")\n\n    device.click(index=doc_idx)\n    device.settle(0.2)\n    device.hotkey(\"ctrl\", \"s\")\n    device.wait()\n\n    if not is_save_dialog_open():\n        doc_idx = find_writer_doc()\n        if doc_idx is not None:\n            device.click(index=doc_idx)\n            device.settle(0.2)\n        device.hotkey(\"ctrl\", \"shift\", \"s\")\n        device.wait()\n        if not is_save_dialog_open():\n            raise RuntimeError(\"Save dialog did not open\")\n\n    select_desktop()\n    enter_filename(file_name)\n    confirm_save()\n    resolve_save_state()\n\n    aw = current_aw()\n    if has_double_extension(aw):\n        doc_idx = find_writer_doc()\n        if doc_idx is None:\n            raise RuntimeError(\"Could not find Writer document while correcting extension\")\n\n        device.click(index=doc_idx)\n        device.settle(0.2)\n        device.hotkey(\"ctrl\", \"shift\", \"s\")\n        device.wait()\n\n        if not is_save_dialog_open():\n            raise RuntimeError(\"Save As dialog did not open while correcting extension\")\n\n        select_desktop()\n        enter_filename(stem)\n        confirm_save()\n        resolve_save_state()\n\n        aw = current_aw()\n        if has_double_extension(aw):\n            raise RuntimeError(\"Document saved with a doubled extension\")\n\n    if aw and not saved_ok(aw):\n        raise RuntimeError(\"Document does not appear to be saved with the requested name\")\n\n    return True\n",
+  "conclusions": [],
+  "totals": {
+   "analyzer": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "cached_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   },
+   "resume_episodes": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "cached_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   },
+   "builder_refinements": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "cached_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   },
+   "program_replays": {
+    "count": 0,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+   }
+  },
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "pipeline_notes.odt",
+      "title": "Release Checklist",
+      "body": "Attendance was high and the recording is available on the portal."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Team Standup Notes",
+      "body": "The archive migration preserved folder permissions without changes."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "travel_sketch.odt",
+      "title": "Maintenance Window",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "agenda_draft.odt",
+      "title": "Meeting Agenda Draft",
+      "body": "The documentation refresh covers all endpoints released this year."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "budget_notes.odt",
+      "title": "Office Move Plan",
+      "body": "The migration ran overnight and every record carried over cleanly."
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "record_type": "verification"
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 407.6666666666667,
+  "total_tokens": 12230,
+  "cost_usd": 0.00345149
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 821,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 185141,
+    "cached_tokens": 146432,
+    "completion_tokens": 472,
+    "total_tokens": 185613,
+    "cost_usd": 0.00828739,
+    "model_calls": 9,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4774,
+      "cached_tokens": 0,
+      "completion_tokens": 42,
+      "cost_usd": 0.0007284816
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 8558,
+      "cached_tokens": 4608,
+      "completion_tokens": 41,
+      "cost_usd": 0.00067864302
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 12427,
+      "cached_tokens": 8448,
+      "completion_tokens": 30,
+      "cost_usd": 0.00073865682
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 16281,
+      "cached_tokens": 12288,
+      "completion_tokens": 47,
+      "cost_usd": 0.00080947152
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 20135,
+      "cached_tokens": 16128,
+      "completion_tokens": 58,
+      "cost_usd": 0.00087749442
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 24060,
+      "cached_tokens": 19968,
+      "completion_tokens": 50,
+      "cost_usd": 0.00094722012
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 28535,
+      "cached_tokens": 23808,
+      "completion_tokens": 87,
+      "cost_usd": 0.00111955932
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 32965,
+      "cached_tokens": 28416,
+      "completion_tokens": 79,
+      "cost_usd": 0.00116239464
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 37406,
+      "cached_tokens": 32768,
+      "completion_tokens": 38,
+      "cost_usd": 0.00122546952
+     }
+    ],
+    "unit_floored": 54159.9
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 10,
+    "prompt_tokens": 226905,
+    "cached_tokens": 184320,
+    "completion_tokens": 585,
+    "total_tokens": 227490,
+    "cost_usd": 0.0095157,
+    "model_calls": 10,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4766,
+      "cached_tokens": 512,
+      "completion_tokens": 33,
+      "cost_usd": 0.00065518398
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 8550,
+      "cached_tokens": 4608,
+      "completion_tokens": 80,
+      "cost_usd": 0.00069560172
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 12421,
+      "cached_tokens": 8448,
+      "completion_tokens": 30,
+      "cost_usd": 0.00073776582
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 16276,
+      "cached_tokens": 12288,
+      "completion_tokens": 115,
+      "cost_usd": 0.00084036942
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 20131,
+      "cached_tokens": 16128,
+      "completion_tokens": 55,
+      "cost_usd": 0.00087550452
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 24054,
+      "cached_tokens": 19968,
+      "completion_tokens": 33,
+      "cost_usd": 0.00093841902
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 28529,
+      "cached_tokens": 23808,
+      "completion_tokens": 73,
+      "cost_usd": 0.00111215412
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 32959,
+      "cached_tokens": 28416,
+      "completion_tokens": 41,
+      "cost_usd": 0.00114382224
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 37389,
+      "cached_tokens": 32768,
+      "completion_tokens": 82,
+      "cost_usd": 0.00124341822
+     },
+     {
+      "call": 10,
+      "prompt_tokens": 41830,
+      "cached_tokens": 37376,
+      "completion_tokens": 43,
+      "cost_usd": 0.00127346274
+     }
+    ],
+    "unit_floored": 62473.9
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 9,
+    "prompt_tokens": 185807,
+    "cached_tokens": 147712,
+    "completion_tokens": 577,
+    "total_tokens": 186384,
+    "cost_usd": 0.00826534,
+    "model_calls": 9,
+    "calls_detail": [
+     {
+      "call": 1,
+      "prompt_tokens": 4759,
+      "cached_tokens": 512,
+      "completion_tokens": 83,
+      "cost_usd": 0.00067740948
+     },
+     {
+      "call": 2,
+      "prompt_tokens": 8599,
+      "cached_tokens": 4608,
+      "completion_tokens": 122,
+      "cost_usd": 0.00072242082
+     },
+     {
+      "call": 3,
+      "prompt_tokens": 12512,
+      "cached_tokens": 8448,
+      "completion_tokens": 30,
+      "cost_usd": 0.00075127932
+     },
+     {
+      "call": 4,
+      "prompt_tokens": 16369,
+      "cached_tokens": 12288,
+      "completion_tokens": 36,
+      "cost_usd": 0.00081742122
+     },
+     {
+      "call": 5,
+      "prompt_tokens": 20226,
+      "cached_tokens": 16128,
+      "completion_tokens": 58,
+      "cost_usd": 0.00089100792
+     },
+     {
+      "call": 6,
+      "prompt_tokens": 24151,
+      "cached_tokens": 20224,
+      "completion_tokens": 57,
+      "cost_usd": 0.00093002976
+     },
+     {
+      "call": 7,
+      "prompt_tokens": 28628,
+      "cached_tokens": 24064,
+      "completion_tokens": 70,
+      "cost_usd": 0.00109149876
+     },
+     {
+      "call": 8,
+      "prompt_tokens": 33060,
+      "cached_tokens": 28416,
+      "completion_tokens": 85,
+      "cost_usd": 0.00117929394
+     },
+     {
+      "call": 9,
+      "prompt_tokens": 37503,
+      "cached_tokens": 33024,
+      "completion_tokens": 36,
+      "cost_usd": 0.00120498246
+     }
+    ],
+    "unit_floored": 54187.9
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 28,
+   "prompt_tokens": 597853,
+   "cached_tokens": 478464,
+   "completion_tokens": 1634,
+   "total_tokens": 599487,
+   "cost_usd": 0.02606843
+  }
+ },
+ "break_even": {
+  "c_unit_floored": 36289.6,
+  "floor_unit": 532.1,
+  "d_unit": 407.6666666666667,
+  "q": 0.0,
+  "price_weights": {
+   "r_c": 0.107,
+   "r_o": 3.13
+  },
+  "build_totals_raw": {
+   "exploration": 297714,
+   "translator": 93537,
+   "builder_selected": 71443,
+   "verification_analyzer": 0,
+   "verification_resume": 0,
+   "autorpa_build": 462694
+  },
+  "build_totals_priced": {
+   "exploration_floored": 108868.70000000001,
+   "translator": 271509,
+   "builder_selected": 213654,
+   "verification_analyzer_plus_floored_resume": 0,
+   "autorpa_build": 594031.7
+  },
+  "s_unit": 35881.9,
+  "nstar": {
+   "marginal": 5.9544,
+   "autorpa_build": 16.5552
+  }
+ },
+ "total_cost_usd": 0.168843
+}

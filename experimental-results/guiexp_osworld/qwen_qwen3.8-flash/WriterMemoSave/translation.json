@@ -1,0 +1,317 @@
+{
+ "1": {
+  "family": "WriterMemoSave",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Quarterly Goals Draft\n\nQueue times dropped by half after the staffing change last week."
+    },
+    "field": null,
+    "analysis": "This action depends on locating the editable Writer document area; it can fail if that area is absent or if `binding` lacks `title`/`body`.",
+    "snippet": "device.wait()\nif \"title\" not in binding or \"body\" not in binding:\n    raise RuntimeError(\"binding must provide title and body\")\n\ndoc_idx = device.find(role=\"document-text\", editable=True)\nif doc_idx is None:\n    raise RuntimeError(\"Editable LibreOffice Writer document area not found\")\n\ndevice.input_text(f\"{binding['title']}\\n\\n{binding['body']}\", index=doc_idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 633,
+     "completion_tokens": 2132,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010860201
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "Ctrl+S depends on the Writer document being focused and having unsaved changes; if focus is elsewhere or the document is not dirty, the Save dialog may not appear.",
+    "snippet": "doc = device.find(editable=True, role=\"text\")\nif doc is None:\n    raise RuntimeError(\"Could not find the editable Writer document\")\n\ndevice.click(index=doc)\ndevice.hotkey(\"ctrl\", \"s\")\ndevice.wait()\n\nif device.find(name=\"Name:\") is None:\n    raise RuntimeError(\"Ctrl+S did not open the Save dialog\")",
+    "usage": {
+     "prompt_tokens": 746,
+     "completion_tokens": 7439,
+     "cached_tokens": 0,
+     "cost_usd": 0.0035721477
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action selects the Desktop entry in the Save dialog; its accessible role may be label, table-cell, or toggle-button, and indexes vary. It fails if the Desktop navigation item is absent or exposed with a different accessible name.",
+    "snippet": "target = binding.get(\"desktop\", \"Desktop\")\ndevice.wait()\n\nidx = None\nfor kwargs in (\n    {\"name\": target, \"role\": \"label\"},\n    {\"name\": target, \"role\": \"table-cell\", \"clickable\": True},\n    {\"name\": target, \"role\": \"toggle-button\"},\n    {\"contains\": target, \"role\": \"label\"},\n    {\"name\": target},\n):\n    idx = device.find(**kwargs)\n    if idx is not None:\n        break\n\nif idx is None:\n    raise RuntimeError(f\"Could not find Desktop entry in Save dialog: {target}\")\n\ndevice.click(index=idx)\ndevice.wait()",
+    "usage": {
+     "prompt_tokens": 599,
+     "completion_tokens": 4655,
+     "cached_tokens": 0,
+     "cost_usd": 0.002254923
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "training_summary"
+    },
+    "field": "file_name",
+    "analysis": "This action depends on the editable filename text field in the Save dialog, identified by its default \u201cUntitled 1\u201d text; it can fail if that field is not found or if another editable text field is present.",
+    "snippet": "idx = device.find(role='text', editable=True, contains='Untitled')\nif idx is None:\n    raise RuntimeError('Save dialog filename field not found')\ndevice.input_text(binding['file_name'].rsplit('.', 1)[0], index=idx)",
+    "usage": {
+     "prompt_tokens": 605,
+     "completion_tokens": 3166,
+     "cached_tokens": 0,
+     "cost_usd": 0.0015629823
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This action depends on the save dialog being open and exposing an enabled, clickable push-button named \u201cSave\u201d; it can fail if the dialog is not present, the button is disabled, or another \u201cSave\u201d control is matched first.",
+    "snippet": "save_idx = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif save_idx is None:\n    raise RuntimeError(\"Could not find clickable Save push-button in save dialog\")\ndevice.click(index=save_idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 756,
+     "completion_tokens": 964,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005608152
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 3339,
+   "cached_tokens": 0,
+   "completion_tokens": 18356,
+   "total_tokens": 21695,
+   "cost_usd": 0.00903689
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "WriterMemoSave",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Recruiting Pipeline Notes\n\nAll action items from the last session were closed on schedule."
+    },
+    "field": null,
+    "analysis": "This action depends on finding the editable Writer document text area and inserting the task title/body with a blank second line; it can fail if the element index changes or if the document already has text.",
+    "snippet": "doc_idx = device.find(role=\"document-text\", editable=True)\nif doc_idx is None:\n    raise RuntimeError(\"Could not find the editable LibreOffice Writer document text area\")\n\ndevice.click(index=doc_idx)\ndevice.hotkey(\"ctrl\", \"a\")\ndevice.press(\"delete\")\ndevice.input_text(f\"{binding['title']}\\n\\n{binding['body']}\", index=doc_idx)",
+    "usage": {
+     "prompt_tokens": 641,
+     "completion_tokens": 2078,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010620819
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "The action depends on Ctrl+S opening the Save dialog and on the dialog exposing the Name field, Desktop location, and Save button by accessible labels rather than fixed indexes.",
+    "snippet": "file_name = str(binding.get('file_name', '')).strip()\nif not file_name:\n    raise ValueError('binding is missing file_name')\n\ndef find_name():\n    idx = device.find(name='Name:', editable=True)\n    if idx is None:\n        idx = device.find(role='text', editable=True, text='Untitled 1')\n    if idx is None:\n        idx = device.find(role='text', editable=True)\n    return idx\n\ndef find_desktop():\n    idx = device.find(name='Desktop', clickable=True)\n    if idx is None:\n        idx = device.find(text='Desktop', clickable=True)\n    return idx\n\ndevice.hotkey('ctrl', 's')\ndevice.settle(1)\nname_idx = find_name()\nif name_idx is None:\n    device.hotkey('ctrl', 'shift', 's')\n    device.settle(1)\n    name_idx = find_name()\nif name_idx is None:\n    raise RuntimeError('Save dialog did not open')\n\ndesktop_idx = find_desktop()\nif desktop_idx is None:\n    raise RuntimeError('Desktop location not found')\ndevice.click(index=desktop_idx)\ndevice.press('enter')\ndevice.settle(0.5)\n\nname_idx = find_name()\nif name_idx is None:\n    raise RuntimeError('Name field not found')\ndevice.input_text(file_name, index=name_idx)\n\nsave_idx = device.find(name='Save', role='push-button')\nif save_idx is None:\n    save_idx = device.find(text='Save', role='push-button')\nif save_idx is None:\n    raise RuntimeError('Save button not found')\ndevice.click(index=save_idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 752,
+     "completion_tokens": 21917,
+     "cached_tokens": 0,
+     "cost_usd": 0.0103096521
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action depends on the Save dialog exposing the Desktop location as a selectable row/button; its role can vary (table-cell, toggle-button, or a non-clickable label child), so it should be found by name with role/clickable fallbacks.",
+    "snippet": "loc = binding.get(\"save_directory\", \"Desktop\")\n\nfor kwargs in (\n    {\"name\": loc, \"role\": \"table-cell\", \"clickable\": True},\n    {\"name\": loc, \"role\": \"toggle-button\", \"clickable\": True},\n    {\"name\": loc, \"role\": \"push-button\", \"clickable\": True},\n    {\"name\": loc, \"clickable\": True},\n    {\"name\": loc, \"role\": \"label\"},\n):\n    idx = device.find(**kwargs)\n    if idx is not None:\n        device.click(index=idx)\n        device.wait()\n        break\nelse:\n    raise RuntimeError(f\"Save location {loc!r} not found\")",
+    "usage": {
+     "prompt_tokens": 605,
+     "completion_tokens": 3467,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017030376
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "feedback_summary"
+    },
+    "field": "file_name",
+    "analysis": "The action depends on the Save dialog's editable filename text field, not its index; it can fail if the default field text differs or the field is not found.",
+    "snippet": "stem = binding['file_name'].rsplit('.', 1)[0]\nidx = device.find(role='text', editable=True, clickable=False)\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise RuntimeError('Save dialog filename text field not found')\ndevice.input_text(stem, index=idx)",
+    "usage": {
+     "prompt_tokens": 611,
+     "completion_tokens": 4181,
+     "cached_tokens": 0,
+     "cost_usd": 0.0020361528
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This action depends on the Save push-button being present and clickable in the active save dialog; it can fail if the dialog is not open or the button is disabled.",
+    "snippet": "device.wait()\nsave = device.find(name=\"Save\", role=\"push-button\", clickable=True)\nif save is None:\n    raise RuntimeError(\"Save button not found in the save dialog\")\ndevice.click(index=save)\ndevice.wait()",
+    "usage": {
+     "prompt_tokens": 762,
+     "completion_tokens": 3962,
+     "cached_tokens": 0,
+     "cost_usd": 0.0019566756
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 6,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 3371,
+   "cached_tokens": 0,
+   "completion_tokens": 35605,
+   "total_tokens": 38976,
+   "cost_usd": 0.0170676
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "WriterMemoSave",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/WriterMemoSave/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 2,
+    "action": {
+     "action_type": "input_text",
+     "index": 22,
+     "text": "Budget Revision Notes\n\nThe workshop will run twice to cover both product lines."
+    },
+    "field": null,
+    "analysis": "The action depends on locating the main editable Writer document text area by semantic attributes, not by the recorded index; it can fail if that element is absent or if `binding` does not provide `title` and `body`.",
+    "snippet": "title = binding.get('title')\nbody = binding.get('body')\nif title is None or body is None:\n    raise ValueError('binding must include title and body')\n\ndoc_idx = device.find(role='document-text', editable=True)\nif doc_idx is None:\n    raise LookupError('Could not find editable LibreOffice Writer document text area')\n\ntext = f\"{str(title).replace('\\n', ' ').strip()}\\n\\n{str(body).replace('\\n', ' ').strip()}\"\ndevice.input_text(text, index=doc_idx)",
+    "usage": {
+     "prompt_tokens": 615,
+     "completion_tokens": 2749,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013704372
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "hotkey",
+     "keys": [
+      "ctrl",
+      "s"
+     ]
+    },
+    "field": null,
+    "analysis": "This global shortcut depends on the Writer document being active and unsaved; if focus is elsewhere or the dialog is already present, a blind Ctrl+S may not open the Save dialog. The snippet opens it only when needed and verifies the dialog via its Name label.",
+    "snippet": "if device.find(name=\"Name:\", role=\"label\") is None:\n    device.hotkey(\"ctrl\", \"s\")\n    device.wait()\nif device.find(name=\"Name:\", role=\"label\") is None:\n    raise RuntimeError(\"Ctrl+S did not open the LibreOffice Save dialog\")",
+    "usage": {
+     "prompt_tokens": 732,
+     "completion_tokens": 12657,
+     "cached_tokens": 0,
+     "cost_usd": 0.0059980041
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 87
+    },
+    "field": null,
+    "analysis": "This action selects the Desktop location in the save dialog; its accessible role can vary as a table-cell, toggle-button, or label, so it must be found by the Desktop name/text and clicked with a fallback to the non-clickable label.",
+    "snippet": "desktop = binding.get(\"desktop\", \"Desktop\")\nidx = device.find(name=desktop, contains=desktop, role=\"table-cell\", clickable=True)\nif idx is None:\n    idx = device.find(name=desktop, contains=desktop, role=\"toggle-button\", clickable=True)\nif idx is None:\n    idx = device.find(name=desktop, contains=desktop, clickable=True)\nif idx is None:\n    idx = device.find(name=desktop, contains=desktop)\nif idx is None:\n    raise RuntimeError(f\"Could not find Desktop location in save dialog: {desktop!r}\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 585,
+     "completion_tokens": 6995,
+     "cached_tokens": 0,
+     "cost_usd": 0.003341646
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 84,
+     "text": "kickoff_brief"
+    },
+    "field": "file_name",
+    "analysis": "This action must target the Save dialog\u2019s editable file-name text field, whose index and default text may differ across runs; it should be found semantically, cleared, then filled with the task basename from binding.",
+    "snippet": "idx = device.find(role='text', editable=True, contains='Untitled')\nif idx is None:\n    idx = device.find(role='text', editable=True)\nif idx is None:\n    raise RuntimeError('Could not find the Save dialog file-name field.')\n\ndevice.click(index=idx)\ndevice.settle(0.2)\ndevice.hotkey('ctrl', 'a')\ndevice.press('delete')\ndevice.type_at_caret(binding['file_name'].rsplit('.', 1)[0])",
+    "usage": {
+     "prompt_tokens": 593,
+     "completion_tokens": 2857,
+     "cached_tokens": 0,
+     "cost_usd": 0.0014174226
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 98
+    },
+    "field": null,
+    "analysis": "This action depends on the LibreOffice Save dialog being open and exposing the confirm control as an accessible push-button named \u201cSave\u201d; it can fail if indexes shift, the dialog is not present, or the button label/role is not exposed.",
+    "snippet": "idx = device.find(name='Save', role='push-button', clickable=True)\nif idx is None:\n    idx = device.find(contains='Save', role='push-button', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Save push-button not found in the save dialog\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 747,
+     "completion_tokens": 4336,
+     "cached_tokens": 0,
+     "cost_usd": 0.0021284703
+    }
+   }
+  ],
+  "effective_actions": 5,
+  "recorded_actions": 7,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 5,
+   "prompt_tokens": 3272,
+   "cached_tokens": 0,
+   "completion_tokens": 29594,
+   "total_tokens": 32866,
+   "cost_usd": 0.01425598
+  },
+  "record_type": "translation"
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "cell": "qwen_qwen3.8-flash/SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "family": "SimpleCalendarAddOneEvent",
+ "use_index": 6,
+ "goal": "Please add a calendar event: 'Sales Pipeline' on October 22, 2023, starting at 15:00 and lasting 45 minutes. Description: 'We will cover the whole backlog.'.",
+ "binding": {
+  "year": 2023,
+  "month": 10,
+  "day": 22,
+  "hour": 15,
+  "duration_mins": 45,
+  "event_title": "Sales Pipeline",
+  "event_description": "We will cover the whole backlog."
+ },
+ "deploy_use": {
+  "success": true,
+  "error_type": null,
+  "retries": 0,
+  "tokens": 397,
+  "cost_usd": 0.00011249,
+  "wall_s": 78.31
+ },
+ "success": false,
+ "steps": null,
+ "model_calls": null,
+ "total_tokens": null,
+ "total_cost_usd": null,
+ "wall_s": 446.45,
+ "error": "APIStatusError: Error code: 413 - {'error': {'message': 'Downloaded image content cannot exceed 30MB', 'code': 413, 'metadata': {'provider_name': None}}}",
+ "record_type": "paired_replay_summary",
+ "usage": {
+  "prompt_tokens": 1813439,
+  "cached_tokens": 1691136,
+  "completion_tokens": 2841,
+  "cost_usd": 0.04627150703999999,
+  "calls": 30
+ }
+}

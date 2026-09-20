@@ -1,0 +1,33 @@
+# py-spy dump at kill decision, 2026-09-20T11:28:22+08:00, process elapsed 05:47:59, gate stage entered ~2026-09-20T07:45+08:00
+# WEDGE: ONE gate replay (k=1 binding 1) has been running ~3h43m; SIGALRM replay deadline (1200s) fired and was swallowed inside the artifact; gate stage makes zero API calls.
+Process 321304: /home/myl/app/guiexp/osworld/.venv-osworld/bin/python -m guiexp_osworld.build_protocol --family CalcTableSave --model qwen/qwen3.8-flash --seeds 1,2,3 --k 1,2,3 --deploy-uses 30 --doc-seeds 4,5,6 --max-cost-usd 3.00 --resume --out /home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave
+Python v3.12.3 (/usr/bin/python3.12)
+
+Thread 321304 (idle): "MainThread"
+    readinto (socket.py:707)
+    _read_status (http/client.py:297)
+    begin (http/client.py:336)
+    getresponse (http/client.py:1448)
+    getresponse (urllib3/connection.py:638)
+    _make_request (urllib3/connectionpool.py:540)
+    urlopen (urllib3/connectionpool.py:793)
+    send (requests/adapters.py:696)
+    send (requests/sessions.py:784)
+    request (requests/sessions.py:651)
+    request (requests/api.py:71)
+    get (requests/api.py:87)
+    _http_get (guiexp_osworld/guest_env.py:106)
+    get_accessibility_xml (guiexp_osworld/guest_env.py:142)
+    elements (guiexp_osworld/program_runtime.py:110)
+    find (guiexp_osworld/program_runtime.py:129)
+    _accept_overwrite (<string>:291)
+    _save_to_desktop (<string>:436)
+    program (<string>:460)
+    _run_once (guiexp_osworld/program_runtime.py:260)
+    run (guiexp_osworld/program_runtime.py:229)
+    run_gate (guiexp_osworld/gate_runner.py:63)
+    run_build (guiexp_osworld/build_protocol.py:307)
+    main (guiexp_osworld/build_protocol.py:594)
+    <module> (guiexp_osworld/build_protocol.py:610)
+    _run_code (<frozen runpy>:88)
+    _run_module_as_main (<frozen runpy>:198)

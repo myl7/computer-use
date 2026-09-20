@@ -33,20 +33,27 @@ Verification is unstable and failed attempts cost several times a verified one, 
 \section{Introduction}
 \label{sec:intro}
 
-Large language models (LLMs) improve rapidly, and one application is the computer-use agent.
-A computer-use agent reads the screen interface as both a screenshot and a text tree, e.g., an accessibility tree or an HTML tree, thinks with the LLM, and sends actions to the interface.
-Task success rates keep rising on benchmarks \citep{zhou2024webarena,xie2024osworld,rawles2025androidworld}, allowing these agents to be used in real work.
-However, one completed task consumes a large number of LLM tokens and costs real money.
+Large language models (LLMs) have advanced rapidly.
+This progress enables computer-use agents.
+% TODO: 统一所有 interface 为 GUI
+A computer-use agent reads the graphical user interface (GUI) as both a screenshot and a text tree, e.g., an accessibility or HTML tree, thinks with the LLM, and sends actions to the GUI.
+Task success rates keep rising on benchmarks \citep{zhou2024webarena,xie2024osworld,rawles2025androidworld}.
+However, computer-use agents consume more tokens than general agents because of screenshot inputs, making them more expensive to run.
 Token efficiency, i.e., reducing the tokens spent per completed task, has become a first-order concern.
 
-To improve token efficiency, prior work reuses what the agent has already learned: record how a task was solved, turn the record into a reusable artifact such as a workflow memory \citep{wang2025awm}, an agent skill \citep{wang2025asi}, a replay state machine \citep{li2026preact}, or a compiled program \citep{chen2026autorpa,elyadouni2026tracecompiler}, and run it on later tasks from the same family.
-These systems \textit{compile} the record into the reusable artifact, unconditionally or on quality signals such as success counts, and none asks when compiling is worth its cost.
-% (Figure~\ref{fig:teaser})
-Published audits report payback after 4 uses for compiled programs \citep{chen2026autorpa}, 17 uses in a function-calling setting \citep{trooskens2026compiledai}, and 152--293 uses for skill text \citep{xu2026realcost}.
-Other systems report no payback at all \citep{elyadouni2026tracecompiler,xu2026skillsmith,winston2026jit}.
+To improve token efficiency, prior work reuses what the agent has learned.
+% TODO: record -> trace
+It records how tasks were solved as traces, turns the traces into an artifact such as a memory item \citep{wang2025awm}, a skill \citep{wang2025asi}, a state machine \citep{li2026preact}, or a program \citep{chen2026autorpa,elyadouni2026tracecompiler}, and run it on later tasks from the same family.
+Thus, it \textit{compiles} the traces into the artifact.
+However, this compilation occurs either unconditionally or based on quality signals such as success counts.
+No prior system systematically evaluates whether the compilation is worth its token cost, i.e., \textit{price}.
+% TODO: Price 作为术语在全文使用
+% TODO: payback 是否在全文中反复使用？是否在全文中被关键地反复使用？是否应该作为术语在文中被积极使用？是否应该在这个用 i.e. 解释？
+Audits from prior work report payback after 4 uses for programs \citep{chen2026autorpa}, 17 uses in a tool-calling setting \citep{trooskens2026compiledai}, and 152--293 uses for skills \citep{xu2026realcost}.
+Most systems report no payback \citep{elyadouni2026tracecompiler,xu2026skillsmith,winston2026jit}.
 % The spread does not mean that some tasks pay back after 4 uses and others after 293.
 % Each audit prices a different artifact class under a different accounting on a different task population, so the numbers cannot be compared.
-That is, every system compiles at a price, the token cost of producing the artifact, and none has measured that price accurately.
+That is, prior systems compile at a price that none has measured accurately.
 
 \begin{figure}[htb]
 \centering

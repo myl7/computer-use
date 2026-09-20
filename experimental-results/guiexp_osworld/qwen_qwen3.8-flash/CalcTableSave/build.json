@@ -1,0 +1,755 @@
+{
+ "family": "CalcTableSave",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 22,
+ "price_weights": {
+  "r_c": 0.107,
+  "r_o": 3.13
+ },
+ "record_type": "build",
+ "floor": {
+  "model": "qwen/qwen3.8-flash",
+  "runs": 18,
+  "per_run": [
+   {
+    "run": 0,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 0,
+    "completion_tokens": 34,
+    "cost_usd": 0.00026753
+   },
+   {
+    "run": 1,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 34,
+    "cost_usd": 6.376e-05
+   },
+   {
+    "run": 2,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 52,
+    "cost_usd": 7.214e-05
+   },
+   {
+    "run": 3,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 77,
+    "cost_usd": 8.377e-05
+   },
+   {
+    "run": 4,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 50,
+    "cost_usd": 7.121e-05
+   },
+   {
+    "run": 5,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 58,
+    "cost_usd": 7.493e-05
+   },
+   {
+    "run": 6,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 36,
+    "cost_usd": 6.469e-05
+   },
+   {
+    "run": 7,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 58,
+    "cost_usd": 7.493e-05
+   },
+   {
+    "run": 8,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 68,
+    "cost_usd": 7.958e-05
+   },
+   {
+    "run": 9,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 64,
+    "cost_usd": 7.772e-05
+   },
+   {
+    "run": 10,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 11,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 43,
+    "cost_usd": 6.795e-05
+   },
+   {
+    "run": 12,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 42,
+    "cost_usd": 6.748e-05
+   },
+   {
+    "run": 13,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 52,
+    "cost_usd": 7.214e-05
+   },
+   {
+    "run": 14,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 35,
+    "cost_usd": 6.423e-05
+   },
+   {
+    "run": 15,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 58,
+    "cost_usd": 7.493e-05
+   },
+   {
+    "run": 16,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 48,
+    "cost_usd": 7.028e-05
+   },
+   {
+    "run": 17,
+    "calls": 1,
+    "prompt_tokens": 1695,
+    "cached_tokens": 1536,
+    "completion_tokens": 69,
+    "cost_usd": 8.005e-05
+   }
+  ],
+  "unit_tokens_per_run": [
+   1801,
+   430,
+   486,
+   564,
+   480,
+   505,
+   436,
+   505,
+   536,
+   524,
+   433,
+   458,
+   455,
+   486,
+   433,
+   505,
+   474,
+   539
+  ],
+  "floor_unit_mean": 558.3,
+  "cost_usd_mean": 8.286e-05,
+  "record_type": "floor"
+ },
+ "stages_done": [
+  "floor",
+  "exploration",
+  "translator",
+  "builder"
+ ],
+ "wall_s": 6842.2,
+ "exploration": {
+  "family": "CalcTableSave",
+  "model": "qwen/qwen3.8-flash",
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "test_seed": 0,
+  "n_ref": 2,
+  "step_cap": 22,
+  "instances": [
+   {
+    "family": "CalcTableSave",
+    "seed": 1,
+    "goal": "Open a new spreadsheet in LibreOffice Calc. Cell A1 must read 'Pipeline' and B1 'Budget'. Fill A2 with 8398, B2 with 3934, A3 with 7093 and B3 with 1974. Then save it to the Desktop under the name payroll_extract.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s1_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 9,
+      "usage": {
+       "prompt_tokens": 572421,
+       "cached_tokens": 458240,
+       "completion_tokens": 2931,
+       "total_tokens": 575352,
+       "cost_usd": 0.02557819,
+       "model_calls": 9,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 13319,
+         "cached_tokens": 512,
+         "completion_tokens": 99,
+         "cost_usd": 0.00195601428
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 25968,
+         "cached_tokens": 13312,
+         "completion_tokens": 50,
+         "cost_usd": 0.00211354308
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 38498,
+         "cached_tokens": 25856,
+         "completion_tokens": 56,
+         "cost_usd": 0.00231295284
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 51040,
+         "cached_tokens": 38400,
+         "completion_tokens": 52,
+         "cost_usd": 0.0025094916
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 63591,
+         "cached_tokens": 50944,
+         "completion_tokens": 55,
+         "cost_usd": 0.00271062396
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 76151,
+         "cached_tokens": 63488,
+         "completion_tokens": 55,
+         "cost_usd": 0.00291169692
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 88720,
+         "cached_tokens": 76032,
+         "completion_tokens": 52,
+         "cost_usd": 0.00311271048
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 101284,
+         "cached_tokens": 88576,
+         "completion_tokens": 2416,
+         "cost_usd": 0.00441434664
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 113850,
+         "cached_tokens": 101120,
+         "completion_tokens": 96,
+         "cost_usd": 0.0035368146
+        }
+       ]
+      },
+      "unit_floored": 171075.7
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s1_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 2,
+    "goal": "Please set up a small table in a new LibreOffice Calc spreadsheet: headers 'Region' (A1) and 'Location' (B1), then 876 and 1336 on the second row, 2264 and 8597 on the third. Save the file on the Desktop as unit_figures.ods.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s2_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 8,
+      "usage": {
+       "prompt_tokens": 458435,
+       "cached_tokens": 357120,
+       "completion_tokens": 1103,
+       "total_tokens": 459538,
+       "cost_usd": 0.02121528,
+       "model_calls": 8,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 13319,
+         "cached_tokens": 512,
+         "completion_tokens": 244,
+         "cost_usd": 0.00202348278
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 25970,
+         "cached_tokens": 13312,
+         "completion_tokens": 90,
+         "cost_usd": 0.00213245208
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 38489,
+         "cached_tokens": 25856,
+         "completion_tokens": 58,
+         "cost_usd": 0.00231254694
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 51021,
+         "cached_tokens": 38400,
+         "completion_tokens": 73,
+         "cost_usd": 0.0025164414
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 63546,
+         "cached_tokens": 50944,
+         "completion_tokens": 78,
+         "cost_usd": 0.00271464336
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 76131,
+         "cached_tokens": 63488,
+         "completion_tokens": 57,
+         "cost_usd": 0.00290965752
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 88696,
+         "cached_tokens": 76032,
+         "completion_tokens": 415,
+         "cost_usd": 0.00327805038
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 101263,
+         "cached_tokens": 88576,
+         "completion_tokens": 88,
+         "cost_usd": 0.00332800974
+        }
+       ]
+      },
+      "unit_floored": 141917.7
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s2_a0/trajectory.jsonl"
+   },
+   {
+    "family": "CalcTableSave",
+    "seed": 3,
+    "goal": "In LibreOffice Calc, create a new spreadsheet. Put the header 'Pipeline' in cell A1 and the header 'Location' in B1. Under the headers enter the numbers 3640 in A2, 2835 in B2, 1410 in A3 and 7663 in B3. Save the spreadsheet as workgroup_grid.ods on the Desktop.",
+    "step_cap": 22,
+    "attempts": [
+     {
+      "attempt": 0,
+      "trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s3_a0/trajectory.jsonl",
+      "success": true,
+      "steps": 10,
+      "usage": {
+       "prompt_tokens": 699029,
+       "cached_tokens": 571904,
+       "completion_tokens": 1392,
+       "total_tokens": 700421,
+       "cost_usd": 0.02858472,
+       "model_calls": 10,
+       "calls_detail": [
+        {
+         "call": 1,
+         "prompt_tokens": 13330,
+         "cached_tokens": 512,
+         "completion_tokens": 197,
+         "cost_usd": 0.00200324718
+        },
+        {
+         "call": 2,
+         "prompt_tokens": 25981,
+         "cached_tokens": 13312,
+         "completion_tokens": 42,
+         "cost_usd": 0.00211175118
+        },
+        {
+         "call": 3,
+         "prompt_tokens": 38513,
+         "cached_tokens": 25856,
+         "completion_tokens": 83,
+         "cost_usd": 0.00232774344
+        },
+        {
+         "call": 4,
+         "prompt_tokens": 51057,
+         "cached_tokens": 38400,
+         "completion_tokens": 57,
+         "cost_usd": 0.0025143426
+        },
+        {
+         "call": 5,
+         "prompt_tokens": 63610,
+         "cached_tokens": 50944,
+         "completion_tokens": 106,
+         "cost_usd": 0.00273717576
+        },
+        {
+         "call": 6,
+         "prompt_tokens": 76172,
+         "cached_tokens": 63488,
+         "completion_tokens": 46,
+         "cost_usd": 0.00291062772
+        },
+        {
+         "call": 7,
+         "prompt_tokens": 88743,
+         "cached_tokens": 76032,
+         "completion_tokens": 50,
+         "cost_usd": 0.00311519538
+        },
+        {
+         "call": 8,
+         "prompt_tokens": 101309,
+         "cached_tokens": 88576,
+         "completion_tokens": 55,
+         "cost_usd": 0.00331948584
+        },
+        {
+         "call": 9,
+         "prompt_tokens": 113873,
+         "cached_tokens": 101120,
+         "completion_tokens": 650,
+         "cost_usd": 0.0037980063
+        },
+        {
+         "call": 10,
+         "prompt_tokens": 126441,
+         "cached_tokens": 113664,
+         "completion_tokens": 106,
+         "cost_usd": 0.00374714406
+        }
+       ]
+      },
+      "unit_floored": 191049.7
+     }
+    ],
+    "reflections": [],
+    "success": true,
+    "best_trajectory": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/qwen_qwen3.8-flash/CalcTableSave/explore/s3_a0/trajectory.jsonl"
+   }
+  ],
+  "totals": {
+   "episodes": 3,
+   "retry_episodes": 0,
+   "reflection_calls": 0,
+   "prompt_tokens": 1729885,
+   "cached_tokens": 1387264,
+   "completion_tokens": 5426,
+   "total_tokens": 1735311,
+   "cost_usd": 0.07537819
+  },
+  "record_type": "exploration"
+ },
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 9,
+    "recorded_actions": 9,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 9,
+     "prompt_tokens": 6116,
+     "cached_tokens": 0,
+     "completion_tokens": 35521,
+     "total_tokens": 41637,
+     "cost_usd": 0.01743615
+    }
+   },
+   {
+    "seed": 2,
+    "effective_actions": 8,
+    "recorded_actions": 8,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 8,
+     "prompt_tokens": 5545,
+     "cached_tokens": 0,
+     "completion_tokens": 25788,
+     "total_tokens": 31333,
+     "cost_usd": 0.01282259
+    }
+   },
+   {
+    "seed": 3,
+    "effective_actions": 9,
+    "recorded_actions": 10,
+    "replay_stopped_at": null,
+    "totals": {
+     "calls": 9,
+     "prompt_tokens": 6243,
+     "cached_tokens": 0,
+     "completion_tokens": 42255,
+     "total_tokens": 48498,
+     "cost_usd": 0.02058834
+    }
+   }
+  ],
+  "totals": {
+   "calls": 26,
+   "prompt_tokens": 17904,
+   "cached_tokens": 0,
+   "completion_tokens": 103564,
+   "total_tokens": 121468,
+   "cost_usd": 0.05084708
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2775,
+     "cached_tokens": 0,
+     "completion_tokens": 32883,
+     "total_tokens": 35658,
+     "cost_usd": 0.01571255
+    },
+    "cost_usd": 0.01571255,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2775,
+      "cached_tokens": 0,
+      "completion_tokens": 32883,
+      "total_tokens": 35658,
+      "cost_usd": 0.0157125474,
+      "usage": {
+       "prompt_tokens": 2775,
+       "completion_tokens": 32883,
+       "cached_tokens": 0,
+       "cost_usd": 0.0157125474
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 2598,
+     "cached_tokens": 0,
+     "completion_tokens": 4953,
+     "total_tokens": 7551,
+     "cost_usd": 0.00269043
+    },
+    "cost_usd": 0.00269043,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2598,
+      "cached_tokens": 0,
+      "completion_tokens": 4953,
+      "total_tokens": 7551,
+      "cost_usd": 0.0026904339,
+      "usage": {
+       "prompt_tokens": 2598,
+       "completion_tokens": 4953,
+       "cached_tokens": 0,
+       "cost_usd": 0.0026904339
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4424,
+     "cached_tokens": 256,
+     "completion_tokens": 36426,
+     "total_tokens": 40850,
+     "cost_usd": 0.01757202
+    },
+    "cost_usd": 0.01757202,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4424,
+      "cached_tokens": 256,
+      "completion_tokens": 36426,
+      "total_tokens": 40850,
+      "cost_usd": 0.01757202084,
+      "usage": {
+       "prompt_tokens": 4424,
+       "completion_tokens": 36426,
+       "cached_tokens": 256,
+       "cost_usd": 0.01757202084
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 4247,
+     "cached_tokens": 256,
+     "completion_tokens": 9219,
+     "total_tokens": 13466,
+     "cost_usd": 0.00488632
+    },
+    "cost_usd": 0.00488632,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4247,
+      "cached_tokens": 256,
+      "completion_tokens": 9219,
+      "total_tokens": 13466,
+      "cost_usd": 0.00488631924,
+      "usage": {
+       "prompt_tokens": 4247,
+       "completion_tokens": 9219,
+       "cached_tokens": 256,
+       "cost_usd": 0.00488631924
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 6157,
+     "cached_tokens": 256,
+     "completion_tokens": 62224,
+     "total_tokens": 68381,
+     "cost_usd": 0.02983318
+    },
+    "cost_usd": 0.02983318,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6157,
+      "cached_tokens": 256,
+      "completion_tokens": 62224,
+      "total_tokens": 68381,
+      "cost_usd": 0.02983318074,
+      "usage": {
+       "prompt_tokens": 6157,
+       "completion_tokens": 62224,
+       "cached_tokens": 256,
+       "cost_usd": 0.02983318074
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "usage": {
+     "calls": 1,
+     "prompt_tokens": 5980,
+     "cached_tokens": 256,
+     "completion_tokens": 7446,
+     "total_tokens": 13426,
+     "cost_usd": 0.00431869
+    },
+    "cost_usd": 0.00431869,
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5980,
+      "cached_tokens": 256,
+      "completion_tokens": 7446,
+      "total_tokens": 13426,
+      "cost_usd": 0.00431869284,
+      "usage": {
+       "prompt_tokens": 5980,
+       "completion_tokens": 7446,
+       "cached_tokens": 256,
+       "cost_usd": 0.00431869284
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ }
+}

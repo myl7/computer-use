@@ -1,0 +1,39 @@
+{
+ "cell": "qwen_qwen3.8-flash/SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "family": "SimpleCalendarAddOneEvent",
+ "use_index": 19,
+ "goal": "New calendar entry: title 'Team Retro', date 2023-10-22, start 18h, lasts 60 mins, described as 'Five participants scheduled.'.",
+ "binding": {
+  "year": 2023,
+  "month": 10,
+  "day": 22,
+  "hour": 18,
+  "duration_mins": 60,
+  "event_title": "Team Retro",
+  "event_description": "Five participants scheduled."
+ },
+ "deploy_use": {
+  "success": true,
+  "error_type": null,
+  "retries": 0,
+  "tokens": 422,
+  "cost_usd": 0.00012603,
+  "wall_s": 78.93
+ },
+ "success": false,
+ "steps": null,
+ "model_calls": null,
+ "total_tokens": null,
+ "total_cost_usd": null,
+ "wall_s": 469.44,
+ "error": "APIStatusError: Error code: 413 - {'error': {'message': 'Downloaded image content cannot exceed 30MB', 'code': 413, 'metadata': {'provider_name': None}}}",
+ "record_type": "paired_replay_summary",
+ "usage": {
+  "prompt_tokens": 2355618,
+  "cached_tokens": 2203904,
+  "completion_tokens": 3173,
+  "cost_usd": 0.05891576526000001,
+  "calls": 33
+ }
+}

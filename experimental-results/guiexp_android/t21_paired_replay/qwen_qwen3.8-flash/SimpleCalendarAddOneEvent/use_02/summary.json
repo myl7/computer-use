@@ -1,0 +1,39 @@
+{
+ "cell": "qwen_qwen3.8-flash/SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "family": "SimpleCalendarAddOneEvent",
+ "use_index": 2,
+ "goal": "I need an event in the calendar app: 'Security Review', 2023-10-28 at 15h, 45 minutes long. Add the description 'Decide on next steps.'.",
+ "binding": {
+  "year": 2023,
+  "month": 10,
+  "day": 28,
+  "hour": 15,
+  "duration_mins": 45,
+  "event_title": "Security Review",
+  "event_description": "Decide on next steps."
+ },
+ "deploy_use": {
+  "success": true,
+  "error_type": null,
+  "retries": 0,
+  "tokens": 415,
+  "cost_usd": 0.00012119,
+  "wall_s": 78.13
+ },
+ "success": false,
+ "steps": null,
+ "model_calls": null,
+ "total_tokens": null,
+ "total_cost_usd": null,
+ "wall_s": 449.27,
+ "error": "APIStatusError: Error code: 413 - {'error': {'message': 'Downloaded image content cannot exceed 30MB', 'code': 413, 'metadata': {'provider_name': None}}}",
+ "record_type": "paired_replay_summary",
+ "usage": {
+  "prompt_tokens": 2258136,
+  "cached_tokens": 2110720,
+  "completion_tokens": 3126,
+  "cost_usd": 0.0567796086,
+  "calls": 33
+ }
+}

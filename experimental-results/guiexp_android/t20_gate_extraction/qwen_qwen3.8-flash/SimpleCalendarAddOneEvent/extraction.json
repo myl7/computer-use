@@ -1,0 +1,447 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "program_path": "/home/myl/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/verified_program.py",
+ "bindings_total": 5,
+ "injection_passed_now": 4,
+ "injection_passed_t16": 4,
+ "extraction_passed": 4,
+ "extraction_type_check_fails": 0,
+ "extraction_cost_usd": 0.00057853,
+ "per_binding": [
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 437,
+   "cost_usd": 0.00012635
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "retries": 0,
+   "tokens": 389,
+   "cost_usd": 0.00010592
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 440,
+   "cost_usd": 0.00012807
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "injection_passed_now": true,
+   "injection_passed_t16": true,
+   "extraction_passed": true,
+   "extraction_error_type": null,
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "retries": 0,
+   "tokens": 393,
+   "cost_usd": 0.0001081
+  },
+  {
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_passed_t16": false,
+   "extraction_passed": false,
+   "extraction_error_type": "program_error",
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "retries": 0,
+   "tokens": 400,
+   "cost_usd": 0.00011009
+  }
+ ],
+ "record_type": "gate_extraction",
+ "wall_s": 1140.5,
+ "uses": [
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-25 at 11h with the title 'Meeting with Dr. Smith' and the description 'We will plan contract details. Looking forward to productive discussions.'. The event should last for 60 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 437,
+   "cost_usd": 0.00012635,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 243,
+     "cached_tokens": 0,
+     "completion_tokens": 194,
+     "total_tokens": 437,
+     "cost_usd": 0.0001263537,
+     "usage": {
+      "prompt_tokens": 243,
+      "completion_tokens": 194,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001263537
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 102.06,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 25,
+    "hour": 11,
+    "duration_mins": 60,
+    "event_title": "Meeting with Dr. Smith",
+    "event_description": "We will plan contract details. Looking forward to productive discussions."
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-29 at 23h with the title 'Catch up on Budget Planning' and the description 'We will celebrate product launch.'. The event should last for 30 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 389,
+   "cost_usd": 0.00010592,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 237,
+     "cached_tokens": 0,
+     "completion_tokens": 152,
+     "total_tokens": 389,
+     "cost_usd": 0.0001059201,
+     "usage": {
+      "prompt_tokens": 237,
+      "completion_tokens": 152,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001059201
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 100.94,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 29,
+    "hour": 23,
+    "duration_mins": 30,
+    "event_title": "Catch up on Budget Planning",
+    "event_description": "We will celebrate product launch."
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 0h with the title 'Call with Dr. Smith' and the description 'We will review business objectives. Looking forward to productive discussions.'. The event should last for 30 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 440,
+   "cost_usd": 0.00012807,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 242,
+     "cached_tokens": 0,
+     "completion_tokens": 198,
+     "total_tokens": 440,
+     "cost_usd": 0.0001280664,
+     "usage": {
+      "prompt_tokens": 242,
+      "completion_tokens": 198,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001280664
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 100.18,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 0,
+    "duration_mins": 30,
+    "event_title": "Call with Dr. Smith",
+    "event_description": "We will review business objectives. Looking forward to productive discussions."
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-20 at 21h with the title 'Appointment for Project X' and the description 'We will review marketing strategies.'. The event should last for 15 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "success": true,
+   "error_type": null,
+   "retries": 0,
+   "tokens": 393,
+   "cost_usd": 0.0001081,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 236,
+     "cached_tokens": 0,
+     "completion_tokens": 157,
+     "total_tokens": 393,
+     "cost_usd": 0.0001080981,
+     "usage": {
+      "prompt_tokens": 236,
+      "completion_tokens": 157,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001080981
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 101.95,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 20,
+    "hour": 21,
+    "duration_mins": 15,
+    "event_title": "Appointment for Project X",
+    "event_description": "We will review marketing strategies."
+   },
+   "injection_passed_now": true,
+   "injection_error_now": null,
+   "injection_passed_t16": true
+  },
+  {
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 4h with the title 'Meeting with HR' and the description 'We will explore annual budget. Looking forward to productive discussions.'. The event should last for 60 mins.",
+   "expected": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "extracted": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "success": false,
+   "error_type": "program_error",
+   "retries": 0,
+   "tokens": 400,
+   "cost_usd": 0.00011009,
+   "calls_detail": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 240,
+     "cached_tokens": 0,
+     "completion_tokens": 160,
+     "total_tokens": 400,
+     "cost_usd": 0.000110088,
+     "usage": {
+      "prompt_tokens": 240,
+      "completion_tokens": 160,
+      "cached_tokens": 0,
+      "cost_usd": 0.000110088
+     },
+     "stage": "deploy_extract",
+     "kind": "extract"
+    }
+   ],
+   "wall_s": 164.4,
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 4,
+    "duration_mins": 60,
+    "event_title": "Meeting with HR",
+    "event_description": "We will explore annual budget. Looking forward to productive discussions."
+   },
+   "injection_passed_now": false,
+   "injection_error_now": "RuntimeError: Time did not update to 04:00",
+   "injection_passed_t16": false
+  }
+ ]
+}
