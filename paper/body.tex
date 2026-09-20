@@ -25,7 +25,7 @@ Published audits report payback after 4, 17, or 100--300 uses, or no payback at 
 The decision is hard because the saving is counterfactual, the price is random and repeats under drift, and the paying arrivals are unknown.
 One protocol compiles the same three agent traces into both a document and a program, verifies programs by running them, and prices every path in one unit.
 A break-even law separates the marginal compilation price from the traces the stream has already paid for, counts failed attempts, and reads the audits onto one axis, and a cost-informed trigger estimates arrivals and verification online, compiles when the projected saving exceeds the priced compilation, and gives up on families that cannot compile.
-We run the protocol on seven task families on Android, desktop, and web GUIs with two models and evaluate the trigger on synthetic streams, real process-log arrival streams, and a regime sweep.
+We run the protocol on seven task families on Android, desktop, and web GUIs with three models and evaluate the trigger on synthetic streams, real process-log arrival streams, and a regime sweep.
 A verified program removes 0.79 to 1.00 of an attempt at one extraction call per use, while a document from the same traces saves little and costs more in half the cells.
 Verification is unstable and failed attempts cost several times a verified one, so the difficulty sits on the price side; our trigger never costs more than 1.7 times the best fixed rule or 2.4 times the best rule with the same information, while every fixed rule costs multiples somewhere.
 \end{abstract}
@@ -156,7 +156,7 @@ Task success is reported alongside the cost but is not part of the objective, be
 
 The decision needs the cost of an agent attempt, the cost of using an artifact, and the price and outcome of a compilation attempt.
 Figure~\ref{fig:workflow} shows the protocol that measures these quantities on the same source traces, and this section checks how the results change across compilation attempts and verification paths.
-The main comparison covers seven families across Android, desktop, and web GUIs, with two models per family.
+The main comparison covers seven families across Android, desktop, and web GUIs, with three models per family.
 
 \begin{figure}[htb]
 \centering
@@ -178,7 +178,7 @@ These are custom task families with file-content checkers, run in a Linux contai
 The web extension uses a parameterized comment-posting task on WebArena's self-hosted Reddit application \citep{zhou2024webarena}, with a database checker for the target post and comment text.
 The extensions test the protocol on additional GUIs; they do not estimate benchmark-wide success.
 The measurements run on bleeding-edge flash models with vision, the class a computer-use deployment chooses when token efficiency is the goal.
-Both GLM 5.3 Flash and DeepSeek V4 Flash read an unmarked screenshot and a numbered GUI tree at each agent step.
+GLM 5.3 Flash, DeepSeek V4 Flash, and Qwen 3.8 Flash read an unmarked screenshot and a numbered GUI tree at each agent step.
 The tree is an accessibility tree on Android and the desktop, and a DOM tree on the web.
 
 The protocol follows AutoRPA's translator--builder stages \citep{chen2026autorpa}, including its three-trace compilation requirement, which their ablations find effective.
@@ -217,9 +217,9 @@ The program share is $((1-q)c-d)/c$, which charges one agent attempt for a faile
 \caption{\textbf{Documents give mixed savings, while verified programs remove most of the per-use cost.}
 $c$ and $L^{\mathrm{doc}}$ are in thousands of price-weighted tokens after floor subtraction, and $d$ is in tokens without floor subtraction.
 $c$ averages exploration attempts, $L^{\mathrm{doc}}$ averages three document runs, and $d$ and $q$ summarize thirty program uses.
-Each cell shows the GLM value on blue and the DeepSeek value on amber.
+Each cell shows the GLM value on blue, the DeepSeek value on amber, and, where a Qwen measurement exists, the Qwen value on mint.
 The first four families are Android tasks, the next two are desktop tasks, and the last is the web task.
-A blue-only cell means that model produced no verified program in the recorded attempt.}
+A single-color cell names the model that produced no verified program in the recorded attempt; the Reddit row has no Qwen cell because the provider refused the task prompt.}
 \label{tab:share}
 \scriptsize
 \setlength{\tabcolsep}{1pt}
@@ -239,13 +239,13 @@ Reddit comment & \dual{124k}{40.0k} & \dual{102k}{20.2k} & \dual{651}{654} & \du
 \end{table}
 
 The document share ranges from -1.21 to 0.58, with a median of -0.10.
-Seven of fourteen cells cost more with the document, and only three save more than a quarter of an agent attempt.
-The positive cases include the OsmAnd marker on both models and the Reddit comment on DeepSeek.
-Both desktop families cost more with the document on both models.
+Nine of nineteen cells cost more with the document, and only four save more than a quarter of an agent attempt.
+The positive cases include the OsmAnd marker on GLM and DeepSeek and the Reddit comment on DeepSeek.
+Both desktop families cost more with the document on GLM and DeepSeek, and Qwen's only admitted desktop family, the Writer memo, also costs more with it.
 A document can describe the procedure, but the agent still observes the GUI and selects actions at each step.
 The measurements show that supplying this description does not consistently reduce the total cost.
 
-Eleven programs pass verification, and their saving shares range from 0.79 to 1.00.
+Fifteen programs pass verification, and their saving shares range from 0.794 to 1.00.
 Extraction costs 179--672 tokens per use.
 The only share below 0.9 is GLM Markor delete, whose program fails on six of thirty bindings.
 The five verified desktop and web programs each succeed on all thirty deployed bindings.
@@ -276,7 +276,7 @@ Final reports the final verification fraction when recorded.
 For verified programs, $N^{*}_{\mathrm{marg}}=C/((1-q)c-d)$ uses the realized price of this attempt.
 $N^*_{\mathrm{incl}}$ adds three agent attempts at the measured mean cost, giving $(C+3c)/((1-q)c-d)$.
 It is a standardized three-attempt reading, not the total cost of acquiring traces with additional retries.
-A blue-only cell in the final three columns means that this attempt produced no verified program.}
+A single-color cell in the final three columns names the model whose attempt produced no verified program.}
 \label{tab:price}
 \scriptsize
 \setlength{\tabcolsep}{0pt}
@@ -295,7 +295,7 @@ Reddit comment & \dual{253k}{332k} & \dual{0.60}{0.60} & \dual{1.00}{0.80} & \du
 \end{tabular}
 \end{table}
 
-All seven GLM compilations and four of seven DeepSeek compilations pass verification.
+All seven GLM compilations, four of seven DeepSeek compilations, and four of seven attempted Qwen compilations pass verification.
 The failures are concentrated in DeepSeek Calendar, OsmAnd marker, and Calc.
 Repair matters even where the final outcome is successful.
 All five verified desktop and web programs require repair, and their unrepaired three-trace programs pass at most two of five bindings.
@@ -485,7 +485,7 @@ Three observations per cell do not establish independence or a stable verificati
 Verified counts verified compilations out of three attempts per family and model; each $\dagger$ marks one of the three attempts lost to repeated empty model replies, which count as unsuccessful.
 The held-out columns re-run the original program on five new bindings, either injecting the known parameters or extracting them from the goal.
 They test the same original artifact, not the newly compiled artifacts; for the two DeepSeek families with no verified program, this artifact is the rejected one.
-The four families are the Android tasks.}
+The four families are the Android tasks; the Qwen OsmAnd program never verifies, so its held-out columns show the GLM and Qwen readings only, and the Qwen Reddit family is absent because the provider refused the task prompt.}
 \label{tab:verification-repeat}
 \small
 \begin{tabular}{lccc}
@@ -497,7 +497,7 @@ Family & Verified (of 3) & Injected & Extracted \\
 Contacts & \tri{3/3}{3/3}{3/3} & \tri{4/5}{3/5}{5/5} & \tri{5/5}{5/5}{5/5} \\
 Markor delete & \tri{3/3}{3/3}{3/3} & \tri{5/5}{5/5}{5/5} & \tri{3/5}{2/5}{5/5} \\
 Calendar & \tri{2/3$^{\dagger}$}{0/3$^{\dagger\dagger}$}{2/3} & \tri{4/5}{0/5}{4/5} & \tri{4/5}{0/5}{4/5} \\
-OsmAnd marker & \dual{1/3}{0/3} & \dual{1/5}{0/5} & \dual{4/5}{0/5} \\
+OsmAnd marker & \tri{1/3}{0/3}{1/3} & \triGQ{1/5}{4/5} & \triGQ{4/5}{4/5} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -525,7 +525,7 @@ $c$ is the mean floored agent cost in thousands of price-weighted tokens.
 CV is the standard deviation divided by the mean across thirty bindings.
 Success counts compare the new agent replays with the original program uses.
 The saving share charges fallback at $qc$ rather than an observed post-failure bill.
-The four families are the Android tasks, and the blue-only rows are the two DeepSeek families that produced no verified program, so no replay exists.}
+The four families are the Android tasks, and a single-color row names a family whose model produced no verified program, so no replay exists for it.}
 \label{tab:paired-replays}
 \scriptsize
 \setlength{\tabcolsep}{1pt}
@@ -536,29 +536,30 @@ Family & $c$ & CV & Agent success & Program success & Share \\
 Contacts & \tri{67.1k}{67.3k}{42.2k} & \tri{0.326}{1.06}{0.0993} & \tri{30/30}{27/30}{30/30} & \tri{30/30}{29/30}{29/30} & \tri{0.997}{0.960}{0.954} \\
 Markor delete & \tri{35.4k}{22.3k}{19.3k} & \tri{0.373}{1.04}{0.128} & \tri{30/30}{23/30}{30/30} & \tri{24/30}{29/30}{30/30} & \tri{0.794}{0.949}{0.980} \\
 Calendar & \triGQ{535k}{316k} & \triGQ{0.485}{0.504} & \triGQ{14/30}{15/30} & \triGQ{30/30}{30/30} & \triGQ{0.999}{0.997} \\
-OsmAnd marker & \dualG{259k} & \dualG{0.657} & \dualG{12/30} & \dualG{30/30} & \dualG{0.998} \\
+OsmAnd marker & \triG{259k} & \triG{0.657} & \triG{12/30} & \triG{30/30} & \triG{0.998} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The estimated saving share ranges from 0.794 to 0.999.
+Qwen's three replayed families sit at the top of this range, 0.954 to 0.980, and its paired gap lands on the Calendar family: the agent completes fifteen of thirty bindings while the program completes all thirty.
 The agent cost varies substantially across the thirty bindings, with coefficients of variation from 0.33 to 1.06.
 DeepSeek Markor delete costs 22.3k tokens per replay, compared with 10.8k in the initial exploration sample, yet the estimated program saving remains 0.949.
-For GLM Calendar and OsmAnd marker, the agent succeeds on fourteen and twelve of thirty bindings, respectively, while each original program succeeds on all thirty.
+For GLM Calendar and OsmAnd marker, the agent succeeds on fourteen and twelve of thirty bindings, respectively, while each original program succeeds on all thirty; Qwen Calendar repeats the pattern at fifteen of thirty.
 The program advantage therefore persists in both estimated serving cost and observed success on these two families.
-Pooled per model, the program arm succeeds on 114 of 120 uses on GLM and 58 of 60 on DeepSeek, against 86 and 50 agent replays, and Appendix~\ref{app:success} reports the paired test.
+Pooled per model, the program arm succeeds on 114 of 120 uses on GLM, 58 of 60 on DeepSeek, and 89 of 90 on Qwen, against 86, 50, and 75 agent replays, and Appendix~\ref{app:success} reports the paired test.
 The replay uses a different emulator profile from the original deployment, and the initial Android exploration costs include cache estimates where counts were missing.
 Consequently, differences from the original agent means cannot be assigned to model randomness alone.
 
 \subsection{Decision rules on synthetic streams}
 \label{sec:policysim}
-Deciding per family must beat deciding once for all families somewhere, because no fixed rule survives both models' constants.
+Deciding per family must beat deciding once for all families somewhere, because no fixed rule survives the three models' constants.
 Table~\ref{tab:policysim} compares the trigger, both fixed rules, the count-based rule, the estimated-price break-even rule, an oracle threshold rule, and the offline optimum on 300-arrival Poisson, Zipf, and bursty streams whose families span the measured regimes.
 
 \begin{table}[t]
 \centering
 \caption{\textbf{Neither fixed rule survives the other model's constants, and the trigger never pays more than 1.7 times the best fixed rule.}
-Cumulative price-weighted tokens over synthetic 300-arrival streams, relative to our policy (lower is better), mean over 20 repetitions, with the seven measured families' constants under each model, the GLM-constants value on blue and the DeepSeek-constants value on amber.
+Cumulative price-weighted tokens over synthetic 300-arrival streams, relative to our policy (lower is better), mean over 20 repetitions, with the seven measured families' constants under each model, the GLM value on blue, the DeepSeek value on amber, and the Qwen value on mint, one column per model.
 Each cell shows the mean ratio with $\pm$ half its 95 percent bootstrap interval; ours is 1.00 by construction.
 Within each model's constants, the best of the six rules in each column is in bold, the second best is underlined, and a rule that pays at least three times ours is in red.
 Ties share a mark, and no second is marked when the best is shared.
@@ -585,8 +586,8 @@ offline opt.      & \tri{$0.341 \pm 0.00$}{$0.735 \pm 0.01$}{0.578} & \tri{$0.33
 \end{tabular}
 \end{table}
 
-Each stream draws its families round-robin from the seven measured families of Section~\ref{sec:measure}, so under the GLM constants every family verifies and pays back within a few uses, while under the DeepSeek constants three of seven never verify and a rejected compilation costs 10.5 times a verified one.
-Neither fixed rule survives the other model's constants, since staying reactive pays 5.6 to 9.4 times ours under the GLM constants and always compiling pays 4.7 to 6.6 times ours under DeepSeek, the first forgoing the families that pay back and the second paying repeated failed attempts on the three that never verify.
+Each stream draws its families round-robin from the seven measured families of Section~\ref{sec:measure}, so under the GLM constants every family verifies and pays back within a few uses, while under the DeepSeek constants three of seven never verify and a rejected compilation costs 10.5 times a verified one, and under the Qwen constants two of six never verify with a failed-attempt multiple of 3.51.
+Neither fixed rule survives the other models' constants, since staying reactive pays 5.6 to 9.4 times ours under the GLM constants, always compiling pays 4.7 to 6.6 times ours under DeepSeek, and on Qwen always compiling pays 4.5 to 6.5 times ours while the reactive rule wins the synthetic cells at 0.88 to 0.94 of ours, because Qwen's admitted compilations are expensive relative to its episodes and few clear the trigger.
 Under the GLM constants always compiling is itself the best rule, the oracle ties it at 0.59 to 0.64 of ours, and our trigger pays 1.6 to 1.7 times them, the cost of estimating before buying.
 The count-based rule inherits the wrong side of each regime, paying 1.6 to 1.7 under the GLM constants and 4.1 to 5.5 under DeepSeek, where a promotion rule keeps re-attempting families that never verify.
 The ToolPro port follows the same split, at 2.4 to 4.3 under the GLM constants because its programs serve one binding and repay nothing, and at 0.83 to 0.92 under DeepSeek because it buys almost nothing.
@@ -755,7 +756,7 @@ We state a discrete fixed-price reference from ski rental, whose theorem does no
 
 We measured what compiling saves and what it costs on the same traces, and the measurement places the difficulty of the compilation decision on the price side.
 Verified programs remove most of the per-use cost, while documents give mixed savings.
-The initial comparison verifies eleven of fourteen programs, but repeated compilation and extraction-based checks show that the initial result need not persist.
+The initial comparison verifies fifteen of twenty attempted programs, but repeated compilation and extraction-based checks show that the initial result need not persist.
 Compilation failures can be expensive, and the break-even law separates that price from trace costs already paid by the stream.
 The fixed-price threshold has a factor-two bound under its stated assumptions.
 The simulated estimating policies have no established competitive guarantee, and their measured costs depend on verification, recurrence, and drift.
@@ -965,7 +966,7 @@ A program use succeeds with probability $1 - q_f$ and its fallback with $\pi_f$,
 $\pi$ is the success rate of the agent traces.
 Agent per success is in thousands of price-weighted tokens and program per success in tokens.
 $N^{*}_{\mathrm{succ}}$ is the break-even count in delivered successes.
-A blue-only cell means that model produced no verified program.}
+A single-color cell names the model that produced no verified program.}
 \label{tab:success}
 \small
 \begin{tabular}{lrrrr}
@@ -1066,7 +1067,7 @@ Table~\ref{tab:fragility} gives the pass rates.
 
 \begin{table}[h]
 \centering
-\caption{\textbf{Appearance changes leave the programs standing and interruptions bring them down, on both models.}
+\caption{\textbf{Appearance changes leave the programs standing and interruptions bring them down, on every model.}
 Pass rate per variant over the verified programs' held-out bindings; the break-given-change and uniform rows use the robust success rate, conditional on the bindings that pass clean and averaged per family, so they do not equal one minus the pass rate.
 Silent counts the replays that returned normally with a wrong or missing record.}
 \label{tab:fragility}
