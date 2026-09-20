@@ -19,6 +19,11 @@ then one final record
 Screenshots are saved as PNG files next to the JSONL. With --mock (or a
 client passed programmatically) the deterministic MockOpenAI is used and no
 network call is made.
+
+When the per-request image budget freezes screenshots mid-episode (large
+map screenshots vs the model channel's 30MB limit; see guiexp.agent), the
+freeze step's record carries ``usage.image_budget_freeze`` and the final
+record adds ``image_budget_frozen`` plus the full ``image_budget_event``.
 """
 
 from __future__ import annotations
@@ -138,6 +143,10 @@ def run_episode(
         total_prompt += usage.get("prompt_tokens") or 0
         total_completion += usage.get("completion_tokens") or 0
         total_cost += usage.get("cost_usd") or 0.0
+        if "image_budget_freeze" in usage:
+            # The event is the same dict the agent keeps; stamping here also
+            # fills the step index into the final record's event below.
+            usage["image_budget_freeze"]["step"] = step
         obs_meta = {
             "url": obs.get("url"),
             "screenshot_file": shot_file,
@@ -232,6 +241,12 @@ def run_episode(
             "model_calls": len(records),
             "record_type": "final",
         }
+        if agent.image_budget_event is not None:
+            # Footnote for experiment runners: this episode's screenshots
+            # crossed the per-request image budget mid-run (see guiexp.agent);
+            # from the freeze step on, observations were text-only.
+            final["image_budget_frozen"] = True
+            final["image_budget_event"] = dict(agent.image_budget_event)
         records.append(final)
     finally:
         env.close()
