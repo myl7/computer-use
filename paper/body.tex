@@ -188,6 +188,8 @@ The three-trace program receives up to three repair rounds and is verified by ru
 At least four passes are required before deployment on thirty fresh bindings.
 The three-trace document is supplied to agent runs on seeds four to six.
 Initial verification injects the known bindings directly into the program, whereas deployment extracts them from the goal with a model call.
+When a request's accumulated screenshots reach the channel's undocumented thirty-megabyte image budget, the client compresses the older screenshots to a lossy tier and retries; the current observation stays lossless.
+One verification episode measured the pass at 30.3 megabytes compressed to 3.0, a ratio of 10.2.
 We test this difference separately on Android in Section~\ref{sec:verification}.
 
 The unit is the \emph{price-weighted token}, $u=(\text{input}-\text{cached})+r_c\,\text{cached}+r_o\,\text{output}$.
@@ -669,6 +671,7 @@ The estimated-price break-even rule overtakes us as the price rises.
 It pays 1.0 to 1.3 times ours at the measured price, but 0.411 of ours on the tool-edit stream and 0.452 on BPI 2019 at five million, where our projection overbuys and waiting is right.
 Scoring the eligible substream alone does not change the ordering where the eligible fraction is high, and it flips Sepsis toward compiling, with always compiling at 0.91 of ours and the oracle at 0.82, because the families that return are the ones worth buying.
 Under the DeepSeek constants, where three of seven families never verify, the trigger buys almost nothing at the measured price and lands within 6 percent of the reactive rule on every stream, and at five million it buys nothing, identical to staying reactive, while always compiling pays 22.8 to 172 times ours.
+Under the Qwen constants the same shape holds with a milder tail: the trigger stays within 7 percent of the reactive rule at the measured price and stops compiling at five million, always compiling pays up to 82.1 times ours, and the narrow break-even rule is the only rule below ours there at 0.855 to 1.03.
 The full buy price matters most on the Sepsis log, where it cuts the DeepSeek trigger's net tokens by 11 percent against the narrow form and its compilations from 17 to 4, while on BPI 2019 it pays 8 percent more, because the compilations it still makes sit on the families that never verify.
 Across both tables, no competitor that differs from our policy has a 95 percent bootstrap interval covering parity with it.
 The gap to the offline optimum spans 0.21 to 0.91 across the table, the residual cost of not knowing which families will return and which programs will verify.
@@ -708,6 +711,7 @@ The capped doubling horizon carries the raised price in the other direction: a f
 The inflate cooldown matters only under the DeepSeek constants, 1.13 in its worst stream at the measured price.
 Two mechanisms leave these streams unchanged: the population prior moves no cell by more than 1 percent, and the spend cap never binds, because its value is the failure-heavy regimes of Section~\ref{sec:regimes}, where it holds the worst case at 1.15 and 1.38 against 1.76 and 1.78 without it.
 Removing evidence decay lowers the GLM mean at the measured price to 0.94 and raises no mean in any cell of this sweep.
+Under the Qwen constants every mechanism is inert within 3 percent, and the narrow rule again pays less at the raised price, 0.943 of the full rule.
 
 \subsection{Robustness across regimes}
 \label{sec:regimes}
@@ -727,7 +731,8 @@ Appearance changes break 0.06 of the clean-passing replays on GLM and 0.10 on De
 \section{Limitations}
 \label{sec:limitations}
 
-The measurement covers seven selected families on three GUIs and two models, and the desktop and web extensions use custom parameterized tasks, so it does not support benchmark-wide conclusions.
+The measurement covers seven selected families on three GUIs and three models; one provider refuses the web task's prompt and one compiled program defeats the replay deadline, both disclosed with their cells, and the Qwen Android floor is priced from mostly cache-hit calibration runs, so its price-weighted floor sits far below its raw floor.
+The desktop and web extensions use custom parameterized tasks, so they do not support benchmark-wide conclusions.
 The Android costs use estimated missing cache counts and a bill-based deployment proxy, the desktop and web costs use recorded token counts, and interrupted desktop calls with lost records are absent.
 Verification rests on five bindings, three compilations per Android cell, and one replay per binding, so it does not establish independent retries or within-binding run variance.
 The same program can fall from five passes to one when run conditions change, and the change frequency that turns this break rate into a hazard is a deployment property.
