@@ -972,12 +972,12 @@ A blue-only cell means that model produced no verified program.}
 \toprule
 Family & $\pi$ & agent per success & program per success & $N^{*}_{\mathrm{succ}}$ \\
 \midrule
-Contacts & \dual{1.00}{1.00} & \dual{98.7kk}{65.0kk} & \dual{179}{2.60k} & \dual{0.416}{2.30} \\
-Markor delete & \dual{1.00}{1.00} & \dual{33.7kk}{10.8kk} & \dual{6.94k}{761} & \dual{1.46}{6.85} \\
-Calendar & \dual{1.00}{1.00} & \dual{314kk}{146kk} & \dualG{558} & \dualG{2.93} \\
-OsmAnd marker & \dual{0.13}{0.14} & \dual{2240kk}{1070kk} & \dualG{475} & \dualG{0.432} \\
-Calc table & \dual{1.00}{0.75} & \dual{505kk}{862kk} & \dualG{672} & \dualG{0.954} \\
-Writer memo & \dual{1.00}{0.75} & \dual{70.2kk}{67.6kk} & \dual{547}{650} & \dual{3.65}{8.74} \\
+Contacts & \tri{1.00}{1.00}{1.00} & \tri{98.7k}{65.0k}{39.2k} & \tri{179}{2.60k}{1.85k} & \tri{0.416}{2.30}{3.66} \\
+Markor delete & \tri{1.00}{1.00}{1.00} & \tri{33.7k}{10.8k}{21.5k} & \tri{6.94k}{761}{384} & \tri{1.46}{6.85}{9.83} \\
+Calendar & \tri{1.00}{1.00}{1.00} & \tri{314k}{146k}{135k} & \triGQ{558}{836} & \triGQ{2.93}{11.5} \\
+OsmAnd marker & \tri{0.13}{0.14}{0.14} & \tri{2240k}{1070k}{856k} & \triG{475} & \triG{0.432} \\
+Calc table & \tri{1.00}{0.75}{1.00} & \tri{505k}{862k}{169k} & \triG{672} & \triG{0.954} \\
+Writer memo & \tri{1.00}{0.75}{1.00} & \tri{70.2k}{67.6k}{37.0k} & \tri{547}{650}{775} & \tri{3.65}{8.74}{13.4} \\
 Reddit comment & \dual{1.00}{1.00} & \dual{124kk}{40.0kk} & \dual{651}{654} & \dual{2.05}{8.44} \\
 \bottomrule
 \end{tabular}
@@ -1071,23 +1071,23 @@ Pass rate per variant over the verified programs' held-out bindings; the break-g
 Silent counts the replays that returned normally with a wrong or missing record.}
 \label{tab:fragility}
 \small
-\begin{tabular}{ll>{\columncolor{glmTint}}r>{\columncolor{dsTint}}r}
+\begin{tabular}{ll>{\columncolor{glmTint}}r>{\columncolor{dsTint}}r>{\columncolor{qwTint}}r}
 \toprule
-Arm & Source & GLM & DeepSeek \\
+Arm & Source & GLM & DeepSeek & Qwen \\
 \midrule
-clean & verification & 0.95 & 1.00 \\
+clean & verification & 0.95 & 0.93 \\
 large font & B-MoCA & 0.70 & 0.60 \\
-small font & B-MoCA & 0.95 & 0.90 \\
-low density & B-MoCA & 0.90 & 1.00 \\
-French locale & B-MoCA & 0.95 & 1.00 \\
-dark theme & B-MoCA & 0.95 & 1.00 \\
+small font & B-MoCA & 0.95 & 0.93 \\
+low density & B-MoCA & 0.90 & 0.93 \\
+French locale & B-MoCA & 0.95 & 0.93 \\
+dark theme & B-MoCA & 0.95 & 0.93 \\
 notification & D-GARA & 0.20 & 0.00 \\
-low battery & D-GARA & 0.75 & 0.00 \\
+low battery & D-GARA & 0.75 & 0.33 \\
 permission dialog & D-GARA & 0.33 & 0.00 \\
 update prompt & D-GARA & 0.20 & 0.00 \\
 \midrule
-break given change, uniform & & 0.30 & 0.50 \\
-loud share of breaks & & 93\% & 82\% \\
+break given change, uniform &  & 0.30 & 0.44 \\
+loud share of breaks &  & 93\% & 77\% \\
 silent breaks & & 4 & 7 \\
 \bottomrule
 \end{tabular}
