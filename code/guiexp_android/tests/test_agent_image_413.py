@@ -1,9 +1,9 @@
-"""Unit tests for the GuiAgent reactive image-413 guard (v3 tier ladder).
+"""Unit tests for the AndroidAgent reactive image-413 guard (v3 ladder).
 
-The agent sends every request normally (byte-identical to the unguarded
-client; observations always attach full-quality PNG). When the channel
-rejects a request with HTTP 413, the pending request is reworked in place
-and retried immediately, one tier per rejection:
+Ported from web guiexp/tests/test_agent_image_413.py -- same semantics:
+requests go out untouched (observations always attach full-quality PNG);
+on HTTP 413 the pending request is reworked in place and retried
+immediately, one tier per rejection:
 
     tier 1  compress_history  history images -> WebP q75 (same pixel size);
                               current image stays HD
@@ -16,23 +16,23 @@ images are never double-compressed; the rejected 413 probe contributes no
 usage record and the successful retry's usage is verbatim from its response.
 
 Mock screenshots are small SYNTHETIC PNGs (noise, so WebP q75 is genuinely
-smaller) built with Pillow in-test; no real PNGs, no network, no browser.
-Plain unittest (asserts), so it runs with the system python3; pytest runs it
-unchanged.
+smaller) built with Pillow in-test; no real PNGs, no emulator, no LLM.
+Plain unittest (asserts), so it runs with the system python3; the package's
+pytest setup runs it unchanged.
 """
 
 from __future__ import annotations
 
 import base64
-import contextlib
 import copy
+import contextlib
 import io
 import json
 import random
 import unittest
 from types import SimpleNamespace
 
-from guiexp.agent import GuiAgent, _is_image_channel_error
+from guiexp_android.agent import SYSTEM_PROMPT, AndroidAgent, _is_image_channel_error
 
 try:
     from PIL import Image
@@ -44,8 +44,9 @@ except ImportError:  # encode tests are skipped; the no-op/500 tests still run
 DATA_URL_PREFIX = "data:image/png;base64,"
 WEBP_URL_PREFIX = "data:image/webp;base64,"
 AX_PREFIX = (
-    "Accessibility tree of the current page (one line per "
-    "interactive element: [bid] role 'name'):\n"
+    "Numbered list of UI elements on the current screen"
+    " (the numbers are the element indexes the actions"
+    " use):\n"
 )
 WIDTH, HEIGHT = 64, 48
 
@@ -84,7 +85,7 @@ class _ScriptedClient:
             raise self.other_errors[idx]
         usage = self.usage or SimpleNamespace(prompt_tokens=10, completion_tokens=1)
         return SimpleNamespace(
-            choices=[SimpleNamespace(message=SimpleNamespace(content="done()"))],
+            choices=[SimpleNamespace(message=SimpleNamespace(content='done()'))],
             usage=usage,
         )
 
@@ -99,7 +100,10 @@ def _png_b64(width: int = WIDTH, height: int = HEIGHT, seed: int = 0) -> str:
 
 
 def _obs(image_b64: str | None) -> dict:
-    obs = {"url": "http://localhost:5001/map", "ax_tree_text": "[b1] button 'Layers'"}
+    obs = {
+        "url": "com.osmand/.MapActivity",
+        "ax_tree_text": "[3] android.widget.Button 'Layers'",
+    }
     if image_b64 is not None:
         obs["screenshot_b64"] = image_b64
     return obs
@@ -108,11 +112,11 @@ def _obs(image_b64: str | None) -> dict:
 def _user_content(img_b64: str, goal: str | None = None) -> list[dict]:
     """The observation content parts exactly as _observation_parts builds them."""
     text = (goal.rstrip("\n") + "\n\n") if goal else ""
-    text += "Current URL: http://localhost:5001/map\n"
+    text += "Current app: com.osmand/.MapActivity\n"
     return [
         {"type": "text", "text": text},
         {"type": "image_url", "image_url": {"url": DATA_URL_PREFIX + img_b64}},
-        {"type": "text", "text": AX_PREFIX + "[b1] button 'Layers'"},
+        {"type": "text", "text": AX_PREFIX + "[3] android.widget.Button 'Layers'"},
     ]
 
 
@@ -135,7 +139,7 @@ class TestImage413Guard(unittest.TestCase):
     def test_normal_episode_sends_untouched_requests(self):
         """No 413: every request is the full legacy build, nothing recorded."""
         client = _ScriptedClient()
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         img = "QUJD" * 1000  # arbitrary bytes; nothing ever decodes them here
         usages = []
         for step in range(3):
@@ -144,7 +148,7 @@ class TestImage413Guard(unittest.TestCase):
 
         expected = []
         for step in range(3):
-            req = [{"role": "system", "content": agent.system_prompt}]
+            req = [{"role": "system", "content": SYSTEM_PROMPT}]
             for s in range(step):  # completed pairs enter history after the call
                 req.append({"role": "user", "content": _user_content(img, "goal text" if s == 0 else None)})
                 req.append({"role": "assistant", "content": "done()"})
@@ -163,7 +167,7 @@ class TestImage413Guard(unittest.TestCase):
         """Tier 1: history -> WebP q75 (same dimensions, smaller); the current
         screenshot keeps its exact HD PNG bytes; text is untouched."""
         client = _ScriptedClient(raise_413_at=[2])  # step 2, first attempt
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         img = _png_b64()
         for step in range(3):
             reply, usage = agent.act(None, _obs(img))
@@ -172,7 +176,6 @@ class TestImage413Guard(unittest.TestCase):
 
         self.assertEqual(len(client.calls), 4)  # steps 0,1 + step2 twice
         attempt1, attempt2 = client.calls[2], client.calls[3]
-        # Attempt 1 was all-PNG; in attempt 2 the history is WebP ...
         urls1, urls2 = _image_urls(attempt1), _image_urls(attempt2)
         self.assertEqual(len(urls1), 3)
         self.assertTrue(all(u.startswith(DATA_URL_PREFIX) for u in urls1))
@@ -182,14 +185,13 @@ class TestImage413Guard(unittest.TestCase):
             img_obj = Image.open(io.BytesIO(base64.b64decode(new.split(",", 1)[1])))
             self.assertEqual(img_obj.size, (WIDTH, HEIGHT))  # dimensions kept
             self.assertLess(len(new), len(old))  # genuinely smaller
-        # ... while the current image is byte-identical HD PNG.
+        # The current image is byte-identical HD PNG; text parts untouched.
         self.assertEqual(urls2[2], urls1[2])
-        # Non-image parts are untouched.
         self.assertEqual(
             [p for p in attempt2[-1]["content"] if p.get("type") != "image_url"],
             [p for p in attempt1[-1]["content"] if p.get("type") != "image_url"],
         )
-        self.assertTrue(any("[b1] button 'Layers'" in p.get("text", "") for p in attempt2[-1]["content"]))
+        self.assertTrue(any("[3] android.widget.Button 'Layers'" in p.get("text", "") for p in attempt2[-1]["content"]))
 
         event = agent.image_413_events[0]
         self.assertEqual(event["tier"], "compress_history")
@@ -208,7 +210,7 @@ class TestImage413Guard(unittest.TestCase):
         """A later 413 compresses only the newly-accumulated HD history images;
         the already-compressed ones keep their exact URLs."""
         client = _ScriptedClient(raise_413_at=[2, 5])
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         img = _png_b64()
         for step in range(5):
             agent.act(None, _obs(img))
@@ -216,10 +218,8 @@ class TestImage413Guard(unittest.TestCase):
         self.assertEqual(len(client.calls), 7)  # s0,s1 + s2 twice + s3 + s4 twice
         self.assertEqual([e["tier"] for e in agent.image_413_events],
                          ["compress_history", "compress_history"])
-        after_first = client.calls[3]
-        after_second = client.calls[6]
-        urls_first = _image_urls(after_first)
-        urls_second = _image_urls(after_second)
+        urls_first = _image_urls(client.calls[3])
+        urls_second = _image_urls(client.calls[6])
         # Pass 1 compressed u0, u1; pass 2 compressed only u2, u3 (the HD
         # images accumulated since); the pass-1 results are byte-identical.
         self.assertEqual(urls_second[:2], urls_first[:2])
@@ -227,14 +227,14 @@ class TestImage413Guard(unittest.TestCase):
         self.assertEqual(agent.image_413_events[1]["images"], 2)
         # The current image at the second pass was again left HD.
         self.assertTrue(_image_urls(client.calls[5])[-1].startswith(DATA_URL_PREFIX))
-        self.assertTrue(_image_urls(after_second)[-1].startswith(DATA_URL_PREFIX))
+        self.assertTrue(urls_second[-1].startswith(DATA_URL_PREFIX))
 
     @unittest.skipUnless(PIL_OK, "Pillow required for encode tests")
     def test_prefix_is_byte_stable_between_passes(self):
         """Everything up to and including the post-compression turn never
         changes until the next pass mutates history."""
         client = _ScriptedClient(raise_413_at=[2])
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         img = _png_b64()
         for _ in range(4):
             agent.act(None, _obs(img))
@@ -250,7 +250,7 @@ class TestImage413Guard(unittest.TestCase):
         resort strips the current image, then history -- loudly."""
         stderr = io.StringIO()
         client = _ScriptedClient(raise_413_at=[1, 2, 3, 4])  # step 1, four times
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         img = _png_b64()
         with contextlib.redirect_stderr(stderr):
             agent.act(None, _obs(img))  # step 0: fine
@@ -277,7 +277,7 @@ class TestImage413Guard(unittest.TestCase):
         """Exactly one immediate rework-and-retry on 413: two calls for the
         affected step, then success (no backoff loop, no parse re-asks)."""
         client = _ScriptedClient(raise_413_at=[0])
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         reply, usage = agent.act(None, _obs(_png_b64()))
         self.assertEqual(reply, "done()")
         self.assertEqual(len(client.calls), 2)
@@ -288,7 +288,7 @@ class TestImage413Guard(unittest.TestCase):
         before, with a single call and no guard events. Also pins the
         rejection predicate directly (needs no Pillow)."""
         client = _ScriptedClient(other_errors={0: FakeServerError("Error: 500 - boom")})
-        agent = GuiAgent(model="m", client=client)
+        agent = AndroidAgent(model="m", client=client)
         with self.assertRaises(FakeServerError):
             agent.act(None, _obs(None))  # no screenshot: nothing to compress
         self.assertEqual(len(client.calls), 1)

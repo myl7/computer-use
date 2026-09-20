@@ -317,6 +317,11 @@ def react_resume(
             action_text = reply.strip()[:200]
         obs, done, reward = env.step(reply)
         step += 1
+        if "image_413_events" in usage:
+            # Same dicts the agent keeps; call_record embeds the usage dict
+            # verbatim, so the stamped events land inside calls_detail too.
+            for ev in usage["image_413_events"]:
+                ev["step"] = step
         calls_detail.append(call_record(step, calls, usage, stage="react_resume",
                                         action=action_text))
         actions.append(f"step {step}: {action_text} -> {obs.get('url', '')}")

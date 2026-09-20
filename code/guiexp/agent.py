@@ -12,28 +12,40 @@ when the provider reports it), and the ``usage.cost`` field OpenRouter
 returns when present (USD) -- and returned to the caller for the trajectory.
 The API key is read from the environment and never logged or printed.
 
-Reactive image-budget guard: map-canvas screenshots run 1.8-1.95MB apiece,
-and an accumulated history once crossed the model channel's 30MB image limit
-(OpenRouter 413, "Downloaded image content cannot exceed 30MB"), killing
-whole verification episodes deterministically. Requests are therefore sent
-normally -- no proactive truncation, byte-identical to the unguarded client.
-When a request IS rejected with HTTP 413 (or, safety net, "cannot exceed"
-wording), the guard strips the CURRENT step's screenshot part (its
-interface-tree text stays), retries that request immediately once -- the 413
-is rejected pre-routing and unbilled -- and freezes the episode's image set
-after the first successful post-strip retry: every later observation is
-text-only, already-sent history images are never removed, and the request
-prefix up to the strip point stays byte-identical (provider prefix caching
-is not invalidated). Degenerate fallback (not expected to fire): a request
-still 413ing with no current image left strips the most recent HISTORY
-image, repeating as needed -- this breaks prefix stability, so each such
-strip is recorded as a distinct degenerate event and logged loudly. Events
-land on the agent (``image_413_events``) and in that call's usage dict so
-episode JSON can footnote affected runs.
+Reactive image-413 guard (v3): map-canvas screenshots run 1.8-1.95MB
+apiece, and an accumulated history once crossed the model channel's 30MB
+image limit (OpenRouter 413, "Downloaded image content cannot exceed 30MB"),
+killing verification episodes deterministically. Observations ALWAYS attach
+at full quality (HD PNG) -- no proactive truncation, requests byte-identical
+to the unguarded client, no permanent tier switch. When a request IS
+rejected with HTTP 413 (or, safety net, "cannot exceed" wording), it is
+reworked and retried immediately (the rejection is pre-routing and unbilled:
+the probe contributes NO usage record; the successful retry's usage is
+recorded verbatim from its response), climbing a tier ladder:
+
+    tier 1  compress_history  every HISTORY image -> WebP q75, original
+                              pixel dimensions (the agent's coordinates
+                              depend on them); already-compressed ones stay
+                              as-is; the current image stays HD
+    tier 2  compress_current  the current image -> WebP q75 as well
+    tier 3  strip_current     the current image goes (text-only step)
+    tier 4  strip_history     most recent history image goes, repeating
+
+Tier 1 mutates history in place: one accepted prefix break per pass, at the
+first newly-compressed image. Between passes the history is append-only and
+prefix-stable, and later observations attach HD again -- a later 413 (HD
+images re-accumulated, every ~15 steps on long map episodes) simply runs
+another pass, never double-compressing. Tiers 3-4 are the final resort and
+are logged loudly. Every pass is recorded on the agent
+(``image_413_events``) and in that call's usage dict so episode JSON can
+footnote affected runs. Requires Pillow (venv-expa must provide it) only
+when a compress tier actually fires.
 """
 
 from __future__ import annotations
 
+import base64
+import io
 import os
 import sys
 
@@ -42,6 +54,12 @@ from .actions import ACTION_SPACE_DESCRIPTION
 OBS_MODES = ("screenshot", "screenshot+ax")
 
 SYSTEM_PROMPT = "You are a GUI agent operating a web application.\n\n" + ACTION_SPACE_DESCRIPTION
+
+# Compression tier: WebP quality for the reactive 413 pass. Original pixel
+# dimensions are always preserved (tap coordinates depend on resolution).
+_WEBP_QUALITY = 75
+_PNG_PREFIX = "data:image/png;base64,"
+_WEBP_PREFIX = "data:image/webp;base64,"
 
 
 def _strip_image_part(content: list[dict]) -> int | None:
@@ -63,6 +81,62 @@ def _is_image_channel_error(exc: BaseException) -> bool:
     parts = [str(v) for v in (getattr(exc, "message", None), getattr(exc, "body", None)) if v]
     text = " ".join(parts) if parts else str(exc)
     return "cannot exceed" in text.lower()
+
+
+def _compress_image_part(part: dict) -> tuple[int, int] | None:
+    """Re-encode one image part to WebP at ``_WEBP_QUALITY`` in place, with
+    original pixel dimensions preserved (never resize: the agent's tap
+    coordinates depend on the resolution). Only ``data:image/png`` parts are
+    touched, so already-compressed ones stay as-is (no double compression).
+    Returns (url_bytes_before, url_bytes_after), or None when the part is
+    not a PNG data URL or does not decode (left unchanged; a decode failure
+    is logged loudly). Needs Pillow -- only ever called on the 413 path."""
+    url = part["image_url"]["url"]
+    if not url.startswith(_PNG_PREFIX):
+        return None
+    try:
+        from PIL import Image
+    except ImportError as exc:  # provisioning guard: venv-expa must ship pillow
+        raise ImportError(
+            "the image-413 guard needs Pillow to re-encode screenshots to WebP; "
+            "install pillow into the run venv (venv-expa on the servers)"
+        ) from exc
+    try:
+        raw = base64.b64decode(url[len(_PNG_PREFIX):])
+        with Image.open(io.BytesIO(raw)) as img:
+            if img.mode not in ("RGB", "RGBA"):
+                img = img.convert("RGBA")
+            buf = io.BytesIO()
+            img.save(buf, "WEBP", quality=_WEBP_QUALITY)
+    except Exception as exc:
+        print(
+            f"guiexp: WARNING image-413 pass could not re-encode a screenshot "
+            f"({type(exc).__name__}: {exc}); leaving it as PNG",
+            file=sys.stderr,
+        )
+        return None
+    webp_url = _WEBP_PREFIX + base64.b64encode(buf.getvalue()).decode()
+    before = len(url)
+    part["image_url"]["url"] = webp_url
+    return before, len(webp_url)
+
+
+def _compress_msg_images(msgs: list[dict]) -> tuple[int, int, int]:
+    """Re-encode every PNG image part of the given user messages in place.
+    Returns (images, bytes_before, bytes_after) over the parts actually
+    re-encoded (skipped/undecodable parts are not counted)."""
+    images = before = after = 0
+    for msg in msgs:
+        if msg.get("role") != "user" or not isinstance(msg.get("content"), list):
+            continue
+        for part in msg["content"]:
+            if isinstance(part, dict) and part.get("type") == "image_url":
+                result = _compress_image_part(part)
+                if result is not None:
+                    images += 1
+                    before += result[0]
+                    after += result[1]
+    return images, before, after
 
 
 class GuiAgent:
@@ -90,11 +164,8 @@ class GuiAgent:
         if manifest:
             self.system_prompt = SYSTEM_PROMPT + "\n\n" + manifest
         self.history: list[dict] = []  # user/assistant turns after the first
-        # Reactive image-413 guard state (see module docstring): requests go
-        # out untouched until the channel rejects one with 413; the first
-        # post-strip success freezes the episode's image set (all later
-        # observations text-only, history images never removed).
-        self._images_frozen = False
+        # Reactive image-413 guard log (see module docstring): one event per
+        # applied tier per 413 pass; requests otherwise go out untouched.
         self.image_413_events: list[dict] = []
 
     def act(self, goal_prompt: str | None, obs: dict, note: str | None = None) -> tuple[str, dict]:
@@ -103,18 +174,14 @@ class GuiAgent:
         ``note`` is a generic system-level nudge appended to this turn's
         user message (e.g. the anti-flail repetition warning). It must never
         carry task- or procedure-specific content. If the channel rejects
-        the request with 413, this call strips the current screenshot,
-        retries immediately once, and freezes images off for the rest of the
-        episode; the events are returned under ``usage["image_413_events"]``
-        (absent otherwise).
+        the request with 413, this call reworks it through the tier ladder
+        in ``_create_with_image_413_guard`` (history compressed first, the
+        current image kept HD as long as possible) and retries immediately;
+        the pass events are returned under ``usage["image_413_events"]``
+        (absent otherwise). The rejected probe itself contributes no usage
+        record; the returned usage is the successful response's, verbatim.
         """
         content = self._observation_parts(goal_prompt, obs, note)
-        if self._images_frozen:
-            # Frozen episode: every observation goes out text-only; the
-            # screenshot part is omitted before the request ever leaves.
-            _strip_image_part(content)
-            if self.image_413_events:
-                self.image_413_events[0]["text_only_turns_after_freeze"] += 1
         messages = [{"role": "system", "content": self.system_prompt}]
         if self.history:
             messages.extend(self.history)
@@ -135,18 +202,26 @@ class GuiAgent:
     # -- helpers -----------------------------------------------------------
 
     def _create_with_image_413_guard(self, messages: list[dict]):
-        """chat.completions.create with the reactive 413 guard.
+        """chat.completions.create with the reactive 413 tier ladder (v3).
 
         Normally a single straight-through call (no overhead, byte-identical
-        request). On the channel's image-budget rejection: strip the CURRENT
-        step's image part from the pending user turn and retry immediately
-        once (413s are rejected pre-routing and unbilled). If the retry is
-        rejected too -- the degenerate path, not expected to fire -- strip
-        the most recent REMAINING history image and retry again, repeating
-        as needed; this breaks request-prefix stability and is logged
-        loudly. Non-image errors propagate exactly as before. Returns
-        (response, events) where events lists the 413 strips this call made
-        (empty in the normal case).
+        request; observations always attach at full-quality PNG). On the
+        channel's image-budget rejection the request is reworked IN PLACE and
+        retried immediately, one tier per rejection:
+
+            tier 1  compress_history  history images -> WebP q75 (original
+                                      pixel dimensions; already-compressed
+                                      ones stay as-is); current stays HD
+            tier 2  compress_current  the current image -> WebP q75 as well
+            tier 3  strip_current     the current image goes (text-only step)
+            tier 4  strip_history     most recent history image goes,
+                                      repeating as needed
+
+        Each application is one event; a pass may climb several tiers when a
+        compressed request is still rejected. The rejected probe contributes
+        no usage record; whatever response finally succeeds has its usage
+        taken verbatim by the caller. Non-image errors propagate exactly as
+        before. Returns (response, events), events empty in the normal case.
         """
         events: list[dict] = []
         while True:
@@ -161,35 +236,57 @@ class GuiAgent:
                 if not _is_image_channel_error(exc):
                     raise
                 trigger = "http_413" if getattr(exc, "status_code", None) == 413 else "cannot_exceed_message"
-                stripped = _strip_image_part(messages[-1]["content"])  # current step
-                source = "current"
-                if stripped is None:
-                    source = "history"
-                    stripped = self._strip_latest_history_image()
-                if stripped is None:
-                    raise  # nothing image-shaped left: a genuine channel error
-                event = {
-                    "step": None,  # stamped by the runner's _record_step
-                    "trigger": trigger,
-                    "source": source,
-                    "images_stripped": 1,
-                    "bytes_stripped": stripped,
-                    "degenerate": source == "history",
-                    "frozen": True,  # the image set is frozen from this event on
-                }
-                if not self._images_frozen:
-                    self._images_frozen = True
-                    event["text_only_turns_after_freeze"] = 0
+                # Tier 1: history only; the current image stays HD.
+                images, before, after = _compress_msg_images(messages[:-1])
+                if images:
+                    event = {
+                        "step": None,  # stamped by the runner's _record_step
+                        "trigger": trigger,
+                        "tier": "compress_history",
+                        "images": images,
+                        "bytes_before": before,
+                        "bytes_after": after,
+                        "ratio": round(before / after, 2),
+                    }
+                else:
+                    # Tier 2: the current image too.
+                    images, before, after = _compress_msg_images(messages[-1:])
+                    if images:
+                        event = {
+                            "step": None,
+                            "trigger": trigger,
+                            "tier": "compress_current",
+                            "images": images,
+                            "bytes_before": before,
+                            "bytes_after": after,
+                            "ratio": round(before / after, 2),
+                        }
+                    else:
+                        # Tiers 3-4: the final resort, logged loudly.
+                        stripped = _strip_image_part(messages[-1]["content"])
+                        if stripped is not None:
+                            tier = "strip_current"
+                        else:
+                            stripped = self._strip_latest_history_image()
+                            tier = "strip_history"
+                        if stripped is None:
+                            raise  # nothing image-shaped left: a genuine error
+                        event = {
+                            "step": None,
+                            "trigger": trigger,
+                            "tier": tier,
+                            "images_stripped": 1,
+                            "bytes_stripped": stripped,
+                            "degenerate": True,  # final resort: prefix broken
+                        }
+                        print(
+                            f"guiexp: WARNING image-413 final resort ({tier}): "
+                            f"stripped a screenshot ({stripped} bytes); its text "
+                            "stays but request prefix stability is broken",
+                            file=sys.stderr,
+                        )
                 self.image_413_events.append(event)
                 events.append(event)
-                if event["degenerate"]:
-                    print(
-                        "guiexp: WARNING degenerate image-413 strip: request still "
-                        f"rejected after the current-step strip; removed a HISTORY "
-                        f"image ({stripped} bytes) -- request prefix stability is "
-                        "broken for the rest of this episode",
-                        file=sys.stderr,
-                    )
 
     def _strip_latest_history_image(self) -> int | None:
         """Degenerate path only: remove the most recent image still in

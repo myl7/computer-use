@@ -28,6 +28,14 @@ carries the foreground activity on this side.
 
 With --mock (or a client passed programmatically) the deterministic
 MockOpenAI is used and no network call is made.
+
+When the model channel rejects a request with 413 (image payload over its
+30MB limit; see guiexp_android.agent), the agent reworks and retries it:
+history screenshots compressed to WebP q75 first (current image kept HD),
+stripping only as the final resort. The affected call's record carries
+``usage.image_413_events`` (one event per applied tier) and the final record
+adds ``image_413_compressed`` (plus the web-side pre-v3 ``image_413_frozen``
+key, same boolean, for schema parity) and the full ``image_413_events`` list.
 """
 
 from __future__ import annotations
@@ -115,6 +123,11 @@ def run_episode(
         total_prompt += usage.get("prompt_tokens") or 0
         total_completion += usage.get("completion_tokens") or 0
         total_cost += usage.get("cost_usd") or 0.0
+        if "image_413_events" in usage:
+            # Same dicts the agent keeps; stamping here also fills the step
+            # index into the final record's events below.
+            for ev in usage["image_413_events"]:
+                ev["step"] = step
         rec = {
             "step": step,
             "action_raw": reply,
@@ -189,6 +202,15 @@ def run_episode(
             "model_calls": len(records),
             "record_type": "final",
         }
+        if agent.image_413_events:
+            # Footnote for experiment runners: the channel 413-rejected this
+            # episode's request(s) (see guiexp_android.agent); compression
+            # passes re-encoded history images to WebP q75 (tiers 3-4 strip).
+            # image_413_compressed is the canonical flag; image_413_frozen is
+            # kept for schema parity with the web side (same boolean).
+            final["image_413_compressed"] = True
+            final["image_413_frozen"] = True
+            final["image_413_events"] = [dict(ev) for ev in agent.image_413_events]
         if goal_prefix:
             final["goal_prefix"] = goal_prefix
         if doc_text is not None:
