@@ -568,7 +568,7 @@ The offline optimum also knows the coins, so no rule beats the offline optimum i
 The break-even row uses an estimated-price accumulated-excess trigger, whose simulation performance is separate from the fixed-price guarantee of Theorem~\ref{thm:ski}.}
 \label{tab:policysim}
 \scriptsize
-\setlength{\tabcolsep}{1.5pt}
+\setlength{\tabcolsep}{0.5pt}
 \begin{tabular}{lccc}
 \toprule
 Policy & Poisson & Zipf & Bursty \\
@@ -576,7 +576,7 @@ Policy & Poisson & Zipf & Bursty \\
 always reactive      & \tri{\textcolor{red}{$6.06 \pm 0.12$}}{$\underline{0.830 \pm 0.01}$}{$\mathbf{0.881}$} & \tri{\textcolor{red}{$9.42 \pm 0.22$}}{$\underline{0.923 \pm 0.01}$}{$\mathbf{0.943}$} & \tri{\textcolor{red}{$5.60 \pm 0.55$}}{$\underline{0.850 \pm 0.01}$}{$\underline{0.908}$} \\
 always compile       & \tri{$\mathbf{0.636 \pm 0.01}$}{\textcolor{red}{$6.11 \pm 0.15$}}{\textcolor{red}{$4.52$}} & \tri{$\mathbf{0.642 \pm 0.01}$}{\textcolor{red}{$4.66 \pm 0.03$}}{\textcolor{red}{$6.50$}} & \tri{$\mathbf{0.595 \pm 0.02}$}{\textcolor{red}{$6.57 \pm 0.62$}}{\textcolor{red}{$4.80$}} \\
 success count (10)   & \tri{$1.73 \pm 0.02$}{\textcolor{red}{$5.11 \pm 0.13$}}{\textcolor{red}{$3.94$}} & \tri{$1.72 \pm 0.02$}{\textcolor{red}{$4.14 \pm 0.03$}}{\textcolor{red}{$6.00$}} & \tri{$1.56 \pm 0.07$}{\textcolor{red}{$5.54 \pm 0.54$}}{\textcolor{red}{$4.21$}} \\
-ToolPro rule (port)  & \tri{\textcolor{red}{$4.26 \pm 0.13$}}{$\mathbf{0.829 \pm 0.01}$}{$\mathbf{0.881}$} & \tri{$2.37 \pm 0.12$}{$\mathbf{0.923 \pm 0.01}$}{$\mathbf{0.943}$} & \tri{$2.95 \pm 0.17$}{$\mathbf{0.832 \pm 0.02}$}{$\mathbf{0.887}$} \\
+ToolPro (port)  & \tri{\textcolor{red}{$4.26 \pm 0.13$}}{$\mathbf{0.829 \pm 0.01}$}{$\mathbf{0.881}$} & \tri{$2.37 \pm 0.12$}{$\mathbf{0.923 \pm 0.01}$}{$\mathbf{0.943}$} & \tri{$2.95 \pm 0.17$}{$\mathbf{0.832 \pm 0.02}$}{$\mathbf{0.887}$} \\
 break-even (est.)    & \tri{$\underline{0.974 \pm 0.01}$}{$1.50 \pm 0.01$}{1.21} & \tri{$\underline{0.963 \pm 0.01}$}{$1.25 \pm 0.00$}{1.22} & \tri{$\underline{0.899 \pm 0.03}$}{$1.41 \pm 0.04$}{1.15} \\
 ours                 & \tri{1.00}{1.00}{1.00} & \tri{1.00}{1.00}{1.00} & \tri{1.00}{1.00}{1.00} \\
 oracle               & \tri{$0.636 \pm 0.01$}{$0.742 \pm 0.01$}{0.597} & \tri{$0.641 \pm 0.01$}{$0.889 \pm 0.01$}{0.854} & \tri{$0.594 \pm 0.02$}{$0.756 \pm 0.03$}{0.627} \\
@@ -617,20 +617,41 @@ The offline optimum also knows the coins.}
 \label{tab:realstreams}
 \scriptsize
 \setlength{\tabcolsep}{0pt}
-\begin{tabular}{lcccc|cccc}
+\begin{tabular}{l>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c}
 \toprule
- & \multicolumn{4}{c}{Measured price} & \multicolumn{4}{c}{Five million per compilation} \\
-\cmidrule(lr){2-5}\cmidrule(lr){6-9}
-{\scriptsize Policy} & {\scriptsize Sepsis} & {\scriptsize BPI 2019} & {\scriptsize Wiki tools} & {\scriptsize Wiki humans} & {\scriptsize Sepsis} & {\scriptsize BPI 2019} & {\scriptsize Wiki tools} & {\scriptsize Wiki humans} \\
+ & \multicolumn{12}{c}{\scriptsize Measured price} \\
+\cmidrule(lr){2-13}
+ & \multicolumn{3}{c}{\scriptsize Sepsis} & \multicolumn{3}{c}{\scriptsize BPI 2019} & \multicolumn{3}{c}{\scriptsize Wiki tools} & \multicolumn{3}{c}{\scriptsize Wiki humans} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}
+{\scriptsize Policy} & \multicolumn{12}{c}{} \\
 \midrule
-always reactive      & \tri{1.16}{\textbf{0.949}}{$\mathbf{0.974}$} & \tri{2.85}{\textbf{1.00}}{1.01} & \tri{\textcolor{red}{11.8}}{1.00}{0.997} & \tri{1.09}{\textbf{0.952}}{$\mathbf{0.979}$} & \tri{\underline{1.00}}{\textbf{1.00}}{$\mathbf{1.00}$} & \tri{1.96}{\textbf{1.00}}{$\underline{1.00}$} & \tri{\textcolor{red}{4.02}}{\textbf{1.00}}{$\underline{1.00}$} & \tri{1.09}{\textbf{1.00}}{$\mathbf{1.00}$} \\
-always compile       & \tri{1.01}{1.93}{1.64} & \tri{1.75}{\textcolor{red}{9.41}}{\textcolor{red}{$6.59$}} & \tri{1.18}{\textcolor{red}{5.09}}{\textcolor{red}{$6.51$}} & \tri{1.23}{2.98}{2.88} & \tri{1.42}{\textcolor{red}{22.8}}{\textcolor{red}{$10.9$}} & \tri{1.58}{\textcolor{red}{172}}{\textcolor{red}{$75.5$}} & \tri{0.712}{\textcolor{red}{87.3}}{\textcolor{red}{$82.1$}} & \tri{1.64}{\textcolor{red}{41.1}}{\textcolor{red}{$21.4$}} \\
-success count (10)   & \tri{1.06}{1.48}{1.16} & \tri{\textbf{0.815}}{\textcolor{red}{8.76}}{\textcolor{red}{$6.03$}} & \tri{\textbf{0.934}}{\textcolor{red}{4.99}}{\textcolor{red}{$6.35$}} & \tri{\textbf{0.959}}{2.34}{2.10} & \tri{1.02}{\textcolor{red}{12.8}}{\textcolor{red}{$4.11$}} & \tri{\underline{0.683}}{\textcolor{red}{165}}{\textcolor{red}{$73.1$}} & \tri{\underline{0.433}}{\textcolor{red}{85.5}}{\textcolor{red}{$80.6$}} & \tri{1.06}{\textcolor{red}{30.8}}{\textcolor{red}{$16.4$}} \\
-ToolPro rule (port)  & \tri{1.16}{\textbf{0.949}}{$\mathbf{0.974}$} & \tri{1.35}{1.07}{1.07} & \tri{1.74}{\textbf{0.993}}{$\underline{0.913}$} & \tri{1.07}{\underline{0.955}}{$\underline{0.980}$} & \tri{\underline{1.00}}{\textbf{1.00}}{$\mathbf{1.00}$} & \tri{1.96}{\textbf{1.00}}{$\underline{1.00}$} & \tri{\textcolor{red}{4.02}}{\textbf{1.00}}{$\underline{1.00}$} & \tri{1.09}{\textbf{1.00}}{$\mathbf{1.00}$} \\
-break-even (est.)    & \tri{\underline{1.00}}{1.24}{1.09} & \tri{1.25}{1.12}{$\mathbf{0.965}$} & \tri{\underline{0.998}}{1.01}{$\mathbf{0.878}$} & \tri{1.07}{1.23}{1.10} & \tri{1.00}{1.56}{$\mathbf{1.00}$} & \tri{\textbf{0.452}}{1.05}{$\mathbf{0.855}$} & \tri{\textbf{0.411}}{1.02}{$\mathbf{0.890}$} & \tri{\textbf{0.952}}{1.19}{1.03} \\
-ours                 & \tri{\textbf{1.00}}{1.00}{1.00} & \tri{\underline{1.00}}{\underline{1.00}}{$\underline{1.00}$} & \tri{1.00}{\underline{1.00}}{1.00} & \tri{\underline{1.00}}{1.00}{1.00} & \tri{\textbf{1.00}}{\textbf{1.00}}{$\mathbf{1.00}$} & \tri{1.00}{\textbf{1.00}}{$\underline{1.00}$} & \tri{1.00}{\textbf{1.00}}{$\underline{1.00}$} & \tri{\underline{1.00}}{\textbf{1.00}}{$\mathbf{1.00}$} \\
-oracle               & \tri{0.990}{0.946}{0.943} & \tri{1.41}{1.03}{1.02} & \tri{1.04}{0.957}{0.846} & \tri{1.12}{1.03}{1.14} & \tri{0.925}{1.00}{1.00} & \tri{0.482}{0.861}{0.838} & \tri{0.342}{0.949}{0.837} & \tri{0.942}{0.995}{0.986} \\
-offline optimum      & \tri{0.882}{0.942}{0.938} & \tri{0.205}{0.798}{0.766} & \tri{0.420}{0.941}{0.799} & \tri{0.720}{0.922}{0.894} & \tri{0.915}{1.00}{1.00} & \tri{0.267}{0.820}{0.780} & \tri{0.263}{0.945}{0.822} & \tri{0.870}{0.986}{0.954} \\
+always reactive & 1.16 & \textbf{0.949} & $\mathbf{0.974}$ & 2.85 & \textbf{1.00} & 1.01 & \textcolor{red}{11.8} & 1.00 & 0.997 & 1.09 & \textbf{0.952} & $\mathbf{0.979}$ \\
+always compile & 1.01 & 1.93 & 1.64 & 1.75 & \textcolor{red}{9.41} & \textcolor{red}{$6.59$} & 1.18 & \textcolor{red}{5.09} & \textcolor{red}{$6.51$} & 1.23 & 2.98 & 2.88 \\
+success count (10) & 1.06 & 1.48 & 1.16 & \textbf{0.815} & \textcolor{red}{8.76} & \textcolor{red}{$6.03$} & \textbf{0.934} & \textcolor{red}{4.99} & \textcolor{red}{$6.35$} & \textbf{0.959} & 2.34 & 2.10 \\
+ToolPro (port) & 1.16 & \textbf{0.949} & $\mathbf{0.974}$ & 1.35 & 1.07 & 1.07 & 1.74 & \textbf{0.993} & $\underline{0.913}$ & 1.07 & \underline{0.955} & $\underline{0.980}$ \\
+break-even (est.) & \underline{1.00} & 1.24 & 1.09 & 1.25 & 1.12 & $\mathbf{0.965}$ & \underline{0.998} & 1.01 & $\mathbf{0.878}$ & 1.07 & 1.23 & 1.10 \\
+ours & \textbf{1.00} & 1.00 & 1.00 & \underline{1.00} & \underline{1.00} & $\underline{1.00}$ & 1.00 & \underline{1.00} & 1.00 & \underline{1.00} & 1.00 & 1.00 \\
+oracle & 0.990 & 0.946 & 0.943 & 1.41 & 1.03 & 1.02 & 1.04 & 0.957 & 0.846 & 1.12 & 1.03 & 1.14 \\
+offline optimum & 0.882 & 0.942 & 0.938 & 0.205 & 0.798 & 0.766 & 0.420 & 0.941 & 0.799 & 0.720 & 0.922 & 0.894 \\
+\bottomrule
+\end{tabular}
+\medskip
+\begin{tabular}{l>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c}
+\toprule
+ & \multicolumn{12}{c}{\scriptsize Five million per compilation} \\
+\cmidrule(lr){2-13}
+ & \multicolumn{3}{c}{\scriptsize Sepsis} & \multicolumn{3}{c}{\scriptsize BPI 2019} & \multicolumn{3}{c}{\scriptsize Wiki tools} & \multicolumn{3}{c}{\scriptsize Wiki humans} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}
+{\scriptsize Policy} & \multicolumn{12}{c}{} \\
+\midrule
+always reactive & \underline{1.00} & \textbf{1.00} & $\mathbf{1.00}$ & 1.96 & \textbf{1.00} & $\underline{1.00}$ & \textcolor{red}{4.02} & \textbf{1.00} & $\underline{1.00}$ & 1.09 & \textbf{1.00} & $\mathbf{1.00}$ \\
+always compile & 1.42 & \textcolor{red}{22.8} & \textcolor{red}{$10.9$} & 1.58 & \textcolor{red}{172} & \textcolor{red}{$75.5$} & 0.712 & \textcolor{red}{87.3} & \textcolor{red}{$82.1$} & 1.64 & \textcolor{red}{41.1} & \textcolor{red}{$21.4$} \\
+success count (10) & 1.02 & \textcolor{red}{12.8} & \textcolor{red}{$4.11$} & \underline{0.683} & \textcolor{red}{165} & \textcolor{red}{$73.1$} & \underline{0.433} & \textcolor{red}{85.5} & \textcolor{red}{$80.6$} & 1.06 & \textcolor{red}{30.8} & \textcolor{red}{$16.4$} \\
+ToolPro (port) & \underline{1.00} & \textbf{1.00} & $\mathbf{1.00}$ & 1.96 & \textbf{1.00} & $\underline{1.00}$ & \textcolor{red}{4.02} & \textbf{1.00} & $\underline{1.00}$ & 1.09 & \textbf{1.00} & $\mathbf{1.00}$ \\
+break-even (est.) & 1.00 & 1.56 & $\mathbf{1.00}$ & \textbf{0.452} & 1.05 & $\mathbf{0.855}$ & \textbf{0.411} & 1.02 & $\mathbf{0.890}$ & \textbf{0.952} & 1.19 & 1.03 \\
+ours & \textbf{1.00} & \textbf{1.00} & $\mathbf{1.00}$ & 1.00 & \textbf{1.00} & $\underline{1.00}$ & 1.00 & \textbf{1.00} & $\underline{1.00}$ & \underline{1.00} & \textbf{1.00} & $\mathbf{1.00}$ \\
+oracle & 0.925 & 1.00 & 1.00 & 0.482 & 0.861 & 0.838 & 0.342 & 0.949 & 0.837 & 0.942 & 0.995 & 0.986 \\
+offline optimum & 0.915 & 1.00 & 1.00 & 0.267 & 0.820 & 0.780 & 0.263 & 0.945 & 0.822 & 0.870 & 0.986 & 0.954 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -660,20 +681,21 @@ The gap to the offline optimum spans 0.21 to 0.91 across the table, the residual
 Each row removes one mechanism from Algorithm~\ref{alg:policy} and reruns the same four real streams at both compilation prices; the always-reactive row anchors the scale.
 Each cell reports the cost relative to the full rule: the mean over the four streams, with the worst single stream after the slash.}
 \label{tab:ablation}
-\small
-\begin{tabular}{l>{\columncolor{glmTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{dsTint}}c}
+\footnotesize
+\setlength{\tabcolsep}{1pt}
+\begin{tabular}{l>{\columncolor{glmTint}}c>{\columncolor{glmTint}}c>{\columncolor{dsTint}}c>{\columncolor{dsTint}}c>{\columncolor{qwTint}}c>{\columncolor{qwTint}}c}
 \toprule
- & \multicolumn{2}{c}{GLM} & \multicolumn{2}{c}{DeepSeek} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Variant & measured & 5M & measured & 5M \\
+ & \multicolumn{2}{c}{GLM} & \multicolumn{2}{c}{DeepSeek} & \multicolumn{2}{c}{Qwen} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Variant & measured & 5M & measured & 5M & measured & 5M \\
 \midrule
-always reactive & 4.22 / 11.8 & 2.02 / 4.02 & 0.976 / 1.00 & 1.00 / 1.00 \\
-narrow price & 1.08 / 1.25 & 0.705 / 1.00 & 1.15 / 1.24 & 1.21 / 1.56 \\
-fixed cooldown & 1.00 / 1.00 & 1.00 / 1.00 & 1.05 / 1.13 & 1.00 / 1.00 \\
-no evidence decay & 0.944 / 1.00 & 1.00 / 1.06 & 0.987 / 1.00 & 1.00 / 1.00 \\
-gamma-only prior & 1.00 / 1.00 & 1.00 / 1.01 & 1.00 / 1.00 & 1.00 / 1.00 \\
-fixed horizon & 1.10 / 1.28 & 1.30 / 1.97 & 0.975 / 1.01 & 1.00 / 1.00 \\
-no spend cap & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 \\
+always reactive  & 4.22 / 11.8 & 2.02 / 4.02 & 0.976 / 1.00 & 1.00 / 1.00 & 0.991 / 1.01 & 1.00 / 1.00 \\
+narrow price  & 1.08 / 1.25 & 0.705 / 1.00 & 1.15 / 1.24 & 1.21 / 1.56 & 1.01 / 1.10 & 0.943 / 1.03 \\
+fixed cooldown  & 1.00 / 1.00 & 1.00 / 1.00 & 1.05 / 1.13 & 1.00 / 1.00 & 1.01 / 1.03 & 1.00 / 1.00 \\
+no evidence decay  & 0.944 / 1.00 & 1.00 / 1.06 & 0.987 / 1.00 & 1.00 / 1.00 & 0.994 / 1.00 & 1.00 / 1.00 \\
+gamma-only prior  & 1.00 / 1.00 & 1.00 / 1.01 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 \\
+fixed horizon  & 1.10 / 1.28 & 1.30 / 1.97 & 0.975 / 1.01 & 1.00 / 1.00 & 0.991 / 1.02 & 1.00 / 1.00 \\
+no spend cap  & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 & 1.00 / 1.00 \\
 \bottomrule
 \end{tabular}
 \end{table}
