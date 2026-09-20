@@ -221,18 +221,18 @@ Each cell shows the GLM value on blue and the DeepSeek value on amber.
 The first four families are Android tasks, the next two are desktop tasks, and the last is the web task.
 A blue-only cell means that model produced no verified program in the recorded attempt.}
 \label{tab:share}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
+\scriptsize
+\setlength{\tabcolsep}{1pt}
 \begin{tabular}{lrrrrrr}
 \toprule
 Family & $c$ & $L^{\mathrm{doc}}$ & $d$ & $q$ & Doc share & Program share \\
 \midrule
-Contacts & \dual{98.7k}{65.0k} & \dual{89.8k}{64.5k} & \dual{179}{430} & \dual{0.00}{0.03} & \dual{0.09}{0.01} & \dual{1.00}{0.96} \\
-Markor delete & \dual{33.7k}{10.8k} & \dual{40.6k}{23.8k} & \dual{200}{402} & \dual{0.20}{0.03} & \dual{-0.20}{-1.21} & \dual{0.79}{0.93} \\
-Calendar & \dual{314k}{146k} & \dual{260k}{224k} & \dualG{558} & \dualG{0.00} & \dual{0.17}{-0.53} & \dualG{1.00} \\
-OsmAnd marker & \dual{280k}{153k} & \dual{118k}{88.5k} & \dualG{475} & \dualG{0.00} & \dual{0.58}{0.42} & \dualG{1.00} \\
-Calc table & \dual{505k}{647k} & \dual{697k}{1280k} & \dualG{672} & \dualG{0.00} & \dual{-0.38}{-0.99} & \dualG{1.00} \\
-Writer memo & \dual{70.2k}{50.7k} & \dual{89.6k}{62.5k} & \dual{547}{650} & \dual{0.00}{0.00} & \dual{-0.28}{-0.23} & \dual{0.99}{0.99} \\
+Contacts & \tri{98.7k}{65.0k}{39.2k} & \tri{89.8k}{64.5k}{46.6k} & \tri{179}{430}{547} & \tri{0.00}{0.03}{0.03} & \tri{0.09}{0.01}{-0.19} & \tri{1.00}{0.96}{0.95} \\
+Markor delete & \tri{33.7k}{10.8k}{21.5k} & \tri{40.6k}{23.8k}{18.6k} & \tri{200}{402}{384} & \tri{0.20}{0.03}{0.00} & \tri{-0.20}{-1.21}{0.13} & \tri{0.79}{0.93}{0.98} \\
+Calendar & \tri{314k}{146k}{135k} & \tri{260k}{224k}{129k} & \triGQ{558}{836} & \triGQ{0.00}{0.00} & \tri{0.17}{-0.53}{0.04} & \triGQ{1.00}{0.99} \\
+OsmAnd marker & \tri{280k}{153k}{122k} & \tri{118k}{88.5k}{42.1k} & \dualG{475} & \dualG{0.00} & \tri{0.58}{0.42}{0.66} & \dualG{1.00} \\
+Calc table & \tri{505k}{647k}{169k} & \dual{697k}{1280k} & \dualG{672} & \dualG{0.00} & \dual{-0.38}{-0.99} & \dualG{1.00} \\
+Writer memo & \tri{70.2k}{50.7k}{37.0k} & \tri{89.6k}{62.5k}{58.0k} & \tri{547}{650}{775} & \tri{0.00}{0.00}{0.00} & \tri{-0.28}{-0.23}{-0.57} & \tri{0.99}{0.99}{0.98} \\
 Reddit comment & \dual{124k}{40.0k} & \dual{102k}{20.2k} & \dual{651}{654} & \dual{0.00}{0.00} & \dual{0.17}{0.50} & \dual{0.99}{0.98} \\
 \bottomrule
 \end{tabular}
@@ -278,18 +278,18 @@ $N^*_{\mathrm{incl}}$ adds three agent attempts at the measured mean cost, givin
 It is a standardized three-attempt reading, not the total cost of acquiring traces with additional retries.
 A blue-only cell in the final three columns means that this attempt produced no verified program.}
 \label{tab:price}
-\footnotesize
-\setlength{\tabcolsep}{2pt}
+\scriptsize
+\setlength{\tabcolsep}{0.5pt}
 \begin{tabular}{lrrrrrrr}
 \toprule
 Family & $C$ & $p(1)$ & $p(2)$ & $p(3)$ & Final & $N^{*}_{\mathrm{marg}}$ & $N^{*}_{\mathrm{incl}}$ \\
 \midrule
-Contacts & \dual{41.0k}{144k} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{1.00}{1.00} & \dual{0.416}{2.30} & \dual{3.42}{5.43} \\
-Markor delete & \dual{39.0k}{68.5k} & \dual{0.00}{1.00} & \dual{0.00}{1.00} & \dual{1.00}{1.00} & \dual{0.80}{1.00} & \dual{1.46}{6.85} & \dual{5.23}{10.1} \\
-Calendar & \dual{916k}{1100k} & \dual{0.00}{0.20} & \dual{0.20}{0.00} & \dual{0.00}{0.00} & \dualG{0.80} & \dualG{2.93} & \dualG{5.93} \\
-OsmAnd marker & \dual{967k}{2500k} & \dual{0.00}{0.00} & \dual{0.40}{0.00} & \dual{0.60}{0.00} & \dualG{1.00} & \dualG{3.46} & \dualG{6.47} \\
-Calc table & \dual{481k}{4370k} & \dual{1.00}{0.00} & \dual{1.00}{0.00} & \dual{0.00}{0.00} & \dual{1.00}{0.00} & \dualG{0.954} & \dualG{3.96} \\
-Writer memo & \dual{254k}{586k} & \dual{0.00}{0.00} & \dual{0.00}{0.00} & \dual{0.00}{0.00} & \dual{1.00}{1.00} & \dual{3.65}{11.7} & \dual{6.68}{14.7} \\
+Contacts & \tri{41.0k}{144k}{137k} & \tri{1.00}{1.00}{0.40} & \tri{1.00}{1.00}{1.00} & \tri{1.00}{1.00}{1.00} & \tri{1.00}{1.00}{1.00} & \tri{0.416}{2.30}{3.66} & \tri{3.42}{5.43}{6.81} \\
+Markor delete & \tri{39.0k}{68.5k}{208k} & \tri{0.00}{1.00}{1.00} & \tri{0.00}{1.00}{1.00} & \tri{1.00}{1.00}{1.00} & \tri{0.80}{1.00}{1.00} & \tri{1.46}{6.85}{9.83} & \tri{5.23}{10.1}{12.9} \\
+Calendar & \tri{916k}{1100k}{1540k} & \tri{0.00}{0.20}{1.00} & \tri{0.20}{0.00}{0.00} & \tri{0.00}{0.00}{0.00} & \triGQ{0.80}{0.80} & \triGQ{2.93}{11.5} & \triGQ{5.93}{14.5} \\
+OsmAnd marker & \tri{967k}{2500k}{1590k} & \tri{0.00}{0.00}{0.00} & \tri{0.40}{0.00}{0.00} & \tri{0.60}{0.00}{0.60} & \dualG{1.00} & \dualG{3.46} & \dualG{6.47} \\
+Calc table & \tri{481k}{4370k}{848k} & \dual{1.00}{0.00} & \dual{1.00}{0.00} & \dual{0.00}{0.00} & \dual{1.00}{0.00} & \dualG{0.954} & \dualG{3.96} \\
+Writer memo & \tri{254k}{586k}{486k} & \tri{0.00}{0.00}{0.00} & \tri{0.00}{0.00}{0.00} & \tri{0.00}{0.00}{1.00} & \tri{1.00}{1.00}{1.00} & \tri{3.65}{11.7}{13.4} & \tri{6.68}{14.7}{16.5} \\
 Reddit comment & \dual{253k}{332k} & \dual{0.60}{0.60} & \dual{1.00}{0.80} & \dual{0.00}{0.40} & \dual{1.00}{1.00} & \dual{2.05}{8.44} & \dual{5.07}{11.5} \\
 \bottomrule
 \end{tabular}
@@ -494,9 +494,9 @@ The four families are the Android tasks.}
 \cmidrule(lr){2-2}\cmidrule(lr){3-4}
 Family & Verified (of 3) & Injected & Extracted \\
 \midrule
-Contacts & \dual{3/3}{3/3} & \dual{4/5}{3/5} & \dual{5/5}{5/5} \\
-Markor delete & \dual{3/3}{3/3} & \dual{5/5}{5/5} & \dual{3/5}{2/5} \\
-Calendar & \dual{2/3$^{\dagger}$}{0/3$^{\dagger\dagger}$} & \dual{4/5}{0/5} & \dual{4/5}{0/5} \\
+Contacts & \tri{3/3}{3/3}{3/3} & \tri{4/5}{3/5}{5/5} & \tri{5/5}{5/5}{5/5} \\
+Markor delete & \tri{3/3}{3/3}{3/3} & \tri{5/5}{5/5}{5/5} & \tri{3/5}{2/5}{5/5} \\
+Calendar & \tri{2/3$^{\dagger}$}{0/3$^{\dagger\dagger}$}{2/3} & \tri{4/5}{0/5}{4/5} & \tri{4/5}{0/5}{4/5} \\
 OsmAnd marker & \dual{1/3}{0/3} & \dual{1/5}{0/5} & \dual{4/5}{0/5} \\
 \bottomrule
 \end{tabular}
@@ -527,14 +527,15 @@ Success counts compare the new agent replays with the original program uses.
 The saving share charges fallback at $qc$ rather than an observed post-failure bill.
 The four families are the Android tasks, and the blue-only rows are the two DeepSeek families that produced no verified program, so no replay exists.}
 \label{tab:paired-replays}
-\small
+\scriptsize
+\setlength{\tabcolsep}{1pt}
 \begin{tabular}{lrrrrr}
 \toprule
 Family & $c$ & CV & Agent success & Program success & Share \\
 \midrule
-Contacts & \dual{67.1k}{67.3k} & \dual{0.326}{1.06} & \dual{30/30}{27/30} & \dual{30/30}{29/30} & \dual{0.997}{0.960} \\
-Markor delete & \dual{35.4k}{22.3k} & \dual{0.373}{1.04} & \dual{30/30}{23/30} & \dual{24/30}{29/30} & \dual{0.794}{0.949} \\
-Calendar & \dualG{535k} & \dualG{0.485} & \dualG{14/30} & \dualG{30/30} & \dualG{0.999} \\
+Contacts & \tri{67.1k}{67.3k}{42.2k} & \tri{0.326}{1.06}{0.0993} & \tri{30/30}{27/30}{30/30} & \tri{30/30}{29/30}{29/30} & \tri{0.997}{0.960}{0.954} \\
+Markor delete & \tri{35.4k}{22.3k}{19.3k} & \tri{0.373}{1.04}{0.128} & \tri{30/30}{23/30}{30/30} & \tri{24/30}{29/30}{30/30} & \tri{0.794}{0.949}{0.980} \\
+Calendar & \triGQ{535k}{316k} & \triGQ{0.485}{0.504} & \triGQ{14/30}{15/30} & \triGQ{30/30}{30/30} & \triGQ{0.999}{0.997} \\
 OsmAnd marker & \dualG{259k} & \dualG{0.657} & \dualG{12/30} & \dualG{30/30} & \dualG{0.998} \\
 \bottomrule
 \end{tabular}

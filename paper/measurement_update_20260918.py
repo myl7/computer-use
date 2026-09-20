@@ -452,7 +452,7 @@ out['qw_halves'] = qw_halves
 out['latex_triples'] = triple_rows
 if args.check:
     body = (Path(__file__).parent / 'body.tex').read_text().split('\\appendix\n', 1)[0]
-    for table, expected in dual_rows.items():
+    for table, expected in out['latex_triples'].items():
         for expected_row in expected:
             assert expected_row in body, (table, expected_row)
     assert out['overall']['admitted_count'] == 11
