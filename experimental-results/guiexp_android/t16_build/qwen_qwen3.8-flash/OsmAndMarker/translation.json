@@ -1,0 +1,533 @@
+{
+ "1": {
+  "family": "OsmAndMarker",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This is a global app-launch action; it depends only on OsmAnd being installed and launchable, not on any indexed launcher element.",
+    "snippet": "device.open_app(binding.get(\"app_name\", \"OsmAnd\"))\ndevice.settle(3.0)",
+    "usage": {
+     "prompt_tokens": 864,
+     "completion_tokens": 3554,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017819802
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the map screen exposing a clickable ImageButton with description \"Search\"; it can fail if another instance changes the label, class, or visibility.",
+    "snippet": "search_index = device.find(\n    description=\"Search\",\n    class_name=\"ImageButton\",\n    clickable=True,\n)\nif search_index is None:\n    raise RuntimeError(\"Search button not found on map screen\")\ndevice.click(index=search_index)",
+    "usage": {
+     "prompt_tokens": 959,
+     "completion_tokens": 525,
+     "cached_tokens": 0,
+     "cost_usd": 0.000386694
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Malbun"
+    },
+    "field": null,
+    "analysis": "Depends on the OsmAnd search EditText being present and editable, identified by hint/text \u201cType to search all\u201d; fails if that field is missing or `binding['location']` is absent.",
+    "snippet": "location = binding.get(\"location\")\nif not location:\n    raise ValueError(\"Missing binding value 'location'\")\n\nidx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    idx = device.find(text=\"Type to search all\", editable=True)\n\nif idx is None:\n    for i, el in enumerate(device.elements()):\n        if el.get(\"editable\") and el.get(\"class_name\") == \"EditText\":\n            label = f\"{el.get('text') or ''} {el.get('hint') or ''}\".lower()\n            if \"search\" in label:\n                idx = i\n                break\n\nif idx is None:\n    raise LookupError(\"Could not find OsmAnd search EditText\")\n\ndevice.input_text(str(location), index=idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 1007,
+     "completion_tokens": 1899,
+     "cached_tokens": 0,
+     "cost_usd": 0.0010331442
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This step depends on the \u201cINCREASE SEARCH RADIUS\u201d control being visible after a no-result search; its index can change or it can be absent, so tap it by text and fail clearly if not found.",
+    "snippet": "label = binding.get(\"increase_search_radius_text\", \"INCREASE SEARCH RADIUS\")\nidx = device.find(text=label)\nif idx is None:\n    idx = device.find(contains=label)\nif idx is None:\n    raise RuntimeError(f\"Increase search radius control not found: {label}\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 536,
+     "completion_tokens": 3786,
+     "cached_tokens": 0,
+     "cost_usd": 0.0018412218
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Malbun, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action depends on the OsmAnd search `EditText` identified by its hint and editability; it can fail if that search field is absent, not editable, or localized differently, so it must be looked up semantically and raise if missing.",
+    "snippet": "search_idx = device.find(hint=\"Type to search all\", editable=True)\nif search_idx is None:\n    raise RuntimeError(\"Could not find OsmAnd search input field\")\n\ndevice.input_text(binding[\"location\"], index=search_idx)",
+    "usage": {
+     "prompt_tokens": 694,
+     "completion_tokens": 3577,
+     "cached_tokens": 0,
+     "cost_usd": 0.0017674371
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 2
+    },
+    "field": null,
+    "analysis": "The action depends on the search box\u2019s \u201cClear\u201d button, whose index may change and which may be absent if there is no search text. Locate it by its semantic description and clickable state, and raise if it cannot be found.",
+    "snippet": "clear_index = device.find(description=\"Clear\", clickable=True)\nif clear_index is None:\n    raise RuntimeError(\"Could not find the search Clear button\")\ndevice.click(index=clear_index)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 708,
+     "completion_tokens": 1880,
+     "cached_tokens": 0,
+     "cost_usd": 0.000979902
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Malbun, Liechtenstein"
+    },
+    "field": "location",
+    "analysis": "This action depends on the editable search field identified by the hint 'Type to search all'; its index may differ or the field may already contain text, so it must be located semantically and filled from binding['location'].",
+    "snippet": "location = binding['location']\nidx = device.find(editable=True, hint='Type to search all')\nif idx is None:\n    idx = device.find(editable=True, contains='Type to search all')\nif idx is None:\n    raise RuntimeError('Search field not found')\ndevice.input_text(location, index=idx)",
+    "usage": {
+     "prompt_tokens": 743,
+     "completion_tokens": 1442,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007812981
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "input_text",
+     "index": 1,
+     "text": "47.2453 9.5803"
+    },
+    "field": null,
+    "analysis": "The action depends on OsmAnd\u2019s search EditText (hint \u201cType to search all\u201d), not its index; if the field already contains a query, typing can insert into it, so clear/select the field before entering the bound location.",
+    "snippet": "search_idx = device.find(hint='Type to search all', editable=True, clickable=True)\nif search_idx is None:\n    raise RuntimeError('OsmAnd search field not found')\n\nclear_idx = device.find(description='Clear', clickable=True)\nif clear_idx is None:\n    clear_idx = device.find(text='Clear', clickable=True)\nif clear_idx is not None:\n    device.click(index=clear_idx)\nelse:\n    device.long_press(index=search_idx)\n\ndevice.input_text(binding['location'], index=search_idx)",
+    "usage": {
+     "prompt_tokens": 681,
+     "completion_tokens": 15673,
+     "cached_tokens": 0,
+     "cost_usd": 0.0073937754
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The click depends on the search field's Clear ImageButton, whose index can vary; it should be found by description/class/clickability and fail if absent.",
+    "snippet": "clear = next((e for e in device.elements()\n              if e.get('description') == 'Clear'\n              and e.get('clickable')\n              and e.get('class_name') == 'ImageButton'), None)\nif clear is None:\n    raise RuntimeError('Clear button not found')\ndevice.click(index=clear['index'])\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 741,
+     "completion_tokens": 6627,
+     "cached_tokens": 0,
+     "cost_usd": 0.0031935816
+    }
+   },
+   {
+    "step": 12,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "47.2453 9.5803"
+    },
+    "field": null,
+    "analysis": "The action depends on the OsmAnd search EditText, identified by its hint/text and editable state; it can fail if the field is missing, not focused, or the binding lacks the location value.",
+    "snippet": "query = str(binding[\"location\"])\nif not query:\n    raise ValueError(\"binding['location'] is empty\")\n\nidx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    idx = device.find(text=\"Type to search all\", editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd search field not found\")\n\ndevice.click(index=idx)\ndevice.settle(0.5)\ndevice.input_text(query, index=idx)",
+    "usage": {
+     "prompt_tokens": 760,
+     "completion_tokens": 2285,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011760705
+    }
+   },
+   {
+    "step": 13,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "This click selects the visible search-result line; the result text may be a formatted coordinate rather than the raw task location, so the recorded index/text can fail. It depends on a non-editable result TextView being present.",
+    "snippet": "loc = binding.get(\"location\")\nif not loc:\n    raise ValueError(\"binding missing location\")\n\nidx = device.find(text=loc, editable=False)\nif idx is None:\n    idx = device.find(contains=loc, editable=False)\nif idx is None:\n    idx = device.find(contains=\"\u00b0\", editable=False)\nif idx is None:\n    raise LookupError(f\"No search result found for {loc!r}\")\n\ndevice.click(index=idx)\ndevice.settle(2)",
+    "usage": {
+     "prompt_tokens": 1000,
+     "completion_tokens": 6704,
+     "cached_tokens": 0,
+     "cost_usd": 0.0032678712
+    }
+   },
+   {
+    "step": 14,
+    "action": {
+     "action_type": "click",
+     "index": 9
+    },
+    "field": null,
+    "analysis": "This action depends on the location info panel containing a TextView labeled \u201cMarker\u201d; it can fail if that panel is not open or the item is hidden, so the element must be located by text/class and an error raised if absent.",
+    "snippet": "location = binding[\"location\"]\nidx = device.find(text=\"Marker\", class_name=\"TextView\")\nif idx is None:\n    raise RuntimeError(f\"Could not find the 'Marker' action for {location!r}\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 636,
+     "completion_tokens": 3803,
+     "cached_tokens": 0,
+     "cost_usd": 0.0018639819
+    }
+   }
+  ],
+  "effective_actions": 12,
+  "recorded_actions": 15,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 9329,
+   "cached_tokens": 0,
+   "completion_tokens": 51755,
+   "total_tokens": 61084,
+   "cost_usd": 0.02546696
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "OsmAndMarker",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This is a global app-launch action, so it does not depend on element indexes; it can fail if OsmAnd does not launch or does not reach a recognizable map screen.",
+    "snippet": "app_name = binding.get(\"app_name\") or \"OsmAnd\"\ndevice.open_app(app_name)\ndevice.settle(2.0)\n\nif (\n    device.find(description=\"Configure map\", clickable=True) is None\n    and device.find(description=\"Map\", clickable=True) is None\n    and device.find(description=\"Search\", clickable=True) is None\n):\n    raise RuntimeError(f\"Failed to open {app_name} to a recognizable map screen\")",
+    "usage": {
+     "prompt_tokens": 864,
+     "completion_tokens": 2344,
+     "cached_tokens": 768,
+     "cost_usd": 0.00111708432
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the map screen exposing a clickable control whose accessibility description is \u201cSearch\u201d; on another instance its index may differ, or the control may be absent if the UI state is not the expected map screen.",
+    "snippet": "search_idx = device.find(description=\"Search\", clickable=True)\nif search_idx is None:\n    raise RuntimeError(\"Search button not found on the current screen\")\n\ndevice.click(index=search_idx)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 959,
+     "completion_tokens": 698,
+     "cached_tokens": 768,
+     "cost_usd": 0.00036530802
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on a visible, clickable \u201cCategories\u201d control; it can fail if the control is hidden, disabled, or the category panel is already open.",
+    "snippet": "idx = device.find(description=\"Categories\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Clickable 'Categories' control not found\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 1011,
+     "completion_tokens": 1548,
+     "cached_tokens": 0,
+     "cost_usd": 0.0008704179
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 0
+    },
+    "field": null,
+    "analysis": "This action depends on the search screen's \"Navigate up\" control, whose index can vary and which may be missing or described differently on other instances.",
+    "snippet": "idx = device.find(description=\"Navigate up\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Could not find the 'Navigate up' button to leave the search screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 885,
+     "completion_tokens": 896,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005483313
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "The action depends on the map screen\u2019s \u201cSearch\u201d button being present and clickable; it can fail if the button is hidden, localized, or not exposed by description.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Search button not found on the map screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 951,
+     "completion_tokens": 465,
+     "cached_tokens": 0,
+     "cost_usd": 0.000357588
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "47.0688832, 9.5061564"
+    },
+    "field": "location",
+    "analysis": "The action types into OsmAnd's map search EditText; its hint contains a dynamic distance, so it must be found by editable/search semantics rather than the recorded index or exact hint. It can fail if the hint is localized or changed, so fallback to the only editable clickable field is used.",
+    "snippet": "idx = device.find(editable=True, contains='Search')\nif idx is None:\n    idx = device.find(editable=True, contains='search')\nif idx is None:\n    idx = device.find(editable=True, clickable=True)\nif idx is None:\n    raise ValueError('OsmAnd search EditText not found')\ndevice.input_text(binding['location'], index=idx)",
+    "usage": {
+     "prompt_tokens": 1049,
+     "completion_tokens": 5603,
+     "cached_tokens": 0,
+     "cost_usd": 0.0027628524
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 6
+    },
+    "field": null,
+    "analysis": "The action selects the search-result row for the requested location; the visible text can be the binding value or a formatted coordinate, and indexes vary. Find a non-editable result text by the binding value, with coordinate-style fallbacks, then click it.",
+    "snippet": "loc = binding.get('location') or binding.get('query') or binding.get('coordinate')\nif not loc:\n    raise ValueError('binding must contain location/query/coordinate')\n\nfor query in (\n    {'text': loc, 'editable': False},\n    {'contains': loc, 'editable': False},\n    {'contains': '\u00b0', 'editable': False},\n    {'contains': 'N,', 'editable': False},\n    {'contains': 'E,', 'editable': False},\n):\n    idx = device.find(**query)\n    if idx is not None:\n        device.click(index=idx)\n        break\nelse:\n    raise RuntimeError(f'Could not find search result for {loc!r}')",
+    "usage": {
+     "prompt_tokens": 1007,
+     "completion_tokens": 8370,
+     "cached_tokens": 0,
+     "cost_usd": 0.0040441005
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 9
+    },
+    "field": null,
+    "analysis": "The action depends on the map context menu exposing a \u201cMarker\u201d text item; it can fail if the menu is not open, the item is not rendered yet, or its index changes. Look it up by exact text and fail clearly if absent.",
+    "snippet": "idx = device.find(text=\"Marker\")\nif idx is None:\n    raise RuntimeError(\"Could not find the 'Marker' item in OsmAnd's map context menu\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 636,
+     "completion_tokens": 2688,
+     "cached_tokens": 256,
+     "cost_usd": 0.00131121144
+    }
+   }
+  ],
+  "effective_actions": 8,
+  "recorded_actions": 8,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 8,
+   "prompt_tokens": 7362,
+   "cached_tokens": 1792,
+   "completion_tokens": 22612,
+   "total_tokens": 29974,
+   "cost_usd": 0.01137689
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "OsmAndMarker",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "OsmAnd"
+    },
+    "field": null,
+    "analysis": "This is a global launch action, so it should not depend on any element index; it only depends on the app being installed and reachable. Use the app name from binding when available, then allow the launch to settle.",
+    "snippet": "app_name = binding.get(\"app_name\") or \"OsmAnd\"\ndevice.open_app(app_name)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 864,
+     "completion_tokens": 3910,
+     "cached_tokens": 768,
+     "cost_usd": 0.00184574412
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the map toolbar being visible and containing the unique clickable Search button; it can fail if the button is not found due to a different layout or screen state.",
+    "snippet": "idx = device.find(description=\"Search\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Search button not found\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 959,
+     "completion_tokens": 849,
+     "cached_tokens": 768,
+     "cost_usd": 0.00043556832
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "input_text",
+     "index": 2,
+     "text": "Nendeln"
+    },
+    "field": null,
+    "analysis": "This action depends on the OsmAnd search EditText identified by hint/text \u201cType to search all\u201d; it can fail if the hint is absent or the field already contains text. It is robustly located by editable search-field attributes with a fallback.",
+    "snippet": "location = binding.get(\"location\")\nif not location:\n    raise RuntimeError(\"binding['location'] is required\")\n\nidx = device.find(hint=\"Type to search all\", editable=True)\nif idx is None:\n    idx = device.find(text=\"Type to search all\", editable=True)\nif idx is None:\n    raise RuntimeError(\"OsmAnd search EditText not found\")\n\ndevice.input_text(str(location), index=idx)",
+    "usage": {
+     "prompt_tokens": 1007,
+     "completion_tokens": 1181,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006990588
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This action depends on the \u201cINCREASE SEARCH RADIUS\u201d control being present after a failed location search; it can fail if that label is missing, localized, or not rendered yet.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\")\nif idx is None:\n    raise RuntimeError(\"Could not find 'INCREASE SEARCH RADIUS' control\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 536,
+     "completion_tokens": 627,
+     "cached_tokens": 512,
+     "cost_usd": 0.00030341718
+    }
+   },
+   {
+    "step": 6,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This action depends on the presence of a TextView labeled \"INCREASE SEARCH RADIUS\" after a failed search; indexes may vary, so resolve it by its exact text before clicking.",
+    "snippet": "idx = device.find(text=\"INCREASE SEARCH RADIUS\")\nif idx is None:\n    raise LookupError(\"Could not find INCREASE SEARCH RADIUS control\")\n\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 537,
+     "completion_tokens": 1025,
+     "cached_tokens": 0,
+     "cost_usd": 0.000556677
+    }
+   },
+   {
+    "step": 7,
+    "action": {
+     "action_type": "click",
+     "index": 10
+    },
+    "field": null,
+    "analysis": "This action depends on the \u201cINCREASE SEARCH RADIUS\u201d control being present after a no-results search; it can fail if the control is hidden, localized differently, or not yet rendered.",
+    "snippet": "label = \"INCREASE SEARCH RADIUS\"\nidx = device.find(text=label)\nif idx is None:\n    idx = device.find(contains=label)\nif idx is None:\n    raise RuntimeError(f\"Could not find '{label}'\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 537,
+     "completion_tokens": 1348,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007069689
+    }
+   },
+   {
+    "step": 8,
+    "action": {
+     "action_type": "click",
+     "index": 4
+    },
+    "field": null,
+    "analysis": "This action depends on the search-result screen containing a \"SHOW ON MAP\" control; it can fail if the label is absent, localized, or rendered as a non-clickable TextView whose parent handles the click.",
+    "snippet": "idx = device.find(text=\"SHOW ON MAP\")\nif idx is None:\n    idx = device.find(contains=\"SHOW ON MAP\")\nif idx is None:\n    raise RuntimeError(\"Could not find SHOW ON MAP control\")\ndevice.click(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 842,
+     "completion_tokens": 771,
+     "cached_tokens": 0,
+     "cost_usd": 0.0004837833
+    }
+   },
+   {
+    "step": 10,
+    "action": {
+     "action_type": "long_press",
+     "index": 1
+    },
+    "field": null,
+    "analysis": "This action long-presses the map surface to open the location context menu; it depends on a clickable accessibility node described as \u201cMap\u201d being present, and can fail if the map is not loaded or another screen overlays it.",
+    "snippet": "idx = device.find(description=\"Map\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Clickable Map element not found for long-press\")\ndevice.long_press(index=idx)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 637,
+     "completion_tokens": 2898,
+     "cached_tokens": 0,
+     "cost_usd": 0.0014430339
+    }
+   },
+   {
+    "step": 11,
+    "action": {
+     "action_type": "click",
+     "index": 9
+    },
+    "field": null,
+    "analysis": "The action depends on the context-menu entry labeled \u201cMarker\u201d; its index can vary and it may be a non-clickable TextView, so it should be located by text/class and fail clearly if the menu item is absent.",
+    "snippet": "marker_idx = None\nfor i, el in enumerate(device.elements()):\n    if el.get(\"text\") == \"Marker\" and el.get(\"class_name\") == \"TextView\":\n        marker_idx = el.get(\"index\", i)\n        break\n\nif marker_idx is None:\n    marker_idx = device.find(text=\"Marker\")\n\nif marker_idx is None:\n    raise RuntimeError(\"Could not find the 'Marker' context menu item\")\n\ndevice.click(index=marker_idx)\ndevice.settle(1.0)",
+    "usage": {
+     "prompt_tokens": 636,
+     "completion_tokens": 5578,
+     "cached_tokens": 512,
+     "cost_usd": 0.00262196748
+    }
+   }
+  ],
+  "effective_actions": 9,
+  "recorded_actions": 12,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 9,
+   "prompt_tokens": 6555,
+   "cached_tokens": 2560,
+   "completion_tokens": 18187,
+   "total_tokens": 24742,
+   "cost_usd": 0.00909622
+  },
+  "record_type": "translation"
+ }
+}

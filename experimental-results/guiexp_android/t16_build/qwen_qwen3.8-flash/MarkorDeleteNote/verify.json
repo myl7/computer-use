@@ -1,0 +1,105 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [],
+ "refinements": 0,
+ "replays": 0,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "initial",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 5,
+   "total": 5
+  }
+ ],
+ "final_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    }\n}\n\n\ndef _norm(value):\n    if value is None:\n        return \"\"\n    return str(value).strip()\n\n\ndef _starts_with_delimited(value, target):\n    if value == target:\n        return True\n    if value.startswith(target):\n        ch = value[len(target)]\n        return ch.isspace() or ch in \" ,:;()[]{}\"\n    return False\n\n\ndef _matches_candidate(el, cand):\n    desc = _norm(el.get(\"description\"))\n    text = _norm(el.get(\"text\"))\n    hint = _norm(el.get(\"hint\"))\n\n    for prefix in (\"File \", \"Folder \"):\n        target = prefix + cand\n        if _starts_with_delimited(desc, target):\n            return True\n\n    if text == cand or desc == cand or hint == cand:\n        return True\n\n    return False\n\n\ndef _candidate_groups(file_name):\n    file_name = _norm(file_name)\n    if not file_name:\n        raise ValueError(\"binding['file_name'] is required\")\n\n    stem = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n\n    primary = []\n\n    def add_primary(value):\n        value = _norm(value)\n        if value and value not in primary:\n            primary.append(value)\n\n    add_primary(file_name)\n    if \"/\" in file_name:\n        add_primary(file_name.rsplit(\"/\", 1)[-1])\n\n    fallback = []\n\n    def add_fallback(value):\n        value = _norm(value)\n        if value and value not in primary and value not in fallback:\n            fallback.append(value)\n\n    add_fallback(stem)\n    if \"/\" in stem:\n        add_fallback(stem.rsplit(\"/\", 1)[-1])\n\n    if \".\" not in file_name:\n        add_fallback(file_name + \".md\")\n        add_fallback(file_name + \".txt\")\n    else:\n        add_fallback(stem + \".md\")\n        add_fallback(stem + \".txt\")\n\n    return primary, fallback\n\n\ndef _signature(elements):\n    return tuple(\n        (_norm(e.get(\"text\")), _norm(e.get(\"description\")))\n        for e in elements[:150]\n    )\n\n\ndef _scroll_to_top(device):\n    prev = None\n    for _ in range(25):\n        sig = _signature(device.elements())\n        if sig == prev:\n            return\n        prev = sig\n        device.scroll(direction=\"up\")\n\n\ndef _find_target_current(device, candidates):\n    if not candidates:\n        return None\n\n    els = device.elements()\n    fallback = None\n\n    for cand in candidates:\n        for el in els:\n            if _matches_candidate(el, cand):\n                if el.get(\"clickable\"):\n                    return el.get(\"index\")\n                if fallback is None:\n                    fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _find_target_with_scroll(device, candidates):\n    if not candidates:\n        return None\n\n    _scroll_to_top(device)\n    prev = None\n\n    for _ in range(100):\n        idx = _find_target_current(device, candidates)\n        if idx is not None:\n            return idx\n\n        sig = _signature(device.elements())\n        if sig == prev:\n            break\n\n        prev = sig\n        device.scroll(direction=\"down\")\n\n    return _find_target_current(device, candidates)\n\n\ndef _find_target(device, primary, fallback):\n    idx = _find_target_with_scroll(device, primary)\n    if idx is not None:\n        return idx\n\n    idx = _find_target_with_scroll(device, fallback)\n    if idx is not None:\n        return idx\n\n    raise RuntimeError(\"Could not find note row for binding file_name\")\n\n\ndef _long_press(device, idx):\n    if idx is None:\n        raise RuntimeError(\"Cannot long-press missing element\")\n\n    try:\n        device.execute({\"action_type\": \"long_press\", \"index\": idx})\n    except Exception:\n        if hasattr(device, \"long_press\"):\n            try:\n                device.long_press(index=idx)\n            except TypeError:\n                device.long_press(idx)\n        else:\n            raise RuntimeError(\"long_press is unavailable\")\n\n    device.settle(0.5)\n\n\ndef _search_delete(device):\n    for label in (\"Delete\", \"delete\"):\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = (\n            _norm(el.get(\"description\")),\n            _norm(el.get(\"text\")),\n            _norm(el.get(\"hint\")),\n        )\n        if any(v == \"Delete\" or v == \"delete\" for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _search_more(device):\n    labels = (\"More options\", \"more options\", \"Options\", \"options\", \"Overflow menu\")\n\n    for label in labels:\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = tuple(\n            v.lower()\n            for v in (\n                _norm(el.get(\"description\")),\n                _norm(el.get(\"text\")),\n                _norm(el.get(\"hint\")),\n            )\n        )\n        if any(v in (\"more options\", \"options\", \"overflow menu\") for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _click_delete(device):\n    idx = _search_delete(device)\n    opened_overflow = False\n\n    if idx is None:\n        more = _search_more(device)\n        if more is not None:\n            device.click(index=more)\n            device.settle(0.5)\n            opened_overflow = True\n            idx = _search_delete(device)\n\n    if idx is None:\n        if opened_overflow:\n            device.navigate_back()\n            device.settle(0.5)\n        return False\n\n    device.click(index=idx)\n    device.settle(0.5)\n    return True\n\n\ndef _search_ok(device):\n    labels = (\"OK\", \"Ok\", \"ok\", \"YES\", \"Yes\", \"yes\", \"CONFIRM\", \"Confirm\", \"confirm\")\n\n    for label in labels:\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = tuple(\n            v.lower()\n            for v in (\n                _norm(el.get(\"description\")),\n                _norm(el.get(\"text\")),\n                _norm(el.get(\"hint\")),\n            )\n        )\n        if any(v in (\"ok\", \"yes\", \"confirm\") for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _click_ok(device):\n    for _ in range(3):\n        idx = _search_ok(device)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return True\n        device.settle(0.5)\n\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = _norm(binding.get(\"file_name\"))\n    if not file_name:\n        raise ValueError(\"binding['file_name'] is required\")\n\n    primary, fallback = _candidate_groups(file_name)\n\n    device.open_app(\"Markor\")\n    device.settle(1)\n\n    try:\n        idx = _find_target(device, primary, fallback)\n    except RuntimeError:\n        device.navigate_back()\n        device.settle(1)\n        idx = _find_target(device, primary, fallback)\n\n    _long_press(device, idx)\n\n    if not _click_delete(device):\n        _long_press(device, idx)\n        if not _click_delete(device):\n            idx2 = _find_target_current(device, primary + fallback)\n            if idx2 is None:\n                raise RuntimeError(\"Could not re-find note after failed delete selection\")\n            _long_press(device, idx2)\n            if not _click_delete(device):\n                raise RuntimeError(\"Delete control not found after selecting note\")\n\n    if not _click_ok(device):\n        raise RuntimeError(\"Delete confirmation dialog was not confirmed\")\n\n    return True\n",
+ "last_artifact": "PARAMS_SCHEMA = {\n    \"file_name\": {\n        \"type\": \"string\",\n        \"description\": \"Note file name including its extension, e.g. note.txt\",\n        \"required\": True,\n    }\n}\n\n\ndef _norm(value):\n    if value is None:\n        return \"\"\n    return str(value).strip()\n\n\ndef _starts_with_delimited(value, target):\n    if value == target:\n        return True\n    if value.startswith(target):\n        ch = value[len(target)]\n        return ch.isspace() or ch in \" ,:;()[]{}\"\n    return False\n\n\ndef _matches_candidate(el, cand):\n    desc = _norm(el.get(\"description\"))\n    text = _norm(el.get(\"text\"))\n    hint = _norm(el.get(\"hint\"))\n\n    for prefix in (\"File \", \"Folder \"):\n        target = prefix + cand\n        if _starts_with_delimited(desc, target):\n            return True\n\n    if text == cand or desc == cand or hint == cand:\n        return True\n\n    return False\n\n\ndef _candidate_groups(file_name):\n    file_name = _norm(file_name)\n    if not file_name:\n        raise ValueError(\"binding['file_name'] is required\")\n\n    stem = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\n\n    primary = []\n\n    def add_primary(value):\n        value = _norm(value)\n        if value and value not in primary:\n            primary.append(value)\n\n    add_primary(file_name)\n    if \"/\" in file_name:\n        add_primary(file_name.rsplit(\"/\", 1)[-1])\n\n    fallback = []\n\n    def add_fallback(value):\n        value = _norm(value)\n        if value and value not in primary and value not in fallback:\n            fallback.append(value)\n\n    add_fallback(stem)\n    if \"/\" in stem:\n        add_fallback(stem.rsplit(\"/\", 1)[-1])\n\n    if \".\" not in file_name:\n        add_fallback(file_name + \".md\")\n        add_fallback(file_name + \".txt\")\n    else:\n        add_fallback(stem + \".md\")\n        add_fallback(stem + \".txt\")\n\n    return primary, fallback\n\n\ndef _signature(elements):\n    return tuple(\n        (_norm(e.get(\"text\")), _norm(e.get(\"description\")))\n        for e in elements[:150]\n    )\n\n\ndef _scroll_to_top(device):\n    prev = None\n    for _ in range(25):\n        sig = _signature(device.elements())\n        if sig == prev:\n            return\n        prev = sig\n        device.scroll(direction=\"up\")\n\n\ndef _find_target_current(device, candidates):\n    if not candidates:\n        return None\n\n    els = device.elements()\n    fallback = None\n\n    for cand in candidates:\n        for el in els:\n            if _matches_candidate(el, cand):\n                if el.get(\"clickable\"):\n                    return el.get(\"index\")\n                if fallback is None:\n                    fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _find_target_with_scroll(device, candidates):\n    if not candidates:\n        return None\n\n    _scroll_to_top(device)\n    prev = None\n\n    for _ in range(100):\n        idx = _find_target_current(device, candidates)\n        if idx is not None:\n            return idx\n\n        sig = _signature(device.elements())\n        if sig == prev:\n            break\n\n        prev = sig\n        device.scroll(direction=\"down\")\n\n    return _find_target_current(device, candidates)\n\n\ndef _find_target(device, primary, fallback):\n    idx = _find_target_with_scroll(device, primary)\n    if idx is not None:\n        return idx\n\n    idx = _find_target_with_scroll(device, fallback)\n    if idx is not None:\n        return idx\n\n    raise RuntimeError(\"Could not find note row for binding file_name\")\n\n\ndef _long_press(device, idx):\n    if idx is None:\n        raise RuntimeError(\"Cannot long-press missing element\")\n\n    try:\n        device.execute({\"action_type\": \"long_press\", \"index\": idx})\n    except Exception:\n        if hasattr(device, \"long_press\"):\n            try:\n                device.long_press(index=idx)\n            except TypeError:\n                device.long_press(idx)\n        else:\n            raise RuntimeError(\"long_press is unavailable\")\n\n    device.settle(0.5)\n\n\ndef _search_delete(device):\n    for label in (\"Delete\", \"delete\"):\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = (\n            _norm(el.get(\"description\")),\n            _norm(el.get(\"text\")),\n            _norm(el.get(\"hint\")),\n        )\n        if any(v == \"Delete\" or v == \"delete\" for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _search_more(device):\n    labels = (\"More options\", \"more options\", \"Options\", \"options\", \"Overflow menu\")\n\n    for label in labels:\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = tuple(\n            v.lower()\n            for v in (\n                _norm(el.get(\"description\")),\n                _norm(el.get(\"text\")),\n                _norm(el.get(\"hint\")),\n            )\n        )\n        if any(v in (\"more options\", \"options\", \"overflow menu\") for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _click_delete(device):\n    idx = _search_delete(device)\n    opened_overflow = False\n\n    if idx is None:\n        more = _search_more(device)\n        if more is not None:\n            device.click(index=more)\n            device.settle(0.5)\n            opened_overflow = True\n            idx = _search_delete(device)\n\n    if idx is None:\n        if opened_overflow:\n            device.navigate_back()\n            device.settle(0.5)\n        return False\n\n    device.click(index=idx)\n    device.settle(0.5)\n    return True\n\n\ndef _search_ok(device):\n    labels = (\"OK\", \"Ok\", \"ok\", \"YES\", \"Yes\", \"yes\", \"CONFIRM\", \"Confirm\", \"confirm\")\n\n    for label in labels:\n        idx = device.find(text=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(description=label, clickable=True)\n        if idx is not None:\n            return idx\n\n        idx = device.find(hint=label, clickable=True)\n        if idx is not None:\n            return idx\n\n    fallback = None\n    for el in device.elements():\n        vals = tuple(\n            v.lower()\n            for v in (\n                _norm(el.get(\"description\")),\n                _norm(el.get(\"text\")),\n                _norm(el.get(\"hint\")),\n            )\n        )\n        if any(v in (\"ok\", \"yes\", \"confirm\") for v in vals):\n            if el.get(\"clickable\"):\n                return el.get(\"index\")\n            if fallback is None:\n                fallback = el.get(\"index\")\n\n    return fallback\n\n\ndef _click_ok(device):\n    for _ in range(3):\n        idx = _search_ok(device)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return True\n        device.settle(0.5)\n\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    file_name = _norm(binding.get(\"file_name\"))\n    if not file_name:\n        raise ValueError(\"binding['file_name'] is required\")\n\n    primary, fallback = _candidate_groups(file_name)\n\n    device.open_app(\"Markor\")\n    device.settle(1)\n\n    try:\n        idx = _find_target(device, primary, fallback)\n    except RuntimeError:\n        device.navigate_back()\n        device.settle(1)\n        idx = _find_target(device, primary, fallback)\n\n    _long_press(device, idx)\n\n    if not _click_delete(device):\n        _long_press(device, idx)\n        if not _click_delete(device):\n            idx2 = _find_target_current(device, primary + fallback)\n            if idx2 is None:\n                raise RuntimeError(\"Could not re-find note after failed delete selection\")\n            _long_press(device, idx2)\n            if not _click_delete(device):\n                raise RuntimeError(\"Delete control not found after selecting note\")\n\n    if not _click_ok(device):\n        raise RuntimeError(\"Delete confirmation dialog was not confirmed\")\n\n    return True\n",
+ "conclusions": [],
+ "totals": {
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "program_replays": {
+   "count": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 5,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "file_name": "hot_sun_4RHp"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "eager_zebra_2023_07_18"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "final_happy_penguin"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "happy_vase_SixC"
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "file_name": "backup_alert_xylophone"
+    },
+    "passed": true,
+    "error": null
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

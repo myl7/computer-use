@@ -1,0 +1,254 @@
+{
+ "1": {
+  "family": "MarkorDeleteNote",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/explore/s1_a0/trajectory.jsonl",
+  "seed": 1,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This global action depends only on launching the Markor app; it can fail if the app is missing, not installed under the expected name, or does not reach a recognizable Markor screen.",
+    "snippet": "device.open_app(\"Markor\")\ndevice.settle(1.0)\n\nif not any([\n    device.find(text=\"Markor\"),\n    device.find(description=\"Files\"),\n    device.find(description=\"Create a new file or folder\"),\n]):\n    raise RuntimeError(\"Markor did not open to a recognizable screen\")",
+    "usage": {
+     "prompt_tokens": 1046,
+     "completion_tokens": 1304,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007620822
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "long_press",
+     "index": 15
+    },
+    "field": null,
+    "analysis": "This action depends on the file row being visible as a clickable element whose description is \u201cFile <file_name>\u201d (possibly without the extension); it fails if the row is missing, renamed, or not currently visible.",
+    "snippet": "file_name = str(binding.get(\"file_name\", \"\")).strip()\nif not file_name:\n    raise ValueError(\"binding['file_name'] is missing\")\n\nstem = file_name.rsplit(\".\", 1)[0] if \".\" in file_name else file_name\nidx = None\nfor name in (file_name, stem):\n    idx = device.find(description=f\"File {name}\", clickable=True)\n    if idx is not None:\n        break\n\nif idx is None:\n    raise ValueError(f\"Could not find file row for {file_name!r}\")\n\ndevice.long_press(index=idx)",
+    "usage": {
+     "prompt_tokens": 670,
+     "completion_tokens": 6483,
+     "cached_tokens": 0,
+     "cost_usd": 0.0031160349
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action depends on a clickable \u201cDelete\u201d control being visible after the target note is selected; indexes may change, and it can fail if the control is absent or not rendered.",
+    "snippet": "idx = device.find(description=\"Delete\", clickable=True)\nif idx is None:\n    idx = device.find(text=\"Delete\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Clickable Delete control not found on current screen\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 924,
+     "completion_tokens": 2704,
+     "cached_tokens": 0,
+     "cost_usd": 0.0013953852
+    }
+   },
+   {
+    "step": 5,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action depends on the delete confirmation dialog being present and identifying its affirmative button by the visible label \u201cOK\u201d. On another instance, the dialog may take a moment to appear or the OK button may not be uniquely identifiable if searched too early, so it must be looked up semantically rather than by index.",
+    "snippet": "device.settle(0.5)\nidx = device.find(text='OK', clickable=True)\nif idx is None:\n    raise RuntimeError('Delete confirmation OK button not found')\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 913,
+     "completion_tokens": 874,
+     "cached_tokens": 0,
+     "cost_usd": 0.0005422527
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 5,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3553,
+   "cached_tokens": 0,
+   "completion_tokens": 11365,
+   "total_tokens": 14918,
+   "cost_usd": 0.00581575
+  },
+  "record_type": "translation"
+ },
+ "2": {
+  "family": "MarkorDeleteNote",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/explore/s2_a0/trajectory.jsonl",
+  "seed": 2,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This action only launches the Markor app and does not depend on any element index; it can fail if the app is missing or the launcher cannot bring it forward.",
+    "snippet": "device.open_app(binding.get(\"app_name\", \"Markor\"))\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 1146,
+     "completion_tokens": 3428,
+     "cached_tokens": 512,
+     "cost_usd": 0.00169730748
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 16
+    },
+    "field": null,
+    "analysis": "This long-press depends on the file row being identifiable by its description `File {file_name}`; it can fail if `binding[\"file_name\"]` omits or includes the `.md` extension differently from the UI description.",
+    "snippet": "file_name = binding[\"file_name\"]\n\ncandidates = [file_name]\nif file_name.endswith(\".md\"):\n    candidates.append(file_name[:-3])\nelse:\n    candidates.append(file_name + \".md\")\n\nidx = None\nfor candidate in candidates:\n    idx = device.find(description=f\"File {candidate}\", clickable=True)\n    if idx is not None:\n        break\n\nif idx is None:\n    raise RuntimeError(f\"Could not find Markor file row for note: {file_name}\")\n\ndevice.long_press(index=idx)",
+    "usage": {
+     "prompt_tokens": 649,
+     "completion_tokens": 1473,
+     "cached_tokens": 0,
+     "cost_usd": 0.0007817634
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action depends on the target file being selected and the Delete command being reachable; otherwise it can delete the wrong file or fail if the action is hidden in the overflow menu.",
+    "snippet": "file_name = binding.get(\"file_name\")\nif not file_name:\n    raise RuntimeError(\"binding['file_name'] is required\")\n\nif device.find(description=f\"Selected {file_name}\") is None:\n    target = device.find(description=f\"File {file_name}\", clickable=True)\n    if target is None:\n        raise RuntimeError(f\"File '{file_name}' not found\")\n    device.long_press(index=target)\n    device.settle(1)\n\ndelete = device.find(description=\"Delete\", clickable=True)\nif delete is None:\n    more = device.find(description=\"More options\", clickable=True)\n    if more is None:\n        raise RuntimeError(\"Delete action not available\")\n    device.click(index=more)\n    device.settle(1)\n    delete = device.find(text=\"Delete\", clickable=True)\n    if delete is None:\n        delete = device.find(description=\"Delete\", clickable=True)\n    if delete is None:\n        raise RuntimeError(\"Delete action not available\")\n\ndevice.click(index=delete)\ndevice.settle(1)",
+    "usage": {
+     "prompt_tokens": 1019,
+     "completion_tokens": 9263,
+     "cached_tokens": 256,
+     "cost_usd": 0.00442743444
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This action depends on the delete confirmation dialog exposing an \u201cOK\u201d button; it can fail if the dialog is not present or the button text/attributes differ across instances.",
+    "snippet": "idx = device.find(text=\"OK\", class_name=\"Button\", clickable=True)\nif idx is None:\n    raise RuntimeError(\"Delete confirmation OK button not found\")\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 1007,
+     "completion_tokens": 428,
+     "cached_tokens": 256,
+     "cost_usd": 0.00031472694
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3821,
+   "cached_tokens": 1024,
+   "completion_tokens": 14592,
+   "total_tokens": 18413,
+   "cost_usd": 0.00722123
+  },
+  "record_type": "translation"
+ },
+ "3": {
+  "family": "MarkorDeleteNote",
+  "model": "qwen/qwen3.8-flash",
+  "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/explore/s3_a0/trajectory.jsonl",
+  "seed": 3,
+  "steps": [
+   {
+    "step": 1,
+    "action": {
+     "action_type": "open_app",
+     "app_name": "Markor"
+    },
+    "field": null,
+    "analysis": "This is a global app-launch action, so it does not depend on any element index or the file name; it can fail only if the Markor app cannot be opened.",
+    "snippet": "device.open_app(\"Markor\")",
+    "usage": {
+     "prompt_tokens": 1026,
+     "completion_tokens": 1695,
+     "cached_tokens": 256,
+     "cost_usd": 0.00090708354
+    }
+   },
+   {
+    "step": 2,
+    "action": {
+     "action_type": "long_press",
+     "index": 18
+    },
+    "field": null,
+    "analysis": "This long-press depends on locating the file list row whose content description is \u201cFile <name>\u201d; it can fail if the recorded index shifts or if binding.file_name omits the .md extension.",
+    "snippet": "file_name = binding[\"file_name\"].strip()\nfor desc in (f\"File {file_name}\", f\"File {file_name}.md\"):\n    idx = device.find(description=desc, clickable=True)\n    if idx is not None:\n        device.long_press(index=idx)\n        break\nelse:\n    raise RuntimeError(f\"Could not find Markor file row for '{file_name}'\")",
+    "usage": {
+     "prompt_tokens": 643,
+     "completion_tokens": 1142,
+     "cached_tokens": 0,
+     "cost_usd": 0.0006268581
+    }
+   },
+   {
+    "step": 3,
+    "action": {
+     "action_type": "click",
+     "index": 5
+    },
+    "field": null,
+    "analysis": "This action depends on a selected file being present and the toolbar/overflow \u201cDelete\u201d control being visible; it can fail if the Delete control is not rendered or not clickable.",
+    "snippet": "idx = device.find(description='Delete', clickable=True)\nif idx is None:\n    raise RuntimeError(\"Delete action not found; ensure the target note is selected and the Delete control is visible.\")\ndevice.click(index=idx)\ndevice.settle(0.5)",
+    "usage": {
+     "prompt_tokens": 873,
+     "completion_tokens": 1701,
+     "cached_tokens": 256,
+     "cost_usd": 0.00088715484
+    }
+   },
+   {
+    "step": 4,
+    "action": {
+     "action_type": "click",
+     "index": 3
+    },
+    "field": null,
+    "analysis": "This click depends on the delete confirmation dialog being visible and exposing a clickable \u201cOK\u201d button; it can fail if the dialog is missing, the button text differs, or the UI is still animating.",
+    "snippet": "device.settle(0.5)\nidx = device.find(text='OK', clickable=True)\nif idx is None:\n    raise RuntimeError('Delete confirmation OK button not found')\ndevice.click(index=idx)",
+    "usage": {
+     "prompt_tokens": 889,
+     "completion_tokens": 7065,
+     "cached_tokens": 256,
+     "cost_usd": 0.00338540004
+    }
+   }
+  ],
+  "effective_actions": 4,
+  "recorded_actions": 4,
+  "replay_stopped_at": null,
+  "totals": {
+   "calls": 4,
+   "prompt_tokens": 3431,
+   "cached_tokens": 768,
+   "completion_tokens": 11603,
+   "total_tokens": 15034,
+   "cost_usd": 0.0058065
+  },
+  "record_type": "translation"
+ }
+}

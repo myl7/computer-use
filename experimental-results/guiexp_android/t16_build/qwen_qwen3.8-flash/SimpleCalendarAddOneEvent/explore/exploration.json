@@ -1,0 +1,104 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 34,
+ "instances": [
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 1,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 14,
+     "usage": {
+      "prompt_tokens": 579804,
+      "cached_tokens": 506624,
+      "completion_tokens": 918,
+      "total_tokens": 580722,
+      "cost_usd": 0.0193193,
+      "model_calls": 14
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s1_a0/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 2,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 677596,
+      "cached_tokens": 597760,
+      "completion_tokens": 939,
+      "total_tokens": 678535,
+      "cost_usd": 0.02176108,
+      "model_calls": 15
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "SimpleCalendarAddOneEvent",
+   "seed": 3,
+   "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+   "step_cap": 34,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 14,
+     "usage": {
+      "prompt_tokens": 582696,
+      "cached_tokens": 509184,
+      "completion_tokens": 808,
+      "total_tokens": 583504,
+      "cost_usd": 0.01935797,
+      "model_calls": 14
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "prompt_tokens": 1840096,
+  "cached_tokens": 1613568,
+  "completion_tokens": 2665,
+  "total_tokens": 1842761,
+  "cost_usd": 0.06043835
+ },
+ "record_type": "exploration"
+}

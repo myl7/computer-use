@@ -1,0 +1,679 @@
+{
+ "family": "MarkorDeleteNote",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 10,
+ "cache_ratio_r": 0.107,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 5,
+    "prompt_tokens": 66920,
+    "cached_tokens": 45056,
+    "completion_tokens": 268,
+    "total_tokens": 67188,
+    "cost_usd": 0.00408519,
+    "model_calls": 5
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 44089,
+    "cached_tokens": 27392,
+    "completion_tokens": 222,
+    "total_tokens": 44311,
+    "cost_usd": 0.00301669,
+    "model_calls": 4
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 43188,
+    "cached_tokens": 26880,
+    "completion_tokens": 178,
+    "total_tokens": 43366,
+    "cost_usd": 0.00293034,
+    "model_calls": 4
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 13,
+   "prompt_tokens": 154197,
+   "cached_tokens": 99328,
+   "completion_tokens": 668,
+   "total_tokens": 154865,
+   "cost_usd": 0.01003222
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 83.6,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3553,
+    "cached_tokens": 0,
+    "completion_tokens": 11365,
+    "total_tokens": 14918,
+    "cost_usd": 0.00581575
+   },
+   {
+    "seed": 2,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3821,
+    "cached_tokens": 1024,
+    "completion_tokens": 14592,
+    "total_tokens": 18413,
+    "cost_usd": 0.00722123
+   },
+   {
+    "seed": 3,
+    "effective_actions": 4,
+    "calls": 4,
+    "prompt_tokens": 3431,
+    "cached_tokens": 768,
+    "completion_tokens": 11603,
+    "total_tokens": 15034,
+    "cost_usd": 0.0058065
+   }
+  ],
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 10805,
+   "cached_tokens": 1792,
+   "completion_tokens": 37560,
+   "total_tokens": 48365,
+   "cost_usd": 0.01884348
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 1500,
+    "completion_tokens": 33540,
+    "cached_tokens": 0,
+    "cost_usd": 0.015828912,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1500,
+      "cached_tokens": 0,
+      "completion_tokens": 33540,
+      "total_tokens": 35040,
+      "cost_usd": 0.015828912,
+      "usage": {
+       "prompt_tokens": 1500,
+       "completion_tokens": 33540,
+       "cached_tokens": 0,
+       "cost_usd": 0.015828912
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 1389,
+    "completion_tokens": 2094,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011806047,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 1389,
+      "cached_tokens": 0,
+      "completion_tokens": 2094,
+      "total_tokens": 3483,
+      "cost_usd": 0.0011806047,
+      "usage": {
+       "prompt_tokens": 1389,
+       "completion_tokens": 2094,
+       "cached_tokens": 0,
+       "cost_usd": 0.0011806047
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 2348,
+    "completion_tokens": 50035,
+    "cached_tokens": 0,
+    "cost_usd": 0.0236299635,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2348,
+      "cached_tokens": 0,
+      "completion_tokens": 50035,
+      "total_tokens": 52383,
+      "cost_usd": 0.0236299635,
+      "usage": {
+       "prompt_tokens": 2348,
+       "completion_tokens": 50035,
+       "cached_tokens": 0,
+       "cost_usd": 0.0236299635
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 2237,
+    "completion_tokens": 1857,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011962566,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2237,
+      "cached_tokens": 0,
+      "completion_tokens": 1857,
+      "total_tokens": 4094,
+      "cost_usd": 0.0011962566,
+      "usage": {
+       "prompt_tokens": 2237,
+       "completion_tokens": 1857,
+       "cached_tokens": 0,
+       "cost_usd": 0.0011962566
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 2969,
+    "completion_tokens": 24787,
+    "cached_tokens": 0,
+    "cost_usd": 0.0119742876,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2969,
+      "cached_tokens": 0,
+      "completion_tokens": 24787,
+      "total_tokens": 27756,
+      "cost_usd": 0.0119742876,
+      "usage": {
+       "prompt_tokens": 2969,
+       "completion_tokens": 24787,
+       "cached_tokens": 0,
+       "cost_usd": 0.0119742876
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 2858,
+    "completion_tokens": 2213,
+    "cached_tokens": 0,
+    "cost_usd": 0.0014541219,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2858,
+      "cached_tokens": 0,
+      "completion_tokens": 2213,
+      "total_tokens": 5071,
+      "cost_usd": 0.0014541219,
+      "usage": {
+       "prompt_tokens": 2858,
+       "completion_tokens": 2213,
+       "cached_tokens": 0,
+       "cost_usd": 0.0014541219
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 13301,
+   "cached_tokens": 0,
+   "completion_tokens": 114526,
+   "total_tokens": 127827,
+   "cost_usd": 0.05526414
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 0,
+    "prompt_tokens": 2969,
+    "cached_tokens": 0,
+    "completion_tokens": 24787,
+    "total_tokens": 27756,
+    "cost_usd": 0.01197429
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 0,
+  "program_replays": 0,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "initial",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 5,
+    "total": 5
+   }
+  ],
+  "analyzer": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "resume_episodes": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "builder_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "gate_after_repair": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "p_after": 1.0,
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 228.46666666666667,
+  "total_tokens": 6854,
+  "cost_usd": 0.00172902
+ },
+ "resumed_from_stages": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy"
+ ],
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 593,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 40601,
+    "cached_tokens": 24832,
+    "completion_tokens": 187,
+    "total_tokens": 40788,
+    "cost_usd": 0.00282205,
+    "model_calls": 4
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 43388,
+    "cached_tokens": 27392,
+    "completion_tokens": 150,
+    "total_tokens": 43538,
+    "cost_usd": 0.00287909,
+    "model_calls": 4
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 4,
+    "prompt_tokens": 44551,
+    "cached_tokens": 27648,
+    "completion_tokens": 222,
+    "total_tokens": 44773,
+    "cost_usd": 0.00305134,
+    "model_calls": 4
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 12,
+   "prompt_tokens": 128540,
+   "cached_tokens": 79872,
+   "completion_tokens": 559,
+   "total_tokens": 129099,
+   "cost_usd": 0.00875248
+  },
+  "L_doc_tokens_mean": 43033.0
+ },
+ "break_even": {
+  "c_raw_tokens": 51621.7,
+  "c_cache_adjusted_tokens": 22055.0,
+  "d_tokens": 228.46666666666667,
+  "q": 0.0,
+  "cache_ratio_r": 0.107,
+  "build_totals_raw": {
+   "exploration": 154865,
+   "translator": 48365,
+   "builder_selected": 27756,
+   "verification": 0,
+   "autorpa_build": 230986
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 66165,
+   "translator": 46765,
+   "builder_selected": 27756,
+   "verification": 0,
+   "autorpa_build": 140686
+  },
+  "s_raw": 51393.2,
+  "nstar_raw": {
+   "marginal": 0.5401,
+   "autorpa_build": 4.4945
+  },
+  "s_cache_adjusted": 21826.5,
+  "nstar_cache_adjusted": {
+   "marginal": 1.2717,
+   "autorpa_build": 6.4456
+  }
+ },
+ "total_cost_usd": 0.096324,
+ "accounting_problems": [],
+ "redeploy": {
+  "source_artifact": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/verified_program.py",
+  "gate": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "file_name": "hot_sun_4RHp"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "eager_zebra_2023_07_18"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "final_happy_penguin"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "happy_vase_SixC"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "file_name": "backup_alert_xylophone"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "p_after": 1.0,
+  "admitted": true,
+  "gate_min_pass": 4,
+  "timestamp": "2026-09-20T07:20:15+0800",
+  "deploy_uses": 30,
+  "doc_arm": false
+ }
+}

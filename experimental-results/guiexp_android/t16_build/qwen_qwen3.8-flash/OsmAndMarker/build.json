@@ -1,0 +1,507 @@
+{
+ "family": "OsmAndMarker",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 20,
+ "cache_ratio_r": 0.107,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 20,
+    "prompt_tokens": 1007633,
+    "cached_tokens": 909824,
+    "completion_tokens": 5585,
+    "total_tokens": 1013218,
+    "cost_usd": 0.03153495,
+    "model_calls": 20
+   },
+   {
+    "seed": 1,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 14,
+    "prompt_tokens": 530653,
+    "cached_tokens": 458752,
+    "completion_tokens": 2356,
+    "total_tokens": 533009,
+    "cost_usd": 0.01904018,
+    "model_calls": 14
+   },
+   {
+    "seed": 1,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 15,
+    "prompt_tokens": 738058,
+    "cached_tokens": 617984,
+    "completion_tokens": 1926,
+    "total_tokens": 739984,
+    "cost_usd": 0.02320342,
+    "model_calls": 16
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 8,
+    "prompt_tokens": 152137,
+    "cached_tokens": 115968,
+    "completion_tokens": 523,
+    "total_tokens": 152660,
+    "cost_usd": 0.00745138,
+    "model_calls": 8
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": false,
+    "steps": 11,
+    "prompt_tokens": 341228,
+    "cached_tokens": 283392,
+    "completion_tokens": 1084,
+    "total_tokens": 342312,
+    "cost_usd": 0.01358196,
+    "model_calls": 11
+   },
+   {
+    "seed": 3,
+    "attempt": 1,
+    "reused": false,
+    "success": false,
+    "steps": 10,
+    "prompt_tokens": 269215,
+    "cached_tokens": 220928,
+    "completion_tokens": 1382,
+    "total_tokens": 270597,
+    "cost_usd": 0.01131316,
+    "model_calls": 10
+   },
+   {
+    "seed": 3,
+    "attempt": 2,
+    "reused": false,
+    "success": false,
+    "steps": 12,
+    "prompt_tokens": 388930,
+    "cached_tokens": 330496,
+    "completion_tokens": 1208,
+    "total_tokens": 390138,
+    "cost_usd": 0.01447459,
+    "model_calls": 12
+   }
+  ],
+  "reflections": [
+   {
+    "seed": 1,
+    "for_attempt": 1,
+    "prompt_tokens": 817,
+    "completion_tokens": 1333,
+    "cached_tokens": 0,
+    "cost_usd": 0.0007415694
+   },
+   {
+    "seed": 1,
+    "for_attempt": 2,
+    "prompt_tokens": 653,
+    "completion_tokens": 677,
+    "cached_tokens": 0,
+    "cost_usd": 0.0004119786
+   },
+   {
+    "seed": 3,
+    "for_attempt": 1,
+    "prompt_tokens": 551,
+    "completion_tokens": 710,
+    "cached_tokens": 0,
+    "cost_usd": 0.0004121865
+   },
+   {
+    "seed": 3,
+    "for_attempt": 2,
+    "prompt_tokens": 503,
+    "completion_tokens": 1395,
+    "cached_tokens": 256,
+    "cost_usd": 0.00068982804
+   }
+  ],
+  "totals": {
+   "calls": 95,
+   "prompt_tokens": 3430378,
+   "cached_tokens": 2937600,
+   "completion_tokens": 18179,
+   "total_tokens": 3448557,
+   "cost_usd": 0.1228552
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k"
+ ],
+ "wall_s": 6272.2,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 12,
+    "calls": 12,
+    "prompt_tokens": 9329,
+    "cached_tokens": 0,
+    "completion_tokens": 51755,
+    "total_tokens": 61084,
+    "cost_usd": 0.02546696
+   },
+   {
+    "seed": 2,
+    "effective_actions": 8,
+    "calls": 8,
+    "prompt_tokens": 7362,
+    "cached_tokens": 1792,
+    "completion_tokens": 22612,
+    "total_tokens": 29974,
+    "cost_usd": 0.01137689
+   },
+   {
+    "seed": 3,
+    "effective_actions": 9,
+    "calls": 9,
+    "prompt_tokens": 6555,
+    "cached_tokens": 2560,
+    "completion_tokens": 18187,
+    "total_tokens": 24742,
+    "cost_usd": 0.00909622
+   }
+  ],
+  "totals": {
+   "calls": 29,
+   "prompt_tokens": 23246,
+   "cached_tokens": 4352,
+   "completion_tokens": 92554,
+   "total_tokens": 115800,
+   "cost_usd": 0.04594007
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 2993,
+    "completion_tokens": 40340,
+    "cached_tokens": 0,
+    "cost_usd": 0.0192146625,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2993,
+      "cached_tokens": 0,
+      "completion_tokens": 40340,
+      "total_tokens": 43333,
+      "cost_usd": 0.0192146625,
+      "usage": {
+       "prompt_tokens": 2993,
+       "completion_tokens": 40340,
+       "cached_tokens": 0,
+       "cost_usd": 0.0192146625
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 2882,
+    "completion_tokens": 1623,
+    "cached_tokens": 0,
+    "cost_usd": 0.0011831589,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 2882,
+      "cached_tokens": 0,
+      "completion_tokens": 1623,
+      "total_tokens": 4505,
+      "cost_usd": 0.0011831589,
+      "usage": {
+       "prompt_tokens": 2882,
+       "completion_tokens": 1623,
+       "cached_tokens": 0,
+       "cost_usd": 0.0011831589
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 4303,
+    "completion_tokens": 31578,
+    "cached_tokens": 256,
+    "cost_usd": 0.01529827794,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4303,
+      "cached_tokens": 256,
+      "completion_tokens": 31578,
+      "total_tokens": 35881,
+      "cost_usd": 0.01529827794,
+      "usage": {
+       "prompt_tokens": 4303,
+       "completion_tokens": 31578,
+       "cached_tokens": 256,
+       "cost_usd": 0.01529827794
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 4192,
+    "completion_tokens": 5294,
+    "cached_tokens": 256,
+    "cost_usd": 0.00305184924,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4192,
+      "cached_tokens": 256,
+      "completion_tokens": 5294,
+      "total_tokens": 9486,
+      "cost_usd": 0.00305184924,
+      "usage": {
+       "prompt_tokens": 4192,
+       "completion_tokens": 5294,
+       "cached_tokens": 256,
+       "cost_usd": 0.00305184924
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 5788,
+    "completion_tokens": 51404,
+    "cached_tokens": 256,
+    "cost_usd": 0.02474383824,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5788,
+      "cached_tokens": 256,
+      "completion_tokens": 51404,
+      "total_tokens": 57192,
+      "cost_usd": 0.02474383824,
+      "usage": {
+       "prompt_tokens": 5788,
+       "completion_tokens": 51404,
+       "cached_tokens": 256,
+       "cost_usd": 0.02474383824
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 5677,
+    "completion_tokens": 2065,
+    "cached_tokens": 256,
+    "cost_usd": 0.00176991804,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 5677,
+      "cached_tokens": 256,
+      "completion_tokens": 2065,
+      "total_tokens": 7742,
+      "cost_usd": 0.00176991804,
+      "usage": {
+       "prompt_tokens": 5677,
+       "completion_tokens": 2065,
+       "cached_tokens": 256,
+       "cost_usd": 0.00176991804
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 25835,
+   "cached_tokens": 1024,
+   "completion_tokens": 132304,
+   "total_tokens": 158139,
+   "cost_usd": 0.06526171
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find OsmAnd search control"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find OsmAnd search control"
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find OsmAnd search control"
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find OsmAnd search control"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find OsmAnd search control"
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to add location marker in OsmAnd"
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to add location marker in OsmAnd"
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to add location marker in OsmAnd"
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to add location marker in OsmAnd"
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": false,
+     "error": "RuntimeError: Failed to add location marker in OsmAnd"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 3,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "location": "Ruggell, Liechtenstein"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.2122151, 9.5062101"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.1973857, 9.5430636"
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "Planken, Liechtenstein"
+     },
+     "passed": false,
+     "error": null
+    },
+    {
+     "binding": {
+      "location": "47.1303814, 9.5930117"
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  }
+ }
+}

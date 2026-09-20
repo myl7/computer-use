@@ -1,0 +1,848 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "artifact": "code",
+ "m_max": 3,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "rounds": [
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Could not select the requested date in the date picker",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Could not select the requested date in the date picker"
+    }
+   ],
+   "analysis": {
+    "cause": "It clicked the Description field (index 7) instead of a date field, so the date picker never opened; later searches for full-date labels such as \u201cOctober 19\u201d failed because no date picker was present and the picker would normally show only the day number.",
+    "done": "Simple Calendar Pro is open on the New Event screen; the title \u201cWorkshop on Project X\u201d and the description are already entered. The event date/time are still default October 15 at 16:00.",
+    "plan": "1. Dismiss the keyboard if it is covering the form. 2. Click the start date field, index 8 or text \u201cOctober 15 (Sun)\u201d, to open the date picker. 3. In the date picker, ensure the month is October 2023, then click the day \u201c19\u201d (not \u201cOctober 19\u201d), and confirm with OK. 4. Click the start time field, index 9 or text \u201c16:00\u201d, and set the time to 18:00. 5. Click the end date field, index 10, and set it to October 19, 2023 if it is not already. 6. Click the end time field, index 11, and set it to 18:15 to make the event last 15 minutes. 7. Click Save (index 2).",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 3150,
+    "cached_tokens": 0,
+    "completion_tokens": 2210,
+    "total_tokens": 5360,
+    "cost_usd": 0.001496088,
+    "usage": {
+     "prompt_tokens": 3150,
+     "completion_tokens": 2210,
+     "cached_tokens": 0,
+     "cost_usd": 0.001496088
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 12,
+    "success": true,
+    "calls": 12,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 7311,
+      "cached_tokens": 0,
+      "completion_tokens": 70,
+      "total_tokens": 7381,
+      "cost_usd": 0.0011182545,
+      "usage": {
+       "prompt_tokens": 7311,
+       "completion_tokens": 70,
+       "cached_tokens": 0,
+       "cost_usd": 0.0011182545
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"navigate_back\"}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 11278,
+      "cached_tokens": 7168,
+      "completion_tokens": 36,
+      "total_tokens": 11314,
+      "cost_usd": 0.00074062692,
+      "usage": {
+       "prompt_tokens": 11278,
+       "completion_tokens": 36,
+       "cached_tokens": 7168,
+       "cost_usd": 0.00074062692
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":7}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 16750,
+      "cached_tokens": 11264,
+      "completion_tokens": 61,
+      "total_tokens": 16811,
+      "cost_usd": 0.00102147606,
+      "usage": {
+       "prompt_tokens": 16750,
+       "completion_tokens": 61,
+       "cached_tokens": 11264,
+       "cost_usd": 0.00102147606
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":25}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 22223,
+      "cached_tokens": 16640,
+      "completion_tokens": 34,
+      "total_tokens": 22257,
+      "cost_usd": 0.0011084733,
+      "usage": {
+       "prompt_tokens": 22223,
+       "completion_tokens": 34,
+       "cached_tokens": 16640,
+       "cost_usd": 0.0011084733
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":6}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 26195,
+      "cached_tokens": 22016,
+      "completion_tokens": 49,
+      "total_tokens": 26244,
+      "cost_usd": 0.00099211464,
+      "usage": {
+       "prompt_tokens": 26195,
+       "completion_tokens": 49,
+       "cached_tokens": 22016,
+       "cost_usd": 0.00099211464
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":8}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 30948,
+      "cached_tokens": 26112,
+      "completion_tokens": 66,
+      "total_tokens": 31014,
+      "cost_usd": 0.00116246988,
+      "usage": {
+       "prompt_tokens": 30948,
+       "completion_tokens": 66,
+       "cached_tokens": 26112,
+       "cost_usd": 0.00116246988
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":24}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 34953,
+      "cached_tokens": 30720,
+      "completion_tokens": 62,
+      "total_tokens": 35015,
+      "cost_usd": 0.0011440539,
+      "usage": {
+       "prompt_tokens": 34953,
+       "completion_tokens": 62,
+       "cached_tokens": 30720,
+       "cost_usd": 0.0011440539
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 38925,
+      "cached_tokens": 34816,
+      "completion_tokens": 51,
+      "total_tokens": 38976,
+      "cost_usd": 0.00118540224,
+      "usage": {
+       "prompt_tokens": 38925,
+       "completion_tokens": 51,
+       "cached_tokens": 34816,
+       "cost_usd": 0.00118540224
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 9,
+      "call": 9,
+      "first_call": false,
+      "prompt_tokens": 43679,
+      "cached_tokens": 38912,
+      "completion_tokens": 111,
+      "total_tokens": 43790,
+      "cost_usd": 0.00137591388,
+      "usage": {
+       "prompt_tokens": 43679,
+       "completion_tokens": 111,
+       "cached_tokens": 38912,
+       "cost_usd": 0.00137591388
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":1}"
+     },
+     {
+      "step": 10,
+      "call": 10,
+      "first_call": false,
+      "prompt_tokens": 47683,
+      "cached_tokens": 43520,
+      "completion_tokens": 43,
+      "total_tokens": 47726,
+      "cost_usd": 0.0013275702,
+      "usage": {
+       "prompt_tokens": 47683,
+       "completion_tokens": 43,
+       "cached_tokens": 43520,
+       "cost_usd": 0.0013275702
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":11}"
+     },
+     {
+      "step": 11,
+      "call": 11,
+      "first_call": false,
+      "prompt_tokens": 51688,
+      "cached_tokens": 47616,
+      "completion_tokens": 35,
+      "total_tokens": 51723,
+      "cost_usd": 0.00137521494,
+      "usage": {
+       "prompt_tokens": 51688,
+       "completion_tokens": 35,
+       "cached_tokens": 47616,
+       "cost_usd": 0.00137521494
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 12,
+      "call": 12,
+      "first_call": false,
+      "prompt_tokens": 55660,
+      "cached_tokens": 51456,
+      "completion_tokens": 56,
+      "total_tokens": 55716,
+      "cost_usd": 0.00146541384,
+      "usage": {
+       "prompt_tokens": 55660,
+       "completion_tokens": 56,
+       "cached_tokens": 51456,
+       "cost_usd": 0.00146541384
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":2}"
+     }
+    ]
+   },
+   "refinement": 1,
+   "gate": {
+    "passed": 1,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 11547,
+    "cached_tokens": 0,
+    "completion_tokens": 72901,
+    "total_tokens": 84448,
+    "cost_usd": 0.0356355648,
+    "usage": {
+     "prompt_tokens": 11547,
+     "completion_tokens": 72901,
+     "cached_tokens": 0,
+     "cost_usd": 0.0356355648
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 11547,
+      "cached_tokens": 0,
+      "completion_tokens": 72901,
+      "total_tokens": 84448,
+      "cost_usd": 0.0356355648,
+      "usage": {
+       "prompt_tokens": 11547,
+       "completion_tokens": 72901,
+       "cached_tokens": 0,
+       "cost_usd": 0.0356355648
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": null,
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": null
+    }
+   ],
+   "analysis": {
+    "cause": "The agent failed to set the end time correctly because the time picker is not an editable text field; it left the end time as 00:15 instead of 18:15, so the event did not have the required 15-minute duration and was not successfully saved.",
+    "done": "The New Event form is open; the title and description are entered, and the start date/time are set to October 19 and 18:00.",
+    "plan": "If necessary, clear the description field and re-enter the exact description without a trailing newline. Click the end-time field (index 10), set it to 18:15 in the time picker, and confirm. Verify that the end date (index 9) is still October 19; if not, set it to October 19. Then click Save (index 2) and verify the event appears on October 19 with start 18:00 and end 18:15.",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 2426,
+    "cached_tokens": 0,
+    "completion_tokens": 4789,
+    "total_tokens": 7215,
+    "cost_usd": 0.0025885827,
+    "usage": {
+     "prompt_tokens": 2426,
+     "completion_tokens": 4789,
+     "cached_tokens": 0,
+     "cost_usd": 0.0025885827
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 4,
+    "success": true,
+    "calls": 4,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4971,
+      "cached_tokens": 0,
+      "completion_tokens": 309,
+      "total_tokens": 5280,
+      "cost_usd": 0.0008819712,
+      "usage": {
+       "prompt_tokens": 4971,
+       "completion_tokens": 309,
+       "cached_tokens": 0,
+       "cost_usd": 0.0008819712
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 9725,
+      "cached_tokens": 4864,
+      "completion_tokens": 101,
+      "total_tokens": 9826,
+      "cost_usd": 0.00084589956,
+      "usage": {
+       "prompt_tokens": 9725,
+       "completion_tokens": 101,
+       "cached_tokens": 4864,
+       "cost_usd": 0.00084589956
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":24}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 13730,
+      "cached_tokens": 9472,
+      "completion_tokens": 35,
+      "total_tokens": 13765,
+      "cost_usd": 0.00079863498,
+      "usage": {
+       "prompt_tokens": 13730,
+       "completion_tokens": 35,
+       "cached_tokens": 9472,
+       "cost_usd": 0.00079863498
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 17702,
+      "cached_tokens": 13568,
+      "completion_tokens": 160,
+      "total_tokens": 17862,
+      "cost_usd": 0.00090326412,
+      "usage": {
+       "prompt_tokens": 17702,
+       "completion_tokens": 160,
+       "cached_tokens": 13568,
+       "cost_usd": 0.00090326412
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":2}"
+     }
+    ]
+   },
+   "refinement": 2,
+   "gate": {
+    "passed": 0,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 11472,
+    "cached_tokens": 256,
+    "completion_tokens": 50133,
+    "total_tokens": 61605,
+    "cost_usd": 0.02499651594,
+    "usage": {
+     "prompt_tokens": 11472,
+     "completion_tokens": 50133,
+     "cached_tokens": 256,
+     "cost_usd": 0.02499651594
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 11472,
+      "cached_tokens": 256,
+      "completion_tokens": 50133,
+      "total_tokens": 61605,
+      "cost_usd": 0.02499651594,
+      "usage": {
+       "prompt_tokens": 11472,
+       "completion_tokens": 50133,
+       "cached_tokens": 256,
+       "cost_usd": 0.02499651594
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  {
+   "seed_added": 1,
+   "seen_seeds": [
+    1
+   ],
+   "failure_seed": 1,
+   "error": "RuntimeError: Failed to set the requested time",
+   "replay_detail": [
+    {
+     "seed": 1,
+     "passed": false,
+     "error": "RuntimeError: Failed to set the requested time"
+    }
+   ],
+   "analysis": {
+    "cause": "The agent treated the time fields as editable text and typed into the wrong element (index 0) instead of using the clickable time labels that open the time picker, so the start/end times remained 16:00. It also never set the end time needed for a 15-minute duration.",
+    "done": "Simple Calendar Pro is open on the New Event screen; the title and description are set, and the start/end date is October 19 (Thu). The start time and end time are still incorrect.",
+    "plan": "Tap the start time label '16:00' (index 8) to open the time picker. Set the time to 18:00 using the picker controls or keyboard mode if available, then confirm. Tap the end time label '16:00' (index 10) and set it to 18:15, then confirm. Verify the times are 18:00 and 18:15, then tap Save (index 2).",
+    "decision": "continue",
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 4858,
+    "cached_tokens": 0,
+    "completion_tokens": 2922,
+    "total_tokens": 7780,
+    "cost_usd": 0.0020810196,
+    "usage": {
+     "prompt_tokens": 4858,
+     "completion_tokens": 2922,
+     "cached_tokens": 0,
+     "cost_usd": 0.0020810196
+    },
+    "stage": "analyzer"
+   },
+   "resume": {
+    "restarted": false,
+    "steps": 8,
+    "success": true,
+    "calls": 8,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 4975,
+      "cached_tokens": 0,
+      "completion_tokens": 60,
+      "total_tokens": 5035,
+      "cost_usd": 0.0007667055,
+      "usage": {
+       "prompt_tokens": 4975,
+       "completion_tokens": 60,
+       "cached_tokens": 0,
+       "cost_usd": 0.0007667055
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":8}"
+     },
+     {
+      "step": 2,
+      "call": 2,
+      "first_call": false,
+      "prompt_tokens": 9726,
+      "cached_tokens": 4864,
+      "completion_tokens": 47,
+      "total_tokens": 9773,
+      "cost_usd": 0.00082092186,
+      "usage": {
+       "prompt_tokens": 9726,
+       "completion_tokens": 47,
+       "cached_tokens": 4864,
+       "cost_usd": 0.00082092186
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":24}"
+     },
+     {
+      "step": 3,
+      "call": 3,
+      "first_call": false,
+      "prompt_tokens": 13729,
+      "cached_tokens": 9472,
+      "completion_tokens": 32,
+      "total_tokens": 13761,
+      "cost_usd": 0.00079709058,
+      "usage": {
+       "prompt_tokens": 13729,
+       "completion_tokens": 32,
+       "cached_tokens": 9472,
+       "cost_usd": 0.00079709058
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 4,
+      "call": 4,
+      "first_call": false,
+      "prompt_tokens": 17699,
+      "cached_tokens": 13568,
+      "completion_tokens": 74,
+      "total_tokens": 17773,
+      "cost_usd": 0.00086280282,
+      "usage": {
+       "prompt_tokens": 17699,
+       "completion_tokens": 74,
+       "cached_tokens": 13568,
+       "cost_usd": 0.00086280282
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":10}"
+     },
+     {
+      "step": 5,
+      "call": 5,
+      "first_call": false,
+      "prompt_tokens": 22451,
+      "cached_tokens": 17664,
+      "completion_tokens": 115,
+      "total_tokens": 22566,
+      "cost_usd": 0.00104417676,
+      "usage": {
+       "prompt_tokens": 22451,
+       "completion_tokens": 115,
+       "cached_tokens": 17664,
+       "cost_usd": 0.00104417676
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":1}"
+     },
+     {
+      "step": 6,
+      "call": 6,
+      "first_call": false,
+      "prompt_tokens": 26453,
+      "cached_tokens": 22272,
+      "completion_tokens": 53,
+      "total_tokens": 26506,
+      "cost_usd": 0.00099832788,
+      "usage": {
+       "prompt_tokens": 26453,
+       "completion_tokens": 53,
+       "cached_tokens": 22272,
+       "cost_usd": 0.00099832788
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":11}"
+     },
+     {
+      "step": 7,
+      "call": 7,
+      "first_call": false,
+      "prompt_tokens": 30456,
+      "cached_tokens": 26368,
+      "completion_tokens": 40,
+      "total_tokens": 30496,
+      "cost_usd": 0.00104334912,
+      "usage": {
+       "prompt_tokens": 30456,
+       "completion_tokens": 40,
+       "cached_tokens": 26368,
+       "cost_usd": 0.00104334912
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":4}"
+     },
+     {
+      "step": 8,
+      "call": 8,
+      "first_call": false,
+      "prompt_tokens": 34426,
+      "cached_tokens": 30208,
+      "completion_tokens": 53,
+      "total_tokens": 34479,
+      "cost_usd": 0.00112952862,
+      "usage": {
+       "prompt_tokens": 34426,
+       "completion_tokens": 53,
+       "cached_tokens": 30208,
+       "cost_usd": 0.00112952862
+      },
+      "stage": "react_resume",
+      "action": "{\"action_type\":\"click\",\"index\":2}"
+     }
+    ]
+   },
+   "refinement": 3,
+   "gate": {
+    "passed": 4,
+    "total": 5
+   },
+   "refinement_usage": {
+    "step": 1,
+    "call": 1,
+    "first_call": true,
+    "prompt_tokens": 16172,
+    "cached_tokens": 512,
+    "completion_tokens": 35092,
+    "total_tokens": 51264,
+    "cost_usd": 0.01866192768,
+    "usage": {
+     "prompt_tokens": 16172,
+     "completion_tokens": 35092,
+     "cached_tokens": 512,
+     "cost_usd": 0.01866192768
+    },
+    "stage": "builder_refine",
+    "attempts": 1,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 16172,
+      "cached_tokens": 512,
+      "completion_tokens": 35092,
+      "total_tokens": 51264,
+      "cost_usd": 0.01866192768,
+      "usage": {
+       "prompt_tokens": 16172,
+       "completion_tokens": 35092,
+       "cached_tokens": 512,
+       "cost_usd": 0.01866192768
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  }
+ ],
+ "refinements": 3,
+ "replays": 9,
+ "unautomatable": false,
+ "admitted": true,
+ "admitted_version": "refine3",
+ "gate_min_pass": 4,
+ "gate_history": [
+  {
+   "version": "initial",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine1",
+   "passed": 1,
+   "total": 5
+  },
+  {
+   "version": "refine2",
+   "passed": 0,
+   "total": 5
+  },
+  {
+   "version": "refine3",
+   "passed": 4,
+   "total": 5
+  }
+ ],
+ "final_artifact": "import re\nfrom datetime import datetime, timedelta\n\nPARAMS_SCHEMA = {\n    \"year\": {\"type\": \"integer\", \"description\": \"Event year\"},\n    \"month\": {\"type\": \"integer\", \"description\": \"Event month, 1-12\"},\n    \"day\": {\"type\": \"integer\", \"description\": \"Event day of month\"},\n    \"hour\": {\"type\": \"integer\", \"description\": \"Event start hour, 0-23\"},\n    \"duration_mins\": {\"type\": \"integer\", \"description\": \"Event duration in minutes\"},\n    \"event_title\": {\"type\": \"string\", \"description\": \"Event title\"},\n    \"event_description\": {\"type\": \"string\", \"description\": \"Event description\"},\n}\n\n\ndef program(device, binding: dict) -> bool:\n    def parse_int(value, name):\n        if isinstance(value, str):\n            digits = \"\".join(ch for ch in value if ch.isdigit())\n            if not digits:\n                raise ValueError(f\"{name} must be numeric\")\n            return int(digits)\n        return int(value)\n\n    year = parse_int(binding[\"year\"], \"year\")\n    month = parse_int(binding[\"month\"], \"month\")\n    day = parse_int(binding[\"day\"], \"day\")\n    hour = parse_int(binding[\"hour\"], \"hour\")\n    duration_mins = parse_int(binding[\"duration_mins\"], \"duration_mins\")\n    event_title = str(binding[\"event_title\"])\n    event_description = str(binding[\"event_description\"])\n\n    if duration_mins < 0:\n        duration_mins = 0\n\n    DEFAULT_YEAR = 2023\n    DEFAULT_MONTH = 10\n\n    # The end time must be derived from the actual start date/time, not from midnight.\n    start_dt = datetime(year, month, day, hour)\n    end_dt = start_dt + timedelta(minutes=duration_mins)\n\n    start_y, start_m, start_d = start_dt.year, start_dt.month, start_dt.day\n    end_y, end_m, end_d = end_dt.year, end_dt.month, end_dt.day\n    start_h, start_min = start_dt.hour, start_dt.minute\n    end_h, end_min = end_dt.hour, end_dt.minute\n\n    month_names = [\n        \"January\", \"February\", \"March\", \"April\", \"May\", \"June\",\n        \"July\", \"August\", \"September\", \"October\", \"November\", \"December\",\n    ]\n    month_abbrs = [\n        \"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\",\n        \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\",\n    ]\n\n    def settle(sec=0.5):\n        device.settle(sec)\n\n    def els():\n        return device.elements()\n\n    def find_first(*criteria):\n        for crit in criteria:\n            kwargs = {k: v for k, v in crit.items() if v is not None}\n            if not kwargs:\n                continue\n            try:\n                idx = device.find(**kwargs)\n            except Exception:\n                idx = None\n            if idx is not None:\n                return idx\n        return None\n\n    def click_index(idx):\n        if idx is None:\n            raise RuntimeError(\"Attempted to click a missing element\")\n        device.click(index=int(idx))\n        settle(0.5)\n\n    def element_by_index(idx):\n        if idx is None:\n            return None\n        for el in els():\n            if el.get(\"index\") is not None and int(el.get(\"index\")) == int(idx):\n                return el\n        return None\n\n    def ok_index():\n        idx = find_first(\n            {\"text\": \"OK\", \"clickable\": True},\n            {\"description\": \"OK\", \"clickable\": True},\n            {\"text\": \"Ok\", \"clickable\": True},\n            {\"description\": \"Ok\", \"clickable\": True},\n            {\"text\": \"Okay\", \"clickable\": True},\n            {\"description\": \"Okay\", \"clickable\": True},\n            {\"text\": \"Confirm\", \"clickable\": True},\n            {\"description\": \"Confirm\", \"clickable\": True},\n            {\"text\": \"Select\", \"clickable\": True},\n            {\"description\": \"Select\", \"clickable\": True},\n            {\"text\": \"Done\", \"clickable\": True},\n            {\"description\": \"Done\", \"clickable\": True},\n            {\"text\": \"Set\", \"clickable\": True},\n            {\"description\": \"Set\", \"clickable\": True},\n        )\n        if idx is not None:\n            return idx\n\n        for el in els():\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            text = str(el.get(\"text\") or \"\").strip().upper()\n            desc = str(el.get(\"description\") or \"\").strip().upper()\n            if text in (\"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"CONTINUE\", \"DONE\", \"SET\", \"CHOOSE\") or desc in (\n                \"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"CONTINUE\", \"DONE\", \"SET\", \"CHOOSE\"\n            ):\n                return int(idx)\n        return None\n\n    def click_ok():\n        idx = ok_index()\n        if idx is None:\n            return False\n        click_index(idx)\n        settle(0.5)\n        return True\n\n    def dialog_has_ok():\n        return ok_index() is not None\n\n    def is_keyboard_open():\n        letters = set(\"abcdefghijklmnopqrstuvwxyz\")\n        for el in els():\n            desc = str(el.get(\"description\") or \"\").strip().lower()\n            if len(desc) == 1 and desc in letters:\n                return True\n            if desc in (\"voice input\", \"switch input method\"):\n                return True\n        return False\n\n    def dismiss_keyboard():\n        if not is_keyboard_open():\n            return\n        device.navigate_back()\n        settle(0.5)\n        if is_keyboard_open():\n            device.navigate_back()\n            settle(0.5)\n\n    def is_event_screen():\n        if find_first(\n            {\"hint\": \"Title\", \"editable\": True},\n            {\"text\": \"Title\", \"editable\": True},\n        ) is not None:\n            return True\n\n        save_idx = find_first(\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"hint\": \"Save\", \"clickable\": True},\n        )\n        if save_idx is not None:\n            for el in els():\n                if el.get(\"editable\") and el.get(\"index\") is not None:\n                    return True\n        return False\n\n    def open_new_event():\n        if is_event_screen():\n            return\n\n        idx = find_first(\n            {\"description\": \"New Event\", \"clickable\": True},\n            {\"description\": \"New event\", \"clickable\": True},\n            {\"text\": \"New Event\", \"clickable\": True},\n            {\"hint\": \"New Event\", \"clickable\": True},\n            {\"description\": \"Add event\", \"clickable\": True},\n            {\"text\": \"Add\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(1.0)\n\n        if is_event_screen():\n            return\n\n        idx = find_first(\n            {\"text\": \"Event\", \"clickable\": True},\n            {\"description\": \"Event\", \"clickable\": True},\n            {\"hint\": \"Event\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(1.0)\n\n        if not is_event_screen():\n            raise RuntimeError(\"Could not open the Event editor\")\n\n    def get_editable_fields():\n        fields = []\n        for el in els():\n            if el.get(\"editable\") and el.get(\"index\") is not None:\n                fields.append(el)\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def input_text_field(hint, value):\n        idx = find_first(\n            {\"hint\": hint, \"editable\": True},\n            {\"text\": hint, \"editable\": True},\n        )\n        if idx is None:\n            device.scroll(direction=\"down\")\n            settle(0.5)\n            idx = find_first(\n                {\"hint\": hint, \"editable\": True},\n                {\"text\": hint, \"editable\": True},\n            )\n\n        if idx is None:\n            fields = get_editable_fields()\n            if hint.lower() == \"title\":\n                if fields:\n                    idx = int(fields[0].get(\"index\"))\n            else:\n                filtered = []\n                for e in fields:\n                    combined = (\n                        f\"{e.get('hint') or ''} \"\n                        f\"{e.get('description') or ''} \"\n                        f\"{e.get('text') or ''}\"\n                    ).lower()\n                    if \"title\" in combined or \"location\" in combined:\n                        continue\n                    filtered.append(e)\n                if filtered:\n                    idx = int(filtered[0].get(\"index\"))\n                elif len(fields) >= 2:\n                    idx = int(fields[-1].get(\"index\"))\n\n        if idx is None:\n            raise RuntimeError(f\"Could not find editable field for {hint}\")\n\n        device.input_text(value, index=idx)\n        settle(0.5)\n        return idx\n\n    def date_like(text):\n        s = str(text or \"\").strip()\n        if not s or \":\" in s:\n            return False\n\n        if re.search(r\"\\b\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\b\", s):\n            return True\n        if re.search(r\"\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b\", s):\n            return True\n\n        low = s.lower()\n        has_month = any(name.lower() in low for name in month_names + month_abbrs)\n        has_number = bool(re.search(r\"\\b\\d{1,2}\\b\", s)) or bool(re.search(r\"\\b\\d{4}\\b\", s))\n        return has_month and has_number\n\n    def get_date_fields():\n        fields = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\")\n            desc = str(el.get(\"description\") or \"\")\n            hint = str(el.get(\"hint\") or \"\")\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if \"reminder\" in combined or \"minutes before\" in combined or \"minutes after\" in combined:\n                continue\n            if \"all-day\" in combined:\n                continue\n\n            if date_like(text) or date_like(desc) or \"date\" in combined:\n                fields.append(el)\n\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def matches_date_text(el, y, m, d, allow_unknown_year=False):\n        if isinstance(el, dict):\n            s = f\"{el.get('text') or ''} {el.get('description') or ''} {el.get('hint') or ''}\"\n        else:\n            s = str(el or \"\")\n\n        if not s.strip():\n            return False\n\n        if f\"{y}-{m:02d}-{d:02d}\" in s:\n            return True\n        if f\"{d:02d}-{m:02d}-{y}\" in s:\n            return True\n\n        low = s.lower()\n        month_ok = month_names[m - 1].lower() in low or month_abbrs[m - 1].lower() in low\n        day_ok = bool(re.search(rf\"(?<!\\d){d}(?!\\d)\", s)) or bool(re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", s))\n        year_ok = bool(re.search(rf\"\\b{y}\\b\", s))\n\n        if month_ok and day_ok:\n            if year_ok:\n                return True\n            if not re.search(r\"\\b\\d{4}\\b\", s):\n                return allow_unknown_year or y == DEFAULT_YEAR\n\n        for sep in (\"/\", \"-\"):\n            e = re.escape(sep)\n            if re.search(rf\"\\b{m}{e}{d}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{m:02d}{e}{d:02d}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{d}{e}{m}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{d:02d}{e}{m:02d}{e}{y}\\b\", s):\n                return True\n\n        return False\n\n    def parse_current_month_year():\n        best_month = None\n        best_year = None\n\n        for el in els():\n            for val in (el.get(\"text\"), el.get(\"hint\"), el.get(\"description\")):\n                s = str(val or \"\").strip()\n                if not s:\n                    continue\n                low = s.lower()\n\n                for i, name in enumerate(month_names):\n                    if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                        mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                        if mm:\n                            return int(mm.group(1)), i + 1\n\n                for i, abbr in enumerate(month_abbrs):\n                    if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                        mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                        if mm:\n                            return int(mm.group(1)), i + 1\n\n                mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                if mm:\n                    y = int(mm.group(1))\n                    for i, name in enumerate(month_names):\n                        if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                            return y, i + 1\n                    for i, abbr in enumerate(month_abbrs):\n                        if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                            return y, i + 1\n\n                mm = re.search(r\"\\b(\\d{4})[-/](\\d{1,2})\\b\", s)\n                if mm:\n                    y = int(mm.group(1))\n                    mo = int(mm.group(2))\n                    if 1 <= mo <= 12:\n                        return y, mo\n\n                mm = re.search(r\"\\b(\\d{1,2})[-/](\\d{4})\\b\", s)\n                if mm:\n                    mo = int(mm.group(1))\n                    y = int(mm.group(2))\n                    if 1 <= mo <= 12:\n                        return y, mo\n\n                if best_month is None:\n                    for i, name in enumerate(month_names):\n                        if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                            best_month = i + 1\n                            break\n                    if best_month is None:\n                        for i, abbr in enumerate(month_abbrs):\n                            if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                                best_month = i + 1\n                                break\n\n                if best_year is None:\n                    mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                    if mm:\n                        best_year = int(mm.group(1))\n\n        if best_month is not None and best_year is not None:\n            return best_year, best_month\n        if best_month is not None:\n            return DEFAULT_YEAR, best_month\n        if best_year is not None:\n            return best_year, DEFAULT_MONTH\n        return None\n\n    def step_month(forward):\n        if forward:\n            idx = find_first(\n                {\"description\": \"Next month\", \"clickable\": True},\n                {\"description\": \"next month\", \"clickable\": True},\n                {\"text\": \"\u203a\", \"clickable\": True},\n                {\"text\": \">\", \"clickable\": True},\n                {\"text\": \"\u00bb\", \"clickable\": True},\n            )\n            if idx is not None:\n                click_index(idx)\n                settle(0.5)\n                return True\n\n            for el in els():\n                if not el.get(\"clickable\"):\n                    continue\n                desc = str(el.get(\"description\") or \"\").lower()\n                if \"next\" in desc:\n                    idx = el.get(\"index\")\n                    if idx is not None:\n                        click_index(int(idx))\n                        settle(0.5)\n                        return True\n\n            device.scroll(direction=\"left\")\n            settle(0.5)\n            return True\n\n        idx = find_first(\n            {\"description\": \"Previous month\", \"clickable\": True},\n            {\"description\": \"previous month\", \"clickable\": True},\n            {\"text\": \"\u2039\", \"clickable\": True},\n            {\"text\": \"<\", \"clickable\": True},\n            {\"text\": \"\u00ab\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(0.5)\n            return True\n\n        for el in els():\n            if not el.get(\"clickable\"):\n                continue\n            desc = str(el.get(\"description\") or \"\").lower()\n            if \"previous\" in desc:\n                idx = el.get(\"index\")\n                if idx is not None:\n                    click_index(int(idx))\n                    settle(0.5)\n                    return True\n\n        device.scroll(direction=\"right\")\n        settle(0.5)\n        return True\n\n    def navigate_to_month(y, m):\n        target = y * 12 + m\n        last_cur = None\n        same_count = 0\n\n        for _ in range(1000):\n            cur = parse_current_month_year()\n            if cur is None:\n                if y == DEFAULT_YEAR and m == DEFAULT_MONTH:\n                    return True\n                raise RuntimeError(\"Could not determine the date picker month\")\n\n            cur_idx = cur[0] * 12 + cur[1]\n            if cur_idx == target:\n                return True\n\n            if last_cur == cur_idx:\n                same_count += 1\n                if same_count >= 3:\n                    raise RuntimeError(\"Could not navigate to the requested month\")\n            else:\n                same_count = 0\n            last_cur = cur_idx\n\n            if not step_month(cur_idx < target):\n                raise RuntimeError(\"Could not navigate to the requested month\")\n            settle(0.5)\n\n        raise RuntimeError(\"Could not navigate to the requested month\")\n\n    def day_candidates(y, m, d):\n        texts = {str(d), f\"{d:02d}\"}\n        month_name = month_names[m - 1].lower()\n        month_abbr = month_abbrs[m - 1].lower()\n        candidates = []\n\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            hint = str(el.get(\"hint\") or \"\").strip()\n\n            if \":\" in text:\n                continue\n\n            score = 0\n\n            if text in texts:\n                score += 2\n            elif re.match(rf\"^{re.escape(str(d))}\\b\", text) and not any(\n                name.lower() in text.lower() for name in month_names + month_abbrs\n            ) and not re.search(r\"\\b\\d{4}\\b\", text):\n                score += 1\n\n            if desc in texts or hint in texts:\n                score += 1\n\n            if desc:\n                dl = desc.lower()\n                if re.search(rf\"(?<!\\d){d}(?!\\d)\", desc) or re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", desc):\n                    if (month_name in dl or month_abbr in dl) and re.search(r\"\\b\\d{4}\\b\", desc):\n                        score += 4\n\n            if hint:\n                hl = hint.lower()\n                if re.search(rf\"(?<!\\d){d}(?!\\d)\", hint) or re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", hint):\n                    if (month_name in hl or month_abbr in hl) and re.search(r\"\\b\\d{4}\\b\", hint):\n                        score += 2\n\n            if score > 0:\n                candidates.append((score, int(el.get(\"index\"))))\n\n        return candidates\n\n    def click_day(y, m, d):\n        candidates = day_candidates(y, m, d)\n        if not candidates:\n            raise RuntimeError(\"Could not find the requested day in the date picker\")\n        candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)\n        click_index(candidates[0][1])\n        settle(0.5)\n\n    def set_date_field(field, y, m, d):\n        idx = int(field.get(\"index\"))\n        click_index(idx)\n        settle(1.0)\n\n        if not dialog_has_ok():\n            dismiss_keyboard()\n            click_index(idx)\n            settle(1.0)\n\n        if not dialog_has_ok():\n            raise RuntimeError(\"Date picker did not open\")\n\n        try:\n            navigate_to_month(y, m)\n            click_day(y, m, d)\n            if not click_ok():\n                if dialog_has_ok():\n                    raise RuntimeError(\"Could not confirm date\")\n        except Exception:\n            if dialog_has_ok():\n                device.navigate_back()\n                settle(0.5)\n            raise\n\n    def find_date_field(which):\n        for _ in range(4):\n            fields = get_date_fields()\n            if len(fields) > which:\n                return fields[which]\n            device.scroll(direction=\"down\")\n            settle(0.5)\n\n        device.scroll(direction=\"up\")\n        settle(0.5)\n\n        for _ in range(4):\n            fields = get_date_fields()\n            if len(fields) > which:\n                return fields[which]\n            device.scroll(direction=\"down\")\n            settle(0.5)\n\n        fields = get_date_fields()\n        if fields and which == 0:\n            return fields[0]\n        return None\n\n    def ensure_date(which, y, m, d, force=False):\n        last_error = None\n\n        for attempt in range(3):\n            dismiss_keyboard()\n            field = find_date_field(which)\n            if field is None:\n                last_error = RuntimeError(\"Could not locate date field\")\n                continue\n\n            if not force and matches_date_text(field, y, m, d, allow_unknown_year=(attempt > 0)):\n                return\n\n            try:\n                set_date_field(field, y, m, d)\n                force = False\n            except Exception as e:\n                last_error = e\n                continue\n\n        dismiss_keyboard()\n        field = find_date_field(which)\n        if field is not None and matches_date_text(field, y, m, d, allow_unknown_year=True):\n            return\n\n        if last_error:\n            raise last_error\n        raise RuntimeError(\"Event date did not match the requested date\")\n\n    def parse_time(text):\n        s = str(text or \"\").strip().upper()\n        if \":\" not in s:\n            return None\n\n        ampm = None\n        if \"AM\" in s:\n            ampm = \"AM\"\n            s = s.replace(\"AM\", \"\")\n        if \"PM\" in s:\n            ampm = \"PM\"\n            s = s.replace(\"PM\", \"\")\n\n        s = s.strip()\n        parts = s.split(\":\")\n        if len(parts) < 2:\n            return None\n\n        try:\n            h = int(parts[0].strip())\n            m = int(parts[1].strip()[:2])\n        except Exception:\n            return None\n\n        if ampm == \"PM\" and h < 12:\n            h += 12\n        if ampm == \"AM\" and h == 12:\n            h = 0\n\n        return h, m\n\n    def time_matches(text, h, m):\n        parsed = parse_time(text)\n        return parsed is not None and parsed[0] == h and parsed[1] == m\n\n    def get_time_fields():\n        fields = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n            if parse_time(el.get(\"text\")) is not None:\n                fields.append(el)\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def adb_shell(*args):\n        if not args:\n            return \"\"\n        try:\n            return device.adb_shell(*args)\n        except Exception:\n            try:\n                return device.adb_shell(\" \".join(str(a) for a in args))\n            except Exception:\n                return \"\"\n\n    def adb_dump_xml():\n        adb_shell(\"uiautomator\", \"dump\", \"/sdcard/window_dump.xml\")\n        xml = adb_shell(\"cat\", \"/sdcard/window_dump.xml\")\n        if \"<hierarchy\" not in xml:\n            xml = adb_shell(\"uiautomator\", \"dump\")\n        return xml\n\n    def parse_nodes(xml):\n        nodes = []\n        for m in re.finditer(r\"<node\\b[^>]*>\", xml):\n            attrs = {}\n            for am in re.finditer(r'([a-zA-Z0-9_:.-]+)=\"([^\"]*)\"', m.group(0)):\n                attrs[am.group(1)] = am.group(2)\n            nodes.append(attrs)\n        return nodes\n\n    def node_center(node):\n        b = node.get(\"bounds\", \"\")\n        m = re.findall(r\"\\[(-?\\d+),(-?\\d+)\\]\", b)\n        if len(m) == 2:\n            x1, y1 = map(int, m[0])\n            x2, y2 = map(int, m[1])\n            return (x1 + x2) // 2, (y1 + y2) // 2\n        return None\n\n    def adb_tap(x, y):\n        adb_shell(\"input\", \"tap\", str(int(x)), str(int(y)))\n        settle(0.3)\n\n    def adb_tap_node(node):\n        c = node_center(node)\n        if c:\n            adb_tap(c[0], c[1])\n\n    def adb_clear_focus():\n        adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n        for _ in range(12):\n            adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n\n    def adb_keyboard_time(h, m):\n        try:\n            nodes = parse_nodes(adb_dump_xml())\n            edits = []\n            for node in nodes:\n                cls = node.get(\"class\", \"\").lower()\n                if \"edittext\" not in cls:\n                    continue\n                vals = \" \".join(\n                    node.get(k, \"\")\n                    for k in (\"resource-id\", \"content-desc\", \"text\", \"hint\")\n                ).lower()\n                if any(b in vals for b in (\"title\", \"description\", \"location\", \"event\")):\n                    continue\n                if any(k in vals for k in (\"time\", \"hour\", \"minute\", \"hh\", \"mm\")) or re.search(\n                    r\"\\b\\d{1,2}:\\d{2}\\b\", vals\n                ):\n                    c = node_center(node)\n                    if c:\n                        edits.append((c, node, vals))\n\n            if not edits:\n                return False\n\n            edits.sort(key=lambda x: (x[0][1], x[0][0]))\n\n            hour_edit = None\n            minute_edit = None\n            for c, node, vals in edits:\n                if \"hour\" in vals or \"hh\" in vals:\n                    hour_edit = (c, node)\n                elif \"minute\" in vals or \"mm\" in vals:\n                    minute_edit = (c, node)\n\n            if hour_edit and minute_edit:\n                adb_tap(*hour_edit[0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}\")\n                settle(0.3)\n\n                adb_tap(*minute_edit[0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{m:02d}\")\n                settle(0.3)\n            elif len(edits) >= 2:\n                adb_tap(*edits[0][0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}\")\n                settle(0.3)\n\n                adb_tap(*edits[1][0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{m:02d}\")\n                settle(0.3)\n            else:\n                c, _node, _vals = edits[0]\n                adb_tap(*c)\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}:{m:02d}\")\n                settle(0.5)\n\n            nodes = parse_nodes(adb_dump_xml())\n            for node in nodes:\n                txt = node.get(\"text\", \"\").upper()\n                desc = node.get(\"content-desc\", \"\").upper()\n                if txt in (\"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"DONE\", \"SET\") or desc in (\n                    \"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"DONE\", \"SET\"\n                ):\n                    adb_tap_node(node)\n                    settle(1.0)\n                    return True\n\n            return True\n        except Exception:\n            return False\n\n    def toggle_time_keyboard():\n        idx = find_first(\n            {\"description\": \"Switch to keyboard\", \"clickable\": True},\n            {\"description\": \"Toggle keyboard\", \"clickable\": True},\n            {\"description\": \"Keyboard\", \"clickable\": True},\n            {\"text\": \"Keyboard\", \"clickable\": True},\n            {\"description\": \"Switch to text input\", \"clickable\": True},\n            {\"description\": \"Enter time using keyboard\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(0.5)\n            return True\n\n        for el in els():\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            vals = []\n            for v in el.values():\n                if isinstance(v, str):\n                    vals.append(v.lower())\n            if not vals:\n                continue\n            joined = \" \".join(vals)\n            if any(k in joined for k in (\"keyboard\", \"text input\", \"enter time\", \"switch to\")):\n                if any(bad in joined for bad in (\"title\", \"description\", \"location\")):\n                    continue\n                click_index(int(idx))\n                settle(0.5)\n                return True\n\n        return False\n\n    def input_time_digits(h, m):\n        time_idx = find_first(\n            {\"hint\": \"Time\", \"editable\": True},\n            {\"description\": \"Time\", \"editable\": True},\n            {\"text\": \"Time\", \"editable\": True},\n            {\"hint\": \"Enter time\", \"editable\": True},\n            {\"description\": \"Enter time\", \"editable\": True},\n            {\"hint\": \"HH:MM\", \"editable\": True},\n            {\"description\": \"HH:MM\", \"editable\": True},\n            {\"text\": \"HH:MM\", \"editable\": True},\n        )\n        if time_idx is not None:\n            try:\n                device.input_text(f\"{h:02d}:{m:02d}\", index=time_idx)\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        hour_idx = find_first(\n            {\"hint\": \"Hour\", \"editable\": True},\n            {\"description\": \"Hour\", \"editable\": True},\n            {\"text\": \"Hour\", \"editable\": True},\n            {\"hint\": \"Hours\", \"editable\": True},\n            {\"description\": \"Hours\", \"editable\": True},\n            {\"text\": \"Hours\", \"editable\": True},\n            {\"hint\": \"HH\", \"editable\": True},\n            {\"description\": \"HH\", \"editable\": True},\n            {\"text\": \"HH\", \"editable\": True},\n        )\n        minute_idx = find_first(\n            {\"hint\": \"Minute\", \"editable\": True},\n            {\"description\": \"Minute\", \"editable\": True},\n            {\"text\": \"Minute\", \"editable\": True},\n            {\"hint\": \"Minutes\", \"editable\": True},\n            {\"description\": \"Minutes\", \"editable\": True},\n            {\"text\": \"Minutes\", \"editable\": True},\n            {\"hint\": \"MM\", \"editable\": True},\n            {\"description\": \"MM\", \"editable\": True},\n            {\"text\": \"MM\", \"editable\": True},\n        )\n\n        if hour_idx is not None and minute_idx is not None:\n            try:\n                device.input_text(f\"{h:02d}\", index=hour_idx)\n                settle(0.3)\n                minute_idx2 = find_first(\n                    {\"hint\": \"Minute\", \"editable\": True},\n                    {\"description\": \"Minute\", \"editable\": True},\n                    {\"text\": \"Minute\", \"editable\": True},\n                    {\"hint\": \"Minutes\", \"editable\": True},\n                    {\"description\": \"Minutes\", \"editable\": True},\n                    {\"text\": \"Minutes\", \"editable\": True},\n                    {\"hint\": \"MM\", \"editable\": True},\n                    {\"description\": \"MM\", \"editable\": True},\n                    {\"text\": \"MM\", \"editable\": True},\n                ) or minute_idx\n                device.input_text(f\"{m:02d}\", index=minute_idx2)\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        editables = []\n        for el in els():\n            if not el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n            combined = (\n                f\"{el.get('hint') or ''} \"\n                f\"{el.get('description') or ''} \"\n                f\"{el.get('text') or ''}\"\n            ).lower()\n            if any(b in combined for b in (\"title\", \"description\", \"location\", \"event\")):\n                continue\n            if any(k in combined for k in (\"time\", \"hour\", \"minute\", \"hh\", \"mm\")):\n                editables.append(el)\n            elif re.fullmatch(r\"\\d{1,2}:\\d{2}\", str(el.get(\"text\") or \"\").strip()):\n                editables.append(el)\n\n        if len(editables) >= 2:\n            editables.sort(key=lambda e: int(e.get(\"index\", -1)))\n            hour_edit = None\n            minute_edit = None\n            for e in editables:\n                combined = (\n                    f\"{e.get('hint') or ''} \"\n                    f\"{e.get('description') or ''} \"\n                    f\"{e.get('text') or ''}\"\n                ).lower()\n                if hour_edit is None and (\"hour\" in combined or \"hh\" in combined):\n                    hour_edit = e\n                if minute_edit is None and (\"minute\" in combined or \"mm\" in combined):\n                    minute_edit = e\n            if hour_edit is None:\n                hour_edit = editables[0]\n            if minute_edit is None:\n                minute_edit = editables[1]\n\n            try:\n                device.input_text(f\"{h:02d}\", index=int(hour_edit.get(\"index\")))\n                settle(0.3)\n                device.input_text(f\"{m:02d}\", index=int(minute_edit.get(\"index\")))\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        if len(editables) == 1:\n            try:\n                device.input_text(f\"{h:02d}:{m:02d}\", index=int(editables[0].get(\"index\")))\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        return False\n\n    def click_time_display(kind):\n        candidates = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").lower()\n            hint = str(el.get(\"hint\") or \"\").lower()\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if text.upper() in (\"OK\", \"OKAY\", \"CANCEL\", \"DONE\", \"SET\", \"SELECT\"):\n                continue\n            if \"keyboard\" in combined or \"switch\" in combined:\n                continue\n\n            score = 0\n            if kind == \"hour\":\n                if \"minute\" in desc or \"minute\" in hint:\n                    continue\n                if \"select\" in desc and \"hour\" in desc:\n                    score += 10\n                elif \"hour\" in desc or \"hour\" in hint:\n                    score += 6\n                elif \"time\" in combined:\n                    score += 2\n                if re.fullmatch(r\"\\d{1,2}\", text):\n                    score += 1\n                elif \":\" in text and \"hour\" in combined:\n                    score += 1\n            else:\n                if \"hour\" in desc or \"hour\" in hint:\n                    continue\n                if \"select\" in desc and \"minute\" in desc:\n                    score += 10\n                elif \"minute\" in desc or \"minute\" in hint:\n                    score += 6\n                elif \"time\" in combined:\n                    score += 2\n                if re.fullmatch(r\"\\d{1,2}\", text):\n                    score += 1\n                elif \":\" in text and \"minute\" in combined:\n                    score += 1\n\n            if score >= 6:\n                candidates.append((score, int(el.get(\"index\"))))\n\n        if not candidates:\n            return None\n\n        candidates.sort(key=lambda x: (-x[0], x[1]))\n        idx = candidates[0][1]\n        click_index(idx)\n        settle(0.5)\n        return idx\n\n    def display_matches(idx, value, kind=\"hour\"):\n        if idx is None:\n            return False\n        el = element_by_index(idx)\n        if not el:\n            return False\n        text = str(el.get(\"text\") or \"\").strip()\n        if \":\" in text:\n            return False\n        texts = {str(value), f\"{value:02d}\"}\n        if kind == \"hour\" and value == 0:\n            texts.add(\"24\")\n        return text in texts\n\n    def click_clock_number(value, kind, exclude=None):\n        texts = {str(value), f\"{value:02d}\"}\n        if kind == \"hour\" and value == 0:\n            texts.add(\"24\")\n\n        candidates = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            idx = int(el.get(\"index\"))\n            if exclude is not None and idx == int(exclude):\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").lower()\n            hint = str(el.get(\"hint\") or \"\").lower()\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if \":\" in text:\n                continue\n            if text.upper() in (\"OK\", \"OKAY\", \"CANCEL\", \"DONE\", \"SET\", \"SELECT\"):\n                continue\n            if \"keyboard\" in combined or \"switch\" in combined:\n                continue\n\n            if kind == \"hour\":\n                if \"minute\" in desc or \"minute\" in hint:\n                    continue\n                if \"select\" in desc and \"hour\" in desc:\n                    continue\n                if desc == \"hour\" or hint == \"hour\":\n                    continue\n            else:\n                if \"hour\" in desc or \"hour\" in hint:\n                    continue\n                if \"select\" in desc and \"minute\" in desc:\n                    continue\n                if desc == \"minute\" or hint == \"minute\":\n                    continue\n\n            score = 0\n            if text in texts:\n                score += 10\n            elif re.fullmatch(r\"\\d{1,2}\", text):\n                try:\n                    if int(text) == value:\n                        score += 8\n                except Exception:\n                    pass\n\n            if desc in texts or hint in texts:\n                score += 6\n\n            if re.search(rf\"(?<!\\d){value}(?!\\d)\", desc) or re.search(rf\"(?<!\\d){value:02d}(?!\\d)\", desc):\n                score += 3\n            if re.search(rf\"(?<!\\d){value}(?!\\d)\", hint) or re.search(rf\"(?<!\\d){value:02d}(?!\\d)\", hint):\n                score += 3\n\n            if kind == \"hour\" and \"hour\" in desc:\n                score += 1\n            if kind == \"minute\" and \"minute\" in desc:\n                score += 1\n\n            if score > 0:\n                candidates.append((score, idx))\n\n        if not candidates:\n            return False\n\n        # Prefer clock-area elements (usually later indexes) over top displays.\n        candidates.sort(key=lambda x: (-x[0], -x[1]))\n        click_index(candidates[0][1])\n        settle(0.5)\n        return True\n\n    def set_time_picker(h, m):\n        def close_if_ok():\n            if click_ok():\n                settle(1.0)\n                return True\n            if not dialog_has_ok():\n                return True\n            return False\n\n        for _ in range(3):\n            hour_disp = click_time_display(\"hour\")\n            hour_set = display_matches(hour_disp, h, \"hour\") or click_clock_number(h, \"hour\", exclude=hour_disp)\n\n            if hour_set:\n                minute_disp = click_time_display(\"minute\")\n                minute_set = display_matches(minute_disp, m, \"minute\") or click_clock_number(\n                    m, \"minute\", exclude=minute_disp\n                )\n\n                if minute_set:\n                    if close_if_ok():\n                        return True\n\n            if toggle_time_keyboard():\n                if input_time_digits(h, m):\n                    if close_if_ok():\n                        return True\n\n            if adb_keyboard_time(h, m):\n                if close_if_ok():\n                    return True\n\n            if dialog_has_ok():\n                click_ok()\n                settle(0.5)\n            else:\n                return False\n\n        return False\n\n    def ensure_time(which, h, m):\n        last_error = None\n\n        for attempt in range(5):\n            dismiss_keyboard()\n            fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"down\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"up\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"down\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                last_error = RuntimeError(\"Could not find time fields\")\n                continue\n\n            if time_matches(fields[which].get(\"text\"), h, m):\n                return\n\n            try:\n                idx = int(fields[which].get(\"index\"))\n                click_index(idx)\n                settle(1.0)\n\n                if not dialog_has_ok():\n                    dismiss_keyboard()\n                    click_index(idx)\n                    settle(1.0)\n\n                if not dialog_has_ok():\n                    raise RuntimeError(\"Time picker did not open\")\n\n                set_time_picker(h, m)\n\n                if dialog_has_ok():\n                    click_ok()\n                    settle(1.0)\n\n                if not is_event_screen():\n                    device.navigate_back()\n                    settle(0.5)\n\n                dismiss_keyboard()\n                fields = get_time_fields()\n                if len(fields) > which and time_matches(fields[which].get(\"text\"), h, m):\n                    return\n\n                last_error = RuntimeError(f\"Time did not update to {h:02d}:{m:02d}\")\n            except Exception as e:\n                last_error = e\n                if dialog_has_ok():\n                    device.navigate_back()\n                    settle(0.5)\n                continue\n\n        dismiss_keyboard()\n        fields = get_time_fields()\n        if len(fields) > which and time_matches(fields[which].get(\"text\"), h, m):\n            return\n\n        if last_error:\n            raise last_error\n        raise RuntimeError(\"Failed to set the requested time\")\n\n    def click_save():\n        idx = find_first(\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"hint\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save event\", \"clickable\": True},\n            {\"text\": \"Save event\", \"clickable\": True},\n        )\n        if idx is None:\n            device.scroll(direction=\"up\")\n            settle(0.5)\n            idx = find_first(\n                {\"description\": \"Save\", \"clickable\": True},\n                {\"text\": \"Save\", \"clickable\": True},\n                {\"hint\": \"Save\", \"clickable\": True},\n                {\"description\": \"Save event\", \"clickable\": True},\n                {\"text\": \"Save event\", \"clickable\": True},\n            )\n        if idx is None:\n            raise RuntimeError(\"Could not find the Save button\")\n\n        click_index(idx)\n        settle(1.0)\n\n    device.open_app(\"Simple Calendar Pro\")\n    settle(2.0)\n\n    open_new_event()\n    input_text_field(\"Title\", event_title)\n    input_text_field(\"Description\", event_description)\n\n    dismiss_keyboard()\n\n    ensure_date(0, start_y, start_m, start_d, force=(start_y != DEFAULT_YEAR))\n    ensure_date(\n        1,\n        end_y,\n        end_m,\n        end_d,\n        force=(end_y != DEFAULT_YEAR or (end_y, end_m, end_d) != (start_y, start_m, start_d)),\n    )\n\n    ensure_time(0, start_h, start_min)\n    ensure_time(1, end_h, end_min)\n\n    dismiss_keyboard()\n    click_save()\n\n    return True\n",
+ "last_artifact": "import re\nfrom datetime import datetime, timedelta\n\nPARAMS_SCHEMA = {\n    \"year\": {\"type\": \"integer\", \"description\": \"Event year\"},\n    \"month\": {\"type\": \"integer\", \"description\": \"Event month, 1-12\"},\n    \"day\": {\"type\": \"integer\", \"description\": \"Event day of month\"},\n    \"hour\": {\"type\": \"integer\", \"description\": \"Event start hour, 0-23\"},\n    \"duration_mins\": {\"type\": \"integer\", \"description\": \"Event duration in minutes\"},\n    \"event_title\": {\"type\": \"string\", \"description\": \"Event title\"},\n    \"event_description\": {\"type\": \"string\", \"description\": \"Event description\"},\n}\n\n\ndef program(device, binding: dict) -> bool:\n    def parse_int(value, name):\n        if isinstance(value, str):\n            digits = \"\".join(ch for ch in value if ch.isdigit())\n            if not digits:\n                raise ValueError(f\"{name} must be numeric\")\n            return int(digits)\n        return int(value)\n\n    year = parse_int(binding[\"year\"], \"year\")\n    month = parse_int(binding[\"month\"], \"month\")\n    day = parse_int(binding[\"day\"], \"day\")\n    hour = parse_int(binding[\"hour\"], \"hour\")\n    duration_mins = parse_int(binding[\"duration_mins\"], \"duration_mins\")\n    event_title = str(binding[\"event_title\"])\n    event_description = str(binding[\"event_description\"])\n\n    if duration_mins < 0:\n        duration_mins = 0\n\n    DEFAULT_YEAR = 2023\n    DEFAULT_MONTH = 10\n\n    # The end time must be derived from the actual start date/time, not from midnight.\n    start_dt = datetime(year, month, day, hour)\n    end_dt = start_dt + timedelta(minutes=duration_mins)\n\n    start_y, start_m, start_d = start_dt.year, start_dt.month, start_dt.day\n    end_y, end_m, end_d = end_dt.year, end_dt.month, end_dt.day\n    start_h, start_min = start_dt.hour, start_dt.minute\n    end_h, end_min = end_dt.hour, end_dt.minute\n\n    month_names = [\n        \"January\", \"February\", \"March\", \"April\", \"May\", \"June\",\n        \"July\", \"August\", \"September\", \"October\", \"November\", \"December\",\n    ]\n    month_abbrs = [\n        \"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\",\n        \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\",\n    ]\n\n    def settle(sec=0.5):\n        device.settle(sec)\n\n    def els():\n        return device.elements()\n\n    def find_first(*criteria):\n        for crit in criteria:\n            kwargs = {k: v for k, v in crit.items() if v is not None}\n            if not kwargs:\n                continue\n            try:\n                idx = device.find(**kwargs)\n            except Exception:\n                idx = None\n            if idx is not None:\n                return idx\n        return None\n\n    def click_index(idx):\n        if idx is None:\n            raise RuntimeError(\"Attempted to click a missing element\")\n        device.click(index=int(idx))\n        settle(0.5)\n\n    def element_by_index(idx):\n        if idx is None:\n            return None\n        for el in els():\n            if el.get(\"index\") is not None and int(el.get(\"index\")) == int(idx):\n                return el\n        return None\n\n    def ok_index():\n        idx = find_first(\n            {\"text\": \"OK\", \"clickable\": True},\n            {\"description\": \"OK\", \"clickable\": True},\n            {\"text\": \"Ok\", \"clickable\": True},\n            {\"description\": \"Ok\", \"clickable\": True},\n            {\"text\": \"Okay\", \"clickable\": True},\n            {\"description\": \"Okay\", \"clickable\": True},\n            {\"text\": \"Confirm\", \"clickable\": True},\n            {\"description\": \"Confirm\", \"clickable\": True},\n            {\"text\": \"Select\", \"clickable\": True},\n            {\"description\": \"Select\", \"clickable\": True},\n            {\"text\": \"Done\", \"clickable\": True},\n            {\"description\": \"Done\", \"clickable\": True},\n            {\"text\": \"Set\", \"clickable\": True},\n            {\"description\": \"Set\", \"clickable\": True},\n        )\n        if idx is not None:\n            return idx\n\n        for el in els():\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            text = str(el.get(\"text\") or \"\").strip().upper()\n            desc = str(el.get(\"description\") or \"\").strip().upper()\n            if text in (\"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"CONTINUE\", \"DONE\", \"SET\", \"CHOOSE\") or desc in (\n                \"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"CONTINUE\", \"DONE\", \"SET\", \"CHOOSE\"\n            ):\n                return int(idx)\n        return None\n\n    def click_ok():\n        idx = ok_index()\n        if idx is None:\n            return False\n        click_index(idx)\n        settle(0.5)\n        return True\n\n    def dialog_has_ok():\n        return ok_index() is not None\n\n    def is_keyboard_open():\n        letters = set(\"abcdefghijklmnopqrstuvwxyz\")\n        for el in els():\n            desc = str(el.get(\"description\") or \"\").strip().lower()\n            if len(desc) == 1 and desc in letters:\n                return True\n            if desc in (\"voice input\", \"switch input method\"):\n                return True\n        return False\n\n    def dismiss_keyboard():\n        if not is_keyboard_open():\n            return\n        device.navigate_back()\n        settle(0.5)\n        if is_keyboard_open():\n            device.navigate_back()\n            settle(0.5)\n\n    def is_event_screen():\n        if find_first(\n            {\"hint\": \"Title\", \"editable\": True},\n            {\"text\": \"Title\", \"editable\": True},\n        ) is not None:\n            return True\n\n        save_idx = find_first(\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"hint\": \"Save\", \"clickable\": True},\n        )\n        if save_idx is not None:\n            for el in els():\n                if el.get(\"editable\") and el.get(\"index\") is not None:\n                    return True\n        return False\n\n    def open_new_event():\n        if is_event_screen():\n            return\n\n        idx = find_first(\n            {\"description\": \"New Event\", \"clickable\": True},\n            {\"description\": \"New event\", \"clickable\": True},\n            {\"text\": \"New Event\", \"clickable\": True},\n            {\"hint\": \"New Event\", \"clickable\": True},\n            {\"description\": \"Add event\", \"clickable\": True},\n            {\"text\": \"Add\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(1.0)\n\n        if is_event_screen():\n            return\n\n        idx = find_first(\n            {\"text\": \"Event\", \"clickable\": True},\n            {\"description\": \"Event\", \"clickable\": True},\n            {\"hint\": \"Event\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(1.0)\n\n        if not is_event_screen():\n            raise RuntimeError(\"Could not open the Event editor\")\n\n    def get_editable_fields():\n        fields = []\n        for el in els():\n            if el.get(\"editable\") and el.get(\"index\") is not None:\n                fields.append(el)\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def input_text_field(hint, value):\n        idx = find_first(\n            {\"hint\": hint, \"editable\": True},\n            {\"text\": hint, \"editable\": True},\n        )\n        if idx is None:\n            device.scroll(direction=\"down\")\n            settle(0.5)\n            idx = find_first(\n                {\"hint\": hint, \"editable\": True},\n                {\"text\": hint, \"editable\": True},\n            )\n\n        if idx is None:\n            fields = get_editable_fields()\n            if hint.lower() == \"title\":\n                if fields:\n                    idx = int(fields[0].get(\"index\"))\n            else:\n                filtered = []\n                for e in fields:\n                    combined = (\n                        f\"{e.get('hint') or ''} \"\n                        f\"{e.get('description') or ''} \"\n                        f\"{e.get('text') or ''}\"\n                    ).lower()\n                    if \"title\" in combined or \"location\" in combined:\n                        continue\n                    filtered.append(e)\n                if filtered:\n                    idx = int(filtered[0].get(\"index\"))\n                elif len(fields) >= 2:\n                    idx = int(fields[-1].get(\"index\"))\n\n        if idx is None:\n            raise RuntimeError(f\"Could not find editable field for {hint}\")\n\n        device.input_text(value, index=idx)\n        settle(0.5)\n        return idx\n\n    def date_like(text):\n        s = str(text or \"\").strip()\n        if not s or \":\" in s:\n            return False\n\n        if re.search(r\"\\b\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\b\", s):\n            return True\n        if re.search(r\"\\b\\d{4}-\\d{1,2}-\\d{1,2}\\b\", s):\n            return True\n\n        low = s.lower()\n        has_month = any(name.lower() in low for name in month_names + month_abbrs)\n        has_number = bool(re.search(r\"\\b\\d{1,2}\\b\", s)) or bool(re.search(r\"\\b\\d{4}\\b\", s))\n        return has_month and has_number\n\n    def get_date_fields():\n        fields = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\")\n            desc = str(el.get(\"description\") or \"\")\n            hint = str(el.get(\"hint\") or \"\")\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if \"reminder\" in combined or \"minutes before\" in combined or \"minutes after\" in combined:\n                continue\n            if \"all-day\" in combined:\n                continue\n\n            if date_like(text) or date_like(desc) or \"date\" in combined:\n                fields.append(el)\n\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def matches_date_text(el, y, m, d, allow_unknown_year=False):\n        if isinstance(el, dict):\n            s = f\"{el.get('text') or ''} {el.get('description') or ''} {el.get('hint') or ''}\"\n        else:\n            s = str(el or \"\")\n\n        if not s.strip():\n            return False\n\n        if f\"{y}-{m:02d}-{d:02d}\" in s:\n            return True\n        if f\"{d:02d}-{m:02d}-{y}\" in s:\n            return True\n\n        low = s.lower()\n        month_ok = month_names[m - 1].lower() in low or month_abbrs[m - 1].lower() in low\n        day_ok = bool(re.search(rf\"(?<!\\d){d}(?!\\d)\", s)) or bool(re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", s))\n        year_ok = bool(re.search(rf\"\\b{y}\\b\", s))\n\n        if month_ok and day_ok:\n            if year_ok:\n                return True\n            if not re.search(r\"\\b\\d{4}\\b\", s):\n                return allow_unknown_year or y == DEFAULT_YEAR\n\n        for sep in (\"/\", \"-\"):\n            e = re.escape(sep)\n            if re.search(rf\"\\b{m}{e}{d}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{m:02d}{e}{d:02d}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{d}{e}{m}{e}{y}\\b\", s):\n                return True\n            if re.search(rf\"\\b{d:02d}{e}{m:02d}{e}{y}\\b\", s):\n                return True\n\n        return False\n\n    def parse_current_month_year():\n        best_month = None\n        best_year = None\n\n        for el in els():\n            for val in (el.get(\"text\"), el.get(\"hint\"), el.get(\"description\")):\n                s = str(val or \"\").strip()\n                if not s:\n                    continue\n                low = s.lower()\n\n                for i, name in enumerate(month_names):\n                    if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                        mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                        if mm:\n                            return int(mm.group(1)), i + 1\n\n                for i, abbr in enumerate(month_abbrs):\n                    if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                        mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                        if mm:\n                            return int(mm.group(1)), i + 1\n\n                mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                if mm:\n                    y = int(mm.group(1))\n                    for i, name in enumerate(month_names):\n                        if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                            return y, i + 1\n                    for i, abbr in enumerate(month_abbrs):\n                        if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                            return y, i + 1\n\n                mm = re.search(r\"\\b(\\d{4})[-/](\\d{1,2})\\b\", s)\n                if mm:\n                    y = int(mm.group(1))\n                    mo = int(mm.group(2))\n                    if 1 <= mo <= 12:\n                        return y, mo\n\n                mm = re.search(r\"\\b(\\d{1,2})[-/](\\d{4})\\b\", s)\n                if mm:\n                    mo = int(mm.group(1))\n                    y = int(mm.group(2))\n                    if 1 <= mo <= 12:\n                        return y, mo\n\n                if best_month is None:\n                    for i, name in enumerate(month_names):\n                        if re.search(rf\"\\b{re.escape(name.lower())}\\b\", low):\n                            best_month = i + 1\n                            break\n                    if best_month is None:\n                        for i, abbr in enumerate(month_abbrs):\n                            if re.search(rf\"\\b{re.escape(abbr.lower())}\\b\", low):\n                                best_month = i + 1\n                                break\n\n                if best_year is None:\n                    mm = re.search(r\"\\b(\\d{4})\\b\", s)\n                    if mm:\n                        best_year = int(mm.group(1))\n\n        if best_month is not None and best_year is not None:\n            return best_year, best_month\n        if best_month is not None:\n            return DEFAULT_YEAR, best_month\n        if best_year is not None:\n            return best_year, DEFAULT_MONTH\n        return None\n\n    def step_month(forward):\n        if forward:\n            idx = find_first(\n                {\"description\": \"Next month\", \"clickable\": True},\n                {\"description\": \"next month\", \"clickable\": True},\n                {\"text\": \"\u203a\", \"clickable\": True},\n                {\"text\": \">\", \"clickable\": True},\n                {\"text\": \"\u00bb\", \"clickable\": True},\n            )\n            if idx is not None:\n                click_index(idx)\n                settle(0.5)\n                return True\n\n            for el in els():\n                if not el.get(\"clickable\"):\n                    continue\n                desc = str(el.get(\"description\") or \"\").lower()\n                if \"next\" in desc:\n                    idx = el.get(\"index\")\n                    if idx is not None:\n                        click_index(int(idx))\n                        settle(0.5)\n                        return True\n\n            device.scroll(direction=\"left\")\n            settle(0.5)\n            return True\n\n        idx = find_first(\n            {\"description\": \"Previous month\", \"clickable\": True},\n            {\"description\": \"previous month\", \"clickable\": True},\n            {\"text\": \"\u2039\", \"clickable\": True},\n            {\"text\": \"<\", \"clickable\": True},\n            {\"text\": \"\u00ab\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(0.5)\n            return True\n\n        for el in els():\n            if not el.get(\"clickable\"):\n                continue\n            desc = str(el.get(\"description\") or \"\").lower()\n            if \"previous\" in desc:\n                idx = el.get(\"index\")\n                if idx is not None:\n                    click_index(int(idx))\n                    settle(0.5)\n                    return True\n\n        device.scroll(direction=\"right\")\n        settle(0.5)\n        return True\n\n    def navigate_to_month(y, m):\n        target = y * 12 + m\n        last_cur = None\n        same_count = 0\n\n        for _ in range(1000):\n            cur = parse_current_month_year()\n            if cur is None:\n                if y == DEFAULT_YEAR and m == DEFAULT_MONTH:\n                    return True\n                raise RuntimeError(\"Could not determine the date picker month\")\n\n            cur_idx = cur[0] * 12 + cur[1]\n            if cur_idx == target:\n                return True\n\n            if last_cur == cur_idx:\n                same_count += 1\n                if same_count >= 3:\n                    raise RuntimeError(\"Could not navigate to the requested month\")\n            else:\n                same_count = 0\n            last_cur = cur_idx\n\n            if not step_month(cur_idx < target):\n                raise RuntimeError(\"Could not navigate to the requested month\")\n            settle(0.5)\n\n        raise RuntimeError(\"Could not navigate to the requested month\")\n\n    def day_candidates(y, m, d):\n        texts = {str(d), f\"{d:02d}\"}\n        month_name = month_names[m - 1].lower()\n        month_abbr = month_abbrs[m - 1].lower()\n        candidates = []\n\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").strip()\n            hint = str(el.get(\"hint\") or \"\").strip()\n\n            if \":\" in text:\n                continue\n\n            score = 0\n\n            if text in texts:\n                score += 2\n            elif re.match(rf\"^{re.escape(str(d))}\\b\", text) and not any(\n                name.lower() in text.lower() for name in month_names + month_abbrs\n            ) and not re.search(r\"\\b\\d{4}\\b\", text):\n                score += 1\n\n            if desc in texts or hint in texts:\n                score += 1\n\n            if desc:\n                dl = desc.lower()\n                if re.search(rf\"(?<!\\d){d}(?!\\d)\", desc) or re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", desc):\n                    if (month_name in dl or month_abbr in dl) and re.search(r\"\\b\\d{4}\\b\", desc):\n                        score += 4\n\n            if hint:\n                hl = hint.lower()\n                if re.search(rf\"(?<!\\d){d}(?!\\d)\", hint) or re.search(rf\"(?<!\\d){d:02d}(?!\\d)\", hint):\n                    if (month_name in hl or month_abbr in hl) and re.search(r\"\\b\\d{4}\\b\", hint):\n                        score += 2\n\n            if score > 0:\n                candidates.append((score, int(el.get(\"index\"))))\n\n        return candidates\n\n    def click_day(y, m, d):\n        candidates = day_candidates(y, m, d)\n        if not candidates:\n            raise RuntimeError(\"Could not find the requested day in the date picker\")\n        candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)\n        click_index(candidates[0][1])\n        settle(0.5)\n\n    def set_date_field(field, y, m, d):\n        idx = int(field.get(\"index\"))\n        click_index(idx)\n        settle(1.0)\n\n        if not dialog_has_ok():\n            dismiss_keyboard()\n            click_index(idx)\n            settle(1.0)\n\n        if not dialog_has_ok():\n            raise RuntimeError(\"Date picker did not open\")\n\n        try:\n            navigate_to_month(y, m)\n            click_day(y, m, d)\n            if not click_ok():\n                if dialog_has_ok():\n                    raise RuntimeError(\"Could not confirm date\")\n        except Exception:\n            if dialog_has_ok():\n                device.navigate_back()\n                settle(0.5)\n            raise\n\n    def find_date_field(which):\n        for _ in range(4):\n            fields = get_date_fields()\n            if len(fields) > which:\n                return fields[which]\n            device.scroll(direction=\"down\")\n            settle(0.5)\n\n        device.scroll(direction=\"up\")\n        settle(0.5)\n\n        for _ in range(4):\n            fields = get_date_fields()\n            if len(fields) > which:\n                return fields[which]\n            device.scroll(direction=\"down\")\n            settle(0.5)\n\n        fields = get_date_fields()\n        if fields and which == 0:\n            return fields[0]\n        return None\n\n    def ensure_date(which, y, m, d, force=False):\n        last_error = None\n\n        for attempt in range(3):\n            dismiss_keyboard()\n            field = find_date_field(which)\n            if field is None:\n                last_error = RuntimeError(\"Could not locate date field\")\n                continue\n\n            if not force and matches_date_text(field, y, m, d, allow_unknown_year=(attempt > 0)):\n                return\n\n            try:\n                set_date_field(field, y, m, d)\n                force = False\n            except Exception as e:\n                last_error = e\n                continue\n\n        dismiss_keyboard()\n        field = find_date_field(which)\n        if field is not None and matches_date_text(field, y, m, d, allow_unknown_year=True):\n            return\n\n        if last_error:\n            raise last_error\n        raise RuntimeError(\"Event date did not match the requested date\")\n\n    def parse_time(text):\n        s = str(text or \"\").strip().upper()\n        if \":\" not in s:\n            return None\n\n        ampm = None\n        if \"AM\" in s:\n            ampm = \"AM\"\n            s = s.replace(\"AM\", \"\")\n        if \"PM\" in s:\n            ampm = \"PM\"\n            s = s.replace(\"PM\", \"\")\n\n        s = s.strip()\n        parts = s.split(\":\")\n        if len(parts) < 2:\n            return None\n\n        try:\n            h = int(parts[0].strip())\n            m = int(parts[1].strip()[:2])\n        except Exception:\n            return None\n\n        if ampm == \"PM\" and h < 12:\n            h += 12\n        if ampm == \"AM\" and h == 12:\n            h = 0\n\n        return h, m\n\n    def time_matches(text, h, m):\n        parsed = parse_time(text)\n        return parsed is not None and parsed[0] == h and parsed[1] == m\n\n    def get_time_fields():\n        fields = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n            if parse_time(el.get(\"text\")) is not None:\n                fields.append(el)\n        fields.sort(key=lambda e: int(e.get(\"index\", -1)))\n        return fields\n\n    def adb_shell(*args):\n        if not args:\n            return \"\"\n        try:\n            return device.adb_shell(*args)\n        except Exception:\n            try:\n                return device.adb_shell(\" \".join(str(a) for a in args))\n            except Exception:\n                return \"\"\n\n    def adb_dump_xml():\n        adb_shell(\"uiautomator\", \"dump\", \"/sdcard/window_dump.xml\")\n        xml = adb_shell(\"cat\", \"/sdcard/window_dump.xml\")\n        if \"<hierarchy\" not in xml:\n            xml = adb_shell(\"uiautomator\", \"dump\")\n        return xml\n\n    def parse_nodes(xml):\n        nodes = []\n        for m in re.finditer(r\"<node\\b[^>]*>\", xml):\n            attrs = {}\n            for am in re.finditer(r'([a-zA-Z0-9_:.-]+)=\"([^\"]*)\"', m.group(0)):\n                attrs[am.group(1)] = am.group(2)\n            nodes.append(attrs)\n        return nodes\n\n    def node_center(node):\n        b = node.get(\"bounds\", \"\")\n        m = re.findall(r\"\\[(-?\\d+),(-?\\d+)\\]\", b)\n        if len(m) == 2:\n            x1, y1 = map(int, m[0])\n            x2, y2 = map(int, m[1])\n            return (x1 + x2) // 2, (y1 + y2) // 2\n        return None\n\n    def adb_tap(x, y):\n        adb_shell(\"input\", \"tap\", str(int(x)), str(int(y)))\n        settle(0.3)\n\n    def adb_tap_node(node):\n        c = node_center(node)\n        if c:\n            adb_tap(c[0], c[1])\n\n    def adb_clear_focus():\n        adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n        for _ in range(12):\n            adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n\n    def adb_keyboard_time(h, m):\n        try:\n            nodes = parse_nodes(adb_dump_xml())\n            edits = []\n            for node in nodes:\n                cls = node.get(\"class\", \"\").lower()\n                if \"edittext\" not in cls:\n                    continue\n                vals = \" \".join(\n                    node.get(k, \"\")\n                    for k in (\"resource-id\", \"content-desc\", \"text\", \"hint\")\n                ).lower()\n                if any(b in vals for b in (\"title\", \"description\", \"location\", \"event\")):\n                    continue\n                if any(k in vals for k in (\"time\", \"hour\", \"minute\", \"hh\", \"mm\")) or re.search(\n                    r\"\\b\\d{1,2}:\\d{2}\\b\", vals\n                ):\n                    c = node_center(node)\n                    if c:\n                        edits.append((c, node, vals))\n\n            if not edits:\n                return False\n\n            edits.sort(key=lambda x: (x[0][1], x[0][0]))\n\n            hour_edit = None\n            minute_edit = None\n            for c, node, vals in edits:\n                if \"hour\" in vals or \"hh\" in vals:\n                    hour_edit = (c, node)\n                elif \"minute\" in vals or \"mm\" in vals:\n                    minute_edit = (c, node)\n\n            if hour_edit and minute_edit:\n                adb_tap(*hour_edit[0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}\")\n                settle(0.3)\n\n                adb_tap(*minute_edit[0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{m:02d}\")\n                settle(0.3)\n            elif len(edits) >= 2:\n                adb_tap(*edits[0][0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}\")\n                settle(0.3)\n\n                adb_tap(*edits[1][0])\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{m:02d}\")\n                settle(0.3)\n            else:\n                c, _node, _vals = edits[0]\n                adb_tap(*c)\n                settle(0.2)\n                adb_clear_focus()\n                adb_shell(\"input\", \"text\", f\"{h:02d}:{m:02d}\")\n                settle(0.5)\n\n            nodes = parse_nodes(adb_dump_xml())\n            for node in nodes:\n                txt = node.get(\"text\", \"\").upper()\n                desc = node.get(\"content-desc\", \"\").upper()\n                if txt in (\"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"DONE\", \"SET\") or desc in (\n                    \"OK\", \"OKAY\", \"CONFIRM\", \"SELECT\", \"DONE\", \"SET\"\n                ):\n                    adb_tap_node(node)\n                    settle(1.0)\n                    return True\n\n            return True\n        except Exception:\n            return False\n\n    def toggle_time_keyboard():\n        idx = find_first(\n            {\"description\": \"Switch to keyboard\", \"clickable\": True},\n            {\"description\": \"Toggle keyboard\", \"clickable\": True},\n            {\"description\": \"Keyboard\", \"clickable\": True},\n            {\"text\": \"Keyboard\", \"clickable\": True},\n            {\"description\": \"Switch to text input\", \"clickable\": True},\n            {\"description\": \"Enter time using keyboard\", \"clickable\": True},\n        )\n        if idx is not None:\n            click_index(idx)\n            settle(0.5)\n            return True\n\n        for el in els():\n            idx = el.get(\"index\")\n            if idx is None:\n                continue\n            vals = []\n            for v in el.values():\n                if isinstance(v, str):\n                    vals.append(v.lower())\n            if not vals:\n                continue\n            joined = \" \".join(vals)\n            if any(k in joined for k in (\"keyboard\", \"text input\", \"enter time\", \"switch to\")):\n                if any(bad in joined for bad in (\"title\", \"description\", \"location\")):\n                    continue\n                click_index(int(idx))\n                settle(0.5)\n                return True\n\n        return False\n\n    def input_time_digits(h, m):\n        time_idx = find_first(\n            {\"hint\": \"Time\", \"editable\": True},\n            {\"description\": \"Time\", \"editable\": True},\n            {\"text\": \"Time\", \"editable\": True},\n            {\"hint\": \"Enter time\", \"editable\": True},\n            {\"description\": \"Enter time\", \"editable\": True},\n            {\"hint\": \"HH:MM\", \"editable\": True},\n            {\"description\": \"HH:MM\", \"editable\": True},\n            {\"text\": \"HH:MM\", \"editable\": True},\n        )\n        if time_idx is not None:\n            try:\n                device.input_text(f\"{h:02d}:{m:02d}\", index=time_idx)\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        hour_idx = find_first(\n            {\"hint\": \"Hour\", \"editable\": True},\n            {\"description\": \"Hour\", \"editable\": True},\n            {\"text\": \"Hour\", \"editable\": True},\n            {\"hint\": \"Hours\", \"editable\": True},\n            {\"description\": \"Hours\", \"editable\": True},\n            {\"text\": \"Hours\", \"editable\": True},\n            {\"hint\": \"HH\", \"editable\": True},\n            {\"description\": \"HH\", \"editable\": True},\n            {\"text\": \"HH\", \"editable\": True},\n        )\n        minute_idx = find_first(\n            {\"hint\": \"Minute\", \"editable\": True},\n            {\"description\": \"Minute\", \"editable\": True},\n            {\"text\": \"Minute\", \"editable\": True},\n            {\"hint\": \"Minutes\", \"editable\": True},\n            {\"description\": \"Minutes\", \"editable\": True},\n            {\"text\": \"Minutes\", \"editable\": True},\n            {\"hint\": \"MM\", \"editable\": True},\n            {\"description\": \"MM\", \"editable\": True},\n            {\"text\": \"MM\", \"editable\": True},\n        )\n\n        if hour_idx is not None and minute_idx is not None:\n            try:\n                device.input_text(f\"{h:02d}\", index=hour_idx)\n                settle(0.3)\n                minute_idx2 = find_first(\n                    {\"hint\": \"Minute\", \"editable\": True},\n                    {\"description\": \"Minute\", \"editable\": True},\n                    {\"text\": \"Minute\", \"editable\": True},\n                    {\"hint\": \"Minutes\", \"editable\": True},\n                    {\"description\": \"Minutes\", \"editable\": True},\n                    {\"text\": \"Minutes\", \"editable\": True},\n                    {\"hint\": \"MM\", \"editable\": True},\n                    {\"description\": \"MM\", \"editable\": True},\n                    {\"text\": \"MM\", \"editable\": True},\n                ) or minute_idx\n                device.input_text(f\"{m:02d}\", index=minute_idx2)\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        editables = []\n        for el in els():\n            if not el.get(\"editable\") or el.get(\"index\") is None:\n                continue\n            combined = (\n                f\"{el.get('hint') or ''} \"\n                f\"{el.get('description') or ''} \"\n                f\"{el.get('text') or ''}\"\n            ).lower()\n            if any(b in combined for b in (\"title\", \"description\", \"location\", \"event\")):\n                continue\n            if any(k in combined for k in (\"time\", \"hour\", \"minute\", \"hh\", \"mm\")):\n                editables.append(el)\n            elif re.fullmatch(r\"\\d{1,2}:\\d{2}\", str(el.get(\"text\") or \"\").strip()):\n                editables.append(el)\n\n        if len(editables) >= 2:\n            editables.sort(key=lambda e: int(e.get(\"index\", -1)))\n            hour_edit = None\n            minute_edit = None\n            for e in editables:\n                combined = (\n                    f\"{e.get('hint') or ''} \"\n                    f\"{e.get('description') or ''} \"\n                    f\"{e.get('text') or ''}\"\n                ).lower()\n                if hour_edit is None and (\"hour\" in combined or \"hh\" in combined):\n                    hour_edit = e\n                if minute_edit is None and (\"minute\" in combined or \"mm\" in combined):\n                    minute_edit = e\n            if hour_edit is None:\n                hour_edit = editables[0]\n            if minute_edit is None:\n                minute_edit = editables[1]\n\n            try:\n                device.input_text(f\"{h:02d}\", index=int(hour_edit.get(\"index\")))\n                settle(0.3)\n                device.input_text(f\"{m:02d}\", index=int(minute_edit.get(\"index\")))\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        if len(editables) == 1:\n            try:\n                device.input_text(f\"{h:02d}:{m:02d}\", index=int(editables[0].get(\"index\")))\n                try:\n                    device.keyboard_enter()\n                except Exception:\n                    pass\n                settle(0.5)\n                return True\n            except Exception:\n                pass\n\n        return False\n\n    def click_time_display(kind):\n        candidates = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").lower()\n            hint = str(el.get(\"hint\") or \"\").lower()\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if text.upper() in (\"OK\", \"OKAY\", \"CANCEL\", \"DONE\", \"SET\", \"SELECT\"):\n                continue\n            if \"keyboard\" in combined or \"switch\" in combined:\n                continue\n\n            score = 0\n            if kind == \"hour\":\n                if \"minute\" in desc or \"minute\" in hint:\n                    continue\n                if \"select\" in desc and \"hour\" in desc:\n                    score += 10\n                elif \"hour\" in desc or \"hour\" in hint:\n                    score += 6\n                elif \"time\" in combined:\n                    score += 2\n                if re.fullmatch(r\"\\d{1,2}\", text):\n                    score += 1\n                elif \":\" in text and \"hour\" in combined:\n                    score += 1\n            else:\n                if \"hour\" in desc or \"hour\" in hint:\n                    continue\n                if \"select\" in desc and \"minute\" in desc:\n                    score += 10\n                elif \"minute\" in desc or \"minute\" in hint:\n                    score += 6\n                elif \"time\" in combined:\n                    score += 2\n                if re.fullmatch(r\"\\d{1,2}\", text):\n                    score += 1\n                elif \":\" in text and \"minute\" in combined:\n                    score += 1\n\n            if score >= 6:\n                candidates.append((score, int(el.get(\"index\"))))\n\n        if not candidates:\n            return None\n\n        candidates.sort(key=lambda x: (-x[0], x[1]))\n        idx = candidates[0][1]\n        click_index(idx)\n        settle(0.5)\n        return idx\n\n    def display_matches(idx, value, kind=\"hour\"):\n        if idx is None:\n            return False\n        el = element_by_index(idx)\n        if not el:\n            return False\n        text = str(el.get(\"text\") or \"\").strip()\n        if \":\" in text:\n            return False\n        texts = {str(value), f\"{value:02d}\"}\n        if kind == \"hour\" and value == 0:\n            texts.add(\"24\")\n        return text in texts\n\n    def click_clock_number(value, kind, exclude=None):\n        texts = {str(value), f\"{value:02d}\"}\n        if kind == \"hour\" and value == 0:\n            texts.add(\"24\")\n\n        candidates = []\n        for el in els():\n            if not el.get(\"clickable\") or el.get(\"index\") is None:\n                continue\n\n            idx = int(el.get(\"index\"))\n            if exclude is not None and idx == int(exclude):\n                continue\n\n            text = str(el.get(\"text\") or \"\").strip()\n            desc = str(el.get(\"description\") or \"\").lower()\n            hint = str(el.get(\"hint\") or \"\").lower()\n            combined = f\"{text} {desc} {hint}\".lower()\n\n            if \":\" in text:\n                continue\n            if text.upper() in (\"OK\", \"OKAY\", \"CANCEL\", \"DONE\", \"SET\", \"SELECT\"):\n                continue\n            if \"keyboard\" in combined or \"switch\" in combined:\n                continue\n\n            if kind == \"hour\":\n                if \"minute\" in desc or \"minute\" in hint:\n                    continue\n                if \"select\" in desc and \"hour\" in desc:\n                    continue\n                if desc == \"hour\" or hint == \"hour\":\n                    continue\n            else:\n                if \"hour\" in desc or \"hour\" in hint:\n                    continue\n                if \"select\" in desc and \"minute\" in desc:\n                    continue\n                if desc == \"minute\" or hint == \"minute\":\n                    continue\n\n            score = 0\n            if text in texts:\n                score += 10\n            elif re.fullmatch(r\"\\d{1,2}\", text):\n                try:\n                    if int(text) == value:\n                        score += 8\n                except Exception:\n                    pass\n\n            if desc in texts or hint in texts:\n                score += 6\n\n            if re.search(rf\"(?<!\\d){value}(?!\\d)\", desc) or re.search(rf\"(?<!\\d){value:02d}(?!\\d)\", desc):\n                score += 3\n            if re.search(rf\"(?<!\\d){value}(?!\\d)\", hint) or re.search(rf\"(?<!\\d){value:02d}(?!\\d)\", hint):\n                score += 3\n\n            if kind == \"hour\" and \"hour\" in desc:\n                score += 1\n            if kind == \"minute\" and \"minute\" in desc:\n                score += 1\n\n            if score > 0:\n                candidates.append((score, idx))\n\n        if not candidates:\n            return False\n\n        # Prefer clock-area elements (usually later indexes) over top displays.\n        candidates.sort(key=lambda x: (-x[0], -x[1]))\n        click_index(candidates[0][1])\n        settle(0.5)\n        return True\n\n    def set_time_picker(h, m):\n        def close_if_ok():\n            if click_ok():\n                settle(1.0)\n                return True\n            if not dialog_has_ok():\n                return True\n            return False\n\n        for _ in range(3):\n            hour_disp = click_time_display(\"hour\")\n            hour_set = display_matches(hour_disp, h, \"hour\") or click_clock_number(h, \"hour\", exclude=hour_disp)\n\n            if hour_set:\n                minute_disp = click_time_display(\"minute\")\n                minute_set = display_matches(minute_disp, m, \"minute\") or click_clock_number(\n                    m, \"minute\", exclude=minute_disp\n                )\n\n                if minute_set:\n                    if close_if_ok():\n                        return True\n\n            if toggle_time_keyboard():\n                if input_time_digits(h, m):\n                    if close_if_ok():\n                        return True\n\n            if adb_keyboard_time(h, m):\n                if close_if_ok():\n                    return True\n\n            if dialog_has_ok():\n                click_ok()\n                settle(0.5)\n            else:\n                return False\n\n        return False\n\n    def ensure_time(which, h, m):\n        last_error = None\n\n        for attempt in range(5):\n            dismiss_keyboard()\n            fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"down\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"up\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                device.scroll(direction=\"down\")\n                settle(0.5)\n                fields = get_time_fields()\n\n            if len(fields) <= which:\n                last_error = RuntimeError(\"Could not find time fields\")\n                continue\n\n            if time_matches(fields[which].get(\"text\"), h, m):\n                return\n\n            try:\n                idx = int(fields[which].get(\"index\"))\n                click_index(idx)\n                settle(1.0)\n\n                if not dialog_has_ok():\n                    dismiss_keyboard()\n                    click_index(idx)\n                    settle(1.0)\n\n                if not dialog_has_ok():\n                    raise RuntimeError(\"Time picker did not open\")\n\n                set_time_picker(h, m)\n\n                if dialog_has_ok():\n                    click_ok()\n                    settle(1.0)\n\n                if not is_event_screen():\n                    device.navigate_back()\n                    settle(0.5)\n\n                dismiss_keyboard()\n                fields = get_time_fields()\n                if len(fields) > which and time_matches(fields[which].get(\"text\"), h, m):\n                    return\n\n                last_error = RuntimeError(f\"Time did not update to {h:02d}:{m:02d}\")\n            except Exception as e:\n                last_error = e\n                if dialog_has_ok():\n                    device.navigate_back()\n                    settle(0.5)\n                continue\n\n        dismiss_keyboard()\n        fields = get_time_fields()\n        if len(fields) > which and time_matches(fields[which].get(\"text\"), h, m):\n            return\n\n        if last_error:\n            raise last_error\n        raise RuntimeError(\"Failed to set the requested time\")\n\n    def click_save():\n        idx = find_first(\n            {\"description\": \"Save\", \"clickable\": True},\n            {\"text\": \"Save\", \"clickable\": True},\n            {\"hint\": \"Save\", \"clickable\": True},\n            {\"description\": \"Save event\", \"clickable\": True},\n            {\"text\": \"Save event\", \"clickable\": True},\n        )\n        if idx is None:\n            device.scroll(direction=\"up\")\n            settle(0.5)\n            idx = find_first(\n                {\"description\": \"Save\", \"clickable\": True},\n                {\"text\": \"Save\", \"clickable\": True},\n                {\"hint\": \"Save\", \"clickable\": True},\n                {\"description\": \"Save event\", \"clickable\": True},\n                {\"text\": \"Save event\", \"clickable\": True},\n            )\n        if idx is None:\n            raise RuntimeError(\"Could not find the Save button\")\n\n        click_index(idx)\n        settle(1.0)\n\n    device.open_app(\"Simple Calendar Pro\")\n    settle(2.0)\n\n    open_new_event()\n    input_text_field(\"Title\", event_title)\n    input_text_field(\"Description\", event_description)\n\n    dismiss_keyboard()\n\n    ensure_date(0, start_y, start_m, start_d, force=(start_y != DEFAULT_YEAR))\n    ensure_date(\n        1,\n        end_y,\n        end_m,\n        end_d,\n        force=(end_y != DEFAULT_YEAR or (end_y, end_m, end_d) != (start_y, start_m, start_d)),\n    )\n\n    ensure_time(0, start_h, start_min)\n    ensure_time(1, end_h, end_min)\n\n    dismiss_keyboard()\n    click_save()\n\n    return True\n",
+ "conclusions": [
+  "seed 1: It clicked the Description field (index 7) instead of a date field, so the date picker never opened; later searches for full-date labels such as \u201cOctober 19\u201d failed because no date picker was present and the picker would normally show only the day number.",
+  "seed 1: The agent failed to set the end time correctly because the time picker is not an editable text field; it left the end time as 00:15 instead of 18:15, so the event did not have the required 15-minute duration and was not successfully saved.",
+  "seed 1: The agent treated the time fields as editable text and typed into the wrong element (index 0) instead of using the clickable time labels that open the time picker, so the start/end times remained 16:00. It also never set the end time needed for a 15-minute duration."
+ ],
+ "totals": {
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 10434,
+   "cached_tokens": 0,
+   "completion_tokens": 9921,
+   "total_tokens": 20355,
+   "cost_usd": 0.00616569
+  },
+  "resume_episodes": {
+   "calls": 24,
+   "prompt_tokens": 593336,
+   "cached_tokens": 482560,
+   "completion_tokens": 1753,
+   "total_tokens": 595089,
+   "cost_usd": 0.02490965
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 39191,
+   "cached_tokens": 768,
+   "completion_tokens": 158126,
+   "total_tokens": 197317,
+   "cost_usd": 0.07929401
+  },
+  "program_replays": {
+   "count": 9,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  }
+ },
+ "gate": {
+  "bindings_passed": 4,
+  "bindings_total": 5,
+  "detail": [
+   {
+    "binding": {
+     "year": 2023,
+     "month": 10,
+     "day": 25,
+     "hour": 11,
+     "duration_mins": 60,
+     "event_title": "Meeting with Dr. Smith",
+     "event_description": "We will plan contract details. Looking forward to productive discussions."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "year": 2023,
+     "month": 10,
+     "day": 29,
+     "hour": 23,
+     "duration_mins": 30,
+     "event_title": "Catch up on Budget Planning",
+     "event_description": "We will celebrate product launch."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "year": 2023,
+     "month": 10,
+     "day": 22,
+     "hour": 0,
+     "duration_mins": 30,
+     "event_title": "Call with Dr. Smith",
+     "event_description": "We will review business objectives. Looking forward to productive discussions."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "year": 2023,
+     "month": 10,
+     "day": 20,
+     "hour": 21,
+     "duration_mins": 15,
+     "event_title": "Appointment for Project X",
+     "event_description": "We will review marketing strategies."
+    },
+    "passed": true,
+    "error": null
+   },
+   {
+    "binding": {
+     "year": 2023,
+     "month": 10,
+     "day": 19,
+     "hour": 4,
+     "duration_mins": 60,
+     "event_title": "Meeting with HR",
+     "event_description": "We will explore annual budget. Looking forward to productive discussions."
+    },
+    "passed": false,
+    "error": "RuntimeError: Time did not update to 04:00"
+   }
+  ]
+ },
+ "test_seed0": {
+  "passed": true,
+  "error": null
+ },
+ "record_type": "verification"
+}

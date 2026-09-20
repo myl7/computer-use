@@ -1,0 +1,214 @@
+{
+ "family": "OsmAndMarker",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "test_seed": 0,
+ "n_ref": 2,
+ "step_cap": 20,
+ "instances": [
+  {
+   "family": "OsmAndMarker",
+   "seed": 1,
+   "goal": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 20,
+     "usage": {
+      "prompt_tokens": 1007633,
+      "cached_tokens": 909824,
+      "completion_tokens": 5585,
+      "total_tokens": 1013218,
+      "cost_usd": 0.03153495,
+      "model_calls": 20
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 14,
+     "usage": {
+      "prompt_tokens": 530653,
+      "cached_tokens": 458752,
+      "completion_tokens": 2356,
+      "total_tokens": 533009,
+      "cost_usd": 0.01904018,
+      "model_calls": 14
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 15,
+     "usage": {
+      "prompt_tokens": 738058,
+      "cached_tokens": 617984,
+      "completion_tokens": 1926,
+      "total_tokens": 739984,
+      "cost_usd": 0.02320342,
+      "model_calls": 16
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "- On the search screen, after entering Malbun, tap the result row, not the search button or adjacent icons.\n- If results are empty, use the coordinate row and tap the returned Malbun result.\n- Once the map centers on Malbun, open the map context menu by tapping/long-pressing the selected point.\n- In that menu choose \u201cAdd to map\u201d \u2192 \u201cLocation marker\u201d/\u201cCreate marker\u201d and confirm/save.\n- Stop clicking stale indices; verify the marker is shown on the map.",
+     "usage": {
+      "prompt_tokens": 817,
+      "completion_tokens": 1333,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007415694
+     },
+     "cost_usd": 0.0007415694,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "Do not mark complete after only searching or entering coordinates.\nSelect the Malbun result so the map context menu opens.\nIf the marker action is not visible, long-press the map at Malbun.\nIn the context menu, tap \u201cAdd marker\u201d / \u201cCreate new marker\u201d, not Navigate or Directions.\nConfirm the marker/pin appears or is listed before completing.",
+     "usage": {
+      "prompt_tokens": 653,
+      "completion_tokens": 677,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004119786
+     },
+     "cost_usd": 0.0004119786,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 2,
+   "goal": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+     "reused": false,
+     "success": true,
+     "steps": 8,
+     "usage": {
+      "prompt_tokens": 152137,
+      "cached_tokens": 115968,
+      "completion_tokens": 523,
+      "total_tokens": 152660,
+      "cost_usd": 0.00745138,
+      "model_calls": 8
+     }
+    }
+   ],
+   "reflections": [],
+   "success": true,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s2_a0/trajectory.jsonl"
+  },
+  {
+   "family": "OsmAndMarker",
+   "seed": 3,
+   "goal": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "step_cap": 20,
+   "attempts": [
+    {
+     "attempt": 0,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a0/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 11,
+     "usage": {
+      "prompt_tokens": 341228,
+      "cached_tokens": 283392,
+      "completion_tokens": 1084,
+      "total_tokens": 342312,
+      "cost_usd": 0.01358196,
+      "model_calls": 11
+     }
+    },
+    {
+     "attempt": 1,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a1/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 10,
+     "usage": {
+      "prompt_tokens": 269215,
+      "cached_tokens": 220928,
+      "completion_tokens": 1382,
+      "total_tokens": 270597,
+      "cost_usd": 0.01131316,
+      "model_calls": 10
+     }
+    },
+    {
+     "attempt": 2,
+     "trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+     "reused": false,
+     "success": false,
+     "steps": 12,
+     "usage": {
+      "prompt_tokens": 388930,
+      "cached_tokens": 330496,
+      "completion_tokens": 1208,
+      "total_tokens": 390138,
+      "cost_usd": 0.01447459,
+      "model_calls": 12
+     }
+    }
+   ],
+   "reflections": [
+    {
+     "lesson": "After searching \u201cNendeln\u201d, tap the correct Liechtenstein result once; do not overwrite the search box with coordinates.\nIf the result only centers the map, long-press the map at Nendeln to open the context menu.\nIn the context menu, choose \u201cAdd marker\u201d / \u201cMarker\u201d and confirm.\nVerify a visible marker exists before marking complete.",
+     "usage": {
+      "prompt_tokens": 551,
+      "completion_tokens": 710,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004121865
+     },
+     "cost_usd": 0.0004121865,
+     "stage": "reflection",
+     "for_attempt": 1
+    },
+    {
+     "lesson": "Search panel: tap the exact \u201cNendeln, Liechtenstein\u201d result, then dismiss search so the map canvas is visible.\nMap screen: long-press the map at the Nendeln label/place, not a list item or toolbar.\nContext menu: select \u201cAdd marker\u201d/\u201cCreate marker\u201d and confirm/save if prompted.\nAvoid \u201cShow details\u201d, \u201cNavigate\u201d, or clicking the map center before the search result is selected.\nOnly report complete after the marker icon or \u201cmarker added\u201d confirmation appears.",
+     "usage": {
+      "prompt_tokens": 503,
+      "completion_tokens": 1395,
+      "cached_tokens": 256,
+      "cost_usd": 0.00068982804
+     },
+     "cost_usd": 0.00068982804,
+     "stage": "reflection",
+     "for_attempt": 2
+    }
+   ],
+   "success": false,
+   "best_trajectory": "../experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl"
+  }
+ ],
+ "totals": {
+  "episodes": 7,
+  "retry_episodes": 4,
+  "reused_episodes": 0,
+  "reflection_calls": 4,
+  "prompt_tokens": 3430378,
+  "cached_tokens": 2937600,
+  "completion_tokens": 18179,
+  "total_tokens": 3448557,
+  "cost_usd": 0.1228552
+ },
+ "record_type": "exploration"
+}

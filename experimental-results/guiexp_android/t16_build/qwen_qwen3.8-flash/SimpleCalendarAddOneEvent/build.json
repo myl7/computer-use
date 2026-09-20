@@ -1,0 +1,756 @@
+{
+ "family": "SimpleCalendarAddOneEvent",
+ "model": "qwen/qwen3.8-flash",
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "step_cap": 34,
+ "cache_ratio_r": 0.107,
+ "record_type": "build",
+ "exploration": {
+  "episodes": 3,
+  "retry_episodes": 0,
+  "reused_episodes": 0,
+  "reflection_calls": 0,
+  "per_episode": [
+   {
+    "seed": 1,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 579804,
+    "cached_tokens": 506624,
+    "completion_tokens": 918,
+    "total_tokens": 580722,
+    "cost_usd": 0.0193193,
+    "model_calls": 14
+   },
+   {
+    "seed": 2,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 15,
+    "prompt_tokens": 677596,
+    "cached_tokens": 597760,
+    "completion_tokens": 939,
+    "total_tokens": 678535,
+    "cost_usd": 0.02176108,
+    "model_calls": 15
+   },
+   {
+    "seed": 3,
+    "attempt": 0,
+    "reused": false,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 582696,
+    "cached_tokens": 509184,
+    "completion_tokens": 808,
+    "total_tokens": 583504,
+    "cost_usd": 0.01935797,
+    "model_calls": 14
+   }
+  ],
+  "reflections": [],
+  "totals": {
+   "calls": 43,
+   "prompt_tokens": 1840096,
+   "cached_tokens": 1613568,
+   "completion_tokens": 2665,
+   "total_tokens": 1842761,
+   "cost_usd": 0.06043835
+  }
+ },
+ "stages_done": [
+  "exploration",
+  "translator",
+  "builder",
+  "gate_per_k",
+  "verification",
+  "deploy",
+  "doc_arm"
+ ],
+ "wall_s": 14419.1,
+ "translator": {
+  "per_trajectory": [
+   {
+    "seed": 1,
+    "effective_actions": 14,
+    "calls": 14,
+    "prompt_tokens": 14913,
+    "cached_tokens": 256,
+    "completion_tokens": 62389,
+    "total_tokens": 77302,
+    "cost_usd": 0.03121022
+   },
+   {
+    "seed": 2,
+    "effective_actions": 15,
+    "calls": 15,
+    "prompt_tokens": 15463,
+    "cached_tokens": 4864,
+    "completion_tokens": 64661,
+    "total_tokens": 80124,
+    "cost_usd": 0.03173776
+   },
+   {
+    "seed": 3,
+    "effective_actions": 14,
+    "calls": 14,
+    "prompt_tokens": 14915,
+    "cached_tokens": 4608,
+    "completion_tokens": 54157,
+    "total_tokens": 69072,
+    "cost_usd": 0.02680283
+   }
+  ],
+  "totals": {
+   "calls": 43,
+   "prompt_tokens": 45291,
+   "cached_tokens": 9728,
+   "completion_tokens": 181207,
+   "total_tokens": 226498,
+   "cost_usd": 0.08975081
+  }
+ },
+ "builder": {
+  "initial": {
+   "k1_code": {
+    "k": 1,
+    "artifact": "code",
+    "prompt_tokens": 3336,
+    "completion_tokens": 60542,
+    "cached_tokens": 0,
+    "cost_usd": 0.0286655886,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3336,
+      "cached_tokens": 0,
+      "completion_tokens": 60542,
+      "total_tokens": 63878,
+      "cost_usd": 0.0286655886,
+      "usage": {
+       "prompt_tokens": 3336,
+       "completion_tokens": 60542,
+       "cached_tokens": 0,
+       "cost_usd": 0.0286655886
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k1_doc": {
+    "k": 1,
+    "artifact": "doc",
+    "prompt_tokens": 3225,
+    "completion_tokens": 5278,
+    "cached_tokens": 0,
+    "cost_usd": 0.0029347659,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 3225,
+      "cached_tokens": 0,
+      "completion_tokens": 5278,
+      "total_tokens": 8503,
+      "cost_usd": 0.0029347659,
+      "usage": {
+       "prompt_tokens": 3225,
+       "completion_tokens": 5278,
+       "cached_tokens": 0,
+       "cost_usd": 0.0029347659
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_code": {
+    "k": 2,
+    "artifact": "code",
+    "prompt_tokens": 6473,
+    "completion_tokens": 47379,
+    "cached_tokens": 256,
+    "cost_usd": 0.02297272824,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6473,
+      "cached_tokens": 256,
+      "completion_tokens": 47379,
+      "total_tokens": 53852,
+      "cost_usd": 0.02297272824,
+      "usage": {
+       "prompt_tokens": 6473,
+       "completion_tokens": 47379,
+       "cached_tokens": 256,
+       "cost_usd": 0.02297272824
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k2_doc": {
+    "k": 2,
+    "artifact": "doc",
+    "prompt_tokens": 6362,
+    "completion_tokens": 4465,
+    "cached_tokens": 256,
+    "cost_usd": 0.00298836054,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 6362,
+      "cached_tokens": 256,
+      "completion_tokens": 4465,
+      "total_tokens": 10827,
+      "cost_usd": 0.00298836054,
+      "usage": {
+       "prompt_tokens": 6362,
+       "completion_tokens": 4465,
+       "cached_tokens": 256,
+       "cost_usd": 0.00298836054
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_code": {
+    "k": 3,
+    "artifact": "code",
+    "prompt_tokens": 8896,
+    "completion_tokens": 59261,
+    "cached_tokens": 256,
+    "cost_usd": 0.02886123834,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 8896,
+      "cached_tokens": 256,
+      "completion_tokens": 59261,
+      "total_tokens": 68157,
+      "cost_usd": 0.02886123834,
+      "usage": {
+       "prompt_tokens": 8896,
+       "completion_tokens": 59261,
+       "cached_tokens": 256,
+       "cost_usd": 0.02886123834
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   },
+   "k3_doc": {
+    "k": 3,
+    "artifact": "doc",
+    "prompt_tokens": 8785,
+    "completion_tokens": 3456,
+    "cached_tokens": 256,
+    "cost_usd": 0.00287868834,
+    "calls_detail": [
+     {
+      "step": 1,
+      "call": 1,
+      "first_call": true,
+      "prompt_tokens": 8785,
+      "cached_tokens": 256,
+      "completion_tokens": 3456,
+      "total_tokens": 12241,
+      "cost_usd": 0.00287868834,
+      "usage": {
+       "prompt_tokens": 8785,
+       "completion_tokens": 3456,
+       "cached_tokens": 256,
+       "cost_usd": 0.00287868834
+      },
+      "stage": "builder",
+      "accepted": true
+     }
+    ]
+   }
+  },
+  "totals_all_calls": {
+   "calls": 6,
+   "prompt_tokens": 37077,
+   "cached_tokens": 1024,
+   "completion_tokens": 180381,
+   "total_tokens": 217458,
+   "cost_usd": 0.08930138
+  },
+  "selected_arm": {
+   "k": 3,
+   "artifact": "code",
+   "initial_plus_refinements": {
+    "calls": 3,
+    "prompt_tokens": 48087,
+    "cached_tokens": 1024,
+    "completion_tokens": 217387,
+    "total_tokens": 265474,
+    "cost_usd": 0.10815525
+   }
+  }
+ },
+ "gate_per_k": {
+  "k1": {
+   "bindings_passed": 5,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    }
+   ]
+  },
+  "k2": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find target date in Simple Calendar Pro month view"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find target date in Simple Calendar Pro month view"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find target date in Simple Calendar Pro month view"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find target date in Simple Calendar Pro month view"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not find target date in Simple Calendar Pro month view"
+    }
+   ]
+  },
+  "k3": {
+   "bindings_passed": 0,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not locate the event date control"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not locate the event date control"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not locate the event date control"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not locate the event date control"
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Could not locate the event date control"
+    }
+   ]
+  }
+ },
+ "verification": {
+  "selected_k": 3,
+  "refinements": 3,
+  "program_replays": 9,
+  "unautomatable": false,
+  "admitted": true,
+  "admitted_version": "refine3",
+  "gate_min_pass": 4,
+  "gate_history": [
+   {
+    "version": "initial",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine1",
+    "passed": 1,
+    "total": 5
+   },
+   {
+    "version": "refine2",
+    "passed": 0,
+    "total": 5
+   },
+   {
+    "version": "refine3",
+    "passed": 4,
+    "total": 5
+   }
+  ],
+  "analyzer": {
+   "calls": 3,
+   "prompt_tokens": 10434,
+   "cached_tokens": 0,
+   "completion_tokens": 9921,
+   "total_tokens": 20355,
+   "cost_usd": 0.00616569
+  },
+  "resume_episodes": {
+   "calls": 24,
+   "prompt_tokens": 593336,
+   "cached_tokens": 482560,
+   "completion_tokens": 1753,
+   "total_tokens": 595089,
+   "cost_usd": 0.02490965
+  },
+  "builder_refinements": {
+   "calls": 3,
+   "prompt_tokens": 39191,
+   "cached_tokens": 768,
+   "completion_tokens": 158126,
+   "total_tokens": 197317,
+   "cost_usd": 0.07929401
+  },
+  "gate_after_repair": {
+   "bindings_passed": 4,
+   "bindings_total": 5,
+   "detail": [
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 25,
+      "hour": 11,
+      "duration_mins": 60,
+      "event_title": "Meeting with Dr. Smith",
+      "event_description": "We will plan contract details. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 29,
+      "hour": 23,
+      "duration_mins": 30,
+      "event_title": "Catch up on Budget Planning",
+      "event_description": "We will celebrate product launch."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 22,
+      "hour": 0,
+      "duration_mins": 30,
+      "event_title": "Call with Dr. Smith",
+      "event_description": "We will review business objectives. Looking forward to productive discussions."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 20,
+      "hour": 21,
+      "duration_mins": 15,
+      "event_title": "Appointment for Project X",
+      "event_description": "We will review marketing strategies."
+     },
+     "passed": true,
+     "error": null
+    },
+    {
+     "binding": {
+      "year": 2023,
+      "month": 10,
+      "day": 19,
+      "hour": 4,
+      "duration_mins": 60,
+      "event_title": "Meeting with HR",
+      "event_description": "We will explore annual budget. Looking forward to productive discussions."
+     },
+     "passed": false,
+     "error": "RuntimeError: Time did not update to 04:00"
+    }
+   ]
+  },
+  "p_after": 0.8,
+  "test_seed0": {
+   "passed": true,
+   "error": null
+  },
+  "totals_excluding_refinements": {
+   "calls": 27,
+   "prompt_tokens": 603770,
+   "cached_tokens": 482560,
+   "completion_tokens": 11674,
+   "total_tokens": 615444,
+   "cost_usd": 0.03107534
+  }
+ },
+ "deploy": {
+  "n": 30,
+  "success_count": 30,
+  "success_rate": 1.0,
+  "d_tokens_mean": 424.2,
+  "total_tokens": 12726,
+  "cost_usd": 0.00376053
+ },
+ "doc_arm": {
+  "doc_from": "k3_doc",
+  "doc_chars": 1069,
+  "episodes": [
+   {
+    "seed": 4,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 583223,
+    "cached_tokens": 509696,
+    "completion_tokens": 734,
+    "total_tokens": 583957,
+    "cost_usd": 0.01933387,
+    "model_calls": 14
+   },
+   {
+    "seed": 5,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 583292,
+    "cached_tokens": 509952,
+    "completion_tokens": 870,
+    "total_tokens": 584162,
+    "cost_usd": 0.01937344,
+    "model_calls": 14
+   },
+   {
+    "seed": 6,
+    "success": true,
+    "steps": 14,
+    "prompt_tokens": 582187,
+    "cached_tokens": 509184,
+    "completion_tokens": 811,
+    "total_tokens": 582998,
+    "cost_usd": 0.01928378,
+    "model_calls": 14
+   }
+  ],
+  "success_count": 3,
+  "totals": {
+   "calls": 42,
+   "prompt_tokens": 1748702,
+   "cached_tokens": 1528832,
+   "completion_tokens": 2415,
+   "total_tokens": 1751117,
+   "cost_usd": 0.05799109
+  },
+  "L_doc_tokens_mean": 583705.6666666666
+ },
+ "break_even": {
+  "c_raw_tokens": 614253.7,
+  "c_cache_adjusted_tokens": 133948.3,
+  "d_tokens": 424.2,
+  "q": 0.0,
+  "cache_ratio_r": 0.107,
+  "build_totals_raw": {
+   "exploration": 1842761,
+   "translator": 226498,
+   "builder_selected": 265474,
+   "verification": 615444,
+   "autorpa_build": 2950177
+  },
+  "build_totals_cache_adjusted": {
+   "exploration": 401845,
+   "translator": 217811,
+   "builder_selected": 264560,
+   "verification": 184518,
+   "autorpa_build": 1068733
+  },
+  "s_raw": 613829.5,
+  "nstar_raw": {
+   "marginal": 0.4325,
+   "autorpa_build": 4.8062
+  },
+  "s_cache_adjusted": 133524.1,
+  "nstar_cache_adjusted": {
+   "marginal": 1.9814,
+   "autorpa_build": 8.004
+  }
+ },
+ "total_cost_usd": 0.411611,
+ "accounting_problems": []
+}
