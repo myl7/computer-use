@@ -1,0 +1,399 @@
+{
+  "aggregate_authorized_ceiling_nusd": 5000000000,
+  "analysis": "All prespecified pairs; additionally report exposure-matched subset. Costs include unsuccessful/aborted calls. Means with paired bootstrap 95% intervals, seed clustering, and per-pair data.",
+  "binding_cost": "A bounded model request extracts program binding from the same natural-language task text seen by the agent. The program never receives evaluator bindings. Model routing is zero for the supplied family.",
+  "binding_extraction": {
+    "accounting": "Included in the same service and prefix budget as program execution and fallback",
+    "calls": 1,
+    "errors": "Malformed known-bill binding falls back to the agent. Provider error aborts the task.",
+    "input": "Natural-language task text only",
+    "max_tokens": 1024
+  },
+  "budget_rule": "Before each paid request: stream exposure + context/output reservation <= 1.25 * declared reference prefix. Denial terminates task, counted unsuccessful.",
+  "compile_pilot": {
+    "after_completed_agent_traces": 3,
+    "charge_scope": "pace/acquisition at the first prefix with three completed agent traces",
+    "deployment_program_changes": false,
+    "gate": "Two-instance pilot gate, not the main paper four-of-five admission gate.",
+    "max_tokens": 8192,
+    "model_calls": 1,
+    "repairs": 0,
+    "training_success_rule": "First three non-interrupted agent traces, including unsuccessful outcomes. Provider-interrupted episodes remain evaluation failures but cannot supply complete traces.",
+    "trigger": "Prescheduled guard validation, not the PACE projected compilation trigger.",
+    "validation_seeds": [
+      99,
+      100
+    ]
+  },
+  "compiler_total_cost_cap_nusd": 60000000,
+  "epsilon": "0.25",
+  "estimated_calls": "120-180; maximum 560; actual cost expected below USD 1; absolute ceiling USD 5",
+  "failure_rule": "No retries. Unknown provider billing aborts the affected task, retaining its worst-case reservation. Independent predeclared tasks continue only within remaining bounds. Three consecutive unsettled/provider errors stop the batch. Invalid pricing/identity/reservation evidence stops immediately. GUI action errors are observed until the fixed total 20-call service cap.",
+  "frozen_at": "2026-09-23T07:14:59.124866+00:00",
+  "locks": {
+    "z-ai/glm-5.3-flash": {
+      "context_length": 262144,
+      "endpoints": [
+        {
+          "context_length": 262144,
+          "latency_last_30m": null,
+          "max_completion_tokens": 131072,
+          "max_prompt_tokens": null,
+          "model_id": "z-ai/glm-5.3-flash",
+          "model_name": "Z.ai: GLM 5.3 Flash",
+          "name": "Io Net | z-ai/glm-5.3-flash-20260826",
+          "pricing": {
+            "completion": "0.0000005",
+            "discount": 0,
+            "image": "0",
+            "input_cache_read": "0.00000003",
+            "prompt": "0.00000015",
+            "request": "0"
+          },
+          "provider_name": "Io Net",
+          "quantization": "fp8",
+          "status": 0,
+          "supported_parameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs",
+            "seed",
+            "stop",
+            "min_p",
+            "top_k",
+            "top_p",
+            "presence_penalty",
+            "frequency_penalty",
+            "repetition_penalty",
+            "reasoning_effort"
+          ],
+          "supports_image": true,
+          "supports_implicit_caching": false,
+          "supports_tool_choice": {
+            "auto": true,
+            "function": true,
+            "none": true,
+            "required": true
+          },
+          "supports_voice_cloning": false,
+          "tag": "io-net/fp8",
+          "throughput_last_30m": null,
+          "uptime_last_1d": 99.02282965896973,
+          "uptime_last_30m": 99.66258962463095,
+          "uptime_last_5m": 100
+        }
+      ],
+      "model_id": "z-ai/glm-5.3-flash"
+    }
+  },
+  "matching": "Fresh server and browser context before every arm; compare initial calendar state hashes and normalized AX hashes. No state reset before fallback.",
+  "max_steps": 20,
+  "max_tokens": 2048,
+  "model": "z-ai/glm-5.3-flash",
+  "model_prompt": "You operate a web calendar through the current screenshot and accessibility tree.\nFinish the user's task from the CURRENT page, including any partially completed form.\nEvery turn return exactly one action, with no explanation or markdown:\nclick(bid), fill(bid, \"text\"), select(bid, \"option\"), scroll(up), scroll(down),\npress(\"key\"), or done(). Use current visible element bids from the latest observation.\nfill replaces the field's content. Do not use source code, backend APIs, or hidden state.\nUse visible controls to close obstructions. Avoid duplicate submissions.\nDeclare done() only after checking the visible result. Actions may reveal or scroll\nto controls. A previous program may have filled some fields before it stopped.\nYou are not told whether that happened. Inspect the present page and preserve correct values.\n",
+  "perturbation_source": "(arm) => {\n  const apply = () => {\n    const form = document.querySelector('input[name=\"title\"]')?.closest('form');\n    if (!form) return;\n    if (arm === 'renamed_submit') {\n      for (const b of form.querySelectorAll('button,input[type=\"submit\"]')) {\n        if ((b.textContent || b.value || '').trim() === 'Submit') {\n          b.textContent = 'Save event'; b.setAttribute('aria-label', 'Save event');\n          window.__paceExposed = true;sessionStorage.setItem('paceExposed','true');\n        }\n      }\n    }\n    if (arm === 'blocking_dialog' && !window.__paceInjected) {\n      const fields = ['title','date','description','url','invitees','location'];\n      const filled = fields.filter(k => (form.querySelector(`[name=\"${k}\"]`)?.value || '').trim()).length;\n      if (filled >= 4) {\n        window.__paceInjected = true; window.__paceExposed = true;sessionStorage.setItem('paceExposed','true');\n        const overlay = document.createElement('div');\n        overlay.id='pace-dialog'; overlay.setAttribute('role','dialog');\n        overlay.setAttribute('aria-label','Calendar information');\n        overlay.style='position:fixed;inset:0;z-index:2147483647;background:#eeeE;display:flex;align-items:center;justify-content:center';\n        overlay.innerHTML='<div style=\"background:white;border:2px solid #333;padding:30px\"><h2>Calendar information</h2><p>Close this message to continue editing your event.</p><button id=\"pace-close-dialog\">Close message</button></div>';\n        document.body.appendChild(overlay);\n        overlay.querySelector('button').onclick=()=>{overlay.remove();window.__paceDismissed=true;sessionStorage.setItem('paceDismissed','true');};\n      }\n    }\n  };\n  new MutationObserver(apply).observe(document,{childList:true,subtree:true});\n  document.addEventListener('input',apply,true);\n  document.addEventListener('DOMContentLoaded',apply);\n} ",
+  "perturbations": "Controlled synthetic label change and DOM blocking dialog after four fields are filled. Identical schedule applies to both policies.",
+  "prior_v2_exposure_nusd": 49328862,
+  "reference": "Supplied per-arrival billing allowance, not measured agent-only bill or estimated true upper bound.",
+  "reference_increment_nusd": 80000000,
+  "reservation_nusd": 40345600,
+  "role": "Deployment components plus a single cold-build pilot after three live agent traces. Fixed existing deployment program; no full online selection claim.",
+  "routing": "One supplied family. No router model call, tau0=m=0.",
+  "schema": "pace-live-joint/3",
+  "service_total_cost_cap_nusd": 80000000,
+  "source_sha256": {
+    "analysis/pace_live_20260923/run_joint_v3.py": "62342815374e687d6aaabe298c917f242d8a7de3f74741292d9d8eb4ac53d91f",
+    "code/guiexp/actions.py": "d312e9601d6a9e0fbae355bb70ce21a9e9c5442cfa8021532e5bebf03389a629",
+    "code/guiexp/compiler.py": "af52c49a25c3e22d6528b37e269aee2ef4e45f25125e2a6fe86b9ebe2fab41a8",
+    "code/guiexp/env.py": "0a860721e0262ce1dbbeaef94d9bc270806d00af56958ff2da988f5686346252",
+    "code/guiexp/program_runtime.py": "5ab9c228dc38fcc0fe4142184ca4697e98122001aa7d4044c54a4537a4e0b658",
+    "code/guiexp_android/recovery_validation_budget_v4.py": "8c09cfb132caa912b3d4c246f5dfc2f980893bebce87d1d675ff8cba08185e05",
+    "experimental-results/guiexp/t13_compilepath/fullread/z-ai_glm-5.3-flash/single_page/attempt1/family_program.py": "a765a73a7f222006aff976bd3ebe3fafd92e8a0b392a0981ef45b3a6506916ce",
+    "third-party/openapps/src/open_apps/apps/calendar_app/main.py": "5ee774b8710b24ba5ab7855ed1005a78ceeb7ea920b3c40cbc823d4eaf998736"
+  },
+  "success": "Only after policy termination or fixed cap: exactly one additional six-field matching event and no unrelated calendar change.",
+  "tasks": [
+    {
+      "arm": "clean",
+      "binding": {
+        "date": "2026-09-24",
+        "description": "Project review 0",
+        "invitees": "Alice",
+        "location": "Room 1",
+        "title": "PACE 0 clean",
+        "url": "https://example.com/pace/0"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s00_clean",
+      "seed": 0
+    },
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-24",
+        "description": "Project review 0",
+        "invitees": "Alice",
+        "location": "Room 1",
+        "title": "PACE 0 renamed_submit",
+        "url": "https://example.com/pace/0"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s00_renamed_submit",
+      "seed": 0
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-24",
+        "description": "Project review 0",
+        "invitees": "Alice",
+        "location": "Room 1",
+        "title": "PACE 0 blocking_dialog",
+        "url": "https://example.com/pace/0"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s00_blocking_dialog",
+      "seed": 0
+    },
+    {
+      "arm": "clean",
+      "binding": {
+        "date": "2026-09-25",
+        "description": "Project review 1",
+        "invitees": "Bob",
+        "location": "Room 2",
+        "title": "PACE 1 clean",
+        "url": "https://example.com/pace/1"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s01_clean",
+      "seed": 1
+    },
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-25",
+        "description": "Project review 1",
+        "invitees": "Bob",
+        "location": "Room 2",
+        "title": "PACE 1 renamed_submit",
+        "url": "https://example.com/pace/1"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s01_renamed_submit",
+      "seed": 1
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-25",
+        "description": "Project review 1",
+        "invitees": "Bob",
+        "location": "Room 2",
+        "title": "PACE 1 blocking_dialog",
+        "url": "https://example.com/pace/1"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s01_blocking_dialog",
+      "seed": 1
+    },
+    {
+      "arm": "clean",
+      "binding": {
+        "date": "2026-09-26",
+        "description": "Project review 2",
+        "invitees": "Carol",
+        "location": "Room 3",
+        "title": "PACE 2 clean",
+        "url": "https://example.com/pace/2"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s02_clean",
+      "seed": 2
+    },
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-26",
+        "description": "Project review 2",
+        "invitees": "Carol",
+        "location": "Room 3",
+        "title": "PACE 2 renamed_submit",
+        "url": "https://example.com/pace/2"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s02_renamed_submit",
+      "seed": 2
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-26",
+        "description": "Project review 2",
+        "invitees": "Carol",
+        "location": "Room 3",
+        "title": "PACE 2 blocking_dialog",
+        "url": "https://example.com/pace/2"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "s02_blocking_dialog",
+      "seed": 2
+    },
+    {
+      "arm": "clean",
+      "binding": {
+        "date": "2026-09-27",
+        "description": "Project review 3",
+        "invitees": "Dennis",
+        "location": "Room 4",
+        "title": "PACE 3 clean",
+        "url": "https://example.com/pace/3"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s03_clean",
+      "seed": 3
+    },
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-27",
+        "description": "Project review 3",
+        "invitees": "Dennis",
+        "location": "Room 4",
+        "title": "PACE 3 renamed_submit",
+        "url": "https://example.com/pace/3"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s03_renamed_submit",
+      "seed": 3
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-27",
+        "description": "Project review 3",
+        "invitees": "Dennis",
+        "location": "Room 4",
+        "title": "PACE 3 blocking_dialog",
+        "url": "https://example.com/pace/3"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "s03_blocking_dialog",
+      "seed": 3
+    }
+  ],
+  "tight_increment_nusd": 20000000,
+  "tight_rule": "Additional four program+fallback tasks at USD 0.02 per arrival, independent prefix ledger; same frozen program and perturbations.",
+  "tight_stream": [
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-24",
+        "description": "Project review 0",
+        "invitees": "Alice",
+        "location": "Room 1",
+        "title": "PACE 0 renamed_submit",
+        "url": "https://example.com/pace/0"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "tight_1",
+      "seed": 0
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-25",
+        "description": "Project review 1",
+        "invitees": "Bob",
+        "location": "Room 2",
+        "title": "PACE 1 blocking_dialog",
+        "url": "https://example.com/pace/1"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "tight_5",
+      "seed": 1
+    },
+    {
+      "arm": "renamed_submit",
+      "binding": {
+        "date": "2026-09-26",
+        "description": "Project review 2",
+        "invitees": "Carol",
+        "location": "Room 3",
+        "title": "PACE 2 renamed_submit",
+        "url": "https://example.com/pace/2"
+      },
+      "order": [
+        "agent",
+        "program_fallback"
+      ],
+      "pair": "tight_7",
+      "seed": 2
+    },
+    {
+      "arm": "blocking_dialog",
+      "binding": {
+        "date": "2026-09-27",
+        "description": "Project review 3",
+        "invitees": "Dennis",
+        "location": "Room 4",
+        "title": "PACE 3 blocking_dialog",
+        "url": "https://example.com/pace/3"
+      },
+      "order": [
+        "program_fallback",
+        "agent"
+      ],
+      "pair": "tight_11",
+      "seed": 3
+    }
+  ],
+  "total_usd_cap": "4.950671138"
+}

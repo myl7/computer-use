@@ -1,0 +1,11 @@
+\begin{abstract}
+Compiling recurring computer-use tasks into programs can reduce serving cost, but failed compilation and insufficient reuse can erase the saving.
+We introduce PACE (Price-Aware Compilation from Experience), which combines cost measurement with an online compilation rule.
+The measurement records translation, construction, repair, and unsuccessful attempts, then compares agent and program service under a shared token account.
+Across seven task families and three models, fifteen initial programs pass verification, with estimated per-use saving shares from $0.794$ to nearly $1$.
+Repeated compilations and $270$ matched-input agent replays examine the scope of these savings.
+PACE uses observed recurrence and verification outcomes to propose compilation, then admits charges through a cumulative budget.
+Under the stated cost model and valid action-cost bounds, cost after every arrival is at most $1+\epsilon$ times a supplied agent-only reference, regardless of reuse-estimation error.
+With $\epsilon=0.25$, mean simulated cost across twelve model--log conditions is $0.781$ of agent-only service, compared with $1.062$ and $0.995$ for AutoRPA and ToolPro decision-rule adaptations.
+Ablations separate the savings from selecting and pricing compilation from the budget's protection against larger losses.
+\end{abstract}

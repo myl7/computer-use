@@ -333,11 +333,12 @@ def value_cells(table, row):
         # d/q are masked for non-admitted rows: the qwen fill convention
         # records simulator-price d/q in rejected rows, while the paper's
         # program columns are measured only (the glm/ds rejected rows carry
-        # None here, so the mask changes nothing for them).
+        # None here, so the mask changes nothing for them).  The document
+        # columns (L_doc, doc_share) were dropped from the paper's Table 1
+        # with the document-class removal; the JSON rows keep the fields.
         adm = row['admitted']
-        return [tok3k(row['c']), tok3k(row['L_doc']),
-                tok3(row['d']) if adm else '--', fmt(row['q']) if adm else '--',
-                fmt(row['doc_share']), fmt(row['program_share'])]
+        return [tok3k(row['c']), tok3(row['d']) if adm else '--',
+                fmt(row['q']) if adm else '--', fmt(row['program_share'])]
     if table == 'price':
         C = row['C']
         m = row.get('measured') or {}
@@ -369,28 +370,6 @@ def _dual_cell(g, d):
     if d is None or d == '--':
         return r'\dualG{' + g + '}'
     return r'\dual{' + g + '}{' + d + '}'
-
-def _tri_cell(g, d, q):
-    """One merged body cell over the three models, extending the dual
-    convention with a qwTint third half: \\tri{G}{DS}{QW} when all three
-    have a value; the unchanged dual forms when qwen has none; \\triGQ /
-    \\triDQ when exactly one of glm/ds is present next to qwen; a
-    single-model \\triG/\\triD/\\triQ color cell otherwise.  Absent means
-    the row is missing or the cell rendered as '--'."""
-    gp = g is not None and g != '--'
-    dp = d is not None and d != '--'
-    qp = q is not None and q != '--'
-    if qp and gp and dp:
-        return r'\tri{' + g + '}{' + d + '}{' + q + '}'
-    if not qp:
-        return _dual_cell(g, d)
-    if gp and dp:
-        raise AssertionError((g, d, q))          # handled by the \tri branch
-    if gp:
-        return r'\triGQ{' + g + '}{' + q + '}'
-    if dp:
-        return r'\triDQ{' + d + '}{' + q + '}'
-    return r'\triQ{' + q + '}'
 
 # Per-model rows are kept in the JSON output; body.tex now prints one dual row
 # per family with \dual{GLM cell}{DS cell}, so the same cells are merged for the
@@ -445,9 +424,23 @@ for table, qw_source in [('share', qwen_rows), ('price', qwen_rows),
             continue
         g, d, q = half.get('glm'), half.get('ds'), half.get('qw')
         n = len(g or d or q)
-        merged = [_tri_cell(g[i] if g else None, d[i] if d else None,
-                            q[i] if q else None) for i in range(n)]
-        triple_rows[table].append(line([names[family], *merged]))
+        # Missing-value convention (2026-09-21, unified paper-wide): every
+        # absent model slot prints '--' in its own tinted column.  ALL four
+        # tables give each model its own column, so each displayed quantity
+        # expands to GLM/DS/QW cells side by side.  Table 2 displays five of
+        # its seven computed quantities (C, Unrepaired = p(3), Final, both
+        # break-even readings); p(1)/p(2) stay recorded in the raw files.
+        # value_cells('price') = [C, p(1), p(2), p(3), Final, N*_marg, N*_incl]
+        idx = [0, 3, 4, 5, 6] if table == 'price' else range(n)
+        cells3 = []
+        for i in idx:
+            gv = g[i] if g else None
+            dv = d[i] if d else None
+            qv = q[i] if q else None
+            cells3 += [gv if gv is not None else '--',
+                       dv if dv is not None else '--',
+                       qv if qv is not None else '--']
+        triple_rows[table].append(line([names[family], *cells3]))
 out['qw_halves'] = qw_halves
 out['latex_triples'] = triple_rows
 if args.check:
@@ -513,12 +506,12 @@ if args.check_qwen_rows:
     # (measured.C_with_repair), not the admitted-median fill.
     QW_HALF_FROZEN={
      'share':{
-      'ContactsAddContact':['39.2k','46.6k','547','0.03','-0.19','0.95'],
-      'MarkorDeleteNote':['21.5k','18.6k','384','0.00','0.13','0.98'],
-      'SimpleCalendarAddOneEvent':['135k','129k','836','0.00','0.04','0.99'],
-      'OsmAndMarker':['122k','42.1k','--','--','0.66','--'],
-      'WriterMemoSave':['37.0k','58.0k','775','0.00','-0.57','0.98'],
-      'CalcTableSave':['169k','--','--','--','--','--'],
+      'ContactsAddContact':['39.2k','547','0.03','0.95'],
+      'MarkorDeleteNote':['21.5k','384','0.00','0.98'],
+      'SimpleCalendarAddOneEvent':['135k','836','0.00','0.99'],
+      'OsmAndMarker':['122k','--','--','--'],
+      'WriterMemoSave':['37.0k','775','0.00','0.98'],
+      'CalcTableSave':['169k','--','--','--'],
      },
      'price':{
       'ContactsAddContact':['137k','0.40','1.00','1.00','1.00','3.66','6.81'],
@@ -543,12 +536,8 @@ if args.check_qwen_rows:
     assert got==QW_HALF_FROZEN,{t:{f:(got.get(t,{}).get(f),QW_HALF_FROZEN[t].get(f)) for f in set(got.get(t,{}))|set(QW_HALF_FROZEN[t]) if got.get(t,{}).get(f)!=QW_HALF_FROZEN[t].get(f)} for t in set(got)|set(QW_HALF_FROZEN)}
     assert {t:len(v) for t,v in out['latex_rows_qwen'].items()}=={'share':6,'price':6,'verification':3,'paired':3}
     assert {t:len(v) for t,v in out['latex_triples'].items()}=={'share':7,'price':7,'verification':4,'paired':4}
-    ntri=sum(''.join(v).count('\\tri{') for v in out['latex_triples'].values())
-    ngq=sum(''.join(v).count('\\triGQ') for v in out['latex_triples'].values())
-    ndual=sum(''.join(v).count('\\dual') for v in out['latex_triples'].values())
-    nsgl=sum(sum(''.join(v).count(f'\\tri{m}') for v in out['latex_triples'].values()) for m in ('G','D','Q'))
     print(f"PASS qwen-rows: 18 frozen qw half-rows over 4 tables match the recompute; "
-          f"22 triple rows carry {ntri} \\tri, {ngq} \\triGQ, {ndual} unchanged \\dual, {nsgl} single-color cells; "
-          f"the merged rows are in out['latex_triples'].")
+          f"22 body rows use per-model tinted columns with the unified '--' fills; "
+          f"the rows are in out['latex_triples'].")
 args.output.write_text(json.dumps(out, indent=2)+'\n')
 print('Wrote', args.output)

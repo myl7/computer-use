@@ -1,0 +1,135 @@
+\section{Measurement details}\label{app:measurement-details}
+
+\subsection{Tasks and retained records}
+\label{sec:families}
+
+The study covers seven parameterized task families across Android, desktop, and web interfaces.
+Four come from AndroidWorld \citep{rawles2025androidworld}: adding a contact, deleting a Markor note, adding a calendar event, and saving an OsmAnd marker.
+The desktop tasks save a small Calc table or a Writer memo in a Linux container based on the OSWorld environment \citep{xie2024osworld}.
+The web task posts a comment on WebArena's self-hosted Reddit application \citep{zhou2024webarena}.
+The desktop and web tasks use custom parameterized procedures and task-specific state checks.
+They extend the interface coverage of the measurement without constituting evaluations of the full OSWorld or WebArena benchmarks.
+
+The recorded model identifiers are \texttt{z-ai/glm-5.3-flash}, \texttt{deepseek/deepseek-v4-flash-vision-exp}, and \texttt{qwen/qwen3.8-flash}.
+The tables abbreviate these profiles as GLM, DeepSeek, and Qwen.
+Each agent reads an unmarked screenshot and a numbered text tree at every step.
+The tree is an accessibility tree on Android and desktop, and a DOM tree on the web.
+The planned comparison has $21$ family--model cells.
+Qwen's provider refuses the web request before producing a compilation record, and Qwen's Calc program prevents the replay from completing within its deadline.
+We report the retained partial Calc spend and distinguish both cases from an ordinary verification rejection.
+
+\subsection{Cost accounting}\label{app:accounting}
+\label{sec:unit}
+Input, cached-input, and output tokens can have different prices.
+For a call with $x$ input tokens, including $x_{\mathrm{cache}}$ cached tokens, and $y$ output tokens, its weighted token cost is $(x-x_{\mathrm{cache}})+r_c x_{\mathrm{cache}}+r_o y$.
+Here $r_c$ and $r_o$ are the cached-input and output prices relative to the uncached-input price.
+One unit therefore costs as much as one uncached input token for that model.
+We sum these units over serving, compilation, and repair calls.
+The token account excludes wall-clock time, device resources, and human effort.
+Dollar comparisons across models also require their uncached-input prices.
+
+We subtract the measured no-task harness baseline from agent runs.
+We do not subtract it from compilation or binding extraction.
+The Android baselines are $5090$ weighted tokens for GLM, $2290$ for DeepSeek, and about $1032$ for Qwen.
+Qwen's calibration includes mostly cache hits, so this value is smaller than its raw-token baseline.
+The desktop and web calculations use their own recorded calibrations.
+
+The account covers retained call records.
+Some earlier Android exploration records need estimated cache counts, and their deployment costs use the recorded bill divided by the model's uncached-input price.
+Desktop and web costs use recorded token counts, including retained retries and repair calls.
+Calls lost during interrupted desktop runs cannot be recovered from these records.
+
+\subsection{Compilation and verification}
+\label{sec:protocol}
+
+Three completed agent traces provide the source experience for each initial compilation attempt.
+A translator rewrites their actions, and a builder constructs the parameterized program, following AutoRPA's translation and construction stages \citep{chen2026autorpa}.
+The repair loop permits up to three refinements for each newly added building instance.
+The retained complete builds used at most three refinements in total.
+A five-binding validation gate requires at least four successful outcomes for deployment.
+The checkers inspect application records or saved file contents to score the state delivered by the program.
+
+The later verifier evaluates the initial candidate and each refinement on the same validation bindings, then selects the best passing candidate or stops at five passes.
+The eleven complete initial builds using this verifier evaluated one to four candidates each, for twenty-six candidate evaluations.
+The eight earlier GLM and DeepSeek Android builds retain final-gate results rather than intermediate evaluations, and a repair-exhausted build can be rejected before that gate.
+These records therefore include two verification procedures.
+The five validation bindings guide candidate selection, while the thirty subsequent deployment bindings provide a separate evaluation.
+
+The compilation price includes translation, the selected builder call, and every retained model call used to analyze failures, continue an agent run for repair, or refine the program.
+It excludes the source agent runs because they are accounted for on the agent path.
+It also excludes the one- and two-trace comparison builders from the selected three-trace price.
+Executing a verification check makes no model call, although it consumes wall-clock time.
+An unsuccessful attempt retains all of its translation, construction, and repair charges.
+
+After verification, we deploy each verified program on thirty fresh bindings.
+Verification supplies the known binding values, whereas deployment asks the model to extract those values from the task prompt.
+The deployment failure fraction therefore includes failures in the complete extraction-and-execution path.
+
+\subsection{Initial serving profiles}
+\label{app:serving-profiles}
+Table~\ref{tab:share} contains the initial exploration and deployment profiles used by the simulations.
+These differ from the matched replay means in the main text.
+\input{measurement_share_table}
+
+Among nineteen cells with trace-count comparisons, the unrepaired three-trace program passes fewer bindings than the best one- or two-trace program in six cells, more in four, and the same number in nine.
+Five of six verified desktop and web programs require repair, with Qwen Writer the exception.
+
+\subsection{Repeated compilation and program rechecks}\label{app:measurement-checks}
+\label{sec:extensions}
+\label{sec:verification}
+
+We repeat compilation to check whether an initial success or failure persists.
+We make two additional attempts for each of the four Android families on GLM and DeepSeek, and for the three initially verified Android families on Qwen.
+This gives twenty-two additional attempts and three observations for each repeated family--model cell.
+Fourteen additional attempts produce a verified program, five fail verification, and three end after repeated empty provider replies.
+We count the provider failures as unsuccessful end-to-end attempts and distinguish them from failed program checks.
+
+\input{measurement_repeat_table}
+
+Contacts and Markor verify on all three attempts for each model.
+DeepSeek Calendar and OsmAnd verify on none of their three attempts.
+GLM Calendar and Qwen Calendar verify twice, and GLM OsmAnd verifies only on the initial attempt.
+The initial outcome therefore persists for some cells and changes for others.
+The repetitions use a different emulator setup from the original run and include only three observations per cell.
+They do not establish independent retry outcomes or a stable within-family verification probability.
+We report these mixed initial and repeated attempts as counts, without a confidence interval for a stationary verification probability.
+
+The call records also let us separate the selected three-trace builder and repair charges from the additional comparison builders.
+Repeated builds reuse the initial translations, so this comparison excludes translation costs from both sides.
+For Qwen Calendar, one verified repeat costs $207.1$k weighted tokens and one rejected repeat costs $173.5$k, both without repair under the same verifier.
+For GLM OsmAnd, the initial verified build costs $897.3$k before translation, while two rejected repeats cost $1836.3$k and $2104.3$k.
+That GLM comparison shares an accounting boundary but changes the verification procedure.
+These examples show that failure can cost either less or more than success.
+They do not identify both conditional mean prices for the remaining families, whose missing-price assumptions are tested in Section~\ref{sec:price-sensitivity}.
+
+We also rerun the original programs on new bindings, once with supplied parameters and once with model-extracted parameters.
+GLM and DeepSeek Markor each pass five of five supplied bindings but only three and two extracted bindings, respectively.
+GLM OsmAnd changes in the other direction, from one supplied-binding pass to four extracted-binding passes.
+All extracted values pass the type check.
+These results show that type validity and initial verification do not ensure success on the full deployment path.
+Because the two checks were not repeatedly run under identical conditions, their difference does not isolate extraction error.
+
+\subsection{Program failures under GUI changes}
+\label{sec:fragility}
+We test existing programs in a clean environment and under nine GUI perturbations adapted from two robustness benchmarks \citep{lee2025bmoca,chen2026dgara}.
+The probe executes programs without model calls and measures the fraction of clean-passing bindings that fail under each perturbation.
+The five configuration changes use font scales of $1.3$ and $0.85$, display density $0.85$ times the default, French locale, and dark theme.
+The four interruptions are a notification, low battery, a permission dialog, and an update prompt implemented as a notification-based stand-in.
+Device fingerprints check that each change is reverted before the next condition.
+After averaging the retained-success ratios across tested families, appearance changes give failure fractions of $0.060$, $0.100$, and $0.067$ on GLM, DeepSeek, and Qwen, respectively.
+Interruptions give corresponding fractions of $0.592$, $1.000$, and $0.917$.
+Across all probe failures, including failures in the clean condition, detectable execution errors account for about $93$, $83$, and $77$ percent on the three models.
+The remaining failures reach an incorrect task state without an execution error, which limits error-triggered fallback.
+The perturbation failure rates describe the selected changes and tested families.
+They do not estimate how frequently a deployment encounters those changes, so the online evaluation treats the drift hazard as a supplied scenario parameter.
+
+
+\subsection{Measurement uncertainty}
+\label{app:measurement-uncertainty}
+Cost intervals resample the recorded binding indices, retaining the association between agent cost, extraction cost, and program outcome.
+They condition on the recorded program and binding protocol.
+Success and failure intervals use an independent Bernoulli working model.
+Zero failures in thirty trials gives a two-sided $95\%$ interval of $[0,0.116]$, so a narrow saving-share bootstrap cannot rule out unseen failure modes.
+The adaptive exploration runs, single initial compilation bills, and three mixed initial/repeated attempts do not support independent-trial cost intervals.
+The matched replays use a later emulator profile and therefore do not isolate model randomness.
+\input{measurement_uncertainty_tables}

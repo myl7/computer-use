@@ -5,6 +5,23 @@ literature/
 third-party/
 tmp/
 .firecrawl/
+analysis/
+output/
+
+# Selected frozen analysis inputs are explicitly tracked for reproduction.
+# Keep historical drafts, audit copies, and review outputs local.
+paper/rewrite-review/*.md
+paper/figure_handoff/
+paper/submission/
+paper/*.pdf
+paper/figure-sources/*.png
+
+# Credentials and provider configuration are never release artifacts.
+.env
+.env.*
+!.env.example
+.zcode/
+.vscode/
 
 # --- local environments and machine state ---
 .venv-*/
@@ -24,6 +41,9 @@ paper/build/
 experimental-results/**/*.png
 experimental-results/**/*.log
 experimental-results/**/*.sqlite3
+experimental-results/**/*.sqlite3-wal
+experimental-results/**/*.sqlite3-shm
+experimental-results/**/server-data/
 experimental-results/**/*.pid
 experimental-results/**/*.lock
 experimental-results/**/*.run1

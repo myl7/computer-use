@@ -1372,7 +1372,7 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
         eq_int(f"g17 E11 {_mo['cost_set']} bootstrap 2000", _mm["bootstrap_B"], 2000)
         _cf = _mm["grid_axes"]["c_fail_mult"]
         if _mo["cost_set"] == "android_ds":
-            eq_round("g17 E11 DS failed-attempt multiple 10.5", _cf[1], 10.5, 1)
+            eq_round("g17 E11 DS failed-compilation multiple 10.5", _cf[1], 10.5, 1)
         else:
             eq_int("g17 E11 GLM multiple unidentified (axis collapses)",
                    set(_cf), {1.0})
@@ -1411,17 +1411,17 @@ if group(17, "ss5.3-5.5 + app:mech (a)-(d) vs the t2_sim_v3 a1 runs (2026-09-19)
     _p0hi = [k for k in e11per["ds"] if _e11cfg(k)["p"] == "0" and _e11cfg(k)["cf"] != "1"]
     eq_int("g17 E11 64 DS p=0 cells at cf=1", len(_p0lo), 64)
     eq_int("g17 E11 64 DS p=0 cells at cf=10.5", len(_p0hi), 64)
-    eq_round("g17 E11 naive failed attempts per cell 82,000",
+    eq_round("g17 E11 naive failed compilations per cell 82,000",
              statistics.mean(e11c[k]["always_compile_evict"]["mean_failed_attempts"]
                              for k in _p0hi) / 1e3, 82, 0)
-    eq_round("g17 E11 naive worst cell reaches 240,000 attempts",
+    eq_round("g17 E11 naive worst cell reaches 240,000 failed compilations",
              max(e11c[k]["always_compile_evict"]["mean_failed_attempts"]
                  for k in _p0hi) / 1e4, 24, 0)
-    eq_round("g17 E11 ours 144 failed attempts per cell",
+    eq_round("g17 E11 ours 144 failed compilations per cell",
              statistics.mean(e11c[k]["ours_noinflate"]["mean_failed_attempts"]
                              for k in _p0hi), 144, 0)
     _k918 = "android_ds|h=0.02/q0=0.4/p=0/r=1/sig=0/cf=10.5094|bpi2019/price=native"
-    eq_int("g17 E11 ours 918 failed attempts in that BPI cell",
+    eq_int("g17 E11 ours 918 failed compilations in that BPI cell",
            e11c[_k918]["ours_noinflate"]["mean_failed_attempts"], 918)
     eq_round("g17 E11 naive failure bill at cf=1 22G per cell",
              statistics.mean(e11c[k]["always_compile_evict"]["mean_failed_tokens"]

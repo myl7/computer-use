@@ -1,27 +1,30 @@
 # Paper sources
 
-ICLR 2027 paper: `When to Compile a GUI Agent?`
+ICLR 2027 paper: `When to Compile a Computer-Use Agent? Measuring Costs and Making Online Decisions`.
+Both `main.tex` and `main_anon.tex` build an anonymous submission.
 
 ## Layout
 
 | Path | Role |
 |---|---|
-| `main.tex` | Preamble, title, author block, bibliography, and document skeleton |
+| `main.tex`, `main_anon.tex` | Anonymous review-mode entry points |
 | `head.tex` | Packages and notation macros |
-| `body.tex` | Abstract through the AI-use statement, the bibliography, and the appendices |
+| `body.tex` | Main sections, page-limit boundary, declarations, references, and appendices |
+| `statements.tex` | Page-exempt AI use, ethics, and reproducibility statements before references |
 | `references.bib` | Bibliography |
 | `fig/` | PDF figures included by the paper |
-| `figure-sources/` | Editable HTML sources and PNG previews |
+| `figure-sources/` | Editable, self-contained HTML figure sources |
 | `build/` | LaTeX outputs, including the current PDF |
-| `submission/` | Reserved for future submission packages |
-| `check_numbers.py` | Recomputes quantitative claims from experimental results |
+| `rewrite-review/render_pace_tables.py` | Current measurement and simulation table renderer |
+| `rewrite-review/render_live_tables.py` | Current live-study table renderer |
 
 ## Build and verify
 
 ```bash
-latexmk -pdf -interaction=nonstopmode -outdir=build main.tex
-python3 check_numbers.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
 ```
 
-Historical drafts, the previous paper README, and the legacy arXiv package are
-under `../misc/old-paper-backups/`.
+The repository README gives the current offline recomputation commands.
+Earlier numeric scripts remain for their corresponding historical measurements;
+they do not render the current online comparison tables.
+The official `.sty` and `.bst` files match the ICLR 2027 style archive byte for byte.

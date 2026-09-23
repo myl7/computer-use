@@ -1,0 +1,54 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "```python\nimport re\n\nPARAMS_SCHEMA = {\n    \"title\": {\"type\": \"string\", \"description\": \"Event title\"},\n    \"date\": {\"type\": \"string\", \"description\": \"Event date in YYYY-MM-DD format\"},\n    \"description\": {\"type\": \"string\", \"description\": \"Event description\"},\n    \"url\": {\"type\": \"string\", \"description\": \"Event URL\"},\n    \"invitees\": {\"type\": \"string\", \"description\": \"Event invitees\"},\n    \"location\": {\"type\": \"string\", \"description\": \"Event location\"},\n}\n\n\ndef program(page, binding: dict, base_url: str) -> bool:\n    title = binding[\"title\"]\n    date = binding[\"date\"]\n    description = binding[\"description\"]\n    url = binding[\"url\"]\n    invitees = binding[\"invitees\"]\n    location = binding[\"location\"]\n\n    page.goto(base_url + \"/calendar\")\n    page.wait_for_load_state(\"networkidle\")\n\n    # Open the create-event form via the \"Add Event\" button.\n    add_btn = page.get_by_role(\"button\", name=\"Add Event\")\n    if add_btn.count() == 0:\n        # May need scrolling to become visible/clickable.\n        page.mouse.wheel(0, 600)\n        page.wait_for_timeout(300)\n        add_btn = page.get_by_role(\"button\", name=\"Add Event\")\n    add_btn.first.click()\n    page.wait_for_load_state(\"networkidle\")\n\n    # Fill the top part of the form.\n    title_box = page.get_by_role(\"textbox\", name=\"Event title\")\n    title_box.wait_for(state=\"visible\")\n    title_box.fill(title)\n\n    date_box = page.get_by_role(\"textbox\", name=re.compile(\"Event date\"))\n    date_box.fill(date)\n\n    desc_box = page.get_by_role(\"textbox\", name=\"Event description\")\n    desc_box.fill(description)\n\n    url_box = page.get_by_role(\"textbox\", name=\"Event URL\")\n    url_box.fill(url)\n\n    # Scroll down to reveal the lower part of the form.\n    page.mouse.wheel(0, 600)\n    page.wait_for_timeout(300)\n\n    invitees_box = page.get_by_role(\"textbox\", name=\"Event invitees\")\n    invitees_box.wait_for(state=\"visible\")\n    invitees_box.fill(invitees)\n\n    location_box = page.get_by_role(\"textbox\", name=\"Event location\")\n    location_box.fill(location)\n\n    # Submit button label varies between builds (\"Submit\" / \"Save event\").\n    submit_btn = page.get_by_role(\"button\", name=re.compile(r\"^(Submit|Save event)$\"))\n    if submit_btn.count() == 0:\n        page.mouse.wheel(0, 600)\n        page.wait_for_timeout(300)\n        submit_btn = page.get_by_role(\"button\", name=re.compile(r\"^(Submit|Save event)$\"))\n    submit_btn.first.click()\n\n    # Wait until we are back on the calendar view.\n    page.wait_for_load_state(\"networkidle\")\n    page.get_by_role(\"heading\", name=\"OpenCalendar\").wait_for(state=\"visible\")\n\n    return True\n```",
+        "reasoning": "Key insight: submit button label varies (\"Submit\" vs \"Save event\"), and \"Add Event\" button may require scrolling. Use role-based locators with fallbacks.",
+        "reasoning_details": [
+          {
+            "format": "unknown",
+            "index": 0,
+            "text": "Key insight: submit button label varies (\"Submit\" vs \"Save event\"), and \"Add Event\" button may require scrolling. Use role-based locators with fallbacks.",
+            "type": "reasoning.text"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant"
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1790148143,
+  "id": "gen-1790148143-QXgt02SIfj4xTpkZEYQI",
+  "model": "z-ai/glm-5.3-flash",
+  "object": "chat.completion",
+  "provider": "Io Net",
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.28.1rc1.dev580+g385dce36b-tp8-11d0ddd8",
+  "usage": {
+    "completion_tokens": 683,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 34
+    },
+    "cost": 0.0068716395,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0003415,
+      "upstream_inference_cost": 0.00694105,
+      "upstream_inference_prompt_cost": 0.00659955
+    },
+    "is_byok": false,
+    "prompt_tokens": 43997,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 44680
+  }
+}

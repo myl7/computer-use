@@ -1,0 +1,110 @@
+\section{Online Protocol}
+\label{sec:policy}
+
+PACE uses projected reuse to propose compilation and a separate cumulative budget to admit charges.
+The proposal can be wrong about future arrivals or verification, while the budget uses only arrivals already observed and costs already charged.
+The protocol serves the current task before considering compilation for later tasks.
+
+\subsection{Compilation proposal}
+\label{sec:fullpolicy}
+
+A family becomes eligible after $k$ completed agent runs, including fallbacks.
+Let $N$ be its observed arrival count and $d$ its age in total stream arrivals.
+After $j$ compilation attempts and $g$ successful verifications, define
+\begin{equation}
+\hat H=\min\!\left(\frac{Nd}{d+5},\frac1h\right),\qquad
+\hat p=\frac{g+1}{j+2},\qquad
+\hat B=C+\left(\frac1{\hat p}-1\right)C^{\mathrm{fail}}.
+\label{eq:estimated-price}
+\end{equation}
+We use $1/0=\infty$.
+The smoothed count projects reuse, capped by the supplied mean program lifetime.
+It is a heuristic rather than a calibrated forecast.
+The price estimate counts failures before verification under an independent-retry interpretation, derived in Appendix~\ref{sec:breakeven}.
+Neither interpretation is required for the cost guarantee.
+
+With drift-adjusted saving $s_h=c-c^{\mathrm{prog}}-[h+(1-h)q]c$, an eligible family without a live program proposes compilation when
+\begin{equation}
+s_h>0\quad\text{and}\quad\hat Hs_h>\hat B+m\min(T,d).
+\label{eq:trigger}
+\end{equation}
+The final term allows for one manifest entry during its estimated residence.
+Entries expire after $T$ idle arrivals, while stored programs can be relisted until a detected break invalidates them.
+The proposal accounts for the two sources of uncertain payback separately.
+Low verification probability increases the estimated number of paid failures before obtaining a program, whereas GUI drift reduces the projected number of uses after verification.
+An expensive failed attempt can therefore make compilation unattractive even when successful construction is cheap.
+The following budget checks control the cost incurred when these estimates are wrong.
+Appendix~\ref{sec:matched-budget} compares alternative proposals with the same budget.
+Their similar costs do not identify the exact smoothing formula as a separate contribution.
+
+\subsection{Budget checks}
+\label{sec:cost-protection}
+
+Before routing, PACE expires idle entries and tentatively relists any stored live program for the arriving family.
+The manifest exposes programs to the model for routing, and its cost is paid on every arrival, including tasks served by the agent.
+Storing an artifact is free in this account, but leaving it listed can keep incurring routing cost.
+For the resulting manifest size $\ell_t$, it reserves
+\begin{equation}
+U_t^{\mathrm{serv}}=\tau_0+m\ell_t+
+\begin{cases}
+c,&\text{agent service},\\
+c^{\mathrm{prog}}+c,&\text{program service}.
+\end{cases}
+\label{eq:service-reserve}
+\end{equation}
+The program reservation includes a possible fallback.
+Service proceeds only if $K_{t-1}+U_t^{\mathrm{serv}}\leq(1+\epsilon)A_t$.
+Otherwise PACE clears the manifest before routing and uses the agent, whose charge is at most $a_t$.
+Clearing preserves stored artifacts and leaves no mandatory future charge.
+
+Let $\widetilde K_t$ be the cumulative charge after service.
+A proposed compilation proceeds only if
+\begin{equation}
+\widetilde K_t+\max(C,C^{\mathrm{fail}})\leq(1+\epsilon)A_t.
+\label{eq:compile-admission}
+\end{equation}
+The account then adds the realized charge, including failed attempts and any compilation after the last service.
+Savings can fund compilation across families, but predicted future uses add no budget.
+Appendix~\ref{app:protocol-details} gives the complete execution order.
+
+\paragraph{Budget example.}
+Consider a proposed compilation with success and failure charges of $60$ and $120$ weighted tokens.
+If the cumulative reference and cost already charged are both $300$, a margin of $0.25$ leaves $75$ tokens available.
+PACE defers compilation because a failure would exceed the $375$ limit, even if the projected saving justifies its estimated price.
+After two further agent-served arrivals costing $100$ each, the reference and charged cost are both $500$.
+The available $125$ tokens now cover either outcome.
+Only observed arrivals increase this allowance.
+
+\subsection{Cost guarantee}
+\label{sec:guarantee}
+
+\begin{theorem}[Agent-relative cost protection]
+\label{thm:cost-protection}
+Let the reference increments $a_t$ be nonnegative.
+Suppose every proposed action has a known finite charge bound, and clearing the manifest before routing costs no tokens, leaves no mandatory future charge, and permits default service at cost at most $a_t$.
+For any $\epsilon\geq0$, PACE with exact arithmetic and valid reservations satisfies
+\begin{equation}
+K_t\leq(1+\epsilon)A_t
+\quad\text{for every completed-arrival prefix }t
+\label{eq:cost-guarantee}
+\end{equation}
+on every history allowed by these charge bounds.
+\end{theorem}
+
+\begin{proof}
+The bound is preserved in two steps.
+An admitted service costs no more than its reservation.
+If admission fails, default service adds at most $a_t$, so
+\[
+K_{t-1}+a_t\leq(1+\epsilon)A_{t-1}+a_t\leq(1+\epsilon)A_t.
+\]
+The compilation check then preserves the same bound for either outcome.
+Starting from $K_0=A_0=0$ establishes the result by induction.
+\end{proof}
+
+The fixed-charge model satisfies the assumptions with $a_t=\tau_0+c$.
+The implementation permits tolerance $10^{-8}\max\{1,(1+\epsilon)A_t\}$.
+The bound is global over the stream and concerns cost, not task errors or per-family spending.
+For variable real bills, reservations must be enforceable and default service affordable.
+Historical means alone do not supply these conditions.
+PACE is a feasible rule for Equation~\ref{eq:objective}, without a claim of optimizing it.

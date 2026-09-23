@@ -10,6 +10,10 @@
 \input{math_commands}
 
 \usepackage{booktabs}
+\newcommand{\tablefont}{\scriptsize}
+\usepackage[section]{placeins}
+\hypersetup{hidelinks}
+\usepackage{needspace}
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -31,6 +35,21 @@
 % Two-of-three cells: the absent model is the missing color.
 \newcommand{\triGQ}[2]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}\hspace{1pt}\colorbox{qwTint}{#2}}}
 \newcommand{\triDQ}[2]{{\setlength{\fboxsep}{1.25pt}\colorbox{dsTint}{#1}\hspace{1pt}\colorbox{qwTint}{#2}}}
+% Vertically stacked three-model cell (Table 2): one colored line per model,
+% top to bottom GLM, DeepSeek, Qwen; a missing color marks a model with no
+% value in that column.
+\newcommand{\vstack}[1]{\begin{tabular}[c]{@{}r@{}}#1\end{tabular}}
+\newcommand{\vtri}[3]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{dsTint}#2\\\cellcolor{qwTint}#3}}
+\newcommand{\vdual}[2]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{dsTint}#2}}
+\newcommand{\vtriGQ}[2]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{qwTint}#2}}
+\newcommand{\vtriDQ}[2]{\vstack{\cellcolor{dsTint}#1\\\cellcolor{qwTint}#2}}
+\newcommand{\vtriG}[1]{\vstack{\cellcolor{glmTint}#1}}
+\newcommand{\vtriD}[1]{\vstack{\cellcolor{dsTint}#1}}
+\newcommand{\vtriQ}[1]{\vstack{\cellcolor{qwTint}#1}}
+% Aligned three-model values within one table cell: GLM, DeepSeek, Qwen.
+% The first argument fixes each colored subcell's width across table rows.
+\newcommand{\modelcell}[4]{{\setlength{\fboxsep}{0.7pt}\colorbox{glmTint}{\makebox[#1][r]{\strut #2}}\hspace{0.12em}\colorbox{dsTint}{\makebox[#1][r]{\strut #3}}\hspace{0.12em}\colorbox{qwTint}{\makebox[#1][r]{\strut #4}}}}
+\input{table_macros}
 \usepackage{microtype}
 
 \usepackage[capitalize,noabbrev]{cleveref}
@@ -53,7 +72,6 @@
 \usepackage{enumitem}
 \setlist[itemize]{leftmargin=*}
 \setlist[enumerate]{leftmargin=*}
-\setlist{noitemsep}
 
 % Algorithm float and pseudocode for the policy listing.
 \usepackage{algorithm}
@@ -64,33 +82,4 @@
 \Urlmuskip=0mu plus 3mu\relax
 
 % ---------------------------------------------------------------- notation
-% Task, family, program.
-\newcommand{\task}{T}                      % a task
-\newcommand{\tfam}{F}                      % a task family (\fam is a TeX primitive)
-\newcommand{\prog}{P}                      % a task program
-\newcommand{\sig}{\sigma}                  % typed parameter signature
-\newcommand{\steps}{\pi}                   % deterministic step sequence
-\newcommand{\posts}{C}                     % per-step postconditions
-\newcommand{\params}{\theta}               % extracted parameters
-\newcommand{\obs}{o}                       % observation
-\newcommand{\st}{s}                        % environment state
-\newcommand{\goal}{g}                      % natural-language goal
-\newcommand{\horizon}{H}                   % step cap
-
-% The two checked boundaries.
-\newcommand{\mbound}{\ensuremath{\mathcal{B}_{\mathrm{model}}}}
-\newcommand{\ebound}{\ensuremath{\mathcal{B}_{\mathrm{env}}}}
-
-% Short names used in tables.
-\newcommand{\gptmini}{\texttt{gpt-4o-mini}}
-\newcommand{\haiku}{\texttt{claude-haiku-4.5}}
-\newcommand{\genmodel}{\texttt{gpt-5-mini}}
-\newcommand{\ga}{\texttt{GenericAgent}}
-\newcommand{\gptfive}{\texttt{gpt-5}}
-\newcommand{\frontiermodel}{\texttt{gpt-5.6-sol}}
-
-% Rediscovery and execution cost of a protocol-hidden family.
-\newcommand{\disc}{D}                      % expected discovery actions
-\newcommand{\plen}{L}                     % canonical procedure length
-\newcommand{\policy}{\ensuremath{\rho}}       % a policy
-\newcommand{\dpts}{k}                      % declared decision points per task
+% Unused legacy notation macros removed 2026-09-23 (zero uses in body/main).

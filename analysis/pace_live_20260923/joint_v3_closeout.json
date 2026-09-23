@@ -1,0 +1,111 @@
+{
+  "schema": "pace-live-closeout/1",
+  "source_summary": "/Users/myl/app/computer-use/analysis/pace_live_20260923/joint_v3_summary.json",
+  "source_summary_sha256": "ef33340c5b39c10fa78fb67abf50e1362374e959113d6dbc03d747b3985bd02d",
+  "source_manifest_sha256": "77ddc39844a95655a362c68543a9ddf8c79d51758fbb758ece0395fb629fe9da",
+  "raw_run": "/Users/myl/app/computer-use/experimental-results/pace_live_20260923/v3",
+  "generated_at": "2026-09-23T15:22:56.328143+00:00",
+  "pairs_csv": "/Users/myl/app/computer-use/analysis/pace_live_20260923/joint_v3_pairs.csv",
+  "tight_csv": "/Users/myl/app/computer-use/analysis/pace_live_20260923/joint_v3_tight.csv",
+  "main_pairs": 12,
+  "initial_states_matched": 12,
+  "agent_successes": 7,
+  "pace_successes": 11,
+  "agent_billing_stops": 4,
+  "pace_billing_stops": 1,
+  "provider_stop_pairs": [
+    "s00_clean",
+    "s00_renamed_submit",
+    "s02_clean",
+    "s02_blocking_dialog"
+  ],
+  "perturbed_program_failures_with_fallback": 8,
+  "successful_perturbed_fallbacks": 7,
+  "successful_fallbacks_with_six_correct_fields_at_entry": 7,
+  "both_exposed_perturbed_pairs": [
+    "s01_renamed_submit",
+    "s01_blocking_dialog",
+    "s02_renamed_submit",
+    "s03_renamed_submit",
+    "s03_blocking_dialog"
+  ],
+  "all_pair_bill_bound_totals_nusd": {
+    "agent": [
+      97699224,
+      259081624
+    ],
+    "program_fallback": [
+      14425400,
+      54771000
+    ]
+  },
+  "all_pair_mean_bill_bounds_nusd": {
+    "agent": [
+      8141602,
+      21590135.333333332
+    ],
+    "program_fallback": [
+      1202116.6666666667,
+      4564250
+    ],
+    "program_minus_agent": [
+      -20388018.666666668,
+      -3577352
+    ]
+  },
+  "all_pair_seed_bootstrap_bill_bound_95_envelope_nusd": {
+    "agent": [
+      7622837.5,
+      34743511.5
+    ],
+    "program_fallback": [
+      662314.9166666666,
+      12331791.25
+    ],
+    "program_minus_agent": [
+      -33017024.666666668,
+      4620968.333333333
+    ]
+  },
+  "exact_bill_pairs": 8,
+  "tight_successes": 2,
+  "tight_prefix_denials": 1,
+  "tight_billing_stops": 1,
+  "v3_requests": 221,
+  "v3_settled_requests": 215,
+  "v3_unsettled_requests": 6,
+  "v3_known_bill_nusd": 121358506,
+  "v3_occupied_upper_nusd": 363432106,
+  "v2_v3_known_bill_nusd": 130341768,
+  "v2_v3_occupied_upper_nusd": 412760968,
+  "v2_v3_authorized_ceiling_nusd": 5000000000,
+  "request_price_checks": {
+    "incomplete": 6,
+    "pass": 215
+  },
+  "observed_request_guards_hold": true,
+  "recorded_admission_mismatches": 0,
+  "recorded_terminal_prefix_violations": 0,
+  "main_reference_increment_nusd": 80000000,
+  "tight_reference_increment_nusd": 20000000,
+  "epsilon": "0.25",
+  "reference_is_measured_agent_bill": false,
+  "acquisition_accepted": true,
+  "acquisition_validation_successes": 2,
+  "acquisition_validation_records": 2,
+  "acquisition_known_bill_nusd": 6871640,
+  "generation_reconciliation_file": "/Users/myl/app/computer-use/analysis/pace_live_20260923/generation-reconciliation-final.json",
+  "v2_unsettled_generation_lookup_http_status": [
+    404
+  ],
+  "v3_unsettled_generation_ids_available": 0,
+  "limits": [
+    "Four planned seed clusters. Bootstrap intervals are exploratory and unstable with such a small cluster count.",
+    "Cases share one calendar family, one fixed program, and controlled synthetic perturbations.",
+    "Missing results remain unknown. Observed failed, denied, and aborted results remain in the stated denominators and costs.",
+    "Acquisition is scheduled after three eligible traces, uses a two-instance pilot gate, and does not replace the deployment artifact.",
+    "Declared reference prefixes are supplied billing allowances, not measured agent-only bills.",
+    "A bounded model request extracts program binding from the same natural-language task text seen by the agent. The program never receives evaluator bindings. Model routing is zero for the supplied family.",
+    "These records validate components and do not establish complete PACE online selection or deployment."
+  ]
+}
