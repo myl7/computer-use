@@ -1,6 +1,6 @@
 # Paper sources
 
-ICLR 2027 paper: `When to Compile a Computer-Use Agent? Measuring Costs and Making Online Decisions`.
+ICLR 2027 paper: `When to Compile a Computer-Use Agent? Measuring Payback and Bounding Total Cost`.
 Both `main.tex` and `main_anon.tex` build an anonymous submission.
 
 ## Layout

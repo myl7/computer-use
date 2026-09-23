@@ -27,7 +27,7 @@ Creating and testing a program consumes tokens, and failed attempts produce no p
 A successful program saves tokens only if it serves enough tasks to recover this compilation cost.
 Across published audits, this \emph{payback count} ranges from 4 uses \citep{chen2026autorpa} to 17 uses \citep{trooskens2026compiledai}, and most systems report no payback count \citep{elyadouni2026tracecompiler,xu2026skillsmith}.
 These audits measure different costs and use different baselines, making their numbers incomparable.
-We therefore ask: \emph{how should an agent measure compilation costs and decide when to compile, while keeping cumulative cost within a stated margin of continued agent service?}
+We therefore ask: \emph{when is compilation worth its cost, and how can an agent decide from past observations, despite uncertain compilation costs and future uses, while bounding extra spending relative to continued agent service?}
 
 Deciding when to compile faces two challenges.
 \textbf{Random price.}
