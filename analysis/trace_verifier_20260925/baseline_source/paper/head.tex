@@ -1,0 +1,85 @@
+% !TEX root = main.tex
+% Shared macros and package configuration.
+% Loaded by main.tex after hyperref, following the same split as the
+% reference paper folder (main.tex / head.tex / body.tex).
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+% From https://github.com/goodfeli/dlbook_notation
+\input{math_commands}
+
+\usepackage{booktabs}
+\newcommand{\tablefont}{\scriptsize}
+\usepackage[section]{placeins}
+\hypersetup{hidelinks}
+\usepackage{needspace}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{glmTint}{RGB}{225,237,250}
+\definecolor{dsTint}{RGB}{253,241,225}
+\definecolor{qwTint}{RGB}{224,246,233}
+% Dual-model table cell: the GLM value on blue, the DeepSeek value on amber.
+\newcommand{\dual}[2]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}\hspace{1pt}\colorbox{dsTint}{#2}}}
+% Single-model cell: the color names the model; the other model has no data.
+\newcommand{\dualG}[1]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}}}
+\newcommand{\dualD}[1]{{\setlength{\fboxsep}{1.25pt}\colorbox{dsTint}{#1}}}
+% Three-model cell: GLM on blue, DeepSeek on amber, Qwen on mint.
+\newcommand{\tri}[3]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}\hspace{1pt}\colorbox{dsTint}{#2}\hspace{1pt}\colorbox{qwTint}{#3}}}
+% Single-model cells inside a three-model table.
+\newcommand{\triG}[1]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}}}
+\newcommand{\triD}[1]{{\setlength{\fboxsep}{1.25pt}\colorbox{dsTint}{#1}}}
+\newcommand{\triQ}[1]{{\setlength{\fboxsep}{1.25pt}\colorbox{qwTint}{#1}}}
+% Two-of-three cells: the absent model is the missing color.
+\newcommand{\triGQ}[2]{{\setlength{\fboxsep}{1.25pt}\colorbox{glmTint}{#1}\hspace{1pt}\colorbox{qwTint}{#2}}}
+\newcommand{\triDQ}[2]{{\setlength{\fboxsep}{1.25pt}\colorbox{dsTint}{#1}\hspace{1pt}\colorbox{qwTint}{#2}}}
+% Vertically stacked three-model cell (Table 2): one colored line per model,
+% top to bottom GLM, DeepSeek, Qwen; a missing color marks a model with no
+% value in that column.
+\newcommand{\vstack}[1]{\begin{tabular}[c]{@{}r@{}}#1\end{tabular}}
+\newcommand{\vtri}[3]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{dsTint}#2\\\cellcolor{qwTint}#3}}
+\newcommand{\vdual}[2]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{dsTint}#2}}
+\newcommand{\vtriGQ}[2]{\vstack{\cellcolor{glmTint}#1\\\cellcolor{qwTint}#2}}
+\newcommand{\vtriDQ}[2]{\vstack{\cellcolor{dsTint}#1\\\cellcolor{qwTint}#2}}
+\newcommand{\vtriG}[1]{\vstack{\cellcolor{glmTint}#1}}
+\newcommand{\vtriD}[1]{\vstack{\cellcolor{dsTint}#1}}
+\newcommand{\vtriQ}[1]{\vstack{\cellcolor{qwTint}#1}}
+% Aligned three-model values within one table cell: GLM, DeepSeek, Qwen.
+% The first argument fixes each colored subcell's width across table rows.
+\newcommand{\modelcell}[4]{{\setlength{\fboxsep}{0.7pt}\colorbox{glmTint}{\makebox[#1][r]{\strut #2}}\hspace{0.12em}\colorbox{dsTint}{\makebox[#1][r]{\strut #3}}\hspace{0.12em}\colorbox{qwTint}{\makebox[#1][r]{\strut #4}}}}
+\input{table_macros}
+\usepackage{microtype}
+
+\usepackage[capitalize,noabbrev]{cleveref}
+% Appendix sections are labelled "Appendix"; main.tex issues \crefalias after \appendix.
+\crefname{appendix}{Appendix}{Appendices}
+\Crefname{appendix}{Appendix}{Appendices}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+
+% Algorithm float and pseudocode for the policy listing.
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Long URLs in the bibliography: allow breaks at the usual separators.
+\def\UrlBreaks{\do\/\do\-\do\.\do\_\do\?\do\&\do\=\do\#\do\:}
+\Urlmuskip=0mu plus 3mu\relax
+
+% ---------------------------------------------------------------- notation
+% Unused legacy notation macros removed 2026-09-23 (zero uses in body/main).

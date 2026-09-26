@@ -35,10 +35,11 @@ profile fields against the frozen source config. The cross-study schema and
 hash index is `simulations/final-audit.json` with SHA-256
 `5b3ff510ea67ecac660238fd4a2e6db30e7ba0c30573f2bc5401b3fd1cb122a7`.
 
-The frozen invalid outputs remain at
+Frozen invalid outputs, including
 `simulations/main-invalid-frozen-20260925-duplicate-missing-cost/` and
-`simulations/sensitivity-invalid-frozen-20260925-modeled-partial-price/`.
-They are retained for audit and are not inputs to the completed summaries.
+`simulations/sensitivity-invalid-frozen-20260925-modeled-partial-price/`,
+stay outside this release. They are retained for audit and are not inputs to
+the completed summaries.
 
 The staged commands below are now reproduction and safe-resume commands. A
 zero-pending run revalidates all cells and refreshes the completion manifest.

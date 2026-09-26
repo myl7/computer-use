@@ -1,0 +1,50 @@
+\section{Problem Formulation}
+\label{sec:formulation}
+
+We study when to compile GUI procedures that agents execute repeatedly while limiting cumulative cost relative to continued agent service.
+Tasks in one family share a GUI procedure but differ in their inputs, such as event titles and dates.
+
+We distinguish two ways to serve a task.
+In \emph{agent execution}, the model selects GUI actions step by step, with calibrated mean cost $c$.
+In \emph{program execution}, a model call extracts the task inputs, or \emph{binding}, and a parameterized program then executes the shared procedure without further model calls.
+Its model cost $c^{\mathrm{prog}}$ is the extraction cost.
+We use weighted tokens: one unit costs as much as one uncached input token for that model, with cached-input and output tokens weighted by their relative prices.
+Appendix~\ref{app:accounting} gives the accounting formula and calibrations.
+
+A compilation attempt uses $k$ completed agent traces.
+Let $p$ be its verification probability, $C$ the conditional mean successful compilation cost, and $C^{\mathrm{fail}}$ the conditional mean failed compilation cost.
+A failed attempt pays its cost without producing a program.
+In the online model, these calibrated costs become fixed charges for the corresponding outcomes.
+Historical means alone do not bound future real bills.
+
+Without GUI drift, a program run fails with probability $q$ and requires one agent fallback of cost $c$.
+GUI drift breaks a program with probability $h$ per use, requiring fallback and invalidation.
+Ordinary failure occurs with probability $q$ conditional on no break.
+The cost model assumes detected failures and reports task success separately.
+Routing costs $\tau_0+m\ell_t$ when $\ell_t$ programs are listed, where $\tau_0$ is the empty-manifest charge and $m$ is the per-entry charge.
+
+\paragraph{Objective.}
+We compare PACE with serving every arrival through agent execution, without compiling or reusing programs.
+For arrival $t$, define this agent execution reference charge as $a_t=\tau_0+c$ using that family's supplied cost, and let
+\begin{equation}
+A_t=\sum_{i=1}^{t}a_i.
+\label{eq:agent-reference}
+\end{equation}
+This reference includes program-served arrivals.
+It is a model-based comparison, not an extra agent execution observed on each task.
+Let $K_t^\pi$ include policy $\pi$'s routing, serving, fallback, and all compilation charges through arrival $t$, including compilation after the final service.
+For an unknown stream length $n$, we seek
+\begin{equation}
+\min_{\pi\in\Pi_{\mathrm{online}}}\mathbb{E}[K_n^\pi]
+\quad\text{subject to}\quad
+K_t^\pi\leq(1+\epsilon)A_t,\quad t=1,\ldots,n.
+\label{eq:objective}
+\end{equation}
+The constraint holds for every history allowed by the cost model, while the expectation uses the arrival and outcome model evaluated in the experiments.
+The class $\Pi_{\mathrm{online}}$ contains policies that serve each arrival through an agent or an available program, using only the current task, supplied parameters, and past observations.
+We supply family identities, cost profiles, routing charges, and $q,h$.
+The policy estimates future task repetitions and verification success online.
+Artifact lookup and manifest removal incur no token charge.
+Savings can fund compilation across families, but unobserved future arrivals add no budget.
+The margin is $\epsilon=0.25$ in the main evaluation.
+This objective constrains cost, without imposing a task-success guarantee.

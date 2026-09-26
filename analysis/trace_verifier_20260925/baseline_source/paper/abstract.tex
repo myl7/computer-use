@@ -1,0 +1,13 @@
+\begin{abstract}
+Compiling GUI procedures that agents execute repeatedly into programs can reduce their token costs.
+However, deciding when to compile poses two challenges.
+First, the compilation cost is unknown before an attempt, which may fail after consuming tokens.
+Second, future use is unknown because tasks may stop repeating or GUI changes may break the program.
+To address these challenges, we propose PACE (Payback-Aware Compilation from Experience), a system with a measurement protocol and an online compilation protocol.
+The measurement protocol measures compilation costs and per-use savings to estimate how many uses a program needs to pay back its compilation cost.
+Using these measurements, the online protocol estimates whether future savings justify compilation based on past task arrivals and compilation outcomes.
+It checks execution and compilation charges against a cumulative budget before allowing either action.
+Under stated action-cost assumptions, total cost after each arrival is at most $1+\epsilon$ times the cost of running every task with the agent.
+Based on measured costs, verified programs need an estimated $1$--$14$ uses to recover the cost of a successful compilation.
+In experiments using recorded task arrivals, PACE reduces token costs by $21.9\%$ compared with ReAct, $26.9\%$ with AutoRPA, and $21.6\%$ with ToolPro on average ($\epsilon=0.25$).
+\end{abstract}
