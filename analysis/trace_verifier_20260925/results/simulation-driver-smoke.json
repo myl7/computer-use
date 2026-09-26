@@ -1,0 +1,60 @@
+{
+  "schema": "three-building-simulation-driver-smoke/1",
+  "status": "passed",
+  "synthetic_change": {
+    "C_add": 12345,
+    "C_fail_add": 23456,
+    "d_add": 7,
+    "q_add": 0.02,
+    "example_Android_ContactsAddContact_C": 156257.0
+  },
+  "source_coverage": {
+    "original_grid": 300,
+    "fresh_grid": 300,
+    "real_arrivals": 12,
+    "total": 612
+  },
+  "profile_copies_changed_when_preparing_full_study": {
+    "main": 4080,
+    "comparisons": 4080,
+    "ablations": 4080,
+    "sensitivity": 480
+  },
+  "cells": [
+    {
+      "study": "main",
+      "path": "experimental-results/trace_verifier_20260925/simulations/_smoke/main/cells/89dd6a3fbcf4c9161f2f.json",
+      "sha256": "adaea15df20bbbb4c217f2c442b89e35541b8e6aaf69b15318e940233e55c258",
+      "policies_run": 22,
+      "profile_input_hash": "b4d3e887acae4ee84702088dd7ea8d139e2a659d4f057ad43527fa3819db441f"
+    },
+    {
+      "study": "comparisons",
+      "path": "experimental-results/trace_verifier_20260925/simulations/_smoke/comparisons/cells/79a15a7d1ccc64c76a7b.json",
+      "sha256": "b8a294523711dbe1d4219475eca854181c6d782f269b7263cb119050a1aea949",
+      "policies_run": 4,
+      "profile_input_hash": "b4d3e887acae4ee84702088dd7ea8d139e2a659d4f057ad43527fa3819db441f"
+    },
+    {
+      "study": "ablations",
+      "path": "experimental-results/trace_verifier_20260925/simulations/_smoke/ablations/cells/79a15a7d1ccc64c76a7b.json",
+      "sha256": "500dda72e18d602ad79df63bd1a28f80d664b2b573ee6a6b403205396e68bf64",
+      "policies_run": 12,
+      "profile_input_hash": "b4d3e887acae4ee84702088dd7ea8d139e2a659d4f057ad43527fa3819db441f"
+    },
+    {
+      "study": "sensitivity",
+      "path": "experimental-results/trace_verifier_20260925/simulations/_smoke/sensitivity/cells/73d6aa59b0ef7fa214ef.json",
+      "sha256": "22db3c247f63544fe97e412e22999b17a8811052c87f31021de8b05e3dd26bc6",
+      "policies_run": 3,
+      "scenario": "missing_price_r0.5"
+    }
+  ],
+  "checks": [
+    "Nested job.spec.profiles changed in all 612 comparison and control jobs.",
+    "Main engine received the synthetic profile and recomputed all 22 policies.",
+    "Comparison and ablation engines matched the revised main profile hash.",
+    "Sensitivity observations and original profile hashes were rebuilt before its transformation.",
+    "No API calls were made."
+  ]
+}

@@ -1,0 +1,417 @@
+{
+  "protocol_id": "three-building-model-extracted-v1",
+  "platform": "desktop",
+  "model": "z-ai/glm-5.3-flash",
+  "family": "CalcTableSave",
+  "attempt_id": "initial",
+  "attempt_role": "initial",
+  "source": {
+    "build_path": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/build.json",
+    "build_sha256": "1a6cafd66bac7bfc753a1065cb9d6a5da4b6485d840e10e59c8f5eb6caacfc4b",
+    "artifact_path": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/artifact_k3_code.py",
+    "artifact_sha256": "239c1e0c2b8701a81a1e83906ac0b0889fa49479d7ad878d941542752aa8c18d"
+  },
+  "initial_program_sha256": "239c1e0c2b8701a81a1e83906ac0b0889fa49479d7ad878d941542752aa8c18d",
+  "final_program_sha256": "239c1e0c2b8701a81a1e83906ac0b0889fa49479d7ad878d941542752aa8c18d",
+  "candidate_history": [
+    {
+      "version": "initial_k3",
+      "sha256": "239c1e0c2b8701a81a1e83906ac0b0889fa49479d7ad878d941542752aa8c18d",
+      "source": "builder.initial.k3_code.artifact"
+    }
+  ],
+  "tasks": [
+    {
+      "seed": 1,
+      "prompt": "Open a new spreadsheet in LibreOffice Calc. Cell A1 must read 'Pipeline' and B1 'Budget'. Fill A2 with 8398, B2 with 3934, A3 with 7093 and B3 with 1974. Then save it to the Desktop under the name payroll_extract.ods.",
+      "prompt_provenance": {
+        "kind": "recorded_exploration_prompt",
+        "source_path": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/build.json",
+        "generator_match": true
+      },
+      "extraction": {
+        "input": {
+          "task_prompt": "Open a new spreadsheet in LibreOffice Calc. Cell A1 must read 'Pipeline' and B1 'Budget'. Fill A2 with 8398, B2 with 3934, A3 with 7093 and B3 with 1974. Then save it to the Desktop under the name payroll_extract.ods.",
+          "parameter_schema": [
+            "file_name",
+            "header_a",
+            "header_b",
+            "val_a2",
+            "val_b2",
+            "val_a3",
+            "val_b3"
+          ]
+        },
+        "raw_outputs": [
+          "{\"file_name\": \"payroll_extract.ods\", \"header_a\": \"Pipeline\", \"header_b\": \"Budget\", \"val_a2\": 8398, \"val_b2\": 3934, \"val_a3\": 7093, \"val_b3\": 1974}"
+        ],
+        "binding": {
+          "file_name": "payroll_extract.ods",
+          "header_a": "Pipeline",
+          "header_b": "Budget",
+          "val_a2": 8398,
+          "val_b2": 3934,
+          "val_a3": 7093,
+          "val_b3": 1974
+        },
+        "type_check": {
+          "passed": true,
+          "errors": []
+        },
+        "retry_count": 0,
+        "calls": [
+          {
+            "step": 1,
+            "call": 1,
+            "first_call": true,
+            "prompt_tokens": 263,
+            "cached_tokens": 0,
+            "completion_tokens": 147,
+            "total_tokens": 410,
+            "cost_usd": 0.0001118205,
+            "usage": {
+              "prompt_tokens": 263,
+              "completion_tokens": 147,
+              "cached_tokens": 0,
+              "cost_usd": 0.0001118205
+            },
+            "stage": "verification_extract",
+            "kind": "extract",
+            "wall_s": 4.304
+          }
+        ],
+        "provider_attempts": [
+          {
+            "kind": "extract",
+            "attempt": 1,
+            "status": "success"
+          }
+        ],
+        "wall_s": 4.304
+      },
+      "judge_params": {
+        "file_name": "payroll_extract.ods",
+        "header_a": "Pipeline",
+        "header_b": "Budget",
+        "val_a2": 8398,
+        "val_b2": 3934,
+        "val_a3": 7093,
+        "val_b3": 1974
+      },
+      "status": "fail",
+      "replay": {
+        "passed": false,
+        "reward": 0.0,
+        "error": "hard replay timeout",
+        "status": "timeout",
+        "wall_s": 1200.104
+      },
+      "failure_kind": "replay_timeout"
+    },
+    {
+      "seed": 2,
+      "prompt": "Please set up a small table in a new LibreOffice Calc spreadsheet: headers 'Region' (A1) and 'Location' (B1), then 876 and 1336 on the second row, 2264 and 8597 on the third. Save the file on the Desktop as unit_figures.ods.",
+      "prompt_provenance": {
+        "kind": "recorded_exploration_prompt",
+        "source_path": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/build.json",
+        "generator_match": true
+      },
+      "extraction": {
+        "input": {
+          "task_prompt": "Please set up a small table in a new LibreOffice Calc spreadsheet: headers 'Region' (A1) and 'Location' (B1), then 876 and 1336 on the second row, 2264 and 8597 on the third. Save the file on the Desktop as unit_figures.ods.",
+          "parameter_schema": [
+            "file_name",
+            "header_a",
+            "header_b",
+            "val_a2",
+            "val_b2",
+            "val_a3",
+            "val_b3"
+          ]
+        },
+        "raw_outputs": [
+          "{\"file_name\": \"unit_figures.ods\", \"header_a\": \"Region\", \"header_b\": \"Location\", \"val_a2\": 876, \"val_b2\": 1336, \"val_a3\": 2264, \"val_b3\": 8597}"
+        ],
+        "binding": {
+          "file_name": "unit_figures.ods",
+          "header_a": "Region",
+          "header_b": "Location",
+          "val_a2": 876,
+          "val_b2": 1336,
+          "val_a3": 2264,
+          "val_b3": 8597
+        },
+        "type_check": {
+          "passed": true,
+          "errors": []
+        },
+        "retry_count": 0,
+        "calls": [
+          {
+            "step": 1,
+            "call": 1,
+            "first_call": true,
+            "prompt_tokens": 262,
+            "cached_tokens": 0,
+            "completion_tokens": 130,
+            "total_tokens": 392,
+            "cost_usd": 0.000103257,
+            "usage": {
+              "prompt_tokens": 262,
+              "completion_tokens": 130,
+              "cached_tokens": 0,
+              "cost_usd": 0.000103257
+            },
+            "stage": "verification_extract",
+            "kind": "extract",
+            "wall_s": 1.263
+          }
+        ],
+        "provider_attempts": [
+          {
+            "kind": "extract",
+            "attempt": 1,
+            "status": "success"
+          }
+        ],
+        "wall_s": 1.263
+      },
+      "judge_params": {
+        "file_name": "unit_figures.ods",
+        "header_a": "Region",
+        "header_b": "Location",
+        "val_a2": 876,
+        "val_b2": 1336,
+        "val_a3": 2264,
+        "val_b3": 8597
+      },
+      "status": "untested"
+    },
+    {
+      "seed": 3,
+      "prompt": "In LibreOffice Calc, create a new spreadsheet. Put the header 'Pipeline' in cell A1 and the header 'Location' in B1. Under the headers enter the numbers 3640 in A2, 2835 in B2, 1410 in A3 and 7663 in B3. Save the spreadsheet as workgroup_grid.ods on the Desktop.",
+      "prompt_provenance": {
+        "kind": "recorded_exploration_prompt",
+        "source_path": "/home/myl/app/guiexp/osworld/experimental-results/guiexp_osworld/z-ai_glm-5.3-flash/CalcTableSave/build.json",
+        "generator_match": true
+      },
+      "extraction": {
+        "input": {
+          "task_prompt": "In LibreOffice Calc, create a new spreadsheet. Put the header 'Pipeline' in cell A1 and the header 'Location' in B1. Under the headers enter the numbers 3640 in A2, 2835 in B2, 1410 in A3 and 7663 in B3. Save the spreadsheet as workgroup_grid.ods on the Desktop.",
+          "parameter_schema": [
+            "file_name",
+            "header_a",
+            "header_b",
+            "val_a2",
+            "val_b2",
+            "val_a3",
+            "val_b3"
+          ]
+        },
+        "raw_outputs": [
+          "{\"file_name\": \"workgroup_grid.ods\", \"header_a\": \"Pipeline\", \"header_b\": \"Location\", \"val_a2\": 3640, \"val_b2\": 2835, \"val_a3\": 1410, \"val_b3\": 7663}"
+        ],
+        "binding": {
+          "file_name": "workgroup_grid.ods",
+          "header_a": "Pipeline",
+          "header_b": "Location",
+          "val_a2": 3640,
+          "val_b2": 2835,
+          "val_a3": 1410,
+          "val_b3": 7663
+        },
+        "type_check": {
+          "passed": true,
+          "errors": []
+        },
+        "retry_count": 0,
+        "calls": [
+          {
+            "step": 1,
+            "call": 1,
+            "first_call": true,
+            "prompt_tokens": 273,
+            "cached_tokens": 0,
+            "completion_tokens": 189,
+            "total_tokens": 462,
+            "cost_usd": 0.00012442815,
+            "usage": {
+              "prompt_tokens": 273,
+              "completion_tokens": 189,
+              "cached_tokens": 0,
+              "cost_usd": 0.00012442815
+            },
+            "stage": "verification_extract",
+            "kind": "extract",
+            "wall_s": 6.605
+          }
+        ],
+        "provider_attempts": [
+          {
+            "kind": "extract",
+            "attempt": 1,
+            "status": "success"
+          }
+        ],
+        "wall_s": 6.605
+      },
+      "judge_params": {
+        "file_name": "workgroup_grid.ods",
+        "header_a": "Pipeline",
+        "header_b": "Location",
+        "val_a2": 3640,
+        "val_b2": 2835,
+        "val_a3": 1410,
+        "val_b3": 7663
+      },
+      "status": "untested"
+    }
+  ],
+  "admitted": false,
+  "terminal_status": "provider_error",
+  "repairs": [],
+  "repair_rounds": 0,
+  "usage": {
+    "reused": {
+      "translator": {
+        "calls": 32,
+        "prompt_tokens": 19935,
+        "cached_tokens": 384,
+        "completion_tokens": 17401,
+        "total_tokens": 37336,
+        "cost_usd": 0.00914792
+      },
+      "builder_initial_k3": {
+        "calls": 1,
+        "prompt_tokens": 6883,
+        "cached_tokens": 0,
+        "completion_tokens": 18113,
+        "total_tokens": 24996,
+        "cost_usd": 0.00599284
+      }
+    },
+    "new_extraction_calls": [
+      {
+        "step": 1,
+        "call": 1,
+        "first_call": true,
+        "prompt_tokens": 263,
+        "cached_tokens": 0,
+        "completion_tokens": 147,
+        "total_tokens": 410,
+        "cost_usd": 0.0001118205,
+        "usage": {
+          "prompt_tokens": 263,
+          "completion_tokens": 147,
+          "cached_tokens": 0,
+          "cost_usd": 0.0001118205
+        },
+        "stage": "verification_extract",
+        "kind": "extract",
+        "wall_s": 4.304
+      },
+      {
+        "step": 1,
+        "call": 1,
+        "first_call": true,
+        "prompt_tokens": 262,
+        "cached_tokens": 0,
+        "completion_tokens": 130,
+        "total_tokens": 392,
+        "cost_usd": 0.000103257,
+        "usage": {
+          "prompt_tokens": 262,
+          "completion_tokens": 130,
+          "cached_tokens": 0,
+          "cost_usd": 0.000103257
+        },
+        "stage": "verification_extract",
+        "kind": "extract",
+        "wall_s": 1.263
+      },
+      {
+        "step": 1,
+        "call": 1,
+        "first_call": true,
+        "prompt_tokens": 273,
+        "cached_tokens": 0,
+        "completion_tokens": 189,
+        "total_tokens": 462,
+        "cost_usd": 0.00012442815,
+        "usage": {
+          "prompt_tokens": 273,
+          "completion_tokens": 189,
+          "cached_tokens": 0,
+          "cost_usd": 0.00012442815
+        },
+        "stage": "verification_extract",
+        "kind": "extract",
+        "wall_s": 6.605
+      }
+    ],
+    "new_repair_calls": [
+      {
+        "step": 1,
+        "call": 1,
+        "first_call": true,
+        "prompt_tokens": 359,
+        "cached_tokens": 0,
+        "completion_tokens": 350,
+        "total_tokens": 709,
+        "cost_usd": 0.0002265615,
+        "usage": {
+          "prompt_tokens": 359,
+          "completion_tokens": 350,
+          "cached_tokens": 0,
+          "cost_usd": 0.0002265615
+        },
+        "stage": "analyzer"
+      }
+    ]
+  },
+  "charges": {
+    "unit": "usd",
+    "reused_initial_translation": 0.00914792,
+    "reused_initial_builder": 0.00599284,
+    "new_extraction": 0.00033951,
+    "new_repair": 0.0,
+    "C": 0.01548027
+  },
+  "charges_pw": {
+    "unit": "price_weighted_tokens",
+    "price_sheet_id": "osworld-price-weights-2026-09-05",
+    "price_weights": {
+      "r_c": 0.2,
+      "r_o": 3.33
+    },
+    "reused_initial_translation": 77573,
+    "reused_initial_builder": 67199,
+    "new_extraction": 2350,
+    "new_repair": 0,
+    "references": {
+      "reused_initial_translation": "source build.json#/translator/totals",
+      "reused_initial_builder": "source build.json#/builder/initial/k3_code/usage",
+      "new_extraction": [
+        "#/tasks/0/extraction/calls/0",
+        "#/tasks/1/extraction/calls/0",
+        "#/tasks/2/extraction/calls/0"
+      ],
+      "new_repair": []
+    },
+    "new_extraction_per_call": [
+      753,
+      695,
+      902
+    ],
+    "C": 147122
+  },
+  "deployment": {
+    "status": "required_if_admitted",
+    "reuse_justification": null,
+    "byte_identical_program": null,
+    "unchanged_execution_protocol": false,
+    "unchanged_input_protocol": false
+  },
+  "wall_s": 1212.297,
+  "error": "TypeError: react_resume() got an unexpected keyword argument 'call_checkpoint'"
+}

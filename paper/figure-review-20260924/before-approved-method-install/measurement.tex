@@ -1,0 +1,74 @@
+\section{Measurement}
+\label{sec:measure}
+
+We measure both the saving after a program exists and the cost of obtaining it.
+The protocol charges successful and failed compilation attempts, evaluates verified programs on fresh bindings, and checks the serving comparison through matched agent replays.
+These measurements provide the online cost profiles and show why low program-use cost alone does not establish payback.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/measurement_iclr27.pdf}
+\caption{PACE's measurement protocol.
+The source traces supply both the compilation input and the bindings extracted by a model call for verification.
+Fresh task prompts are used to compare program and agent execution.
+The result panel combines serving measurements with the costs of successful and failed compilation attempts.}
+\label{fig:workflow}
+\end{figure}
+
+\paragraph{Protocol.}
+We test seven families: four AndroidWorld tasks \citep{rawles2025androidworld}, two custom LibreOffice tasks in an OSWorld-based container \citep{xie2024osworld}, and a comment-posting task on WebArena's Reddit application \citep{zhou2024webarena}.
+The models are GLM 5.3 Flash, DeepSeek Flash, and Qwen 3.8 Flash, with exact recorded identifiers in the Appendix.
+Following AutoRPA's translation and construction stages \citep{chen2026autorpa}, we compile $k=3$ completed agent traces and permit bounded repair.
+For verification, the model extracts bindings from the three source task prompts.
+We cache these bindings within the attempt, restore each task's initial state, and require all three tasks to succeed before deployment.
+This check measures reproduction of the construction tasks.
+Thirty fresh deployment tasks provide a separate evaluation, including model-based binding extraction.
+We subtract the measured no-task harness cost from agent runs, and retain every recorded compilation and repair charge.
+The reported costs exclude calls without retained records.
+Some earlier Android cache counts require imputation.
+Appendix~\ref{app:measurement-details} specifies the verification procedure, calibrations, and retained-record coverage.
+
+\subsection{Serving cost}
+\label{sec:share}
+
+For a verified program, the no-drift expected saving is
+\begin{equation}
+s=(1-q)c-c^{\mathrm{prog}},\qquad\text{saving share}=s/c.
+\label{eq:saving}
+\end{equation}
+The saving calculation includes extraction cost and one mean-cost fallback per failed program run.
+Fifteen initial programs pass verification.
+Their extraction costs range from $179$ to $836$ weighted tokens and their estimated saving shares from $0.794$ to nearly $1$.
+Appendix~\ref{app:serving-profiles} reports the profiles used in the experiments.
+
+\label{sec:paired}
+We replay the agent on the thirty deployment bindings of each of the nine verified Android programs, giving $270$ matched-input agent runs (Table~\ref{tab:paired-replays}).
+Their saving shares remain $0.794$--$0.999$ despite differences in agent and program success.
+For example, GLM Calendar and OsmAnd programs each pass all thirty bindings, while the replayed agent passes fourteen and twelve.
+The replay uses a later emulator profile and estimates fallback cost as $qc$; it does not measure an agent resumed after each failed program run.
+
+\input{measurement_paired_table}
+
+\subsection{Compilation cost}
+\label{sec:price}
+
+Table~\ref{tab:price} reports the initial attempt charges and validation outcomes.
+Using the recorded successful charge as $C$, the marginal payback is $C/s$.
+Adding $k$ mean-cost source runs gives $(C+kc)/s$.
+These ratios exclude earlier failed attempts, extra runs needed to acquire traces, and replacement after drift.
+We report unrounded cost ratios; a whole-use threshold for covering the recorded charge in expectation takes the ceiling.
+The fifteen verified programs come from twenty cells with compilation-stage records.
+Qwen's web request is refused, and its Calc record contains only partial spend.
+
+\input{measurement_price_table}
+
+DeepSeek's failed attempts have median cost $2500$K weighted tokens, compared with $238$K for successful attempts, a $10.5$-fold difference across families.
+Its Calc attempt costs $4370$K and passes none of five bindings after repair.
+This comparison does not identify the within-family cost effect of failure.
+Conditional marginal payback ranges from $0.416$ to $13.4$ uses across verified programs, so cheap serving can still require substantial reuse.
+
+Twenty-two additional attempts produce fourteen verified programs, five verification failures, and three provider interruptions.
+Qwen Calendar, for example, has both a successful and a failed compilation attempt under the same verifier.
+Appendix~\ref{app:measurement-checks} reports these attempts and program rechecks.
+The small, partly changed-environment samples do not establish independent retries.
+The GUI perturbation probe also finds silent failures, limiting the detected-failure assumption used in the online model.

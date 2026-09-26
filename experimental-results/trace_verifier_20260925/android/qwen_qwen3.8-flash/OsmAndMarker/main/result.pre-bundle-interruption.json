@@ -1,0 +1,583 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "qwen/qwen3.8-flash",
+ "family": "OsmAndMarker",
+ "attempt_id": "main",
+ "attempt_role": "initial",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "status": "running",
+ "terminal_status": "running",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/artifact_k3_code.py",
+   "sha256": "8f3247b29c03547328f896263e7c3ea6ad141f4b71cc0a270e9905d0a927ca3c"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/build.json",
+    "sha256": "4b6d1c36f013f0ab26cc3cdff9aa99461042208f4f488aae374721dbc4b52e60"
+   },
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/translation.json",
+    "sha256": "63a0a4b20515486b47fde66ebb640d2ade161a68dafdc8cc36adb31af7c7ffdd"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+    "trajectory_sha256": "79ee58506edd7cfa6ec8a16c841e62cce8126032e2ba0f1a5b277dad107ab71a",
+    "recorded_task_id": "OsmAndMarker__discover__s1",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 1
+   },
+   "truth_params": {
+    "location": "Malbun, Liechtenstein"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s2_a0/trajectory.jsonl",
+    "trajectory_sha256": "1d05921b283366548a9d3f33f562d2d3a20ca75d6c0136e8e59f6901ac133f8a",
+    "recorded_task_id": "OsmAndMarker__discover__s2",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 2
+   },
+   "truth_params": {
+    "location": "47.0688832, 9.5061564"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+    "trajectory_sha256": "e99ad4f9f182f1d9afef76ed977f55f6cde56f0586436e8e0de7766c11b39b1a",
+    "recorded_task_id": "OsmAndMarker__discover__s3",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 3
+   },
+   "truth_params": {
+    "location": "Nendeln, Liechtenstein"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\":\"Malbun, Liechtenstein\"}"
+   ],
+   "binding": {
+    "location": "Malbun, Liechtenstein"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 219,
+     "cached_tokens": 0,
+     "completion_tokens": 98,
+     "total_tokens": 317,
+     "cost_usd": 7.81209e-05,
+     "usage": {
+      "prompt_tokens": 219,
+      "completion_tokens": 98,
+      "cached_tokens": 0,
+      "cost_usd": 7.81209e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 2.243
+    }
+   ],
+   "wall_s": 2.243
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\":\"47.0688832, 9.5061564\"}"
+   ],
+   "binding": {
+    "location": "47.0688832, 9.5061564"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 234,
+     "cached_tokens": 0,
+     "completion_tokens": 120,
+     "total_tokens": 354,
+     "cost_usd": 9.0585e-05,
+     "usage": {
+      "prompt_tokens": 234,
+      "completion_tokens": 120,
+      "cached_tokens": 0,
+      "cost_usd": 9.0585e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 2.701
+    }
+   ],
+   "wall_s": 2.701
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\":\"Nendeln, Liechtenstein\"}"
+   ],
+   "binding": {
+    "location": "Nendeln, Liechtenstein"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 219,
+     "cached_tokens": 0,
+     "completion_tokens": 85,
+     "total_tokens": 304,
+     "cost_usd": 7.2072e-05,
+     "usage": {
+      "prompt_tokens": 219,
+      "completion_tokens": 85,
+      "cached_tokens": 0,
+      "cost_usd": 7.2072e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.449
+    }
+   ],
+   "wall_s": 1.449
+  }
+ ],
+ "initial_program_sha256": "8f3247b29c03547328f896263e7c3ea6ad141f4b71cc0a270e9905d0a927ca3c",
+ "final_program_sha256": null,
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "8f3247b29c03547328f896263e7c3ea6ad141f4b71cc0a270e9905d0a927ca3c",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'Allow'}) -> NOT FOUND",
+      "find({'contains': 'Allow'}) -> NOT FOUND",
+      "find({'hint': 'Allow'}) -> NOT FOUND",
+      "find({'description': 'Allow'}) -> NOT FOUND",
+      "find({'text': 'OK'}) -> NOT FOUND",
+      "find({'contains': 'OK'}) -> NOT FOUND",
+      "find({'hint': 'OK'}) -> NOT FOUND",
+      "find({'description': 'OK'}) -> NOT FOUND",
+      "find({'text': 'Continue'}) -> NOT FOUND",
+      "find({'contains': 'Continue'}) -> NOT FOUND",
+      "find({'hint': 'Continue'}) -> NOT FOUND",
+      "find({'description': 'Continue'}) -> NOT FOUND",
+      "find({'text': 'Skip'}) -> NOT FOUND",
+      "find({'contains': 'Skip'}) -> NOT FOUND",
+      "find({'hint': 'Skip'}) -> NOT FOUND",
+      "find({'description': 'Skip'}) -> NOT FOUND",
+      "find({'text': 'Accept'}) -> NOT FOUND",
+      "find({'contains': 'Accept'}) -> NOT FOUND",
+      "find({'hint': 'Accept'}) -> NOT FOUND",
+      "find({'description': 'Accept'}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"clear_text\", \"index\": 2} -> RAISED ValueError: Invalid action type: clear_text",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'Marker', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Marker', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:34', description='15:34'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Android System notification: Check access settings'\n  5: description='Location requests active'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'\n  8: description='No internet'",
+     "wall_s": 37.138
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 54.348
+  }
+ ],
+ "admitted": false,
+ "repairs": [],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/OsmAndMarker/build.json",
+   "translator": {
+    "per_trajectory": [
+     {
+      "seed": 1,
+      "effective_actions": 12,
+      "calls": 12,
+      "prompt_tokens": 9329,
+      "cached_tokens": 0,
+      "completion_tokens": 51755,
+      "total_tokens": 61084,
+      "cost_usd": 0.02546696
+     },
+     {
+      "seed": 2,
+      "effective_actions": 8,
+      "calls": 8,
+      "prompt_tokens": 7362,
+      "cached_tokens": 1792,
+      "completion_tokens": 22612,
+      "total_tokens": 29974,
+      "cost_usd": 0.01137689
+     },
+     {
+      "seed": 3,
+      "effective_actions": 9,
+      "calls": 9,
+      "prompt_tokens": 6555,
+      "cached_tokens": 2560,
+      "completion_tokens": 18187,
+      "total_tokens": 24742,
+      "cost_usd": 0.00909622
+     }
+    ],
+    "totals": {
+     "calls": 29,
+     "prompt_tokens": 23246,
+     "cached_tokens": 4352,
+     "completion_tokens": 92554,
+     "total_tokens": 115800,
+     "cost_usd": 0.04594007
+    }
+   },
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 2993,
+     "completion_tokens": 40340,
+     "cached_tokens": 0,
+     "cost_usd": 0.0192146625,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2993,
+       "cached_tokens": 0,
+       "completion_tokens": 40340,
+       "total_tokens": 43333,
+       "cost_usd": 0.0192146625,
+       "usage": {
+        "prompt_tokens": 2993,
+        "completion_tokens": 40340,
+        "cached_tokens": 0,
+        "cost_usd": 0.0192146625
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 2882,
+     "completion_tokens": 1623,
+     "cached_tokens": 0,
+     "cost_usd": 0.0011831589,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2882,
+       "cached_tokens": 0,
+       "completion_tokens": 1623,
+       "total_tokens": 4505,
+       "cost_usd": 0.0011831589,
+       "usage": {
+        "prompt_tokens": 2882,
+        "completion_tokens": 1623,
+        "cached_tokens": 0,
+        "cost_usd": 0.0011831589
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 4303,
+     "completion_tokens": 31578,
+     "cached_tokens": 256,
+     "cost_usd": 0.01529827794,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4303,
+       "cached_tokens": 256,
+       "completion_tokens": 31578,
+       "total_tokens": 35881,
+       "cost_usd": 0.01529827794,
+       "usage": {
+        "prompt_tokens": 4303,
+        "completion_tokens": 31578,
+        "cached_tokens": 256,
+        "cost_usd": 0.01529827794
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 4192,
+     "completion_tokens": 5294,
+     "cached_tokens": 256,
+     "cost_usd": 0.00305184924,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4192,
+       "cached_tokens": 256,
+       "completion_tokens": 5294,
+       "total_tokens": 9486,
+       "cost_usd": 0.00305184924,
+       "usage": {
+        "prompt_tokens": 4192,
+        "completion_tokens": 5294,
+        "cached_tokens": 256,
+        "cost_usd": 0.00305184924
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 5788,
+     "completion_tokens": 51404,
+     "cached_tokens": 256,
+     "cost_usd": 0.02474383824,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5788,
+       "cached_tokens": 256,
+       "completion_tokens": 51404,
+       "total_tokens": 57192,
+       "cost_usd": 0.02474383824,
+       "usage": {
+        "prompt_tokens": 5788,
+        "completion_tokens": 51404,
+        "cached_tokens": 256,
+        "cost_usd": 0.02474383824
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 5677,
+     "completion_tokens": 2065,
+     "cached_tokens": 256,
+     "cost_usd": 0.00176991804,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5677,
+       "cached_tokens": 256,
+       "completion_tokens": 2065,
+       "total_tokens": 7742,
+       "cost_usd": 0.00176991804,
+       "usage": {
+        "prompt_tokens": 5677,
+        "completion_tokens": 2065,
+        "cached_tokens": 256,
+        "cost_usd": 0.00176991804
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ]
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 672,
+   "cached_tokens": 0,
+   "completion_tokens": 303,
+   "total_tokens": 975,
+   "cost_usd": 0.00024078
+  },
+  "new_repair": {},
+  "reconciliation": {
+   "reconciled": false,
+   "reason": "attempt_in_progress"
+  }
+ },
+ "deployment": {
+  "status": "pending",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": null,
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": []
+ },
+ "timing": {},
+ "inflight_model_calls": [
+  {
+   "sequence": 1,
+   "completed": true,
+   "model": "qwen/qwen3.8-flash",
+   "usage": {
+    "prompt_tokens": 219,
+    "completion_tokens": 98,
+    "cached_tokens": 0,
+    "cost_usd": 7.81209e-05
+   },
+   "cost_usd": 7.81209e-05
+  },
+  {
+   "sequence": 2,
+   "completed": true,
+   "model": "qwen/qwen3.8-flash",
+   "usage": {
+    "prompt_tokens": 234,
+    "completion_tokens": 120,
+    "cached_tokens": 0,
+    "cost_usd": 9.0585e-05
+   },
+   "cost_usd": 9.0585e-05
+  },
+  {
+   "sequence": 3,
+   "completed": true,
+   "model": "qwen/qwen3.8-flash",
+   "usage": {
+    "prompt_tokens": 219,
+    "completion_tokens": 85,
+    "cached_tokens": 0,
+    "cost_usd": 7.2072e-05
+   },
+   "cost_usd": 7.2072e-05
+  },
+  {
+   "sequence": 4,
+   "completed": true,
+   "model": "qwen/qwen3.8-flash",
+   "usage": {
+    "prompt_tokens": 1022,
+    "completion_tokens": 4009,
+    "cached_tokens": 0,
+    "cost_usd": 0.0020171547
+   },
+   "cost_usd": 0.0020171547
+  },
+  {
+   "sequence": 5,
+   "completed": true,
+   "model": "qwen/qwen3.8-flash",
+   "usage": {
+    "prompt_tokens": 4884,
+    "completion_tokens": 122,
+    "cached_tokens": 0,
+    "cost_usd": 0.0007820406
+   },
+   "cost_usd": 0.0007820406
+  }
+ ]
+}

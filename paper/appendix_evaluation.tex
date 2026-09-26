@@ -1,35 +1,42 @@
 \section{Online evaluation details}\label{app:simulation-details}
 
-\subsection{Profiles and task streams}
-\label{sec:policysim}
+\subsection{Cost profiles}
+\label{app:cost-profiles}
 
-The profiles contain the seven measured families for GLM and DeepSeek and the six retained families for Qwen.
+We construct cost profiles for the online evaluation from measurements of seven families for GLM and DeepSeek and six families with compilation records for Qwen.
 The refused Qwen web request provides no cost profile.
-A verified cell supplies its agent cost, extraction cost, program failure fraction, and successful compilation price.
-A cell without a verified program uses the same model's verified-cell medians for the unobserved successful-program quantities.
+For a cell with a successful compilation, we use its agent cost, extraction cost, and successful compilation cost.
+We use its deployment failure fraction as $q$ conditional on no GUI drift.
+Each test setting defines $h$ separately.
+A cell without a successful compilation uses medians from cells with successful compilations under the same model for the unobserved successful-program quantities.
 The agent success probability is the fraction of completed exploration attempts that succeeded, including unsuccessful attempts in the denominator.
 
-A complete failed compilation supplies that cell's failed-attempt charge.
-For cells without such a record, DeepSeek uses its median complete-failure price and Qwen uses its one complete-failure price.
-The partial Qwen Calc spend is used only for that cell and is excluded from the other failure-price substitutions.
-The initial GLM profiles have no complete failed attempt, so their base setting uses $C^{\mathrm{fail}}=C$.
-These values define fixed simulation charges.
-The missing-price substitutions are assumptions about unobserved outcomes, not additional measurements.
+\looseness=-1
+A complete failed compilation gives the failed-attempt cost for that cell.
+For an unobserved failed outcome, we use the same model's median complete failed-attempt cost.
+For Web DeepSeek, whose recorded charge is incomplete, we set this estimate to at least its recorded cost lower bound.
+We exclude incomplete charges from the donor median.
+These values define fixed charges in the experiments.
+The estimates of missing costs are assumptions about unobserved outcomes, not additional measurements.
 
+\subsection{Synthetic task streams}
 We evaluate two grids of $300$ conditions each.
-Each crosses three model profiles, four verification settings, five arrival patterns, and five cost or environment settings.
-The first grid has $1200$ arrivals and $30$ recurring families, except in its sparse pattern.
+Each includes all combinations of three model profiles, four verification settings, five arrival patterns, and five cost or environment settings.
+The first grid has $1200$ arrivals and $30$ families that appear repeatedly, except in its sparse pattern.
 Its verification probabilities are $0.9$, $0.5$, $0$, or an independently assigned per-family mixture over $\{0,0.1,0.5,0.9,1\}$.
-Its patterns are uniform family sampling, Zipf sampling, bursts, a change in the frequent family, and sparse recurrence.
+Its patterns are uniform family sampling, Zipf sampling, bursts, a change in the frequent family, and infrequent repeats.
 The uniform pattern concerns family labels, not wall-clock Poisson arrivals.
 The base setting uses $h=0.02$, an idle limit of $T=100$, and router cost $368+91\ell_t$.
-The other settings multiply only failed-compilation cost by five, multiply both compilation prices by five, set $h=0.1$, or raise the per-entry routing charge to $1820$.
+We measure routing cost with program lists of up to $100$ entries and use the resulting intercept and rounded per-entry cost.
+We use these constants as shared scenario parameters across model profiles.
+The other settings multiply only failed-compilation cost by five, multiply both compilation costs by five, set $h=0.1$, or raise the per-entry routing charge to $1820$.
 
-The second grid changes both the random seeds and the parameters.
-It has $1800$ arrivals and $40$ recurring families, except in its sparse pattern, with verification probabilities $0.95$, $0.35$, $0$, or a mixture over $\{0,0.05,0.3,0.7,1\}$.
-Its altered-cost settings multiply failed cost by three or both compilation prices by seven, and its drift and routing settings use $h=0.07$ and $m=910$.
-We retain every condition in both grids.
-The probabilities are assigned independently of the profiles' initial verification outcomes, so a missing-value substitution does not identify a family's verification probability.
+\looseness=-1
+The second grid uses its own random seeds and parameters.
+It has $1800$ arrivals and $40$ families that appear repeatedly, except in its sparse pattern, with verification probabilities $0.95$, $0.35$, $0$, or a mixture over $\{0,0.05,0.3,0.7,1\}$.
+Its altered-cost settings multiply failed cost by three or both compilation costs by seven, and its drift and routing settings use $h=0.07$ and $m=910$.
+We report every condition in both grids.
+The probabilities are assigned independently of the profiles' initial verification outcomes, so an estimate for a missing value does not identify a family's verification probability.
 
 \subsection{Recorded arrival orders}\label{app:arrival-orders}
 We also use Sepsis and BPI 2019 process logs \citep{mannhardt2016sepsis,vandongen2019bpi} and two Wikipedia edit streams.
@@ -37,149 +44,169 @@ In each process log, an arrival is a completed case, ordered by its earliest eve
 Sepsis contains $1050$ arrivals and $846$ families, while BPI 2019 contains $251{,}734$ arrivals and $11{,}973$ families.
 These activity-sequence labels are assigned after each case completes and do not test online family identification.
 
+\looseness=-1
 For Wikipedia, an arrival is an edit, and families group normalized edit-summary templates with bot and tool labels.
 The tool stream contains $65{,}564$ arrivals and $2529$ families.
 We use the first $100{,}000$ timestamp-ordered human edits, which contain $68{,}773$ families.
-Human edits with empty or section-only summaries receive separate singleton labels.
+Each human edit with an empty or section-only summary gets its own family label.
+The source window spans 3 September 2026 at 18:48:26 UTC to 5 September 2026 at 18:48:26 UTC, as recorded in \path{datasets/wiki-stream/structure_report.md}.
+The exact summary normalization is in \path{datasets/wiki-stream/build_families.py}, and \path{code/t2sim/streams.py} defines sorting and stream selection.
 
-The logs supply recurrence and order rather than live GUI tasks.
-For each repetition, measured cost profiles are shuffled onto log-family identifiers, and verification probabilities are assigned independently from the first grid's mixture.
-Three models and four logs give twelve model--log conditions.
+\looseness=-1
+The logs give task frequencies and arrival order rather than live GUI tasks.
+For each run, measured cost profiles are shuffled onto log-family identifiers, and verification probabilities are assigned independently from the first grid's mixture.
+Three models and four logs give twelve combinations of models and logs.
 The runs use the same base drift and routing settings as the first grid.
 
-\paragraph{Uncertainty.}
-Each grid condition has eight paired repetitions, and each model--log condition has ten.
+\paragraph{Confidence intervals.}
+Each grid condition has eight paired runs, and each combination of a model and a log has ten.
 Compilation outcomes are indexed by family and attempt, while serving outcomes are indexed by family, arrival, and failure channel.
-Rules in a repetition share these outcome sequences and the same cost mapping.
-A cell's cost ratio is the policy's mean token cost divided by the agent-only mean in that cell.
-An aggregate averages cell ratios with equal weight, without pooling absolute cost units across models.
-The grid and log intervals use $2000$ paired bootstrap resamples, with repetition indices shared across policies and conditions in each study.
-They describe variation in the retained mappings and outcomes, conditional on the tested scenarios and supplied cost profiles.
-They do not include uncertainty in the measured costs, missing-price substitutions, or protocol selection.
+Rules in a run share these outcome sequences and the same cost mapping.
+A cell's cost ratio is the policy's mean token cost divided by the PACE mean in that cell.
+We compute the overall result by averaging the cell ratios with equal weights, without combining absolute costs across models.
+The grid and log intervals use $2000$ paired bootstrap resamples, with run indices shared across policies and conditions in each study.
+They describe variation in the saved mappings and outcomes, conditional on the tested scenarios and given cost profiles.
+They do not account for measurement error in the given costs or the effects of choosing different estimates of missing costs.
 The largest tested condition mean is a descriptive maximum and has no confidence interval.
 
-The grids were run during protocol development, and the second grid changed settings after the first study.
-The two literature adaptations and the equal-attempt-price ablation were specified later and evaluated on these same conditions without changing PACE.
-We preserve both grids, the alternative rules, the separate development cases, and the boundary cases in the result records.
-The reported comparisons are exploratory evidence rather than independent confirmation of the final protocol choice.
-All reported main conditions use detected failures and one agent fallback.
-The simulator reports whether a failure is a persistent break, so invalidation uses a supplied outcome rather than a measured online classifier.
-Because a failed program uses the same agent outcome as the agent-only rule on that arrival, nondecreasing task success in this model follows from its construction.
+We used both grids while developing PACE, so the reported comparisons are exploratory evidence rather than independent confirmation.
+All grid and log conditions use detected failures and one agent fallback.
+The experimental environment reports whether a failure is due to GUI drift.
+The policy uses this report to stop program reuse.
+We do not test an online drift detector.
+When a program fails, the model uses the same agent outcome as ReAct for that arrival.
+This rule ensures that task success in the model cannot be lower than ReAct's.
 The cost bound itself makes no such quality claim.
 
 \subsection{Comparison rules}\label{app:baselines}
 \label{sec:baselines}
 
+\looseness=-1
 We compare PACE with ReAct, two decision strategies adapted from published systems, and alternative timing rules with and without the same cumulative budget.
 All methods use the same measured compiler and serving profiles, so the comparison isolates their compilation and reuse decisions.
 The named adaptations do not reproduce the original systems' models, code generators, or benchmark scores.
 
 \paragraph{ReAct.}
-The agent-only reference uses the ReAct execution path on every arrival and never compiles \citep{yao2023react}.
+The ReAct baseline uses agent execution on every arrival and never compiles or reuses programs \citep{yao2023react}.
 
 \paragraph{AutoRPA (one build).}
-AutoRPA constructs a program from building tasks, limits its repair attempts, and uses ReAct when construction fails \citep{chen2026autorpa}.
+AutoRPA constructs a program from source tasks, limits its repair attempts, and uses ReAct when construction fails \citep{chen2026autorpa}.
 Our adaptation attempts one build after $k=3$ completed agent runs, with the measured compilation charge already including bounded repair.
 A failed build leaves the family on the agent path.
-A verified program serves later tasks with agent fallback, and a detected break returns the family to agent service without another build.
+If the build succeeds, the program serves later tasks with agent fallback, and detected GUI drift returns the family to agent service without another build.
 This transfers the bounded construction-and-reuse policy to the shared compiler and arrival model.
 
 \paragraph{ToolPro (cost adaptation).}
 ToolPro compares construction latency with the latency saved within one task \citep{liu2026toolpro}.
-We adapt this single-task criterion to token cost: an eligible family requests compilation only when $s_h>\hat B$.
+We adapt this single-task criterion to token cost: a family with enough traces and no program to reuse requests compilation only when $s_h>\hat B$.
 The estimate $\hat B$ uses the same observed verification outcomes as PACE.
 This rule gives no credit for savings on multiple future tasks.
-We retain the shared parameterized programs and serving order, so the comparison tests the cost criterion rather than ToolPro's original tool execution system.
+We keep the shared parameterized programs and serving order, so the comparison tests the cost criterion rather than ToolPro's original tool execution system.
 
 \paragraph{Cost-aware timing controls.}
-The remaining controls share a per-family allowance that admits compilation only when $F+C^{\mathrm{fail}}\leq\max(0,S)+\max(0,\hat Hs_h)$, where $F$ is failed-compilation spend and $S$ is accumulated program-use saving.
-The allowance uses forecast savings and does not enforce PACE's cumulative bound.
-\emph{Eager + allowance} requests a build whenever the family is eligible and has no live program.
+\looseness=-1
+The remaining controls share a per-family budget that allows compilation only when $F+C^{\mathrm{fail}}\leq\max(0,S)+\max(0,\hat Hs_h)$, where $F$ is failed-compilation spend and $S$ is accumulated program-use saving.
+The allowance uses estimated future savings and does not enforce PACE's cumulative bound.
+\emph{Eager + allowance} requests a build when the family has enough traces and no program to reuse.
 \emph{After 10 arrivals} waits for ten arrivals of the family.
-\emph{After 10 successes} waits for ten successful agent runs since the last admission or detected break.
-\emph{Savings threshold} waits until the forgone expected savings on agent-only service reach $\hat B$.
-\emph{Projected + allowance} uses PACE's projected-savings test with this allowance in place of its cost budget.
+\emph{After 10 successes} waits for ten successful agent runs since the last compilation attempt or detected GUI drift.
+\emph{Savings threshold} waits until the expected savings lost by using the agent instead of reusing a program reach $\hat B$.
+\emph{Estimate + allowance} uses PACE's savings test with this allowance in place of its cost budget.
 
 \paragraph{The same budget with other proposals.}
-The budgeted rows in Tables~\ref{tab:policysim-full} and~\ref{tab:realstreams-full} holds PACE's $0.25$ margin, service reservations, and manifest controls fixed.
-\emph{Eager + both checks}, \emph{Arrival-10 + both}, and \emph{Projected + both} add that budget to the corresponding forecast-allowance rules.
-\emph{Count + budget} changes only PACE's projected uses to $\min(N,1/h)$.
-\emph{Optimistic + budget} retains its smoothed count but substitutes the one-sided $90$ percent Clopper--Pearson upper value for $\hat p$, using it as an optimistic proposal estimate.
+\looseness=-1
+The budgeted rows in Tables~\ref{tab:policysim-full} and~\ref{tab:realstreams-full} hold PACE's $0.25$ margin, service reservations, and program list controls fixed.
+\emph{Eager + both checks}, \emph{Arrival-10 + both}, and \emph{Estimate + both} add that budget to the corresponding estimate-based allowance rules.
+\emph{Count + budget} changes only PACE's estimated reuse count to $\min(N,1/h)$.
+\emph{Optimistic + budget} keeps PACE's estimate $\hat H$ but uses the one-sided $90$ percent Clopper--Pearson upper value in place of $\hat p$, using it as an optimistic proposal estimate.
 \emph{One initial try} adds a limit to that optimistic rule: an unsuccessful first build ends compilation for the family, while an initially successful family can later attempt replacement.
-The budget guarantee does not depend on the calibration of any of these proposal estimates.
+The budget guarantee does not require these proposal estimates to be accurate.
 
 All methods require $k=3$ completed agent runs before compilation and serve the current arrival before attempting a build.
-They share free artifact lookup, idle expiry, relisting of live programs, and the same failure outcomes.
-PACE and the other budgeted rules check service and compilation costs and can clear the manifest before a routing charge.
+They share free program lookup, idle expiry, adding programs to the list again if they can still be reused, and the same failure outcomes.
+PACE and the other budgeted rules check service and compilation costs, and can clear the program list before a routing charge.
 PACE's main setting is $\epsilon=0.25$ throughout both comparison tables.
 Section~\ref{sec:ablation} separately removes each of its main components.
 
 
 \subsection{Cost-profile sensitivity}\label{app:cost-sensitivity}
-\label{sec:price-sensitivity}
 
-The base profiles contain fifteen observed successful prices, four complete failed prices, and one partial spend.
-We test the unobserved counterpart by setting nominal ratios $r=C^{\mathrm{fail}}/C$ to $0.5$, $1$, $2$, or $5$, while preserving each observed branch price.
-For a verified profile we vary $C^{\mathrm{fail}}$, and for a profile with a complete failed attempt we vary $C$.
-For Qwen Calc, we retain the imputed $C$ and set the failed price to the larger of its partial spend and $rC$.
-Its actual ratio therefore exceeds the nominal value in the first three settings.
-The other profile values and the original probability assignments remain fixed.
-These four settings give forty-eight model--log conditions.
+The base profiles contain eleven observed successful compilation costs, eight complete failed-attempt costs, and one failed-attempt cost lower bound.
+We vary the cost of the unobserved outcome by setting target ratios $r=C^{\mathrm{fail}}/C$ to $0.5$, $1$, $2$, or $5$, while keeping the cost of each observed outcome unchanged.
+For a profile with an observed successful compilation, we vary $C^{\mathrm{fail}}$.
+For a profile with a complete failed attempt, we vary $C$.
+For Web DeepSeek, we keep the estimate of the missing $C$ and set the failed cost to the larger of its recorded lower bound and $rC$.
+Its actual ratio therefore exceeds the target value in all four settings.
+The other profile values and the base probability assignments remain fixed.
+These four settings give forty-eight combinations of models and logs.
 
-We add two dependence scenarios using the original costs.
+We add two dependence scenarios using the base costs.
 Verification probability decreases from $0.9$ to $0.1$ as the profile's rank in $C/c$ increases.
-One scenario keeps the original profile assignments.
-The other assigns profiles with high $C/c$ to frequent families while preserving the multiset of assigned profiles.
-Only the environment constructor uses the full-stream counts, and the policy receives neither those counts nor the hidden verification probabilities.
-We fixed these seventy-two conditions before evaluation and retained them all.
-They test specified alternatives to the base assumptions rather than calibrating a deployment's joint distribution.
+One scenario keeps the base profile assignments.
+The other assigns profiles with high $C/c$ to frequent families without changing which profiles are used or how many times each is assigned.
+Only the code that creates the workload uses counts from the full stream.
+The policy receives neither those counts nor the hidden verification probabilities.
+We fixed these seventy-two conditions before evaluation and saved them all.
+They test alternatives to the base assumptions rather than estimate how these factors vary together in an actual deployment.
+
+We separately test the incomplete Web DeepSeek charge at its recorded lower bound and at twice the modeled estimate, keeping all other settings fixed.
+We use the default bursty condition and the BPI 2019 condition, giving four additional conditions that are excluded from the main comparison averages.
 
 \input{online_sensitivity_table}
 
-Across the four missing-price settings, PACE's mean cost ranges from $0.788$ to $0.830$ of ReAct.
-Equal attempt prices costs $1.034$ and $1.143$ times PACE on average at $r=2$ and $r=5$.
-The comparison also has losses: PACE costs more in four of twelve conditions at $r=0.5$ and in one at $r=5$.
-At $r=1$, the eight GLM and DeepSeek conditions tie exactly, while the Qwen partial-spend floor leaves differences in the other four.
-The value of separate prices therefore depends on the assigned asymmetry and its effect on compilation timing.
+Across the four missing-cost settings, PACE's mean cost ranges from $0.833$ to $0.866$ of ReAct.
+The Equal attempt costs variant costs $1.020$ and $1.141$ times PACE on average at $r=2$ and $r=5$.
+PACE costs more than this variant in six of twelve conditions at $r=0.5$ and in two at $r=2$, but less in all twelve at $r=5$.
+At $r=1$, the eight GLM and Qwen conditions tie exactly.
+For DeepSeek, the partial web spending record sets a minimum failed-attempt cost, so differences remain in the other four conditions.
+The value of using separate costs therefore depends on the assumed difference between successful and failed compilation costs and how that difference changes compilation timing.
 
-Under cost-dependent verification alone, PACE averages $0.657$ of ReAct.
-Adding the adverse recurrence assignment raises that ratio to $0.997$, so the base saving nearly disappears.
-Equal attempt prices averages $1.050$ in the same joint scenario.
-Both variants satisfy the implemented budget in all $1440$ protected runs.
-These results separate the cost constraint from the amount saved, which depends on the workload and supplied cost model.
+\looseness=-1
+Under cost-dependent verification alone, PACE has a mean cost of $0.671$ times ReAct cost.
+Adding the assignment of costly profiles to frequent families raises that ratio to $1.015$, so PACE costs about $1.5\%$ more than ReAct on average.
+Equal attempt costs has a mean cost ratio to PACE of $1.056$ in the same joint scenario.
+Both variants satisfy the implemented budget check, with a relative numerical tolerance of $10^{-8}$, in all $1440$ runs.
+The largest recorded prefix ratio is $1.25000001$.
+These results separate the cost constraint from the amount saved, which depends on the workload and given cost model.
+
+In the separate Web DeepSeek missing-charge check, PACE-to-ReAct cost ratios range from $0.686$ to $0.785$ on the default bursty condition and from $0.545$ to $0.618$ on BPI 2019.
+The corresponding ratios under the modeled failed cost are $0.734$ and $0.624$.
+All four additional conditions satisfy the implemented budget.
 
 \subsection{Alternative compilation proposals}
 \label{sec:matched-budget}
 
 Applying PACE's budget to the cost-aware timing controls preserves their low costs.
-On the recorded logs, Eager + both checks, Arrival-10 + both, and Projected + both average $0.7824$, $0.7809$, and $0.7817$ of agent-only cost, compared with $0.7815$ for PACE.
-Each paired $95$ percent interval for control cost divided by PACE cost includes one.
-These comparisons do not establish a cost advantage for PACE's proposal over the protected cost-aware controls.
+On the recorded logs, Eager + both checks, Arrival-10 + both, and Estimate + both have mean costs of $0.8349$, $0.8323$, and $0.8312$ times ReAct cost, compared with $0.8266$ for PACE.
+Each paired $95$ percent interval for control cost divided by PACE cost lies above one, although each mean cost difference is below $1\%$.
 
-Count + budget averages $0.9090$ and $0.9066$ on the two grids, below PACE's $0.9095$ and $0.9070$.
-Its log mean is $0.7819$, and its paired ratio to PACE has interval $[0.9999,1.0008]$.
-The count rule has a similar cost to the smoothed projection in these conditions.
-Optimistic + budget and One initial try have higher log means of $0.8512$ and $0.8473$.
-Together, these results support price-aware proposals within the shared cost budget, but do not identify the exact projection formula as a separate source of improvement.
+Count + budget has mean cost ratios to ReAct of $0.9556$ and $0.9536$ on the two grids, compared with $0.9563$ and $0.9539$ for PACE.
+On the recorded logs, its mean cost is $0.8265$ times ReAct cost.
+Its paired $95\%$ interval for the cost ratio to PACE is $[0.9997,0.9999]$.
+The count rule is slightly cheaper than PACE's estimate $\hat H$ in these conditions.
+Optimistic + budget and One initial try have higher log means of $0.9203$ and $0.8839$.
+Together, these results support cost-aware proposals within the shared cost budget, but do not identify the exact reuse-count estimate as a separate source of improvement.
 
 \subsection{Complete cost comparisons}
 \label{app:full-comparisons}
-The following tables retain the named adaptations and all constructed compilation rules, with conditional paired bootstrap intervals.
-ReAct's ratio is one in every repetition by normalization.
-ToolPro also matches ReAct in the DeepSeek and Qwen conditions shown, producing exact zero-width intervals.
+\looseness=-1
+The following tables report the named adaptations and all other compilation rules, with conditional paired bootstrap intervals.
+PACE's ratio is one in every run by normalization.
+ToolPro matches ReAct in all conditions shown, so those rows have identical ratios and intervals relative to PACE.
 We omit offsets only for zero-width intervals, not for small nonzero intervals.
 Maxima are descriptive maxima over tested condition means and have no sampling interval.
 \input{online_results_full}
 
-\subsection{Component costs and paired effects}
+\subsection{Component costs}
 \label{app:ablation-absolute}
-Table~\ref{tab:ablation-absolute} gives absolute costs for the ablations, and Table~\ref{tab:ablation-effects-full} gives their paired percentage changes with intervals.
-A change averages $100(K_{\mathrm{variant}}/K_{\mathrm{PACE}}-1)$ over fixed model--condition pairs, using each condition's mean costs.
+\looseness=-1
+Table~\ref{tab:ablation-absolute} gives cost ratios relative to PACE for the ablations, and Table~\ref{tab:ablation-effects-full} gives their paired percentage changes with intervals.
+A change is the mean of $100(K_{\mathrm{variant}}/K_{\mathrm{PACE}}-1)$ over fixed combinations of models and conditions, using each condition's mean costs.
 Effects can interact and are not additive shares of a total saving.
-PACE's zero change is exact by construction.
-On the recorded logs, equal attempt prices changes no GLM proposal because its base profiles already have $C^{\mathrm{fail}}=C$.
-The mean log effect of removing the budget is small, while its worst grid cost increases.
-By contrast, the savings-test and price-estimate ablations retain the same budget, which keeps their maxima near the same limit.
-Equal attempt prices is cheaper than PACE in $41$ and $48$ conditions of the two grids, so its average loss is not uniform across conditions.
+PACE's change is exactly zero because we compare PACE with itself.
+On the recorded logs, equal attempt costs raises mean cost for each model.
+Removing the budget has little effect on mean cost on the recorded logs, while its worst grid cost increases.
+By contrast, the savings-test and cost-estimate ablations keep the same budget, which keeps their maximum cost ratios to ReAct near the same limit.
+Equal attempt costs is cheaper than PACE in $62$ and $60$ conditions of the two grids, so its average loss is not uniform across conditions.
 \input{online_ablation_absolute}
 \input{online_ablation_effects_full}

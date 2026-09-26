@@ -1,0 +1,562 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "qwen/qwen3.8-flash",
+ "family": "ContactsAddContact",
+ "attempt_id": "attempt1",
+ "attempt_role": "repeat",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v12-44975e25e9a24d51",
+ "status": "provider_error",
+ "terminal_status": "provider_error",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/artifact_k3_code.py",
+   "sha256": "9f6f676cd9f91d6373c35e93bff6a2af04dbced6fb90e099f5ad79105319a6ab"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/compile.json",
+    "sha256": "e093f15415f30cdccc168314c3572ae416914808bbe8b52c645a65e7d5828c4e"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed_missing_trajectory",
+    "recorded_trajectory_path": "/home/myl/app/guiexp/android/experimental-results/guiexp_android/qwen_pilot/qwen_qwen3.8-flash/ContactsAddContact/explore/s1_a0/trajectory.jsonl",
+    "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/compile.json",
+    "source_record_sha256": "e093f15415f30cdccc168314c3572ae416914808bbe8b52c645a65e7d5828c4e",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v12/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_checkable_missing_trajectory",
+    "recorded_params_match": "not_checkable_missing_trajectory"
+   },
+   "truth_params": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Create a new contact for Aria Ali. Their number is +11524493909.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed_missing_trajectory",
+    "recorded_trajectory_path": "/home/myl/app/guiexp/android/experimental-results/guiexp_android/qwen_pilot/qwen_qwen3.8-flash/ContactsAddContact/explore/s2_a0/trajectory.jsonl",
+    "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/compile.json",
+    "source_record_sha256": "e093f15415f30cdccc168314c3572ae416914808bbe8b52c645a65e7d5828c4e",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v12/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_checkable_missing_trajectory",
+    "recorded_params_match": "not_checkable_missing_trajectory"
+   },
+   "truth_params": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed_missing_trajectory",
+    "recorded_trajectory_path": "/home/myl/app/guiexp/android/experimental-results/guiexp_android/qwen_pilot/qwen_qwen3.8-flash/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+    "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/compile.json",
+    "source_record_sha256": "e093f15415f30cdccc168314c3572ae416914808bbe8b52c645a65e7d5828c4e",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v12/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_checkable_missing_trajectory",
+    "recorded_params_match": "not_checkable_missing_trajectory"
+   },
+   "truth_params": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Nikola Fernandez\",\"number\":\"+11417776317\"}"
+   ],
+   "binding": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 192,
+     "cached_tokens": 0,
+     "completion_tokens": 72,
+     "total_tokens": 264,
+     "cost_usd": null,
+     "usage": {
+      "prompt_tokens": 192,
+      "completion_tokens": 72,
+      "cached_tokens": 0,
+      "cost_usd": null
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.955,
+     "response_id": "chatcmpl-613a2075-f6d3-94a0-a442-5625409c83f8",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 180
+    }
+   ],
+   "wall_s": 1.955
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Aria Ali. Their number is +11524493909.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Aria Ali\",\"number\":\"+11524493909\"}"
+   ],
+   "binding": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 192,
+     "cached_tokens": 0,
+     "completion_tokens": 64,
+     "total_tokens": 256,
+     "cost_usd": null,
+     "usage": {
+      "prompt_tokens": 192,
+      "completion_tokens": 64,
+      "cached_tokens": 0,
+      "cost_usd": null
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.682,
+     "response_id": "chatcmpl-09e69fb3-e542-9d8d-93d3-80543b8cbccd",
+     "finish_reason": "stop",
+     "raw_output_length": 43,
+     "reasoning_length": 148
+    }
+   ],
+   "wall_s": 1.682
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Nora Gonzalez\",\"number\":\"+18259791907\"}"
+   ],
+   "binding": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 192,
+     "cached_tokens": 0,
+     "completion_tokens": 87,
+     "total_tokens": 279,
+     "cost_usd": null,
+     "usage": {
+      "prompt_tokens": 192,
+      "completion_tokens": 87,
+      "cached_tokens": 0,
+      "cost_usd": null
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.54,
+     "response_id": "chatcmpl-1e9e7d57-4561-9c52-96b9-64d1d1045d17",
+     "finish_reason": "stop",
+     "raw_output_length": 48,
+     "reasoning_length": 247
+    }
+   ],
+   "wall_s": 1.54
+  }
+ ],
+ "initial_program_sha256": "9f6f676cd9f91d6373c35e93bff6a2af04dbced6fb90e099f5ad79105319a6ab",
+ "final_program_sha256": null,
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "9f6f676cd9f91d6373c35e93bff6a2af04dbced6fb90e099f5ad79105319a6ab",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'description': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Save', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 9} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'description': 'Save', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='+11417776317'\n  8: text='Call', description='Call' [clickable]\n  9: text='Text', description='Text' [clickable]\n  10: text='Video', description='Make video call' [clickable]\n  11: text='Nikola Fernandez'\n  12: text='Contact info'\n  13: text='About Nikola'\n  14: text='Added Oct 15, 2023'\n  15: text='Add phone number'\n  16: text='Add email'\n  17: text='+11417776317'\n  18: text='15:34', description='15:34'\n  19: description='Android System notification: Serial console enabled'\n  20: description='Phone signal full.'\n  21: description='Battery charging, 100 percent.'\n  22: description='3G'",
+     "wall_s": 24.887
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 41.804
+  }
+ ],
+ "admitted": false,
+ "repairs": [],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/qwen_qwen3.8-flash/ContactsAddContact/attempt1/compile.json",
+   "translator": null,
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 1772,
+     "cached_tokens": 0,
+     "completion_tokens": 20897,
+     "cost_usd": 0.0099865161,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1772,
+       "cached_tokens": 0,
+       "completion_tokens": 20897,
+       "total_tokens": 22669,
+       "cost_usd": 0.0099865161,
+       "usage": {
+        "prompt_tokens": 1772,
+        "completion_tokens": 20897,
+        "cached_tokens": 0,
+        "cost_usd": 0.0099865161
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1661,
+     "cached_tokens": 0,
+     "completion_tokens": 1018,
+     "cost_usd": 0.0007203339,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1661,
+       "cached_tokens": 0,
+       "completion_tokens": 1018,
+       "total_tokens": 2679,
+       "cost_usd": 0.0007203339,
+       "usage": {
+        "prompt_tokens": 1661,
+        "completion_tokens": 1018,
+        "cached_tokens": 0,
+        "cost_usd": 0.0007203339
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 2852,
+     "cached_tokens": 0,
+     "completion_tokens": 18204,
+     "cost_usd": 0.0088938432,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2852,
+       "cached_tokens": 0,
+       "completion_tokens": 18204,
+       "total_tokens": 21056,
+       "cost_usd": 0.0088938432,
+       "usage": {
+        "prompt_tokens": 2852,
+        "completion_tokens": 18204,
+        "cached_tokens": 0,
+        "cost_usd": 0.0088938432
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 2741,
+     "cached_tokens": 0,
+     "completion_tokens": 1322,
+     "cost_usd": 0.0010221651,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2741,
+       "cached_tokens": 0,
+       "completion_tokens": 1322,
+       "total_tokens": 4063,
+       "cost_usd": 0.0010221651,
+       "usage": {
+        "prompt_tokens": 2741,
+        "completion_tokens": 1322,
+        "cached_tokens": 0,
+        "cost_usd": 0.0010221651
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 3897,
+     "cached_tokens": 0,
+     "completion_tokens": 16470,
+     "cost_usd": 0.0082421955,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3897,
+       "cached_tokens": 0,
+       "completion_tokens": 16470,
+       "total_tokens": 20367,
+       "cost_usd": 0.0082421955,
+       "usage": {
+        "prompt_tokens": 3897,
+        "completion_tokens": 16470,
+        "cached_tokens": 0,
+        "cost_usd": 0.0082421955
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 3786,
+     "cached_tokens": 0,
+     "completion_tokens": 1763,
+     "cost_usd": 0.0013825449,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3786,
+       "cached_tokens": 0,
+       "completion_tokens": 1763,
+       "total_tokens": 5549,
+       "cost_usd": 0.0013825449,
+       "usage": {
+        "prompt_tokens": 3786,
+        "completion_tokens": 1763,
+        "cached_tokens": 0,
+        "cost_usd": 0.0013825449
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 576,
+   "cached_tokens": 0,
+   "completion_tokens": 223,
+   "total_tokens": 799,
+   "cost_usd": 0.0
+  },
+  "new_repair": {},
+  "reconciliation": {
+   "reconciled": false,
+   "reason": "attempt_in_progress"
+  },
+  "failed_stage_response_ledger": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "failed_stage_reconciliation": {
+   "reconciled": true,
+   "source": "response_call_ledger",
+   "calls": 0
+  }
+ },
+ "deployment": {
+  "status": "pending",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": null,
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": []
+ },
+ "timing": {},
+ "provider_route": {
+  "route": "qwen_official_payg",
+  "base_url": "https://maas.qianwenaiapi.com/compatible-mode/v1",
+  "experiment_model": "qwen/qwen3.8-flash",
+  "served_model": "qwen3.8-flash",
+  "temperature": 0.0,
+  "generation_kwargs": "provider_defaults_except_temperature",
+  "max_tokens": "provider_default",
+  "billing_currency": "CNY",
+  "account_budget_cny": "100",
+  "run_budget_cny": "45",
+  "budget_ledger_path": "/home/yulong/app/guiexp/android/experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/ContactsAddContact/attempt1/official_qwen_budget.json",
+  "max_call_reserve_cny": "5"
+ },
+ "inflight_model_calls": [
+  {
+   "sequence": 1,
+   "completed": false,
+   "provider_status_code": null,
+   "error_type": "APITimeoutError"
+  }
+ ],
+ "failed_stage": {
+  "error_type": "APITimeoutError",
+  "error": "Request timed out.",
+  "response_ledger_calls": 0,
+  "response_ledger_totals": {
+   "calls": 0,
+   "prompt_tokens": 0,
+   "cached_tokens": 0,
+   "completion_tokens": 0,
+   "total_tokens": 0,
+   "cost_usd": 0.0
+  },
+  "max_attempts_exceeded_without_extra_retry": false
+ }
+}

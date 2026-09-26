@@ -11,75 +11,80 @@ This progress enables computer-use agents.
 A computer-use agent interacts with applications through graphical user interfaces (GUIs).
 At each step, the agent reads the GUI as both a screenshot and a structured text tree, e.g., an accessibility or DOM tree \citep{hong2024cogagent,zhang2025ufo}.
 It then runs a ReAct-style \citep{yao2023react} agent loop, i.e., it calls the model to generate actions and executes them on the interface.
-Task success rates keep rising on benchmarks of web, desktop, and mobile tasks \citep{xie2024osworld,rawles2025androidworld}.
+Task success rates keep rising on benchmarks of web, desktop, and mobile tasks \citep{zhou2024webarena,xie2024osworld,rawles2025androidworld}.
 However, computer-use agents consume more tokens than general agents because of the screenshot inputs, making them more expensive to run.
 Token efficiency, i.e., reducing the token cost, has become a first-order concern.
 
 To improve token efficiency, prior systems reuse earlier experience.
-When an agent solves similar tasks repeatedly, starting from scratch repeats the discovery of the same procedure.
-They reduce this cost by storing experience as text (e.g., memory items or skills) \citep{wang2025awm,zheng2024synapse}, or \textit{compiling} it into parameterized programs \citep{wang2025asi,li2026preact,chen2026autorpa,elyadouni2026tracecompiler}.
-We focus on programs that remove model calls from the execution of the shared procedure.
-After a model call that extracts the program inputs from the task prompt, the program executes the procedure without further model calls.
+When an agent solves similar tasks repeatedly, starting from scratch requires it to rediscover the same procedure each time.
+To reduce this cost, prior systems store earlier experience as text (e.g., memory items or skills) \citep{wang2025awm,zheng2024synapse} or \textit{compile} it into parameterized programs by generating code \citep{wang2025asi,li2026preact,chen2026autorpa,elyadouni2026tracecompiler}.
+A model call extracts the task inputs, which the program then uses to execute the procedure without further model calls.
+We focus on the program method, which has the highest token efficiency.
 
 However, a low execution cost does not mean that compilation saves tokens over the full task stream.
-Compiling a program is expensive and uncertain.
-Creating and testing a program consumes tokens, and failed attempts produce no program.
-A successful program saves tokens only if it serves enough tasks to recover this compilation cost.
-Across published audits, this \emph{payback count} ranges from 4 uses \citep{chen2026autorpa} to 17 uses \citep{trooskens2026compiledai}, and most systems report no payback count \citep{elyadouni2026tracecompiler,xu2026skillsmith}.
-These audits measure different costs and use different baselines, making their numbers incomparable.
-We therefore ask: \emph{when is compilation worth its cost, and how can an agent decide from past observations, despite uncertain compilation costs and future uses, while bounding extra spending relative to continued agent service?}
+% Compiling a program is uncertain and can be expensive.
+% Creating and testing a program consumes tokens, and failed attempts produce no program.
+% A successful program saves tokens only if it serves enough tasks to recover this compilation cost.
+Prior audits report payback counts ranging from 4 \citep{chen2026autorpa} to 17 \citep{trooskens2026compiledai} uses, where the payback count is the number of uses required for token savings to cover the compilation cost.
+Most systems report no payback count \citep{elyadouni2026tracecompiler,xu2026skillsmith}.
+Moreover, these audits measure the costs of different system parts, making the numbers incomparable.
+We therefore ask two questions.
+\emph{How can we systematically measure the payback count?}
+\emph{When is it worth compiling a program instead of continuing to use the agent?}
 
-Deciding when to compile faces two challenges.
-\textbf{Random price.}
-Before an attempt, the system does not know whether it will obtain a verified program or how many tokens it will spend.
-Program repair adds model calls, and an attempt that fails verification still incurs its full cost without delivering a program.
-Measuring only programs that pass verification leaves out this spend.
-\textbf{Unknown arrivals.}
-The system does not know how many tasks will arrive to recover this compilation cost.
-Similar tasks may stop arriving before they pay back the spend, while changes to the GUI, or \emph{GUI drift}, can break a deployed program prematurely.
-Compiling early can waste tokens if tasks do not repeat, whereas waiting can forgo savings on tasks that repeat often.
-An online rule must make this choice using only past observations.
+Measuring the payback count and deciding when to compile have two challenges.
+\textbf{Uncertain compilation cost.}
+Producing a program may require multiple compilation attempts.
+Each attempt may consume tokens on repair, i.e., model calls that modify the program so it can complete the task.
+If the attempt produces no usable program, the system pays the compilation cost and continues to use the agent.
+\textbf{Unknown future use.}
+The system does not know how many later tasks can reuse the program.
+Similar tasks may stop arriving before they pay back the spend.
+GUI changes that make a deployed program stop working, i.e., \emph{GUI drift}, can require a new compilation before further reuse.
+Therefore, compiling early can waste tokens if tasks do not repeat, while waiting can lose savings on tasks that repeat often.
+An online algorithm is required to make this choice using past observations.
 
 \begin{figure}[htb]
+\vspace{-2pt}% Trim excess space above this float.
 \centering
 \includegraphics[width=\linewidth]{fig/teaser_iclr27.pdf}
-\caption{The cost of reuse is uncertain.
-Tasks in a family share a GUI procedure with different inputs.
-Program reuse pays for compilation and model-based input extraction.
-(a) Verified and rejected attempts incur variable token costs.
-(b) Later arrivals and GUI drift determine whether reuse recovers the compilation spend.
-All examples and cost bars are schematic.}
+\caption{\looseness=-1 Challenges in deciding when to compile GUI procedures.
+Top: an example task and its agent and program execution paths.
+In (a), red cost bars mark failed compilation attempts.
+In (b), red bar segments show compilation costs left unrecovered when task arrivals stop or GUI drift ends reuse.}
 \label{fig:teaser}
+\vspace{-3pt}% Remove excess float space while keeping a line after the caption.
 \end{figure}
 
-We introduce \emph{PACE} (Price-Aware Compilation from Experience), which combines a measurement protocol with an online compilation rule.
-The measurement separates the cost of obtaining a program from the saving after that program exists.
-The serving comparison uses matched task inputs and includes agent fallback after a detected program failure.
-The protocol compiles recorded agent traces, selects programs through a validation gate, and charges the model calls on both successful and unsuccessful compilation paths.
+We propose \emph{PACE} (Payback-Aware Compilation from Experience), a system with a measurement protocol and an online compilation algorithm.
+PACE uses experience in two ways: completed agent traces provide the procedure to compile, while past task arrivals and compilation outcomes inform the decision to compile.
+The measurement separates the cost of producing a program from the saving after that program exists.
+We compare agent and program execution costs on matched task inputs, and estimate the additional cost of agent fallback after a detected program failure.
+The protocol compiles recorded agent traces, and records the token costs of successful and failed attempts.
 Deployment runs measure extraction cost and program failures.
-Additional compilations test whether the initial outcome repeats, and agent replays on the program's task inputs check the serving comparison.
+Additional compilations test whether the initial outcome repeats, and agent replays on the program's task inputs check this cost comparison.
 Across seven task families and three models, the measurements show per-use savings alongside differences in compilation cost and outcome.
 
-PACE uses this account to decide when to compile under a cumulative cost constraint.
-A projected-savings rule uses past recurrence and verification outcomes to propose compilation.
-A separate budget check admits an action only when its possible cost fits the allowance determined by the task arrivals already observed.
-The account includes serving, routing, and every successful or failed compilation.
-Under the stated cost model, PACE spends at most $1+\epsilon$ times an agent-only cost reference after every task arrival.
-The margin $\epsilon$ limits the extra spend even when future-use estimates are wrong or compilation keeps failing.
+PACE uses these measurements to decide when to compile under a cumulative cost constraint.
+A cost-aware compilation proposal compares estimated future savings with the estimated compilation cost of producing a program, including failed attempts.
+A separate budget check allows an action only when its possible cost fits the budget from task arrivals already observed.
+Total cost includes task execution, routing, and every successful or failed compilation.
+Under the stated cost model, PACE spends at most $1+\epsilon$ times the reference cost of running every task with the agent after each arrival.
+The margin $\epsilon$ limits the extra spend even when future-reuse estimates are wrong or compilation keeps failing.
 We evaluate the resulting savings and tradeoffs with measured cost profiles, synthetic arrivals, and arrival orders from public logs.
 
 \Needspace{4\baselineskip}
 Our contributions are:
 \begin{itemize}
-\item A measurement protocol for the cost and saving of compiling computer-use tasks.
-We report serving costs, compilation outcomes, repair costs, and payback counts under a shared accounting scheme, with repeated compilations and matched task-input replays.
-\item An online protocol with an agent-relative cost bound.
-PACE combines a reuse estimate with a budget based on costs already charged.
+\item We propose a measurement protocol for the costs and savings of compiling computer-use tasks.
+We report task-execution costs, compilation outcomes, repair costs, and payback counts under a shared accounting scheme, with repeated compilations and matched task-input replays.
+\item We propose an online compilation algorithm that uses a cost budget to decide whether to compile.
+PACE makes cost-aware proposals from past experience and checks their costs against a cumulative budget.
 We prove a cumulative bound under action-cost assumptions.
-\item An implementation and evaluation across cost and recurrence settings.
-We retain the measurement records, policy implementations, and paired simulation outcomes.
-With $\epsilon=0.25$, PACE's mean cost across twelve model--log conditions is $0.781$ of agent-only service, compared with $1.062$ and $0.995$ for decision-rule adaptations of AutoRPA and ToolPro.
-Ablations separate the effects of the savings test, cost budget, and failed-attempt price.
+\item We implement PACE and evaluate it under different cost settings and task arrival patterns.
+We release the measurement records, policy implementations, and paired experimental outcomes.
+With $\epsilon=0.25$, PACE reduces token costs by $17.3\%$ relative to ReAct, $24.9\%$ relative to the AutoRPA adaptation, and $17.3\%$ relative to the ToolPro adaptation on average across the recorded-arrival simulations.
+Ablations separate the effects of the savings test, cost budget, and failed-attempt cost.
 \end{itemize}
 
 \input{problem}
@@ -90,30 +95,34 @@ Ablations separate the effects of the savings test, cost budget, and failed-atte
 \section{Related Work}
 \label{sec:related}
 
-Experience reuse includes executable skill libraries in Voyager \citep{wang2023voyager}, extracted trajectory insights in ExpeL \citep{zhao2023expel}, and procedural-skill refinement in Skill-Pro \citep{mi2026skillpro}.
-LATM separates tool making from tool use to amortize creation cost across requests \citep{cai2023toolmakers}.
-PACE studies the compilation spend, including unsuccessful attempts, and the online decision to incur it.
-Prediction-guided rent-or-buy algorithms study purchase timing under uncertain future demand \citep{purohit2018improving,gollapudi2019online}, while conservative contextual bandits constrain cumulative performance relative to a baseline \citep{kazerouni2016conservative}.
-PACE uses the latter type of constraint for token charges, with measured compilation profiles and reservations that remain valid when the reuse proposal is wrong.
+\textbf{Computer-use agents.}
+Synapse and Agent Workflow Memory reuse trajectories or extracted workflows to guide later GUI actions \citep{zheng2024synapse,wang2025awm}.
+AutoRPA and PreAct compile interaction traces into programs, with verification, repair, or agent fallback \citep{chen2026autorpa,li2026preact}.
+PACE measures successful and failed compilation costs, and decides when to compile under a cumulative token budget.
+
+\looseness=-1
+\textbf{Online decision theory.}
+Classical rent-or-buy analysis weighs ongoing service against an upfront purchase \citep{karlin1994competitive}.
+Prediction-guided algorithms improve purchase timing using estimated demand while limiting the effect of prediction errors \citep{purohit2018improving,gollapudi2019online}.
+Conservative contextual bandits constrain cumulative reward relative to a baseline at every round \citep{kazerouni2016conservative}.
+PACE applies this baseline constraint to token charges, reserving compilation, fallback, and routing costs under valid action-cost bounds.
 
 \section{Limitations}
 \label{sec:limitations}
 
 The measurements cover seven parameterized task families and three model profiles.
-Broader studies could include workflows that span several applications, longer procedures, and task descriptions with greater variation.
-The current account focuses on model-token cost.
-Adding latency, device use, and program-maintenance effort would support decisions that must satisfy several resource constraints.
-Model and provider updates can change the measured costs, so periodic remeasurement would help assess how long a profile remains useful.
-Experiments across longer deployment periods could also measure how maintenance effort grows as applications change.
-Finally, the current implementation receives task-family labels from the workload.
-Integrating a family-discovery component with the measured routing account would extend it to unlabeled task streams.
+The online simulations use given family labels, fixed cost profiles, and reported failure causes.
+Their savings depend on how costs and compilation outcomes are assigned to arriving task families.
+Historical mean costs do not provide the action bounds required for the cost guarantee.
+The live study tests fallback and call reservations for a fixed program, without evaluating the full online compilation algorithm.
+Silent program failures and recovery from partially changed interfaces require further evaluation.
+We measure model-token cost and exclude latency, device use, and program-maintenance effort.
+Model and provider updates can change the measured costs.
 
 \input{conclusion}
 \FloatBarrier
 \label{main:text-end}
-\clearpage
 \input{statements}
-\clearpage
 \bibliography{references}
 \bibliographystyle{iclr2027_conference}
 

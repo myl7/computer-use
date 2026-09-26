@@ -1,62 +1,68 @@
 \section{Live GUI execution}
 \label{app:live}
-\label{sec:live}
 
 We test agent fallback and call-cost reservations on the OpenApps Calendar web application \citep{ullrich2025openapps}.
-This study uses a fixed program and a scheduled compilation attempt, so it does not evaluate PACE's online compilation choice.
+The fixed program was compiled by GLM 5.3 Flash from one agent trace on the same calendar application before this study.
+Six runs without model calls confirmed task completion on the unchanged interface and failure under a renamed submit button or a blocking dialog.
+This study uses a scheduled compilation attempt and does not evaluate PACE's online compilation choice.
 
 \subsection{Paired task execution}
 Four seeds specify event title, date, description, location, URL, and invitees.
-Each runs in a clean interface, with a renamed submit button, and with a blocking dialog, giving twelve agent/program pairs with matching initial states.
+For each seed, we test a clean interface, a renamed submit button, and a blocking dialog, giving twelve agent/program pairs with matching initial states.
 Both paths use GLM 5.3 Flash and the same natural-language goal.
 The agent reads screenshots and an accessibility tree in headless Chromium.
 The program receives a model-extracted binding and uses Playwright locators.
 An execution error triggers agent fallback from the current GUI state, without resetting it.
 A task has a total limit of twenty model calls.
-The evaluator checks the created event and preservation of unrelated application state.
+We stop the task if a model call fails or its cost cannot be confirmed.
+The evaluator checks the created event and whether unrelated application state remains unchanged.
 
 \input{live_results_table}
 
-The agent succeeds in seven of twelve tasks, with four billing interruptions and one step-limit failure.
+The agent succeeds in seven of twelve tasks, with four call interruptions and one step-limit failure.
 All four clean program runs succeed without fallback.
-All eight perturbed program runs invoke fallback, and seven succeed after retaining all six target fields at handoff.
-The remaining run has no correct target fields at handoff and stops on a billing interruption.
-Only five perturbed pairs expose both policies to the intervention before termination.
+All eight program runs with changed interfaces use fallback, and seven succeed after keeping all six target fields at handoff.
+The remaining run has no correct target fields at handoff and stops on a call interruption.
+In only five pairs with changed interfaces do both policies reach the changed part before the runs end.
 Both succeed in all five.
-This post-exposure subset does not replace the twelve-pair comparison.
-Tables~\ref{tab:live-pairs} and~\ref{tab:live-tight} retain all outcomes, including interrupted and denied tasks.
+Results from these five pairs do not replace the comparison across all twelve pairs.
+Tables~\ref{tab:live-pairs} and~\ref{tab:live-tight} keep all outcomes, including interrupted and denied tasks.
 
 \input{live_details_tables}
 
-\subsection{Reservations and recorded charges}
+\subsection{Reservations}
+\looseness=-1
 Before a call, the runner reserves a charge using declared input/output limits and the recorded price schedule.
-A confirmed bill replaces the reservation.
-An unsuccessful or unpriced response ends the task without a retry and retains the reserved charge.
-All $221$ physical requests pass the recorded admission arithmetic.
-Of these, $215$ have verified bills and six remain unsettled.
-Known charges total USD $0.121359$, with an upper bound of USD $0.363432$ after including unsettled reservations.
+We replace the reservation with the confirmed charge.
+An unsuccessful response or a response without a confirmed charge ends the task without a retry and keeps the reserved charge.
+All $221$ actual requests pass the recorded budget checks.
+Of these, $215$ have confirmed charges and six have unconfirmed costs.
+Known charges total USD $0.121359$, with an upper bound of USD $0.363432$ after including reservations for calls with unconfirmed costs.
 
 The main reference adds USD $0.08$ per scheduled task and permits $1.25$ times the cumulative reference.
-A separate attempt, after three completed agent traces, costs USD $0.006872$, passes its predeclared two-instance gate, and leaves the fixed serving program unchanged.
-Its charge enters the main prefix account, but is excluded from the serving-cost comparison.
-This one-call attempt has no repair and differs from the five-binding gate in the main measurement.
+We schedule a separate compilation attempt after the first three agent runs end.
+It makes one builder call without repair and costs USD $0.006872$.
+The resulting program passes checks on two unseen bindings supplied without model extraction.
+We keep the fixed program for serving.
+We include this compilation charge in the cumulative cost checked against the main budget and exclude it from the serving-cost comparison.
 
 Four additional tasks use a separate reference of USD $0.02$ per arrival.
-Two succeed, one stops on a billing interruption, and the first is denied because its USD $0.039834$ binding reservation exceeds the initial USD $0.025$ allowance.
-No model call or GUI service occurs for that denied task, although it remains an arrival in the budget account.
-All recorded prefixes remain within their declared ceilings.
-These references are supplied allowances, not measured agent-only bills, and the denial falls outside the theorem's affordable-default-service premise.
+Two succeed, one stops on a call interruption, and the first is denied because its USD $0.039834$ binding reservation exceeds the initial USD $0.025$ allowance.
+No model call or GUI service occurs for that denied task, although it still increases the cumulative reference by USD $0.02$.
+Each recorded cumulative total stays within the stated budget.
+These references are given allowances, not measured costs from running every task with the agent, and the denial falls outside the theorem's assumption that default service costs at most its reference charge.
 
-\subsection{Uncertainty with unsettled bills}
-For each request without a confirmed bill, we retain the known charge as a lower bound and the reservation as an upper bound.
-Across all twelve pairs, mean serving bills are bounded by $[8.142,21.590]$ milli-USD for the agent and $[1.202,4.564]$ for the program path.
-We do not restrict this comparison to the eight pairs with fully settled bills.
-For a paired difference, the lower endpoint subtracts the agent's upper bill from the program's lower bill.
+\subsection{Cost bounds with unconfirmed costs}
+For each request without a confirmed charge, we keep the known charge as a lower bound and the reservation as an upper bound.
+Across all twelve pairs, mean serving costs are bounded by $[8.142,21.590]$ milli-USD for the agent and $[1.202,4.564]$ for the program path.
+We do not restrict this comparison to the eight pairs with fully confirmed costs.
+For a paired difference, the lower endpoint subtracts the agent's upper cost from the program's lower cost.
 The upper endpoint uses the opposite endpoints.
 The mean difference is bounded by $[-20.388,-3.577]$ milli-USD.
 
-We enumerate all $4^4=256$ ordered bootstrap draws of the four seed clusters, retaining both policies and all three conditions within each selected seed.
-Using linear interpolation, we combine the $2.5$ percentile of the lower mean differences and the $97.5$ percentile of the upper mean differences.
+\looseness=-1
+We enumerate all $4^4=256$ ordered bootstrap draws of the four seed clusters, keeping both policies and all three conditions within each selected seed.
+Using linear interpolation, we take the $2.5$th percentile of the lower mean differences as the lower endpoint and the $97.5$th percentile of the upper mean differences as the upper endpoint.
 This gives a $95\%$ envelope of $[-33.017,4.621]$ milli-USD, which includes zero.
-It propagates billing bounds through the bootstrap, rather than providing an exact-bill confidence interval.
+It uses the lower and upper cost bounds in the bootstrap, rather than giving a confidence interval based on exact costs.
 The four clusters, one task family, and provider interruptions limit population inference and conclusions about successful GUI service.

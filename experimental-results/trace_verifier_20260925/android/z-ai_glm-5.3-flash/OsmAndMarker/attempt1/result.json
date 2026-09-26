@@ -1,0 +1,2649 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "z-ai/glm-5.3-flash",
+ "family": "OsmAndMarker",
+ "attempt_id": "attempt1",
+ "attempt_role": "repeat",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v9-d6c06629e029815d",
+ "status": "complete",
+ "terminal_status": "complete",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/OsmAndMarker/attempt1/artifact_k3_code.py",
+   "sha256": "65d109dc55bbdf5c4f3b2dd96a40923629cd69bd8184a1ba357a30a732fdee99"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/OsmAndMarker/attempt1/compile.json",
+    "sha256": "376dda6103563b1a43082526639d8d55405012bff8c32fb261a8a7a54873176c"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s1_a2/trajectory.jsonl",
+    "trajectory_sha256": "81452d1fc21ddd62ed06f133739f8c871fb29584c255b6aed5bf64056110bc1c",
+    "recorded_task_id": "OsmAndMarker__discover__s1",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v16/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "location": "Malbun, Liechtenstein"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s2_a1/trajectory.jsonl",
+    "trajectory_sha256": "99f34ec91c08a98b05f7dd565262e3cd4ffd0903b796cd50f9478e2dc8b05c62",
+    "recorded_task_id": "OsmAndMarker__discover__s2",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v16/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "location": "47.0688832, 9.5061564"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/OsmAndMarker/explore/s3_a2/trajectory.jsonl",
+    "trajectory_sha256": "1e2aaef0ed13cfa3b54b4d8b5d190705ea1c7172fbfd68ed82d5ac4766137733",
+    "recorded_task_id": "OsmAndMarker__discover__s3",
+    "generator_family": "OsmAndMarker",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v16/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "location": "Nendeln, Liechtenstein"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for Malbun, Liechtenstein in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\": \"Malbun, Liechtenstein\"}"
+   ],
+   "binding": {
+    "location": "Malbun, Liechtenstein"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 169,
+     "cached_tokens": 0,
+     "completion_tokens": 65,
+     "total_tokens": 234,
+     "cost_usd": 5.72715e-05,
+     "usage": {
+      "prompt_tokens": 169,
+      "completion_tokens": 65,
+      "cached_tokens": 0,
+      "cost_usd": 5.72715e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.399,
+     "response_id": "gen-1790345156-FH85zM0EapZ4Js6VR6IV",
+     "finish_reason": "stop",
+     "raw_output_length": 37,
+     "reasoning_length": 214
+    }
+   ],
+   "wall_s": 1.399
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for 47.0688832, 9.5061564 in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\": \"47.0688832, 9.5061564\"}"
+   ],
+   "binding": {
+    "location": "47.0688832, 9.5061564"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 179,
+     "cached_tokens": 0,
+     "completion_tokens": 22,
+     "total_tokens": 201,
+     "cost_usd": 3.74715e-05,
+     "usage": {
+      "prompt_tokens": 179,
+      "completion_tokens": 22,
+      "cached_tokens": 0,
+      "cost_usd": 3.74715e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 16.758,
+     "response_id": "gen-1790345157-twMX5WV2vzh8saQzUGGJ",
+     "finish_reason": "stop",
+     "raw_output_length": 37,
+     "reasoning_length": 0
+    }
+   ],
+   "wall_s": 16.758
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Add a location marker for Nendeln, Liechtenstein in the OsmAnd maps app.",
+    "family": "OsmAndMarker",
+    "fields": [
+     "location"
+    ]
+   },
+   "outputs": [
+    "{\"location\": \"Nendeln, Liechtenstein\"}"
+   ],
+   "binding": {
+    "location": "Nendeln, Liechtenstein"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 170,
+     "cached_tokens": 0,
+     "completion_tokens": 87,
+     "total_tokens": 257,
+     "cost_usd": 3.58974e-05,
+     "usage": {
+      "prompt_tokens": 170,
+      "completion_tokens": 87,
+      "cached_tokens": 0,
+      "cost_usd": 3.58974e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 6.984,
+     "response_id": "gen-1790345173-rB1haGVD88uQvoLEppI2",
+     "finish_reason": "stop",
+     "raw_output_length": 38,
+     "reasoning_length": 298
+    }
+   ],
+   "wall_s": 6.984
+  }
+ ],
+ "initial_program_sha256": "65d109dc55bbdf5c4f3b2dd96a40923629cd69bd8184a1ba357a30a732fdee99",
+ "final_program_sha256": "0ca6b7e5249e05a2e498023781eabd2ce1218be8e136f1f1069bf1757365005f",
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "65d109dc55bbdf5c4f3b2dd96a40923629cd69bd8184a1ba357a30a732fdee99",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: No search result found for location 'Malbun, Liechtenstein'",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: description='Navigate up' [clickable]\n  1: (no text) [scrollable]\n  2: text='Malbun, Liechtenstein', hint='Type to search all' [clickable/editable]\n  3: description='Clear' [clickable]\n  4: text='SHOW ON MAP'\n  5: text='Kunstschule Liechtenstein'\n  6: text='Arts center'\n  7: text='Logistikzentrum Liechtensteinische Post'\n  8: text='5808 mi'\n  9: text='Industrial area'\n  10: text='Liechtensteinischer Milchhof'\n  11: text='5808 mi'\n  12: text='Building'\n  13: text='Islamische Gemeinschaft im F\u00fcrstentum Liechtenstein'\n  14: text='5808 mi'\n  15: text='Religious office'\n  16: text='TAK Theater Liechtenstein'\n  17: text='5809 mi'\n  18: text='Theater'\n  19: text='Liechtenstein Olympic Committee'\n  20: text='5809 mi'\n  21: text='Association office'\n  22: text='Prinzessin Maria Elisabeth von Liechtenstein'\n  23: text='5809 mi'\n  24: description='Back' [clickable]\n  25: description='Switch input method' [clickable]\n  26: description='1' [clickable]\n  27: description='2' [clickable]\n  28: description='3' [clickable]\n  29: description='4' [clickable]\n  30: description='5' [clickable]\n  31: description='6' [clickable]\n  32: description='7' [clickable]\n  33: description='8' [clickable]\n  34: description='9' [clickable]\n  35: description='0' [clickable]\n  36: description='q' [clickable]\n  37: description='w' [clickable]\n  38: description='e' [clickable]\n  39: description='r' [clickable]\n  ... 35 more elements",
+     "wall_s": 64.764
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 81.957
+  },
+  {
+   "version": 1,
+   "program_sha256": "cf38de6f976860c10a3ea680dd3a2cc390c82dfe914fd26fe255017ef115062e",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"up\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:35', description='23:35'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 97.497
+    },
+    {
+     "seed": 2,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"47.0688832, 9.5061564\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:34', description='23:34'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 31.457
+    },
+    {
+     "seed": 3,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Nendeln, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "find({'contains': 'INCREASE SEARCH RADIUS'}) -> NOT FOUND",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nendeln\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:35', description='23:35'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 84.065
+    }
+   ],
+   "passed": 2,
+   "admitted": false,
+   "wall_s": 264.514
+  },
+  {
+   "version": 2,
+   "program_sha256": "37557f5b20f9c996256de73e9eb537b9f61fbab951fdc4a167ee712d4a73cc60",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Could not add a map marker for location 'Malbun, Liechtenstein'",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 4} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: description='Navigate up' [clickable]\n  1: text='No search results?\\nProvide feedback'\n  2: text='Malbun', hint='Type to search all' [clickable/editable]\n  3: description='Clear' [clickable]\n  4: text='SHOW ON MAP'\n  5: (no text)\n  6: (no text)\n  7: text='Send'\n  8: text='Could not find anything: 5 mi'\n  9: text='Change the search or increase its radius.'\n  10: text='INCREASE SEARCH RADIUS'\n  11: text='15:35', description='23:35'\n  12: description='Android System notification: Serial console enabled'\n  13: description='Location requests active'\n  14: description='Wifi signal full.,No internet'\n  15: description='Phone signal full.'\n  16: description='Battery charging, 100 percent.'",
+     "wall_s": 120.172
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 137.346
+  },
+  {
+   "version": 3,
+   "program_sha256": "62e416fa7e5be42f33c7eabdc15c91da5120a3d82539afcf995af0b23f4189bb",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'text': 'SHOW ON MAP'}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 8} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:37', description='23:37'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 200.346
+    },
+    {
+     "seed": 2,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"47.0688832, 9.5061564\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:34', description='23:34'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone signal full.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 33.616
+    },
+    {
+     "seed": 3,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Nendeln, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"wait\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nendeln\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 21} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: (no text)\n  1: description='Map' [clickable]\n  2: text='15:37', description='23:37'\n  3: description='Android System notification: Serial console enabled'\n  4: description='Location requests active'\n  5: description='Wifi signal full.,No internet'\n  6: description='Phone three bars.'\n  7: description='Battery charging, 100 percent.'",
+     "wall_s": 196.005
+    }
+   ],
+   "passed": 2,
+   "admitted": false,
+   "wall_s": 481.399
+  },
+  {
+   "version": 4,
+   "program_sha256": "3ea1554d6ea2c83361508f1b5f624bc7bfb8153354215331703e5920cec0f40a",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Could not add a map marker for location 'Malbun, Liechtenstein'",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: description='Navigate up' [clickable]\n  1: text='No search results?\\nProvide feedback'\n  2: text='Malbun', hint='Type to search all' [clickable/editable]\n  3: description='Clear' [clickable]\n  4: text='SHOW ON MAP'\n  5: (no text)\n  6: (no text)\n  7: text='Send'\n  8: text='Could not find anything: 5 mi'\n  9: text='Change the search or increase its radius.'\n  10: text='INCREASE SEARCH RADIUS'\n  11: text='15:36', description='23:36'\n  12: description='Android System notification: Serial console enabled'\n  13: description='Location requests active'\n  14: description='Wifi signal full.,No internet'\n  15: description='Phone signal full.'\n  16: description='Battery charging, 100 percent.'",
+     "wall_s": 138.755
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 156.017
+  },
+  {
+   "version": 5,
+   "program_sha256": "0ca6b7e5249e05a2e498023781eabd2ce1218be8e136f1f1069bf1757365005f",
+   "interface_sha256": "48dd7c12f1c38cf9f39b8101bcc436083765ffce81d413be581f08b3c8fe9f65",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Could not add a map marker for location 'Malbun, Liechtenstein'",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"OsmAnd\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Clear', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun, Liechtenstein\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'description': 'Search', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Malbun\", \"index\": 2} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "{\"action_type\": \"keyboard_enter\"} -> net.osmand/net.osmand.plus.activities.MapActivity",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Type to search all', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> net.osmand/net.osmand.plus.activities.MapActivity"
+     ],
+     "screen": "  0: description='Navigate up' [clickable]\n  1: text='No search results?\\nProvide feedback'\n  2: text='Malbun', hint='Type to search all' [clickable/editable]\n  3: description='Clear' [clickable]\n  4: text='SHOW ON MAP'\n  5: (no text)\n  6: (no text)\n  7: text='Send'\n  8: text='Could not find anything: 5 mi'\n  9: text='Change the search or increase its radius.'\n  10: text='INCREASE SEARCH RADIUS'\n  11: text='15:36', description='23:36'\n  12: description='Android System notification: Serial console enabled'\n  13: description='Location requests active'\n  14: description='Wifi signal full.,No internet'\n  15: description='Phone signal full.'\n  16: description='Battery charging, 100 percent.'",
+     "wall_s": 141.623
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 159.184
+  }
+ ],
+ "admitted": false,
+ "repairs": [
+  {
+   "status": "ok",
+   "cause": "The search did return results (Liechtenstein POIs, ranked ~5808 mi away because the map is not centered near Liechtenstein), but the program blocked waiting for an 'INCREASE SEARCH RADIUS' button that never appears on this screen and then wrongly raised \"no search result found\". Also, the full-string query \"Malbun, Liechtenstein\" matched POI names containing \"Liechtenstein\" instead of the village Malbun itself.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1316,
+      "completion_tokens": 1504,
+      "cached_tokens": 0,
+      "cost_usd": 0.0009520038
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5110,
+     "cached_tokens": 0,
+     "completion_tokens": 84,
+     "total_tokens": 5194,
+     "cost_usd": 0.000800415,
+     "usage": {
+      "prompt_tokens": 5110,
+      "completion_tokens": 84,
+      "cached_tokens": 0,
+      "cost_usd": 0.000800415
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9482,
+     "cached_tokens": 4992,
+     "completion_tokens": 103,
+     "total_tokens": 9585,
+     "cost_usd": 0.0008660124,
+     "usage": {
+      "prompt_tokens": 9482,
+      "completion_tokens": 103,
+      "cached_tokens": 4992,
+      "cost_usd": 0.0008660124
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 16267,
+     "cached_tokens": 9408,
+     "completion_tokens": 59,
+     "total_tokens": 16326,
+     "cost_usd": 0.0013271841,
+     "usage": {
+      "prompt_tokens": 16267,
+      "completion_tokens": 59,
+      "cached_tokens": 9408,
+      "cost_usd": 0.0013271841
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 23211,
+     "cached_tokens": 16192,
+     "completion_tokens": 68,
+     "total_tokens": 23279,
+     "cost_usd": 0.0015568839,
+     "usage": {
+      "prompt_tokens": 23211,
+      "completion_tokens": 68,
+      "cached_tokens": 16192,
+      "cost_usd": 0.0015568839
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 30147,
+     "cached_tokens": 23104,
+     "completion_tokens": 118,
+     "total_tokens": 30265,
+     "cost_usd": 0.0017904843,
+     "usage": {
+      "prompt_tokens": 30147,
+      "completion_tokens": 118,
+      "cached_tokens": 23104,
+      "cost_usd": 0.0017904843
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 37083,
+     "cached_tokens": 0,
+     "completion_tokens": 281,
+     "total_tokens": 37364,
+     "cost_usd": 0.0056459205,
+     "usage": {
+      "prompt_tokens": 37083,
+      "completion_tokens": 281,
+      "cached_tokens": 0,
+      "cost_usd": 0.0056459205
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 44019,
+     "cached_tokens": 36992,
+     "completion_tokens": 60,
+     "total_tokens": 44079,
+     "cost_usd": 0.0021718719,
+     "usage": {
+      "prompt_tokens": 44019,
+      "completion_tokens": 60,
+      "cached_tokens": 36992,
+      "cost_usd": 0.0021718719
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 51712,
+     "cached_tokens": 0,
+     "completion_tokens": 218,
+     "total_tokens": 51930,
+     "cost_usd": 0.007787142,
+     "usage": {
+      "prompt_tokens": 51712,
+      "completion_tokens": 218,
+      "cached_tokens": 0,
+      "cost_usd": 0.007787142
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 59365,
+     "cached_tokens": 0,
+     "completion_tokens": 91,
+     "total_tokens": 59456,
+     "cost_usd": 0.0041392197,
+     "usage": {
+      "prompt_tokens": 59365,
+      "completion_tokens": 91,
+      "cached_tokens": 0,
+      "cost_usd": 0.0041392197
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 67117,
+     "cached_tokens": 0,
+     "completion_tokens": 251,
+     "total_tokens": 67368,
+     "cost_usd": 0.0047207853,
+     "usage": {
+      "prompt_tokens": 67117,
+      "completion_tokens": 251,
+      "cached_tokens": 0,
+      "cost_usd": 0.0047207853
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 74696,
+     "cached_tokens": 59328,
+     "completion_tokens": 817,
+     "total_tokens": 75513,
+     "cost_usd": 0.0024661692,
+     "usage": {
+      "prompt_tokens": 74696,
+      "completion_tokens": 817,
+      "cached_tokens": 59328,
+      "cost_usd": 0.0024661692
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 82394,
+     "cached_tokens": 59328,
+     "completion_tokens": 82,
+     "total_tokens": 82476,
+     "cost_usd": 0.0027958986,
+     "usage": {
+      "prompt_tokens": 82394,
+      "completion_tokens": 82,
+      "cached_tokens": 59328,
+      "cost_usd": 0.0027958986
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 90158,
+     "cached_tokens": 67072,
+     "completion_tokens": 153,
+     "total_tokens": 90311,
+     "cost_usd": 0.002970297,
+     "usage": {
+      "prompt_tokens": 90158,
+      "completion_tokens": 153,
+      "cached_tokens": 67072,
+      "cost_usd": 0.002970297
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 97851,
+     "cached_tokens": 0,
+     "completion_tokens": 64,
+     "total_tokens": 97915,
+     "cost_usd": 0.0067988151,
+     "usage": {
+      "prompt_tokens": 97851,
+      "completion_tokens": 64,
+      "cached_tokens": 0,
+      "cost_usd": 0.0067988151
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 105544,
+     "cached_tokens": 0,
+     "completion_tokens": 17,
+     "total_tokens": 105561,
+     "cost_usd": 0.00930537234,
+     "usage": {
+      "prompt_tokens": 105544,
+      "completion_tokens": 17,
+      "cached_tokens": 0,
+      "cost_usd": 0.00930537234
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 16,
+     "call": 16,
+     "first_call": false,
+     "prompt_tokens": 109322,
+     "cached_tokens": 105536,
+     "completion_tokens": 98,
+     "total_tokens": 109420,
+     "cost_usd": 0.00350196066,
+     "usage": {
+      "prompt_tokens": 109322,
+      "completion_tokens": 98,
+      "cached_tokens": 105536,
+      "cost_usd": 0.00350196066
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 17,
+     "call": 17,
+     "first_call": false,
+     "prompt_tokens": 115108,
+     "cached_tokens": 109312,
+     "completion_tokens": 17,
+     "total_tokens": 115125,
+     "cost_usd": 0.00376314246,
+     "usage": {
+      "prompt_tokens": 115108,
+      "completion_tokens": 17,
+      "cached_tokens": 109312,
+      "cost_usd": 0.00376314246
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":33}"
+    },
+    {
+     "step": 18,
+     "call": 18,
+     "first_call": false,
+     "prompt_tokens": 119460,
+     "cached_tokens": 115072,
+     "completion_tokens": 17,
+     "total_tokens": 119477,
+     "cost_usd": 0.00381015558,
+     "usage": {
+      "prompt_tokens": 119460,
+      "completion_tokens": 17,
+      "cached_tokens": 115072,
+      "cost_usd": 0.00381015558
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 19,
+     "call": 19,
+     "first_call": false,
+     "prompt_tokens": 123238,
+     "cached_tokens": 119424,
+     "completion_tokens": 18,
+     "total_tokens": 123256,
+     "cost_usd": 0.00388918134,
+     "usage": {
+      "prompt_tokens": 123238,
+      "completion_tokens": 18,
+      "cached_tokens": 119424,
+      "cost_usd": 0.00388918134
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 4455,
+      "completion_tokens": 78372,
+      "cached_tokens": 0,
+      "cost_usd": 0.0394557075
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The searches for \"Nendeln, Liechtenstein\"/\"Nendeln\" never produced a selected result, and the \"Add marker\" action was never executed; the final clicks dismissed the search/context menu, leaving a bare map with no marker, so the oracle rejected it.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 947,
+      "completion_tokens": 1498,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008821395
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5111,
+     "cached_tokens": 0,
+     "completion_tokens": 75,
+     "total_tokens": 5186,
+     "cost_usd": 0.0007961085,
+     "usage": {
+      "prompt_tokens": 5111,
+      "completion_tokens": 75,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007961085
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9483,
+     "cached_tokens": 0,
+     "completion_tokens": 127,
+     "total_tokens": 9610,
+     "cost_usd": 0.0014710905,
+     "usage": {
+      "prompt_tokens": 9483,
+      "completion_tokens": 127,
+      "cached_tokens": 0,
+      "cost_usd": 0.0014710905
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13982,
+     "cached_tokens": 9408,
+     "completion_tokens": 61,
+     "total_tokens": 14043,
+     "cost_usd": 0.0009888516,
+     "usage": {
+      "prompt_tokens": 13982,
+      "completion_tokens": 61,
+      "cached_tokens": 9408,
+      "cost_usd": 0.0009888516
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 18179,
+     "cached_tokens": 13888,
+     "completion_tokens": 223,
+     "total_tokens": 18402,
+     "cost_usd": 0.0011600721,
+     "usage": {
+      "prompt_tokens": 18179,
+      "completion_tokens": 223,
+      "cached_tokens": 13888,
+      "cost_usd": 0.0011600721
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22746,
+     "cached_tokens": 18112,
+     "completion_tokens": 154,
+     "total_tokens": 22900,
+     "cost_usd": 0.0013023054,
+     "usage": {
+      "prompt_tokens": 22746,
+      "completion_tokens": 154,
+      "cached_tokens": 18112,
+      "cost_usd": 0.0013023054
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":12}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 28494,
+     "cached_tokens": 22656,
+     "completion_tokens": 660,
+     "total_tokens": 29154,
+     "cost_usd": 0.0018665262,
+     "usage": {
+      "prompt_tokens": 28494,
+      "completion_tokens": 660,
+      "cached_tokens": 22656,
+      "cost_usd": 0.0018665262
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":4,\"text\":\"47\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 34249,
+     "cached_tokens": 28416,
+     "completion_tokens": 450,
+     "total_tokens": 34699,
+     "cost_usd": 0.0019329057,
+     "usage": {
+      "prompt_tokens": 34249,
+      "completion_tokens": 450,
+      "cached_tokens": 28416,
+      "cost_usd": 0.0019329057
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":6,\"text\":\"12\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 40004,
+     "cached_tokens": 34176,
+     "completion_tokens": 403,
+     "total_tokens": 40407,
+     "cost_usd": 0.0020799702,
+     "usage": {
+      "prompt_tokens": 40004,
+      "completion_tokens": 403,
+      "cached_tokens": 34176,
+      "cost_usd": 0.0020799702
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"44\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 45759,
+     "cached_tokens": 0,
+     "completion_tokens": 124,
+     "total_tokens": 45883,
+     "cost_usd": 0.0068565915,
+     "usage": {
+      "prompt_tokens": 45759,
+      "completion_tokens": 124,
+      "cached_tokens": 0,
+      "cost_usd": 0.0068565915
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":11,\"text\":\"9\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 51514,
+     "cached_tokens": 41472,
+     "completion_tokens": 24,
+     "total_tokens": 51538,
+     "cost_usd": 0.0027348354,
+     "usage": {
+      "prompt_tokens": 51514,
+      "completion_tokens": 24,
+      "cached_tokens": 41472,
+      "cost_usd": 0.0027348354
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":13,\"text\":\"31\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 57269,
+     "cached_tokens": 48384,
+     "completion_tokens": 25,
+     "total_tokens": 57294,
+     "cost_usd": 0.0027688023,
+     "usage": {
+      "prompt_tokens": 57269,
+      "completion_tokens": 25,
+      "cached_tokens": 48384,
+      "cost_usd": 0.0027688023
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":15,\"text\":\"530\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 63026,
+     "cached_tokens": 52992,
+     "completion_tokens": 1147,
+     "total_tokens": 64173,
+     "cost_usd": 0.0036316764,
+     "usage": {
+      "prompt_tokens": 63026,
+      "completion_tokens": 1147,
+      "cached_tokens": 52992,
+      "cost_usd": 0.0036316764
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"733\"}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 68784,
+     "cached_tokens": 59904,
+     "completion_tokens": 4863,
+     "total_tokens": 73647,
+     "cost_usd": 0.0055050138,
+     "usage": {
+      "prompt_tokens": 68784,
+      "completion_tokens": 4863,
+      "cached_tokens": 59904,
+      "cost_usd": 0.0055050138
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 74533,
+     "cached_tokens": 64512,
+     "completion_tokens": 64,
+     "total_tokens": 74597,
+     "cost_usd": 0.0034358049,
+     "usage": {
+      "prompt_tokens": 74533,
+      "completion_tokens": 64,
+      "cached_tokens": 64512,
+      "cost_usd": 0.0034358049
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":4,\"text\":\"47\"}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 80289,
+     "cached_tokens": 71424,
+     "completion_tokens": 24,
+     "total_tokens": 80313,
+     "cost_usd": 0.0034496253,
+     "usage": {
+      "prompt_tokens": 80289,
+      "completion_tokens": 24,
+      "cached_tokens": 71424,
+      "cost_usd": 0.0034496253
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":6,\"text\":\"12\"}"
+    },
+    {
+     "step": 16,
+     "call": 16,
+     "first_call": false,
+     "prompt_tokens": 86045,
+     "cached_tokens": 76032,
+     "completion_tokens": 25,
+     "total_tokens": 86070,
+     "cost_usd": 0.0037574559,
+     "usage": {
+      "prompt_tokens": 86045,
+      "completion_tokens": 25,
+      "cached_tokens": 76032,
+      "cost_usd": 0.0037574559
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"733\"}"
+    },
+    {
+     "step": 17,
+     "call": 17,
+     "first_call": false,
+     "prompt_tokens": 91803,
+     "cached_tokens": 82944,
+     "completion_tokens": 255,
+     "total_tokens": 92058,
+     "cost_usd": 0.0039052233,
+     "usage": {
+      "prompt_tokens": 91803,
+      "completion_tokens": 255,
+      "cached_tokens": 82944,
+      "cost_usd": 0.0039052233
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":11,\"text\":\"9\"}"
+    },
+    {
+     "step": 18,
+     "call": 18,
+     "first_call": false,
+     "prompt_tokens": 97595,
+     "cached_tokens": 87552,
+     "completion_tokens": 292,
+     "total_tokens": 97887,
+     "cost_usd": 0.0042362199,
+     "usage": {
+      "prompt_tokens": 97595,
+      "completion_tokens": 292,
+      "cached_tokens": 87552,
+      "cost_usd": 0.0042362199
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":22}"
+    },
+    {
+     "step": 19,
+     "call": 19,
+     "first_call": false,
+     "prompt_tokens": 103374,
+     "cached_tokens": 94464,
+     "completion_tokens": 1783,
+     "total_tokens": 105157,
+     "cost_usd": 0.0050113008,
+     "usage": {
+      "prompt_tokens": 103374,
+      "completion_tokens": 1783,
+      "cached_tokens": 94464,
+      "cost_usd": 0.0050113008
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 20,
+     "call": 20,
+     "first_call": false,
+     "prompt_tokens": 109152,
+     "cached_tokens": 99072,
+     "completion_tokens": 85,
+     "total_tokens": 109237,
+     "cost_usd": 0.0044813934,
+     "usage": {
+      "prompt_tokens": 109152,
+      "completion_tokens": 85,
+      "cached_tokens": 99072,
+      "cost_usd": 0.0044813934
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":22}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 5061,
+      "completion_tokens": 65225,
+      "cached_tokens": 0,
+      "cost_usd": 0.0330379335
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 3,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The search for \"Malbun\" returned no results (\"Could not find anything: 5 mi\") because the device has no internet (status bar shows \"No internet\") and the offline map data doesn't cover Malbun/Liechtenstein; the agent only scrolled and re-pressed enter instead of widening the search or restoring connectivity.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1228,
+      "completion_tokens": 1608,
+      "cached_tokens": 0,
+      "cost_usd": 0.000530838
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5110,
+     "cached_tokens": 0,
+     "completion_tokens": 19,
+     "total_tokens": 5129,
+     "cost_usd": 0.0004568256,
+     "usage": {
+      "prompt_tokens": 5110,
+      "completion_tokens": 19,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004568256
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9480,
+     "cached_tokens": 5120,
+     "completion_tokens": 15,
+     "total_tokens": 9495,
+     "cost_usd": 0.0005414211,
+     "usage": {
+      "prompt_tokens": 9480,
+      "completion_tokens": 15,
+      "cached_tokens": 5120,
+      "cost_usd": 0.0005414211
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13977,
+     "cached_tokens": 9472,
+     "completion_tokens": 67,
+     "total_tokens": 14044,
+     "cost_usd": 0.00070146945,
+     "usage": {
+      "prompt_tokens": 13977,
+      "completion_tokens": 67,
+      "cached_tokens": 9472,
+      "cost_usd": 0.00070146945
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 18172,
+     "cached_tokens": 13952,
+     "completion_tokens": 50,
+     "total_tokens": 18222,
+     "cost_usd": 0.0008035236,
+     "usage": {
+      "prompt_tokens": 18172,
+      "completion_tokens": 50,
+      "cached_tokens": 13952,
+      "cost_usd": 0.0008035236
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":0}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22477,
+     "cached_tokens": 18112,
+     "completion_tokens": 20,
+     "total_tokens": 22497,
+     "cost_usd": 0.00092945655,
+     "usage": {
+      "prompt_tokens": 22477,
+      "completion_tokens": 20,
+      "cached_tokens": 18112,
+      "cost_usd": 0.00092945655
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 29260,
+     "cached_tokens": 22464,
+     "completion_tokens": 23,
+     "total_tokens": 29283,
+     "cost_usd": 0.00127394586,
+     "usage": {
+      "prompt_tokens": 29260,
+      "completion_tokens": 23,
+      "cached_tokens": 22464,
+      "cost_usd": 0.00127394586
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 36202,
+     "cached_tokens": 29248,
+     "completion_tokens": 15,
+     "total_tokens": 36217,
+     "cost_usd": 0.00148658004,
+     "usage": {
+      "prompt_tokens": 36202,
+      "completion_tokens": 15,
+      "cached_tokens": 29248,
+      "cost_usd": 0.00148658004
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 43136,
+     "cached_tokens": 36160,
+     "completion_tokens": 15,
+     "total_tokens": 43151,
+     "cost_usd": 0.00169380486,
+     "usage": {
+      "prompt_tokens": 43136,
+      "completion_tokens": 15,
+      "cached_tokens": 36160,
+      "cost_usd": 0.00169380486
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 50070,
+     "cached_tokens": 43136,
+     "completion_tokens": 15,
+     "total_tokens": 50085,
+     "cost_usd": 0.00189729144,
+     "usage": {
+      "prompt_tokens": 50070,
+      "completion_tokens": 15,
+      "cached_tokens": 43136,
+      "cost_usd": 0.00189729144
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 57004,
+     "cached_tokens": 50048,
+     "completion_tokens": 58,
+     "total_tokens": 57062,
+     "cost_usd": 0.00211941576,
+     "usage": {
+      "prompt_tokens": 57004,
+      "completion_tokens": 58,
+      "cached_tokens": 50048,
+      "cost_usd": 0.00211941576
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"47.105, 9.605\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 63962,
+     "cached_tokens": 56960,
+     "completion_tokens": 25,
+     "total_tokens": 63987,
+     "cost_usd": 0.00231732072,
+     "usage": {
+      "prompt_tokens": 63962,
+      "completion_tokens": 25,
+      "cached_tokens": 56960,
+      "cost_usd": 0.00231732072
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 70855,
+     "cached_tokens": 63936,
+     "completion_tokens": 30,
+     "total_tokens": 70885,
+     "cost_usd": 0.00251892729,
+     "usage": {
+      "prompt_tokens": 70855,
+      "completion_tokens": 30,
+      "cached_tokens": 63936,
+      "cost_usd": 0.00251892729
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"47.105, 9.605\"}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 77761,
+     "cached_tokens": 70848,
+     "completion_tokens": 48,
+     "total_tokens": 77809,
+     "cost_usd": 0.00272992203,
+     "usage": {
+      "prompt_tokens": 77761,
+      "completion_tokens": 48,
+      "cached_tokens": 70848,
+      "cost_usd": 0.00272992203
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 82103,
+     "cached_tokens": 77760,
+     "completion_tokens": 29,
+     "total_tokens": 82132,
+     "cost_usd": 0.00270218223,
+     "usage": {
+      "prompt_tokens": 82103,
+      "completion_tokens": 29,
+      "cached_tokens": 77760,
+      "cost_usd": 0.00270218223
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 85879,
+     "cached_tokens": 82048,
+     "completion_tokens": 16,
+     "total_tokens": 85895,
+     "cost_usd": 0.00277991901,
+     "usage": {
+      "prompt_tokens": 85879,
+      "completion_tokens": 16,
+      "cached_tokens": 82048,
+      "cost_usd": 0.00277991901
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 6298,
+      "completion_tokens": 63845,
+      "cached_tokens": 0,
+      "cost_usd": 0.0181342854
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 2
+  },
+  {
+   "status": "ok",
+   "cause": "The run only typed the search query and tapped around the results list, but never opened the Nendeln result and used the context-menu \"Add marker\" (marker flag) action, so no marker was actually created and the oracle rejected it.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1467,
+      "completion_tokens": 1154,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007890795
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5111,
+     "cached_tokens": 0,
+     "completion_tokens": 75,
+     "total_tokens": 5186,
+     "cost_usd": 0.0007961085,
+     "usage": {
+      "prompt_tokens": 5111,
+      "completion_tokens": 75,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007961085
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9483,
+     "cached_tokens": 0,
+     "completion_tokens": 99,
+     "total_tokens": 9582,
+     "cost_usd": 0.0014572305,
+     "usage": {
+      "prompt_tokens": 9483,
+      "completion_tokens": 99,
+      "cached_tokens": 0,
+      "cost_usd": 0.0014572305
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13982,
+     "cached_tokens": 4992,
+     "completion_tokens": 72,
+     "total_tokens": 14054,
+     "cost_usd": 0.0015189174,
+     "usage": {
+      "prompt_tokens": 13982,
+      "completion_tokens": 72,
+      "cached_tokens": 4992,
+      "cost_usd": 0.0015189174
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 18179,
+     "cached_tokens": 13888,
+     "completion_tokens": 153,
+     "total_tokens": 18332,
+     "cost_usd": 0.0011254221,
+     "usage": {
+      "prompt_tokens": 18179,
+      "completion_tokens": 153,
+      "cached_tokens": 13888,
+      "cost_usd": 0.0011254221
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":0}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22486,
+     "cached_tokens": 18112,
+     "completion_tokens": 67,
+     "total_tokens": 22553,
+     "cost_usd": 0.0012206304,
+     "usage": {
+      "prompt_tokens": 22486,
+      "completion_tokens": 67,
+      "cached_tokens": 18112,
+      "cost_usd": 0.0012206304
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 29271,
+     "cached_tokens": 22400,
+     "completion_tokens": 59,
+     "total_tokens": 29330,
+     "cost_usd": 0.0017148285,
+     "usage": {
+      "prompt_tokens": 29271,
+      "completion_tokens": 59,
+      "cached_tokens": 22400,
+      "cost_usd": 0.0017148285
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Nendeln\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 36217,
+     "cached_tokens": 0,
+     "completion_tokens": 55,
+     "total_tokens": 36272,
+     "cost_usd": 0.0054054495,
+     "usage": {
+      "prompt_tokens": 36217,
+      "completion_tokens": 55,
+      "cached_tokens": 0,
+      "cost_usd": 0.0054054495
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 43154,
+     "cached_tokens": 29184,
+     "completion_tokens": 61,
+     "total_tokens": 43215,
+     "cost_usd": 0.0029715048,
+     "usage": {
+      "prompt_tokens": 43154,
+      "completion_tokens": 61,
+      "cached_tokens": 29184,
+      "cost_usd": 0.0029715048
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 50091,
+     "cached_tokens": 0,
+     "completion_tokens": 126,
+     "total_tokens": 50217,
+     "cost_usd": 0.0035062335,
+     "usage": {
+      "prompt_tokens": 50091,
+      "completion_tokens": 126,
+      "cached_tokens": 0,
+      "cost_usd": 0.0035062335
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 57028,
+     "cached_tokens": 0,
+     "completion_tokens": 106,
+     "total_tokens": 57134,
+     "cost_usd": 0.0039814236,
+     "usage": {
+      "prompt_tokens": 57028,
+      "completion_tokens": 106,
+      "cached_tokens": 0,
+      "cost_usd": 0.0039814236
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 64728,
+     "cached_tokens": 50048,
+     "completion_tokens": 264,
+     "total_tokens": 64992,
+     "cost_usd": 0.0020814552,
+     "usage": {
+      "prompt_tokens": 64728,
+      "completion_tokens": 264,
+      "cached_tokens": 50048,
+      "cost_usd": 0.0020814552
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":21}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 69334,
+     "cached_tokens": 50048,
+     "completion_tokens": 55,
+     "total_tokens": 69389,
+     "cost_usd": 0.0023427162,
+     "usage": {
+      "prompt_tokens": 69334,
+      "completion_tokens": 55,
+      "cached_tokens": 50048,
+      "cost_usd": 0.0023427162
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 73112,
+     "cached_tokens": 0,
+     "completion_tokens": 28,
+     "total_tokens": 73140,
+     "cost_usd": 0.00645160032,
+     "usage": {
+      "prompt_tokens": 73112,
+      "completion_tokens": 28,
+      "cached_tokens": 0,
+      "cost_usd": 0.00645160032
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 7190,
+      "completion_tokens": 113979,
+      "cached_tokens": 0,
+      "cost_usd": 0.05748732
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 3,
+   "round": 2
+  },
+  {
+   "status": "ok",
+   "cause": "The search for \"Malbun\" completed but returned no results within the 5-mile radius (\"Could not find anything: 5 mi\"), likely because the offline map data for Liechtenstein isn't downloaded or the radius is too small; the agent looped retrying the same search instead of expanding the radius.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 2362,
+      "completion_tokens": 468,
+      "cached_tokens": 1843,
+      "cost_usd": 0.00028471905
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5110,
+     "cached_tokens": 0,
+     "completion_tokens": 71,
+     "total_tokens": 5181,
+     "cost_usd": 0.00079398,
+     "usage": {
+      "prompt_tokens": 5110,
+      "completion_tokens": 71,
+      "cached_tokens": 0,
+      "cost_usd": 0.00079398
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"OsmAnd\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9482,
+     "cached_tokens": 4992,
+     "completion_tokens": 127,
+     "total_tokens": 9609,
+     "cost_usd": 0.0008778924,
+     "usage": {
+      "prompt_tokens": 9482,
+      "completion_tokens": 127,
+      "cached_tokens": 4992,
+      "cost_usd": 0.0008778924
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13981,
+     "cached_tokens": 9408,
+     "completion_tokens": 81,
+     "total_tokens": 14062,
+     "cost_usd": 0.0009986031,
+     "usage": {
+      "prompt_tokens": 13981,
+      "completion_tokens": 81,
+      "cached_tokens": 9408,
+      "cost_usd": 0.0009986031
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 18178,
+     "cached_tokens": 13888,
+     "completion_tokens": 144,
+     "total_tokens": 18322,
+     "cost_usd": 0.0011208186,
+     "usage": {
+      "prompt_tokens": 18178,
+      "completion_tokens": 144,
+      "cached_tokens": 13888,
+      "cost_usd": 0.0011208186
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":0}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22485,
+     "cached_tokens": 18112,
+     "completion_tokens": 65,
+     "total_tokens": 22550,
+     "cost_usd": 0.0012194919,
+     "usage": {
+      "prompt_tokens": 22485,
+      "completion_tokens": 65,
+      "cached_tokens": 18112,
+      "cost_usd": 0.0012194919
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 29270,
+     "cached_tokens": 22400,
+     "completion_tokens": 58,
+     "total_tokens": 29328,
+     "cost_usd": 0.001714185,
+     "usage": {
+      "prompt_tokens": 29270,
+      "completion_tokens": 58,
+      "cached_tokens": 22400,
+      "cost_usd": 0.001714185
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":2,\"text\":\"Malbun\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 36214,
+     "cached_tokens": 29184,
+     "completion_tokens": 49,
+     "total_tokens": 36263,
+     "cost_usd": 0.0019349748,
+     "usage": {
+      "prompt_tokens": 36214,
+      "completion_tokens": 49,
+      "cached_tokens": 29184,
+      "cost_usd": 0.0019349748
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 43150,
+     "cached_tokens": 36096,
+     "completion_tokens": 64,
+     "total_tokens": 43214,
+     "cost_usd": 0.0021512502,
+     "usage": {
+      "prompt_tokens": 43150,
+      "completion_tokens": 64,
+      "cached_tokens": 36096,
+      "cost_usd": 0.0021512502
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 50086,
+     "cached_tokens": 0,
+     "completion_tokens": 17,
+     "total_tokens": 50103,
+     "cost_usd": 0.00441896796,
+     "usage": {
+      "prompt_tokens": 50086,
+      "completion_tokens": 17,
+      "cached_tokens": 0,
+      "cost_usd": 0.00441896796
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 57022,
+     "cached_tokens": 50048,
+     "completion_tokens": 17,
+     "total_tokens": 57039,
+     "cost_usd": 0.00210679524,
+     "usage": {
+      "prompt_tokens": 57022,
+      "completion_tokens": 17,
+      "cached_tokens": 50048,
+      "cost_usd": 0.00210679524
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 64715,
+     "cached_tokens": 56960,
+     "completion_tokens": 17,
+     "total_tokens": 64732,
+     "cost_usd": 0.00238089555,
+     "usage": {
+      "prompt_tokens": 64715,
+      "completion_tokens": 17,
+      "cached_tokens": 56960,
+      "cost_usd": 0.00238089555
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 72411,
+     "cached_tokens": 64704,
+     "completion_tokens": 17,
+     "total_tokens": 72428,
+     "cost_usd": 0.00260666307,
+     "usage": {
+      "prompt_tokens": 72411,
+      "completion_tokens": 17,
+      "cached_tokens": 64704,
+      "cost_usd": 0.00260666307
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 76747,
+     "cached_tokens": 72384,
+     "completion_tokens": 17,
+     "total_tokens": 76764,
+     "cost_usd": 0.00254011923,
+     "usage": {
+      "prompt_tokens": 76747,
+      "completion_tokens": 17,
+      "cached_tokens": 72384,
+      "cost_usd": 0.00254011923
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 10230,
+      "completion_tokens": 35784,
+      "cached_tokens": 0,
+      "cost_usd": 0.0106282638
+     }
+    }
+   ],
+   "resume_success": true,
+   "seed": 1,
+   "round": 3
+  }
+ ],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/OsmAndMarker/attempt1/compile.json",
+   "translator": null,
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 2856,
+     "cached_tokens": 0,
+     "completion_tokens": 29671,
+     "cost_usd": 0.0090667566,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2856,
+       "cached_tokens": 0,
+       "completion_tokens": 29671,
+       "total_tokens": 32527,
+       "cost_usd": 0.0090667566,
+       "usage": {
+        "prompt_tokens": 2856,
+        "completion_tokens": 29671,
+        "cached_tokens": 0,
+        "cost_usd": 0.0090667566
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 2753,
+     "cached_tokens": 0,
+     "completion_tokens": 1855,
+     "cost_usd": 0.00124742277,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2753,
+       "cached_tokens": 0,
+       "completion_tokens": 1855,
+       "total_tokens": 4608,
+       "cost_usd": 0.00124742277,
+       "usage": {
+        "prompt_tokens": 2753,
+        "completion_tokens": 1855,
+        "cached_tokens": 0,
+        "cost_usd": 0.00124742277
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 3959,
+     "cached_tokens": 0,
+     "completion_tokens": 22672,
+     "cost_usd": 0.0118105515,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3959,
+       "cached_tokens": 0,
+       "completion_tokens": 22672,
+       "total_tokens": 26631,
+       "cost_usd": 0.0118105515,
+       "usage": {
+        "prompt_tokens": 3959,
+        "completion_tokens": 22672,
+        "cached_tokens": 0,
+        "cost_usd": 0.0118105515
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 3856,
+     "cached_tokens": 0,
+     "completion_tokens": 1706,
+     "cost_usd": 0.0008502516,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3856,
+       "cached_tokens": 0,
+       "completion_tokens": 1706,
+       "total_tokens": 5562,
+       "cost_usd": 0.0008502516,
+       "usage": {
+        "prompt_tokens": 3856,
+        "completion_tokens": 1706,
+        "cached_tokens": 0,
+        "cost_usd": 0.0008502516
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 5836,
+     "cached_tokens": 0,
+     "completion_tokens": 19133,
+     "cost_usd": 0.0062024886,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5836,
+       "cached_tokens": 0,
+       "completion_tokens": 19133,
+       "total_tokens": 24969,
+       "cost_usd": 0.0062024886,
+       "usage": {
+        "prompt_tokens": 5836,
+        "completion_tokens": 19133,
+        "cached_tokens": 0,
+        "cost_usd": 0.0062024886
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 5733,
+     "cached_tokens": 0,
+     "completion_tokens": 1316,
+     "cost_usd": 0.00141260427,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 5733,
+       "cached_tokens": 0,
+       "completion_tokens": 1316,
+       "total_tokens": 7049,
+       "cost_usd": 0.00141260427,
+       "usage": {
+        "prompt_tokens": 5733,
+        "completion_tokens": 1316,
+        "cached_tokens": 0,
+        "cost_usd": 0.00141260427
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 518,
+   "cached_tokens": 0,
+   "completion_tokens": 174,
+   "total_tokens": 692,
+   "cost_usd": 0.00013064
+  },
+  "new_repair": {
+   "calls": 90,
+   "prompt_tokens": 4059704,
+   "cached_tokens": 2779123,
+   "completion_tokens": 379326,
+   "total_tokens": 4439030,
+   "cost_usd": 0.37805114
+  },
+  "reconciliation": {
+   "reconciled": true,
+   "new_calls": 93,
+   "new_cost_usd": 0.37818178,
+   "call_source": "extractions[].calls plus repairs[].calls"
+  }
+ },
+ "deployment": {
+  "status": "not_required_repeat",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": "0ca6b7e5249e05a2e498023781eabd2ce1218be8e136f1f1069bf1757365005f",
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": [],
+  "reason": "repeat_study_ends_after_compilation_verification"
+ },
+ "timing": {
+  "attempt_wall_s": 14205.184
+ },
+ "final_program_source": "import re\n\nPARAMS_SCHEMA = {\n    \"location\": {\n        \"type\": \"string\",\n        \"required\": True,\n        \"description\": (\n            \"Place to mark in OsmAnd: one string, either a place name \"\n            \"(e.g. 'Schaan, Liechtenstein') or a 'lat, lon' coordinate pair. \"\n            \"It is typed VERBATIM into OsmAnd's search field (never reformatted \"\n            \"or rounded). The first usable search result is opened and the \"\n            \"MARKER control on the place panel (never the favorites star next \"\n            \"to it) stores the marker on the tap. When OsmAnd answers \"\n            \"'Could not find anything: <r> mi', the 'INCREASE SEARCH RADIUS' \"\n            \"button is tapped repeatedly until the place shows up.\"\n        ),\n    },\n}\n\n_COORD_RE = re.compile(r\"^\\s*-?\\d+(?:\\.\\d+)?\\s*,\\s*-?\\d+(?:\\.\\d+)?\\s*$\")\n_DIST_RE = re.compile(r\"^\\s*[\\d.,]+\\s*(?:mi|km|m|ft|yd|nmi|nm)\\.?\\s*$\", re.I)\n\n# UI labels that must never be mistaken for a search result row.\n_NOISE_TEXTS = {\n    \"search\", \"search online\", \"search on map\", \"categories\", \"category\",\n    \"address\", \"addresses\", \"cities\", \"city\", \"streets\", \"street\",\n    \"postcodes\", \"postcode\", \"poi\", \"pois\", \"custom search\", \"transport\",\n    \"favorites\", \"favourites\", \"history\", \"markers\", \"map markers\",\n    \"tracks\", \"recordings\", \"increase search radius\", \"refine search\",\n    \"no results found\", \"no results\", \"nothing found\", \"searching\",\n    \"type to search all\", \"recent\", \"recents\", \"recent searches\",\n    \"my location\", \"show on map\", \"provide feedback\", \"send\",\n}\n\n# Variable no-results captions (they carry the current radius, so they are\n# matched by prefix rather than exactly).\n_NOISE_PREFIXES = (\n    \"could not find anything\",\n    \"no search results\",\n    \"change the search or increase\",\n)\n\n_MARKER_EXACT = (\"marker\", \"add marker\", \"add new marker\", \"add to markers\")\n_MARKER_CATEGORY = (\"markers\", \"map markers\")\n\n# Labels that indicate a place/context panel is open (possibly on top of the\n# search screen), as opposed to the plain search results list.\n_PANEL_HINT_WORDS = (\n    \"details\", \"measure distance\", \"search nearby\", \"online photos\",\n    \"add to favorites\", \"add to favourites\", \"remove marker\",\n    \"show on map\", \"provide feedback\",\n)\n\n# Words that mark UI chrome rather than a result row.\n_UI_CHROME_WORDS = (\n    \"clear\", \"voice\", \"mic\", \"keyboard\", \"back\", \"close\", \"settings\",\n    \"configure\", \"zoom\", \"compass\", \"layers\", \"menu\", \"navigate\",\n    \"send\", \"feedback\", \"radius\", \"increase\",\n)\n\n# OsmAnd answers 'Could not find anything: 5 mi' when the place lies outside\n# the search radius around the current map/GPS position -- which can be\n# thousands of miles away from the target.  Each tap on 'INCREASE SEARCH\n# RADIUS' widens the radius one step and re-runs the same query, so the\n# button is tapped repeatedly until matching rows appear or the radius\n# cannot grow further.\n_MAX_RADIUS_CLICKS = 16\n_SEARCH_ATTEMPTS = 30\n_PANEL_ATTEMPTS = 6\n\n\ndef _elements(device):\n    try:\n        return device.elements() or []\n    except Exception:\n        return []\n\n\ndef _row_text(e):\n    return (e.get(\"text\") or \"\").strip() or (e.get(\"description\") or \"\").strip()\n\n\ndef _is_noise(low):\n    if low in _NOISE_TEXTS:\n        return True\n    for pref in _NOISE_PREFIXES:\n        if low.startswith(pref):\n            return True\n    return False\n\n\ndef _map_ready(device):\n    if device.find(description=\"Configure map\") is not None:\n        return True\n    if device.find(description=\"Search\", clickable=True) is not None:\n        return True\n    if device.find(hint=\"Type to search all\", editable=True) is not None:\n        return True\n    return False\n\n\ndef _open_osmand(device, app):\n    last_err = None\n    for _ in range(2):\n        try:\n            device.open_app(app)\n        except Exception as exc:\n            last_err = exc\n            continue\n        device.settle(3)\n        if _map_ready(device):\n            return\n    device.settle(3)\n    if _map_ready(device):\n        return\n    msg = \"OsmAnd map screen not detected after launching '%s'\" % app\n    if last_err is not None:\n        msg += \" (%s)\" % last_err\n    raise RuntimeError(msg)\n\n\ndef _search_field(device, query=None):\n    idx = device.find(hint=\"Type to search all\", editable=True)\n    if idx is None:\n        idx = device.find(text=\"Type to search all\", editable=True)\n    if idx is not None:\n        return idx\n    els = _elements(device)\n    ql = (query or \"\").strip().lower()\n    for e in els:\n        if not e.get(\"editable\"):\n            continue\n        hint = (e.get(\"hint\") or \"\").lower()\n        txt = (e.get(\"text\") or \"\").lower()\n        cls = (e.get(\"class_name\") or \"\").lower()\n        if (\"search\" in hint or \"search\" in txt or \"edittext\" in cls\n                or (ql and txt == ql)):\n            return e.get(\"index\")\n    # the field may lose its editable flag once it holds text; the well-known\n    # hint still identifies it\n    for e in els:\n        hint = (e.get(\"hint\") or \"\").lower()\n        txt = (e.get(\"text\") or \"\").lower()\n        if \"type to search\" in hint or \"type to search\" in txt:\n            return e.get(\"index\")\n    return None\n\n\ndef _field_text(device, query=None):\n    fld = _search_field(device, query)\n    if fld is None:\n        return \"\"\n    for e in _elements(device):\n        if e.get(\"index\") == fld:\n            return (e.get(\"text\") or \"\").strip()\n    return \"\"\n\n\ndef _open_search(device):\n    idx = device.find(description=\"Search\", clickable=True)\n    if idx is None and _search_field(device) is not None:\n        return  # search overlay is already open\n    if idx is None:\n        for e in _elements(device):\n            if e.get(\"editable\"):\n                continue\n            desc = (e.get(\"description\") or \"\").lower()\n            txt = (e.get(\"text\") or \"\").strip().lower()\n            if e.get(\"clickable\") and (\"search\" in desc or txt == \"search\"):\n                idx = e.get(\"index\")\n                break\n    if idx is None:\n        raise RuntimeError(\"OsmAnd 'Search' button not found on the map screen\")\n    device.click(idx)\n    device.settle(2)\n\n\ndef _ensure_search_overlay(device, app):\n    if _search_field(device) is not None:\n        return\n    if _panel_controls_present(device):\n        # a place/context panel is open on top: close it first\n        try:\n            device.navigate_back()\n            device.settle(1)\n        except Exception:\n            pass\n        if _search_field(device) is not None:\n            return\n    for attempt in range(3):\n        try:\n            _open_search(device)\n        except Exception:\n            pass\n        if _search_field(device) is not None:\n            return\n        if attempt == 0:\n            device.navigate_back()\n            device.settle(1)\n        elif attempt == 1:\n            try:\n                device.open_app(app)\n            except Exception:\n                pass\n            device.settle(2)\n    _open_search(device)\n\n\ndef _clear_button(device):\n    idx = device.find(description=\"Clear\", clickable=True)\n    if idx is not None:\n        return idx\n    for e in _elements(device):\n        if not e.get(\"clickable\"):\n            continue\n        desc = (e.get(\"description\") or \"\").strip().lower()\n        txt = (e.get(\"text\") or \"\").strip().lower()\n        if desc.startswith(\"clear\") or txt == \"clear\":\n            return e.get(\"index\")\n    return None\n\n\ndef _clear_search_text(device, query=None):\n    clear_idx = _clear_button(device)\n    if clear_idx is not None:\n        device.click(clear_idx)\n        device.settle(1)\n        return\n    fld = _search_field(device, query)\n    if fld is None:\n        return\n    txt = \"\"\n    for e in _elements(device):\n        if e.get(\"index\") == fld:\n            txt = e.get(\"text\") or \"\"\n            break\n    if txt.strip():\n        # no clear control visible: wipe the focused field with key events\n        try:\n            device.adb_shell(\"input\", \"keyevent\", \"123\")  # MOVE_END\n            for _ in range(len(txt) + 2):\n                device.adb_shell(\"input\", \"keyevent\", \"67\")  # DEL\n        except Exception:\n            pass\n        device.settle(1)\n\n\ndef _type_query(device, query):\n    fld = _search_field(device, query)\n    if fld is None:\n        raise RuntimeError(\"OsmAnd search input field not found\")\n    device.click(fld)\n    device.settle(1)\n    _clear_search_text(device, query)\n    fld = _search_field(device, query)\n    if fld is None:\n        raise RuntimeError(\"OsmAnd search field disappeared after clearing\")\n    # the query is typed verbatim: no reformatting, no rounding\n    device.input_text(query, index=fld)\n    device.settle(2)\n    fld2 = _search_field(device, query)\n    if fld2 is not None and query.strip():\n        cur = _field_text(device, query)\n        if not cur:\n            device.input_text(query, index=fld2)\n            device.settle(2)\n    # commit the query: the result list becomes final and the keyboard stops\n    # covering rows, so result taps land on the list and not on the keys\n    try:\n        device.keyboard_enter()\n    except Exception:\n        pass\n    device.settle(2)\n\n\ndef _is_coordinate(location):\n    return bool(_COORD_RE.match(str(location)))\n\n\ndef _query_variants(location):\n    \"\"\"Shortened retry queries for place names (coordinates are never altered).\n\n    OsmAnd's full-string search can rank unrelated POIs that merely contain\n    the region/country name (e.g. every POI with 'Liechtenstein') above the\n    place itself, so the leading place token is retried on the same field.\n    \"\"\"\n    loc = str(location).strip()\n    if not loc or _is_coordinate(loc):\n        return []\n    variants = []\n    seg = loc.split(\",\")[0].strip()\n    if seg and seg.lower() != loc.lower():\n        variants.append(seg)\n    toks = [t for t in re.split(r\"[\\s,;]+\", loc) if t]\n    if toks:\n        first = toks[0]\n        if first.lower() != loc.lower() and all(\n            v.lower() != first.lower() for v in variants\n        ):\n            variants.append(first)\n    return variants[:2]\n\n\ndef _word_boundary_match(low, word):\n    if not word:\n        return False\n    return (\n        re.search(r\"(?<![a-z0-9])\" + re.escape(word) + r\"(?![a-z0-9])\", low)\n        is not None\n    )\n\n\ndef _score_row(low, ql, toks, primary):\n    if low == ql:\n        return 0\n    if primary and low == primary:\n        return 1\n    if ql in low:\n        return 2\n    if (\n        primary\n        and low.startswith(primary)\n        and not low[len(primary):len(primary) + 1].isalnum()\n    ):\n        return 3\n    if toks and all(t in low for t in toks):\n        return 4\n    if primary and _word_boundary_match(low, primary):\n        return 5\n    return None\n\n\ndef _find_result_row(device, query, avoid=None, tried=None, tried_idxs=None,\n                     failed_texts=None):\n    \"\"\"Best non-editable result row matching the query.\n\n    Returns (index, row_text_lower) or None.  ``tried`` holds (index,\n    lower_text) pairs and ``tried_idxs`` plain indexes already tapped for\n    this query so a row that did not open the place panel is not tapped\n    again; ``failed_texts`` survives re-typing of the same query.  ``avoid``\n    (the original verbatim location when ``query`` is a shortened retry)\n    gently demotes rows echoing the original query -- they may be history\n    entries of the failed first attempt -- while still preferring a genuine\n    exact row and still using a lone echo if nothing better exists.\n    \"\"\"\n    q = str(query).strip()\n    if not q:\n        return None\n    els = _elements(device)\n    ql = q.lower()\n    toks = [t.lower() for t in re.split(r\"[\\s,;]+\", q) if t]\n    primary = toks[0] if toks else \"\"\n    avoid_low = str(avoid).strip().lower() if avoid else None\n    tried = tried or set()\n    tried_idxs = tried_idxs or set()\n    failed_texts = failed_texts or set()\n\n    best = None\n    for e in els:\n        if e.get(\"editable\"):\n            continue\n        # never mistake the search input itself (hint 'Type to search all')\n        # for a result row\n        if \"search\" in (e.get(\"hint\") or \"\").lower():\n            continue\n        idx = e.get(\"index\")\n        txt = _row_text(e)\n        low = txt.lower()\n        if not low or _is_noise(low) or _DIST_RE.match(low):\n            continue\n        if (idx, low) in tried or idx in tried_idxs or low in failed_texts:\n            continue\n        score = _score_row(low, ql, toks, primary)\n        if score is None:\n            continue\n        if avoid_low and avoid_low in low:\n            score += 1.0\n        if e.get(\"clickable\"):\n            score -= 0.5\n        cand = (score, len(txt), idx, low)\n        if best is None or cand[:2] < best[:2]:\n            best = cand\n    if best is not None:\n        return best[2], best[3]\n\n    # coordinate queries: OsmAnd reformats to e.g. '47.06888\u00b0 N, 9.50616\u00b0 E'\n    nums = re.findall(r\"-?\\d+(?:\\.\\d+)?\", q)\n    if len(nums) >= 2:\n        try:\n            lat, lon = float(nums[0]), float(nums[1])\n        except ValueError:\n            return None\n        for dec in (5, 4, 3, 2):\n            la = \"%.*f\" % (dec, abs(lat))\n            lo = \"%.*f\" % (dec, abs(lon))\n            for e in els:\n                if e.get(\"editable\") or \"search\" in (e.get(\"hint\") or \"\").lower():\n                    continue\n                low = _row_text(e).lower()\n                if not low or (e.get(\"index\"), low) in tried:\n                    continue\n                if (la + \"\u00b0\") in low and (lo + \"\u00b0\") in low:\n                    return e.get(\"index\"), low\n            for e in els:\n                if e.get(\"editable\") or \"search\" in (e.get(\"hint\") or \"\").lower():\n                    continue\n                low = _row_text(e).lower()\n                if not low or (e.get(\"index\"), low) in tried:\n                    continue\n                if la in low and lo in low:\n                    return e.get(\"index\"), low\n    return None\n\n\ndef _radius_button(device):\n    for e in _elements(device):\n        low = ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).lower()\n        if \"increase search radius\" in low or (\"increase\" in low and \"radius\" in low):\n            return e.get(\"index\")\n    return None\n\n\ndef _no_results_present(device):\n    \"\"\"True when OsmAnd's 'Could not find anything: <r> mi' answer is shown.\"\"\"\n    for e in _elements(device):\n        low = _row_text(e).lower()\n        if not low:\n            continue\n        for pref in _NOISE_PREFIXES:\n            if low.startswith(pref):\n                return True\n        if low in (\"no results found\", \"no results\", \"nothing found\",\n                   \"no search results\"):\n            return True\n    return False\n\n\ndef _marker_control_index(device, loose=False):\n    \"\"\"Index of the MARKER control (never the favorites star next to it).\"\"\"\n    best_idx, best_p = None, 99.0\n    for e in _elements(device):\n        t = (e.get(\"text\") or \"\").strip().lower()\n        d = (e.get(\"description\") or \"\").strip().lower()\n        if t in _MARKER_CATEGORY or d in _MARKER_CATEGORY:\n            continue  # 'Markers' list/category entry, not the add-marker action\n        p = None\n        if t in _MARKER_EXACT or d in _MARKER_EXACT:\n            p = 0.0\n        elif loose:\n            if \"marker\" in t:\n                p = 1.0\n            elif \"marker\" in d:\n                p = 2.0\n        if p is None:\n            continue\n        if e.get(\"clickable\"):\n            p -= 0.5\n        if p < best_p:\n            best_idx, best_p = e.get(\"index\"), p\n    return best_idx\n\n\ndef _show_on_map_button(device):\n    idx = device.find(text=\"SHOW ON MAP\")\n    if idx is not None:\n        return idx\n    for e in _elements(device):\n        low = ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).strip().lower()\n        if low in (\"show on map\", \"show place on map\"):\n            return e.get(\"index\")\n    return None\n\n\ndef _panel_controls_present(device):\n    for e in _elements(device):\n        low = ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).strip().lower()\n        if not low:\n            continue\n        for w in _PANEL_HINT_WORDS:\n            if w in low:\n                return True\n    return False\n\n\ndef _more_button(device):\n    for e in _elements(device):\n        low = ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).strip().lower()\n        if low in (\"more\", \"details\", \"options\", \"actions\", \"more details\",\n                   \"\u22ef\", \"\u2026\"):\n            return e.get(\"index\")\n    return None\n\n\ndef _marker_near_favorite(device):\n    \"\"\"Deep fallback: the unlabeled flag button next to the favorites star.\"\"\"\n    els = _elements(device)\n    fav_idx = None\n    for e in els:\n        low = ((e.get(\"text\") or \"\") + \" \" + (e.get(\"description\") or \"\")).lower()\n        if \"favorite\" in low or \"favourite\" in low:\n            fav_idx = e.get(\"index\")\n            break\n    if fav_idx is None:\n        return None\n    best = None\n    for e in els:\n        idx = e.get(\"index\")\n        if idx is None or idx == fav_idx or not e.get(\"clickable\"):\n            continue\n        if abs(idx - fav_idx) > 2:\n            continue\n        if (e.get(\"text\") or \"\").strip():\n            continue\n        d = (e.get(\"description\") or \"\").strip().lower()\n        if d and any(w in d for w in (\"favorite\", \"favourite\", \"share\",\n                                      \"direction\", \"details\", \"marker\",\n                                      \"voice\", \"search\")):\n            continue\n        dist = abs(idx - fav_idx)\n        if best is None or dist < best[0]:\n            best = (dist, idx)\n    return best[1] if best is not None else None\n\n\ndef _poll_and_click_marker(device, attempts):\n    \"\"\"Poll the current screen for the MARKER control and tap it.\n\n    The place panel may slide in over the search screen (the search field can\n    stay visible in the tree), so polling never bails just because the field\n    is still there.  If the panel hides the marker control behind a\n    'Details'/'More' expander, that control is tapped once.  As a deep\n    fallback the unlabeled flag button next to the favorites star is used.\n    \"\"\"\n    more_tapped = False\n    plain = 0\n    for attempt in range(attempts):\n        field = _search_field(device)\n        panel_open = field is None or _panel_controls_present(device)\n        m = _marker_control_index(device, loose=False)\n        if m is None and panel_open:\n            m = _marker_control_index(device, loose=True)\n        if m is None and panel_open and attempt >= 3:\n            m = _marker_near_favorite(device)\n        if m is not None:\n            device.click(m)\n            device.settle(2)\n            return True\n        if not panel_open:\n            # plain search results screen, no panel appeared\n            plain += 1\n            if plain >= 3:\n                return False\n        else:\n            plain = 0\n            if attempt == 2 and not more_tapped:\n                mb = _more_button(device)\n                if mb is not None:\n                    more_tapped = True\n                    device.click(mb)\n                    device.settle(2)\n                    continue\n            if attempt == 3:\n                device.scroll(\"down\")\n            elif attempt >= 5:\n                device.scroll(\"up\")\n        device.settle(1)\n    return False\n\n\ndef _click_row_and_mark(device, row_idx):\n    \"\"\"Tap a result row, then tap MARKER on the place panel that opens.\n\n    Returns (marked, still_on_search_screen).\n    \"\"\"\n    device.click(row_idx)\n    device.settle(2)\n    if _poll_and_click_marker(device, _PANEL_ATTEMPTS):\n        return True, False\n    field = _search_field(device)\n    if field is not None and not _panel_controls_present(device):\n        # Still on the search screen: this row did not open the place\n        # panel by itself.  Some builds only select the row and need the\n        # explicit 'SHOW ON MAP' button; try it once before moving on.\n        som = _show_on_map_button(device)\n        if som is not None:\n            device.click(som)\n            device.settle(2)\n            if _poll_and_click_marker(device, _PANEL_ATTEMPTS):\n                return True, False\n        return False, True\n    if _search_field(device) is None and _panel_controls_present(device):\n        # a panel opened but offered no marker control: close it again\n        try:\n            device.navigate_back()\n            device.settle(1)\n        except Exception:\n            pass\n    return False, False\n\n\ndef _plausible_row(device, tried_idxs):\n    \"\"\"First plausible clickable result row below the search field (fallback).\n\n    Used when no row matches the query text but results are clearly listed:\n    the knowledge says to pick the first search result.  Only genuinely\n    clickable, non-chrome elements with a caption qualify, so status-bar\n    items, the feedback 'Send' button and the radius control are never hit.\n    \"\"\"\n    els = _elements(device)\n    fld = _search_field(device)\n    start = fld if fld is not None else -1\n    best = None\n    for e in els:\n        idx = e.get(\"index\")\n        if idx is None or idx <= start or idx in tried_idxs:\n            continue\n        if not e.get(\"clickable\"):\n            continue\n        if e.get(\"editable\") or (e.get(\"hint\") or \"\"):\n            continue\n        low = _row_text(e).lower()\n        if not low or len(low) < 2 or _is_noise(low) or _DIST_RE.match(low):\n            continue\n        if any(w in low for w in _UI_CHROME_WORDS):\n            continue\n        if best is None or idx < best:\n            best = idx\n    return best\n\n\ndef _search_and_mark(device, query, avoid, app):\n    \"\"\"Wait for results, tap the best row, then tap MARKER on its panel.\n\n    Results are polled continuously (OsmAnd searches as you type) and always\n    take priority: matching rows are tapped even while the radius could still\n    grow.  When OsmAnd answers 'Could not find anything: <r> mi' the place\n    lies outside the search radius around the current map/GPS position --\n    possibly thousands of miles away -- so the 'INCREASE SEARCH RADIUS'\n    button is tapped whenever it is visible (up to _MAX_RADIUS_CLICKS times);\n    each tap widens the radius one step and re-runs the same query.  The\n    radius check runs unconditionally: the no-results screen may not expose\n    the search field to the accessibility tree at all, and re-typing the\n    query would reset the radius back to its smallest step.  Rows that were\n    tapped without opening a place panel are remembered and never tapped\n    again; after several dead taps the keyboard is hidden with BACK so the\n    rows become tappable.\n    \"\"\"\n    tried = set()\n    tried_idxs = set()\n    failed_texts = set()\n    radius_clicks = 0\n    enters = 0\n    generic_clicks = 0\n    dead_rows = 0\n    recoveries = 0\n    panel_recoveries = 0\n    gone_streak = 0\n    for attempt in range(_SEARCH_ATTEMPTS):\n        field = _search_field(device, query)\n        # (1) a place panel opened directly over/instead of the search screen\n        # (never confuse it with the 'Could not find anything' screen, which\n        # also shows panel-like captions such as 'SHOW ON MAP')\n        if (field is None and _panel_controls_present(device)\n                and not _no_results_present(device)\n                and _radius_button(device) is None):\n            if _poll_and_click_marker(device, 4):\n                return True\n            if panel_recoveries < 2:\n                panel_recoveries += 1\n                try:\n                    device.navigate_back()\n                    device.settle(1)\n                except Exception:\n                    pass\n                try:\n                    _ensure_search_overlay(device, app)\n                except Exception:\n                    pass\n                try:\n                    _type_query(device, query)\n                    tried = set()\n                    tried_idxs = set()\n                    gone_streak = 0\n                except Exception:\n                    pass\n                continue\n            return False\n        # (2) results take priority -- never block on the radius button while\n        # matching rows are already listed\n        found = _find_result_row(device, query, avoid=avoid, tried=tried,\n                                 tried_idxs=tried_idxs,\n                                 failed_texts=failed_texts)\n        if found is not None:\n            row_idx, row_low = found\n            marked, in_overlay = _click_row_and_mark(device, row_idx)\n            if marked:\n                return True\n            tried.add((row_idx, row_low))\n            tried_idxs.add(row_idx)\n            failed_texts.add(row_low)\n            dead_rows += 1\n            if not in_overlay:\n                dead_rows = 0\n                # the row tap dismissed the search: restore it and re-run\n                try:\n                    _ensure_search_overlay(device, app)\n                except Exception:\n                    pass\n                try:\n                    _type_query(device, query)\n                    tried = set()\n                    tried_idxs = set()\n                except Exception:\n                    pass\n            elif dead_rows >= 2:\n                # several rows opened nothing: the soft keyboard is probably\n                # covering the list -- hide it and retry on the same screen\n                dead_rows = 0\n                device.navigate_back()\n                device.settle(2)\n                if _search_field(device, query) is None:\n                    try:\n                        _ensure_search_overlay(device, app)\n                    except Exception:\n                        pass\n                    try:\n                        _type_query(device, query)\n                        tried = set()\n                        tried_idxs = set()\n                    except Exception:\n                        pass\n            continue\n        # (3) 'Could not find anything: <r> mi': widen the radius.  This\n        # check is unconditional -- the no-results screen may not expose the\n        # search field, and re-typing here would reset the radius.\n        if radius_clicks < _MAX_RADIUS_CLICKS:\n            rad = _radius_button(device)\n            if rad is not None:\n                device.click(rad)\n                radius_clicks += 1\n                device.settle(3)\n                continue\n        # (4) search field gone (and no panel, no results, no radius button)\n        if field is None:\n            gone_streak += 1\n            m = _marker_control_index(device, loose=False)\n            if m is not None:\n                device.click(m)\n                device.settle(2)\n                return True\n            if gone_streak >= 3:\n                return False\n            if recoveries < 2:\n                recoveries += 1\n                try:\n                    _ensure_search_overlay(device, app)\n                except Exception:\n                    pass\n                try:\n                    _type_query(device, query)\n                    tried = set()\n                    tried_idxs = set()\n                    gone_streak = 0\n                except Exception:\n                    pass\n            else:\n                device.settle(2)\n            continue\n        gone_streak = 0\n        # (5) generic plausible row, but never on the no-results screen\n        no_results = _no_results_present(device)\n        if attempt >= 3 and generic_clicks < 2 and not no_results:\n            g = _plausible_row(device, tried_idxs)\n            if g is not None:\n                generic_clicks += 1\n                marked, in_overlay = _click_row_and_mark(device, g)\n                if marked:\n                    return True\n                tried_idxs.add(g)\n                if not in_overlay:\n                    try:\n                        _ensure_search_overlay(device, app)\n                    except Exception:\n                        pass\n                    try:\n                        _type_query(device, query)\n                        tried = set()\n                        tried_idxs = set()\n                    except Exception:\n                        pass\n                continue\n        # (6) commit the query with enter while nothing is listed yet\n        if enters < 3 and attempt in (2, 6, 12) and not no_results:\n            device.keyboard_enter()\n            enters += 1\n            device.settle(2)\n            continue\n        if attempt % 6 == 5:\n            device.scroll(\"down\")\n        device.settle(2)\n    return False\n\n\ndef program(device, binding: dict) -> bool:\n    location = binding.get(\"location\")\n    if location is None or not str(location).strip():\n        raise ValueError(\"binding['location'] is required: place name or 'lat, lon' pair\")\n    location = str(location)\n    app = binding.get(\"app\") or binding.get(\"app_name\") or \"OsmAnd\"\n\n    _open_osmand(device, app)\n\n    # The verbatim string is tried first; for place names OsmAnd may rank\n    # unrelated POIs that merely contain the region name (e.g. every POI with\n    # 'Liechtenstein') above the place itself, so the primary place token is\n    # retried on the same field before giving up.\n    first_err = None\n    for q in [location] + _query_variants(location):\n        try:\n            _ensure_search_overlay(device, app)\n            _type_query(device, q)  # clears any previous query first\n            avoid = None if q == location else location\n            if _search_and_mark(device, q, avoid, app):\n                device.settle(1)\n                return True\n        except Exception as exc:\n            if first_err is None:\n                first_err = exc\n        try:\n            device.navigate_back()\n            device.settle(1)\n        except Exception:\n            pass\n    msg = \"Could not add a map marker for location %r\" % location\n    if first_err is not None:\n        msg += \" (last error: %s)\" % first_err\n    raise RuntimeError(msg)\n",
+ "phase": "finished",
+ "provenance_audits": [
+  {
+   "kind": "source_cell_relative_trajectory_alias_resolution",
+   "model_calls": 0,
+   "path_source_kind": "compile_json_building_trajectories",
+   "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/OsmAndMarker/attempt1/compile.json",
+   "source_record_sha256": "376dda6103563b1a43082526639d8d55405012bff8c32fb261a8a7a54873176c",
+   "translation_path": null,
+   "translation_sha256": null,
+   "resolved_trajectory_sha256": {
+    "1": "81452d1fc21ddd62ed06f133739f8c871fb29584c255b6aed5bf64056110bc1c",
+    "2": "99f34ec91c08a98b05f7dd565262e3cd4ffd0903b796cd50f9478e2dc8b05c62",
+    "3": "1e2aaef0ed13cfa3b54b4d8b5d190705ea1c7172fbfd68ed82d5ac4766137733"
+   },
+   "prompt_equality_with_completed_extractions": true
+  }
+ ]
+}

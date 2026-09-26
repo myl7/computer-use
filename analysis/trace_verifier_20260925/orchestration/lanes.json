@@ -1,0 +1,66 @@
+{
+  "protocol": "three-building-model-extracted-v1",
+  "updated_at": "2026-09-25T04:53:32Z",
+  "lanes": [
+    {
+      "id": "android-cs659b-revision",
+      "platform": "android",
+      "host": "cs659b",
+      "workspace": "/home/yulong/app/guiexp/android",
+      "result_root": "/home/yulong/app/guiexp/android/experimental-results/trace_verifier_20260925/android",
+      "state": "reserved",
+      "resource": "emulator-8620:guiexpPair-w0:grpc-8630",
+      "notes": "No runner or result write was active during inspection. w0 is exclusively reserved by the revision lock; w1 and w2 remain unused."
+    },
+    {
+      "id": "desktop-cs11369a-l5",
+      "platform": "desktop",
+      "host": "cs11369a",
+      "workspace": "/home/myl/app/guiexp/osworld",
+      "result_root": "/home/myl/app/guiexp/osworld/experimental-results/trace_verifier_20260925/desktop",
+      "state": "reserved",
+      "resource": "docker-default:guiexp-osworld-l5",
+      "notes": "Container is healthy. Host root has 5.8 GiB free; workspace output stays on /home/myl, which has about 1.8 TiB free."
+    },
+    {
+      "id": "desktop-cs11369a-l6",
+      "platform": "desktop",
+      "host": "cs11369a",
+      "workspace": "/home/myl/app/guiexp/osworld",
+      "result_root": "/home/myl/app/guiexp/osworld/experimental-results/trace_verifier_20260925/desktop",
+      "state": "running",
+      "resource": "docker-socket:/run/guiexp-docker.sock:guiexp-osworld-l6:15902",
+      "notes": "Dedicated container on private daemon; GLM CalcTableSave uses this lane."
+    },
+    {
+      "id": "desktop-cs11369a-l7",
+      "platform": "desktop",
+      "host": "cs11369a",
+      "workspace": "/home/myl/app/guiexp/osworld",
+      "result_root": "/home/myl/app/guiexp/osworld/experimental-results/trace_verifier_20260925/desktop",
+      "state": "implementation_failure",
+      "resource": "docker-socket:/run/guiexp-docker.sock:guiexp-osworld-l7:15903",
+      "notes": "Dedicated container on private daemon; first DeepSeek CalcTableSave run exposed a repair callback mismatch."
+    },
+    {
+      "id": "web-cs11369a-forum",
+      "platform": "web",
+      "host": "cs11369a",
+      "workspace": "/home/myl/app/guiexp/webarena",
+      "result_root": "/home/myl/app/guiexp/webarena/experimental-results/trace_verifier_20260925/web",
+      "state": "reserved",
+      "resource": "docker-socket:/run/guiexp-docker.sock:guiexp-forum",
+      "notes": "Forum is running. Web and desktop use separate Docker daemons but GUI/browser dependencies still require explicit reservation."
+    },
+    {
+      "id": "local-orchestration",
+      "platform": "control",
+      "host": "local",
+      "workspace": "/Users/myl/app/computer-use",
+      "result_root": "/Users/myl/app/computer-use/experimental-results/trace_verifier_20260925",
+      "state": "ready",
+      "resource": "control-only",
+      "notes": "Used for source-of-truth status, credential injection through the environment, aggregation, and artifact collection."
+    }
+  ]
+}

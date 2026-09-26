@@ -24,7 +24,7 @@ if integrity.get("schema") != "pace-live-release-integrity/1" or integrity.get("
 ]:
     raise ValueError("Unexpected live release integrity rules")
 if integrity["summary_original_raw_sha256"] != summary["source_summary_sha256"]:
-    raise ValueError("Release manifest disagrees with the original summary hash")
+    raise ValueError('Release program list disagrees with the original summary hash')
 source_bytes = local_source_summary.read_bytes()
 source_data = json.loads(source_bytes)
 if not isinstance(source_data.get("input_dir"), str) or not isinstance(source_data.get("prior_run"), dict) or not isinstance(
@@ -80,14 +80,10 @@ for label, key, success_key, stop_key in [
     lo, hi = summary["all_pair_mean_bill_bounds_nusd"][key]
     main_rows.append([label, f"{summary[success_key]}/12", str(summary[stop_key]), bounds(lo, hi)])
 main = table("tab:live-main",
-    "Observed outcomes and serving bills for twelve paired Calendar tasks.\n"
-    "Mean bill bounds are in milli-USD and include extraction and any fallback.\n"
-    "Their endpoints combine known charges with the retained reservations for unknown bills; they are not confidence intervals.\n"
-    "Billing stops remain unsuccessful outcomes, and the agent has one additional step-limit failure.\n"
-    "Serving costs exclude the fixed program's original compilation and the separate compilation attempt.",
-    ["Serving path", "Success (of 12)", "Billing stops (count)", r"\shortstack{Mean bill bounds\\(milli-USD)}"], main_rows, "4pt")
+    "Observed outcomes and serving costs for twelve paired Calendar tasks.\nMean cost bounds are in milli-USD and include extraction and any fallback.\nTheir endpoints combine known charges with the saved reservations for unconfirmed costs; they are not confidence intervals.\nInterrupted runs remain unsuccessful outcomes, and the agent has one additional step-limit failure.\nServing costs exclude the compilation of the fixed program and the separate compilation attempt.",
+    ["Serving path", "Success (of 12)", "Interrupted (count)", r"\shortstack{Mean cost bounds\\(milli-USD)}"], main_rows, "4pt")
 
-outcomes = {"billing_stop": "Bill stop", "step_cap": "Step limit", "done": "Success",
+outcomes = {"billing_stop": "Interrupted", "step_cap": "Step limit", "done": "Success",
             "program_return": "Success", "prefix_denied": "Denied"}
 conditions = {"clean": "Clean", "renamed_submit": "Renamed submit", "blocking_dialog": "Blocking dialog"}
 detail_rows = []
@@ -98,24 +94,16 @@ for row in pairs:
                        bounds(int(row["pace_bill_lower_nusd"]), int(row["pace_bill_upper_nusd"])),
                        (row["fields_correct_at_fallback"] + "/6") if row["fields_correct_at_fallback"] else "--"])
 details = table("tab:live-pairs",
-    "All prespecified paired tasks, including provider interruptions and unsuccessful execution.\n"
-    "Bills use milli-USD; brackets are lower and upper accounting bounds, while unbracketed bills are settled.\n"
-    "P+F denotes program execution followed by agent fallback on an execution error.\n"
-    "Fields counts the six target values already correct when fallback begins.\n"
-    "All pairs start from matching application and interface states.",
-    ["Seed", "Condition", "Agent", "P+F", r"\shortstack{Agent bill\\(milli-USD)}", r"\shortstack{P+F bill\\(milli-USD)}", "Fields (of 6)"], detail_rows, "2pt")
+    'All paired tasks specified in advance, including provider interruptions and unsuccessful execution.\nCosts use milli-USD.\nBracketed values give lower and upper accounting bounds, and costs shown without brackets are confirmed.\nP+F means program execution followed by agent fallback on an execution error.\nFields counts the six target values already correct when fallback begins.\nAll pairs start from matching application and interface states.',
+    ["Seed", "Condition", "Agent", "P+F", r"\shortstack{Agent cost\\(milli-USD)}", r"\shortstack{P+F cost\\(milli-USD)}", "Fields (of 6)"], detail_rows, "2pt")
 tight_rows = []
 for index, row in enumerate(tight, 1):
     tight_rows.append([str(index), conditions[row["arm"]], outcomes[row["termination"]],
                        bounds(int(row["bill_lower_nusd"]), int(row["bill_upper_nusd"])),
                        milli(row["prefix_ceiling_nusd"]), milli(row["prefix_occupied_nusd"])])
 details += "\n" + table("tab:live-tight",
-    "Four tight-budget diagnostics in their prespecified arrival order.\n"
-    "Costs and prefix totals use milli-USD.\n"
-    "The reference increases by 20 milli-USD per scheduled arrival, including a denied arrival.\n"
-    "The prefix total includes charges and retained reservations for unsettled calls.\n"
-    "The first task is denied before any model call or GUI service, so this diagnostic does not satisfy the theorem's affordable-default-action assumption.",
-    ["Arrival", "Condition", "Outcome", r"\shortstack{Bill\\(milli-USD)}", r"\shortstack{Prefix ceiling\\(milli-USD)}", r"\shortstack{Prefix total\\(milli-USD)}"], tight_rows, "3pt")
+    "Four tight-budget tests in their arrival order set in advance.\nCosts and prefix totals use milli-USD.\nThe reference increases by 20 milli-USD per scheduled arrival, including a denied arrival.\nThe prefix total includes charges and saved reservations for unsettled calls.\nThe first task is denied before any model call or GUI service, so this test does not satisfy the theorem's assumption that default service costs at most its reference charge.",
+    ["Arrival", "Condition", "Outcome", r"\shortstack{Cost\\(milli-USD)}", r"\shortstack{Prefix ceiling\\(milli-USD)}", r"\shortstack{Prefix total\\(milli-USD)}"], tight_rows, "3pt")
 
 outputs = {"live_results_table.tex": main, "live_details_tables.tex": details}
 for name, content in outputs.items():
@@ -128,7 +116,7 @@ verification = {
     "paired_bill_means_verified": 4,
     "paired_states_verified": 12,
     "cost_unit": "milli-USD",
-    "interval_kind": "Unknown bills bounded by known charges and retained reservations, not confidence intervals",
+    "interval_kind": 'Unknown bills bounded by known charges and saved reservations, not confidence intervals',
 }
 verification_path = ROOT / "analysis/pace_closeout_20260923/live-table-verification.json"
 verification_path.parent.mkdir(parents=True, exist_ok=True)

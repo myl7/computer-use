@@ -1,0 +1,2323 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "family": "ContactsAddContact",
+ "attempt_id": "attempt1",
+ "attempt_role": "repeat",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v6-ca6f96dfe9659d81",
+ "status": "complete",
+ "terminal_status": "complete",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt1/artifact_k3_code.py",
+   "sha256": "8458c66bdcc22805e194e4ebae523ac4b6b4b267bc79374af1372d30b63d860f"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt1/compile.json",
+    "sha256": "a28b4afd05ad6e96b7c5cd929dc3b7a0ef28e836c242593bbb66b181c340d938"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s1/trajectory.jsonl",
+    "trajectory_sha256": "3cb18713b754e1041951b4fcabc9a4a5a31ae079938a7d33e429bacffd8b0e48",
+    "recorded_task_id": "ContactsAddContact__discover__s1",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v7/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Create a new contact for Aria Ali. Their number is +11524493909.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s2/trajectory.jsonl",
+    "trajectory_sha256": "b9cc8f99b8f9e2ab80fa8992869d833c440a7afdd4565da5af82fb7e0e2bd2e2",
+    "recorded_task_id": "ContactsAddContact__discover__s2",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v7/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+    "trajectory_sha256": "d4ff6ed16121e18a13828d4ebbdd5135eff4477a996716c0649dab643dadcdb7",
+    "recorded_task_id": "ContactsAddContact__discover__s3",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v7/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Nikola Fernandez\",\"number\":\"+11417776317\"}"
+   ],
+   "binding": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 214,
+     "cached_tokens": 0,
+     "completion_tokens": 48,
+     "total_tokens": 262,
+     "cost_usd": 7.79724e-05,
+     "usage": {
+      "prompt_tokens": 214,
+      "completion_tokens": 48,
+      "cached_tokens": 0,
+      "cost_usd": 7.79724e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.944,
+     "response_id": "gen-1790321196-j9tXP6Q2HK2wQNUPvARX",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 121
+    }
+   ],
+   "wall_s": 1.944
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Aria Ali. Their number is +11524493909.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Aria Ali\",\"number\":\"+11524493909\"}"
+   ],
+   "binding": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 161,
+     "cached_tokens": 0,
+     "completion_tokens": 50,
+     "total_tokens": 211,
+     "cost_usd": 0.0001354716,
+     "usage": {
+      "prompt_tokens": 161,
+      "completion_tokens": 50,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001354716
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.277,
+     "response_id": "gen-1790321196-Q7539RWj8XRy72Ep9AXy",
+     "finish_reason": "stop",
+     "raw_output_length": 43,
+     "reasoning_length": 135
+    }
+   ],
+   "wall_s": 1.277
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\": \"Nora Gonzalez\", \"number\": \"+18259791907\"}"
+   ],
+   "binding": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 213,
+     "cached_tokens": 0,
+     "completion_tokens": 57,
+     "total_tokens": 270,
+     "cost_usd": 8.1962496e-05,
+     "usage": {
+      "prompt_tokens": 213,
+      "completion_tokens": 57,
+      "cached_tokens": 0,
+      "cost_usd": 8.1962496e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 0.713,
+     "response_id": "gen-1790321198-lzPC81AHcktDsjbQRzCP",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 139
+    }
+   ],
+   "wall_s": 0.713
+  }
+ ],
+ "initial_program_sha256": "8458c66bdcc22805e194e4ebae523ac4b6b4b267bc79374af1372d30b63d860f",
+ "final_program_sha256": "907cb3eada8bdfc3d7591c1fac671b6fb2c56e83d3cd8907fd6b733055ea376f",
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "8458c66bdcc22805e194e4ebae523ac4b6b4b267bc79374af1372d30b63d860f",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"navigate_home\"} -> com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity",
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'New contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Video', description='Make video call' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: text='Added Oct 15, 2023'\n  13: text='Add phone number'\n  14: text='Add email'\n  15: text='15:34', description='15:34'\n  16: description='Android System notification: Serial console enabled'\n  17: description='Wifi signal full.'\n  18: description='Phone three bars.'\n  19: description='Battery charging, 100 percent.'",
+     "wall_s": 34.676
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 52.026
+  },
+  {
+   "version": 1,
+   "program_sha256": "6aa13c8e6662be85d7a96817d3e5115b2893172b9d1c392e5481d23a717043a8",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"navigate_home\"} -> com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity",
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'New contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Home', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Work', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add another phone', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add another phone', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add another phone'}) -> NOT FOUND",
+      "find({'text': 'Add phone'}) -> NOT FOUND",
+      "find({'text': 'Add number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone'}) -> NOT FOUND",
+      "find({'contains': 'Add number'}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Home', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Work', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Video', description='Make video call' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: text='Added Oct 15, 2023'\n  13: text='Add phone number'\n  14: text='Add email'\n  15: text='15:34', description='15:34'\n  16: description='Android System notification: Serial console enabled'\n  17: description='Phone three bars.'\n  18: description='Battery charging, 100 percent.'\n  19: description='3G'",
+     "wall_s": 36.18
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 53.544
+  },
+  {
+   "version": 2,
+   "program_sha256": "a5da2f1c6c93f0338a12a29a4f4f407fb6e246d34ae7277cff6313b40870ed99",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"navigate_home\"} -> com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity",
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Create contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'New contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add contact', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add new contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Create new contact', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Home', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Work', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Home', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Work', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add another phone', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add another phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add another phone', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add another phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add another phone', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add another phone'}) -> NOT FOUND",
+      "find({'text': 'Add phone'}) -> NOT FOUND",
+      "find({'text': 'Add number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone'}) -> NOT FOUND",
+      "find({'contains': 'Add number'}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Home', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Work', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Video', description='Make video call' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: text='Added Oct 15, 2023'\n  13: text='Add phone number'\n  14: text='Add email'\n  15: text='15:34', description='15:34'\n  16: description='Android System notification: Serial console enabled'\n  17: description='Phone signal full.'\n  18: description='Battery charging, 100 percent.'\n  19: description='3G'",
+     "wall_s": 36.513
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 53.542
+  },
+  {
+   "version": 3,
+   "program_sha256": "907cb3eada8bdfc3d7591c1fac671b6fb2c56e83d3cd8907fd6b733055ea376f",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"navigate_home\"} -> com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity",
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'description': 'Create new contact'}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone'}) -> NOT FOUND",
+      "find({'text': 'Phone number'}) -> NOT FOUND",
+      "find({'text': 'Phone'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone'}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 13} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 0} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Done', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Save contact', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Done', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Save contact', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Done', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Save'}) -> NOT FOUND",
+      "find({'text': 'Done'}) -> NOT FOUND",
+      "find({'text': 'Save contact'}) -> NOT FOUND",
+      "find({'description': 'Save'}) -> NOT FOUND",
+      "find({'description': 'Done'}) -> NOT FOUND",
+      "find({'description': 'Save contact'}) -> NOT FOUND",
+      "{\"action_type\": \"navigate_back\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: description='Create contact' [clickable]\n  1: description='Contacts'\n  2: description='Highlights' [clickable]\n  3: description='Fix & manage' [clickable]\n  4: (no text) [scrollable]\n  5: description='Open navigation drawer' [clickable]\n  6: description='More options' [clickable]\n  7: description='Signed in as Device\\nAccount and settings.' [clickable]\n  8: text='Phone contacts' [clickable]\n  9: text='Email contacts' [clickable]\n  10: text='Company' [clickable]\n  11: text='Device \u2022 1 contact'\n  12: text='Nikola Fernandez', description='Nikola Fernandez'\n  13: text='15:34', description='15:34'\n  14: description='Android System notification: Serial console enabled'\n  15: description='Phone signal full.'\n  16: description='Battery charging, 100 percent.'\n  17: description='3G'",
+     "wall_s": 54.675
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 71.747
+  }
+ ],
+ "admitted": false,
+ "repairs": [
+  {
+   "status": "ok",
+   "cause": "The contact was created with the name \"Nikola Fernandez\", but the phone number was not saved; the detail screen shows \"Add phone number\" and no +11417776317.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1135,
+      "completion_tokens": 2614,
+      "cached_tokens": 0,
+      "cost_usd": 0.0039103812
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2382,
+     "cached_tokens": 0,
+     "completion_tokens": 165,
+     "total_tokens": 2547,
+     "cost_usd": 0.000614078388,
+     "usage": {
+      "prompt_tokens": 2382,
+      "completion_tokens": 165,
+      "cached_tokens": 0,
+      "cost_usd": 0.000614078388
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 4995,
+     "cached_tokens": 384,
+     "completion_tokens": 47,
+     "total_tokens": 5042,
+     "cost_usd": 0.00208061568,
+     "usage": {
+      "prompt_tokens": 4995,
+      "completion_tokens": 47,
+      "cached_tokens": 384,
+      "cost_usd": 0.00208061568
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 7005,
+     "cached_tokens": 4992,
+     "completion_tokens": 16,
+     "total_tokens": 7021,
+     "cost_usd": 0.00103614984,
+     "usage": {
+      "prompt_tokens": 7005,
+      "completion_tokens": 16,
+      "cached_tokens": 4992,
+      "cost_usd": 0.00103614984
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 9540,
+     "cached_tokens": 6912,
+     "completion_tokens": 47,
+     "total_tokens": 9587,
+     "cost_usd": 0.00139777704,
+     "usage": {
+      "prompt_tokens": 9540,
+      "completion_tokens": 47,
+      "cached_tokens": 6912,
+      "cost_usd": 0.00139777704
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 14451,
+     "cached_tokens": 9472,
+     "completion_tokens": 65,
+     "total_tokens": 14516,
+     "cost_usd": 0.00251635824,
+     "usage": {
+      "prompt_tokens": 14451,
+      "completion_tokens": 65,
+      "cached_tokens": 9472,
+      "cost_usd": 0.00251635824
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 19362,
+     "cached_tokens": 14336,
+     "completion_tokens": 45,
+     "total_tokens": 19407,
+     "cost_usd": 0.00264552552,
+     "usage": {
+      "prompt_tokens": 19362,
+      "completion_tokens": 45,
+      "cached_tokens": 14336,
+      "cost_usd": 0.00264552552
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 24570,
+     "cached_tokens": 19328,
+     "completion_tokens": 53,
+     "total_tokens": 24623,
+     "cost_usd": 0.00288844776,
+     "usage": {
+      "prompt_tokens": 24570,
+      "completion_tokens": 53,
+      "cached_tokens": 19328,
+      "cost_usd": 0.00288844776
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 29473,
+     "cached_tokens": 24448,
+     "completion_tokens": 362,
+     "total_tokens": 29835,
+     "cost_usd": 0.00333965016,
+     "usage": {
+      "prompt_tokens": 29473,
+      "completion_tokens": 362,
+      "cached_tokens": 24448,
+      "cost_usd": 0.00333965016
+     },
+     "stage": "react_resume",
+     "action": "<\uff5c\uff5cDSML\uff5c\uff5c calls>\n<\uff5c\uff5cDSML\uff5c\uff5c invoke name=\"scroll\">\n<\uff5c\uff5cDSML\uff5c\uff5c parameter name=\"direction\" string=\"true\">down</\uff5c\uff5cDSML\uff5c\uff5c parameter>\n</\uff5c\uff5cDSML\uff5c\uff5c invoke>\n</\uff5c\uff5cDSML\uff5c\uff5c calls>"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 34510,
+     "cached_tokens": 29440,
+     "completion_tokens": 52,
+     "total_tokens": 34562,
+     "cost_usd": 0.0030925224,
+     "usage": {
+      "prompt_tokens": 34510,
+      "completion_tokens": 52,
+      "cached_tokens": 29440,
+      "cost_usd": 0.0030925224
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 39716,
+     "cached_tokens": 34432,
+     "completion_tokens": 124,
+     "total_tokens": 39840,
+     "cost_usd": 0.00341820864,
+     "usage": {
+      "prompt_tokens": 39716,
+      "completion_tokens": 124,
+      "cached_tokens": 34432,
+      "cost_usd": 0.00341820864
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 44617,
+     "cached_tokens": 39680,
+     "completion_tokens": 166,
+     "total_tokens": 44783,
+     "cost_usd": 0.0034674156,
+     "usage": {
+      "prompt_tokens": 44617,
+      "completion_tokens": 166,
+      "cached_tokens": 39680,
+      "cost_usd": 0.0034674156
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":53}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 40340,
+     "cached_tokens": 0,
+     "completion_tokens": 96,
+     "total_tokens": 40436,
+     "cost_usd": 0.0088487784,
+     "usage": {
+      "prompt_tokens": 40340,
+      "completion_tokens": 96,
+      "cached_tokens": 0,
+      "cost_usd": 0.0088487784
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":10,\"text\":\"+11417776317\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 3190,
+      "completion_tokens": 10330,
+      "cached_tokens": 0,
+      "cost_usd": 0.007444404
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The phone number was not saved. The automation entered the number in the editor but left without saving it to the contact; the final screen shows the saved contact with no phone number.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1800,
+      "completion_tokens": 3665,
+      "cached_tokens": 0,
+      "cost_usd": 0.00273101598
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2379,
+     "cached_tokens": 0,
+     "completion_tokens": 199,
+     "total_tokens": 2578,
+     "cost_usd": 0.000635209344,
+     "usage": {
+      "prompt_tokens": 2379,
+      "completion_tokens": 199,
+      "cached_tokens": 0,
+      "cost_usd": 0.000635209344
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"Contacts\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 4017,
+     "cached_tokens": 2304,
+     "completion_tokens": 55,
+     "total_tokens": 4072,
+     "cost_usd": 0.0004164952176,
+     "usage": {
+      "prompt_tokens": 4017,
+      "completion_tokens": 55,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0004164952176
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 5901,
+     "cached_tokens": 3840,
+     "completion_tokens": 95,
+     "total_tokens": 5996,
+     "cost_usd": 0.0005268186,
+     "usage": {
+      "prompt_tokens": 5901,
+      "completion_tokens": 95,
+      "cached_tokens": 3840,
+      "cost_usd": 0.0005268186
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 10161,
+     "cached_tokens": 3840,
+     "completion_tokens": 57,
+     "total_tokens": 10218,
+     "cost_usd": 0.001411757424,
+     "usage": {
+      "prompt_tokens": 10161,
+      "completion_tokens": 57,
+      "cached_tokens": 3840,
+      "cost_usd": 0.001411757424
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 14421,
+     "cached_tokens": 9984,
+     "completion_tokens": 57,
+     "total_tokens": 14478,
+     "cost_usd": 0.0010513552896,
+     "usage": {
+      "prompt_tokens": 14421,
+      "completion_tokens": 57,
+      "cached_tokens": 9984,
+      "cost_usd": 0.0010513552896
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 18978,
+     "cached_tokens": 14336,
+     "completion_tokens": 65,
+     "total_tokens": 19043,
+     "cost_usd": 0.0011297901384,
+     "usage": {
+      "prompt_tokens": 18978,
+      "completion_tokens": 65,
+      "cached_tokens": 14336,
+      "cost_usd": 0.0011297901384
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 23229,
+     "cached_tokens": 14336,
+     "completion_tokens": 59,
+     "total_tokens": 23288,
+     "cost_usd": 0.0020332985904,
+     "usage": {
+      "prompt_tokens": 23229,
+      "completion_tokens": 59,
+      "cached_tokens": 14336,
+      "cost_usd": 0.0020332985904
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 27786,
+     "cached_tokens": 23040,
+     "completion_tokens": 234,
+     "total_tokens": 28020,
+     "cost_usd": 0.001319316768,
+     "usage": {
+      "prompt_tokens": 27786,
+      "completion_tokens": 234,
+      "cached_tokens": 23040,
+      "cost_usd": 0.001319316768
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 32037,
+     "cached_tokens": 27648,
+     "completion_tokens": 141,
+     "total_tokens": 32178,
+     "cost_usd": 0.0012148611552,
+     "usage": {
+      "prompt_tokens": 32037,
+      "completion_tokens": 141,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0012148611552
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 36594,
+     "cached_tokens": 27648,
+     "completion_tokens": 329,
+     "total_tokens": 36923,
+     "cost_usd": 0.0023079078792,
+     "usage": {
+      "prompt_tokens": 36594,
+      "completion_tokens": 329,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0023079078792
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 40845,
+     "cached_tokens": 36352,
+     "completion_tokens": 334,
+     "total_tokens": 41179,
+     "cost_usd": 0.0014197557528,
+     "usage": {
+      "prompt_tokens": 40845,
+      "completion_tokens": 334,
+      "cached_tokens": 36352,
+      "cost_usd": 0.0014197557528
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 45402,
+     "cached_tokens": 40704,
+     "completion_tokens": 1266,
+     "total_tokens": 46668,
+     "cost_usd": 0.0020898573696,
+     "usage": {
+      "prompt_tokens": 45402,
+      "completion_tokens": 1266,
+      "cached_tokens": 40704,
+      "cost_usd": 0.0020898573696
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 4288,
+      "completion_tokens": 24228,
+      "cached_tokens": 0,
+      "cost_usd": 0.016429211568
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 2
+  },
+  {
+   "status": "ok",
+   "cause": "The phone number field was never found, so the automation typed the number into the wrong element and saved the contact without a phone number. The oracle rejected the result because the contact was missing the required number.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1903,
+      "completion_tokens": 2587,
+      "cached_tokens": 0,
+      "cost_usd": 0.0021048192
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2379,
+     "cached_tokens": 2304,
+     "completion_tokens": 411,
+     "total_tokens": 2790,
+     "cost_usd": 0.0002948321376,
+     "usage": {
+      "prompt_tokens": 2379,
+      "completion_tokens": 411,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0002948321376
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 3773,
+     "cached_tokens": 2304,
+     "completion_tokens": 50,
+     "total_tokens": 3823,
+     "cost_usd": 0.0003612132216,
+     "usage": {
+      "prompt_tokens": 3773,
+      "completion_tokens": 50,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0003612132216
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 5107,
+     "cached_tokens": 3584,
+     "completion_tokens": 57,
+     "total_tokens": 5164,
+     "cost_usd": 0.0003859145136,
+     "usage": {
+      "prompt_tokens": 5107,
+      "completion_tokens": 57,
+      "cached_tokens": 3584,
+      "cost_usd": 0.0003859145136
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 6785,
+     "cached_tokens": 4864,
+     "completion_tokens": 94,
+     "total_tokens": 6879,
+     "cost_usd": 0.0005032505016,
+     "usage": {
+      "prompt_tokens": 6785,
+      "completion_tokens": 94,
+      "cached_tokens": 4864,
+      "cost_usd": 0.0005032505016
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 8177,
+     "cached_tokens": 6656,
+     "completion_tokens": 87,
+     "total_tokens": 8264,
+     "cost_usd": 0.0004255607664,
+     "usage": {
+      "prompt_tokens": 8177,
+      "completion_tokens": 87,
+      "cached_tokens": 6656,
+      "cost_usd": 0.0004255607664
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 9565,
+     "cached_tokens": 7936,
+     "completion_tokens": 46,
+     "total_tokens": 9611,
+     "cost_usd": 0.0004310520984,
+     "usage": {
+      "prompt_tokens": 9565,
+      "completion_tokens": 46,
+      "cached_tokens": 7936,
+      "cost_usd": 0.0004310520984
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 10899,
+     "cached_tokens": 9472,
+     "completion_tokens": 272,
+     "total_tokens": 11171,
+     "cost_usd": 0.0005430830328,
+     "usage": {
+      "prompt_tokens": 10899,
+      "completion_tokens": 272,
+      "cached_tokens": 9472,
+      "cost_usd": 0.0005430830328
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 12577,
+     "cached_tokens": 10752,
+     "completion_tokens": 104,
+     "total_tokens": 12681,
+     "cost_usd": 0.0005291509608,
+     "usage": {
+      "prompt_tokens": 12577,
+      "completion_tokens": 104,
+      "cached_tokens": 10752,
+      "cost_usd": 0.0005291509608
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 13969,
+     "cached_tokens": 10752,
+     "completion_tokens": 84,
+     "total_tokens": 14053,
+     "cost_usd": 0.0008134583688,
+     "usage": {
+      "prompt_tokens": 13969,
+      "completion_tokens": 84,
+      "cached_tokens": 10752,
+      "cost_usd": 0.0008134583688
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 15645,
+     "cached_tokens": 13824,
+     "completion_tokens": 80,
+     "total_tokens": 15725,
+     "cost_usd": 0.0005337923976,
+     "usage": {
+      "prompt_tokens": 15645,
+      "completion_tokens": 80,
+      "cached_tokens": 13824,
+      "cost_usd": 0.0005337923976
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"Contacts\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 17285,
+     "cached_tokens": 13824,
+     "completion_tokens": 60,
+     "total_tokens": 17345,
+     "cost_usd": 0.0008710339176,
+     "usage": {
+      "prompt_tokens": 17285,
+      "completion_tokens": 60,
+      "cached_tokens": 13824,
+      "cost_usd": 0.0008710339176
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 19169,
+     "cached_tokens": 17152,
+     "completion_tokens": 67,
+     "total_tokens": 19236,
+     "cost_usd": 0.0005899048848,
+     "usage": {
+      "prompt_tokens": 19169,
+      "completion_tokens": 67,
+      "cached_tokens": 17152,
+      "cost_usd": 0.0005899048848
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 10139,
+      "completion_tokens": 159194,
+      "cached_tokens": 0,
+      "cost_usd": 0.125698914
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 3
+  }
+ ],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt1/compile.json",
+   "translator": null,
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 2091,
+     "cached_tokens": 0,
+     "completion_tokens": 20094,
+     "cost_usd": 0.013313142612,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2091,
+       "cached_tokens": 0,
+       "completion_tokens": 20094,
+       "total_tokens": 22185,
+       "cost_usd": 0.013313142612,
+       "usage": {
+        "prompt_tokens": 2091,
+        "completion_tokens": 20094,
+        "cached_tokens": 0,
+        "cost_usd": 0.013313142612
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1913,
+     "cached_tokens": 0,
+     "completion_tokens": 1889,
+     "cost_usd": 0.003301848,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1913,
+       "cached_tokens": 0,
+       "completion_tokens": 1889,
+       "total_tokens": 3802,
+       "cost_usd": 0.003301848,
+       "usage": {
+        "prompt_tokens": 1913,
+        "completion_tokens": 1889,
+        "cached_tokens": 0,
+        "cost_usd": 0.003301848
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 3237,
+     "cached_tokens": 0,
+     "completion_tokens": 10941,
+     "cost_usd": 0.00769679064,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3237,
+       "cached_tokens": 0,
+       "completion_tokens": 10941,
+       "total_tokens": 14178,
+       "cost_usd": 0.00769679064,
+       "usage": {
+        "prompt_tokens": 3237,
+        "completion_tokens": 10941,
+        "cached_tokens": 0,
+        "cost_usd": 0.00769679064
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 3112,
+     "cached_tokens": 0,
+     "completion_tokens": 1506,
+     "cost_usd": 0.00162857772,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3112,
+       "cached_tokens": 0,
+       "completion_tokens": 1506,
+       "total_tokens": 4618,
+       "cost_usd": 0.00162857772,
+       "usage": {
+        "prompt_tokens": 3112,
+        "completion_tokens": 1506,
+        "cached_tokens": 0,
+        "cost_usd": 0.00162857772
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 4297,
+     "cached_tokens": 0,
+     "completion_tokens": 17839,
+     "cost_usd": 0.012340051416,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4297,
+       "cached_tokens": 0,
+       "completion_tokens": 17839,
+       "total_tokens": 22136,
+       "cost_usd": 0.012340051416,
+       "usage": {
+        "prompt_tokens": 4297,
+        "completion_tokens": 17839,
+        "cached_tokens": 0,
+        "cost_usd": 0.012340051416
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 4172,
+     "cached_tokens": 0,
+     "completion_tokens": 811,
+     "cost_usd": 0.001438569,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4172,
+       "cached_tokens": 0,
+       "completion_tokens": 811,
+       "total_tokens": 4983,
+       "cost_usd": 0.001438569,
+       "usage": {
+        "prompt_tokens": 4172,
+        "completion_tokens": 811,
+        "cached_tokens": 0,
+        "cost_usd": 0.001438569
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 588,
+   "cached_tokens": 0,
+   "completion_tokens": 155,
+   "total_tokens": 743,
+   "cost_usd": 0.00029541
+  },
+  "new_repair": {
+   "calls": 42,
+   "prompt_tokens": 680496,
+   "cached_tokens": 490880,
+   "completion_tokens": 208159,
+   "total_tokens": 888655,
+   "cost_usd": 0.21550294
+  },
+  "reconciliation": {
+   "reconciled": true,
+   "new_calls": 45,
+   "new_cost_usd": 0.21579835,
+   "call_source": "extractions[].calls plus repairs[].calls"
+  }
+ },
+ "deployment": {
+  "status": "not_required_repeat",
+  "reason": "repeat_study_ends_after_compilation_verification",
+  "reuse_justification": null,
+  "record_paths": []
+ },
+ "timing": {
+  "attempt_wall_s": 1390.243
+ },
+ "response_call_ledger": [
+  {
+   "sequence": 1,
+   "completed": true,
+   "response_id": "gen-1790321196-j9tXP6Q2HK2wQNUPvARX",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 51,
+   "reasoning_length": 121,
+   "usage": {
+    "prompt_tokens": 214,
+    "completion_tokens": 48,
+    "cached_tokens": 0,
+    "cost_usd": 7.79724e-05
+   },
+   "cost_usd": 7.79724e-05
+  },
+  {
+   "sequence": 2,
+   "completed": true,
+   "response_id": "gen-1790321196-Q7539RWj8XRy72Ep9AXy",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 43,
+   "reasoning_length": 135,
+   "usage": {
+    "prompt_tokens": 161,
+    "completion_tokens": 50,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001354716
+   },
+   "cost_usd": 0.0001354716
+  },
+  {
+   "sequence": 3,
+   "completed": true,
+   "response_id": "gen-1790321198-lzPC81AHcktDsjbQRzCP",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 51,
+   "reasoning_length": 139,
+   "usage": {
+    "prompt_tokens": 213,
+    "completion_tokens": 57,
+    "cached_tokens": 0,
+    "cost_usd": 8.1962496e-05
+   },
+   "cost_usd": 8.1962496e-05
+  },
+  {
+   "sequence": 4,
+   "completed": true,
+   "response_id": "gen-1790321250-kdfJHk7rgmT9QtKsoHSU",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 572,
+   "reasoning_length": 10356,
+   "usage": {
+    "prompt_tokens": 1135,
+    "completion_tokens": 2614,
+    "cached_tokens": 0,
+    "cost_usd": 0.0039103812
+   },
+   "cost_usd": 0.0039103812
+  },
+  {
+   "sequence": 5,
+   "completed": true,
+   "response_id": "gen-1790321289-W1DB2xurMOXpV57T0FO4",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 44,
+   "reasoning_length": 603,
+   "usage": {
+    "prompt_tokens": 2382,
+    "completion_tokens": 165,
+    "cached_tokens": 0,
+    "cost_usd": 0.000614078388
+   },
+   "cost_usd": 0.000614078388
+  },
+  {
+   "sequence": 6,
+   "completed": true,
+   "response_id": "gen-1790321296-yFaJweMpRrrMC1xD3B8S",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 44,
+   "reasoning_length": 126,
+   "usage": {
+    "prompt_tokens": 4995,
+    "completion_tokens": 47,
+    "cached_tokens": 384,
+    "cost_usd": 0.00208061568
+   },
+   "cost_usd": 0.00208061568
+  },
+  {
+   "sequence": 7,
+   "completed": true,
+   "response_id": "gen-1790321305-Df4BObqeHURPkdb8zLwI",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 44,
+   "reasoning_length": 0,
+   "usage": {
+    "prompt_tokens": 7005,
+    "completion_tokens": 16,
+    "cached_tokens": 4992,
+    "cost_usd": 0.00103614984
+   },
+   "cost_usd": 0.00103614984
+  },
+  {
+   "sequence": 8,
+   "completed": true,
+   "response_id": "gen-1790321313-9UhzkeIi8XQD9j778v55",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 67,
+   "reasoning_length": 91,
+   "usage": {
+    "prompt_tokens": 9540,
+    "completion_tokens": 47,
+    "cached_tokens": 6912,
+    "cost_usd": 0.00139777704
+   },
+   "cost_usd": 0.00139777704
+  },
+  {
+   "sequence": 9,
+   "completed": true,
+   "response_id": "gen-1790321322-ein7tYupqKc941YRbO4B",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 70,
+   "reasoning_length": 157,
+   "usage": {
+    "prompt_tokens": 14451,
+    "completion_tokens": 65,
+    "cached_tokens": 9472,
+    "cost_usd": 0.00251635824
+   },
+   "cost_usd": 0.00251635824
+  },
+  {
+   "sequence": 10,
+   "completed": true,
+   "response_id": "gen-1790321333-FrCdBLoVo00uqADE1oak",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 114,
+   "usage": {
+    "prompt_tokens": 19362,
+    "completion_tokens": 45,
+    "cached_tokens": 14336,
+    "cost_usd": 0.00264552552
+   },
+   "cost_usd": 0.00264552552
+  },
+  {
+   "sequence": 11,
+   "completed": true,
+   "response_id": "gen-1790321342-G6D2UFBafRfrJ8LOgxOj",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 159,
+   "usage": {
+    "prompt_tokens": 24570,
+    "completion_tokens": 53,
+    "cached_tokens": 19328,
+    "cost_usd": 0.00288844776
+   },
+   "cost_usd": 0.00288844776
+  },
+  {
+   "sequence": 12,
+   "completed": true,
+   "response_id": "gen-1790321352-a8AxmtScinXUfN2QTcxG",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 162,
+   "reasoning_length": 1489,
+   "usage": {
+    "prompt_tokens": 29473,
+    "completion_tokens": 362,
+    "cached_tokens": 24448,
+    "cost_usd": 0.00333965016
+   },
+   "cost_usd": 0.00333965016
+  },
+  {
+   "sequence": 13,
+   "completed": true,
+   "response_id": "gen-1790321359-s7W309KhEGDIE09B10u3",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 162,
+   "usage": {
+    "prompt_tokens": 34510,
+    "completion_tokens": 52,
+    "cached_tokens": 29440,
+    "cost_usd": 0.0030925224
+   },
+   "cost_usd": 0.0030925224
+  },
+  {
+   "sequence": 14,
+   "completed": true,
+   "response_id": "gen-1790321370-loWLacZPV2qRQaLSMy4i",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 473,
+   "usage": {
+    "prompt_tokens": 39716,
+    "completion_tokens": 124,
+    "cached_tokens": 34432,
+    "cost_usd": 0.00341820864
+   },
+   "cost_usd": 0.00341820864
+  },
+  {
+   "sequence": 15,
+   "completed": true,
+   "response_id": "gen-1790321380-fmKwyQKtM20UIvwAD8oL",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 45,
+   "reasoning_length": 658,
+   "usage": {
+    "prompt_tokens": 44617,
+    "completion_tokens": 166,
+    "cached_tokens": 39680,
+    "cost_usd": 0.0034674156
+   },
+   "cost_usd": 0.0034674156
+  },
+  {
+   "sequence": 16,
+   "completed": true,
+   "response_id": "gen-1790321391-n76aM5KosE5Aq9JAyliB",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 74,
+   "reasoning_length": 286,
+   "usage": {
+    "prompt_tokens": 40340,
+    "completion_tokens": 96,
+    "cached_tokens": 0,
+    "cost_usd": 0.0088487784
+   },
+   "cost_usd": 0.0088487784
+  },
+  {
+   "sequence": 17,
+   "completed": true,
+   "response_id": "gen-1790321401-YZb9qmGqi7qN62L4KvFC",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 6038,
+   "reasoning_length": 38435,
+   "usage": {
+    "prompt_tokens": 3190,
+    "completion_tokens": 10330,
+    "cached_tokens": 0,
+    "cost_usd": 0.007444404
+   },
+   "cost_usd": 0.007444404
+  },
+  {
+   "sequence": 18,
+   "completed": true,
+   "response_id": "gen-1790321509-RyjWvAOEaon6ek9rMl1B",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 602,
+   "reasoning_length": 14920,
+   "usage": {
+    "prompt_tokens": 1800,
+    "completion_tokens": 3665,
+    "cached_tokens": 0,
+    "cost_usd": 0.00273101598
+   },
+   "cost_usd": 0.00273101598
+  },
+  {
+   "sequence": 19,
+   "completed": true,
+   "response_id": "gen-1790321553-G2WD4lLxLZOqkWxhbIQx",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 59,
+   "reasoning_length": 745,
+   "usage": {
+    "prompt_tokens": 2379,
+    "completion_tokens": 199,
+    "cached_tokens": 0,
+    "cost_usd": 0.000635209344
+   },
+   "cost_usd": 0.000635209344
+  },
+  {
+   "sequence": 20,
+   "completed": true,
+   "response_id": "gen-1790321561-4mKcaabYf6hvwwSCdhT4",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 44,
+   "reasoning_length": 162,
+   "usage": {
+    "prompt_tokens": 4017,
+    "completion_tokens": 55,
+    "cached_tokens": 2304,
+    "cost_usd": 0.0004164952176
+   },
+   "cost_usd": 0.0004164952176
+  },
+  {
+   "sequence": 21,
+   "completed": true,
+   "response_id": "gen-1790321568-oA6mlfD2OYRTmJ1b37f4",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 67,
+   "reasoning_length": 286,
+   "usage": {
+    "prompt_tokens": 5901,
+    "completion_tokens": 95,
+    "cached_tokens": 3840,
+    "cost_usd": 0.0005268186
+   },
+   "cost_usd": 0.0005268186
+  },
+  {
+   "sequence": 22,
+   "completed": true,
+   "response_id": "gen-1790321575-1ClzKf8kesWbhHeYQxhM",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 70,
+   "reasoning_length": 140,
+   "usage": {
+    "prompt_tokens": 10161,
+    "completion_tokens": 57,
+    "cached_tokens": 3840,
+    "cost_usd": 0.001411757424
+   },
+   "cost_usd": 0.001411757424
+  },
+  {
+   "sequence": 23,
+   "completed": true,
+   "response_id": "gen-1790321583-53Gve1DwRQOW5g4tqOtK",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 172,
+   "usage": {
+    "prompt_tokens": 14421,
+    "completion_tokens": 57,
+    "cached_tokens": 9984,
+    "cost_usd": 0.0010513552896
+   },
+   "cost_usd": 0.0010513552896
+  },
+  {
+   "sequence": 24,
+   "completed": true,
+   "response_id": "gen-1790321590-hiXr5MQjhbIhb26BVmt0",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 210,
+   "usage": {
+    "prompt_tokens": 18978,
+    "completion_tokens": 65,
+    "cached_tokens": 14336,
+    "cost_usd": 0.0011297901384
+   },
+   "cost_usd": 0.0011297901384
+  },
+  {
+   "sequence": 25,
+   "completed": true,
+   "response_id": "gen-1790321597-30lEoxdDWPA6Ug9j3pAS",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 192,
+   "usage": {
+    "prompt_tokens": 23229,
+    "completion_tokens": 59,
+    "cached_tokens": 14336,
+    "cost_usd": 0.0020332985904
+   },
+   "cost_usd": 0.0020332985904
+  },
+  {
+   "sequence": 26,
+   "completed": true,
+   "response_id": "gen-1790321605-Ifak9hKwOnPOkxfR1VQX",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 944,
+   "usage": {
+    "prompt_tokens": 27786,
+    "completion_tokens": 234,
+    "cached_tokens": 23040,
+    "cost_usd": 0.001319316768
+   },
+   "cost_usd": 0.001319316768
+  },
+  {
+   "sequence": 27,
+   "completed": true,
+   "response_id": "gen-1790321611-hoFtUZSZQQtvmT1BmzUv",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 561,
+   "usage": {
+    "prompt_tokens": 32037,
+    "completion_tokens": 141,
+    "cached_tokens": 27648,
+    "cost_usd": 0.0012148611552
+   },
+   "cost_usd": 0.0012148611552
+  },
+  {
+   "sequence": 28,
+   "completed": true,
+   "response_id": "gen-1790321619-BQWR4nkuEB1zf6xiFVBY",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 1377,
+   "usage": {
+    "prompt_tokens": 36594,
+    "completion_tokens": 329,
+    "cached_tokens": 27648,
+    "cost_usd": 0.0023079078792
+   },
+   "cost_usd": 0.0023079078792
+  },
+  {
+   "sequence": 29,
+   "completed": true,
+   "response_id": "gen-1790321627-ofQteXvNmZRQguPyzU3Z",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 54,
+   "reasoning_length": 1419,
+   "usage": {
+    "prompt_tokens": 40845,
+    "completion_tokens": 334,
+    "cached_tokens": 36352,
+    "cost_usd": 0.0014197557528
+   },
+   "cost_usd": 0.0014197557528
+  },
+  {
+   "sequence": 30,
+   "completed": true,
+   "response_id": "gen-1790321636-td9qdCAkne0k4KpbhOPk",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 5649,
+   "usage": {
+    "prompt_tokens": 45402,
+    "completion_tokens": 1266,
+    "cached_tokens": 40704,
+    "cost_usd": 0.0020898573696
+   },
+   "cost_usd": 0.0020898573696
+  },
+  {
+   "sequence": 31,
+   "completed": true,
+   "response_id": "gen-1790321649-dWmJGLtKxnhRhFq7JtSD",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 8877,
+   "reasoning_length": 96034,
+   "usage": {
+    "prompt_tokens": 4288,
+    "completion_tokens": 24228,
+    "cached_tokens": 0,
+    "cost_usd": 0.016429211568
+   },
+   "cost_usd": 0.016429211568
+  },
+  {
+   "sequence": 32,
+   "completed": true,
+   "response_id": "gen-1790321809-ELYjxMViDY0laKecnk0F",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 587,
+   "reasoning_length": 10200,
+   "usage": {
+    "prompt_tokens": 1903,
+    "completion_tokens": 2587,
+    "cached_tokens": 0,
+    "cost_usd": 0.0021048192
+   },
+   "cost_usd": 0.0021048192
+  },
+  {
+   "sequence": 33,
+   "completed": true,
+   "response_id": "gen-1790321851-PUkcJQHqMhAqnDFpD63F",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 1639,
+   "usage": {
+    "prompt_tokens": 2379,
+    "completion_tokens": 411,
+    "cached_tokens": 2304,
+    "cost_usd": 0.0002948321376
+   },
+   "cost_usd": 0.0002948321376
+  },
+  {
+   "sequence": 34,
+   "completed": true,
+   "response_id": "gen-1790321859-3Q3eaCgsJKqFwDdQFavR",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 45,
+   "reasoning_length": 177,
+   "usage": {
+    "prompt_tokens": 3773,
+    "completion_tokens": 50,
+    "cached_tokens": 2304,
+    "cost_usd": 0.0003612132216
+   },
+   "cost_usd": 0.0003612132216
+  },
+  {
+   "sequence": 35,
+   "completed": true,
+   "response_id": "gen-1790321865-WR7AoakgNSKU9UqFwQ4v",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 40,
+   "reasoning_length": 193,
+   "usage": {
+    "prompt_tokens": 5107,
+    "completion_tokens": 57,
+    "cached_tokens": 3584,
+    "cost_usd": 0.0003859145136
+   },
+   "cost_usd": 0.0003859145136
+  },
+  {
+   "sequence": 36,
+   "completed": true,
+   "response_id": "gen-1790321871-TMfyLMVmAiEoox6s2Gxw",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 327,
+   "usage": {
+    "prompt_tokens": 6785,
+    "completion_tokens": 94,
+    "cached_tokens": 4864,
+    "cost_usd": 0.0005032505016
+   },
+   "cost_usd": 0.0005032505016
+  },
+  {
+   "sequence": 37,
+   "completed": true,
+   "response_id": "gen-1790321879-PWJh9aILqAeZqCrRHArh",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 40,
+   "reasoning_length": 347,
+   "usage": {
+    "prompt_tokens": 8177,
+    "completion_tokens": 87,
+    "cached_tokens": 6656,
+    "cost_usd": 0.0004255607664
+   },
+   "cost_usd": 0.0004255607664
+  },
+  {
+   "sequence": 38,
+   "completed": true,
+   "response_id": "gen-1790321886-FPGRo5n2lS6orJcnoGuw",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 45,
+   "reasoning_length": 126,
+   "usage": {
+    "prompt_tokens": 9565,
+    "completion_tokens": 46,
+    "cached_tokens": 7936,
+    "cost_usd": 0.0004310520984
+   },
+   "cost_usd": 0.0004310520984
+  },
+  {
+   "sequence": 39,
+   "completed": true,
+   "response_id": "gen-1790321893-5swlI6SfzMIHSoSbYkGW",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 40,
+   "reasoning_length": 1192,
+   "usage": {
+    "prompt_tokens": 10899,
+    "completion_tokens": 272,
+    "cached_tokens": 9472,
+    "cost_usd": 0.0005430830328
+   },
+   "cost_usd": 0.0005430830328
+  },
+  {
+   "sequence": 40,
+   "completed": true,
+   "response_id": "gen-1790321901-sYfAmW45CeWByUSxlESQ",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 52,
+   "reasoning_length": 376,
+   "usage": {
+    "prompt_tokens": 12577,
+    "completion_tokens": 104,
+    "cached_tokens": 10752,
+    "cost_usd": 0.0005291509608
+   },
+   "cost_usd": 0.0005291509608
+  },
+  {
+   "sequence": 41,
+   "completed": true,
+   "response_id": "gen-1790321908-ZrWpsEmaWdd7aJl1KDFX",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 40,
+   "reasoning_length": 328,
+   "usage": {
+    "prompt_tokens": 13969,
+    "completion_tokens": 84,
+    "cached_tokens": 10752,
+    "cost_usd": 0.0008134583688
+   },
+   "cost_usd": 0.0008134583688
+  },
+  {
+   "sequence": 42,
+   "completed": true,
+   "response_id": "gen-1790321918-ATW224gVk3n51wkC5YGe",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 59,
+   "reasoning_length": 245,
+   "usage": {
+    "prompt_tokens": 15645,
+    "completion_tokens": 80,
+    "cached_tokens": 13824,
+    "cost_usd": 0.0005337923976
+   },
+   "cost_usd": 0.0005337923976
+  },
+  {
+   "sequence": 43,
+   "completed": true,
+   "response_id": "gen-1790321928-mTSY0WBGjNxyA1jmPL6c",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 44,
+   "reasoning_length": 174,
+   "usage": {
+    "prompt_tokens": 17285,
+    "completion_tokens": 60,
+    "cached_tokens": 13824,
+    "cost_usd": 0.0008710339176
+   },
+   "cost_usd": 0.0008710339176
+  },
+  {
+   "sequence": 44,
+   "completed": true,
+   "response_id": "gen-1790321938-fcJfBuCztPmwQZPQMeRi",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 67,
+   "reasoning_length": 170,
+   "usage": {
+    "prompt_tokens": 19169,
+    "completion_tokens": 67,
+    "cached_tokens": 17152,
+    "cost_usd": 0.0005899048848
+   },
+   "cost_usd": 0.0005899048848
+  },
+  {
+   "sequence": 45,
+   "completed": true,
+   "response_id": "gen-1790321947-P94DLUd82c8uTrBwx0Ss",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "length",
+   "empty_response": true,
+   "raw_output_length": 0,
+   "reasoning_length": 578551,
+   "usage": {
+    "prompt_tokens": 5096,
+    "completion_tokens": 131072,
+    "cached_tokens": 0,
+    "cost_usd": 0.0867523536
+   },
+   "cost_usd": 0.0867523536
+  },
+  {
+   "sequence": 46,
+   "completed": true,
+   "response_id": "gen-1790322398-cEQinBoKwjZFv4sZ67K1",
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "finish_reason": "stop",
+   "empty_response": false,
+   "raw_output_length": 10531,
+   "reasoning_length": 108409,
+   "usage": {
+    "prompt_tokens": 5043,
+    "completion_tokens": 28122,
+    "cached_tokens": 0,
+    "cost_usd": 0.0389465604
+   },
+   "cost_usd": 0.0389465604
+  }
+ ],
+ "response_call_ledger_totals": {
+  "calls": 46,
+  "prompt_tokens": 681084,
+  "cached_tokens": 490880,
+  "completion_tokens": 208314,
+  "total_tokens": 889398,
+  "cost_usd": 0.21579835
+ },
+ "final_program_source": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, one string copied verbatim\",\n    },\n}\n\n\ndef _txt(e, *keys):\n    out = []\n    for k in keys:\n        v = e.get(k)\n        if isinstance(v, str):\n            out.append(v)\n    return ' '.join(out)\n\n\ndef _low(e, *keys):\n    return _txt(e, *keys).lower()\n\n\ndef _digits(s):\n    return ''.join(ch for ch in (s or '') if ch.isdigit())\n\n\ndef program(device, binding: dict) -> bool:\n    name = (binding.get('name') or '').strip()\n    number = (binding.get('number') or '').strip()\n    words = name.split()\n    first = words[0] if words else name\n    last = words[1] if len(words) > 1 else ''\n    num_digits = _digits(number)\n\n    def elements():\n        try:\n            return device.elements() or []\n        except Exception:\n            return []\n\n    def current_text(i):\n        for e in elements():\n            if e.get('index') == i:\n                return _txt(e, 'text', 'hint')\n        return ''\n\n    def number_on_screen():\n        if not num_digits:\n            return False\n        for e in elements():\n            if num_digits in _digits(_txt(e, 'text', 'hint', 'description')):\n                return True\n        return False\n\n    # ---------------- launch app ----------------\n    device.navigate_home()\n    device.open_app(\"Contacts\")\n    device.settle(1.0)\n\n    # ---------------- create contact ----------------\n    create_idx = None\n    for attr in ('description', 'text'):\n        for val in (\"Create new contact\", \"Create contact\", \"New contact\",\n                    \"Add contact\", \"Add new contact\", \"Create a new contact\"):\n            create_idx = device.find(**{attr: val})\n            if create_idx is not None:\n                break\n        if create_idx is not None:\n            break\n    if create_idx is None:\n        for attr in ('description', 'text'):\n            for val in (\"Create new contact\", \"Create contact\", \"New contact\",\n                        \"Add contact\", \"Create\"):\n                create_idx = device.find(contains=val, clickable=True)\n                if create_idx is not None:\n                    break\n            if create_idx is not None:\n                break\n    if create_idx is None:\n        for e in elements():\n            t = _low(e, 'text', 'description')\n            if ('create' in t or 'new contact' in t or 'add contact' in t) and e.get('clickable'):\n                create_idx = e.get('index')\n                break\n    if create_idx is None:\n        raise RuntimeError(\"Could not find create contact button\")\n    device.click(index=create_idx)\n    device.settle(1.2)\n\n    # ---------------- name fields ----------------\n    def wait_editable(keys, tries=10):\n        for _ in range(tries):\n            for k in keys:\n                i = device.find(hint=k, editable=True)\n                if i is not None:\n                    return i\n            for k in keys:\n                i = device.find(text=k, editable=True)\n                if i is not None:\n                    return i\n            for k in keys:\n                i = device.find(contains=k, editable=True)\n                if i is not None:\n                    return i\n            device.settle(0.5)\n        return None\n\n    first_idx = wait_editable([\"First name\"])\n    if first_idx is None:\n        raise RuntimeError(\"First name field not found\")\n    device.click(index=first_idx)\n    device.input_text(first, index=first_idx)\n    device.settle(0.4)\n\n    if last:\n        last_idx = wait_editable([\"Last name\"])\n        if last_idx is None:\n            raise RuntimeError(\"Last name field not found\")\n        device.click(index=last_idx)\n        device.input_text(last, index=last_idx)\n        device.settle(0.4)\n\n    # ---------------- helpers for the phone field ----------------\n    PHONE_WORDS = ('phone', 'mobile', 'tel', 'number', 'cell')\n    BAD_WORDS = ('email', 'mail', 'address', 'company', 'note', 'website',\n                 'birthday', 'event', 'fax', 'pager')\n\n    def name_indexes():\n        s = set()\n        for e in elements():\n            w = _low(e, 'hint', 'text', 'description')\n            if 'first name' in w or 'last name' in w:\n                s.add(e.get('index'))\n                continue\n            t = _txt(e, 'text').strip()\n            if t and t in (first, last) and e.get('editable'):\n                s.add(e.get('index'))\n        return s\n\n    def collect_candidates():\n        els = elements()\n        ex = name_indexes()\n        pairs = []\n        # 1. anything whose a11y text mentions phone\n        for e in els:\n            i = e.get('index')\n            if i is None or i in ex:\n                continue\n            w = _low(e, 'hint', 'text', 'description')\n            if any(k in w for k in PHONE_WORDS):\n                pairs.append((0 if e.get('editable') else 1, i))\n        # 2. label based: a \"Phone\"/\"Mobile\"... label, then the nearest editable after it\n        for e in els:\n            lab = _txt(e, 'text', 'description').strip().lower()\n            if lab in ('phone', 'phone number', 'mobile', 'home', 'work',\n                       'tel', 'telephone', 'cell', 'number'):\n                li = e.get('index')\n                if li is None:\n                    continue\n                sub = sorted([x for x in els\n                              if x.get('editable') and x.get('index') is not None\n                              and x['index'] > li and x['index'] not in ex],\n                             key=lambda x: x['index'])\n                if sub:\n                    pairs.append((2, sub[0]['index']))\n        # 3. generic editable after the names (last resort), excluding obvious non-phone\n        gen = []\n        for e in els:\n            i = e.get('index')\n            if i is None or i in ex or not e.get('editable'):\n                continue\n            w = _low(e, 'hint', 'text', 'description')\n            if any(k in w for k in BAD_WORDS):\n                continue\n            gen.append(i)\n        gen.sort()\n        for i in gen:\n            pairs.append((3, i))\n        best = {}\n        for r, i in pairs:\n            if i not in best or r < best[i]:\n                best[i] = r\n        return sorted(best.items(), key=lambda kv: (kv[1], kv[0]))\n\n    def click_phone_row():\n        for t in (\"Add phone number\", \"Add phone\", \"Phone number\", \"Phone\"):\n            i = device.find(text=t)\n            if i is not None:\n                return i\n        for t in (\"Add phone number\", \"Add phone\"):\n            i = device.find(contains=t)\n            if i is not None:\n                return i\n        return None\n\n    def type_number_into(pairs):\n        for i in [idx for r, idx in pairs]:\n            device.click(index=i)\n            device.settle(0.3)\n            device.input_text(number, index=i)\n            device.settle(0.5)\n            if num_digits and num_digits in _digits(current_text(i)):\n                device.settle(0.5)\n                return True\n        return False\n\n    # ---------------- enter phone in the editor ----------------\n    pairs = collect_candidates()\n    strong = [i for r, i in pairs if r <= 2]\n    if not strong:\n        for _ in range(5):\n            device.scroll(direction='down')\n            device.settle(0.5)\n            pairs = collect_candidates()\n            strong = [i for r, i in pairs if r <= 2]\n            if strong:\n                break\n    if not strong:\n        row = click_phone_row()\n        if row is not None:\n            device.click(index=row)\n            device.settle(0.8)\n            pairs = collect_candidates()\n            strong = [i for r, i in pairs if r <= 2]\n\n    editor_targets = strong if strong else [i for r, i in pairs if r == 3]\n    if editor_targets:\n        type_number_into([(0, i) for i in editor_targets])\n\n    # ---------------- save ----------------\n    def find_save():\n        for t in (\"Save\", \"Done\", \"Save contact\"):\n            i = device.find(text=t, clickable=True)\n            if i is not None:\n                return i\n        for d in (\"Save\", \"Done\", \"Save contact\"):\n            i = device.find(description=d, clickable=True)\n            if i is not None:\n                return i\n        for t in (\"Save\", \"Done\"):\n            i = device.find(contains=t, clickable=True)\n            if i is not None:\n                return i\n        for attr in ('text', 'description'):\n            for v in (\"Save\", \"Done\", \"Save contact\"):\n                i = device.find(**{attr: v})\n                if i is not None:\n                    return i\n        return None\n\n    save_idx = find_save()\n    if save_idx is None:\n        for _ in range(5):\n            device.scroll(direction='up')\n            save_idx = find_save()\n            if save_idx is not None:\n                break\n    if save_idx is not None:\n        device.click(index=save_idx)\n        device.settle(1.2)\n    else:\n        device.navigate_back()\n        device.settle(1.2)\n\n    # ---------------- fix-up: add phone from the contact detail screen ----------------\n    if not number_on_screen():\n        row = None\n        for t in (\"Add phone number\", \"Add phone\", \"Phone number\", \"Phone\"):\n            row = device.find(text=t)\n            if row is not None:\n                break\n        if row is None:\n            for t in (\"Add phone number\", \"Add phone\"):\n                row = device.find(contains=t)\n                if row is not None:\n                    break\n        if row is not None:\n            device.click(index=row)\n            device.settle(1.2)\n            pairs = collect_candidates()\n            strong = [i for r, i in pairs if r <= 2]\n            targets = strong if strong else [i for r, i in pairs if r == 3]\n            ok = False\n            for i in targets:\n                device.click(index=i)\n                device.settle(0.3)\n                device.input_text(number, index=i)\n                device.settle(0.5)\n                if num_digits and num_digits in _digits(current_text(i)):\n                    ok = True\n                    break\n            if not ok:\n                device.input_text(number)\n                device.settle(0.5)\n            save_idx = find_save()\n            if save_idx is not None:\n                device.click(index=save_idx)\n                device.settle(1.2)\n            else:\n                device.navigate_back()\n                device.settle(1.2)\n\n    return True\n",
+ "phase": "finished",
+ "auxiliary_deployments": [
+  {
+   "status": "auxiliary_rejected_deployment_skip",
+   "reuse_justification": null,
+   "historical_program_sha256": null,
+   "final_program_sha256": "907cb3eada8bdfc3d7591c1fac671b6fb2c56e83d3cd8907fd6b733055ea376f",
+   "program_hash_equal": null,
+   "execution_protocol_equal": null,
+   "input_protocol_equal": null,
+   "record_paths": [],
+   "reason": "attempt_rejected_by_three_building_verifier"
+  }
+ ],
+ "no_call_finalizers": [
+  {
+   "kind": "repeat_deployment_not_required",
+   "model_calls": 0,
+   "prior_deployment_status": "skipped",
+   "confirmed_no_active_model_call": false,
+   "stopped_after_admission": false
+  }
+ ],
+ "provenance_audits": [
+  {
+   "kind": "source_cell_relative_trajectory_alias_resolution",
+   "model_calls": 0,
+   "path_source_kind": "compile_json_building_trajectories",
+   "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt1/compile.json",
+   "source_record_sha256": "a28b4afd05ad6e96b7c5cd929dc3b7a0ef28e836c242593bbb66b181c340d938",
+   "translation_path": null,
+   "translation_sha256": null,
+   "resolved_trajectory_sha256": {
+    "1": "3cb18713b754e1041951b4fcabc9a4a5a31ae079938a7d33e429bacffd8b0e48",
+    "2": "b9cc8f99b8f9e2ab80fa8992869d833c440a7afdd4565da5af82fb7e0e2bd2e2",
+    "3": "d4ff6ed16121e18a13828d4ebbdd5135eff4477a996716c0649dab643dadcdb7"
+   },
+   "prompt_equality_with_completed_extractions": true
+  }
+ ]
+}

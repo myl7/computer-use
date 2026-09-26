@@ -69,6 +69,72 @@
         .append("path").attr("d", "M0,0 L10,4 L0,8 Z").attr("fill", col);
     });
 
+    /* Icon paths from Lucide via Mizar77/ml-paper-icons.
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+---
+
+The following Lucide icons are derived from the Feather project:
+
+airplay, alert-circle, alert-octagon, alert-triangle, aperture, arrow-down-circle, arrow-down-left, arrow-down-right, arrow-down, arrow-left-circle, arrow-left, arrow-right-circle, arrow-right, arrow-up-circle, arrow-up-left, arrow-up-right, arrow-up, at-sign, calendar, cast, check, chevron-down, chevron-left, chevron-right, chevron-up, chevrons-down, chevrons-left, chevrons-right, chevrons-up, circle, clipboard, clock, code, columns, command, compass, corner-down-left, corner-down-right, corner-left-down, corner-left-up, corner-right-down, corner-right-up, corner-up-left, corner-up-right, crosshair, database, divide-circle, divide-square, dollar-sign, download, external-link, feather, frown, hash, headphones, help-circle, info, italic, key, layout, life-buoy, link-2, link, loader, lock, log-in, log-out, maximize, meh, minimize, minimize-2, minus-circle, minus-square, minus, monitor, moon, more-horizontal, more-vertical, move, music, navigation-2, navigation, octagon, pause-circle, percent, plus-circle, plus-square, plus, power, radio, rss, search, server, share, shopping-bag, sidebar, smartphone, smile, square, table-2, tablet, target, terminal, trash-2, trash, triangle, tv, type, upload, x-circle, x-octagon, x-square, x, zoom-in, zoom-out
+
+The MIT License (MIT) (for the icons listed above)
+
+Copyright (c) 2013-present Cole Bemis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+    */
+    const ICON_GEOMETRY = {"bot": "<path d=\"M12 8V4H8\" />\n  <rect width=\"16\" height=\"12\" x=\"4\" y=\"8\" rx=\"2\" />\n  <path d=\"M2 14h2\" />\n  <path d=\"M20 14h2\" />\n  <path d=\"M15 13v2\" />\n  <path d=\"M9 13v2\" />", "brain": "<path d=\"M12 18V5\" />\n  <path d=\"M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4\" />\n  <path d=\"M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5\" />\n  <path d=\"M17.997 5.125a4 4 0 0 1 2.526 5.77\" />\n  <path d=\"M18 18a4 4 0 0 0 2-7.464\" />\n  <path d=\"M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517\" />\n  <path d=\"M6 18a4 4 0 0 1-2-7.464\" />\n  <path d=\"M6.003 5.125a4 4 0 0 0-2.526 5.77\" />", "calendar": "<path d=\"M8 2v4\" />\n  <path d=\"M16 2v4\" />\n  <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" />\n  <path d=\"M3 10h18\" />", "chart-column": "<path d=\"M3 3v16a2 2 0 0 0 2 2h16\" />\n  <path d=\"M18 17V9\" />\n  <path d=\"M13 17V5\" />\n  <path d=\"M8 17v-3\" />", "circle-check": "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"m9 12 2 2 4-4\" />", "circle-x": "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"m15 9-6 6\" />\n  <path d=\"m9 9 6 6\" />", "clipboard-list": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" />\n  <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" />\n  <path d=\"M12 11h4\" />\n  <path d=\"M12 16h4\" />\n  <path d=\"M8 11h.01\" />\n  <path d=\"M8 16h.01\" />", "clock": "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M12 6v6l4 2\" />", "code-xml": "<path d=\"m18 16 4-4-4-4\" />\n  <path d=\"m6 8-4 4 4 4\" />\n  <path d=\"m14.5 4-5 16\" />", "files": "<path d=\"M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8\" />\n  <path d=\"M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z\" />\n  <path d=\"M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1\" />", "list-checks": "<path d=\"M13 5h8\" />\n  <path d=\"M13 12h8\" />\n  <path d=\"M13 19h8\" />\n  <path d=\"m3 17 2 2 4-4\" />\n  <path d=\"m3 7 2 2 4-4\" />", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\" />\n  <path d=\"M21 3v5h-5\" />\n  <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\" />\n  <path d=\"M8 16H3v5\" />", "shield": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\" />", "square-terminal": "<path d=\"m7 11 2-2-2-2\" />\n  <path d=\"M11 13h4\" />\n  <rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\" />", "table-2": "<path d=\"M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18\" />", "text-cursor-input": "<path d=\"M12 20h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2H6\" />\n  <path d=\"M13 8h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7\" />\n  <path d=\"M5 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1\" />\n  <path d=\"M6 4h1a2 2 0 0 1 2 2 2 2 0 0 1 2-2h1\" />\n  <path d=\"M9 6v12\" />"};
+    Object.entries(ICON_GEOMETRY).forEach(([name, geometry]) => {
+      defs.append("g").attr("id", `icon-${name}`).attr("fill", "none")
+        .attr("stroke", "currentColor").attr("stroke-width", 1.8)
+        .attr("stroke-linecap", "round").attr("stroke-linejoin", "round")
+        .html(geometry);
+    });
+    function icon(g, name, x, y, size, color = C.ink, key = name) {
+      const node = g.append("g").attr("transform", `translate(${x},${y}) scale(${size / 24})`)
+        .attr("color", color).attr("data-icon", name).attr("data-node", `${key}-icon`);
+      node.append("use").attr("href", `#icon-${name}`);
+      return node;
+    }
+    function iconChip(g, x, y, w, h, label, name, key, fill = "#fff", stroke = C.line, color = C.ink, dash = null) {
+      box(g, x, y, w, h, fill, stroke, key, 5, dash);
+      const size = Math.min(22, h - 4);
+      icon(g, name, x + 7, y + (h - size) / 2, size, color, key);
+      text(g, x + 36, y + h / 2 + 7, label, 20, 400, color);
+    }
+
     function text(g, x, y, v, size, weight = 400, fill = C.ink, anchor = "start", halo = false) {
       const t = g.append("text").attr("x", x).attr("y", y).attr("font-family", FONT)
         .attr("font-size", size).attr("font-weight", weight).attr("fill", fill)
@@ -103,38 +169,40 @@
       box(gA, COLX[i], MR0, COLW, MR1 - MR0, C.measFill, C.meas, `meas-col-${i + 1}`));
 
     // col 1: completed agent traces
-    text(gA, 32, 58, "Completed agent", 22, 600, C.meas);
-    text(gA, 32, 80, "traces", 22, 600, C.meas);
-    text(gA, 32, 106, "k traces from", 20, 400, C.ink);
-    text(gA, 32, 126, "one family", 20, 400, C.ink);
-    box(gA, 54, 140, 142, 26, C.costFill, C.cost, "source-run-cost", 5);
-    text(gA, 125, 158, "Recorded cost", 20, 400, C.cost, "middle");
+    icon(gA, "files", COLX[0] + 12, MR0 + 10, 36, C.meas, "source-experience");
+    text(gA, COLX[0] + 58, 58, "Agent", 22, 600, C.meas);
+    text(gA, COLX[0] + 58, 80, "traces", 22, 600, C.meas);
+    text(gA, 32, 106, "k completed traces", 20, 400, C.ink);
+    text(gA, 32, 126, "from one family", 20, 400, C.ink);
+    box(gA, 46, 140, 160, 26, C.costFill, C.cost, "source-run-cost", 5);
+    icon(gA, "table-2", 54, 143, 20, C.cost, "source-charge");
+    text(gA, 83, 159, "Charge once", 20, 400, C.cost);
 
-    // col 2: compile and select (chips + bounded repair loop)
-    text(gA, 268, 58, "Compile and select", 22, 600, C.meas);
-    chip(gA, 266, 68, 92, 24, "Translate", "chip-translate");
-    chip(gA, 374, 68, 64, 24, "Build", "chip-build");
-    chip(gA, 266, 102, 76, 24, "Repair", "chip-repair");
-    chip(gA, 356, 102, 100, 46, ["Validate", "candidates"], "chip-validate");
-    arrow(gA, "M358,80 H372", C.meas, "translate-to-build", "a-meas");
-    arrow(gA, "M406,92 V100", C.meas, "build-to-validate", "a-meas");
-    arrow(gA, "M342,114 H354", C.meas, "repair-to-validate", "a-meas");
-    arrow(gA, "M456,148 V158 H304 V128", C.meas, "bounded-repair-loop", "a-meas", "4,3");
-    text(gA, 356, 176, "bounded repair", 20, 400, C.muted, "middle");
+    // Candidate construction and validation; feedback permits bounded repair.
+    icon(gA, "code-xml", COLX[1] + 12, MR0 + 10, 36, C.meas, "compilation");
+    text(gA, COLX[1] + 58, 58, "Compile", 22, 600, C.meas);
+    text(gA, COLX[1] + 58, 80, "and select", 22, 600, C.meas);
+    chip(gA, 268, 92, 176, 24, "Build candidate", "chip-build");
+    chip(gA, 268, 128, 176, 24, "Validation gate", "chip-validate");
+    arrow(gA, "M356,116 V126", C.meas, "build-to-validate", "a-meas");
+    arrow(gA, "M444,140 H456 V158 H260 V104 H266", C.meas, "bounded-repair-loop", "a-meas", "4,3");
+    text(gA, 356, 180, "bounded repair", 20, 400, C.muted, "middle");
 
     // col 3: fresh deployment
-    text(gA, 504, 58, "Fresh deployment", 22, 600, C.meas);
-    text(gA, 504, 80, "tasks", 22, 600, C.meas);
-    chip(gA, 504, 92, 188, 24, "Extract inputs", "chip-extract");
-    chip(gA, 504, 122, 188, 24, "Run program", "chip-run");
-    chip(gA, 504, 152, 188, 24, "Check task outcome", "chip-check");
+    icon(gA, "clipboard-list", COLX[2] + 12, MR0 + 10, 36, C.meas, "fresh-tasks");
+    text(gA, COLX[2] + 58, 58, "Fresh", 22, 600, C.meas);
+    text(gA, COLX[2] + 58, 80, "deployment", 22, 600, C.meas);
+    iconChip(gA, 504, 92, 188, 24, "Extract inputs", "brain", "chip-extract");
+    iconChip(gA, 504, 122, 188, 24, "Run program", "code-xml", "chip-run");
+    iconChip(gA, 504, 152, 188, 24, "Check outcome", "circle-check", "chip-check");
     arrow(gA, "M598,116 V120", C.meas, "extract-to-run", "a-meas");
     arrow(gA, "M598,146 V150", C.meas, "run-to-check", "a-meas");
 
     // col 4: measured cost profile
-    text(gA, 740, 58, "Measured cost", 22, 600, C.meas);
-    text(gA, 740, 80, "profile", 22, 600, C.meas);
-    ["Agent service", "Program use", "Successful attempts", "Failed attempts", "Program failures"]
+    icon(gA, "chart-column", COLX[3] + 12, MR0 + 10, 36, C.meas, "measured-profile");
+    text(gA, COLX[3] + 58, 58, "Measured", 22, 600, C.meas);
+    text(gA, COLX[3] + 58, 80, "profile", 22, 600, C.meas);
+    ["Agent execution", "Program execution", "Verified attempts", "Failed attempts", "Program failures"]
       .forEach((s, i) => {
         const y = 102 + i * 19;
         gA.append("rect").attr("x", 740).attr("y", y - 9).attr("width", 7).attr("height", 7)
@@ -161,22 +229,24 @@
 
     // accounting strip
     box(gA, 20, 238, 682, 60, "#fff", C.cost, "accounting-strip");
-    text(gA, 361, 256, "Record all retained model calls", 20, 600, C.cost, "middle");
-    const stripChips = [["Agent service", 117], ["Input extraction", 154], ["Translation", 108],
-      ["Build", 54], ["Repair", 63], ["Failed attempts", 145]];
+    icon(gA, "table-2", 222, 241, 23, C.cost, "record-charges");
+    text(gA, 252, 259, "Recorded token charges", 20, 600, C.cost);
+    const stripChips = [["Agent execution", "bot", 205], ["Input extraction", "brain", 216],
+      ["All compile attempts", "code-xml", 230]];
     let scx = 26;
-    stripChips.forEach(([label, w], i) => {
-      const isFail = label === "Failed attempts";
-      chip(gA, scx, 268, w, 26, label, `strip-item-${i + 1}`,
-        isFail ? C.failFill : C.costFill, isFail ? C.fail : C.cost, isFail ? C.fail : C.cost);
+    stripChips.forEach(([label, symbol, w], i) => {
+      const failedPathsIncluded = i === 2;
+      iconChip(gA, scx, 268, w, 26, label, symbol, `strip-item-${i + 1}`,
+        failedPathsIncluded ? C.failFill : C.costFill, failedPathsIncluded ? C.fail : C.cost,
+        failedPathsIncluded ? C.fail : C.cost);
       scx += w + 6;
     });
     arrow(gA, "M702,268 H715 V220 H833 V187", C.cost, "strip-to-profile", "a-cost");
 
     // measurement checks
-    chip(gA, 120, 310, 200, 32, "Repeat compilations", "check-rebuilds", "#fff", C.meas, C.meas);
-    chip(gA, 344, 310, 244, 32, "Matched agent replays", "check-replays", "#fff", C.meas, C.meas);
-    arrow(gA, "M220,310 V299", C.meas, "evidence-rebuilds", "a-meas", "5,4");
+    iconChip(gA, 100, 310, 222, 32, "Repeat compilations", "refresh-cw", "check-rebuilds", "#fff", C.meas, C.meas);
+    iconChip(gA, 344, 310, 254, 32, "Matched agent replays", "bot", "check-replays", "#fff", C.meas, C.meas);
+    arrow(gA, "M211,310 V299", C.meas, "evidence-rebuilds", "a-meas", "5,4");
     arrow(gA, "M466,310 V299", C.meas, "evidence-replays", "a-meas", "5,4");
     text(gA, 480, 370, "(a) Measurement", 24, 600, C.ink, "middle");
 
@@ -199,15 +269,17 @@
 
     // B1 task arrives
     box(gB, 20, 410, 202, 84, C.inkFill, C.ink, "task-arrives");
-    text(gB, 32, 434, "Task arrives", 22, 600, C.ink);
-    text(gB, 32, 458, "Updates the", 20, 400, C.muted);
-    text(gB, 32, 478, "agent-only reference", 20, 400, C.muted);
+    icon(gB, "clipboard-list", 30, 418, 28, C.ink, "task-arrival");
+    text(gB, 68, 434, "Task arrives", 22, 600, C.ink);
+    text(gB, 32, 458, "Add this task to", 20, 400, C.muted);
+    text(gB, 32, 478, "the cost reference", 20, 400, C.muted);
     arrow(gB, "M230,452 H246", C.ink, "arrives-to-check", "a-ink");
 
     // B2 check service cost
     box(gB, 248, 410, 202, 100, C.admFill, C.adm, "check-service-cost");
-    text(gB, 260, 432, "Check service", 22, 600, C.adm);
-    text(gB, 260, 454, "cost", 22, 600, C.adm);
+    icon(gB, "shield", 258, 420, 28, C.adm, "service-reservation");
+    text(gB, 294, 432, "Service", 22, 600, C.adm);
+    text(gB, 294, 454, "budget check", 22, 600, C.adm);
     text(gB, 260, 476, "Reserve routing +", 20, 400, C.muted);
     text(gB, 260, 496, "service + fallback", 20, 400, C.muted);
     text(gB, 497, 426, "Fits budget", 20, 400, C.adm, "middle");
@@ -224,25 +296,32 @@
     // B3 serve task (compound): two serving paths + failure handling
     box(gB, 546, 410, 384, 180, "#fff", C.ink, "serve-task");
     text(gB, 562, 432, "Serve task", 22, 600, C.ink);
-    chip(gB, 562, 444, 72, 30, "Agent", "serve-agent", C.inkFill, C.ink, C.ink);
-    arrow(gB, "M634,459 H650", C.ink, "agent-to-calls", "a-ink");
-    chip(gB, 652, 444, 252, 30, "Model calls + GUI actions", "serve-model-calls", C.inkFill, C.ink, C.ink);
-    chip(gB, 562, 479, 86, 40, ["Existing", "program"], "serve-existing", C.progFill, C.prog, C.prog, 2);
-    arrow(gB, "M648,499 H652", C.ink, "existing-to-extract", "a-ink");
-    chip(gB, 654, 488, 138, 30, "Extract inputs", "serve-extract", C.progFill, C.prog, C.prog);
-    arrow(gB, "M792,503 H800", C.ink, "extract-to-run", "a-ink");
+    iconChip(gB, 562, 444, 94, 32, "Agent", "bot", "serve-agent", C.inkFill, C.ink, C.ink);
+    arrow(gB, "M656,460 H670", C.ink, "agent-to-calls", "a-ink");
+    box(gB, 672, 444, 232, 32, C.inkFill, C.ink, "serve-model-calls");
+    icon(gB, "brain", 679, 449, 22, C.ink, "agent-model");
+    text(gB, 710, 467, "GUI action loop", 20, 400, C.ink);
+    icon(gB, "refresh-cw", 872, 449, 22, C.ink, "agent-loop");
+    box(gB, 562, 479, 56, 40, C.progFill, C.prog, "serve-existing");
+    icon(gB, "code-xml", 571, 480, 38, C.prog, "existing-program");
+    arrow(gB, "M618,499 H628", C.prog, "existing-to-extract", "a-prog");
+    iconChip(gB, 630, 488, 156, 30, "Extract inputs", "brain", "serve-extract", C.progFill, C.prog, C.prog);
+    arrow(gB, "M786,503 H800", C.ink, "extract-to-run", "a-ink");
     chip(gB, 802, 488, 122, 30, "Run program", "serve-run", C.progFill, C.prog, C.prog);
     box(gB, 770, 521, 140, 22, C.progFill, C.prog, "no-model-calls-tag", 11);
     text(gB, 840, 537, "no model calls", 20, 400, C.prog, "middle");
-    chip(gB, 562, 522, 180, 42, ["Detected failure →", "Agent fallback"], "serve-fallback",
-      C.failFill, C.fail, C.fail, 2);
+    box(gB, 562, 522, 180, 42, C.failFill, C.fail, "serve-fallback");
+    icon(gB, "circle-x", 569, 531, 24, C.fail, "detected-failure");
+    text(gB, 600, 540, "Detected failure", 20, 400, C.fail);
+    text(gB, 600, 560, "Agent fallback", 20, 400, C.fail);
     arrow(gB, "M920,518 V552 H746", C.fail, "run-to-fallback", "a-fail");
     text(gB, 562, 580, "Detected break: mark unavailable", 20, 400, C.fail);
 
     // B4 charge actual service
     arrow(gB, "M742,590 V598", C.ink, "serve-to-charge", "a-ink");
     box(gB, 546, 600, 384, 52, C.costFill, C.cost, "charge-service");
-    text(gB, 562, 624, "Charge actual service", 22, 600, C.cost);
+    icon(gB, "table-2", 558, 608, 28, C.cost, "charge-service");
+    text(gB, 598, 624, "Charge actual service", 22, 600, C.cost);
     text(gB, 562, 646, "routing · extraction · service · fallback", 20, 400, C.cost);
 
     // time boundary
@@ -253,9 +332,10 @@
 
     // shared cumulative account
     box(gB, 248, 684, 690, 80, C.admFill, C.adm, "cumulative-budget");
-    text(gB, 264, 708, "Cumulative cost budget", 22, 600, C.adm);
-    text(gB, 264, 732, "Allowed cost: agent-only reference + extra-cost margin", 20, 400, C.ink);
-    text(gB, 264, 754, "Spent cost: routing + service + every compilation attempt", 20, 400, C.ink);
+    icon(gB, "shield", 266, 702, 42, C.adm, "shared-budget");
+    text(gB, 320, 708, "Cumulative cost budget", 22, 600, C.adm);
+    text(gB, 320, 732, "Allowed: agent execution reference + margin", 20, 400, C.ink);
+    text(gB, 320, 754, "Spent: routing + service + all compilation attempts", 20, 400, C.ink);
 
     // connectors into the account
     arrow(gB, "M800,652 V682", C.cost, "charge-service-to-budget", "a-cost", null, 1);
@@ -272,14 +352,15 @@
     arrow(gB, "M440,620 V512", C.meas, "budget-to-servicecheck-b", "a-meas", "5,4");
 
     // row 2
-    text(gB, 250, 790, "2 · Consider compilation for later tasks", 22, 600, C.ink);
+    text(gB, 250, 790, "2 · Decide whether to compile", 22, 600, C.ink);
 
     // B5 eligibility
     box(gB, 20, 802, 202, 100, C.inkFill, C.ink, "eligibility");
-    text(gB, 32, 826, "Enough completed", 22, 600, C.ink);
-    text(gB, 32, 848, "traces?", 22, 600, C.ink);
-    text(gB, 32, 872, "k traces, no live", 20, 400, C.muted);
-    text(gB, 32, 892, "program for the family", 20, 400, C.muted);
+    icon(gB, "files", 32, 816, 28, C.ink, "family-experience");
+    text(gB, 70, 826, "Enough", 22, 600, C.ink);
+    text(gB, 70, 848, "agent traces?", 22, 600, C.ink);
+    text(gB, 32, 872, "k completed traces", 20, 400, C.muted);
+    text(gB, 32, 892, "no live program", 20, 400, C.muted);
     arrow(gB, "M40,902 V922", C.muted, "eligibility-wait", "a-muted");
     text(gB, 52, 920, "Not yet: wait for", 20, 400, C.muted);
     text(gB, 52, 938, "another arrival", 20, 400, C.muted);
@@ -291,23 +372,24 @@
     // B6 propose compilation
     arrow(gB, "M224,852 H246", C.ink, "eligible-to-propose", "a-ink");
     box(gB, 248, 802, 464, 138, "#fff", C.prog, "propose-compilation");
-    text(gB, 264, 826, "Propose compilation", 22, 600, C.prog);
-    text(gB, 264, 846, "Projected saving exceeds", 20, 400, C.ink);
-    text(gB, 264, 866, "acquisition and routing cost", 20, 400, C.ink);
-    chip(gB, 264, 876, 176, 26, "past task arrivals", "input-arrivals",
-      C.measFill, C.meas, C.meas, 1, "4,3");
-    chip(gB, 448, 876, 196, 26, "measured cost profile", "input-profile",
-      C.measFill, C.meas, C.meas, 1, "4,3");
-    text(gB, 264, 926, "Inputs:", 20, 400, C.muted);
-    chip(gB, 340, 908, 280, 26, "observed compilation outcomes", "input-outcomes",
-      C.measFill, C.meas, C.meas, 1, "4,3");
+    icon(gB, "chart-column", 264, 810, 26, C.prog, "price-aware-proposal");
+    text(gB, 304, 828, "Cost-aware proposal", 22, 600, C.prog);
+    text(gB, 264, 850, "Estimated savings exceed", 20, 400, C.ink);
+    text(gB, 264, 870, "compilation cost + routing cost", 20, 400, C.ink);
+    iconChip(gB, 264, 882, 176, 24, "Past arrivals", "clock", "input-arrivals",
+      C.measFill, C.meas, C.meas, "4,3");
+    iconChip(gB, 448, 882, 212, 24, "Measured costs", "table-2", "input-profile",
+      C.measFill, C.meas, C.meas, "4,3");
+    iconChip(gB, 264, 912, 356, 24, "Past compilation outcomes", "clipboard-list", "input-outcomes",
+      C.measFill, C.meas, C.meas, "4,3");
 
     // B7 check compilation cost
     arrow(gB, "M714,812 H736", C.ink, "propose-to-check", "a-ink");
     box(gB, 738, 802, 192, 96, C.admFill, C.adm, "check-compilation-cost");
-    text(gB, 750, 826, "Check", 22, 600, C.adm);
-    text(gB, 750, 848, "compilation cost", 22, 600, C.adm);
-    text(gB, 750, 872, "reserve covers", 20, 400, C.muted);
+    icon(gB, "shield", 748, 812, 28, C.adm, "compilation-reservation");
+    text(gB, 786, 826, "Compilation", 22, 600, C.adm);
+    text(gB, 786, 848, "budget check", 22, 600, C.adm);
+    text(gB, 750, 872, "Reserve for", 20, 400, C.muted);
     text(gB, 750, 892, "success or failure", 20, 400, C.muted);
     arrow(gB, "M768,765 V800", C.meas, "budget-to-compilecheck", "a-meas", "5,4");
     arrow(gB, "M760,898 V914", C.muted, "compilecheck-wait", "a-muted");
@@ -318,16 +400,17 @@
 
     // B8 compile and validate
     box(gB, 248, 944, 682, 96, "#fff", C.prog, "compile-validate");
-    text(gB, 264, 966, "Compile and validate", 22, 600, C.prog);
+    icon(gB, "code-xml", 262, 949, 28, C.prog, "compile-verify");
+    text(gB, 302, 966, "Compile and verify", 22, 600, C.prog);
     text(gB, 918, 966, "records outcome + full charge", 20, 400, C.muted, "end");
-    chip(gB, 264, 978, 100, 32, "Verified", "outcome-verified", C.progFill, C.prog, C.prog);
+    iconChip(gB, 264, 978, 100, 32, "Pass", "circle-check", "outcome-verified", C.progFill, C.prog, C.prog);
     arrow(gB, "M364,994 H380", C.prog, "verified-to-store", "a-prog");
     chip(gB, 384, 972, 180, 46, ["Store program", "for later tasks"], "store-program",
       C.progFill, C.prog, C.prog, 2);
-    chip(gB, 620, 978, 104, 32, "Rejected", "outcome-rejected", C.failFill, C.fail, C.fail);
+    iconChip(gB, 620, 978, 104, 32, "Fail", "circle-x", "outcome-rejected", C.failFill, C.fail, C.fail);
     arrow(gB, "M724,994 H742", C.fail, "rejected-to-noprogram", "a-fail");
     chip(gB, 744, 978, 152, 32, "No new program", "no-new-program", C.failFill, C.fail, C.fail);
-    text(gB, 264, 1032, "Both outcomes update the observed-outcome record", 20, 400, C.muted);
+    text(gB, 264, 1032, "Both outcomes update the compilation history", 20, 400, C.muted);
 
     // charge from compilation outcome to the account, routed in the B6-B7 gap
     arrow(gB, "M725,944 V765", C.cost, "charge-compile-to-budget", "a-cost", null, 1);
@@ -337,7 +420,7 @@
     // artifact return edge to later arrivals, along the right margin
     arrow(gB, "M930,990 H942 V478 H932", C.prog, "artifact-to-later-arrivals", "a-prog");
 
-    text(gB, 480, 1074, "(b) Online Protocol", 24, 600, C.ink, "middle");
+    text(gB, 480, 1074, "(b) Online compilation protocol", 24, 600, C.ink, "middle");
   </script>
 </body>
 </html>

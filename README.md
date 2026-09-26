@@ -1,6 +1,6 @@
 # When to Compile a Computer-Use Agent?
 
-Code, retained results, and anonymous paper sources for PACE (Price-Aware
+Code, retained results, and anonymous paper sources for PACE (Payback-Aware
 Compilation from Experience). The review copy is available through
 [the anonymous repository](https://anonymous.4open.science/r/computer-use).
 
@@ -14,7 +14,7 @@ cd paper
 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
 ```
 
-The main text ends on page 9. AI use, ethics, and reproducibility statements
+The current main text ends on page 10; pagination is left to the author. AI use, ethics, and reproducibility statements
 precede the references and are excluded from that limit. The Appendix follows
 the references.
 
@@ -24,15 +24,26 @@ Run from the repository root with Python 3.11 or newer. These commands use
 retained data and make no model API calls.
 
 ```bash
-python3 analysis/pace_edit_20260923/uncertainty/recompute.py
-python3 paper/rewrite-review/render_pace_tables.py
+python3 analysis/trace_verifier_20260925/results/validate_results.py --strict
+python3 analysis/trace_verifier_20260925/results/produce_render_inputs.py --final
+python3 analysis/trace_verifier_20260925/results/render_revised_tables.py --final
 python3 paper/rewrite-review/render_live_tables.py
 ```
 
-The uncertainty script verifies recorded input hashes and recomputes the paired
-bootstrap estimates. The renderers regenerate the current measurement,
-simulation, ablation, sensitivity, and live-study tables. Their verification
-records are written beside the retained analysis data.
+The revised producer recomputes paired bootstrap estimates from the selected
+three-source-task verification records and completed simulations. Its renderer
+checks completion and input hashes before regenerating the measurement,
+simulation, ablation, and sensitivity tables. The separate live-study renderer
+uses the retained live-study records. Revised verification records are in
+`analysis/trace_verifier_20260925/results/`.
+The historical `analysis/pace_edit_20260923/uncertainty/recompute.py` command and
+the default inputs of `paper/rewrite-review/render_pace_tables.py` reproduce the
+earlier study, not the current revised tables.
+
+To rerun the four offline simulation studies, follow
+`analysis/trace_verifier_20260925/results/SIMULATION_HANDOFF.md`.
+The main study must finish before preparing the comparisons, ablations, and
+sensitivity studies because they record its result hashes.
 Release integrity manifests allow the anonymous mirror to redact user-directory
 names in the specifically identified path metadata. All other content remains
 covered by the recorded hashes, including every measured cost and outcome.
@@ -68,6 +79,8 @@ python3 -m unittest discover -s code/guiexp_android/tests -p 'test_recovery_vali
 | `code/t2sim/` | Offline cost model, policies, frozen study drivers, and tests |
 | `experimental-results/` | Retained measurement, paired simulation, and live-study records |
 | `analysis/pace_edit_20260923/uncertainty/` | Paired bootstrap calculation, table data, and input provenance |
+| `analysis/trace_verifier_20260925/results/` | Revised evidence selection, profiles, simulation drivers, uncertainty, and table inputs |
+| `experimental-results/trace_verifier_20260925/` | Revised verification, deployment, diagnostics, and offline simulation records |
 | `analysis/pace_live_20260923/` | Live-study runners, offline analyzer, and frozen summaries |
 | `datasets/` | Public process logs and Wikipedia arrival streams |
 

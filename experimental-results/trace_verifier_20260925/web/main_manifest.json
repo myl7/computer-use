@@ -1,0 +1,36 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "web",
+ "cells": [
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "result": "pilot_glm/result.json",
+   "result_sha256": "1a8abc37fd38bfaddbaf80820464147539467a9b770d1051f6b4f9a32213dadf",
+   "role": "main",
+   "promotion_reason": "first protocol-valid verifier attempt",
+   "verified_program_sha256": "1b871002a6492ddc6c24eff9cf81c47ffc46f09556cd50580f6298bb1e4e04c2",
+   "deploy_sha256": "98b72eecefa1e2f1c62c2d2dc3ac65727daf696befc5efd8aecad143f35c2561",
+   "timing_limitation": "analyzer, resume, and refinement wall times are unavailable; total, extraction, and replay times are retained"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "result": "deepseek_deepseek-v4-flash-vision-exp_CommentPost/result.json",
+   "result_sha256": "853a575153b9d2afca3a749c6ff546f4695097898d324f696227e49b892178a4",
+   "role": "main",
+   "classification": "generation_output_budget_failure",
+   "known_total_cost_lower_bound_usd": 0.27476648466,
+   "limitation": "the original three default-route empty replies lost usage and response metadata; three later Fireworks replies each ended at the observed 131072-token output limit with reasoning only"
+  },
+  {
+   "model": "qwen/qwen3.8-flash",
+   "result": "qwen_qwen3.8-flash_CommentPost/result.json",
+   "result_sha256": "140a28b480322463e8967a7d665838519177b906531cece884635c389b04bd83",
+   "role": "main",
+   "classification": "refused"
+  }
+ ],
+ "excluded_development_evidence": [
+  "deepseek_deepseek-v4-flash-vision-exp_CommentPost/result.aborted-unauthorized-resume.json",
+  "deepseek_deepseek-v4-flash-vision-exp_CommentPost/result.pre-resume-empty-builder.json"
+ ]
+}

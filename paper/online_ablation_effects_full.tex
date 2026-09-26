@@ -2,7 +2,7 @@
 \begin{table}[htbp]
 \centering
 \caption{Cost change after removing or simplifying PACE components.
-$\Delta$ averages within-condition percentage cost changes from full PACE; positive values mean higher cost.
+$\Delta$ is the mean percentage cost change from full PACE across conditions. Positive values mean higher cost.
 Blue, amber, and green identify GLM, DeepSeek, and Qwen, respectively.
 Offsets show the conditional 95 percent paired interval in percentage points; exact zero-width intervals are omitted.
 Grid max is the largest tested condition-mean ratio, without a sampling interval.}
@@ -12,13 +12,13 @@ Grid max is the largest tested condition-mean ratio, without a sampling interval
 \renewcommand{\arraystretch}{0.95}
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
-\multicolumn{1}{c}{Variant} & \multicolumn{1}{c}{\shortstack{Grid 1 $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Grid 2 $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Logs $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Grid max\\($\times$ ReAct)}} \\
+\multicolumn{1}{c}{Variant} & \multicolumn{1}{c}{\shortstack{Grid 1 $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Grid 2 $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Logs $\Delta$ cost\\(\%)}} & \multicolumn{1}{c}{\shortstack{Grid max\\($\times$ PACE)}} \\
 \midrule
-\textbf{PACE} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.4em}{1.249}{1.246}{1.247} \\
-No savings test & \modelcell{3.8em}{\estci{10.4}{+1.1}{-.8}}{\estci{18.5}{+3.2}{-1.8}}{\estci{20.4}{+1.6}{-1.0}} & \modelcell{3.8em}{\estci{10.6}{+1.1}{-1.0}}{\estci{14.4}{+1.3}{-.9}}{\estci{16.6}{+1.0}{-.6}} & \modelcell{3.8em}{\estci{32.7}{+4.6}{-5.2}}{\estci{56.8}{+12.4}{-9.2}}{\estci{49.9}{+12.2}{-7.8}} & \modelcell{3.4em}{1.250}{1.248}{1.248} \\
-No cost budget & \modelcell{3.8em}{\estci{2.8}{+.2}{-.2}}{\estci{1.5}{+.2}{-.2}}{\estci{0.7}{+{<}.1}{-{<}.1}} & \modelcell{3.8em}{\estci{2.8}{+.2}{-.1}}{\estci{1.6}{+.2}{-.1}}{\estci{1.2}{+.1}{-.1}} & \modelcell{3.8em}{\estci{-0.005}{+.005}{-.008}}{\estci{-0.030}{+.017}{-.023}}{\estci{-0.006}{+.004}{-.006}} & \modelcell{3.4em}{1.839}{1.739}{1.623} \\
-Equal attempt prices & \modelcell{3.8em}{\estci{0.8}{+.3}{-.3}}{\estci{11.5}{+1.8}{-1.1}}{\estci{8.3}{+.7}{-.6}} & \modelcell{3.8em}{\estci{0.7}{+.3}{-.3}}{\estci{8.8}{+1.0}{-.8}}{\estci{7.1}{+.6}{-.5}} & \modelcell{3.8em}{\statpoint{0.0}}{\estci{31.2}{+3.6}{-2.6}}{\estci{8.8}{+2.8}{-2.6}} & \modelcell{3.4em}{1.249}{1.248}{1.248} \\
-Eager retry & \modelcell{3.8em}{\estci{132.1}{+6.9}{-8.2}}{\estci{1075.6}{+92.2}{-33.6}}{\estci{1165.0}{+41.9}{-20.1}} & \modelcell{3.8em}{\estci{138.5}{+5.0}{-5.5}}{\estci{1232.2}{+74.8}{-33.1}}{\estci{1335.3}{+60.7}{-36.7}} & \modelcell{3.8em}{\estci{39.5}{+9.6}{-10.6}}{\estci{348.7}{+82.8}{-84.1}}{\estci{293.0}{+62.1}{-50.1}} & \modelcell{3.4em}{15.387}{111.240}{151.251} \\
+\textbf{PACE} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.8em}{\statpoint{0.0}}{\statpoint{0.0}}{\statpoint{0.0}} & \modelcell{3.4em}{1.000}{1.000}{1.000} \\
+No savings test & \modelcell{3.8em}{\estci{17.4}{+1.1}{-1.1}}{\estci{18.6}{+1.4}{-1.0}}{\estci{18.1}{+1.7}{-1.1}} & \modelcell{3.8em}{\estci{14.0}{+1.2}{-.7}}{\estci{16.7}{+1.2}{-.9}}{\estci{12.1}{+1.4}{-.9}} & \modelcell{3.8em}{\estci{58.1}{+14.9}{-8.7}}{\estci{54.8}{+8.6}{-6.4}}{\estci{45.1}{+9.2}{-6.8}} & \modelcell{3.4em}{1.957}{1.810}{1.901} \\
+No cost budget & \modelcell{3.8em}{\estci{0.8}{+{<}.1}{-{<}.1}}{\estci{1.4}{+.1}{-.1}}{\estci{0.7}{+.1}{-.2}} & \modelcell{3.8em}{\estci{1.5}{+.1}{-{<}.1}}{\estci{1.6}{+{<}.1}{-{<}.1}}{\estci{1.0}{+.2}{-.1}} & \modelcell{3.8em}{\estci{0.016}{+.080}{-.044}}{\estci{-0.013}{+.010}{-.015}}{\estci{0.002}{+.016}{-.013}} & \modelcell{3.4em}{1.371}{1.410}{1.301} \\
+Equal attempt costs & \modelcell{3.8em}{\estci{10.0}{+.9}{-.6}}{\estci{9.3}{+.8}{-.6}}{\estci{11.9}{+1.0}{-.6}} & \modelcell{3.8em}{\estci{8.2}{+.4}{-.2}}{\estci{9.5}{+1.0}{-.5}}{\estci{7.7}{+1.0}{-.6}} & \modelcell{3.8em}{\estci{22.7}{+4.1}{-3.2}}{\estci{17.5}{+6.7}{-5.9}}{\estci{29.7}{+5.6}{-5.5}} & \modelcell{3.4em}{1.568}{1.567}{1.466} \\
+Eager retry & \modelcell{3.8em}{\estci{931.7}{+48.1}{-26.2}}{\estci{741.4}{+74.5}{-30.1}}{\estci{1732.9}{+65.9}{-45.8}} & \modelcell{3.8em}{\estci{991.9}{+55.5}{-53.2}}{\estci{835.2}{+61.4}{-34.1}}{\estci{1828.6}{+69.4}{-46.7}} & \modelcell{3.8em}{\estci{230.3}{+49.0}{-43.7}}{\estci{232.6}{+56.6}{-52.4}}{\estci{392.2}{+58.7}{-57.6}} & \modelcell{3.4em}{92.863}{73.996}{195.631} \\
 \bottomrule
 \end{tabular}
 \end{table}

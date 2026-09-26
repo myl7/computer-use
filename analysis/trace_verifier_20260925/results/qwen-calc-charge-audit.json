@@ -1,0 +1,28 @@
+{
+  "schema": "qwen-calc-charge-completeness/1",
+  "protocol_id": "three-building-model-extracted-v1",
+  "canonical_result": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/CalcTableSave/attempts/serial-rate-retry1/result.json",
+  "canonical_result_sha256": "4745da28cfee566205118ae54501878b0f06fdc7483511c66af8a92aa841bb46",
+  "interruption_snapshot": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/CalcTableSave/attempts/serial-rate-retry1/result.pre-operator-interruption-20260925T180745Z.json",
+  "finding": "exact_recorded_call_charge",
+  "charge_exact": true,
+  "wall_time_complete": false,
+  "evidence": {
+    "snapshot_extraction_calls": 3,
+    "snapshot_repair_calls": 74,
+    "snapshot_completed_repair_records": 2,
+    "snapshot_candidate_records": 3,
+    "orphan_completed_builder_response_id": "gen-1790358634-1VAukROMZNhi2xAID2K0",
+    "orphan_response_finish_reason": "stop",
+    "orphan_response_usage_retained_in_snapshot_and_final_ledger": true,
+    "canonical_repair_calls": 87,
+    "canonical_completed_repair_records": 3,
+    "canonical_candidate_records": 4,
+    "pending_or_started_without_receipt_records_found": 0
+  },
+  "interpretation": "The operator interruption occurred after a builder response had completed and its response ID and usage were checkpointed, but before that repair record was committed. The resumed canonical ledger retains this completed orphan response and later calls. No unmatched provider-call start is recorded. Therefore recorded model-call charges are exact; only end-to-end wall time is incomplete.",
+  "limitations": [
+    "The audit cannot prove an unlogged request was never sent outside the checkpointed client path.",
+    "Canonical wall_s excludes provider-error and operator-interrupted segment durations and must not be reported as full elapsed time."
+  ]
+}

@@ -1,0 +1,501 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "z-ai/glm-5.3-flash",
+ "family": "SimpleCalendarAddOneEvent",
+ "attempt_id": "main",
+ "attempt_role": "initial",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "status": "running",
+ "terminal_status": "running",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/artifact_k3_code.py",
+   "sha256": "e07c6777b066919488d3ecb1c7eb3ee0fe8827141d6255750661a2c555e81fec"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/build.json",
+    "sha256": "7690b531c66b8c75ba0beab4c64bf8a8ba71b302ba815612b847b5bb620b0353"
+   },
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/translation.json",
+    "sha256": "2f849dcd8acb99ec6815c7cb1842c44513eabbf1871871df4b52545ea42ca175"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed_missing_trajectory",
+    "recorded_trajectory_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v1/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+    "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/build.json",
+    "source_record_sha256": "7690b531c66b8c75ba0beab4c64bf8a8ba71b302ba815612b847b5bb620b0353",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v1/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_checkable_missing_trajectory",
+    "recorded_params_match": "not_checkable_missing_trajectory"
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 18,
+    "duration_mins": 15,
+    "event_title": "Workshop on Project X",
+    "event_description": "We will understand software updates. Looking forward to productive discussions.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697738400, end_ts=1697739300, title='Workshop on Project X', location='', description='We will understand software updates. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696431600, end_ts=1696432500, title='Appointment for Campaign', location='', description=\"We will strategize about upcoming project milestones. Let's be punctual.\", repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698753600, end_ts=1698755400, title='Appointment for Project X', location='', description='We will organize product launch. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697612400, end_ts=1697615100, title='Call with Marketing', location='', description='We will celebrate software updates. Please bring relevant documents.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697302800, end_ts=1697303700, title='Call with Marketing', location='', description='We will prepare for marketing strategies. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698670800, end_ts=1698672600, title='Workshop on Budget Planning', location='', description='We will strategize about software updates. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698454800, end_ts=1698458400, title='Call with Marketing', location='', description='We will explore contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed_missing_trajectory",
+    "recorded_trajectory_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v1/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+    "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/build.json",
+    "source_record_sha256": "7690b531c66b8c75ba0beab4c64bf8a8ba71b302ba815612b847b5bb620b0353",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v1/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_checkable_missing_trajectory",
+    "recorded_params_match": "not_checkable_missing_trajectory"
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 16,
+    "hour": 2,
+    "duration_mins": 15,
+    "event_title": "Workshop on Annual Report",
+    "event_description": "We will prepare for team roles.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697421600, end_ts=1697422500, title='Workshop on Annual Report', location='', description='We will prepare for team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696269600, end_ts=1696271400, title='Appointment for Campaign', location='', description='We will organize client feedback. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696813200, end_ts=1696814100, title='Workshop on Campaign', location='', description='We will review contract details. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696611600, end_ts=1696613400, title='Call with Bob', location='', description='We will discuss annual budget. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696521600, end_ts=1696524300, title='Catch up on Annual Report', location='', description='We will understand contract details. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697108400, end_ts=1697112000, title='Call with HR', location='', description='We will understand business objectives.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697443200, end_ts=1697446800, title='Catch up on Budget Planning', location='', description='We will understand software updates. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698166800, end_ts=1698170400, title='Appointment for Annual Report', location='', description='We will review annual budget. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698544800, end_ts=1698547500, title='Review session for Project X', location='', description='We will celebrate marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698480000, end_ts=1698481800, title='Call with Alice', location='', description='We will explore upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697108400, end_ts=1697110200, title='Call with Marketing', location='', description='We will discuss marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698717600, end_ts=1698718500, title='Meeting with Marketing', location='', description='We will discuss client feedback. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698382800, end_ts=1698384600, title='Catch up on Project X', location='', description='We will explore upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696467600, end_ts=1696468500, title='Workshop on Project X', location='', description='We will prepare for client feedback. Please bring relevant documents.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696946400, end_ts=1696947300, title='Workshop on Campaign', location='', description='We will strategize about annual budget. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696366800, end_ts=1696369500, title='Meeting with Alice', location='', description='We will understand annual budget. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697536800, end_ts=1697538600, title='Workshop on Budget Planning', location='', description='We will prepare for contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698080400, end_ts=1698082200, title='Review session for Project X', location='', description='We will prepare for upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696568400, end_ts=1696569300, title='Appointment for Annual Report', location='', description='We will organize upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696802400, end_ts=1696806000, title='Meeting with the Team', location='', description=\"We will finalize product launch. Let's be punctual.\", repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+    "trajectory_sha256": "b90437e8fffc01815ca99b4cae39ecb579284351d3bd82143df30ba4f33227b3",
+    "recorded_task_id": "SimpleCalendarAddOneEvent__discover__s3",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v1/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded",
+    "trajectory_resolution": {
+     "kind": "source_cell_relative_alias",
+     "recorded_path": "../experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+     "resolved_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+    }
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 18,
+    "duration_mins": 30,
+    "event_title": "Workshop on Campaign",
+    "event_description": "We will strategize about marketing strategies.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697997600, end_ts=1697999400, title='Workshop on Campaign', location='', description='We will strategize about marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696870800, end_ts=1696872600, title='Call with Marketing', location='', description='We will understand business objectives. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697860800, end_ts=1697862600, title='Review session for Annual Report', location='', description='We will organize contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697940000, end_ts=1697941800, title='Catch up on Project X', location='', description='We will prepare for upcoming project milestones. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697842800, end_ts=1697846400, title='Review session for Campaign', location='', description='We will explore software updates.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698577200, end_ts=1698578100, title='Meeting with Bob', location='', description='We will understand product launch. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698264000, end_ts=1698266700, title='Appointment for Campaign', location='', description='We will strategize about client feedback. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696759200, end_ts=1696760100, title='Workshop on Annual Report', location='', description='We will review business objectives.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698091200, end_ts=1698093000, title='Review session for Budget Planning', location='', description='We will prepare for marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697486400, end_ts=1697490000, title='Meeting with the Team', location='', description='We will finalize contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696150800, end_ts=1696154400, title='Appointment for Project X', location='', description='We will discuss upcoming project milestones. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697043600, end_ts=1697046300, title='Catch up on Annual Report', location='', description='We will discuss team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696302000, end_ts=1696302900, title='Call with HR', location='', description='We will prepare for team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698022800, end_ts=1698025500, title='Workshop on Budget Planning', location='', description='We will plan contract details. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698508800, end_ts=1698512400, title='Review session for Project X', location='', description='We will strategize about business objectives. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696982400, end_ts=1696986000, title='Catch up on Budget Planning', location='', description='We will discuss contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\": 2023, \"month\": 10, \"day\": 19, \"hour\": 18, \"duration_mins\": 15, \"event_title\": \"Workshop on Project X\", \"event_description\": \"We will understand software updates. Looking forward to productive discussions.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 18,
+    "duration_mins": 15,
+    "event_title": "Workshop on Project X",
+    "event_description": "We will understand software updates. Looking forward to productive discussions."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 192,
+     "cached_tokens": 0,
+     "completion_tokens": 219,
+     "total_tokens": 411,
+     "cost_usd": 0.000136917,
+     "usage": {
+      "prompt_tokens": 192,
+      "completion_tokens": 219,
+      "cached_tokens": 0,
+      "cost_usd": 0.000136917
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 2.205
+    }
+   ],
+   "wall_s": 2.205
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\": 2023, \"month\": 10, \"day\": 16, \"hour\": 2, \"duration_mins\": 15, \"event_title\": \"Workshop on Annual Report\", \"event_description\": \"We will prepare for team roles.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 16,
+    "hour": 2,
+    "duration_mins": 15,
+    "event_title": "Workshop on Annual Report",
+    "event_description": "We will prepare for team roles."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 187,
+     "cached_tokens": 0,
+     "completion_tokens": 130,
+     "total_tokens": 317,
+     "cost_usd": 9.21195e-05,
+     "usage": {
+      "prompt_tokens": 187,
+      "completion_tokens": 130,
+      "cached_tokens": 0,
+      "cost_usd": 9.21195e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.166
+    }
+   ],
+   "wall_s": 1.166
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\": 2023, \"month\": 10, \"day\": 22, \"hour\": 18, \"duration_mins\": 30, \"event_title\": \"Workshop on Campaign\", \"event_description\": \"We will strategize about marketing strategies.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 18,
+    "duration_mins": 30,
+    "event_title": "Workshop on Campaign",
+    "event_description": "We will strategize about marketing strategies."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 187,
+     "cached_tokens": 64,
+     "completion_tokens": 175,
+     "total_tokens": 362,
+     "cost_usd": 0.0001067913,
+     "usage": {
+      "prompt_tokens": 187,
+      "completion_tokens": 175,
+      "cached_tokens": 64,
+      "cost_usd": 0.0001067913
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.623
+    }
+   ],
+   "wall_s": 1.623
+  }
+ ],
+ "initial_program_sha256": "e07c6777b066919488d3ecb1c7eb3ee0fe8827141d6255750661a2c555e81fec",
+ "final_program_sha256": null,
+ "candidate_history": [],
+ "admitted": false,
+ "repairs": [],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/build.json",
+   "translator": {
+    "per_trajectory": [
+     {
+      "seed": 1,
+      "effective_actions": 1,
+      "calls": 1,
+      "prompt_tokens": 804,
+      "cached_tokens": 0,
+      "completion_tokens": 515,
+      "total_tokens": 1319,
+      "cost_usd": 0.00022459
+     },
+     {
+      "seed": 2,
+      "effective_actions": 1,
+      "calls": 1,
+      "prompt_tokens": 804,
+      "cached_tokens": 0,
+      "completion_tokens": 515,
+      "total_tokens": 1319,
+      "cost_usd": 0.00022459
+     },
+     {
+      "seed": 3,
+      "effective_actions": 16,
+      "calls": 16,
+      "prompt_tokens": 14956,
+      "cached_tokens": 0,
+      "completion_tokens": 10613,
+      "total_tokens": 25569,
+      "cost_usd": 0.00463634
+     }
+    ],
+    "totals": {
+     "calls": 18,
+     "prompt_tokens": 16564,
+     "cached_tokens": 0,
+     "completion_tokens": 11643,
+     "total_tokens": 28207,
+     "cost_usd": 0.00508552
+    }
+   },
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 1537,
+     "completion_tokens": 122384,
+     "cached_tokens": 0,
+     "cost_usd": 0.0364849947
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1434,
+     "completion_tokens": 17576,
+     "cached_tokens": 0,
+     "cost_usd": 0.0053478414
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 2334,
+     "completion_tokens": 90865,
+     "cached_tokens": 0,
+     "cost_usd": 0.0271948644
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 2231,
+     "completion_tokens": 9798,
+     "cached_tokens": 0,
+     "cost_usd": 0.0031087881
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 5056,
+     "completion_tokens": 1500,
+     "cached_tokens": 0,
+     "cost_usd": 0.001020294
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 4953,
+     "completion_tokens": 6676,
+     "cached_tokens": 0,
+     "cost_usd": 0.0040401405
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 566,
+   "cached_tokens": 64,
+   "completion_tokens": 524,
+   "total_tokens": 1090,
+   "cost_usd": 0.00033583
+  },
+  "new_repair": {},
+  "reconciliation": {
+   "reconciled": false,
+   "reason": "attempt_in_progress"
+  }
+ },
+ "deployment": {
+  "status": "pending",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": null,
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": []
+ },
+ "timing": {},
+ "inflight_model_calls": [
+  {
+   "sequence": 1,
+   "completed": true,
+   "model": "z-ai/glm-5.3-flash",
+   "usage": {
+    "prompt_tokens": 192,
+    "completion_tokens": 219,
+    "cached_tokens": 0,
+    "cost_usd": 0.000136917
+   },
+   "cost_usd": 0.000136917
+  },
+  {
+   "sequence": 2,
+   "completed": true,
+   "model": "z-ai/glm-5.3-flash",
+   "usage": {
+    "prompt_tokens": 187,
+    "completion_tokens": 130,
+    "cached_tokens": 0,
+    "cost_usd": 9.21195e-05
+   },
+   "cost_usd": 9.21195e-05
+  },
+  {
+   "sequence": 3,
+   "completed": true,
+   "model": "z-ai/glm-5.3-flash",
+   "usage": {
+    "prompt_tokens": 187,
+    "completion_tokens": 175,
+    "cached_tokens": 64,
+    "cost_usd": 0.0001067913
+   },
+   "cost_usd": 0.0001067913
+  }
+ ]
+}

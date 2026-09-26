@@ -1,0 +1,2914 @@
+{
+  "aggregation": {
+    "admitted": 11,
+    "exact_cost_eligible": 19,
+    "main_selected": 20,
+    "outcome_eligible": 20,
+    "rejected": 9,
+    "undetermined_or_missing": 0
+  },
+  "lower_bounds": [
+    {
+      "C_pw": 447878.5333333334,
+      "cost_labels": {
+        "frozen_pw_C_lower_bound": 447878.5333333334,
+        "known_completed_official_cost_cny": 0.3358179,
+        "note": "The reservation is neither paid cost nor zero; total attempt cost remains a lower bound.",
+        "reservation_ceiling_cny": 5.0,
+        "reservation_is_spend": false,
+        "unsettled_calls": 2
+      },
+      "identity": {
+        "attempt_id": "repeat-1",
+        "attempt_role": "repeat",
+        "family": "ContactsAddContact",
+        "model": "qwen/qwen3.8-flash",
+        "platform": "android"
+      }
+    },
+    {
+      "C_pw": 1397386.0272727273,
+      "cost_labels": {
+        "frozen_pw_C": 1397386.0272727273,
+        "known_new_call_lower_bound_usd": 0.27476648466,
+        "known_total_acquisition_lower_bound_usd": 0.32478637466,
+        "note": "Provider USD lower bounds and frozen price-weighted-token C are separate accounting units.",
+        "reused_initial_builder_usd": 0.01634153,
+        "reused_initial_translation_usd": 0.03367836
+      },
+      "identity": {
+        "attempt_id": "initial",
+        "attempt_role": "initial",
+        "family": "CommentPost",
+        "model": "deepseek/deepseek-v4-flash-vision-exp",
+        "platform": "web"
+      }
+    }
+  ],
+  "measurement": {
+    "admitted_serving": {
+      "d_range": [
+        330.6,
+        724.0866666666667
+      ],
+      "saving_share_range": [
+        0.9359486371616134,
+        0.9989537913528201
+      ]
+    },
+    "fragility": {
+      "by_model": {
+        "deepseek/deepseek-v4-flash-vision-exp": {
+          "appearance_failure_fraction_conditional_mean": 0.0,
+          "detectable_error_fraction_all_failures": 0.8666666666666667,
+          "excluded_zero_clean_pass_cells": 0,
+          "included_cells": 1,
+          "interruption_failure_fraction_conditional_mean": 1.0
+        },
+        "qwen/qwen3.8-flash": {
+          "appearance_failure_fraction_conditional_mean": 0.1,
+          "detectable_error_fraction_all_failures": 0.7142857142857143,
+          "excluded_zero_clean_pass_cells": 0,
+          "included_cells": 2,
+          "interruption_failure_fraction_conditional_mean": 0.8333333333333333
+        },
+        "z-ai/glm-5.3-flash": {
+          "appearance_failure_fraction_conditional_mean": 0.0,
+          "detectable_error_fraction_all_failures": 0.5783132530120482,
+          "excluded_zero_clean_pass_cells": 1,
+          "included_cells": 2,
+          "interruption_failure_fraction_conditional_mean": 0.8416666666666667
+        }
+      },
+      "cells": [
+        {
+          "appearance_failure_fraction_conditional": 0.0,
+          "appearance_failures": 0,
+          "appearance_trials": 25,
+          "clean_passes": 5,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 0.8666666666666667,
+          "detectable_failures": 13,
+          "excluded_from_conditional": false,
+          "family": "MarkorDeleteNote",
+          "interruption_failure_fraction_conditional": 1.0,
+          "interruption_failures": 15,
+          "interruption_trials": 15,
+          "model": "deepseek/deepseek-v4-flash-vision-exp",
+          "total_failures": 15
+        },
+        {
+          "appearance_failure_fraction_conditional": 0.2,
+          "appearance_failures": 5,
+          "appearance_trials": 25,
+          "clean_passes": 5,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 0.6,
+          "detectable_failures": 15,
+          "excluded_from_conditional": false,
+          "family": "ContactsAddContact",
+          "interruption_failure_fraction_conditional": 1.0,
+          "interruption_failures": 20,
+          "interruption_trials": 20,
+          "model": "qwen/qwen3.8-flash",
+          "total_failures": 25
+        },
+        {
+          "appearance_failure_fraction_conditional": 0.0,
+          "appearance_failures": 0,
+          "appearance_trials": 25,
+          "clean_passes": 5,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 1.0,
+          "detectable_failures": 10,
+          "excluded_from_conditional": false,
+          "family": "MarkorDeleteNote",
+          "interruption_failure_fraction_conditional": 0.6666666666666666,
+          "interruption_failures": 10,
+          "interruption_trials": 15,
+          "model": "qwen/qwen3.8-flash",
+          "total_failures": 10
+        },
+        {
+          "appearance_failure_fraction_conditional": null,
+          "appearance_failures": 0,
+          "appearance_trials": 0,
+          "clean_passes": 0,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 0.2,
+          "detectable_failures": 8,
+          "excluded_from_conditional": true,
+          "family": "ContactsAddContact",
+          "interruption_failure_fraction_conditional": null,
+          "interruption_failures": 0,
+          "interruption_trials": 0,
+          "model": "z-ai/glm-5.3-flash",
+          "total_failures": 40
+        },
+        {
+          "appearance_failure_fraction_conditional": 0.0,
+          "appearance_failures": 0,
+          "appearance_trials": 25,
+          "clean_passes": 5,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 1.0,
+          "detectable_failures": 14,
+          "excluded_from_conditional": false,
+          "family": "MarkorDeleteNote",
+          "interruption_failure_fraction_conditional": 0.9333333333333333,
+          "interruption_failures": 14,
+          "interruption_trials": 15,
+          "model": "z-ai/glm-5.3-flash",
+          "total_failures": 14
+        },
+        {
+          "appearance_failure_fraction_conditional": 0.0,
+          "appearance_failures": 0,
+          "appearance_trials": 15,
+          "clean_passes": 3,
+          "clean_trials": 5,
+          "detectable_error_fraction_all_failures": 0.896551724137931,
+          "detectable_failures": 26,
+          "excluded_from_conditional": false,
+          "family": "SimpleCalendarAddOneEvent",
+          "interruption_failure_fraction_conditional": 0.75,
+          "interruption_failures": 9,
+          "interruption_trials": 12,
+          "model": "z-ai/glm-5.3-flash",
+          "total_failures": 29
+        }
+      ],
+      "conditional_cells": 5,
+      "excluded_zero_clean_pass_cells": 1
+    },
+    "main": {
+      "admitted": 11,
+      "admitted_C_pw": {
+        "median": 258987.0,
+        "range": [
+          136527.46666666665,
+          3423645.2
+        ]
+      },
+      "attempts": 20,
+      "candidate_evaluations": 57,
+      "lower_bound_costs": [
+        {
+          "C_pw": 1397386.0272727273,
+          "cost_labels": {
+            "frozen_pw_C": 1397386.0272727273,
+            "known_new_call_lower_bound_usd": 0.27476648466,
+            "known_total_acquisition_lower_bound_usd": 0.32478637466,
+            "note": "Provider USD lower bounds and frozen price-weighted-token C are separate accounting units.",
+            "reused_initial_builder_usd": 0.01634153,
+            "reused_initial_translation_usd": 0.03367836
+          },
+          "family": "CommentPost",
+          "model": "deepseek/deepseek-v4-flash-vision-exp"
+        }
+      ],
+      "rejected": 9,
+      "rejected_exact_C_pw": {
+        "median": 2240121.666666667,
+        "n": 8,
+        "range": [
+          605314.2181818181,
+          3081721.066666667
+        ]
+      },
+      "repair_rounds": 38
+    },
+    "matched_android": {
+      "agent_successes": 157,
+      "cells": [
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 23,
+          "bindings": 30,
+          "family": "MarkorDeleteNote",
+          "matched_agent_cost_mean": 22338.173333333336,
+          "model": "deepseek/deepseek-v4-flash-vision-exp",
+          "program_extraction_cost_mean": 330.6,
+          "program_successes": 29,
+          "saving_share": 0.9518668889468531
+        },
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 30,
+          "bindings": 30,
+          "family": "ContactsAddContact",
+          "matched_agent_cost_mean": 42154.72233333334,
+          "model": "qwen/qwen3.8-flash",
+          "program_extraction_cost_mean": 552.0644444444445,
+          "program_successes": 29,
+          "saving_share": 0.9535705195712343
+        },
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 30,
+          "bindings": 30,
+          "family": "MarkorDeleteNote",
+          "matched_agent_cost_mean": 19279.974777777777,
+          "model": "qwen/qwen3.8-flash",
+          "program_extraction_cost_mean": 388.11111111111114,
+          "program_successes": 30,
+          "saving_share": 0.979869729313212
+        },
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 30,
+          "bindings": 30,
+          "family": "ContactsAddContact",
+          "matched_agent_cost_mean": 67125.51333333334,
+          "model": "z-ai/glm-5.3-flash",
+          "program_extraction_cost_mean": 424.5311111111111,
+          "program_successes": 30,
+          "saving_share": 0.9936755625390459
+        },
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 30,
+          "bindings": 30,
+          "family": "MarkorDeleteNote",
+          "matched_agent_cost_mean": 35420.69111111111,
+          "model": "z-ai/glm-5.3-flash",
+          "program_extraction_cost_mean": 331.6333333333333,
+          "program_successes": 30,
+          "saving_share": 0.9906372991906613
+        },
+        {
+          "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+          "agent_successes": 14,
+          "bindings": 30,
+          "family": "SimpleCalendarAddOneEvent",
+          "matched_agent_cost_mean": 535319.22,
+          "model": "z-ai/glm-5.3-flash",
+          "program_extraction_cost_mean": 639.9911111111111,
+          "program_successes": 30,
+          "saving_share": 0.9988044682738814
+        }
+      ],
+      "program_successes": 178,
+      "rows": 180,
+      "saving_share_range": [
+        0.9518668889468531,
+        0.9988044682738814
+      ]
+    },
+    "payback_admitted": {
+      "compilation_only_range": [
+        1.3888852729037828,
+        15.48822700087738
+      ],
+      "including_three_traces_range": [
+        4.401841457234471,
+        18.69353109651439
+      ],
+      "n": 11
+    },
+    "repeats": {
+      "attempts": 22,
+      "lower_bound_costs": [
+        {
+          "C_pw": 447878.5333333334,
+          "attempt_id": "repeat-1",
+          "cost_labels": {
+            "frozen_pw_C_lower_bound": 447878.5333333334,
+            "known_completed_official_cost_cny": 0.3358179,
+            "note": "The reservation is neither paid cost nor zero; total attempt cost remains a lower bound.",
+            "reservation_ceiling_cny": 5.0,
+            "reservation_is_spend": false,
+            "unsettled_calls": 2
+          },
+          "family": "ContactsAddContact",
+          "model": "qwen/qwen3.8-flash"
+        }
+      ],
+      "outcomes": {
+        "admitted": 12,
+        "generation_output_budget_failure": 4,
+        "rejected_program": 6
+      },
+      "repair_rounds": 36
+    }
+  },
+  "online": {
+    "ablations": {
+      "earliest": {
+        "fresh_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                9.010895711829457,
+                9.965510185346304
+              ],
+              "estimate": 9.351800151832913,
+              "method": "paired percentile bootstrap",
+              "minus": 0.340904440003456,
+              "plus": 0.6137100335133905
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                18.81841373310411,
+                19.97994813094017
+              ],
+              "estimate": 19.285555117874694,
+              "method": "paired percentile bootstrap",
+              "minus": 0.467141384770585,
+              "plus": 0.6943930130654756
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                10.386987958255611,
+                11.47405386321798
+              ],
+              "estimate": 10.919151563564897,
+              "method": "paired percentile bootstrap",
+              "minus": 0.532163605309286,
+              "plus": 0.554902299653083
+            }
+          },
+          "cheaper_conditions": 47,
+          "costlier_conditions": 253,
+          "maximum_condition_ratio_to_agent": 195.63123999390226,
+          "maximum_ratio": 195.63123999390226,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              1182.1453208209603,
+              1268.8035091182298
+            ],
+            "estimate": 1218.5502277757503
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              12.821453208209602,
+              13.688035091182298
+            ],
+            "estimate": 13.185502277757502,
+            "method": "paired percentile bootstrap",
+            "minus": 0.3640490695478995,
+            "plus": 0.5025328134247964
+          },
+          "minimum_ratio": 0.4022675156174296,
+          "ties": 0
+        },
+        "original_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                8.11251328845412,
+                9.15865274154643
+              ],
+              "estimate": 8.41364625270636,
+              "method": "paired percentile bootstrap",
+              "minus": 0.30113296425224156,
+              "plus": 0.7450064888400689
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                17.871525697736246,
+                18.988971757078208
+              ],
+              "estimate": 18.32949034820603,
+              "method": "paired percentile bootstrap",
+              "minus": 0.4579646504697834,
+              "plus": 0.6594814088721783
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                10.055197305619366,
+                10.797508791289397
+              ],
+              "estimate": 10.31688398909419,
+              "method": "paired percentile bootstrap",
+              "minus": 0.2616866834748244,
+              "plus": 0.48062480219520687
+            }
+          },
+          "cheaper_conditions": 40,
+          "costlier_conditions": 260,
+          "maximum_condition_ratio_to_agent": 122.53958032145238,
+          "maximum_ratio": 122.53958032145238,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              1113.5989958229707,
+              1183.363565620118
+            ],
+            "estimate": 1135.334019666886
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              12.135989958229707,
+              12.83363565620118
+            ],
+            "estimate": 12.35334019666886,
+            "method": "paired percentile bootstrap",
+            "minus": 0.21735023843915258,
+            "plus": 0.48029545953231967
+          },
+          "minimum_ratio": 0.5321623944651053,
+          "ties": 0
+        },
+        "real_arrivals": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                2.802213471427952,
+                3.8921477098889246
+              ],
+              "estimate": 3.325919279021913,
+              "method": "paired percentile bootstrap",
+              "minus": 0.5237058075939611,
+              "plus": 0.5662284308670116
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                4.345871074275805,
+                5.508721678611091
+              ],
+              "estimate": 4.921732017877173,
+              "method": "paired percentile bootstrap",
+              "minus": 0.5758609436013682,
+              "plus": 0.5869896607339182
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                2.866081055702752,
+                3.7928996958815073
+              ],
+              "estimate": 3.3029899949755737,
+              "method": "paired percentile bootstrap",
+              "minus": 0.4369089392728216,
+              "plus": 0.48990970090593366
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 12,
+          "maximum_condition_ratio_to_agent": 6.504630951714221,
+          "maximum_ratio": 8.381024502653494,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              257.81737135870605,
+              319.5979956313094
+            ],
+            "estimate": 285.021376395822
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              3.5781737135870606,
+              4.195979956313094
+            ],
+            "estimate": 3.85021376395822,
+            "method": "paired percentile bootstrap",
+            "minus": 0.2720400503711593,
+            "plus": 0.34576619235487405
+          },
+          "minimum_ratio": 1.5947106291856576,
+          "ties": 0
+        }
+      },
+      "pace_narrow_price": {
+        "fresh_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0900012127065455,
+                1.104571673321874
+              ],
+              "estimate": 1.0949919384761733,
+              "method": "paired percentile bootstrap",
+              "minus": 0.00499072576962778,
+              "plus": 0.009579734845700738
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0708555143672847,
+                1.0875047325758622
+              ],
+              "estimate": 1.0773020069277957,
+              "method": "paired percentile bootstrap",
+              "minus": 0.006446492560510997,
+              "plus": 0.010202725648066568
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.079119111723237,
+                1.0857660631831154
+              ],
+              "estimate": 1.0815348258751203,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0024157141518832415,
+              "plus": 0.004231237307995128
+            }
+          },
+          "cheaper_conditions": 60,
+          "costlier_conditions": 228,
+          "maximum_condition_ratio_to_agent": 1.2481999438477187,
+          "maximum_ratio": 1.568181368593882,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              8.119646875140196,
+              8.959985197110987
+            ],
+            "estimate": 8.460959042636329
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.081196468751402,
+              1.0895998519711099
+            ],
+            "estimate": 1.0846095904263633,
+            "method": "paired percentile bootstrap",
+            "minus": 0.003413121674961328,
+            "plus": 0.004990261544746577
+          },
+          "minimum_ratio": 0.4824123294160014,
+          "ties": 12
+        },
+        "original_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0872952256303559,
+                1.1015440450483704
+              ],
+              "estimate": 1.093087144235204,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0057919186048480675,
+              "plus": 0.008456900813166524
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1126193098563493,
+                1.1285995425435764
+              ],
+              "estimate": 1.1186029166761815,
+              "method": "paired percentile bootstrap",
+              "minus": 0.005983606819832232,
+              "plus": 0.009996625867394915
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0941275115470155,
+                1.1090155784718654
+              ],
+              "estimate": 1.1003390248491094,
+              "method": "paired percentile bootstrap",
+              "minus": 0.006211513302093907,
+              "plus": 0.00867655362275599
+            }
+          },
+          "cheaper_conditions": 62,
+          "costlier_conditions": 224,
+          "maximum_condition_ratio_to_agent": 1.2473345137764724,
+          "maximum_ratio": 1.465683914575324,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              10.015871586574153,
+              11.05444813490324
+            ],
+            "estimate": 10.400969525349835
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.1001587158657415,
+              1.1105444813490324
+            ],
+            "estimate": 1.1040096952534983,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0038509793877568033,
+            "plus": 0.00653478609553404
+          },
+          "minimum_ratio": 0.6831197021728105,
+          "ties": 14
+        },
+        "real_arrivals": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1161977682178557,
+                1.2425015822120975
+              ],
+              "estimate": 1.1751587777020398,
+              "method": "paired percentile bootstrap",
+              "minus": 0.058961009484184146,
+              "plus": 0.0673428045100577
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.242718293300927,
+                1.3530550790942208
+              ],
+              "estimate": 1.29744350175187,
+              "method": "paired percentile bootstrap",
+              "minus": 0.054725208450942864,
+              "plus": 0.05561157734235089
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1955084108586234,
+                1.2688897183667902
+              ],
+              "estimate": 1.2274841894084212,
+              "method": "paired percentile bootstrap",
+              "minus": 0.03197577854979783,
+              "plus": 0.04140552895836902
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 12,
+          "maximum_condition_ratio_to_agent": 1.2495393877848568,
+          "maximum_ratio": 1.520846666074549,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              19.179913875383537,
+              28.063645766271428
+            ],
+            "estimate": 23.336215628744373
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.1917991387538354,
+              1.2806364576627143
+            ],
+            "estimate": 1.2333621562874437,
+            "method": "paired percentile bootstrap",
+            "minus": 0.04156301753360836,
+            "plus": 0.047274301375270555
+          },
+          "minimum_ratio": 1.0970077516342562,
+          "ties": 0
+        }
+      },
+      "projected": {
+        "fresh_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0152258699434145,
+                1.017046853770208
+              ],
+              "estimate": 1.016081598233037,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0008557282896224372,
+              "plus": 0.0009652555371710836
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0081083409284766,
+                1.011618294792316
+              ],
+              "estimate": 1.0096002928969587,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0014919519684821747,
+              "plus": 0.00201800189535728
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0141730462043994,
+                1.0161247265983178
+              ],
+              "estimate": 1.0149762763712098,
+              "method": "paired percentile bootstrap",
+              "minus": 0.000803230166810387,
+              "plus": 0.0011484502271079666
+            }
+          },
+          "cheaper_conditions": 98,
+          "costlier_conditions": 48,
+          "maximum_condition_ratio_to_agent": 1.7563333547391733,
+          "maximum_ratio": 1.4104134707003178,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              1.2559310966181458,
+              1.4901056440155491
+            ],
+            "estimate": 1.355272250040196
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0125593109661815,
+              1.0149010564401555
+            ],
+            "estimate": 1.013552722500402,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0009934115342205008,
+            "plus": 0.001348333939753532
+          },
+          "minimum_ratio": 0.9487374166188668,
+          "ties": 154
+        },
+        "original_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0123003214778228,
+                1.0151307857310021
+              ],
+              "estimate": 1.0137003213517262,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0013999998739033792,
+              "plus": 0.0014304643792759641
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0057056968123939,
+                1.0087627959410164
+              ],
+              "estimate": 1.0074058778459665,
+              "method": "paired percentile bootstrap",
+              "minus": 0.001700181033572612,
+              "plus": 0.0013569180950498971
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.007597360233126,
+                1.0093849188982487
+              ],
+              "estimate": 1.0084517124720933,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0008543522389672376,
+              "plus": 0.000933206426155353
+            }
+          },
+          "cheaper_conditions": 95,
+          "costlier_conditions": 41,
+          "maximum_condition_ratio_to_agent": 1.723407930679102,
+          "maximum_ratio": 1.3872225236585827,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              0.9023640776588238,
+              1.0639823142449822
+            ],
+            "estimate": 0.9852637223261906
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0090236407765882,
+              1.0106398231424498
+            ],
+            "estimate": 1.009852637223262,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0008289964466736688,
+            "plus": 0.000787185919187916
+          },
+          "minimum_ratio": 0.9479707566942933,
+          "ties": 164
+        },
+        "real_arrivals": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9997220749544511,
+                0.9999707826934561
+              ],
+              "estimate": 0.999869013381424,
+              "method": "paired percentile bootstrap",
+              "minus": 0.00014693842697288684,
+              "plus": 0.00010176931203209616
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9998878260127673,
+                1.0001709089031379
+              ],
+              "estimate": 1.000015330591981,
+              "method": "paired percentile bootstrap",
+              "minus": 0.00012750457921373304,
+              "plus": 0.0001555783111568676
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9997158474697185,
+                1.0009531906231077
+              ],
+              "estimate": 1.0001556255638324,
+              "method": "paired percentile bootstrap",
+              "minus": 0.00043977809411388513,
+              "plus": 0.000797565059275307
+            }
+          },
+          "cheaper_conditions": 4,
+          "costlier_conditions": 2,
+          "maximum_condition_ratio_to_agent": 1.0296596716450503,
+          "maximum_ratio": 1.0006375009444077,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              -0.011834383157927064,
+              0.022882613328212287
+            ],
+            "estimate": 0.0013323179079094416
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9998816561684207,
+              1.0002288261332821
+            ],
+            "estimate": 1.000013323179079,
+            "method": "paired percentile bootstrap",
+            "minus": 0.00013166701065836506,
+            "plus": 0.00021550295420302845
+          },
+          "minimum_ratio": 0.9995947926625265,
+          "ties": 6
+        }
+      },
+      "safe_earliest_025": {
+        "fresh_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1584667304515701,
+                1.1793905343484763
+              ],
+              "estimate": 1.167056061403634,
+              "method": "paired percentile bootstrap",
+              "minus": 0.008589330952063934,
+              "plus": 0.012334472944842245
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1118934788365598,
+                1.134143680485316
+              ],
+              "estimate": 1.1205934533783626,
+              "method": "paired percentile bootstrap",
+              "minus": 0.008699974541802824,
+              "plus": 0.013550227106953416
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1335307476780159,
+                1.1524345140628443
+              ],
+              "estimate": 1.1400772041069187,
+              "method": "paired percentile bootstrap",
+              "minus": 0.006546456428902836,
+              "plus": 0.012357309955925544
+            }
+          },
+          "cheaper_conditions": 49,
+          "costlier_conditions": 251,
+          "maximum_condition_ratio_to_agent": 1.2485432905162046,
+          "maximum_ratio": 1.956859345975982,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              13.705990585527461,
+              15.223493988864334
+            ],
+            "estimate": 14.257557296297186
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.1370599058552746,
+              1.1522349398886433
+            ],
+            "estimate": 1.1425755729629719,
+            "method": "paired percentile bootstrap",
+            "minus": 0.005515667107697242,
+            "plus": 0.009659366925671486
+          },
+          "minimum_ratio": 0.5155327979704016,
+          "ties": 0
+        },
+        "original_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1752112950413678,
+                1.1995399113993022
+              ],
+              "estimate": 1.1855492351026307,
+              "method": "paired percentile bootstrap",
+              "minus": 0.010337940061262874,
+              "plus": 0.0139906762966715
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.170234946168962,
+                1.1984920332840001
+              ],
+              "estimate": 1.1810376893352723,
+              "method": "paired percentile bootstrap",
+              "minus": 0.010802743166310247,
+              "plus": 0.017454343948727802
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.162503793974316,
+                1.1845167650819435
+              ],
+              "estimate": 1.1735295686254554,
+              "method": "paired percentile bootstrap",
+              "minus": 0.01102577465113952,
+              "plus": 0.010987196456488046
+            }
+          },
+          "cheaper_conditions": 32,
+          "costlier_conditions": 266,
+          "maximum_condition_ratio_to_agent": 1.2475109214162003,
+          "maximum_ratio": 1.80982756264938,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              17.068257837663346,
+              19.232510552030767
+            ],
+            "estimate": 18.003883102111963
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.1706825783766335,
+              1.1923251055203077
+            ],
+            "estimate": 1.1800388310211196,
+            "method": "paired percentile bootstrap",
+            "minus": 0.00935625264448614,
+            "plus": 0.012286274499188066
+          },
+          "minimum_ratio": 0.6552246833313862,
+          "ties": 2
+        },
+        "real_arrivals": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.483705492968309,
+                1.633886871337488
+              ],
+              "estimate": 1.5481571018958942,
+              "method": "paired percentile bootstrap",
+              "minus": 0.06445160892758528,
+              "plus": 0.08572976944159372
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.382386659197029,
+                1.5427963054224905
+              ],
+              "estimate": 1.4508493809184067,
+              "method": "paired percentile bootstrap",
+              "minus": 0.06846272172137757,
+              "plus": 0.09194692450408382
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.4940712021677682,
+                1.7301311785782363
+              ],
+              "estimate": 1.581276295513516,
+              "method": "paired percentile bootstrap",
+              "minus": 0.08720509334574778,
+              "plus": 0.14885488306472028
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 12,
+          "maximum_condition_ratio_to_agent": 1.2499163854939095,
+          "maximum_ratio": 1.983542568258489,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              48.2522804480638,
+              58.35861729270218
+            ],
+            "estimate": 52.67609261092723
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.482522804480638,
+              1.5835861729270218
+            ],
+            "estimate": 1.5267609261092723,
+            "method": "paired percentile bootstrap",
+            "minus": 0.044238121628634275,
+            "plus": 0.056825246817749475
+          },
+          "minimum_ratio": 1.2020797106898358,
+          "ties": 0
+        }
+      },
+      "safe_projected_025": {
+        "fresh_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 0,
+          "maximum_condition_ratio_to_agent": 1.2468159510823098,
+          "maximum_ratio": 1.0,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "minimum_ratio": 1.0,
+          "ties": 300
+        },
+        "original_grid": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 0,
+          "maximum_condition_ratio_to_agent": 1.2466769619969718,
+          "maximum_ratio": 1.0,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "minimum_ratio": 1.0,
+          "ties": 300
+        },
+        "real_arrivals": {
+          "by_model_mean_ratio_to_pace": {
+            "deepseek/deepseek-v4-flash-vision-exp": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "qwen/qwen3.8-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "z-ai/glm-5.3-flash": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            }
+          },
+          "cheaper_conditions": 0,
+          "costlier_conditions": 0,
+          "maximum_condition_ratio_to_agent": 1.0296596716450503,
+          "maximum_ratio": 1.0,
+          "mean_percent_change_from_pace": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "estimate": 0.0
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "minimum_ratio": 1.0,
+          "ties": 12
+        }
+      }
+    },
+    "additional_missing_cost": {
+      "cells": [
+        {
+          "assigned_C_fail_pw": 3402608.618181818,
+          "base_condition": {
+            "case": "bursty_default",
+            "key": "validation_grid/deepseek/deepseek-v4-flash-vision-exp/half/bursty/default",
+            "seed": 71023,
+            "source_group": "original_grid"
+          },
+          "base_modeled_C_fail_pw": 1701304.309090909,
+          "base_modeled_pace_to_react_ratio": 0.7341637596669147,
+          "budget_max_prefix_ratio": 1.2477538211497279,
+          "budget_prefix_runs": 8,
+          "budget_raw_above_1.25": 0,
+          "budget_violations_above_1.25_with_tolerance": 0,
+          "key": "missing_cost/deepseek/deepseek-v4-flash-vision-exp/bursty_default/missing_cost_2x_modeled",
+          "observed_lower_bound_pw": 1397386.0272727273,
+          "pace_to_react_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.6870434068756125,
+              0.8884278695310386
+            ],
+            "estimate": 0.7853567028065211,
+            "method": "paired percentile bootstrap",
+            "minus": 0.09831329593090865,
+            "plus": 0.10307116672451744
+          },
+          "pattern": "bursty",
+          "repetitions": 8,
+          "scenario": "missing_cost_2x_modeled"
+        },
+        {
+          "assigned_C_fail_pw": 3402608.618181818,
+          "base_condition": {
+            "case": "bpi2019_real",
+            "key": "validation_real/deepseek/deepseek-v4-flash-vision-exp/bpi2019",
+            "seed": 92033,
+            "source_group": "real_arrivals"
+          },
+          "base_modeled_C_fail_pw": 1701304.309090909,
+          "base_modeled_pace_to_react_ratio": 0.6240179046392343,
+          "budget_max_prefix_ratio": 1.2455544865214097,
+          "budget_prefix_runs": 10,
+          "budget_raw_above_1.25": 0,
+          "budget_violations_above_1.25_with_tolerance": 0,
+          "key": "missing_cost/deepseek/deepseek-v4-flash-vision-exp/bpi2019_real/missing_cost_2x_modeled",
+          "observed_lower_bound_pw": 1397386.0272727273,
+          "pace_to_react_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.44901585797292254,
+              0.6480469418778575
+            ],
+            "estimate": 0.5448546178365895,
+            "method": "paired percentile bootstrap",
+            "minus": 0.09583875986366697,
+            "plus": 0.10319232404126799
+          },
+          "pattern": "bpi2019",
+          "repetitions": 10,
+          "scenario": "missing_cost_2x_modeled"
+        },
+        {
+          "assigned_C_fail_pw": 1397386.0272727273,
+          "base_condition": {
+            "case": "bursty_default",
+            "key": "validation_grid/deepseek/deepseek-v4-flash-vision-exp/half/bursty/default",
+            "seed": 71023,
+            "source_group": "original_grid"
+          },
+          "base_modeled_C_fail_pw": 1701304.309090909,
+          "base_modeled_pace_to_react_ratio": 0.7341637596669147,
+          "budget_max_prefix_ratio": 1.249920848032517,
+          "budget_prefix_runs": 8,
+          "budget_raw_above_1.25": 0,
+          "budget_violations_above_1.25_with_tolerance": 0,
+          "key": "missing_cost/deepseek/deepseek-v4-flash-vision-exp/bursty_default/missing_cost_lower_bound",
+          "observed_lower_bound_pw": 1397386.0272727273,
+          "pace_to_react_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.6509143986264943,
+              0.7251509360003144
+            ],
+            "estimate": 0.6861707405921035,
+            "method": "paired percentile bootstrap",
+            "minus": 0.03525634196560923,
+            "plus": 0.03898019540821096
+          },
+          "pattern": "bursty",
+          "repetitions": 8,
+          "scenario": "missing_cost_lower_bound"
+        },
+        {
+          "assigned_C_fail_pw": 1397386.0272727273,
+          "base_condition": {
+            "case": "bpi2019_real",
+            "key": "validation_real/deepseek/deepseek-v4-flash-vision-exp/bpi2019",
+            "seed": 92033,
+            "source_group": "real_arrivals"
+          },
+          "base_modeled_C_fail_pw": 1701304.309090909,
+          "base_modeled_pace_to_react_ratio": 0.6240179046392343,
+          "budget_max_prefix_ratio": 1.2499658478046332,
+          "budget_prefix_runs": 10,
+          "budget_raw_above_1.25": 0,
+          "budget_violations_above_1.25_with_tolerance": 0,
+          "key": "missing_cost/deepseek/deepseek-v4-flash-vision-exp/bpi2019_real/missing_cost_lower_bound",
+          "observed_lower_bound_pw": 1397386.0272727273,
+          "pace_to_react_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.5267126945356829,
+              0.6919245128340877
+            ],
+            "estimate": 0.6179376424725085,
+            "method": "paired percentile bootstrap",
+            "minus": 0.09122494793682556,
+            "plus": 0.07398687036157925
+          },
+          "pattern": "bpi2019",
+          "repetitions": 10,
+          "scenario": "missing_cost_lower_bound"
+        }
+      ],
+      "conditions": 4,
+      "scope": "Four DeepSeek Web failed-cost cells kept separate from the 612 main conditions."
+    },
+    "baseline_equalities": {
+      "fresh_grid": {
+        "deepseek/deepseek-v4-flash-vision-exp": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        },
+        "qwen/qwen3.8-flash": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        },
+        "z-ai/glm-5.3-flash": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        }
+      },
+      "original_grid": {
+        "deepseek/deepseek-v4-flash-vision-exp": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        },
+        "qwen/qwen3.8-flash": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        },
+        "z-ai/glm-5.3-flash": {
+          "conditions": 100,
+          "toolpro_equals_react_conditions": 100
+        }
+      }
+    },
+    "condition_counts": {
+      "fresh_grid": 300,
+      "original_grid": 300,
+      "real_arrivals": 12
+    },
+    "grids": {
+      "fresh_grid": {
+        "autorpa_once": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              2.205744292631306,
+              2.2572289227972697
+            ],
+            "estimate": 2.227408544817963,
+            "method": "paired percentile bootstrap",
+            "minus": 0.021664252186656796,
+            "plus": 0.029820377979306922
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              2.3060931853032773,
+              2.360281353776591
+            ],
+            "estimate": 2.3263680256975863,
+            "method": "paired percentile bootstrap",
+            "minus": 0.020274840394308935,
+            "plus": 0.033913328079004934
+          },
+          "maximum_condition_baseline_to_pace_ratio": 26.538368051994443,
+          "maximum_condition_policy_to_agent_ratio": 26.538368051994443
+        },
+        "reactive": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.118740952969115,
+              1.1424567343397631
+            ],
+            "estimate": 1.130255568422997,
+            "method": "paired percentile bootstrap",
+            "minus": 0.011514615453881882,
+            "plus": 0.012201165916766232
+          },
+          "maximum_condition_baseline_to_pace_ratio": 3.691923873552574,
+          "maximum_condition_policy_to_agent_ratio": 1.0
+        },
+        "safe_projected_025": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9494403642505057,
+              0.9625701268441399
+            ],
+            "estimate": 0.9539144971806683,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004474132930162633,
+            "plus": 0.008655629663471553
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "maximum_condition_baseline_to_pace_ratio": 1.0,
+          "maximum_condition_policy_to_agent_ratio": 1.2468159510823098
+        },
+        "toolpro_cost": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.118740952969115,
+              1.1424567343397631
+            ],
+            "estimate": 1.130255568422997,
+            "method": "paired percentile bootstrap",
+            "minus": 0.011514615453881882,
+            "plus": 0.012201165916766232
+          },
+          "maximum_condition_baseline_to_pace_ratio": 3.691923873552574,
+          "maximum_condition_policy_to_agent_ratio": 1.0
+        }
+      },
+      "original_grid": {
+        "autorpa_once": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              2.140449152502479,
+              2.1973279483490207
+            ],
+            "estimate": 2.165573115458724,
+            "method": "paired percentile bootstrap",
+            "minus": 0.025123962956245194,
+            "plus": 0.03175483289029657
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              2.2330674764873955,
+              2.285782478840514
+            ],
+            "estimate": 2.2548457001588087,
+            "method": "paired percentile bootstrap",
+            "minus": 0.021778223671413244,
+            "plus": 0.030936778681705412
+          },
+          "maximum_condition_baseline_to_pace_ratio": 19.314282554477312,
+          "maximum_condition_policy_to_agent_ratio": 19.314282554477312
+        },
+        "reactive": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0955981885323818,
+              1.1239484453329522
+            ],
+            "estimate": 1.1067436123596197,
+            "method": "paired percentile bootstrap",
+            "minus": 0.011145423827237932,
+            "plus": 0.01720483297333253
+          },
+          "maximum_condition_baseline_to_pace_ratio": 3.4949680925191897,
+          "maximum_condition_policy_to_agent_ratio": 1.0
+        },
+        "safe_projected_025": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9516604226496603,
+              0.9634574350505531
+            ],
+            "estimate": 0.9562700888864405,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004609666236780163,
+            "plus": 0.007187346164112651
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "maximum_condition_baseline_to_pace_ratio": 1.0,
+          "maximum_condition_policy_to_agent_ratio": 1.2466769619969718
+        },
+        "toolpro_cost": {
+          "baseline_to_agent_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "estimate": 1.0,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0,
+            "plus": 0.0
+          },
+          "baseline_to_pace_mean_ratio": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0955981885323818,
+              1.1239484453329522
+            ],
+            "estimate": 1.1067436123596197,
+            "method": "paired percentile bootstrap",
+            "minus": 0.011145423827237932,
+            "plus": 0.01720483297333253
+          },
+          "maximum_condition_baseline_to_pace_ratio": 3.4949680925191897,
+          "maximum_condition_policy_to_agent_ratio": 1.0
+        }
+      }
+    },
+    "prefix_budget": {
+      "main_pace": {
+        "engine_tolerance": "1e-8 * max(1, 1.25 * A_t), represented conservatively as 1.26e-8 in ratio checks.",
+        "maximum": 1.2499996537041744,
+        "ratio_tolerance": 1.26e-08,
+        "raw_above_1.25": 0,
+        "runs": 4920,
+        "violations_above_1.25_with_tolerance": 0
+      },
+      "sensitivity_protected_policies": {
+        "engine_tolerance": "1e-8 * max(1, 1.25 * A_t), represented conservatively as 1.26e-8 in ratio checks.",
+        "maximum": 1.250000009147831,
+        "policies": [
+          "safe_projected_025",
+          "pace_narrow_price"
+        ],
+        "ratio_tolerance": 1.26e-08,
+        "raw_above_1.25": 1,
+        "runs": 1440,
+        "violations_above_1.25_with_tolerance": 0
+      }
+    },
+    "proposal_controls": {
+      "safe_arrival10_allowance_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9594176593726568,
+              0.9735307802701237
+            ],
+            "estimate": 0.9643150020314963,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004897342658839565,
+            "plus": 0.009215778238627403
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0081361188287201,
+              1.0115743363430592
+            ],
+            "estimate": 1.0094920147567976,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0013558959280774996,
+            "plus": 0.0020823215862615374
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9599406517464028,
+              0.9726675143028418
+            ],
+            "estimate": 0.9650379887432498,
+            "method": "paired percentile bootstrap",
+            "minus": 0.005097336996847002,
+            "plus": 0.007629525559592065
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0062175875429562,
+              1.0090237018273076
+            ],
+            "estimate": 1.0076467317236888,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0014291441807325889,
+            "plus": 0.0013769701036188131
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.8080474851667031,
+              0.8574007305334747
+            ],
+            "estimate": 0.8323364681050603,
+            "method": "paired percentile bootstrap",
+            "minus": 0.02428898293835724,
+            "plus": 0.025064262428414308
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0020083003049072,
+              1.0127747439365884
+            ],
+            "estimate": 1.0068876835583118,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0048793832534046455,
+            "plus": 0.005887060378276576
+          }
+        }
+      },
+      "safe_count_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.949038238449126,
+              0.9622333471270355
+            ],
+            "estimate": 0.9535793119997786,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004541073550652586,
+            "plus": 0.00865403512725682
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9991017252549645,
+              0.9996166587043562
+            ],
+            "estimate": 0.9993564518752983,
+            "method": "paired percentile bootstrap",
+            "minus": 0.00025472662033376725,
+            "plus": 0.0002602068290579185
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9509363820279773,
+              0.9628807245356154
+            ],
+            "estimate": 0.9556199840722316,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004683602044254331,
+            "plus": 0.0072607404633837636
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9989346058649717,
+              0.9993289541394901
+            ],
+            "estimate": 0.999138748355756,
+            "method": "paired percentile bootstrap",
+            "minus": 0.00020414249078426483,
+            "plus": 0.00019020578373407648
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.8037210466165501,
+              0.8501305834625926
+            ],
+            "estimate": 0.8265150432024594,
+            "method": "paired percentile bootstrap",
+            "minus": 0.022793996585909304,
+            "plus": 0.02361554026013324
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9997340317053324,
+              0.9998937736990193
+            ],
+            "estimate": 0.9998261979524,
+            "method": "paired percentile bootstrap",
+            "minus": 9.216624706764875e-05,
+            "plus": 6.757574661930832e-05
+          }
+        }
+      },
+      "safe_earliest_allowance_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9711386411491156,
+              0.9853022325721694
+            ],
+            "estimate": 0.9759338011550021,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004795160005886423,
+            "plus": 0.009368431417167367
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.018939487214183,
+              1.0226256957281101
+            ],
+            "estimate": 1.0204825516726437,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0015430644584606412,
+            "plus": 0.0021431440554664505
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9719899215027361,
+              0.9851608828039372
+            ],
+            "estimate": 0.9772055181274258,
+            "method": "paired percentile bootstrap",
+            "minus": 0.005215596624689733,
+            "plus": 0.007955364676511367
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.018332875910355,
+              1.0218697558513625
+            ],
+            "estimate": 1.01988321702022,
+            "method": "paired percentile bootstrap",
+            "minus": 0.001550341109864961,
+            "plus": 0.001986538831142637
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.8100616612856101,
+              0.8603555508724
+            ],
+            "estimate": 0.8348863724912586,
+            "method": "paired percentile bootstrap",
+            "minus": 0.024824711205648553,
+            "plus": 0.025469178381141377
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.004939301968663,
+              1.0158297513103405
+            ],
+            "estimate": 1.0097158160316233,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004776514062960313,
+            "plus": 0.006113935278717175
+          }
+        }
+      },
+      "safe_history_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0471232091184783,
+              1.0631811075670774
+            ],
+            "estimate": 1.0530903020652784,
+            "method": "paired percentile bootstrap",
+            "minus": 0.00596709294680009,
+            "plus": 0.010090805501798972
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0853038186384545,
+              1.0957778256063868
+            ],
+            "estimate": 1.089811805824696,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004507987186241458,
+            "plus": 0.005966019781690868
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0693346685035832,
+              1.0833269039649105
+            ],
+            "estimate": 1.0746248197133943,
+            "method": "paired percentile bootstrap",
+            "minus": 0.005290151209811134,
+            "plus": 0.008702084251516196
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.114813967315565,
+              1.125846636335106
+            ],
+            "estimate": 1.1189237020476697,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004109734732104631,
+            "plus": 0.0069229342874364
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.902165812128867,
+              0.9385321757522763
+            ],
+            "estimate": 0.9203325440879803,
+            "method": "paired percentile bootstrap",
+            "minus": 0.018166731959113225,
+            "plus": 0.018199631664296056
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0885367211014787,
+              1.1167812771184331
+            ],
+            "estimate": 1.1025537871085989,
+            "method": "paired percentile bootstrap",
+            "minus": 0.01401706600712016,
+            "plus": 0.014227490009834254
+          }
+        }
+      },
+      "safe_once_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0297057706240176,
+              1.0470122249124805
+            ],
+            "estimate": 1.0373017643746751,
+            "method": "paired percentile bootstrap",
+            "minus": 0.007595993750657559,
+            "plus": 0.009710460537805332
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0711338694682877,
+              1.0879363969922018
+            ],
+            "estimate": 1.077819082166954,
+            "method": "paired percentile bootstrap",
+            "minus": 0.006685212698666287,
+            "plus": 0.010117314825247803
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0571318545580575,
+              1.080361535001029
+            ],
+            "estimate": 1.0675614158747992,
+            "method": "paired percentile bootstrap",
+            "minus": 0.010429561316741776,
+            "plus": 0.012800119126229692
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.1072601106434374,
+              1.1351454725481016
+            ],
+            "estimate": 1.1210871806682197,
+            "method": "paired percentile bootstrap",
+            "minus": 0.013827070024782229,
+            "plus": 0.014058291879881946
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.8566872477136123,
+              0.9114412133388566
+            ],
+            "estimate": 0.8839169977326445,
+            "method": "paired percentile bootstrap",
+            "minus": 0.027229750019032273,
+            "plus": 0.0275242156062121
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0597417872158743,
+              1.082940624165014
+            ],
+            "estimate": 1.0684522183196459,
+            "method": "paired percentile bootstrap",
+            "minus": 0.008710431103771565,
+            "plus": 0.014488405845368035
+          }
+        }
+      },
+      "safe_projected_allowance_025": {
+        "fresh_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9496681407443123,
+              0.9627144892866424
+            ],
+            "estimate": 0.954101877675766,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004433736931453769,
+            "plus": 0.008612611610876342
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9998174391871482,
+              1.0015103544141957
+            ],
+            "estimate": 1.000571880557991,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0007544413708429065,
+            "plus": 0.0009384738562046024
+          }
+        },
+        "original_grid": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9513662216468384,
+              0.9634665150610008
+            ],
+            "estimate": 0.9561505074565734,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0047842858097350005,
+            "plus": 0.00731600760442741
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.9996524607459655,
+              1.0004038857163782
+            ],
+            "estimate": 1.0000221772798454,
+            "method": "paired percentile bootstrap",
+            "minus": 0.0003697165338799602,
+            "plus": 0.000381708436532735
+          }
+        },
+        "real_arrivals": {
+          "mean_ratio_to_agent": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              0.8069324264217741,
+              0.8567410576260546
+            ],
+            "estimate": 0.8312378921365782,
+            "method": "paired percentile bootstrap",
+            "minus": 0.024305465714804075,
+            "plus": 0.025503165489476398
+          },
+          "mean_ratio_to_pace": {
+            "bootstrap_samples": 2000,
+            "ci95": [
+              1.0019072088328718,
+              1.0119442161434224
+            ],
+            "estimate": 1.0063870152354581,
+            "method": "paired percentile bootstrap",
+            "minus": 0.004479806402586384,
+            "plus": 0.005557200907964299
+          }
+        }
+      }
+    },
+    "recorded_arrivals": {
+      "autorpa_once": {
+        "baseline_condition_counts": {
+          "cheaper_than_pace": 0,
+          "costlier_than_pace": 12,
+          "ties": 0
+        },
+        "baseline_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.311645584918289,
+            1.4325097618760552
+          ],
+          "estimate": 1.3623450508616577,
+          "method": "paired percentile bootstrap",
+          "minus": 0.050699465943368605,
+          "plus": 0.07016471101439747
+        },
+        "equal_weight_pace_saving_fraction": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.2247231302510879,
+            0.27104449399624975
+          ],
+          "estimate": 0.248846992341899,
+          "method": "paired percentile bootstrap",
+          "minus": 0.024123862090811105,
+          "plus": 0.02219750165435075
+        },
+        "pace_to_baseline_condition_ratio": {
+          "conditions": 12,
+          "higher_cost": 0,
+          "lower_cost": 12,
+          "maximum": 0.890453964878819,
+          "minimum": 0.5700869882187893,
+          "ties": 0
+        }
+      },
+      "reactive": {
+        "baseline_condition_counts": {
+          "cheaper_than_pace": 3,
+          "costlier_than_pace": 9,
+          "ties": 0
+        },
+        "baseline_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.2125797483224507,
+            1.330916430667916
+          ],
+          "estimate": 1.2615795290217848,
+          "method": "paired percentile bootstrap",
+          "minus": 0.04899978069933408,
+          "plus": 0.06933690164613115
+        },
+        "equal_weight_pace_saving_fraction": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.14957346122575554,
+            0.19612386227249745
+          ],
+          "estimate": 0.1733503688908684,
+          "method": "paired percentile bootstrap",
+          "minus": 0.023776907665112867,
+          "plus": 0.02277349338162904
+        },
+        "pace_to_baseline_condition_ratio": {
+          "conditions": 12,
+          "higher_cost": 3,
+          "lower_cost": 9,
+          "maximum": 1.0296596716450503,
+          "minimum": 0.5778927973129353,
+          "ties": 0
+        }
+      },
+      "toolpro_cost": {
+        "baseline_condition_counts": {
+          "cheaper_than_pace": 3,
+          "costlier_than_pace": 9,
+          "ties": 0
+        },
+        "baseline_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.2125797483224507,
+            1.330916430667916
+          ],
+          "estimate": 1.2615795290217848,
+          "method": "paired percentile bootstrap",
+          "minus": 0.04899978069933408,
+          "plus": 0.06933690164613115
+        },
+        "equal_weight_pace_saving_fraction": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.14957346122575554,
+            0.19612386227249745
+          ],
+          "estimate": 0.1733503688908684,
+          "method": "paired percentile bootstrap",
+          "minus": 0.023776907665112867,
+          "plus": 0.02277349338162904
+        },
+        "pace_to_baseline_condition_ratio": {
+          "conditions": 12,
+          "higher_cost": 3,
+          "lower_cost": 9,
+          "maximum": 1.0296596716450503,
+          "minimum": 0.5778927973129354,
+          "ties": 0
+        }
+      }
+    },
+    "run_counts": {
+      "fresh_grid": 2400,
+      "original_grid": 2400,
+      "real_arrivals": 120
+    },
+    "sensitivity": {
+      "adverse_probability": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0646822626821038,
+                1.1047603430103365
+              ],
+              "estimate": 1.0827315189735536,
+              "method": "paired percentile bootstrap",
+              "minus": 0.018049256291449822,
+              "plus": 0.022028824036782968
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.614918757475653,
+                0.6555902875779567
+              ],
+              "estimate": 0.6331753895388748,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0182566320632217,
+              "plus": 0.02241489803908192
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0707104907910627,
+                1.2370875118114255
+              ],
+              "estimate": 1.1442960166193143,
+              "method": "paired percentile bootstrap",
+              "minus": 0.07358552582825162,
+              "plus": 0.09279149519211116
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.647836177658129,
+                0.6966431566339272
+              ],
+              "estimate": 0.671411641734442,
+              "method": "paired percentile bootstrap",
+              "minus": 0.023575464076313057,
+              "plus": 0.025231514899485163
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0883142243101336,
+                1.1966568081942026
+              ],
+              "estimate": 1.1407333150162429,
+              "method": "paired percentile bootstrap",
+              "minus": 0.052419090706109284,
+              "plus": 0.05592349317795975
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.6833929855613043,
+                0.7410108816532525
+              ],
+              "estimate": 0.708085851816268,
+              "method": "paired percentile bootstrap",
+              "minus": 0.024692866254963697,
+              "plus": 0.03292502983698442
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.0901873995660196,
+            1.1606168510926662
+          ],
+          "estimate": 1.122586950203037,
+          "method": "paired percentile bootstrap",
+          "minus": 0.03239955063701738,
+          "plus": 0.03802990088962921
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 12,
+          "lower_cost": 0,
+          "maximum_ratio": 1.297101173774006,
+          "minimum_ratio": 1.0282186290579691,
+          "ties": 0
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.6631996486207119,
+            0.6832445740080736
+          ],
+          "estimate": 0.6708909610298616,
+          "method": "paired percentile bootstrap",
+          "minus": 0.007691312409149664,
+          "plus": 0.012353612978212025
+        },
+        "pace_vs_react": {
+          "higher_cost": 0,
+          "lower_cost": 12,
+          "maximum_ratio": 0.9891660081136526,
+          "minimum_ratio": 0.316088702629577,
+          "ties": 0
+        }
+      },
+      "adverse_probability_recurrence": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0977149168390983,
+                1.10230379699688
+              ],
+              "estimate": 1.1000566430970666,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0023417262579683573,
+              "plus": 0.0022471538998134477
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0760385456976898,
+                1.0802688417961819
+              ],
+              "estimate": 1.078395895703979,
+              "method": "paired percentile bootstrap",
+              "minus": 0.002357350006289227,
+              "plus": 0.0018729460922028984
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9884493145534471,
+                0.9894621185893926
+              ],
+              "estimate": 0.9889240433632018,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0004747288097547431,
+              "plus": 0.0005380752261907595
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.042467572006296,
+                1.0451112033533414
+              ],
+              "estimate": 1.0439057813536174,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0014382093473215285,
+              "plus": 0.0012054219997239546
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.0542568410179332,
+            1.0570926301072934
+          ],
+          "estimate": 1.0557921940547492,
+          "method": "paired percentile bootstrap",
+          "minus": 0.0015353530368160673,
+          "plus": 0.0013004360525441516
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 8,
+          "lower_cost": 4,
+          "maximum_ratio": 1.192614843043642,
+          "minimum_ratio": 0.984848326051888,
+          "ties": 0
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.014155857335432,
+            1.0150370677844471
+          ],
+          "estimate": 1.014635260451206,
+          "method": "paired percentile bootstrap",
+          "minus": 0.00047940311577399086,
+          "plus": 0.0004018073332412442
+        },
+        "pace_vs_react": {
+          "higher_cost": 4,
+          "lower_cost": 0,
+          "maximum_ratio": 1.0626307303427829,
+          "minimum_ratio": 1.0,
+          "ties": 8
+        }
+      },
+      "missing_price_r0.5": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0027784808618372,
+                1.02328114617988
+              ],
+              "estimate": 1.011956083512571,
+              "method": "paired percentile bootstrap",
+              "minus": 0.009177602650733752,
+              "plus": 0.01132506266730915
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.8057118653505604,
+                0.8726906435235324
+              ],
+              "estimate": 0.8381636397972044,
+              "method": "paired percentile bootstrap",
+              "minus": 0.032451774446644044,
+              "plus": 0.034527003726328
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0128274605285823,
+                1.049737114945361
+              ],
+              "estimate": 1.027386687641329,
+              "method": "paired percentile bootstrap",
+              "minus": 0.014559227112746598,
+              "plus": 0.022350427304032028
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9239403384326362,
+                0.9559764469808472
+              ],
+              "estimate": 0.9416281528887904,
+              "method": "paired percentile bootstrap",
+              "minus": 0.017687814456154194,
+              "plus": 0.014348294092056735
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9934783770691966,
+                1.0054884929633503
+              ],
+              "estimate": 0.9981239941454793,
+              "method": "paired percentile bootstrap",
+              "minus": 0.004645617076282638,
+              "plus": 0.007364498817871046
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7822948463022537,
+                0.8503510304189679
+              ],
+              "estimate": 0.817533051207944,
+              "method": "paired percentile bootstrap",
+              "minus": 0.035238204905690296,
+              "plus": 0.03281797921102392
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.006496520318769,
+            1.0193567548842002
+          ],
+          "estimate": 1.0124889217664597,
+          "method": "paired percentile bootstrap",
+          "minus": 0.005992401447690643,
+          "plus": 0.006867833117740529
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 6,
+          "lower_cost": 6,
+          "maximum_ratio": 1.0619250183464175,
+          "minimum_ratio": 0.9904839609560437,
+          "ties": 0
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.8490357538863718,
+            0.8827094941367563
+          ],
+          "estimate": 0.8657749479646464,
+          "method": "paired percentile bootstrap",
+          "minus": 0.016739194078274622,
+          "plus": 0.016934546172109877
+        },
+        "pace_vs_react": {
+          "higher_cost": 2,
+          "lower_cost": 10,
+          "maximum_ratio": 1.0193582449244318,
+          "minimum_ratio": 0.6350870980948562,
+          "ties": 0
+        }
+      },
+      "missing_price_r1": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.003448839388661,
+                1.0060294516527604
+              ],
+              "estimate": 1.0047147421870322,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0012659027983712434,
+              "plus": 0.0013147094657282032
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7916008367902482,
+                0.8755482901017437
+              ],
+              "estimate": 0.8328494717980104,
+              "method": "paired percentile bootstrap",
+              "minus": 0.04124863500776221,
+              "plus": 0.042698818303733344
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.8592190478599006,
+                0.9239827538708061
+              ],
+              "estimate": 0.8953249486255754,
+              "method": "paired percentile bootstrap",
+              "minus": 0.03610590076567488,
+              "plus": 0.02865780524523065
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "estimate": 1.0,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0,
+              "plus": 0.0
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7638934885790202,
+                0.8387021966310795
+              ],
+              "estimate": 0.8018356639276979,
+              "method": "paired percentile bootstrap",
+              "minus": 0.03794217534867772,
+              "plus": 0.03686653270338158
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.0011496131295536,
+            1.0020098172175869
+          ],
+          "estimate": 1.0015715807290106,
+          "method": "paired percentile bootstrap",
+          "minus": 0.0004219675994570071,
+          "plus": 0.0004382364885762158
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 4,
+          "lower_cost": 0,
+          "maximum_ratio": 1.005893976230997,
+          "minimum_ratio": 1.0,
+          "ties": 8
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.8224529388730355,
+            0.8627602666392797
+          ],
+          "estimate": 0.8433366947837612,
+          "method": "paired percentile bootstrap",
+          "minus": 0.020883755910725665,
+          "plus": 0.019423571855518573
+        },
+        "pace_vs_react": {
+          "higher_cost": 3,
+          "lower_cost": 9,
+          "maximum_ratio": 1.0301424296184172,
+          "minimum_ratio": 0.5852973853278759,
+          "ties": 0
+        }
+      },
+      "missing_price_r2": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0208608770327672,
+                1.043562443140907
+              ],
+              "estimate": 1.0322712406577295,
+              "method": "paired percentile bootstrap",
+              "minus": 0.011410363624962283,
+              "plus": 0.011291202483177498
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7874728124430688,
+                0.8811113376963337
+              ],
+              "estimate": 0.8338839456915177,
+              "method": "paired percentile bootstrap",
+              "minus": 0.04641113324844892,
+              "plus": 0.04722739200481596
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.9766799459925997,
+                1.0188897349250916
+              ],
+              "estimate": 0.9990066226497152,
+              "method": "paired percentile bootstrap",
+              "minus": 0.02232667665711552,
+              "plus": 0.019883112275376424
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.8263310428805032,
+                0.9026777558956904
+              ],
+              "estimate": 0.8682516735602701,
+              "method": "paired percentile bootstrap",
+              "minus": 0.041920630679766924,
+              "plus": 0.03442608233542033
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0207343559399478,
+                1.0409325583047866
+              ],
+              "estimate": 1.0300651143563342,
+              "method": "paired percentile bootstrap",
+              "minus": 0.00933075841638642,
+              "plus": 0.010867443948452404
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7556404077504124,
+                0.8371138883270776
+              ],
+              "estimate": 0.7970338014883578,
+              "method": "paired percentile bootstrap",
+              "minus": 0.04139339373794537,
+              "plus": 0.040080086838719775
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.0111402897326844,
+            1.0301906077978904
+          ],
+          "estimate": 1.0204476592212595,
+          "method": "paired percentile bootstrap",
+          "minus": 0.009307369488575024,
+          "plus": 0.009742948576630939
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 10,
+          "lower_cost": 2,
+          "maximum_ratio": 1.0421754125738851,
+          "minimum_ratio": 0.9554569150179705,
+          "ties": 0
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.8096200154763623,
+            0.8562637163130272
+          ],
+          "estimate": 0.8330564735800485,
+          "method": "paired percentile bootstrap",
+          "minus": 0.02343645810368622,
+          "plus": 0.023207242732978695
+        },
+        "pace_vs_react": {
+          "higher_cost": 3,
+          "lower_cost": 9,
+          "maximum_ratio": 1.0259818745864215,
+          "minimum_ratio": 0.569876609953561,
+          "ties": 0
+        }
+      },
+      "missing_price_r5": {
+        "by_model": {
+          "deepseek/deepseek-v4-flash-vision-exp": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.1365819631671532,
+                1.21907794653813
+              ],
+              "estimate": 1.1744788850294632,
+              "method": "paired percentile bootstrap",
+              "minus": 0.037896921862309974,
+              "plus": 0.04459906150866688
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.8034935568361834,
+                0.8964149198910439
+              ],
+              "estimate": 0.8498249320095177,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0463313751733343,
+              "plus": 0.04658998788152624
+            }
+          },
+          "qwen/qwen3.8-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0930651129209719,
+                1.198322591022802
+              ],
+              "estimate": 1.1429068019018138,
+              "method": "paired percentile bootstrap",
+              "minus": 0.04984168898084196,
+              "plus": 0.0554157891209881
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.8177498384844236,
+                0.8967258451862365
+              ],
+              "estimate": 0.8601238919369523,
+              "method": "paired percentile bootstrap",
+              "minus": 0.04237405345252865,
+              "plus": 0.03660195324928428
+            }
+          },
+          "z-ai/glm-5.3-flash": {
+            "equal_attempt_cost_to_pace_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                1.0784610770983105,
+                1.1373527053126977
+              ],
+              "estimate": 1.1058940557140293,
+              "method": "paired percentile bootstrap",
+              "minus": 0.027432978615718806,
+              "plus": 0.0314586495986684
+            },
+            "pace_to_react_mean_ratio": {
+              "bootstrap_samples": 2000,
+              "ci95": [
+                0.7905876118813411,
+                0.8658340016172343
+              ],
+              "estimate": 0.8285671216215942,
+              "method": "paired percentile bootstrap",
+              "minus": 0.0379795097402531,
+              "plus": 0.037266879995640156
+            }
+          }
+        },
+        "conditions": 12,
+        "equal_attempt_cost_to_pace_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            1.1109193806392863,
+            1.1746370128977957
+          ],
+          "estimate": 1.1410932475484354,
+          "method": "paired percentile bootstrap",
+          "minus": 0.03017386690914914,
+          "plus": 0.03354376534936021
+        },
+        "equal_attempt_cost_vs_pace": {
+          "higher_cost": 12,
+          "lower_cost": 0,
+          "maximum_ratio": 1.3109808824779559,
+          "minimum_ratio": 1.0029476063284788,
+          "ties": 0
+        },
+        "pace_to_react_mean_ratio": {
+          "bootstrap_samples": 2000,
+          "ci95": [
+            0.8219072415416145,
+            0.8709920789994471
+          ],
+          "estimate": 0.8461719818560214,
+          "method": "paired percentile bootstrap",
+          "minus": 0.02426474031440684,
+          "plus": 0.0248200971434257
+        },
+        "pace_vs_react": {
+          "higher_cost": 3,
+          "lower_cost": 9,
+          "maximum_ratio": 1.019901352802868,
+          "minimum_ratio": 0.6000623887565001,
+          "ties": 0
+        }
+      }
+    },
+    "status": "complete"
+  },
+  "paper_rule": "Use only complete claims for final prose; retain first-failure untested counts and lower-bound labels.",
+  "protocol_id": "three-building-model-extracted-v1",
+  "schema": "three-building-claim-deltas/3",
+  "status": "complete"
+}

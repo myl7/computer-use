@@ -1,0 +1,47 @@
+{
+  "schema": "qwen-availability-recovery/1",
+  "model": "qwen/qwen3.8-flash",
+  "provider": "Alibaba",
+  "prior_failures": {
+    "count": 2,
+    "status": 429,
+    "limit_source": "upstream_provider_shared_pool",
+    "retry_after_retained": false,
+    "notes": "No Retry-After header or numeric delay was retained. Provider text said retry shortly."
+  },
+  "superseded_backoff": {
+    "kind": "locally_chosen_conservative_delay",
+    "provider_required": false,
+    "seconds": 7200,
+    "implementation": [
+      "tmux wrapper sleep 6300",
+      "run_desktop_qwen_chain_v2.sh sleep 900"
+    ],
+    "decision": "Canceled while idle after confirming no Qwen call was live. Future retries use actual Retry-After when present, otherwise shorter bounded serialized availability checks."
+  },
+  "availability_probe": {
+    "started_at_utc": "2026-09-25T16:27:20Z",
+    "purpose": "development_provider_availability_preflight",
+    "http_status": 200,
+    "response_id": "gen-1790353641-E4JsZ3aQNW0j8lIKfyGu",
+    "model_served": "qwen/qwen3.8-flash",
+    "provider_served": "Alibaba",
+    "finish_reason": "stop",
+    "content_nonempty": true,
+    "completion_tokens": 24,
+    "cost_usd": 0.0000209682,
+    "wall_s": 1.817,
+    "receipt": "experimental-results/trace_verifier_20260925/web/provider_diagnostics/qwen_preflight_20260925T1627Z.json",
+    "limitation": "A short 64-token probe proves route availability only; it does not prove a full benchmark repair will finish."
+  },
+  "benchmark_resume": {
+    "started_at_utc": "2026-09-25T16:28:27Z",
+    "host": "cs11369a",
+    "pid_at_launch": 997030,
+    "tmux_session": "tv-desktop-qwen-now",
+    "attempt_id": "serial-rate-retry1",
+    "mode": "resume cached extractions, initial candidate, and prior repair-call ledger",
+    "writer_policy": "Launch serial2 only if Calc terminal_status becomes complete; otherwise stop."
+  },
+  "credit_status": "No HTTP 402 or insufficient-credit response observed."
+}

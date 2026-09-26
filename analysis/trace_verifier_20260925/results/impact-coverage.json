@@ -1,0 +1,39 @@
+{
+  "schema": "three-building-impact-coverage/1",
+  "protocol_id": "three-building-model-extracted-v1",
+  "main_configuration_source": "paper/measurement_update_20260918.json rows + qwen_rows",
+  "main_configuration_count": 20,
+  "additional_android_attempt_source": "experimental-results/guiexp_android/t19_repeated/*/*/attempt{1,2}",
+  "additional_android_attempt_count": 22,
+  "required_downstream_studies": [
+    "main_configuration_measurement",
+    "android_repeated_attempts",
+    "deployment_30_use",
+    "extracted_vs_supplied_diagnostic",
+    "paired_baseline_reuse_audit",
+    "gui_perturbation_probes",
+    "k1_k2_scope_audit",
+    "online_original_grid",
+    "online_fresh_grid",
+    "online_real_arrivals",
+    "online_policy_comparisons",
+    "online_ablations",
+    "online_price_sensitivity",
+    "online_probability_sensitivity"
+  ],
+  "invariants": {
+    "verification_tasks": 3,
+    "admission_passes_required": 3,
+    "starts_from_saved_initial_k3_program": true,
+    "scenario_probabilities_remain_assigned": true,
+    "changed_program_requires_new_deployment_evidence": true,
+    "supplemental_fixed_program_verification_is_pipeline_selection": false
+  },
+  "measurement_rules": {
+    "eligible_terminal_status": "complete",
+    "nonmeasurement_terminal_statuses": ["incomplete", "refused", "provider_error", "insufficient_credit", "timeout", "operator_aborted"],
+    "charges_in_C": ["reused_initial_translation", "reused_initial_builder", "new_extraction", "new_repair"],
+    "deployment_reuse_requires": ["byte_identical_program", "unchanged_execution_protocol", "unchanged_input_protocol"],
+    "verification_reporting": "Report Pass/Fail or explicit pass/fail/untested counts; never divide passed tasks by three when short-circuit leaves tasks untested."
+  }
+}

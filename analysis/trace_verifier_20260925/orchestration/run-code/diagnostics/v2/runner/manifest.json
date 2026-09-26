@@ -1,0 +1,170 @@
+{
+ "protocol_id": "three-building-diagnostics-v1",
+ "policy": "reuse only byte-identical selected programs; repeats excluded",
+ "selection_path": "analysis/trace_verifier_20260925/results/evidence-selection.json",
+ "selection_sha256": "384acf3e6af63b8664b70bea7d5bca409b956985e3460d21b426d7cd322ddde3",
+ "cells": [
+  {
+   "model": "qwen/qwen3.8-flash",
+   "model_slug": "qwen_qwen3.8-flash",
+   "family": "ContactsAddContact",
+   "source_result": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/ContactsAddContact/pilot2/result.json",
+   "source_result_sha256": "34185bfd60f2fdff556898151805febc5eff45ad5ea2972716c164b1b8875a01",
+   "old_program": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/ContactsAddContact/verified_program.py",
+   "old_program_sha256": "9c429cccc7fb418a74b03e429d745ac39abfbbd10bc825c516eabbcbebc0dba8",
+   "selected_program_sha256": "9c429cccc7fb418a74b03e429d745ac39abfbbd10bc825c516eabbcbebc0dba8",
+   "program_byte_identical": true,
+   "t18": {
+    "action": "reuse",
+    "historical_path": "experimental-results/guiexp_android/t18_fragility/qwen_qwen3.8-flash/fragility.json",
+    "historical_sha256": "abad6fe2b04ddfadae646e1b6f7d0ba654cc10d42e84537b7dec6dcf83532b9b"
+   },
+   "t20": {
+    "action": "reuse",
+    "historical_path": "experimental-results/guiexp_android/t20_gate_extraction/qwen_qwen3.8-flash/ContactsAddContact/extraction.json",
+    "historical_sha256": "a570523566769e7650b9694b23debd917e7c72cdf0bf11fc214f31ebd84fa439"
+   },
+   "paired_agent_t21": {
+    "action": "reuse_agent_only_for_identical_tasks",
+    "limitation": "program-side comparison must use revised program when changed"
+   },
+   "attempt_role": "initial",
+   "selection_reason": "first-protocol-valid-verifier-attempt-promoted-after-provenance-audit"
+  },
+  {
+   "model": "qwen/qwen3.8-flash",
+   "model_slug": "qwen_qwen3.8-flash",
+   "family": "MarkorDeleteNote",
+   "source_result": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/MarkorDeleteNote/main/result.json",
+   "source_result_sha256": "f4d0b2fc187c2754d8d830e3b999f638814ec4ad036d0279d642553f07d8a5e1",
+   "old_program": "experimental-results/guiexp_android/t16_build/qwen_qwen3.8-flash/MarkorDeleteNote/verified_program.py",
+   "old_program_sha256": "381252e8135780fe395b13ca3ae9e36d8fc76936f8b05bcedf506d872ceaf0cd",
+   "selected_program_sha256": "381252e8135780fe395b13ca3ae9e36d8fc76936f8b05bcedf506d872ceaf0cd",
+   "program_byte_identical": true,
+   "t18": {
+    "action": "reuse",
+    "historical_path": "experimental-results/guiexp_android/t18_fragility/qwen_qwen3.8-flash/fragility.json",
+    "historical_sha256": "abad6fe2b04ddfadae646e1b6f7d0ba654cc10d42e84537b7dec6dcf83532b9b"
+   },
+   "t20": {
+    "action": "reuse",
+    "historical_path": "experimental-results/guiexp_android/t20_gate_extraction/qwen_qwen3.8-flash/MarkorDeleteNote/extraction.json",
+    "historical_sha256": "7b32b7afc51e03513bdbda6a6955cee8088533c33c49ae0dc8ecb5d538507cf5"
+   },
+   "paired_agent_t21": {
+    "action": "reuse_agent_only_for_identical_tasks",
+    "limitation": "program-side comparison must use revised program when changed"
+   },
+   "attempt_role": "initial",
+   "selection_reason": "first-protocol-valid-canonical-main-after-provenance-audit"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "ContactsAddContact",
+   "source_result": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/ContactsAddContact/main/result.json",
+   "source_result_sha256": "055970ea6864734e5edb5823942d01d94ffe477cf0be86900c8b0e478cebf0b4",
+   "old_program": "experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/ContactsAddContact/verified_program.py",
+   "old_program_sha256": "c045e7df93ec4fa17e8b1f1a622abb0d7e9a01fb894725faaf6b1ac60ed16dc5",
+   "selected_program_sha256": "4b119c0706e216c02b63ca381500a54100c89283249cfa9e857d191597837255",
+   "program_byte_identical": false,
+   "t18": {
+    "action": "rerun",
+    "historical_path": "experimental-results/guiexp_android/t18_fragility/z-ai_glm-5.3-flash/fragility.json",
+    "historical_sha256": "d2264872c84cbe4cf87f11aa75cdd03ad19281062e7f9fcf3b8ac5f36fdf712e"
+   },
+   "t20": {
+    "action": "rerun",
+    "historical_path": "experimental-results/guiexp_android/t20_gate_extraction/z-ai_glm-5.3-flash/ContactsAddContact/extraction.json",
+    "historical_sha256": "0b7e2cbbadb1eae43aa041fce2ebacd334e801191f4c7d0758bda194cd9a1e6f"
+   },
+   "paired_agent_t21": {
+    "action": "reuse_agent_only_for_identical_tasks",
+    "limitation": "program-side comparison must use revised program when changed"
+   },
+   "attempt_role": "initial",
+   "selection_reason": "first-protocol-valid-canonical-main-after-provenance-audit"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "MarkorDeleteNote",
+   "source_result": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/MarkorDeleteNote/main/result.json",
+   "source_result_sha256": "371d70ff49e6cae66d803882c2b2ec8ff0c9c1f727f80861b7f08c1e85077fe3",
+   "old_program": "experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/MarkorDeleteNote/verified_program.py",
+   "old_program_sha256": "1895c0c4096a53e90431b9d7d566ff2504ba8d6addcaed58b155a1d35d7156fd",
+   "selected_program_sha256": "870408a0aed2258de5bc5e589295f122fb62ae2f018dc77d5d57c7808a639c8f",
+   "program_byte_identical": false,
+   "t18": {
+    "action": "rerun",
+    "historical_path": "experimental-results/guiexp_android/t18_fragility/z-ai_glm-5.3-flash/fragility.json",
+    "historical_sha256": "d2264872c84cbe4cf87f11aa75cdd03ad19281062e7f9fcf3b8ac5f36fdf712e"
+   },
+   "t20": {
+    "action": "rerun",
+    "historical_path": "experimental-results/guiexp_android/t20_gate_extraction/z-ai_glm-5.3-flash/MarkorDeleteNote/extraction.json",
+    "historical_sha256": "6d40dbb977078da61ad049dec51bf637590fea118db8502c7a7f7ee35327dc36"
+   },
+   "paired_agent_t21": {
+    "action": "reuse_agent_only_for_identical_tasks",
+    "limitation": "program-side comparison must use revised program when changed"
+   },
+   "attempt_role": "initial",
+   "selection_reason": "first-protocol-valid-verifier-attempt-after-v2-resume-and-provenance-audit"
+  }
+ ],
+ "missing_selected_artifact_coverage": [
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "ContactsAddContact"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "FilesMoveFile"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "MarkorCreateNote"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "MarkorDeleteNote"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "OsmAndFavorite"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "OsmAndMarker"
+  },
+  {
+   "model_slug": "deepseek_deepseek-v4-flash-vision-exp",
+   "family": "SimpleCalendarAddOneEvent"
+  },
+  {
+   "model_slug": "qwen_qwen3.8-flash",
+   "family": "SimpleCalendarAddOneEvent"
+  },
+  {
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "FilesMoveFile"
+  },
+  {
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "MarkorCreateNote"
+  },
+  {
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "OsmAndFavorite"
+  },
+  {
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "SimpleCalendarAddOneEvent"
+  },
+  {
+   "model_slug": "z-ai_glm-5.3-flash",
+   "family": "SimpleCalendarAddOneEvent.spoiled-20260911-0354"
+  }
+ ]
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teaser - When Should a Recurring Task Family Be Compiled?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=block" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; font-family: "Source Sans 3", Arial, sans-serif; }
+    svg { display: block; }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <script>
+    const FONT = '"Source Sans 3", Arial, sans-serif';
+    // Every colour used for text clears 4.5:1 on white.
+    const C = {
+      ink: "#243447", muted: "#5E6E7E", line: "#C2CEDA", faint: "#F6F8FB",
+      blueT: "#34597F", blueFill: "#4F78A7", blueDeep: "#2F5580", blueTint: "#E6EEF7",
+      coralT: "#98493F", coralFill: "#C86A5A", coralTint: "#FAE7E2",
+      amberT: "#85580F", amberFill: "#E0C08A", amberTint: "#FBF0DC",
+      tealT: "#2C6459", tealFill: "#3F8073", tealTint: "#F1F9F7",
+      // 3D backing layers, one tone darker than the fills they sit behind.
+      shLight: "#CBD5DF", shBlueTint: "#BFD3E6", shBlueDeep: "#1D3650",
+      shAmberT: "#5E3F0B", shTealFill: "#2C5D53", shCoralT: "#6E332C"
+    };
+
+    /* ---- grid ---------------------------------------------------------- */
+    const W = 780, H = 446;
+    const panelW = [208, 542];
+    const panelX = [10, 228];
+    const panelY = 25, panelH = 325;              // 25..350
+    const STRIP_Y = 362, STRIP_H = 74;            // 362..436
+
+    const svg = d3.select("#chart").append("svg")
+      .attr("width", W).attr("height", H).attr("viewBox", `0 0 ${W} ${H}`)
+      .attr("data-figure", "compile-problem-teaser-v13");
+    // Full-canvas background so the export is not cropped to the drawn content.
+    svg.append("rect").attr("x", 0).attr("y", 0).attr("width", W).attr("height", H)
+      .attr("fill", "#fff").attr("data-layer", "canvas");
+    const defs = svg.append("defs");
+    defs.append("marker").attr("id", "arrow-blue").attr("viewBox", "0 0 10 8")
+      .attr("refX", 9).attr("refY", 4).attr("markerWidth", 6).attr("markerHeight", 5).attr("orient", "auto")
+      .append("path").attr("d", "M0,0 L10,4 L0,8 Z").attr("fill", C.blueT);
+    defs.append("marker").attr("id", "arrow-blue-sm").attr("viewBox", "0 0 10 8")
+      .attr("refX", 8).attr("refY", 4).attr("markerWidth", 4.5).attr("markerHeight", 4).attr("orient", "auto")
+      .append("path").attr("d", "M0,0 L10,4 L0,8 Z").attr("fill", C.blueT);
+
+    function text(g, x, y, value, size, weight = 400, fill = C.ink, anchor = "start") {
+      return g.append("text").attr("x", x).attr("y", y).attr("font-family", FONT)
+        .attr("font-size", size).attr("font-weight", weight).attr("fill", fill)
+        .attr("text-anchor", anchor).text(value);
+    }
+    // Flat rect (bars and dashed placeholder slots stay flat).
+    function box(g, x, y, w, h, fill, stroke, key, rx = 4) {
+      return g.append("rect").attr("x", x).attr("y", y).attr("width", w).attr("height", h).attr("rx", rx)
+        .attr("fill", fill).attr("stroke", stroke).attr("stroke-width", 1).attr("data-node", key);
+    }
+    // Double-layer offset pseudo-3D, a same-size darker sheet 2.5px behind.
+    function box3d(g, x, y, w, h, fill, stroke, key, rx, shadow) {
+      g.append("rect").attr("x", x + 2.5).attr("y", y + 2.5).attr("width", w).attr("height", h).attr("rx", rx)
+        .attr("fill", shadow).attr("data-node", `${key}-3d`);
+      return box(g, x, y, w, h, fill, stroke, key, rx);
+    }
+    function ellipsis(g, cx, cy, key) {
+      [-7, 0, 7].forEach((dx, i) => g.append("circle").attr("cx", cx + dx).attr("cy", cy).attr("r", 2)
+        .attr("fill", C.muted).attr("data-note", `${key}-${i + 1}`));
+    }
+    function panel(i, key, accent) {
+      const g = svg.append("g").attr("data-panel", key);
+      g.append("rect").attr("x", panelX[i]).attr("y", panelY).attr("width", panelW[i]).attr("height", panelH)
+        .attr("rx", 7).attr("fill", i === 1 ? "#FCFDFE" : C.faint).attr("stroke", C.line).attr("stroke-width", 0.9);
+      g.append("rect").attr("x", panelX[i]).attr("y", panelY).attr("width", panelW[i]).attr("height", 4)
+        .attr("fill", accent).attr("rx", 2);
+      return g;
+    }
+
+    /* ---- panel 1: one family, new value on every arrival ---------------- */
+    const family = panel(0, "task-family", C.blueT);
+    const fx = 22, fw = 184, fc = fx + fw / 2;
+    text(family, fx, 48, "1  ONE TASK FAMILY", 16, 700, C.blueT).attr("letter-spacing", 0.2);
+    ["Amir Muller", "Nora Gonzalez", "Jae-won Park"].forEach((value, i) => {
+      const y = 60 + i * 66;
+      const card = family.append("g").attr("data-task", `arrival-${i + 1}`);
+      box3d(card, fx, y, fw, 56, "#fff", C.line, `arrival-card-${i + 1}`, 5, C.shLight);
+      text(card, fx + 10, y + 21, "add contact", 14, 600, C.muted);
+      card.append("rect").attr("x", fx + 10).attr("y", y + 30).attr("width", fw - 20).attr("height", 22).attr("rx", 4)
+        .attr("fill", C.tealTint).attr("stroke", C.tealT).attr("stroke-width", 0.9).attr("stroke-dasharray", "4,2.5")
+        .attr("data-node", `binding-${i + 1}`);
+      text(card, fc, y + 46, value, 15, 700, C.ink, "middle");
+    });
+    box3d(family, fx, 262, fw, 34, C.blueTint, C.blueT, "shared-procedure", 6, C.shBlueTint);
+    text(family, fc, 284, "open → fill → save", 15.5, 700, C.blueT, "middle");
+    text(family, fc, 322, "same steps, new value", 14, 600, C.muted, "middle").attr("data-note", "recurrence");
+
+    /* ---- panel 2: what each path pays ---------------------------------- */
+    const paths = panel(1, "cost-per-arrival", C.coralT);
+    const oneX = 240, oneW = 112, oneC = oneX + oneW / 2;
+    const DIV = 362, BASE_R = 578;
+    const AX = i => 374 + i * 54, barW = 36, dots = 592;
+    const chipX = 604, chipW = 42, capX = 654;
+
+    text(paths, oneX, 48, "2  WHAT EACH ARRIVAL COSTS", 16, 700, C.ink).attr("letter-spacing", 0.2);
+    text(paths, oneC, 72, "one-time", 14, 600, C.muted, "middle").attr("data-region", "one-time");
+    text(paths, AX(0), 72, "per arrival of the family", 14, 600, C.muted).attr("data-region", "per-arrival");
+    text(paths, 758, 72, "bar height = cost per arrival", 14, 700, C.ink, "end").attr("data-key", "height-encodes-cost");
+    // Divider, broken around the row titles that cross it.
+    [[84, 156], [176, 274], [292, 344]].forEach(([y1, y2], i) =>
+      paths.append("line").attr("x1", DIV).attr("x2", DIV).attr("y1", y1).attr("y2", y2)
+        .attr("stroke", C.line).attr("stroke-width", 1).attr("stroke-dasharray", "4,4")
+        .attr("data-divider", `one-time-vs-per-arrival-${i + 1}`));
+
+    function row(key, title, titleY, baseY, accent, tint, barH, chipSym, caption) {
+      const g = paths.append("g").attr("data-row", key);
+      text(g, oneX, titleY, title, 16, 700, accent);
+      g.append("line").attr("x1", oneX).attr("x2", BASE_R).attr("y1", baseY).attr("y2", baseY)
+        .attr("stroke", C.line).attr("stroke-width", 1).attr("data-baseline", key);
+      d3.range(4).forEach(i => text(g, AX(i) + barW / 2, baseY + 18, `${i + 1}`, 14, 600, C.muted, "middle"));
+      ellipsis(g, dots, baseY - barH / 2, `${key}-continues`);
+      const cy = baseY - barH / 2;
+      box3d(g, chipX, cy - 13, chipW, 26, tint, accent, `quantity-${key}`, 5,
+        key === "program" ? C.shBlueTint : key === "document" ? "#EAD8BC" : "#EFCFC7");
+      g.append("text").attr("x", chipX + chipW / 2).attr("y", cy + 6).attr("font-family", FONT)
+        .attr("font-size", 17).attr("font-weight", 700).attr("font-style", "italic")
+        .attr("fill", accent).attr("text-anchor", "middle").text(chipSym);
+      caption.forEach((l, i) => text(g, capX, cy + 5 - (caption.length - 1) * 8 + i * 16, l, 13, 600, C.muted));
+      return g;
+    }
+
+    // Agent: a full run on every arrival, nothing paid up front.
+    const rowA = row("agent", "Agent", 96, 126, C.coralT, C.coralTint, 28, "c", ["full run"]);
+    text(rowA, oneC, 122, "none", 14, 600, C.muted, "middle").attr("data-node", "agent-no-setup");
+    d3.range(4).forEach(i => box(rowA, AX(i), 98, barW, 28, C.coralFill, C.coralT, `agent-run-${i + 1}`, 3));
+
+    // Program: one compile + verify, then one extraction call per arrival.
+    const rowB = row("program", "Compiled program", 170, 244, C.blueT, C.blueTint, 8, "d", ["one extraction", "call"]);
+    box3d(rowB, oneX, 180, oneW, 18, C.blueDeep, C.blueDeep, "compile-and-verify", 4, C.shBlueDeep);
+    text(rowB, oneC, 193, "compile + verify", 12.5, 700, "#fff", "middle");
+    // The price is random: the same spend forks into a verified or a rejected attempt.
+    [[267.5, 218, "fork-verified"], [324.5, 206, "fork-rejected"]].forEach(([x, y2, key]) =>
+      rowB.append("line").attr("x1", x).attr("x2", x).attr("y1", 200).attr("y2", y2)
+        .attr("stroke", C.blueDeep).attr("stroke-width", 1.7)
+        .attr("marker-end", "url(#arrow-blue-sm)").attr("data-edge", key));
+    box3d(rowB, 240, 224, 55, 20, C.tealFill, C.tealT, "verified-branch", 3, C.shTealFill);
+    rowB.append("path").attr("d", "M264,234 l-3.5,3.5 l-2,-2 l5.5,-5.5 l5.5,5.5 l-2,2 Z")
+      .attr("fill", "#fff").attr("data-symbol", "verified-check");
+    text(rowB, 267.5, 259, "verified", 11.5, 700, C.tealT, "middle");
+    box3d(rowB, 297, 212, 55, 32, C.coralT, C.coralT, "rejected-branch", 3, C.shCoralT);
+    rowB.append("path").attr("d", "M321,225 l7,7 M328,225 l-7,7")
+      .attr("stroke", "#fff").attr("stroke-width", 2).attr("stroke-linecap", "round").attr("data-symbol", "rejected-cross");
+    text(rowB, 324.5, 259, "rejected", 11.5, 700, C.coralT, "middle");
+    text(rowB, 324.5, 272, "costs more", 11, 600, C.coralT, "middle");
+    d3.range(3).forEach(i => box(rowB, AX(i), 236, barW, 8, C.blueFill, C.blueDeep, `program-use-${i + 1}`, 2));
+    // Interface drift: the arrival after it pays a full run, and the price is paid again.
+    box(rowB, AX(3), 216, barW, 28, C.coralFill, C.coralT, "program-drift-run", 3);
+    text(rowB, AX(3) + barW / 2, 277, "agent fallback", 9.5, 600, C.coralT, "middle").attr("data-note", "drift-fallback");
+    // A second, same-styled compile + verify chip beside arrival 4 makes the repeated price visible.
+    box3d(rowB, 468, 174, 64, 28, C.blueDeep, C.blueDeep, "compile-again", 4, C.shBlueDeep);
+    text(rowB, 500, 186, "compile", 10, 700, "#fff", "middle");
+    text(rowB, 500, 197, "+ verify", 10, 700, "#fff", "middle");
+    rowB.append("path").attr("data-symbol", "drift-bolt")
+      .attr("d", "M555.8,199.5 L551.3,207.2 L554.1,207.2 L552.9,213.5 L557.9,206.4 L555.1,206.4 L556.8,199.5 Z")
+      .attr("fill", C.ink);
+    rowB.append("path").attr("d", "M549,201 C546,193 543,187 537,186").attr("fill", "none")
+      .attr("stroke", C.blueT).attr("stroke-width", 1.3).attr("stroke-dasharray", "5,3.5")
+      .attr("marker-end", "url(#arrow-blue-sm)").attr("data-edge", "drift-to-compile-again");
+    text(rowB, 455, 219, "interface drift → compile again", 10.5, 600, C.blueT, "middle").attr("data-note", "drift");
+
+    // Document: a small one-time compile, and the run is still paid in full.
+    const rowC = row("document", "Compiled document", 288, 322, C.amberT, C.amberTint, 28, "≈ c", ["still a full", "run"]);
+    box3d(rowC, oneX, 304, oneW, 18, C.amberT, C.amberT, "document-compile", 4, C.shAmberT);
+    text(rowC, oneC, 317, "compile", 13, 700, "#fff", "middle");
+    d3.range(4).forEach(i => box(rowC, AX(i), 294, barW, 28, C.amberFill, C.amberT, `document-run-${i + 1}`, 3));
+
+    /* ---- the three challenges ------------------------------------------- */
+    const strip = svg.append("g").attr("data-panel", "challenges");
+    text(strip, 20, 390, "Unknown when", 15, 700, C.ink);
+    text(strip, 20, 410, "the choice is made", 15, 700, C.ink);
+    [
+      { key: "counterfactual-saving", accent: C.blueT, title: "Counterfactual saving",
+        lines: ["only the served path", "is observed"], three: false },
+      { key: "random-price", accent: C.coralT, title: "Random price",
+        lines: ["a compilation can fail,", "and drift repeats", "the price"], three: true },
+      { key: "unknown-arrivals", accent: C.amberT, title: "Unknown arrivals",
+        lines: ["how many more uses", "will come"], three: false }
+    ].forEach((c, i) => {
+      const x = 206 + i * 192;
+      const g = strip.append("g").attr("data-challenge", c.key);
+      box3d(g, x, STRIP_Y, 180, STRIP_H, "#fff", C.line, `challenge-card-${i + 1}`, 6, C.shLight);
+      g.append("rect").attr("x", x).attr("y", STRIP_Y).attr("width", 4).attr("height", STRIP_H)
+        .attr("rx", 2).attr("fill", c.accent);
+      text(g, x + 16, STRIP_Y + 26, c.title, 14.5, 700, C.ink);
+      const ys = c.three ? [STRIP_Y + 43, STRIP_Y + 57, STRIP_Y + 70] : [STRIP_Y + 49, STRIP_Y + 65];
+      c.lines.forEach((l, j) => text(g, x + 16, ys[j], l, 12.5, 600, C.muted));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1767 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "family": "SimpleCalendarAddOneEvent",
+ "attempt_id": "main",
+ "attempt_role": "initial",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v9-d6c06629e029815d",
+ "status": "complete",
+ "terminal_status": "complete",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/artifact_k3_code.py",
+   "sha256": "ff1d5479702eebadc022fb3fb620f48bb4f5688419fbf482c7784d6d49518a10"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/build.json",
+    "sha256": "fec1cb61df4c5f5ed24168546f8480c16c3493d0b58146fb4a5da2206e2632a1"
+   },
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/translation.json",
+    "sha256": "a010d24b8e5dacd112d2eb582c7d668c56ff003d44f08f356217413b3d94af30"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+    "trajectory_sha256": "ac2c21bd73a5a507896f22c0737c8acc4f91bbea5cb4086fa9303c449e0da1dc",
+    "recorded_task_id": "SimpleCalendarAddOneEvent__discover__s1",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v11/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded",
+    "trajectory_resolution": {
+     "kind": "live_repo_absolute_suffix",
+     "recorded_path": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl",
+     "resolved_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s1/trajectory.jsonl"
+    }
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 18,
+    "duration_mins": 15,
+    "event_title": "Workshop on Project X",
+    "event_description": "We will understand software updates. Looking forward to productive discussions.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697738400, end_ts=1697739300, title='Workshop on Project X', location='', description='We will understand software updates. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696431600, end_ts=1696432500, title='Appointment for Campaign', location='', description=\"We will strategize about upcoming project milestones. Let's be punctual.\", repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698753600, end_ts=1698755400, title='Appointment for Project X', location='', description='We will organize product launch. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697612400, end_ts=1697615100, title='Call with Marketing', location='', description='We will celebrate software updates. Please bring relevant documents.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697302800, end_ts=1697303700, title='Call with Marketing', location='', description='We will prepare for marketing strategies. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698670800, end_ts=1698672600, title='Workshop on Budget Planning', location='', description='We will strategize about software updates. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698454800, end_ts=1698458400, title='Call with Marketing', location='', description='We will explore contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+    "trajectory_sha256": "1ccbfd5053c32de73f1380067e6a37dc641c48ea71d309113129eb754edd084d",
+    "recorded_task_id": "SimpleCalendarAddOneEvent__discover__s2",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v11/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded",
+    "trajectory_resolution": {
+     "kind": "live_repo_absolute_suffix",
+     "recorded_path": "/Users/myl/app/computer-use/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl",
+     "resolved_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__SimpleCalendarAddOneEvent__s2/trajectory.jsonl"
+    }
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 16,
+    "hour": 2,
+    "duration_mins": 15,
+    "event_title": "Workshop on Annual Report",
+    "event_description": "We will prepare for team roles.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697421600, end_ts=1697422500, title='Workshop on Annual Report', location='', description='We will prepare for team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696269600, end_ts=1696271400, title='Appointment for Campaign', location='', description='We will organize client feedback. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696813200, end_ts=1696814100, title='Workshop on Campaign', location='', description='We will review contract details. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696611600, end_ts=1696613400, title='Call with Bob', location='', description='We will discuss annual budget. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696521600, end_ts=1696524300, title='Catch up on Annual Report', location='', description='We will understand contract details. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697108400, end_ts=1697112000, title='Call with HR', location='', description='We will understand business objectives.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697443200, end_ts=1697446800, title='Catch up on Budget Planning', location='', description='We will understand software updates. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698166800, end_ts=1698170400, title='Appointment for Annual Report', location='', description='We will review annual budget. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698544800, end_ts=1698547500, title='Review session for Project X', location='', description='We will celebrate marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698480000, end_ts=1698481800, title='Call with Alice', location='', description='We will explore upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697108400, end_ts=1697110200, title='Call with Marketing', location='', description='We will discuss marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698717600, end_ts=1698718500, title='Meeting with Marketing', location='', description='We will discuss client feedback. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698382800, end_ts=1698384600, title='Catch up on Project X', location='', description='We will explore upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696467600, end_ts=1696468500, title='Workshop on Project X', location='', description='We will prepare for client feedback. Please bring relevant documents.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696946400, end_ts=1696947300, title='Workshop on Campaign', location='', description='We will strategize about annual budget. Remember to confirm attendance.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696366800, end_ts=1696369500, title='Meeting with Alice', location='', description='We will understand annual budget. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697536800, end_ts=1697538600, title='Workshop on Budget Planning', location='', description='We will prepare for contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698080400, end_ts=1698082200, title='Review session for Project X', location='', description='We will prepare for upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696568400, end_ts=1696569300, title='Appointment for Annual Report', location='', description='We will organize upcoming project milestones.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696802400, end_ts=1696806000, title='Meeting with the Team', location='', description=\"We will finalize product launch. Let's be punctual.\", repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+    "trajectory_sha256": "7824ca418a9eea04ef8698468600f7ade85fb0c94cab9d252cddd32b2c8be0e5",
+    "recorded_task_id": "SimpleCalendarAddOneEvent__discover__s3",
+    "generator_family": "SimpleCalendarAddOneEvent",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v11/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded",
+    "trajectory_resolution": {
+     "kind": "live_repo_absolute_suffix",
+     "recorded_path": "../experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl",
+     "resolved_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/explore/s3_a0/trajectory.jsonl"
+    }
+   },
+   "truth_params": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 18,
+    "duration_mins": 30,
+    "event_title": "Workshop on Campaign",
+    "event_description": "We will strategize about marketing strategies.",
+    "row_objects": [
+     "CalendarEvent(start_ts=1697997600, end_ts=1697999400, title='Workshop on Campaign', location='', description='We will strategize about marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ],
+    "noise_row_objects": [
+     "CalendarEvent(start_ts=1696870800, end_ts=1696872600, title='Call with Marketing', location='', description='We will understand business objectives. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697860800, end_ts=1697862600, title='Review session for Annual Report', location='', description='We will organize contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697940000, end_ts=1697941800, title='Catch up on Project X', location='', description='We will prepare for upcoming project milestones. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697842800, end_ts=1697846400, title='Review session for Campaign', location='', description='We will explore software updates.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698577200, end_ts=1698578100, title='Meeting with Bob', location='', description='We will understand product launch. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698264000, end_ts=1698266700, title='Appointment for Campaign', location='', description='We will strategize about client feedback. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696759200, end_ts=1696760100, title='Workshop on Annual Report', location='', description='We will review business objectives.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698091200, end_ts=1698093000, title='Review session for Budget Planning', location='', description='We will prepare for marketing strategies.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697486400, end_ts=1697490000, title='Meeting with the Team', location='', description='We will finalize contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696150800, end_ts=1696154400, title='Appointment for Project X', location='', description='We will discuss upcoming project milestones. Snacks will be provided.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1697043600, end_ts=1697046300, title='Catch up on Annual Report', location='', description='We will discuss team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696302000, end_ts=1696302900, title='Call with HR', location='', description='We will prepare for team roles.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698022800, end_ts=1698025500, title='Workshop on Budget Planning', location='', description='We will plan contract details. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1698508800, end_ts=1698512400, title='Review session for Project X', location='', description='We will strategize about business objectives. Looking forward to productive discussions.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)",
+     "CalendarEvent(start_ts=1696982400, end_ts=1696986000, title='Catch up on Budget Planning', location='', description='We will discuss contract details.', repeat_interval=0, repeat_rule=0, reminder_1_minutes=-1, reminder_2_minutes=-1, reminder_3_minutes=-1, reminder_1_type=0, reminder_2_type=0, reminder_3_type=0, repeat_limit=0, repetition_exceptions='[]', attendees='', import_id='', time_zone='UTC', flags=0, event_type=1, parent_id=0, last_updated=0, source='imported-ics', availability=0, color=0, type=0, id=-1)"
+    ]
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-19 at 18h with the title 'Workshop on Project X' and the description 'We will understand software updates. Looking forward to productive discussions.'. The event should last for 15 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\":2023,\"month\":10,\"day\":19,\"hour\":18,\"duration_mins\":15,\"event_title\":\"Workshop on Project X\",\"event_description\":\"We will understand software updates. Looking forward to productive discussions.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 19,
+    "hour": 18,
+    "duration_mins": 15,
+    "event_title": "Workshop on Project X",
+    "event_description": "We will understand software updates. Looking forward to productive discussions."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 264,
+     "cached_tokens": 0,
+     "completion_tokens": 108,
+     "total_tokens": 372,
+     "cost_usd": 0.0001280664,
+     "usage": {
+      "prompt_tokens": 264,
+      "completion_tokens": 108,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001280664
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.438,
+     "response_id": "gen-1790351681-bmKftO1wEMRzbdfdhrmY",
+     "finish_reason": "stop",
+     "raw_output_length": 202,
+     "reasoning_length": 237
+    }
+   ],
+   "wall_s": 1.438
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-16 at 2h with the title 'Workshop on Annual Report' and the description 'We will prepare for team roles.'. The event should last for 15 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\":2023,\"month\":10,\"day\":16,\"hour\":2,\"duration_mins\":15,\"event_title\":\"Workshop on Annual Report\",\"event_description\":\"We will prepare for team roles.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 16,
+    "hour": 2,
+    "duration_mins": 15,
+    "event_title": "Workshop on Annual Report",
+    "event_description": "We will prepare for team roles."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 259,
+     "cached_tokens": 0,
+     "completion_tokens": 94,
+     "total_tokens": 353,
+     "cost_usd": 0.0001178298,
+     "usage": {
+      "prompt_tokens": 259,
+      "completion_tokens": 94,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001178298
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 0.758,
+     "response_id": "gen-1790351682-MaS3yUaPfKld8YidN8Uj",
+     "finish_reason": "stop",
+     "raw_output_length": 157,
+     "reasoning_length": 171
+    }
+   ],
+   "wall_s": 0.758
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "In Simple Calendar Pro, create a calendar event on 2023-10-22 at 18h with the title 'Workshop on Campaign' and the description 'We will strategize about marketing strategies.'. The event should last for 30 mins.",
+    "family": "SimpleCalendarAddOneEvent",
+    "fields": [
+     "year",
+     "month",
+     "day",
+     "hour",
+     "duration_mins",
+     "event_title",
+     "event_description"
+    ]
+   },
+   "outputs": [
+    "{\"year\":2023,\"month\":10,\"day\":22,\"hour\":18,\"duration_mins\":30,\"event_title\":\"Workshop on Campaign\",\"event_description\":\"We will strategize about marketing strategies.\"}"
+   ],
+   "binding": {
+    "year": 2023,
+    "month": 10,
+    "day": 22,
+    "hour": 18,
+    "duration_mins": 30,
+    "event_title": "Workshop on Campaign",
+    "event_description": "We will strategize about marketing strategies."
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 259,
+     "cached_tokens": 0,
+     "completion_tokens": 98,
+     "total_tokens": 357,
+     "cost_usd": 0.0001204434,
+     "usage": {
+      "prompt_tokens": 259,
+      "completion_tokens": 98,
+      "cached_tokens": 0,
+      "cost_usd": 0.0001204434
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 0.8,
+     "response_id": "gen-1790351682-QSIFSkRIqwawcXGHZxqN",
+     "finish_reason": "stop",
+     "raw_output_length": 168,
+     "reasoning_length": 203
+    }
+   ],
+   "wall_s": 0.8
+  }
+ ],
+ "initial_program_sha256": "ff1d5479702eebadc022fb3fb620f48bb4f5688419fbf482c7784d6d49518a10",
+ "final_program_sha256": "aaf4eba02485d2a920ea889bbbf74e00330c758801569f05de5ee9f4aa738fbb",
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "ff1d5479702eebadc022fb3fb620f48bb4f5688419fbf482c7784d6d49518a10",
+   "interface_sha256": "a57d74c5708b041b5ceeb3611b7aaff62a84a26d7c05d68a7e11c60f96f9785d",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Start date row not found: October 19 (Thu)",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Simple Calendar Pro\"} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "find({'hint': 'Title', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'New Event', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Workshop on Project X\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"We will understand software updates. Looking forward to productive discussions.\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'text': 'October 19 (Thu)', 'clickable': True}) -> NOT FOUND"
+     ],
+     "screen": "  0: (no text) [clickable]\n  1: text='New Event'\n  2: description='Save' [clickable]\n  3: (no text) [scrollable]\n  4: text='Workshop on Project X', hint='Title' [clickable/editable]\n  5: text='Location', hint='Location' [clickable/editable]\n  6: (no text) [clickable]\n  7: text='We will understand software updates. Looking forward to productive discussions.\\n', hint='Description' [clickable/editable]\n  8: text='October 15 (Sun)' [clickable]\n  9: text='16:00' [clickable]\n  10: text='October 15 (Sun)' [clickable]\n  11: text='16:00' [clickable]\n  12: text='All-day'\n  13: description='Back' [clickable]\n  14: description='Switch input method' [clickable]\n  15: description='More features' [clickable]\n  16: description='Sticker Keyboard' [clickable]\n  17: description='GIF Keyboard' [clickable]\n  18: description='Clipboard' [clickable]\n  19: description='Settings' [clickable]\n  20: description='Theme settings' [clickable]\n  21: description='Voice input' [clickable]\n  22: description='Q' [clickable]\n  23: description='W' [clickable]\n  24: description='E' [clickable]\n  25: description='R' [clickable]\n  26: description='T' [clickable]\n  27: description='Y' [clickable]\n  28: description='U' [clickable]\n  29: description='I' [clickable]\n  30: description='O' [clickable]\n  31: description='P' [clickable]\n  32: description='A' [clickable]\n  33: description='S' [clickable]\n  34: description='D' [clickable]\n  35: description='F' [clickable]\n  36: description='G' [clickable]\n  37: description='H' [clickable]\n  38: description='J' [clickable]\n  39: description='K' [clickable]\n  ... 21 more elements",
+     "wall_s": 28.187
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 45.287
+  },
+  {
+   "version": 1,
+   "program_sha256": "d09099bde8b25e95897151b44cb24262f6b1e74612ee0ed92f4710050686948d",
+   "interface_sha256": "a57d74c5708b041b5ceeb3611b7aaff62a84a26d7c05d68a7e11c60f96f9785d",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Simple Calendar Pro\"} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "find({'hint': 'Title', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'New Event', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Workshop on Project X\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"We will understand software updates. Looking forward to productive discussions.\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 25} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 24} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': '0 minutes', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 11} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': '15 minutes', 'clickable': True}) -> NOT FOUND",
+      "find({'description': '15 minute', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 19} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity"
+     ],
+     "screen": "  0: text='Disclaimer'\n  1: text='Please make sure the reminders work properly before relying on them. Check your device battery and notification settings, if there is nothing blocking the reminders, or killing the app in the background.'\n  2: text='Settings' [clickable]\n  3: text='OK' [clickable]\n  4: text='15:35', description='23:35'\n  5: description='Android System notification: Serial console enabled'\n  6: description='Phone three bars.'\n  7: description='Battery charging, 100 percent.'\n  8: description='3G'",
+     "wall_s": 63.567
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 80.613
+  },
+  {
+   "version": 2,
+   "program_sha256": "f335c73b90e55eba56c3a4e2e7cb34d260af8dbe457d28d185d7b7bc353cb406",
+   "interface_sha256": "a57d74c5708b041b5ceeb3611b7aaff62a84a26d7c05d68a7e11c60f96f9785d",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Simple Calendar Pro\"} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "find({'hint': 'Title', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'New Event', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Workshop on Project X\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"We will understand software updates. Looking forward to productive discussions.\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 25} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 24} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': '0 minutes', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 11} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': '15 minutes', 'clickable': True}) -> NOT FOUND",
+      "find({'description': '15 minute', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 19} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity"
+     ],
+     "screen": "  0: (no text) [clickable]\n  1: text='New Event'\n  2: description='Save' [clickable]\n  3: (no text) [scrollable]\n  4: text='Workshop on Project X', hint='Title' [clickable/editable]\n  5: text='Location', hint='Location' [clickable/editable]\n  6: (no text) [clickable]\n  7: text='We will understand software updates. Looking forward to productive discussions.\\n', hint='Description' [clickable/editable]\n  8: text='October 19 (Thu)' [clickable]\n  9: text='18:00' [clickable]\n  10: text='October 19 (Thu)' [clickable]\n  11: text='15:00' [clickable]\n  12: text='10 minutes before' [clickable]\n  13: text='Add another reminder' [clickable]\n  14: text='No repetition' [clickable]\n  15: text='All-day'\n  16: text='Regular event'\n  17: text='Event color'\n  18: text='15:35', description='23:35'\n  19: description='Android System notification: Serial console enabled'\n  20: description='Phone signal full.'\n  21: description='Battery charging, 100 percent.'\n  22: description='3G'",
+     "wall_s": 68.307
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 85.305
+  },
+  {
+   "version": 3,
+   "program_sha256": "aaf4eba02485d2a920ea889bbbf74e00330c758801569f05de5ee9f4aa738fbb",
+   "interface_sha256": "a57d74c5708b041b5ceeb3611b7aaff62a84a26d7c05d68a7e11c60f96f9785d",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Could not select value 18 in picker",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Simple Calendar Pro\"} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.MainActivity",
+      "find({'hint': 'Title', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'New Event', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Workshop on Project X\", \"index\": 4} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"We will understand software updates. Looking forward to productive discussions.\", \"index\": 7} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 8} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 25} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 6} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "{\"action_type\": \"click\", \"index\": 9} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': 'Switch to text input mode', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Text input', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Keyboard', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Input mode', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Switch to keyboard', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Switch to text input', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Text input mode', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Switch to text input mode', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Text input', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Keyboard', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Input mode', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Switch to keyboard', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Switch to text input', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Text input mode', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.simplemobiletools.calendar.pro/com.simplemobiletools.calendar.pro.activities.EventActivity",
+      "find({'description': '18 hours', 'clickable': True}) -> NOT FOUND",
+      "find({'description': '18 hour', 'clickable': True}) -> NOT FOUND",
+      "find({'text': '18', 'clickable': True}) -> NOT FOUND",
+      "find({'text': '18'}) -> NOT FOUND"
+     ],
+     "screen": "  0: text='16' [clickable/editable]\n  1: text='Hour'\n  2: text='Minute'\n  3: text='00', description='0 minutes' [clickable]\n  4: description='Switch to clock mode for the time input.' [clickable]\n  5: text='Cancel' [clickable]\n  6: text='OK' [clickable]\n  7: description='Back' [clickable]\n  8: description='Switch input method' [clickable]\n  9: description='1' [clickable]\n  10: description='2' [clickable]\n  11: description='3' [clickable]\n  12: description='Dash' [clickable]\n  13: description='4' [clickable]\n  14: description='5' [clickable]\n  15: description='6' [clickable]\n  16: description='Space' [clickable]\n  17: description='7' [clickable]\n  18: description='8' [clickable]\n  19: description='9' [clickable]\n  20: description='Delete' [clickable]\n  21: description=',' [clickable]\n  22: description='0' [clickable]\n  23: description='.' [clickable]\n  24: description='Next' [clickable]\n  25: text='15:34', description='23:34'\n  26: description='Android System notification: Serial console enabled'\n  27: description='Phone signal full.'\n  28: description='Battery charging, 100 percent.'\n  29: description='3G'",
+     "wall_s": 43.631
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 60.674
+  }
+ ],
+ "admitted": false,
+ "repairs": [
+  {
+   "status": "ok",
+   "cause": "The automation looked for 'October 19 (Thu)' on the event form, but the date field still showed the default 'October 15 (Sun)'. It never opened the date picker to change the date.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1288,
+      "completion_tokens": 1520,
+      "cached_tokens": 0,
+      "cost_usd": 0.0012736944
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3013,
+     "cached_tokens": 384,
+     "completion_tokens": 67,
+     "total_tokens": 3080,
+     "cost_usd": 0.00124339248,
+     "usage": {
+      "prompt_tokens": 3013,
+      "completion_tokens": 67,
+      "cached_tokens": 384,
+      "cost_usd": 0.00124339248
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"Simple Calendar Pro\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 7487,
+     "cached_tokens": 384,
+     "completion_tokens": 57,
+     "total_tokens": 7544,
+     "cost_usd": 0.00317919888,
+     "usage": {
+      "prompt_tokens": 7487,
+      "completion_tokens": 57,
+      "cached_tokens": 384,
+      "cost_usd": 0.00317919888
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 12191,
+     "cached_tokens": 384,
+     "completion_tokens": 36,
+     "total_tokens": 12227,
+     "cost_usd": 0.00520081848,
+     "usage": {
+      "prompt_tokens": 12191,
+      "completion_tokens": 36,
+      "cached_tokens": 384,
+      "cost_usd": 0.00520081848
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 17291,
+     "cached_tokens": 384,
+     "completion_tokens": 49,
+     "total_tokens": 17340,
+     "cost_usd": 0.00743936688,
+     "usage": {
+      "prompt_tokens": 17291,
+      "completion_tokens": 49,
+      "cached_tokens": 384,
+      "cost_usd": 0.00743936688
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":4,\"text\":\"Workshop on Project X\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22527,
+     "cached_tokens": 17280,
+     "completion_tokens": 56,
+     "total_tokens": 22583,
+     "cost_usd": 0.0028377756,
+     "usage": {
+      "prompt_tokens": 22527,
+      "completion_tokens": 56,
+      "cached_tokens": 17280,
+      "cost_usd": 0.0028377756
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"We will understand software updates. Looking forward to productive discussions.\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 27594,
+     "cached_tokens": 384,
+     "completion_tokens": 122,
+     "total_tokens": 27716,
+     "cost_usd": 0.01202275008,
+     "usage": {
+      "prompt_tokens": 27594,
+      "completion_tokens": 122,
+      "cached_tokens": 384,
+      "cost_usd": 0.01202275008
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":8}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 31514,
+     "cached_tokens": 384,
+     "completion_tokens": 76,
+     "total_tokens": 31590,
+     "cost_usd": 0.01367018928,
+     "usage": {
+      "prompt_tokens": 31514,
+      "completion_tokens": 76,
+      "cached_tokens": 384,
+      "cost_usd": 0.01367018928
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":25}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 35438,
+     "cached_tokens": 384,
+     "completion_tokens": 28,
+     "total_tokens": 35466,
+     "cost_usd": 0.01531675728,
+     "usage": {
+      "prompt_tokens": 35438,
+      "completion_tokens": 28,
+      "cached_tokens": 384,
+      "cost_usd": 0.01531675728
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 37998,
+     "cached_tokens": 31488,
+     "completion_tokens": 86,
+     "total_tokens": 38084,
+     "cost_usd": 0.00382098816,
+     "usage": {
+      "prompt_tokens": 37998,
+      "completion_tokens": 86,
+      "cached_tokens": 31488,
+      "cost_usd": 0.00382098816
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 41268,
+     "cached_tokens": 2944,
+     "completion_tokens": 136,
+     "total_tokens": 41404,
+     "cost_usd": 0.01695326688,
+     "usage": {
+      "prompt_tokens": 41268,
+      "completion_tokens": 136,
+      "cached_tokens": 2944,
+      "cost_usd": 0.01695326688
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":24}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 43759,
+     "cached_tokens": 12160,
+     "completion_tokens": 42,
+     "total_tokens": 43801,
+     "cost_usd": 0.0141564852,
+     "usage": {
+      "prompt_tokens": 43759,
+      "completion_tokens": 42,
+      "cached_tokens": 12160,
+      "cost_usd": 0.0141564852
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 46318,
+     "cached_tokens": 43648,
+     "completion_tokens": 63,
+     "total_tokens": 46381,
+     "cost_usd": 0.00245530296,
+     "usage": {
+      "prompt_tokens": 46318,
+      "completion_tokens": 63,
+      "cached_tokens": 43648,
+      "cost_usd": 0.00245530296
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 49589,
+     "cached_tokens": 7424,
+     "completion_tokens": 137,
+     "total_tokens": 49726,
+     "cost_usd": 0.01875189888,
+     "usage": {
+      "prompt_tokens": 49589,
+      "completion_tokens": 137,
+      "cached_tokens": 7424,
+      "cost_usd": 0.01875189888
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 52083,
+     "cached_tokens": 37888,
+     "completion_tokens": 25,
+     "total_tokens": 52108,
+     "cost_usd": 0.00726626736,
+     "usage": {
+      "prompt_tokens": 52083,
+      "completion_tokens": 25,
+      "cached_tokens": 37888,
+      "cost_usd": 0.00726626736
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 54574,
+     "cached_tokens": 22400,
+     "completion_tokens": 29,
+     "total_tokens": 54603,
+     "cost_usd": 0.0146738196,
+     "usage": {
+      "prompt_tokens": 54574,
+      "completion_tokens": 29,
+      "cached_tokens": 22400,
+      "cost_usd": 0.0146738196
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 16,
+     "call": 16,
+     "first_call": false,
+     "prompt_tokens": 57135,
+     "cached_tokens": 35328,
+     "completion_tokens": 59,
+     "total_tokens": 57194,
+     "cost_usd": 0.01055552256,
+     "usage": {
+      "prompt_tokens": 57135,
+      "completion_tokens": 59,
+      "cached_tokens": 35328,
+      "cost_usd": 0.01055552256
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 17,
+     "call": 17,
+     "first_call": false,
+     "prompt_tokens": 58790,
+     "cached_tokens": 384,
+     "completion_tokens": 29,
+     "total_tokens": 58819,
+     "cost_usd": 0.02549019528,
+     "usage": {
+      "prompt_tokens": 58790,
+      "completion_tokens": 29,
+      "cached_tokens": 384,
+      "cost_usd": 0.02549019528
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 4922,
+      "completion_tokens": 29772,
+      "cached_tokens": 0,
+      "cost_usd": 0.0410500728
+     }
+    }
+   ],
+   "resume_success": true,
+   "seed": 1,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The run never set the event start date/time to 2023-10-19 18:00 or the 15-minute duration/end time, and it ended on the reminder disclaimer before a correct save, so the oracle rejected the event.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1354,
+      "completion_tokens": 5354,
+      "cached_tokens": 0,
+      "cost_usd": 0.0075864096
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3013,
+     "cached_tokens": 384,
+     "completion_tokens": 38,
+     "total_tokens": 3051,
+     "cost_usd": 0.00120549528,
+     "usage": {
+      "prompt_tokens": 3013,
+      "completion_tokens": 38,
+      "cached_tokens": 384,
+      "cost_usd": 0.00120549528
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"Simple Calendar Pro\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 7478,
+     "cached_tokens": 2816,
+     "completion_tokens": 226,
+     "total_tokens": 7704,
+     "cost_usd": 0.00240416352,
+     "usage": {
+      "prompt_tokens": 7478,
+      "completion_tokens": 226,
+      "cached_tokens": 2816,
+      "cost_usd": 0.00240416352
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 12182,
+     "cached_tokens": 384,
+     "completion_tokens": 45,
+     "total_tokens": 12227,
+     "cost_usd": 0.00520865928,
+     "usage": {
+      "prompt_tokens": 12182,
+      "completion_tokens": 45,
+      "cached_tokens": 384,
+      "cost_usd": 0.00520865928
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 17288,
+     "cached_tokens": 2816,
+     "completion_tokens": 50,
+     "total_tokens": 17338,
+     "cost_usd": 0.00644740272,
+     "usage": {
+      "prompt_tokens": 17288,
+      "completion_tokens": 50,
+      "cached_tokens": 2816,
+      "cost_usd": 0.00644740272
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":4,\"text\":\"Workshop on Project X\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22524,
+     "cached_tokens": 2944,
+     "completion_tokens": 42,
+     "total_tokens": 22566,
+     "cost_usd": 0.00866554128,
+     "usage": {
+      "prompt_tokens": 22524,
+      "completion_tokens": 42,
+      "cached_tokens": 2944,
+      "cost_usd": 0.00866554128
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":7}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 27637,
+     "cached_tokens": 2816,
+     "completion_tokens": 62,
+     "total_tokens": 27699,
+     "cost_usd": 0.01097110872,
+     "usage": {
+      "prompt_tokens": 27637,
+      "completion_tokens": 62,
+      "cached_tokens": 2816,
+      "cost_usd": 0.01097110872
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"We will understand software updates. Looking forward to productive discussions.\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 32710,
+     "cached_tokens": 2816,
+     "completion_tokens": 98,
+     "total_tokens": 32808,
+     "cost_usd": 0.01322795232,
+     "usage": {
+      "prompt_tokens": 32710,
+      "completion_tokens": 98,
+      "cached_tokens": 2816,
+      "cost_usd": 0.01322795232
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":8}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 36630,
+     "cached_tokens": 12160,
+     "completion_tokens": 74,
+     "total_tokens": 36704,
+     "cost_usd": 0.0110929104,
+     "usage": {
+      "prompt_tokens": 36630,
+      "completion_tokens": 74,
+      "cached_tokens": 12160,
+      "cost_usd": 0.0110929104
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":25}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 40551,
+     "cached_tokens": 7424,
+     "completion_tokens": 72,
+     "total_tokens": 40623,
+     "cost_usd": 0.01473000408,
+     "usage": {
+      "prompt_tokens": 40551,
+      "completion_tokens": 72,
+      "cached_tokens": 7424,
+      "cost_usd": 0.01473000408
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 43108,
+     "cached_tokens": 40448,
+     "completion_tokens": 113,
+     "total_tokens": 43221,
+     "cost_usd": 0.00242758296,
+     "usage": {
+      "prompt_tokens": 43108,
+      "completion_tokens": 113,
+      "cached_tokens": 40448,
+      "cost_usd": 0.00242758296
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 46374,
+     "cached_tokens": 2816,
+     "completion_tokens": 79,
+     "total_tokens": 46453,
+     "cost_usd": 0.01915516152,
+     "usage": {
+      "prompt_tokens": 46374,
+      "completion_tokens": 79,
+      "cached_tokens": 2816,
+      "cost_usd": 0.01915516152
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":24}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 48866,
+     "cached_tokens": 2944,
+     "completion_tokens": 86,
+     "total_tokens": 48952,
+     "cost_usd": 0.02019761568,
+     "usage": {
+      "prompt_tokens": 48866,
+      "completion_tokens": 86,
+      "cached_tokens": 2944,
+      "cost_usd": 0.02019761568
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 51427,
+     "cached_tokens": 46336,
+     "completion_tokens": 191,
+     "total_tokens": 51618,
+     "cost_usd": 0.00375167232,
+     "usage": {
+      "prompt_tokens": 51427,
+      "completion_tokens": 191,
+      "cached_tokens": 46336,
+      "cost_usd": 0.00375167232
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 54699,
+     "cached_tokens": 2816,
+     "completion_tokens": 228,
+     "total_tokens": 54927,
+     "cost_usd": 0.02297624472,
+     "usage": {
+      "prompt_tokens": 54699,
+      "completion_tokens": 228,
+      "cached_tokens": 2816,
+      "cost_usd": 0.02297624472
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 57192,
+     "cached_tokens": 17280,
+     "completion_tokens": 29,
+     "total_tokens": 57221,
+     "cost_usd": 0.017902566,
+     "usage": {
+      "prompt_tokens": 57192,
+      "completion_tokens": 29,
+      "cached_tokens": 17280,
+      "cost_usd": 0.017902566
+     },
+     "stage": "react_resume",
+     "action": ""
+    },
+    {
+     "step": 16,
+     "call": 16,
+     "first_call": false,
+     "prompt_tokens": 59676,
+     "cached_tokens": 51328,
+     "completion_tokens": 29,
+     "total_tokens": 59705,
+     "cost_usd": 0.00509709816,
+     "usage": {
+      "prompt_tokens": 59676,
+      "completion_tokens": 29,
+      "cached_tokens": 51328,
+      "cost_usd": 0.00509709816
+     },
+     "stage": "react_resume",
+     "action": ""
+    },
+    {
+     "step": 17,
+     "call": 17,
+     "first_call": false,
+     "prompt_tokens": 62160,
+     "cached_tokens": 59648,
+     "completion_tokens": 52,
+     "total_tokens": 62212,
+     "cost_usd": 0.00281562336,
+     "usage": {
+      "prompt_tokens": 62160,
+      "completion_tokens": 52,
+      "cached_tokens": 59648,
+      "cost_usd": 0.00281562336
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 18,
+     "call": 18,
+     "first_call": false,
+     "prompt_tokens": 64655,
+     "cached_tokens": 43008,
+     "completion_tokens": 58,
+     "total_tokens": 64713,
+     "cost_usd": 0.01069740936,
+     "usage": {
+      "prompt_tokens": 64655,
+      "completion_tokens": 58,
+      "cached_tokens": 43008,
+      "cost_usd": 0.01069740936
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 19,
+     "call": 19,
+     "first_call": false,
+     "prompt_tokens": 67212,
+     "cached_tokens": 32640,
+     "completion_tokens": 58,
+     "total_tokens": 67270,
+     "cost_usd": 0.0160401384,
+     "usage": {
+      "prompt_tokens": 67212,
+      "completion_tokens": 58,
+      "cached_tokens": 32640,
+      "cost_usd": 0.0160401384
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 20,
+     "call": 20,
+     "first_call": false,
+     "prompt_tokens": 68867,
+     "cached_tokens": 22400,
+     "completion_tokens": 38,
+     "total_tokens": 68905,
+     "cost_usd": 0.0209116116,
+     "usage": {
+      "prompt_tokens": 68867,
+      "completion_tokens": 38,
+      "cached_tokens": 22400,
+      "cost_usd": 0.0209116116
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 5938,
+      "completion_tokens": 27373,
+      "cached_tokens": 0,
+      "cost_usd": 0.018795238308
+     }
+    }
+   ],
+   "resume_success": true,
+   "seed": 1,
+   "round": 2
+  },
+  {
+   "status": "ok",
+   "cause": "The event was left with an incorrect end time (15:00 instead of 18:15), so the 15-minute duration was not set.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1562,
+      "completion_tokens": 2226,
+      "cached_tokens": 896,
+      "cost_usd": 0.00321146496
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 3013,
+     "cached_tokens": 2816,
+     "completion_tokens": 84,
+     "total_tokens": 3097,
+     "cost_usd": 0.00027364392,
+     "usage": {
+      "prompt_tokens": 3013,
+      "completion_tokens": 84,
+      "cached_tokens": 2816,
+      "cost_usd": 0.00027364392
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"open_app\",\"app_name\":\"Simple Calendar Pro\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 7469,
+     "cached_tokens": 2816,
+     "completion_tokens": 177,
+     "total_tokens": 7646,
+     "cost_usd": 0.00233620992,
+     "usage": {
+      "prompt_tokens": 7469,
+      "completion_tokens": 177,
+      "cached_tokens": 2816,
+      "cost_usd": 0.00233620992
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":35}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 12242,
+     "cached_tokens": 2944,
+     "completion_tokens": 43,
+     "total_tokens": 12285,
+     "cost_usd": 0.00418800888,
+     "usage": {
+      "prompt_tokens": 12242,
+      "completion_tokens": 43,
+      "cached_tokens": 2944,
+      "cost_usd": 0.00418800888
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":7}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 17259,
+     "cached_tokens": 12160,
+     "completion_tokens": 32,
+     "total_tokens": 17291,
+     "cost_usd": 0.0026000172,
+     "usage": {
+      "prompt_tokens": 17259,
+      "completion_tokens": 32,
+      "cached_tokens": 12160,
+      "cost_usd": 0.0026000172
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":10}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 22353,
+     "cached_tokens": 2816,
+     "completion_tokens": 93,
+     "total_tokens": 22446,
+     "cost_usd": 0.00870990912,
+     "usage": {
+      "prompt_tokens": 22353,
+      "completion_tokens": 93,
+      "cached_tokens": 2816,
+      "cost_usd": 0.00870990912
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":4,\"text\":\"Workshop on Project X\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 27582,
+     "cached_tokens": 2944,
+     "completion_tokens": 107,
+     "total_tokens": 27689,
+     "cost_usd": 0.01095374808,
+     "usage": {
+      "prompt_tokens": 27582,
+      "completion_tokens": 107,
+      "cached_tokens": 2944,
+      "cost_usd": 0.01095374808
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":7}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 32680,
+     "cached_tokens": 2944,
+     "completion_tokens": 49,
+     "total_tokens": 32729,
+     "cost_usd": 0.01309864248,
+     "usage": {
+      "prompt_tokens": 32680,
+      "completion_tokens": 49,
+      "cached_tokens": 2944,
+      "cost_usd": 0.01309864248
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"We will understand software updates. Looking forward to productive discussions.\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 37740,
+     "cached_tokens": 2816,
+     "completion_tokens": 79,
+     "total_tokens": 37819,
+     "cost_usd": 0.01539419112,
+     "usage": {
+      "prompt_tokens": 37740,
+      "completion_tokens": 79,
+      "cached_tokens": 2816,
+      "cost_usd": 0.01539419112
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":9}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 41016,
+     "cached_tokens": 17152,
+     "completion_tokens": 93,
+     "total_tokens": 41109,
+     "cost_usd": 0.01099214424,
+     "usage": {
+      "prompt_tokens": 41016,
+      "completion_tokens": 93,
+      "cached_tokens": 17152,
+      "cost_usd": 0.01099214424
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":24}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 43498,
+     "cached_tokens": 2816,
+     "completion_tokens": 52,
+     "total_tokens": 43550,
+     "cost_usd": 0.01786709232,
+     "usage": {
+      "prompt_tokens": 43498,
+      "completion_tokens": 52,
+      "cached_tokens": 2816,
+      "cost_usd": 0.01786709232
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 46046,
+     "cached_tokens": 32640,
+     "completion_tokens": 127,
+     "total_tokens": 46173,
+     "cost_usd": 0.006910398,
+     "usage": {
+      "prompt_tokens": 46046,
+      "completion_tokens": 127,
+      "cached_tokens": 32640,
+      "cost_usd": 0.006910398
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 49318,
+     "cached_tokens": 27520,
+     "completion_tokens": 64,
+     "total_tokens": 49382,
+     "cost_usd": 0.0103416984,
+     "usage": {
+      "prompt_tokens": 49318,
+      "completion_tokens": 64,
+      "cached_tokens": 27520,
+      "cost_usd": 0.0103416984
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 13,
+     "call": 13,
+     "first_call": false,
+     "prompt_tokens": 51818,
+     "cached_tokens": 2816,
+     "completion_tokens": 40,
+     "total_tokens": 51858,
+     "cost_usd": 0.02147560272,
+     "usage": {
+      "prompt_tokens": 51818,
+      "completion_tokens": 40,
+      "cached_tokens": 2816,
+      "cost_usd": 0.02147560272
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":11}"
+    },
+    {
+     "step": 14,
+     "call": 14,
+     "first_call": false,
+     "prompt_tokens": 54300,
+     "cached_tokens": 45952,
+     "completion_tokens": 32,
+     "total_tokens": 54332,
+     "cost_usd": 0.00495199584,
+     "usage": {
+      "prompt_tokens": 54300,
+      "completion_tokens": 32,
+      "cached_tokens": 45952,
+      "cost_usd": 0.00495199584
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":4}"
+    },
+    {
+     "step": 15,
+     "call": 15,
+     "first_call": false,
+     "prompt_tokens": 56864,
+     "cached_tokens": 43392,
+     "completion_tokens": 45,
+     "total_tokens": 56909,
+     "cost_usd": 0.00713003544,
+     "usage": {
+      "prompt_tokens": 56864,
+      "completion_tokens": 45,
+      "cached_tokens": 43392,
+      "cost_usd": 0.00713003544
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 16,
+     "call": 16,
+     "first_call": false,
+     "prompt_tokens": 58536,
+     "cached_tokens": 22272,
+     "completion_tokens": 28,
+     "total_tokens": 58564,
+     "cost_usd": 0.01645056864,
+     "usage": {
+      "prompt_tokens": 58536,
+      "completion_tokens": 28,
+      "cached_tokens": 22272,
+      "cost_usd": 0.01645056864
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":3}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 18777,
+      "completion_tokens": 290396,
+      "cached_tokens": 12516,
+      "cost_usd": 0.19119512808
+     }
+    }
+   ],
+   "resume_success": true,
+   "seed": 1,
+   "round": 3
+  }
+ ],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/build.json",
+   "translator": {
+    "per_trajectory": [
+     {
+      "seed": 1,
+      "effective_actions": 1,
+      "calls": 1,
+      "prompt_tokens": 924,
+      "cached_tokens": 0,
+      "completion_tokens": 126,
+      "total_tokens": 1050,
+      "cost_usd": 0.00028358
+     },
+     {
+      "seed": 2,
+      "effective_actions": 3,
+      "calls": 3,
+      "prompt_tokens": 2874,
+      "cached_tokens": 0,
+      "completion_tokens": 1207,
+      "total_tokens": 4081,
+      "cost_usd": 0.00194909
+     },
+     {
+      "seed": 3,
+      "effective_actions": 17,
+      "calls": 17,
+      "prompt_tokens": 17028,
+      "cached_tokens": 923,
+      "completion_tokens": 142083,
+      "total_tokens": 159111,
+      "cost_usd": 0.09996279
+     }
+    ],
+    "totals": {
+     "calls": 21,
+     "prompt_tokens": 20826,
+     "cached_tokens": 923,
+     "completion_tokens": 143416,
+     "total_tokens": 164242,
+     "cost_usd": 0.10219546
+    }
+   },
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 1943,
+     "completion_tokens": 42258,
+     "cached_tokens": 0,
+     "cost_usd": 0.0560691252
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1818,
+     "completion_tokens": 6710,
+     "cached_tokens": 0,
+     "cost_usd": 0.0095605488
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 3123,
+     "completion_tokens": 34325,
+     "cached_tokens": 0,
+     "cost_usd": 0.022645981512
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 2998,
+     "completion_tokens": 11214,
+     "cached_tokens": 0,
+     "cost_usd": 0.00782058816
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 5898,
+     "completion_tokens": 32982,
+     "cached_tokens": 0,
+     "cost_usd": 0.022378322736
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 5773,
+     "completion_tokens": 8101,
+     "cached_tokens": 0,
+     "cost_usd": 0.006419541744
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 782,
+   "cached_tokens": 0,
+   "completion_tokens": 300,
+   "total_tokens": 1082,
+   "cost_usd": 0.00036634
+  },
+  "new_repair": {
+   "calls": 59,
+   "prompt_tokens": 2018393,
+   "cached_tokens": 810084,
+   "completion_tokens": 360551,
+   "total_tokens": 2378944,
+   "cost_usd": 0.80774587
+  },
+  "reconciliation": {
+   "reconciled": true,
+   "new_calls": 62,
+   "new_cost_usd": 0.80811221,
+   "call_source": "extractions[].calls plus repairs[].calls"
+  }
+ },
+ "deployment": {
+  "status": "skipped",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": "aaf4eba02485d2a920ea889bbbf74e00330c758801569f05de5ee9f4aa738fbb",
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": [],
+  "reason": "attempt_rejected_by_three_building_verifier"
+ },
+ "timing": {
+  "attempt_wall_s": 2725.599
+ },
+ "final_program_source": "import re\nimport calendar\n\nPARAMS_SCHEMA = {\n    \"year\": {\"type\": \"int\", \"description\": \"Event year\"},\n    \"month\": {\"type\": \"int\", \"description\": \"Event month (1-12)\"},\n    \"day\": {\"type\": \"int\", \"description\": \"Event day of month\"},\n    \"hour\": {\"type\": \"int\", \"description\": \"Event start hour (0-23)\"},\n    \"duration_mins\": {\"type\": \"int\", \"description\": \"Event duration in minutes\"},\n    \"event_title\": {\"type\": \"str\", \"description\": \"Event title\"},\n    \"event_description\": {\"type\": \"str\", \"description\": \"Event description\"},\n}\n\n_MONTH_NUM = {name.lower(): (i - 1) for i, name in enumerate(calendar.month_name) if name}\n_DATE_ROW_RE = re.compile(r\"[A-Za-z]{3,}\\s+\\d{1,2}\\s*\\([A-Za-z]+\\)\")\n_TIME_ROW_RE = re.compile(r\"^\\d{1,2}:\\d{2}$\")\n\n\n# --------------------------------------------------------------------------\n# small helpers\n# --------------------------------------------------------------------------\n\ndef _dismiss_disclaimer(device):\n    \"\"\"If the reminder disclaimer dialog is showing, tap OK to dismiss it.\"\"\"\n    els = device.elements()\n    markers = (\"disclaimer\", \"please make sure\", \"reminders work properly\")\n    for e in els:\n        t = (e.get(\"text\") or \"\").lower()\n        if any(m in t for m in markers):\n            for label in (\"OK\", \"Got it\", \"Dismiss\", \"Close\", \"Allow\"):\n                btn = device.find(text=label, clickable=True)\n                if btn is not None:\n                    device.click(index=btn)\n                    device.settle(1.0)\n                    return True\n            return False\n    return False\n\n\ndef _find_field(device, hint):\n    idx = device.find(hint=hint, editable=True)\n    if idx is not None:\n        return idx\n    for e in device.elements():\n        if e.get(\"editable\") and (e.get(\"hint\") == hint or e.get(\"text\") == hint or e.get(\"description\") == hint):\n            return e[\"index\"]\n    return None\n\n\ndef _open_new_event(device):\n    _dismiss_disclaimer(device)\n    for _ in range(3):\n        el = device.find(description=\"New Event\", clickable=True)\n        if el is not None:\n            device.click(index=el)\n            device.settle(1.0)\n            _dismiss_disclaimer(device)\n            if _find_field(device, \"Title\") is not None:\n                return\n            el2 = device.find(text=\"New Event\", clickable=True)\n            if el2 is None:\n                el2 = device.find(description=\"New Event\", clickable=True)\n            if el2 is not None and el2 != el:\n                device.click(index=el2)\n                device.settle(1.0)\n                _dismiss_disclaimer(device)\n                if _find_field(device, \"Title\") is not None:\n                    return\n        dismissed = False\n        for text in [\"OK\", \"Close\", \"Got it\", \"Allow\", \"Next\", \"Continue\", \"Dismiss\"]:\n            d = device.find(text=text, clickable=True)\n            if d is not None:\n                device.click(index=d)\n                device.settle(0.5)\n                dismissed = True\n                break\n        if not dismissed:\n            break\n    raise RuntimeError(\"Could not open new event editor\")\n\n\ndef _click_dialog_ok(device):\n    _dismiss_disclaimer(device)\n    for label in (\"OK\", \"Done\", \"Set\"):\n        ok = device.find(text=label, clickable=True)\n        if ok is not None:\n            device.click(index=ok)\n            device.settle(1.0)\n            return True\n    return False\n\n\n# --------------------------------------------------------------------------\n# date handling\n# --------------------------------------------------------------------------\n\ndef _date_rows(device):\n    \"\"\"All clickable rows on the event form that look like 'October 15 (Sun)'.\"\"\"\n    rows = []\n    for e in device.elements():\n        t = (e.get(\"text\") or \"\").strip()\n        if e.get(\"clickable\") and _DATE_ROW_RE.search(t):\n            rows.append(e[\"index\"])\n    return sorted(rows)\n\n\ndef _picker_month_index(device):\n    \"\"\"Absolute month index (year*12 + month-1) of the month shown in the\n    currently open date picker, or None if it cannot be determined.\"\"\"\n    els = device.elements()\n    strict = re.compile(r\"^\\s*([A-Za-z]+)\\s+(\\d{4})\\s*$\")\n    for e in els:\n        for field in (\"text\", \"description\"):\n            s = e.get(field) or \"\"\n            m = strict.match(s)\n            if m and m.group(1).lower() in _MONTH_NUM:\n                return int(m.group(2)) * 12 + _MONTH_NUM[m.group(1).lower()]\n    for e in els:\n        t = (e.get(\"text\") or \"\").strip()\n        if not re.fullmatch(r\"\\d{1,2}\", t):\n            continue\n        d = e.get(\"description\") or \"\"\n        ym = re.search(r\"(\\d{4})\", d)\n        if not ym:\n            continue\n        low = d.lower()\n        for name, off in _MONTH_NUM.items():\n            if name in low:\n                return int(ym.group(1)) * 12 + off\n    return None\n\n\ndef _click_month_nav(device, desc):\n    btn = device.find(description=desc, clickable=True)\n    if btn is None:\n        btn = device.find(description=desc)\n    if btn is None:\n        for e in device.elements():\n            d = (e.get(\"description\") or \"\").lower()\n            if desc.lower() in d and e.get(\"clickable\"):\n                btn = e[\"index\"]\n                break\n    if btn is None:\n        return False\n    device.click(index=btn)\n    device.settle(0.5)\n    return True\n\n\ndef _find_day_cell(device, year, month, day):\n    month_name = calendar.month_name[month]\n    variants = [\n        f\"{day} {month_name} {year}\",\n        f\"{month_name} {day}, {year}\",\n        f\"{month_name} {day} {year}\",\n    ]\n    els = device.elements()\n    for e in els:\n        if (e.get(\"text\") or \"\").strip() != str(day):\n            continue\n        d = (e.get(\"description\") or \"\").lower()\n        if any(v.lower() in d for v in variants):\n            return e[\"index\"]\n    for e in els:\n        if (e.get(\"text\") or \"\").strip() != str(day):\n            continue\n        d = (e.get(\"description\") or \"\").lower()\n        if month_name.lower() in d and str(year) in d:\n            return e[\"index\"]\n    # If the grid carries no per-day descriptions at all, fall back to text.\n    has_desc = any(\n        re.fullmatch(r\"\\d{1,2}\", (e.get(\"text\") or \"\").strip()) and e.get(\"description\")\n        for e in els\n    )\n    if not has_desc:\n        for e in els:\n            if (e.get(\"text\") or \"\").strip() == str(day) and e.get(\"clickable\"):\n                return e[\"index\"]\n    return None\n\n\ndef _navigate_date_picker(device, year, month, day):\n    target = year * 12 + (month - 1)\n    cur = _picker_month_index(device)\n    if cur is None:\n        # Fresh events default to \"today\"; the device clock is frozen in 2023-10.\n        cur = 2023 * 12 + 9\n    delta = target - cur\n    if delta != 0:\n        desc = \"Next month\" if delta > 0 else \"Previous month\"\n        for _ in range(abs(delta)):\n            if not _click_month_nav(device, desc):\n                raise RuntimeError(\"Month navigation button not found in date picker\")\n\n    cell = _find_day_cell(device, year, month, day)\n    if cell is None:\n        # Last resort: wander a few months in each direction looking for the day.\n        for direction in (\"Next month\", \"Previous month\"):\n            for _ in range(12):\n                if not _click_month_nav(device, direction):\n                    break\n                cell = _find_day_cell(device, year, month, day)\n                if cell is not None:\n                    break\n            if cell is not None:\n                break\n    if cell is None:\n        raise RuntimeError(f\"Day cell {day} not found in date picker\")\n    device.click(index=cell)\n    device.settle(0.8)\n\n\ndef _set_start_date(device, year, month, day):\n    _dismiss_disclaimer(device)\n    rows = _date_rows(device)\n    if not rows:\n        raise RuntimeError(\"Start date row not found\")\n    device.click(index=rows[0])          # start date row, whatever it currently shows\n    device.settle(1.0)\n    _dismiss_disclaimer(device)\n    _navigate_date_picker(device, year, month, day)\n    if not _click_dialog_ok(device):\n        raise RuntimeError(\"OK button not found in date picker\")\n\n\n# --------------------------------------------------------------------------\n# time handling\n# --------------------------------------------------------------------------\n\ndef _get_time_rows(device):\n    rows = []\n    for e in device.elements():\n        t = (e.get(\"text\") or \"\").strip()\n        if e.get(\"clickable\") and _TIME_ROW_RE.match(t):\n            rows.append(e[\"index\"])\n    return sorted(rows)\n\n\ndef _desc_has_number(desc, value):\n    return re.search(rf\"(?<!\\d){value}(?!\\d)\", desc) is not None\n\n\ndef _click_picker_number(device, value, unit_words, pad=True):\n    texts = {str(value)}\n    if pad:\n        texts.add(f\"{value:02d}\")\n\n    # 1) exact description, e.g. \"18 hours\" / \"15 minutes\"\n    for w in unit_words:\n        for tv in texts:\n            idx = device.find(description=f\"{tv} {w}\", clickable=True)\n            if idx is not None:\n                device.click(index=idx)\n                device.settle(0.5)\n                return\n\n    # 2) any clickable whose description mentions the unit and the number\n    for e in device.elements():\n        if not e.get(\"clickable\"):\n            continue\n        d = (e.get(\"description\") or \"\").lower()\n        if not any(w in d for w in unit_words):\n            continue\n        if _desc_has_number(d, value):\n            device.click(index=e[\"index\"])\n            device.settle(0.5)\n            return\n\n    # 3) plain text match\n    for tv in texts:\n        idx = device.find(text=tv, clickable=True)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return\n        idx = device.find(text=tv)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return\n\n    # 4) any clickable whose text or description is exactly the number\n    for e in device.elements():\n        if not e.get(\"clickable\"):\n            continue\n        t = (e.get(\"text\") or \"\").strip()\n        d = (e.get(\"description\") or \"\").strip()\n        if t in texts or d in texts:\n            device.click(index=e[\"index\"])\n            device.settle(0.5)\n            return\n\n    raise RuntimeError(f\"Could not select value {value} in picker\")\n\n\ndef _switch_to_text_input(device):\n    \"\"\"Try to switch the time picker from clock mode to text input mode.\"\"\"\n    candidates = [\n        \"Switch to text input mode\",\n        \"Text input\",\n        \"Keyboard\",\n        \"Input mode\",\n        \"Switch to keyboard\",\n        \"Switch to text input\",\n        \"Text input mode\",\n    ]\n    for desc in candidates:\n        idx = device.find(description=desc, clickable=True)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return True\n    for text in candidates:\n        idx = device.find(text=text, clickable=True)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(0.5)\n            return True\n    for e in device.elements():\n        if not e.get(\"clickable\"):\n            continue\n        d = (e.get(\"description\") or \"\").lower()\n        t = (e.get(\"text\") or \"\").lower()\n        if \"text input\" in d or \"keyboard\" in d or \"input mode\" in d or \"text input\" in t or \"keyboard\" in t:\n            device.click(index=e[\"index\"])\n            device.settle(0.5)\n            return True\n    return False\n\n\ndef _clear_and_input(device, index, text):\n    \"\"\"Focus a text field, clear it, and type the given text.\"\"\"\n    device.click(index=index)\n    device.settle(0.3)\n    try:\n        device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_MOVE_END\")\n        for _ in range(10):\n            device.adb_shell(\"input\", \"keyevent\", \"KEYCODE_DEL\")\n    except Exception:\n        # If adb_shell is unavailable, fall back to just typing.\n        pass\n    device.input_text(text, index=index)\n    device.settle(0.3)\n\n\ndef _set_time_text_input(device, hour, minute):\n    \"\"\"Set the time picker's hour/minute fields directly (text input mode).\"\"\"\n    hour_field = None\n    minute_field = None\n    for e in device.elements():\n        if not e.get(\"editable\"):\n            continue\n        hint = (e.get(\"hint\") or \"\").lower()\n        desc = (e.get(\"description\") or \"\").lower()\n        if \"hour\" in hint or \"hour\" in desc:\n            hour_field = e[\"index\"]\n        elif \"minute\" in hint or \"minute\" in desc:\n            minute_field = e[\"index\"]\n    if hour_field is None or minute_field is None:\n        editable = [e[\"index\"] for e in device.elements() if e.get(\"editable\")]\n        if len(editable) >= 2:\n            hour_field = editable[0]\n            minute_field = editable[1]\n    if hour_field is None or minute_field is None:\n        return False\n    _clear_and_input(device, hour_field, f\"{hour:02d}\")\n    _clear_and_input(device, minute_field, f\"{minute:02d}\")\n    return True\n\n\ndef _select_time_in_picker(device, hour, minute):\n    # Try text input mode first (in case it is already active).\n    if _set_time_text_input(device, hour, minute):\n        return\n    # Switch to text input mode if possible.\n    if _switch_to_text_input(device):\n        if _set_time_text_input(device, hour, minute):\n            return\n    # Fallback to the old clock-face / generic picker method.\n    _click_picker_number(device, hour, [\"hours\", \"hour\"])\n    _click_picker_number(device, minute, [\"minutes\", \"minute\"])\n\n\ndef _set_time(device, which, hour, minute):\n    _dismiss_disclaimer(device)\n    rows = _get_time_rows(device)\n    if len(rows) < 2:\n        raise RuntimeError(\"Not enough time rows found\")\n    row = rows[0] if which == \"start\" else rows[1]\n    device.click(index=row)\n    device.settle(1.0)\n    _dismiss_disclaimer(device)\n    _select_time_in_picker(device, hour, minute)\n    if not _click_dialog_ok(device):\n        # Some builds close the picker automatically once the value is chosen.\n        if not _get_time_rows(device):\n            raise RuntimeError(\"Time picker OK button not found\")\n\n\n# --------------------------------------------------------------------------\n# main entry point\n# --------------------------------------------------------------------------\n\ndef program(device, binding: dict) -> bool:\n    device.open_app(\"Simple Calendar Pro\")\n    device.settle(1.0)\n    _dismiss_disclaimer(device)\n\n    _open_new_event(device)\n    _dismiss_disclaimer(device)\n\n    title_field = _find_field(device, \"Title\")\n    if title_field is None:\n        raise RuntimeError(\"Title field not found\")\n    device.click(index=title_field)\n    device.settle(0.5)\n    device.input_text(binding[\"event_title\"], index=title_field)\n    device.settle(0.5)\n\n    desc_field = _find_field(device, \"Description\")\n    if desc_field is None:\n        raise RuntimeError(\"Description field not found\")\n    device.click(index=desc_field)\n    device.settle(0.5)\n    device.input_text(binding[\"event_description\"], index=desc_field)\n    device.settle(0.5)\n\n    _dismiss_disclaimer(device)\n    _set_start_date(device, binding[\"year\"], binding[\"month\"], binding[\"day\"])\n\n    _dismiss_disclaimer(device)\n    _set_time(device, \"start\", binding[\"hour\"], 0)\n\n    start_total = binding[\"hour\"] * 60\n    end_total = start_total + binding[\"duration_mins\"]\n    end_hour = (end_total // 60) % 24\n    end_minute = end_total % 60\n\n    _dismiss_disclaimer(device)\n    _set_time(device, \"end\", end_hour, end_minute)\n\n    _dismiss_disclaimer(device)\n    save_btn = device.find(description=\"Save\", clickable=True)\n    if save_btn is None:\n        save_btn = device.find(text=\"Save\", clickable=True)\n    if save_btn is None:\n        raise RuntimeError(\"Save button not found\")\n    device.click(index=save_btn)\n    device.settle(2.0)\n\n    # The save flow may show the reminder disclaimer; tapping OK confirms and saves.\n    _dismiss_disclaimer(device)\n\n    return True\n",
+ "phase": "finished",
+ "provenance_audits": [
+  {
+   "kind": "source_cell_relative_trajectory_alias_resolution",
+   "model_calls": 0,
+   "path_source_kind": "translation_json",
+   "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/build.json",
+   "source_record_sha256": "fec1cb61df4c5f5ed24168546f8480c16c3493d0b58146fb4a5da2206e2632a1",
+   "translation_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/translation.json",
+   "translation_sha256": "a010d24b8e5dacd112d2eb582c7d668c56ff003d44f08f356217413b3d94af30",
+   "resolved_trajectory_sha256": {
+    "1": "ac2c21bd73a5a507896f22c0737c8acc4f91bbea5cb4086fa9303c449e0da1dc",
+    "2": "1ccbfd5053c32de73f1380067e6a37dc641c48ea71d309113129eb754edd084d",
+    "3": "7824ca418a9eea04ef8698468600f7ade85fb0c94cab9d252cddd32b2c8be0e5"
+   },
+   "prompt_equality_with_completed_extractions": true
+  }
+ ]
+}

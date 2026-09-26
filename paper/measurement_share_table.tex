@@ -2,12 +2,13 @@
 \begin{table}[htbp]
 \centering
 \caption{Serving costs and estimated savings for the initial programs.
-Both cost columns use thousands of the weighted tokens defined in Section~\ref{sec:formulation}.
-$c$ averages baseline-subtracted agent exploration runs, while $c^{\mathrm{prog}}$ and $q$ summarize thirty program uses.
-The saving share charges one mean-cost agent fallback for a failed use.
+Both cost columns use thousands of the tokens defined in Section~\ref{sec:formulation}.
+$c$ is the baseline-subtracted mean agent cost.
+Thirty deployment runs provide the mean extraction cost $c^{\mathrm{prog}}$ and failure fraction $q$.
+The saving share charges one mean-cost agent fallback for a failed execution.
 Blue, amber, and green identify GLM, DeepSeek, and Qwen, respectively.
-Appendix~\ref{app:measurement-uncertainty} reports uncertainty for the deployment estimates.
-A dash denotes an unavailable program-path value, and the Qwen web request was refused by the provider.}
+Appendix~\ref{app:measurement-uncertainty} reports confidence intervals for the deployment estimates.
+A dash means an unavailable program-path value, and the Qwen web request was refused by the provider.}
 \label{tab:share}
 \tablefont
 \setlength{\tabcolsep}{2.5pt}
@@ -16,15 +17,15 @@ A dash denotes an unavailable program-path value, and the Qwen web request was r
 \toprule
 \multicolumn{1}{c}{Family} & \multicolumn{1}{c}{\shortstack{$c$\\(K tokens)}} & \multicolumn{1}{c}{\shortstack{$c^{\mathrm{prog}}$\\(K tokens)}} & \multicolumn{1}{c}{\shortstack{$q$\\(fraction)}} & \multicolumn{1}{c}{\shortstack{Saving share\\(fraction)}} \\
 \midrule
-Contacts & \modelcell{2.7em}{98.7}{65.0}{39.2} & \modelcell{2.7em}{0.179}{0.430}{0.547} & \modelcell{2.1em}{0.00}{0.03}{0.03} & \modelcell{2.1em}{1.00}{0.96}{0.95} \\
-Markor delete & \modelcell{2.7em}{33.7}{10.8}{21.5} & \modelcell{2.7em}{0.200}{0.402}{0.384} & \modelcell{2.1em}{0.20}{0.03}{0.00} & \modelcell{2.1em}{0.79}{0.93}{0.98} \\
-Calendar & \modelcell{2.7em}{314}{146}{135} & \modelcell{2.7em}{0.558}{--}{0.836} & \modelcell{2.1em}{0.00}{--}{0.00} & \modelcell{2.1em}{1.00}{--}{0.99} \\
-OsmAnd marker & \modelcell{2.7em}{280}{153}{122} & \modelcell{2.7em}{0.475}{--}{--} & \modelcell{2.1em}{0.00}{--}{--} & \modelcell{2.1em}{1.00}{--}{--} \\
+Contacts & \modelcell{2.7em}{98.7}{--}{39.2} & \modelcell{2.7em}{0.425}{--}{0.552} & \modelcell{2.1em}{0.000}{--}{0.033} & \modelcell{2.1em}{0.996}{--}{0.953} \\
+Markor delete & \modelcell{2.7em}{33.7}{10.8}{21.5} & \modelcell{2.7em}{0.332}{0.331}{0.388} & \modelcell{2.1em}{0.000}{0.033}{0.000} & \modelcell{2.1em}{0.990}{0.936}{0.982} \\
+Calendar & \modelcell{2.7em}{314}{--}{--} & \modelcell{2.7em}{0.640}{--}{--} & \modelcell{2.1em}{0.000}{--}{--} & \modelcell{2.1em}{0.998}{--}{--} \\
+OsmAnd marker & \modelcell{2.7em}{--}{--}{--} & \modelcell{2.7em}{--}{--}{--} & \modelcell{2.1em}{--}{--}{--} & \modelcell{2.1em}{--}{--}{--} \\
 \addlinespace[2pt]
-Calc table & \modelcell{2.7em}{505}{647}{169} & \modelcell{2.7em}{0.672}{--}{--} & \modelcell{2.1em}{0.00}{--}{--} & \modelcell{2.1em}{1.00}{--}{--} \\
-Writer memo & \modelcell{2.7em}{70.2}{50.7}{37.0} & \modelcell{2.7em}{0.547}{0.650}{0.775} & \modelcell{2.1em}{0.00}{0.00}{0.00} & \modelcell{2.1em}{0.99}{0.99}{0.98} \\
+Calc table & \modelcell{2.7em}{--}{647}{--} & \modelcell{2.7em}{--}{0.677}{--} & \modelcell{2.1em}{--}{0.000}{--} & \modelcell{2.1em}{--}{0.999}{--} \\
+Writer memo & \modelcell{2.7em}{70.2}{50.7}{37.0} & \modelcell{2.7em}{0.596}{0.692}{0.724} & \modelcell{2.1em}{0.000}{0.000}{0.000} & \modelcell{2.1em}{0.992}{0.986}{0.980} \\
 \addlinespace[2pt]
-Reddit comment & \modelcell{2.7em}{124}{40.0}{--} & \modelcell{2.7em}{0.651}{0.654}{--} & \modelcell{2.1em}{0.00}{0.00}{--} & \modelcell{2.1em}{0.99}{0.98}{--} \\
+Reddit comment & \modelcell{2.7em}{124}{--}{--} & \modelcell{2.7em}{0.716}{--}{--} & \modelcell{2.1em}{0.000}{--}{--} & \modelcell{2.1em}{0.994}{--}{--} \\
 \bottomrule
 \end{tabular}
 \end{table}

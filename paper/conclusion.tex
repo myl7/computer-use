@@ -1,7 +1,9 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Compiling a computer-use task can make later runs cheap while incurring substantial and uncertain initial spend.
-PACE measures both costs and decides when to compile under an agent-relative budget.
-With valid action-cost bounds, the budget limits cost after every arrival, including failed compilations and streams that end before payback.
-The log simulations average $0.781$ of agent-only cost, while ablations separate the effects of compilation selection, failed-attempt prices, and cost protection.
+\looseness=-1
+PACE measures successful and failed compilation costs and per-use savings, then uses these profiles to make cost-aware compilation proposals.
+Execution and compilation checks use the budget from observed arrivals to enforce $K_t\leq(1+\epsilon)A_t$ under valid action-cost bounds.
+For successful compilation attempts, estimated payback counts excluding source agent runs are $2$--$16$ uses.
+In simulations using recorded task arrivals, PACE saves $17.3\%$ relative to ReAct, $24.9\%$ relative to the AutoRPA adaptation, and $17.3\%$ relative to the ToolPro adaptation ($\epsilon=0.25$).
+Ablations separate the effects of the savings test, failed-attempt cost, and the cost budget.

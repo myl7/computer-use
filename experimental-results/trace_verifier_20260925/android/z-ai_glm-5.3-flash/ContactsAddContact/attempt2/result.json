@@ -1,0 +1,1141 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "z-ai/glm-5.3-flash",
+ "family": "ContactsAddContact",
+ "attempt_id": "attempt2",
+ "attempt_role": "repeat",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v9-d6c06629e029815d",
+ "status": "complete",
+ "terminal_status": "complete",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/ContactsAddContact/attempt2/artifact_k3_code.py",
+   "sha256": "45f7ee4cea68679290e54f1e3c7eec83c37dafb679bd5b7cb71760dcdc18d074"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/ContactsAddContact/attempt2/compile.json",
+    "sha256": "9ebc338e0f0d0d766b4330f78f518a923bb86025bd295aedb34d6a0873570bef"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s1/trajectory.jsonl",
+    "trajectory_sha256": "82a8510e6bba630b35377eafaf7afe7fa1ebbde3bef7f60ffdd2887b0e6e431c",
+    "recorded_task_id": "ContactsAddContact__discover__s1",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Create a new contact for Aria Ali. Their number is +11524493909.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/z-ai_glm-5.3-flash/discover__ContactsAddContact__s2/trajectory.jsonl",
+    "trajectory_sha256": "7584a7653bd9f42f4dc1d784912c1781daba4734024592e47c8abbb4dc85605e",
+    "recorded_task_id": "ContactsAddContact__discover__s2",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/z-ai_glm-5.3-flash/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+    "trajectory_sha256": "7b82173fb8431697adb97734479ab7b7a868c7b9e20784046df46a37abfce9f8",
+    "recorded_task_id": "ContactsAddContact__discover__s3",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\": \"Nikola Fernandez\", \"number\": \"+11417776317\"}"
+   ],
+   "binding": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 141,
+     "cached_tokens": 0,
+     "completion_tokens": 67,
+     "total_tokens": 208,
+     "cost_usd": 5.41035e-05,
+     "usage": {
+      "prompt_tokens": 141,
+      "completion_tokens": 67,
+      "cached_tokens": 0,
+      "cost_usd": 5.41035e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 3.335,
+     "response_id": "gen-1790344867-eosAS003cBt8yNeonWy1",
+     "finish_reason": "stop",
+     "raw_output_length": 54,
+     "reasoning_length": 180
+    }
+   ],
+   "wall_s": 3.335
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Aria Ali. Their number is +11524493909.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\": \"Aria Ali\", \"number\": \"+11524493909\"}"
+   ],
+   "binding": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 143,
+     "cached_tokens": 0,
+     "completion_tokens": 78,
+     "total_tokens": 221,
+     "cost_usd": 5.98455e-05,
+     "usage": {
+      "prompt_tokens": 143,
+      "completion_tokens": 78,
+      "cached_tokens": 0,
+      "cost_usd": 5.98455e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 7.294,
+     "response_id": "gen-1790344869-SYhxKQVVRxQZBaqplgZh",
+     "finish_reason": "stop",
+     "raw_output_length": 46,
+     "reasoning_length": 220
+    }
+   ],
+   "wall_s": 7.294
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\": \"Nora Gonzalez\", \"number\": \"+18259791907\"}"
+   ],
+   "binding": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 142,
+     "cached_tokens": 0,
+     "completion_tokens": 78,
+     "total_tokens": 220,
+     "cost_usd": 5.074245e-05,
+     "usage": {
+      "prompt_tokens": 142,
+      "completion_tokens": 78,
+      "cached_tokens": 0,
+      "cost_usd": 5.074245e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 4.82,
+     "response_id": "gen-1790344877-jLGfmaUQPgYrB6CJl9iO",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 220
+    }
+   ],
+   "wall_s": 4.82
+  }
+ ],
+ "initial_program_sha256": "45f7ee4cea68679290e54f1e3c7eec83c37dafb679bd5b7cb71760dcdc18d074",
+ "final_program_sha256": "9ae3ff26235b96df7b9c953e612ad72020890bd2ad62ab63360f91e01656207d",
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "45f7ee4cea68679290e54f1e3c7eec83c37dafb679bd5b7cb71760dcdc18d074",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Save', 'clickable': True}) -> NOT FOUND"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Video', description='Make video call' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: text='Added Oct 15, 2023'\n  13: text='Add phone number'\n  14: text='Add email'\n  15: text='15:34', description='23:34'\n  16: description='Android System notification: Serial console enabled'\n  17: description='Phone signal full.'\n  18: description='Battery charging, 100 percent.'\n  19: description='3G'",
+     "wall_s": 28.656
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 45.447
+  },
+  {
+   "version": 1,
+   "program_sha256": "0392a9e771d49a27656f4a3c20dc45ebc6cf6ba7cd779fa4c26c358389cebbb3",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone'}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 56} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'text': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Save', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Save'}) -> NOT FOUND",
+      "find({'description': 'Save'}) -> NOT FOUND",
+      "find({'contains': 'Save'}) -> NOT FOUND"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='+11417776317'\n  8: text='Call', description='Call' [clickable]\n  9: text='Text', description='Text' [clickable]\n  10: text='Video', description='Make video call' [clickable]\n  11: text='Nikola Fernandez'\n  12: text='Contact info'\n  13: text='About Nikola'\n  14: text='Added Oct 15, 2023'\n  15: text='Add phone number'\n  16: text='Add email'\n  17: text='+11417776317'\n  18: text='15:34', description='23:34'\n  19: description='Android System notification: Serial console enabled'\n  20: description='Phone signal full.'\n  21: description='Battery charging, 100 percent.'\n  22: description='3G'",
+     "wall_s": 28.714
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 45.69
+  },
+  {
+   "version": 2,
+   "program_sha256": "9ae3ff26235b96df7b9c953e612ad72020890bd2ad62ab63360f91e01656207d",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 13} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: description='Call Mobile +11417776317' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+11417776317'\n  15: text='Mobile'\n  16: description='Text Mobile +11417776317' [clickable]\n  17: text='15:34', description='23:34'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Phone three bars.'\n  20: description='Battery charging, 100 percent.'\n  21: description='3G'",
+     "wall_s": 52.777
+    },
+    {
+     "seed": 2,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Aria\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Ali\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 13} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Aria Ali'\n  11: text='Contact info'\n  12: description='Call Mobile +11524493909' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+11524493909'\n  15: text='Mobile'\n  16: description='Text Mobile +11524493909' [clickable]\n  17: text='15:34', description='23:34'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Phone signal full.'\n  20: description='Battery charging, 100 percent.'\n  21: description='3G'",
+     "wall_s": 51.221
+    },
+    {
+     "seed": 3,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nora\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Gonzalez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 13} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Nora Gonzalez'\n  11: text='Contact info'\n  12: description='Call Mobile +1 825-979-1907' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+1 825-979-1907'\n  15: text='Mobile'\n  16: description='Text Mobile +1 825-979-1907' [clickable]\n  17: text='15:34', description='23:34'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Phone signal full.'\n  20: description='Battery charging, 100 percent.'\n  21: description='3G'",
+     "wall_s": 51.39
+    }
+   ],
+   "passed": 3,
+   "admitted": true,
+   "wall_s": 206.345
+  }
+ ],
+ "admitted": true,
+ "repairs": [
+  {
+   "status": "ok",
+   "cause": "The phone field was never located, so the number was typed into the wrong field and lost on save; the contact was saved with the name only (detail screen still shows \"Add phone number\"), so the oracle rejected it.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 806,
+      "completion_tokens": 1035,
+      "cached_tokens": 0,
+      "cost_usd": 0.000632016
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5105,
+     "cached_tokens": 0,
+     "completion_tokens": 65,
+     "total_tokens": 5170,
+     "cost_usd": 0.0007902675,
+     "usage": {
+      "prompt_tokens": 5105,
+      "completion_tokens": 65,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007902675
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9319,
+     "cached_tokens": 0,
+     "completion_tokens": 52,
+     "total_tokens": 9371,
+     "cost_usd": 0.0014096115,
+     "usage": {
+      "prompt_tokens": 9319,
+      "completion_tokens": 52,
+      "cached_tokens": 0,
+      "cost_usd": 0.0014096115
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":6}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13526,
+     "cached_tokens": 0,
+     "completion_tokens": 39,
+     "total_tokens": 13565,
+     "cost_usd": 0.002027916,
+     "usage": {
+      "prompt_tokens": 13526,
+      "completion_tokens": 39,
+      "cached_tokens": 0,
+      "cost_usd": 0.002027916
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 18205,
+     "cached_tokens": 9216,
+     "completion_tokens": 62,
+     "total_tokens": 18267,
+     "cost_usd": 0.0016392717,
+     "usage": {
+      "prompt_tokens": 18205,
+      "completion_tokens": 62,
+      "cached_tokens": 9216,
+      "cost_usd": 0.0016392717
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 25040,
+     "cached_tokens": 18112,
+     "completion_tokens": 61,
+     "total_tokens": 25101,
+     "cost_usd": 0.0015969294,
+     "usage": {
+      "prompt_tokens": 25040,
+      "completion_tokens": 61,
+      "cached_tokens": 18112,
+      "cost_usd": 0.0015969294
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 31876,
+     "cached_tokens": 24960,
+     "completion_tokens": 63,
+     "total_tokens": 31939,
+     "cost_usd": 0.001799523,
+     "usage": {
+      "prompt_tokens": 31876,
+      "completion_tokens": 63,
+      "cached_tokens": 24960,
+      "cost_usd": 0.001799523
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 38977,
+     "cached_tokens": 13440,
+     "completion_tokens": 157,
+     "total_tokens": 39134,
+     "cost_usd": 0.0042691275,
+     "usage": {
+      "prompt_tokens": 38977,
+      "completion_tokens": 157,
+      "cached_tokens": 13440,
+      "cost_usd": 0.0042691275
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 45804,
+     "cached_tokens": 38912,
+     "completion_tokens": 58,
+     "total_tokens": 45862,
+     "cost_usd": 0.0022078584,
+     "usage": {
+      "prompt_tokens": 45804,
+      "completion_tokens": 58,
+      "cached_tokens": 38912,
+      "cost_usd": 0.0022078584
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 52905,
+     "cached_tokens": 0,
+     "completion_tokens": 77,
+     "total_tokens": 52982,
+     "cost_usd": 0.0078945075,
+     "usage": {
+      "prompt_tokens": 52905,
+      "completion_tokens": 77,
+      "cached_tokens": 0,
+      "cost_usd": 0.0078945075
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 59732,
+     "cached_tokens": 0,
+     "completion_tokens": 57,
+     "total_tokens": 59789,
+     "cost_usd": 0.004155228,
+     "usage": {
+      "prompt_tokens": 59732,
+      "completion_tokens": 57,
+      "cached_tokens": 0,
+      "cost_usd": 0.004155228
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 66833,
+     "cached_tokens": 0,
+     "completion_tokens": 142,
+     "total_tokens": 66975,
+     "cost_usd": 0.0046708893,
+     "usage": {
+      "prompt_tokens": 66833,
+      "completion_tokens": 142,
+      "cached_tokens": 0,
+      "cost_usd": 0.0046708893
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 73660,
+     "cached_tokens": 0,
+     "completion_tokens": 1010,
+     "total_tokens": 74670,
+     "cost_usd": 0.00538461,
+     "usage": {
+      "prompt_tokens": 73660,
+      "completion_tokens": 1010,
+      "cached_tokens": 0,
+      "cost_usd": 0.00538461
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 2808,
+      "completion_tokens": 51087,
+      "cached_tokens": 0,
+      "cost_usd": 0.0143559108
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The contact was actually saved \u2014 the click on index 2 was the editor's save (checkmark) button, which landed on the saved contact's detail page. The agent then wrongly assumed the save hadn't happened and burned the rest of the run searching for a \"Save\" button that only exists inside the editor, ending in a NOT-FOUND loop, so the run was scored as failed despite the completed state.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 860,
+      "completion_tokens": 10752,
+      "cached_tokens": 0,
+      "cost_usd": 0.00544995
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 5105,
+     "cached_tokens": 0,
+     "completion_tokens": 76,
+     "total_tokens": 5181,
+     "cost_usd": 0.0003748437,
+     "usage": {
+      "prompt_tokens": 5105,
+      "completion_tokens": 76,
+      "cached_tokens": 0,
+      "cost_usd": 0.0003748437
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 9312,
+     "cached_tokens": 0,
+     "completion_tokens": 42,
+     "total_tokens": 9354,
+     "cost_usd": 0.000656964,
+     "usage": {
+      "prompt_tokens": 9312,
+      "completion_tokens": 42,
+      "cached_tokens": 0,
+      "cost_usd": 0.000656964
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 13991,
+     "cached_tokens": 0,
+     "completion_tokens": 63,
+     "total_tokens": 14054,
+     "cost_usd": 0.0009870399,
+     "usage": {
+      "prompt_tokens": 13991,
+      "completion_tokens": 63,
+      "cached_tokens": 0,
+      "cost_usd": 0.0009870399
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 20826,
+     "cached_tokens": 0,
+     "completion_tokens": 60,
+     "total_tokens": 20886,
+     "cost_usd": 0.0014598738,
+     "usage": {
+      "prompt_tokens": 20826,
+      "completion_tokens": 60,
+      "cached_tokens": 0,
+      "cost_usd": 0.0014598738
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 27662,
+     "cached_tokens": 0,
+     "completion_tokens": 64,
+     "total_tokens": 27726,
+     "cost_usd": 0.0019347174,
+     "usage": {
+      "prompt_tokens": 27662,
+      "completion_tokens": 64,
+      "cached_tokens": 0,
+      "cost_usd": 0.0019347174
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 34763,
+     "cached_tokens": 27648,
+     "completion_tokens": 49,
+     "total_tokens": 34812,
+     "cost_usd": 0.0010540827,
+     "usage": {
+      "prompt_tokens": 34763,
+      "completion_tokens": 49,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0010540827
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 41590,
+     "cached_tokens": 0,
+     "completion_tokens": 55,
+     "total_tokens": 41645,
+     "cost_usd": 0.002897433,
+     "usage": {
+      "prompt_tokens": 41590,
+      "completion_tokens": 55,
+      "cached_tokens": 0,
+      "cost_usd": 0.002897433
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 48691,
+     "cached_tokens": 27648,
+     "completion_tokens": 126,
+     "total_tokens": 48817,
+     "cost_usd": 0.0020406375,
+     "usage": {
+      "prompt_tokens": 48691,
+      "completion_tokens": 126,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0020406375
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 55518,
+     "cached_tokens": 27648,
+     "completion_tokens": 70,
+     "total_tokens": 55588,
+     "cost_usd": 0.0024982254,
+     "usage": {
+      "prompt_tokens": 55518,
+      "completion_tokens": 70,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0024982254
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 62619,
+     "cached_tokens": 27648,
+     "completion_tokens": 111,
+     "total_tokens": 62730,
+     "cost_usd": 0.0030016899,
+     "usage": {
+      "prompt_tokens": 62619,
+      "completion_tokens": 111,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0030016899
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 69446,
+     "cached_tokens": 27648,
+     "completion_tokens": 220,
+     "total_tokens": 69666,
+     "cost_usd": 0.0035050158,
+     "usage": {
+      "prompt_tokens": 69446,
+      "completion_tokens": 220,
+      "cached_tokens": 27648,
+      "cost_usd": 0.0035050158
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 76547,
+     "cached_tokens": 59648,
+     "completion_tokens": 123,
+     "total_tokens": 76670,
+     "cost_usd": 0.0023862267,
+     "usage": {
+      "prompt_tokens": 76547,
+      "completion_tokens": 123,
+      "cached_tokens": 59648,
+      "cost_usd": 0.0023862267
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 4862,
+      "completion_tokens": 85052,
+      "cached_tokens": 0,
+      "cost_usd": 0.042822747
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 2
+  }
+ ],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/ContactsAddContact/attempt2/compile.json",
+   "translator": null,
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 1458,
+     "cached_tokens": 0,
+     "completion_tokens": 5752,
+     "cost_usd": 0.003063753,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1458,
+       "cached_tokens": 0,
+       "completion_tokens": 5752,
+       "total_tokens": 7210,
+       "cost_usd": 0.003063753,
+       "usage": {
+        "prompt_tokens": 1458,
+        "completion_tokens": 5752,
+        "cached_tokens": 0,
+        "cost_usd": 0.003063753
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1355,
+     "cached_tokens": 0,
+     "completion_tokens": 1640,
+     "cost_usd": 0.0006078105,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1355,
+       "cached_tokens": 0,
+       "completion_tokens": 1640,
+       "total_tokens": 2995,
+       "cost_usd": 0.0006078105,
+       "usage": {
+        "prompt_tokens": 1355,
+        "completion_tokens": 1640,
+        "cached_tokens": 0,
+        "cost_usd": 0.0006078105
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 2324,
+     "cached_tokens": 0,
+     "completion_tokens": 6812,
+     "cost_usd": 0.0026019378,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2324,
+       "cached_tokens": 0,
+       "completion_tokens": 6812,
+       "total_tokens": 9136,
+       "cost_usd": 0.0026019378,
+       "usage": {
+        "prompt_tokens": 2324,
+        "completion_tokens": 6812,
+        "cached_tokens": 0,
+        "cost_usd": 0.0026019378
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 2221,
+     "cached_tokens": 0,
+     "completion_tokens": 1551,
+     "cost_usd": 0.0006585381,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2221,
+       "cached_tokens": 0,
+       "completion_tokens": 1551,
+       "total_tokens": 3772,
+       "cost_usd": 0.0006585381,
+       "usage": {
+        "prompt_tokens": 2221,
+        "completion_tokens": 1551,
+        "cached_tokens": 0,
+        "cost_usd": 0.0006585381
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 3267,
+     "cached_tokens": 0,
+     "completion_tokens": 2803,
+     "cost_usd": 0.00131084415,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3267,
+       "cached_tokens": 0,
+       "completion_tokens": 2803,
+       "total_tokens": 6070,
+       "cost_usd": 0.00131084415,
+       "usage": {
+        "prompt_tokens": 3267,
+        "completion_tokens": 2803,
+        "cached_tokens": 0,
+        "cost_usd": 0.00131084415
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 3164,
+     "cached_tokens": 0,
+     "completion_tokens": 2022,
+     "cost_usd": 0.0008824464,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3164,
+       "cached_tokens": 0,
+       "completion_tokens": 2022,
+       "total_tokens": 5186,
+       "cost_usd": 0.0008824464,
+       "usage": {
+        "prompt_tokens": 3164,
+        "completion_tokens": 2022,
+        "cached_tokens": 0,
+        "cost_usd": 0.0008824464
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 426,
+   "cached_tokens": 0,
+   "completion_tokens": 223,
+   "total_tokens": 649,
+   "cost_usd": 0.00016469
+  },
+  "new_repair": {
+   "calls": 28,
+   "prompt_tokens": 916388,
+   "cached_tokens": 302528,
+   "completion_tokens": 150828,
+   "total_tokens": 1067216,
+   "cost_usd": 0.12390311
+  },
+  "reconciliation": {
+   "reconciled": true,
+   "new_calls": 31,
+   "new_cost_usd": 0.1240678,
+   "call_source": "extractions[].calls plus repairs[].calls"
+  }
+ },
+ "deployment": {
+  "status": "not_required_repeat",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": "9ae3ff26235b96df7b9c953e612ad72020890bd2ad62ab63360f91e01656207d",
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": [],
+  "reason": "repeat_study_ends_after_compilation_verification"
+ },
+ "timing": {
+  "attempt_wall_s": 4268.936
+ },
+ "final_program_source": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last)\",\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number as a single string, copied verbatim\",\n    },\n}\n\n\ndef _split_name(name):\n    \"\"\"Split a two-word full name into (first, last).\"\"\"\n    words = (name or \"\").strip().split()\n    if not words:\n        return \"\", \"\"\n    if len(words) == 1:\n        return words[0], \"\"\n    return words[0], \" \".join(words[1:])\n\n\ndef _blob(elem):\n    \"\"\"Lower-cased concatenation of an element's text/hint/description.\"\"\"\n    parts = []\n    for key in (\"text\", \"hint\", \"description\", \"content_desc\"):\n        value = elem.get(key)\n        if value:\n            parts.append(str(value))\n    return \" \".join(parts).lower()\n\n\ndef _digits(value):\n    return \"\".join(ch for ch in str(value or \"\") if ch.isdigit())\n\n\ndef _same_number(a, b):\n    \"\"\"Lenient phone comparison that tolerates display formatting.\"\"\"\n    da, db = _digits(a), _digits(b)\n    if not da or not db:\n        return False\n    if da == db:\n        return True\n    tail = min(len(da), len(db), 6)\n    return tail >= 4 and da[-tail:] == db[-tail:]\n\n\n# Editor text fields that are NOT the phone field.  NB: \"Phonetic name\"\n# contains the substring \"Phone\", which is what lured the number into a\n# wrong (lost) field in an earlier failed run.\n_NON_PHONE_WORDS = (\n    \"phonetic\", \"email\", \"e-mail\", \"web\", \"website\", \"address\",\n    \"organization\", \"organisation\", \"company\", \"note\", \"birthday\",\n    \"relationship\",\n)\n\n\ndef _mentions_phone(blob):\n    return \"phone\" in blob and not any(word in blob for word in _NON_PHONE_WORDS)\n\n\ndef _number_in_editable(elems, number):\n    \"\"\"True if the number is currently held by an editable field that is\n    not a name/phonetic/email-like field (or shown by a phone-labelled\n    read-only element).\"\"\"\n    target = str(number or \"\").strip()\n    if not target:\n        return True\n    for elem in elems:\n        txt = str(elem.get(\"text\") or \"\")\n        if not txt or not (target in txt or _same_number(txt, target)):\n            continue\n        blob = _blob(elem)\n        if elem.get(\"editable\"):\n            if not any(w in blob for w in (\"first name\", \"last name\",\n                                           \"phonetic\", \"email\", \"address\")):\n                return True\n        elif _mentions_phone(blob):\n            return True\n    return False\n\n\ndef _phone_by_position(elems):\n    \"\"\"Compact-editor field order is first name, last name, phone, ...,\n    so the phone edit field is the first usable editable after the\n    last-name field.\"\"\"\n    anchor_pos = None\n    for pos, elem in enumerate(elems):\n        if elem.get(\"editable\") and \"last name\" in _blob(elem):\n            anchor_pos = pos\n            break\n    if anchor_pos is None:\n        editables = [e for e in elems if e.get(\"editable\")]\n        if len(editables) < 2:\n            return None\n        try:\n            anchor_pos = elems.index(editables[1])\n        except ValueError:\n            return None\n    for elem in elems[anchor_pos + 1:]:\n        if not elem.get(\"editable\"):\n            continue\n        if not any(w in _blob(elem) for w in _NON_PHONE_WORDS):\n            return elem[\"index\"]\n    return None\n\n\ndef _locate_phone_field(device, max_scrolls=2):\n    \"\"\"Locate the phone-number edit field inside the contact editor.\n\n    Every lookup runs on a fresh full element scan (no find() chains that\n    can pile up NOT-FOUND results).  \"Phonetic name\"-like fields are\n    explicitly excluded.\n    \"\"\"\n    for round_no in range(max_scrolls + 1):\n        elems = device.elements()\n        # 1) An editable field whose text/hint mentions a phone number.\n        for elem in elems:\n            if elem.get(\"editable\") and _mentions_phone(_blob(elem)):\n                return elem[\"index\"]\n        # 2) Positional fallback: first editable after the last-name field.\n        idx = _phone_by_position(elems)\n        if idx is not None:\n            return idx\n        # 3) A tappable phone row: tap it to focus its edit field.\n        for elem in elems:\n            if elem.get(\"clickable\") and _mentions_phone(_blob(elem)):\n                device.click(elem[\"index\"])\n                device.settle(1)\n                for elem2 in device.elements():\n                    if (elem2.get(\"editable\")\n                            and _mentions_phone(_blob(elem2))):\n                        return elem2[\"index\"]\n                break\n        if round_no < max_scrolls:\n            device.scroll(\"down\")\n    return None\n\n\ndef _type_number(device, number):\n    \"\"\"Type the number into the editor's phone field (best effort).\n\n    Returns True if the number is held by a phone field afterwards.\n    \"\"\"\n    field = _locate_phone_field(device)\n    if field is None:\n        return False\n    if _number_in_editable(device.elements(), number):\n        return True  # already there (e.g. re-entry after saving)\n    device.input_text(number, index=field)\n    if _number_in_editable(device.elements(), number):\n        return True\n    # The text did not stick: focus the field with a tap and retry once.\n    try:\n        device.click(field)\n    except Exception:\n        pass\n    device.settle(1)\n    field = _locate_phone_field(device) or field\n    device.input_text(number, index=field)\n    return _number_in_editable(device.elements(), number)\n\n\ndef _save_index_in(elems):\n    \"\"\"Index of the editor's save control in a scanned element list.\n\n    The editor's save control is a checkmark carrying the (content\n    description) 'Save' -- occasionally a plain 'Save' button.  Elements\n    merely REPORTING a save ('Contact saved' snackbar) are ignored.\n    \"\"\"\n    exact_clickable = None\n    exact = None\n    loose = None\n    for elem in elems:\n        blob = _blob(elem).strip()\n        if not blob or \"saved\" in blob or \"save\" not in blob:\n            continue\n        if blob == \"save\":\n            if elem.get(\"clickable\") and exact_clickable is None:\n                exact_clickable = elem[\"index\"]\n            if exact is None:\n                exact = elem[\"index\"]\n        elif elem.get(\"clickable\") and loose is None:\n            loose = elem[\"index\"]\n    if exact_clickable is not None:\n        return exact_clickable\n    if exact is not None:\n        return exact\n    return loose\n\n\ndef _editor_still_open(elems):\n    \"\"\"Heuristic: the contact editor is open iff a save control is visible\n    or at least two editable fields are on screen (the saved-contact detail\n    and the contacts list have none).\"\"\"\n    editables = 0\n    for elem in elems:\n        if _blob(elem).strip() == \"save\":\n            return True\n        if elem.get(\"editable\"):\n            editables += 1\n    return editables >= 2\n\n\ndef _save_contact(device, max_attempts=3):\n    \"\"\"Click the editor's save control until the editor closes.\n\n    Repaired: all state checks run on full element scans.  The failed run\n    assumed the save had not happened and burned the rest of the run\n    hammering find('Save') on the saved contact's detail screen -- where no\n    Save button exists (the editor's save control vanishes once saved).\n    That NOT-FOUND loop is exactly what this avoids.\n    \"\"\"\n    for _ in range(max_attempts):\n        elems = device.elements()\n        save_idx = _save_index_in(elems)\n        if save_idx is None:\n            if not _editor_still_open(elems):\n                return True  # editor already closed -> saved\n            device.scroll(\"down\")\n            device.settle(1)\n            continue\n        device.click(save_idx)\n        device.settle(2)\n    elems = device.elements()\n    return _save_index_in(elems) is None and not _editor_still_open(elems)\n\n\ndef _add_phone_index_in(elems):\n    for elem in elems:\n        low = (str(elem.get(\"text\") or \"\") + \" \"\n               + str(elem.get(\"description\") or \"\")).lower()\n        if \"add phone\" in low:\n            return elem[\"index\"]\n    return None\n\n\ndef _open_contact_detail(device, name):\n    \"\"\"Open the contact's detail screen by tapping its name (works from the\n    contacts list; harmless on the detail screen itself).\"\"\"\n    full = str(name or \"\").strip()\n    if not full:\n        return False\n    elems = device.elements()\n    full_low = full.lower()\n    for elem in elems:\n        txt = str(elem.get(\"text\") or \"\").strip()\n        if txt and txt.lower() == full_low:\n            device.click(elem[\"index\"])\n            device.settle(2)\n            return True\n    for word in [w for w in full.split() if w]:\n        w_low = word.lower()\n        for elem in elems:\n            txt = str(elem.get(\"text\") or \"\").strip().lower()\n            if txt and w_low in txt:\n                device.click(elem[\"index\"])\n                device.settle(2)\n                return True\n    return False\n\n\ndef _phone_stored_on_screen(device, number):\n    \"\"\"True if the number shows up on the current screen as a stored phone\n    number: visible as read-only text, above the 'Add phone number'\n    placeholder, or accompanied by Call/Text/Video actions.\"\"\"\n    elems = device.elements()\n    target = str(number or \"\").strip()\n    if not target:\n        return False\n    num_pos = None\n    add_phone_pos = None\n    call_seen = False\n    for pos, elem in enumerate(elems):\n        txt = str(elem.get(\"text\") or \"\")\n        desc = str(elem.get(\"description\") or \"\")\n        if add_phone_pos is None and \"add phone number\" in txt.lower():\n            add_phone_pos = pos\n        if (txt.strip().lower() in (\"call\", \"text\", \"video\", \"make video call\")\n                or desc.strip().lower() in (\"call\", \"text\", \"make video call\",\n                                            \"video call\")):\n            call_seen = True\n        if (num_pos is None and txt and not elem.get(\"editable\")\n                and (target in txt or _same_number(txt, target))):\n            num_pos = pos\n    if num_pos is None:\n        return False\n    if add_phone_pos is None or call_seen:\n        return True\n    return num_pos < add_phone_pos\n\n\ndef _add_phone_from_detail(device, number, name):\n    \"\"\"Store the number on the saved contact via its 'Add phone number'\n    entry on the contact detail screen.\"\"\"\n    entry = _add_phone_index_in(device.elements())\n    if entry is None:\n        device.scroll(\"down\")\n        entry = _add_phone_index_in(device.elements())\n    if entry is None:\n        # Maybe we are on the contacts list instead of the detail screen:\n        # open the contact by tapping its name.\n        if _open_contact_detail(device, name):\n            entry = _add_phone_index_in(device.elements())\n    if entry is None:\n        device.scroll(\"down\")\n        entry = _add_phone_index_in(device.elements())\n    if entry is None:\n        raise RuntimeError(\"'Add phone number' entry not found on the contact screen\")\n    device.click(entry)\n    device.settle(2)\n    if not _editor_still_open(device.elements()):\n        # The tap may have missed; retry once (the tappable-row fallback in\n        # the locator also re-opens the phone entry if needed).\n        entry = _add_phone_index_in(device.elements())\n        if entry is not None:\n            device.click(entry)\n            device.settle(2)\n    if not _type_number(device, number):\n        device.scroll(\"down\")\n        if not _type_number(device, number):\n            raise RuntimeError(\"Could not type the phone number into the editor\")\n    if not _save_contact(device):\n        raise RuntimeError(\"Saving the phone number did not complete; editor still open\")\n\n\ndef program(device, binding: dict) -> bool:\n    name = str(binding[\"name\"])\n    number = str(binding[\"number\"])\n    first, last = _split_name(name)\n\n    # ---- Step 1: open the Contacts app -------------------------------------\n    device.open_app(\"Contacts\")\n    device.settle(2)\n    if (device.find(description=\"Create contact\") is None\n            and device.find(text=\"Create contact\") is None\n            and device.find(description=\"Contacts\") is None):\n        # Retry once in case the launch was slow.\n        device.open_app(\"Contacts\")\n        device.settle(2)\n        if (device.find(description=\"Create contact\") is None\n                and device.find(text=\"Create contact\") is None\n                and device.find(description=\"Contacts\") is None):\n            raise RuntimeError(\"Contacts app did not open (PeopleActivity not detected)\")\n\n    # ---- Step 2: tap the \"Create contact\" button ---------------------------\n    create = device.find(description=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(text=\"Create contact\", clickable=True)\n    if create is None:\n        create = device.find(contains=\"Create contact\", clickable=True)\n    if create is None:\n        # Fallback on a full element scan.\n        for elem in device.elements():\n            blob = _blob(elem)\n            if elem.get(\"clickable\") and (\"create contact\" in blob\n                                          or \"new contact\" in blob):\n                create = elem[\"index\"]\n                break\n    if create is None:\n        raise LookupError(\"'Create contact' button not found on the Contacts screen\")\n    device.click(create)\n    device.settle(2)\n\n    # ---- Step 3: type the first name ---------------------------------------\n    first_field = device.find(hint=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(text=\"First name\", editable=True)\n    if first_field is None:\n        first_field = device.find(contains=\"First\", editable=True)\n    if first_field is None:\n        # Fallback: the first editable field on the editor form.\n        first_field = device.find(editable=True)\n    if first_field is None:\n        raise RuntimeError(\"First name field not found on contact editor screen\")\n    device.input_text(first, index=first_field)\n\n    # ---- Step 4: type the last name ----------------------------------------\n    last_field = device.find(hint=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(text=\"Last name\", editable=True)\n    if last_field is None:\n        last_field = device.find(contains=\"Last\", editable=True)\n    if last_field is None:\n        # Fallback: the second editable field on the editor form.\n        editables = [e for e in device.elements() if e.get(\"editable\")]\n        if len(editables) >= 2:\n            last_field = editables[1][\"index\"]\n    if last_field is None:\n        raise LookupError(\"Last name field not found on contact editor screen\")\n    device.input_text(last, index=last_field)\n\n    # ---- Step 5: type the phone number -------------------------------------\n    # The phone field is located robustly (hint / full element scan /\n    # position after the last-name field / tap-to-focus, with scrolling);\n    # \"Phonetic name\"-like fields are explicitly excluded so the number can\n    # never be typed into a wrong field.  If it cannot be filled, the\n    # contact is still saved and Step 7 stores the number through the\n    # detail screen's 'Add phone number' entry.\n    _type_number(device, number)\n\n    # ---- Step 6: save the contact ------------------------------------------\n    # Repaired: the save control is located and re-checked with full element\n    # scans only.  The failed run wrongly assumed the save had not happened\n    # (the click on the editor's save checkmark DID save and landed on the\n    # detail screen) and burned the run in a find('Save') NOT-FOUND loop on\n    # a screen where no Save button exists.\n    if not _save_contact(device):\n        raise RuntimeError(\"Saving the contact did not complete; editor still open\")\n\n    # ---- Step 7: verify the number was stored as a phone number ------------\n    device.settle(1)\n    if _phone_stored_on_screen(device, number):\n        return True\n    # The number is missing (or was not stored as a phone): make sure the\n    # editor is really closed, open the saved contact's detail screen and\n    # store the number through its 'Add phone number' entry.\n    if _editor_still_open(device.elements()):\n        if not _save_contact(device):\n            raise RuntimeError(\"Contact editor did not close after saving\")\n        device.settle(1)\n        if _phone_stored_on_screen(device, number):\n            return True\n    _open_contact_detail(device, name)\n    if _phone_stored_on_screen(device, number):\n        return True\n    _add_phone_from_detail(device, number, name)\n    if not _phone_stored_on_screen(device, number):\n        raise RuntimeError(\"Phone number was not stored on the contact\")\n    return True\n",
+ "phase": "finished",
+ "provenance_audits": [
+  {
+   "kind": "source_cell_relative_trajectory_alias_resolution",
+   "model_calls": 0,
+   "path_source_kind": "compile_json_building_trajectories",
+   "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/z-ai_glm-5.3-flash/ContactsAddContact/attempt2/compile.json",
+   "source_record_sha256": "9ebc338e0f0d0d766b4330f78f518a923bb86025bd295aedb34d6a0873570bef",
+   "translation_path": null,
+   "translation_sha256": null,
+   "resolved_trajectory_sha256": {
+    "1": "82a8510e6bba630b35377eafaf7afe7fa1ebbde3bef7f60ffdd2887b0e6e431c",
+    "2": "7584a7653bd9f42f4dc1d784912c1781daba4734024592e47c8abbb4dc85605e",
+    "3": "7b82173fb8431697adb97734479ab7b7a868c7b9e20784046df46a37abfce9f8"
+   },
+   "prompt_equality_with_completed_extractions": true
+  }
+ ]
+}

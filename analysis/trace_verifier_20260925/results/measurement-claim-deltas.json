@@ -1,0 +1,835 @@
+{
+  "admitted_serving": {
+    "d_range": [
+      330.6,
+      724.0866666666667
+    ],
+    "saving_share_range": [
+      0.9359486371616134,
+      0.9989537913528201
+    ]
+  },
+  "diagnostics": {
+    "completed": 220,
+    "errors": [],
+    "expected": 220,
+    "manifest_sha256": "c96e46f5b1920dabe22dc627813b60ab27805e5c8e53426a71820614ec99e48f",
+    "missing_selected_artifact_coverage": [],
+    "protocol_id": "three-building-diagnostics-v1",
+    "remaining": 0
+  },
+  "fragility": {
+    "by_model": {
+      "deepseek/deepseek-v4-flash-vision-exp": {
+        "appearance_failure_fraction_conditional_mean": 0.0,
+        "detectable_error_fraction_all_failures": 0.8666666666666667,
+        "excluded_zero_clean_pass_cells": 0,
+        "included_cells": 1,
+        "interruption_failure_fraction_conditional_mean": 1.0
+      },
+      "qwen/qwen3.8-flash": {
+        "appearance_failure_fraction_conditional_mean": 0.1,
+        "detectable_error_fraction_all_failures": 0.7142857142857143,
+        "excluded_zero_clean_pass_cells": 0,
+        "included_cells": 2,
+        "interruption_failure_fraction_conditional_mean": 0.8333333333333333
+      },
+      "z-ai/glm-5.3-flash": {
+        "appearance_failure_fraction_conditional_mean": 0.0,
+        "detectable_error_fraction_all_failures": 0.5783132530120482,
+        "excluded_zero_clean_pass_cells": 1,
+        "included_cells": 2,
+        "interruption_failure_fraction_conditional_mean": 0.8416666666666667
+      }
+    },
+    "cells": [
+      {
+        "appearance_failure_fraction_conditional": 0.0,
+        "appearance_failures": 0,
+        "appearance_trials": 25,
+        "clean_passes": 5,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 0.8666666666666667,
+        "detectable_failures": 13,
+        "excluded_from_conditional": false,
+        "family": "MarkorDeleteNote",
+        "interruption_failure_fraction_conditional": 1.0,
+        "interruption_failures": 15,
+        "interruption_trials": 15,
+        "model": "deepseek/deepseek-v4-flash-vision-exp",
+        "total_failures": 15
+      },
+      {
+        "appearance_failure_fraction_conditional": 0.2,
+        "appearance_failures": 5,
+        "appearance_trials": 25,
+        "clean_passes": 5,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 0.6,
+        "detectable_failures": 15,
+        "excluded_from_conditional": false,
+        "family": "ContactsAddContact",
+        "interruption_failure_fraction_conditional": 1.0,
+        "interruption_failures": 20,
+        "interruption_trials": 20,
+        "model": "qwen/qwen3.8-flash",
+        "total_failures": 25
+      },
+      {
+        "appearance_failure_fraction_conditional": 0.0,
+        "appearance_failures": 0,
+        "appearance_trials": 25,
+        "clean_passes": 5,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 1.0,
+        "detectable_failures": 10,
+        "excluded_from_conditional": false,
+        "family": "MarkorDeleteNote",
+        "interruption_failure_fraction_conditional": 0.6666666666666666,
+        "interruption_failures": 10,
+        "interruption_trials": 15,
+        "model": "qwen/qwen3.8-flash",
+        "total_failures": 10
+      },
+      {
+        "appearance_failure_fraction_conditional": null,
+        "appearance_failures": 0,
+        "appearance_trials": 0,
+        "clean_passes": 0,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 0.2,
+        "detectable_failures": 8,
+        "excluded_from_conditional": true,
+        "family": "ContactsAddContact",
+        "interruption_failure_fraction_conditional": null,
+        "interruption_failures": 0,
+        "interruption_trials": 0,
+        "model": "z-ai/glm-5.3-flash",
+        "total_failures": 40
+      },
+      {
+        "appearance_failure_fraction_conditional": 0.0,
+        "appearance_failures": 0,
+        "appearance_trials": 25,
+        "clean_passes": 5,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 1.0,
+        "detectable_failures": 14,
+        "excluded_from_conditional": false,
+        "family": "MarkorDeleteNote",
+        "interruption_failure_fraction_conditional": 0.9333333333333333,
+        "interruption_failures": 14,
+        "interruption_trials": 15,
+        "model": "z-ai/glm-5.3-flash",
+        "total_failures": 14
+      },
+      {
+        "appearance_failure_fraction_conditional": 0.0,
+        "appearance_failures": 0,
+        "appearance_trials": 15,
+        "clean_passes": 3,
+        "clean_trials": 5,
+        "detectable_error_fraction_all_failures": 0.896551724137931,
+        "detectable_failures": 26,
+        "excluded_from_conditional": false,
+        "family": "SimpleCalendarAddOneEvent",
+        "interruption_failure_fraction_conditional": 0.75,
+        "interruption_failures": 9,
+        "interruption_trials": 12,
+        "model": "z-ai/glm-5.3-flash",
+        "total_failures": 29
+      }
+    ],
+    "conditional_cells": 5,
+    "excluded_zero_clean_pass_cells": 1
+  },
+  "limitations": [
+    "c and agent pi are retained from identical historical exploration tasks and conditions.",
+    "Web DeepSeek C is a measured lower bound; its modeled C_fail donor and clamp are explicit per cell.",
+    "Qwen Calc model-call charges are exact but wall time excludes interrupted segments.",
+    "Repeat attempts do not require deployment and do not define serving d or q."
+  ],
+  "main": {
+    "admitted": 11,
+    "admitted_C_pw": {
+      "median": 258987.0,
+      "range": [
+        136527.46666666665,
+        3423645.2
+      ]
+    },
+    "attempts": 20,
+    "candidate_evaluations": 57,
+    "lower_bound_costs": [
+      {
+        "C_pw": 1397386.0272727273,
+        "cost_labels": {
+          "frozen_pw_C": 1397386.0272727273,
+          "known_new_call_lower_bound_usd": 0.27476648466,
+          "known_total_acquisition_lower_bound_usd": 0.32478637466,
+          "note": "Provider USD lower bounds and frozen price-weighted-token C are separate accounting units.",
+          "reused_initial_builder_usd": 0.01634153,
+          "reused_initial_translation_usd": 0.03367836
+        },
+        "family": "CommentPost",
+        "model": "deepseek/deepseek-v4-flash-vision-exp"
+      }
+    ],
+    "rejected": 9,
+    "rejected_exact_C_pw": {
+      "median": 2240121.666666667,
+      "n": 8,
+      "range": [
+        605314.2181818181,
+        3081721.066666667
+      ]
+    },
+    "repair_rounds": 38
+  },
+  "matched_android": {
+    "agent_successes": 157,
+    "cells": [
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 23,
+        "bindings": 30,
+        "family": "MarkorDeleteNote",
+        "matched_agent_cost_mean": 22338.173333333336,
+        "model": "deepseek/deepseek-v4-flash-vision-exp",
+        "program_extraction_cost_mean": 330.6,
+        "program_successes": 29,
+        "saving_share": 0.9518668889468531
+      },
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 30,
+        "bindings": 30,
+        "family": "ContactsAddContact",
+        "matched_agent_cost_mean": 42154.72233333334,
+        "model": "qwen/qwen3.8-flash",
+        "program_extraction_cost_mean": 552.0644444444445,
+        "program_successes": 29,
+        "saving_share": 0.9535705195712343
+      },
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 30,
+        "bindings": 30,
+        "family": "MarkorDeleteNote",
+        "matched_agent_cost_mean": 19279.974777777777,
+        "model": "qwen/qwen3.8-flash",
+        "program_extraction_cost_mean": 388.11111111111114,
+        "program_successes": 30,
+        "saving_share": 0.979869729313212
+      },
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 30,
+        "bindings": 30,
+        "family": "ContactsAddContact",
+        "matched_agent_cost_mean": 67125.51333333334,
+        "model": "z-ai/glm-5.3-flash",
+        "program_extraction_cost_mean": 424.5311111111111,
+        "program_successes": 30,
+        "saving_share": 0.9936755625390459
+      },
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 30,
+        "bindings": 30,
+        "family": "MarkorDeleteNote",
+        "matched_agent_cost_mean": 35420.69111111111,
+        "model": "z-ai/glm-5.3-flash",
+        "program_extraction_cost_mean": 331.6333333333333,
+        "program_successes": 30,
+        "saving_share": 0.9906372991906613
+      },
+      {
+        "agent_source": "paper/measurement_update_20260918.json paired replay on identical tasks",
+        "agent_successes": 14,
+        "bindings": 30,
+        "family": "SimpleCalendarAddOneEvent",
+        "matched_agent_cost_mean": 535319.22,
+        "model": "z-ai/glm-5.3-flash",
+        "program_extraction_cost_mean": 639.9911111111111,
+        "program_successes": 30,
+        "saving_share": 0.9988044682738814
+      }
+    ],
+    "program_successes": 178,
+    "rows": 180,
+    "saving_share_range": [
+      0.9518668889468531,
+      0.9988044682738814
+    ]
+  },
+  "payback_admitted": {
+    "compilation_only_range": [
+      1.3888852729037828,
+      15.48822700087738
+    ],
+    "including_three_traces_range": [
+      4.401841457234471,
+      18.69353109651439
+    ],
+    "n": 11
+  },
+  "per_cell": [
+    {
+      "C": 258987.0,
+      "C_fail": 605314.2181818181,
+      "admitted": false,
+      "c_reused": 65044.73580066963,
+      "cell": "Android/ContactsAddContact",
+      "d": 676.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "q": 0.0,
+      "saving_per_use": 64368.13580066963,
+      "source": "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/main/result.json"
+    },
+    {
+      "C": 156013.87272727274,
+      "C_fail": 1701304.309090909,
+      "admitted": true,
+      "c_reused": 10762.40909090909,
+      "cell": "Android/MarkorDeleteNote",
+      "d": 330.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "payback_compilation_only": 15.48822700087738,
+      "payback_including_three_traces": 18.69353109651439,
+      "q": 0.03333333333333333,
+      "saving_per_use": 10073.06212121212,
+      "source": "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/MarkorDeleteNote/main/result.json"
+    },
+    {
+      "C": 258987.0,
+      "C_fail": 1701304.309090909,
+      "admitted": false,
+      "c_reused": 152788.89220779223,
+      "cell": "Android/OsmAndMarker",
+      "d": 676.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "q": 0.0,
+      "saving_per_use": 152112.29220779223,
+      "source": "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/main/result.json"
+    },
+    {
+      "C": 258987.0,
+      "C_fail": 2872443.768181818,
+      "admitted": false,
+      "c_reused": 146345.62945635445,
+      "cell": "Android/SimpleCalendarAddOneEvent",
+      "d": 676.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "q": 0.0,
+      "saving_per_use": 145669.02945635444,
+      "source": "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/main/result.json"
+    },
+    {
+      "C": 3056985.0,
+      "C_fail": 1701304.309090909,
+      "admitted": true,
+      "c_reused": 646716.1228535355,
+      "cell": "Desktop/CalcTableSave",
+      "d": 676.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "payback_compilation_only": 4.731885421649433,
+      "payback_including_three_traces": 7.735027334687562,
+      "q": 0.0,
+      "saving_per_use": 646039.5228535355,
+      "source": "experimental-results/trace_verifier_20260925/desktop/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/attempts/initial/result.json"
+    },
+    {
+      "C": 258987.0,
+      "C_fail": 1701304.309090909,
+      "admitted": true,
+      "c_reused": 50736.24671717172,
+      "cell": "Desktop/WriterMemoSave",
+      "d": 691.9666666666667,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "payback_compilation_only": 5.175156875843322,
+      "payback_including_three_traces": 8.21663813999389,
+      "q": 0.0,
+      "saving_per_use": 50044.280050505055,
+      "source": "experimental-results/trace_verifier_20260925/desktop/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/attempts/initial/result.json"
+    },
+    {
+      "C": 258987.0,
+      "C_fail": 1701304.309090909,
+      "C_fail_imputation": {
+        "clamp_applied": false,
+        "donor_ids": [
+          "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/main/result.json",
+          "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/OsmAndMarker/main/result.json",
+          "experimental-results/trace_verifier_20260925/android/deepseek_deepseek-v4-flash-vision-exp/SimpleCalendarAddOneEvent/main/result.json"
+        ],
+        "donor_median_pw": 1701304.309090909,
+        "observed_lower_bound_pw": 1397386.0272727273,
+        "rule": "same-model median complete failed-attempt charge clamped to observed lower bound"
+      },
+      "admitted": false,
+      "c_reused": 40034.569191919196,
+      "cell": "Web/CommentPost",
+      "d": 676.6,
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "q": 0.0,
+      "saving_per_use": 39357.9691919192,
+      "source": "experimental-results/trace_verifier_20260925/web/deepseek_deepseek-v4-flash-vision-exp_CommentPost/result.json"
+    },
+    {
+      "C": 138227.61333333334,
+      "C_fail": 1936438.3333333335,
+      "admitted": true,
+      "c_reused": 39168.48233333334,
+      "cell": "Android/ContactsAddContact",
+      "d": 552.0644444444445,
+      "model": "qwen/qwen3.8-flash",
+      "payback_compilation_only": 3.7047612654673454,
+      "payback_including_three_traces": 6.854129311613355,
+      "q": 0.03333333333333333,
+      "saving_per_use": 37310.801811111116,
+      "source": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/ContactsAddContact/pilot2/result.json"
+    },
+    {
+      "C": 211808.68000000002,
+      "C_fail": 1936438.3333333335,
+      "admitted": true,
+      "c_reused": 21487.260111111107,
+      "cell": "Android/MarkorDeleteNote",
+      "d": 388.11111111111114,
+      "model": "qwen/qwen3.8-flash",
+      "payback_compilation_only": 10.038730945973226,
+      "payback_including_three_traces": 13.093914846202251,
+      "q": 0.0,
+      "saving_per_use": 21099.148999999998,
+      "source": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/MarkorDeleteNote/main/result.json"
+    },
+    {
+      "C": 211808.68000000002,
+      "C_fail": 1551891.0533333335,
+      "admitted": false,
+      "c_reused": 122265.79471428572,
+      "cell": "Android/OsmAndMarker",
+      "d": 552.0644444444445,
+      "model": "qwen/qwen3.8-flash",
+      "q": 0.0,
+      "saving_per_use": 121713.73026984127,
+      "source": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/OsmAndMarker/main/result.json"
+    },
+    {
+      "C": 211808.68000000002,
+      "C_fail": 1936438.3333333335,
+      "admitted": false,
+      "c_reused": 134632.32677777775,
+      "cell": "Android/SimpleCalendarAddOneEvent",
+      "d": 552.0644444444445,
+      "model": "qwen/qwen3.8-flash",
+      "q": 0.0,
+      "saving_per_use": 134080.26233333332,
+      "source": "experimental-results/trace_verifier_20260925/android/qwen_qwen3.8-flash/SimpleCalendarAddOneEvent/main/result.json"
+    },
+    {
+      "C": 211808.68000000002,
+      "C_fail": 3054190.0,
+      "admitted": false,
+      "c_reused": 168641.09703703705,
+      "cell": "Desktop/CalcTableSave",
+      "d": 552.0644444444445,
+      "model": "qwen/qwen3.8-flash",
+      "q": 0.0,
+      "saving_per_use": 168089.03259259262,
+      "source": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/CalcTableSave/attempts/serial-rate-retry1/result.json"
+    },
+    {
+      "C": 487382.0,
+      "C_fail": 1936438.3333333335,
+      "admitted": true,
+      "c_reused": 36984.96888888889,
+      "cell": "Desktop/WriterMemoSave",
+      "d": 724.0866666666667,
+      "model": "qwen/qwen3.8-flash",
+      "payback_compilation_only": 13.440985716042823,
+      "payback_including_three_traces": 16.50089214597157,
+      "q": 0.0,
+      "saving_per_use": 36260.88222222222,
+      "source": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/WriterMemoSave/attempts/initial/result.json"
+    },
+    {
+      "C": 136527.46666666665,
+      "C_fail": 2812763.033333333,
+      "admitted": true,
+      "c_reused": 98724.56303615608,
+      "cell": "Android/ContactsAddContact",
+      "d": 424.5311111111111,
+      "model": "z-ai/glm-5.3-flash",
+      "payback_compilation_only": 1.3888852729037828,
+      "payback_including_three_traces": 4.401841457234471,
+      "q": 0.0,
+      "saving_per_use": 98300.03192504497,
+      "source": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/ContactsAddContact/main/result.json"
+    },
+    {
+      "C": 143685.53333333335,
+      "C_fail": 2812763.033333333,
+      "admitted": true,
+      "c_reused": 33698.84444444444,
+      "cell": "Android/MarkorDeleteNote",
+      "d": 331.6333333333333,
+      "model": "z-ai/glm-5.3-flash",
+      "payback_compilation_only": 4.3061894760957955,
+      "payback_including_three_traces": 7.336006172393459,
+      "q": 0.0,
+      "saving_per_use": 33367.21111111111,
+      "source": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/MarkorDeleteNote/main/result.json"
+    },
+    {
+      "C": 437105.0,
+      "C_fail": 3081721.066666667,
+      "admitted": false,
+      "c_reused": 279832.9583333333,
+      "cell": "Android/OsmAndMarker",
+      "d": 596.2666666666667,
+      "model": "z-ai/glm-5.3-flash",
+      "q": 0.0,
+      "saving_per_use": 279236.69166666665,
+      "source": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/OsmAndMarker/main/result.json"
+    },
+    {
+      "C": 3423645.2,
+      "C_fail": 2812763.033333333,
+      "admitted": true,
+      "c_reused": 313821.96788535325,
+      "cell": "Android/SimpleCalendarAddOneEvent",
+      "d": 639.9911111111111,
+      "model": "z-ai/glm-5.3-flash",
+      "payback_compilation_only": 10.931807874972135,
+      "payback_including_three_traces": 13.937938410813018,
+      "q": 0.0,
+      "saving_per_use": 313181.9767742421,
+      "source": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/SimpleCalendarAddOneEvent/main/result.json"
+    },
+    {
+      "C": 437105.0,
+      "C_fail": 2543805.0,
+      "admitted": false,
+      "c_reused": 505062.3259259259,
+      "cell": "Desktop/CalcTableSave",
+      "d": 596.2666666666667,
+      "model": "z-ai/glm-5.3-flash",
+      "q": 0.0,
+      "saving_per_use": 504466.05925925926,
+      "source": "experimental-results/trace_verifier_20260925/desktop/z-ai_glm-5.3-flash/CalcTableSave/attempts/initial/result.json"
+    },
+    {
+      "C": 473149.0,
+      "C_fail": 2812763.033333333,
+      "admitted": true,
+      "c_reused": 70205.76296296295,
+      "cell": "Desktop/WriterMemoSave",
+      "d": 596.2666666666667,
+      "model": "z-ai/glm-5.3-flash",
+      "payback_compilation_only": 6.797190400373215,
+      "payback_including_three_traces": 9.822888043585369,
+      "q": 0.0,
+      "saving_per_use": 69609.49629629629,
+      "source": "experimental-results/trace_verifier_20260925/desktop/z-ai_glm-5.3-flash/WriterMemoSave/attempts/initial/result.json"
+    },
+    {
+      "C": 437105.0,
+      "C_fail": 2812763.033333333,
+      "admitted": true,
+      "c_reused": 123883.98518518519,
+      "cell": "Web/CommentPost",
+      "d": 716.4,
+      "model": "z-ai/glm-5.3-flash",
+      "payback_compilation_only": 3.5488639266800837,
+      "payback_including_three_traces": 6.566313322937781,
+      "q": 0.0,
+      "saving_per_use": 123167.58518518519,
+      "source": "experimental-results/trace_verifier_20260925/web/pilot_glm/result.json"
+    }
+  ],
+  "protocol_id": "three-building-model-extracted-v1",
+  "repeat_families": [
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        605314.2181818181,
+        888578.9090909091,
+        807729.6181818182
+      ],
+      "family": "ContactsAddContact",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "outcomes": [
+        "Fail",
+        "Fail",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        156013.87272727274,
+        102023.30909090908,
+        151419.48636363636
+      ],
+      "family": "MarkorDeleteNote",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "outcomes": [
+        "Pass",
+        "Pass",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        1701304.309090909,
+        1384960.4090909092,
+        1843315.518181818
+      ],
+      "family": "OsmAndMarker",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "outcomes": [
+        "Fail",
+        "Fail",
+        "Fail"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        2872443.768181818,
+        1280543.6181818182,
+        812899.3727272727
+      ],
+      "family": "SimpleCalendarAddOneEvent",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "outcomes": [
+        "Fail",
+        "Generation failure",
+        "Fail"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        false,
+        true
+      ],
+      "C_pw": [
+        138227.61333333334,
+        447878.5333333334,
+        213435.6
+      ],
+      "family": "ContactsAddContact",
+      "model": "qwen/qwen3.8-flash",
+      "outcomes": [
+        "Pass",
+        "Generation failure",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        211808.68000000002,
+        104966.73333333332,
+        166423.93333333332
+      ],
+      "family": "MarkorDeleteNote",
+      "model": "qwen/qwen3.8-flash",
+      "outcomes": [
+        "Pass",
+        "Pass",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        1936438.3333333335,
+        635387.7066666667,
+        608228.7066666667
+      ],
+      "family": "SimpleCalendarAddOneEvent",
+      "model": "qwen/qwen3.8-flash",
+      "outcomes": [
+        "Fail",
+        "Generation failure",
+        "Generation failure"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        136527.46666666665,
+        820321.3333333333,
+        1190905.2666666668
+      ],
+      "family": "ContactsAddContact",
+      "model": "z-ai/glm-5.3-flash",
+      "outcomes": [
+        "Pass",
+        "Pass",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        143685.53333333335,
+        296228.4666666667,
+        216593.2
+      ],
+      "family": "MarkorDeleteNote",
+      "model": "z-ai/glm-5.3-flash",
+      "outcomes": [
+        "Pass",
+        "Pass",
+        "Pass"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        3081721.066666667,
+        3171536.2666666666,
+        1452788.0
+      ],
+      "family": "OsmAndMarker",
+      "model": "z-ai/glm-5.3-flash",
+      "outcomes": [
+        "Fail",
+        "Fail",
+        "Fail"
+      ]
+    },
+    {
+      "C_exact": [
+        true,
+        true,
+        true
+      ],
+      "C_pw": [
+        3423645.2,
+        1552718.7333333334,
+        733271.8
+      ],
+      "family": "SimpleCalendarAddOneEvent",
+      "model": "z-ai/glm-5.3-flash",
+      "outcomes": [
+        "Pass",
+        "Pass",
+        "Pass"
+      ]
+    }
+  ],
+  "repeats": {
+    "attempts": 22,
+    "lower_bound_costs": [
+      {
+        "C_pw": 447878.5333333334,
+        "attempt_id": "repeat-1",
+        "cost_labels": {
+          "frozen_pw_C_lower_bound": 447878.5333333334,
+          "known_completed_official_cost_cny": 0.3358179,
+          "note": "The reservation is neither paid cost nor zero; total attempt cost remains a lower bound.",
+          "reservation_ceiling_cny": 5.0,
+          "reservation_is_spend": false,
+          "unsettled_calls": 2
+        },
+        "family": "ContactsAddContact",
+        "model": "qwen/qwen3.8-flash"
+      }
+    ],
+    "outcomes": {
+      "admitted": 12,
+      "generation_output_budget_failure": 4,
+      "rejected_program": 6
+    },
+    "repair_rounds": 36
+  },
+  "schema": "three-building-measurement-claims/1",
+  "status": "complete",
+  "t20": [
+    {
+      "direct": 5,
+      "extracted": 5,
+      "family": "MarkorDeleteNote",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "trials": 5
+    },
+    {
+      "direct": 5,
+      "extracted": 5,
+      "family": "ContactsAddContact",
+      "model": "qwen/qwen3.8-flash",
+      "trials": 5
+    },
+    {
+      "direct": 5,
+      "extracted": 5,
+      "family": "MarkorDeleteNote",
+      "model": "qwen/qwen3.8-flash",
+      "trials": 5
+    },
+    {
+      "direct": 0,
+      "extracted": 0,
+      "family": "ContactsAddContact",
+      "model": "z-ai/glm-5.3-flash",
+      "trials": 5
+    },
+    {
+      "direct": 5,
+      "extracted": 5,
+      "family": "MarkorDeleteNote",
+      "model": "z-ai/glm-5.3-flash",
+      "trials": 5
+    },
+    {
+      "direct": 3,
+      "extracted": 3,
+      "family": "SimpleCalendarAddOneEvent",
+      "model": "z-ai/glm-5.3-flash",
+      "trials": 5
+    }
+  ]
+}

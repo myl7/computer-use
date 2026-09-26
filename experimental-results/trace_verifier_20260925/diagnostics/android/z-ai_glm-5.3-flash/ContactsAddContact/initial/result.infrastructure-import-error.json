@@ -1,0 +1,29 @@
+{
+ "protocol_id": "three-building-diagnostics-v1",
+ "platform": "android",
+ "model": "z-ai/glm-5.3-flash",
+ "family": "ContactsAddContact",
+ "source_result": "experimental-results/trace_verifier_20260925/android/z-ai_glm-5.3-flash/ContactsAddContact/main/result.json",
+ "source_result_sha256": "055970ea6864734e5edb5823942d01d94ffe477cf0be86900c8b0e478cebf0b4",
+ "program_sha256": "4b119c0706e216c02b63ca381500a54100c89283249cfa9e857d191597837255",
+ "replay_timeout_s": 1200,
+ "reset_policy": "fresh worker and family reset for every binding/condition",
+ "judge_policy": "original draw params, independent of extracted binding",
+ "results": {
+  "t18": [
+   {
+    "status": "worker_error",
+    "returncode": 1,
+    "error": "Traceback (most recent call last):\n  File \"/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/diagnostics/v1/runner/run_cell.py\", line 181, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/diagnostics/v1/runner/run_cell.py\", line 131, in main\n    return worker(args)\n           ^^^^^^^^^^^^\n  File \"/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/diagnostics/v1/runner/run_cell.py\", line 68, in worker\n    from guiexp_android.expa.lane import configure_lane, load_env_file, make_client\nModuleNotFoundError: No module named 'guiexp_android'\n",
+    "wall_s": 0.03326795622706413,
+    "recovery": {
+     "status": "complete",
+     "returncode": 0,
+     "output_tail": "setup_apps done on emulator-8644: android world, contacts, markor, simple calendar pro, osmand, files\nWARNING:absl:Failed to automatically setup app contacts: Target text \"Don't allow\" not found..\n\nYou will need to manually setup the app.\n"
+    }
+   }
+  ],
+  "t20": []
+ },
+ "record_type": "diagnostics"
+}

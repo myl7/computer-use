@@ -1,0 +1,30 @@
+{
+  "schema": "three-building-claim-deltas/1",
+  "protocol_id": "three-building-model-extracted-v1",
+  "status": "awaiting_validated_results",
+  "eligible_result_count": 0,
+  "paper_values": {
+    "admission_counts": null,
+    "repair_counts": null,
+    "candidate_evaluations": null,
+    "C": null,
+    "C_fail": null,
+    "d": null,
+    "q": null,
+    "payback_ranges": null,
+    "selected_program_identities": null,
+    "android_additional_attempts": null
+  },
+  "verification_table_rule": "Render attempt-level Pass/Fail and explicit pass/fail/untested counts; do not report pass_count/3 as a measured rate after short-circuit.",
+  "historical_scope": {
+    "fragility_probe": "Three model-level files, 5.02 recorded wall-hours, no API calls; requires program-hash audit before reuse.",
+    "k1_k2": "Historical comparison used the old generated gate and is not a new-pipeline selection result.",
+    "live_appendix": "Separate historical two-instance study; retain its scope.",
+    "paired_agent_replays": "May be reused only for identical original tasks and conditions; retain the later-emulator-profile limitation."
+  },
+  "online_rerun": {
+    "status": "blocked_on_validated_profiles",
+    "scenario_probabilities": "preserve assigned values from frozen scenarios",
+    "required_outputs": ["comparisons", "ablations", "price_sensitivity", "probability_sensitivity", "uncertainty"]
+  }
+}

@@ -1,28 +1,29 @@
-\section{Protocol details}\label{app:protocol-details}
+\section{Online algorithm details}\label{app:protocol-details}
 
-Algorithm~\ref{alg:policy} states the execution order, including trace eligibility, manifest control, fallback, and both compilation outcomes.
+\looseness=-1
+Algorithm~\ref{alg:policy} states the execution order, including required source traces, program list control, fallback, and both compilation outcomes.
 \begin{algorithm}[htbp]
 \caption{PACE with extra-cost margin $\epsilon$.
-Family identities, cost profiles, routing charges, and the scenario hazard are supplied.}
+Family identities, cost profiles, routing charges, and the probability of GUI drift are given.}
 \label{alg:policy}
 \begin{algorithmic}[1]
 \State Initialize cumulative charges $K\gets0$ and agent reference $A\gets0$
 \For{each arrival $t$}
 \State Load the arriving family's costs and state
 \State $A\gets A+\tau_0+c$
-\State Expire idle entries and tentatively relist the family's stored live program
+\State Remove idle list entries and add the family's saved program if it can still be reused before the budget check
 \State Compute $U_t^{\mathrm{serv}}$ from Equation~\ref{eq:service-reserve}
 \If{$K+U_t^{\mathrm{serv}}>(1+\epsilon)A$}
-\State Clear the manifest and select agent service
+\State Clear the program list and select agent service
 \EndIf
 \State Pay routing and serve the task; on a detected program failure, pay one agent fallback
 \State Add the routing and serving charges to $K$; log completed agent traces
-\State Invalidate the program after a detected break and update the recurrence records
-\If{at least $k$ agent runs are complete, no live program exists, and Equation~\ref{eq:trigger} holds}
+\State Stop reusing the program after detected GUI drift and update the task arrival records
+\If{at least $k$ agent runs are complete, there is no program to reuse, and Equation~\ref{eq:trigger} holds}
 \If{$K+\max(C,C^{\mathrm{fail}})\leq(1+\epsilon)A$}
-\State Compile and verify a candidate; increment $j$
+\State Compile a program and verify it on completed source tasks; increment $j$
 \If{verification passes}
-\State $K\gets K+C$; increment $g$; store and list the program
+\State $K\gets K+C$; increment $g$; keep and list the program
 \Else
 \State $K\gets K+C^{\mathrm{fail}}$
 \EndIf
@@ -32,24 +33,25 @@ Family identities, cost profiles, routing charges, and the scenario hazard are s
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Compilation spend and program lifetime}
+\subsection{Compilation spend}
 \label{app:reference}
-\label{sec:breakeven}
-For independent attempts with fixed verification probability $p>0$, the number of failures before a verified program has mean $(1-p)/p$.
+For independent attempts with fixed verification probability $p>0$, the number of failed attempts before the first successful verification has mean $(1-p)/p$.
 The expected compilation spend is therefore
 \begin{equation}
 B(p)=C+\left(\frac1p-1\right)C^{\mathrm{fail}}.
-\label{eq:breakeven-law}
+\label{eq:compile-spend}
 \end{equation}
-Substituting the observed-history estimate $\hat p$ gives PACE's proposal price $\hat B$.
-This calculation excludes agent service between attempts and assumes a fixed retry distribution, which the repeated GUI measurements do not establish.
+Using the estimate from past outcomes $\hat p$ gives PACE's estimated compilation cost $\hat B$.
+This calculation excludes agent service between attempts and assumes a fixed retry distribution, which the repeated GUI measurements do not confirm.
 The cost guarantee instead counts each actual model charge and does not use this independence assumption.
 
-\label{sec:stationary}
+\subsection{Program lifetime}
+\label{sec:program-lifetime}
 A replacement calculation explains the lifetime cap $1/h$.
-Suppose a working program can be obtained at deterministic cost $B$ and every use independently breaks it with probability $h>0$.
-A replacement cycle has expected length $1/h$, including its terminal break.
-It pays $B$, extraction on every use, ordinary fallback with probability $q$ on nonterminal uses, and one terminal fallback.
+Suppose a working program can be produced at fixed cost $B$.
+On each execution, GUI drift independently makes it stop working with probability $h>0$.
+A replacement cycle has expected length $1/h$, including the execution on which GUI drift occurs.
+It pays $B$, extraction per execution, fallback with probability $q$ conditional on no GUI drift, and one fallback when GUI drift occurs.
 Dividing expected cycle cost by expected length gives
 \begin{equation}
 c^{\mathrm{prog}}+(1-h)qc+h(B+c).
@@ -57,13 +59,22 @@ c^{\mathrm{prog}}+(1-h)qc+h(B+c).
 \end{equation}
 This is below agent cost $c$ exactly when $s_h/h>B$.
 At $\hat H=1/h$ with no routing charge, the proposal has the same form, using estimated spend $\hat B$.
-Shorter recurrence projections further limit the uses available to repay compilation.
+Smaller reuse estimates further limit the savings available to repay compilation.
 This reference calculation compares two specified policies and does not establish optimal replacement under unknown parameters.
 
-\subsection{Cost of a conservative reservation}
+\subsection{Cost of reserving for failure}
 \label{app:reservation-example}
-A single-family example has $300$ arrivals, agent cost $1$, successful compilation cost $2$, possible failed cost $200$, and no program-use cost or drift.
+Reserving the failed-attempt cost can delay a compilation until observed arrivals add enough budget.
+E.g., suppose a proposal passes the savings test in Equation~\ref{eq:trigger}, but success costs $60$ and failure $120$ tokens.
+With reference and charged costs both $300$, $\epsilon=0.25$ allows only $75$ additional tokens, so PACE waits to compile.
+Two more agent-served arrivals costing $100$ each raise both totals to $500$.
+The resulting $125$ allowance covers either outcome.
+Only observed arrivals increase this allowance.
+
+When the failed-attempt cost exceeds the allowance for the whole stream, the reservation prevents compilation entirely.
+A single-family example has $300$ arrivals, $k=3$, agent cost $1$, successful compilation cost $2$, and possible failed cost $200$.
+Set $c^{\mathrm{prog}}=q=h=\tau_0=m=0$.
 The compiler succeeds, but the policy does not know that in advance.
 With $\epsilon=0.25$, PACE's extra budget never reaches the $200$ reservation, so it uses the agent and pays $300$.
 Eager retry pays $3$ for source runs and $2$ for compilation.
-The example shows how reserving the failure branch can prevent a profitable compilation while preserving the agent-relative constraint.
+The example shows how reserving the failure branch can prevent a profitable compilation while staying within the cost bound relative to agent execution.

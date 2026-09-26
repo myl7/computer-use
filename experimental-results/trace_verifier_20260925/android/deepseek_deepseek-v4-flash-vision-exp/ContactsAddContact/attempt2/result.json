@@ -1,0 +1,1533 @@
+{
+ "protocol_id": "three-building-model-extracted-v1",
+ "platform": "Android",
+ "model": "deepseek/deepseek-v4-flash-vision-exp",
+ "family": "ContactsAddContact",
+ "attempt_id": "attempt2",
+ "attempt_role": "repeat",
+ "price_sheet_id": "measurement_update_20260918-prices-v1",
+ "code_bundle_id": "trace-verifier-android-v9-d6c06629e029815d",
+ "status": "complete",
+ "terminal_status": "complete",
+ "source": {
+  "initial_program": {
+   "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt2/artifact_k3_code.py",
+   "sha256": "470fb019538535c676f89cb4ea0fba4ff0e5fada970106a67e71e9365877fac5"
+  },
+  "records": [
+   {
+    "path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt2/compile.json",
+    "sha256": "8ad2e0efcd7161b8a1cd2c5bfced19189f9bfffa8e1a9c3f5e812ebeb5ad5703"
+   }
+  ]
+ },
+ "tasks": [
+  {
+   "seed": 1,
+   "prompt": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s1/trajectory.jsonl",
+    "trajectory_sha256": "3cb18713b754e1041951b4fcabc9a4a5a31ae079938a7d33e429bacffd8b0e48",
+    "recorded_task_id": "ContactsAddContact__discover__s1",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 1,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   }
+  },
+  {
+   "seed": 2,
+   "prompt": "Create a new contact for Aria Ali. Their number is +11524493909.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t12_grid/deepseek_deepseek-v4-flash-vision-exp/discover__ContactsAddContact__s2/trajectory.jsonl",
+    "trajectory_sha256": "b9cc8f99b8f9e2ab80fa8992869d833c440a7afdd4565da5af82fb7e0e2bd2e2",
+    "recorded_task_id": "ContactsAddContact__discover__s2",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 2,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   }
+  },
+  {
+   "seed": 3,
+   "prompt": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+   "prompt_provenance": {
+    "kind": "reconstructed_from_recorded_seed",
+    "trajectory_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t16_build/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/explore/s3_a0/trajectory.jsonl",
+    "trajectory_sha256": "d4ff6ed16121e18a13828d4ebbdd5135eff4477a996716c0649dab643dadcdb7",
+    "recorded_task_id": "ContactsAddContact__discover__s3",
+    "generator_family": "ContactsAddContact",
+    "generator_condition": "discover",
+    "generator_seed": 3,
+    "generator_code_path": "/home/yulong/app/guiexp/android/analysis/trace_verifier_20260925/orchestration/run-code/android/v9/code/guiexp_android/android_env.py",
+    "generator_code_sha256": "aecaa8e1fa59efc1b4fd52976fa91b124d53e04633094239f35ca27d567f69ed",
+    "source_identity_match": true,
+    "recorded_prompt_match": "not_byte_checkable_prompt_not_recorded",
+    "recorded_params_match": "not_byte_checkable_params_not_recorded"
+   },
+   "truth_params": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   }
+  }
+ ],
+ "extractions": [
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nikola Fernandez. Their number is +11417776317.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Nikola Fernandez\",\"number\":\"+11417776317\"}"
+   ],
+   "binding": {
+    "name": "Nikola Fernandez",
+    "number": "+11417776317"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 214,
+     "cached_tokens": 0,
+     "completion_tokens": 46,
+     "total_tokens": 260,
+     "cost_usd": 7.5132288e-05,
+     "usage": {
+      "prompt_tokens": 214,
+      "completion_tokens": 46,
+      "cached_tokens": 0,
+      "cost_usd": 7.5132288e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 3.236,
+     "response_id": "gen-1790332851-IYbDYrNzZBJJm57RfHDo",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 117
+    }
+   ],
+   "wall_s": 3.236
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Aria Ali. Their number is +11524493909.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\":\"Aria Ali\",\"number\":\"+11524493909\"}"
+   ],
+   "binding": {
+    "name": "Aria Ali",
+    "number": "+11524493909"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 214,
+     "cached_tokens": 0,
+     "completion_tokens": 55,
+     "total_tokens": 269,
+     "cost_usd": 8.25462e-05,
+     "usage": {
+      "prompt_tokens": 214,
+      "completion_tokens": 55,
+      "cached_tokens": 0,
+      "cost_usd": 8.25462e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 0.624,
+     "response_id": "gen-1790332854-DyQqaOOoG6qkWaQGgr7g",
+     "finish_reason": "stop",
+     "raw_output_length": 43,
+     "reasoning_length": 134
+    }
+   ],
+   "wall_s": 0.624
+  },
+  {
+   "status": "ok",
+   "input": {
+    "goal": "Create a new contact for Nora Gonzalez. Their number is +18259791907.",
+    "family": "ContactsAddContact",
+    "fields": [
+     "name",
+     "number"
+    ]
+   },
+   "outputs": [
+    "{\"name\": \"Nora Gonzalez\", \"number\": \"+18259791907\"}"
+   ],
+   "binding": {
+    "name": "Nora Gonzalez",
+    "number": "+18259791907"
+   },
+   "type_check": {
+    "passed": true,
+    "errors": []
+   },
+   "retry_used": false,
+   "calls": [
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 160,
+     "cached_tokens": 0,
+     "completion_tokens": 18,
+     "total_tokens": 178,
+     "cost_usd": 9.32184e-05,
+     "usage": {
+      "prompt_tokens": 160,
+      "completion_tokens": 18,
+      "cached_tokens": 0,
+      "cost_usd": 9.32184e-05
+     },
+     "stage": "verification_extract",
+     "kind": "extract",
+     "wall_s": 1.262,
+     "response_id": "gen-1790332855-nSewT9gWVKPkyjfeJW2F",
+     "finish_reason": "stop",
+     "raw_output_length": 51,
+     "reasoning_length": 0
+    }
+   ],
+   "wall_s": 1.262
+  }
+ ],
+ "initial_program_sha256": "470fb019538535c676f89cb4ea0fba4ff0e5fada970106a67e71e9365877fac5",
+ "final_program_sha256": "d5926e6bf524bd927e4fd3aec75caa08cf56f1556de6dc1a0be329cfbfc2a18e",
+ "candidate_history": [
+  {
+   "version": 0,
+   "program_sha256": "470fb019538535c676f89cb4ea0fba4ff0e5fada970106a67e71e9365877fac5",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": "RuntimeError: Phone number field not found",
+     "error_type": "program_error",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'hint': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'First name', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 1} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity"
+     ],
+     "screen": "  0: description='Cancel' [clickable]\n  1: text='Create contact'\n  2: text='Save' [clickable]\n  3: description='More options' [clickable]\n  4: (no text) [scrollable]\n  5: text='Mobile', hint='Label', description='Mobile Phone' [clickable/editable]\n  6: description='Show dropdown menu' [clickable]\n  7: text='Email', hint='Email' [clickable/editable]\n  8: text='Home', hint='Label', description='Home Email' [clickable/editable]\n  9: description='Show dropdown menu' [clickable]\n  10: text='Significant date', hint='Significant date' [clickable/editable]\n  11: description='Show date picker' [clickable]\n  12: text='Birthday', hint='Label', description='Birthday Special date' [clickable/editable]\n  13: description='Show dropdown menu' [clickable]\n  14: text='More fields' [clickable]\n  15: description='Back' [clickable]\n  16: description='Switch input method' [clickable]\n  17: description='More features' [clickable]\n  18: description='Sticker Keyboard' [clickable]\n  19: description='GIF Keyboard' [clickable]\n  20: description='Clipboard' [clickable]\n  21: description='Settings' [clickable]\n  22: description='Theme settings' [clickable]\n  23: description='Voice input' [clickable]\n  24: description='Q' [clickable]\n  25: description='W' [clickable]\n  26: description='E' [clickable]\n  27: description='R' [clickable]\n  28: description='T' [clickable]\n  29: description='Y' [clickable]\n  30: description='U' [clickable]\n  31: description='I' [clickable]\n  32: description='O' [clickable]\n  33: description='P' [clickable]\n  34: description='A' [clickable]\n  35: description='S' [clickable]\n  36: description='D' [clickable]\n  37: description='F' [clickable]\n  38: description='G' [clickable]\n  39: description='H' [clickable]\n  ... 23 more elements",
+     "wall_s": 50.651
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 67.594
+  },
+  {
+   "version": 1,
+   "program_sha256": "c008e27dd7f4e3ade029d8abc2d47a3d0c4ab6a889f8a7a47d03a0f1a8cf2458",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "fail",
+     "error": null,
+     "error_type": "oracle_fail",
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'hint': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'First name', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Video', description='Make video call' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: text='Added Oct 15, 2023'\n  13: text='Add phone number'\n  14: text='Add email'\n  15: text='15:34', description='23:34'\n  16: description='Android System notification: Serial console enabled'\n  17: description='Wifi signal full.'\n  18: description='Phone signal full.'\n  19: description='Battery charging, 100 percent.'",
+     "wall_s": 31.069
+    },
+    {
+     "seed": 2,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    },
+    {
+     "seed": 3,
+     "status": "untested",
+     "reason": "stopped_after_first_failure",
+     "wall_s": 0.0
+    }
+   ],
+   "passed": 0,
+   "admitted": false,
+   "wall_s": 48.006
+  },
+  {
+   "version": 2,
+   "program_sha256": "d5926e6bf524bd927e4fd3aec75caa08cf56f1556de6dc1a0be329cfbfc2a18e",
+   "interface_sha256": "a1cf8fc50e9aa2afc63374587a0dd5389e87ec0fd3f34372330c9e397eabaeb6",
+   "tasks": [
+    {
+     "seed": 1,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'hint': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Last name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Last name', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nikola\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Fernandez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11417776317\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Nikola Fernandez'\n  11: text='Contact info'\n  12: description='Call Mobile +11417776317' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+11417776317'\n  15: text='Mobile'\n  16: description='Text Mobile +11417776317' [clickable]\n  17: text='15:35', description='23:35'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Wifi signal full.'\n  20: description='Phone three bars.'\n  21: description='Battery charging, 100 percent.'",
+     "wall_s": 111.081
+    },
+    {
+     "seed": 2,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'hint': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Last name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Last name', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Aria\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Ali\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+11524493909\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Aria Ali'\n  11: text='Contact info'\n  12: description='Call Mobile +11524493909' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+11524493909'\n  15: text='Mobile'\n  16: description='Text Mobile +11524493909' [clickable]\n  17: text='15:35', description='23:35'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Wifi signal full.'\n  20: description='Phone signal full.'\n  21: description='Battery charging, 100 percent.'",
+     "wall_s": 111.036
+    },
+    {
+     "seed": 3,
+     "status": "pass",
+     "error": null,
+     "error_type": null,
+     "trace": [
+      "{\"action_type\": \"open_app\", \"app_name\": \"Contacts\"} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "find({'hint': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'First name', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Last name', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Last name', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 0} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Nora\", \"index\": 7} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"Gonzalez\", \"index\": 8} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'description': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'contains': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'hint': 'Phone', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Mobile', 'editable': True}) -> NOT FOUND",
+      "find({'hint': 'Phone number', 'editable': True}) -> NOT FOUND",
+      "find({'text': 'Phone', 'editable': True}) -> NOT FOUND",
+      "{\"action_type\": \"click\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 5} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "find({'text': 'Add phone number'}) -> NOT FOUND",
+      "find({'contains': 'Add phone number'}) -> NOT FOUND",
+      "find({'description': 'Add phone number'}) -> NOT FOUND",
+      "find({'text': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'contains': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'description': 'Add phone number', 'clickable': True}) -> NOT FOUND",
+      "find({'text': 'Add phone', 'clickable': True}) -> NOT FOUND",
+      "{\"action_type\": \"scroll\", \"direction\": \"down\"} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity",
+      "{\"action_type\": \"click\", \"index\": 3} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"input_text\", \"text\": \"+18259791907\", \"index\": 10} -> com.google.android.contacts/com.google.android.apps.contacts.editor.ContactEditorActivity",
+      "{\"action_type\": \"click\", \"index\": 2} -> com.google.android.contacts/com.android.contacts.activities.PeopleActivity"
+     ],
+     "screen": "  0: (no text)\n  1: (no text) [scrollable]\n  2: description='Navigate up' [clickable]\n  3: description='Edit contact' [clickable]\n  4: description='Add to favorites' [clickable]\n  5: description='More options' [clickable]\n  6: description='Contact photo'\n  7: text='Call', description='Call' [clickable]\n  8: text='Text', description='Text' [clickable]\n  9: text='Set up', description='Set up Duo video calling' [clickable]\n  10: text='Nora Gonzalez'\n  11: text='Contact info'\n  12: description='Call Mobile +1 825-979-1907' [clickable]\n  13: text='Added Oct 15, 2023'\n  14: text='+1 825-979-1907'\n  15: text='Mobile'\n  16: description='Text Mobile +1 825-979-1907' [clickable]\n  17: text='15:35', description='23:35'\n  18: description='Android System notification: Serial console enabled'\n  19: description='Wifi signal full.'\n  20: description='Phone signal full.'\n  21: description='Battery charging, 100 percent.'",
+     "wall_s": 110.709
+    }
+   ],
+   "passed": 3,
+   "admitted": true,
+   "wall_s": 383.278
+  }
+ ],
+ "admitted": true,
+ "repairs": [
+  {
+   "status": "ok",
+   "cause": "The automation looked for the phone number field using hints 'Phone'/'Mobile' or text 'Phone', but the editable element on screen exposes hint 'Label' (the phone label dropdown) and the number input is not matched, so the lookup failed.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1924,
+      "completion_tokens": 27860,
+      "cached_tokens": 0,
+      "cost_usd": 0.0372455424
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2381,
+     "cached_tokens": 512,
+     "completion_tokens": 179,
+     "total_tokens": 2560,
+     "cost_usd": 0.0005170234608,
+     "usage": {
+      "prompt_tokens": 2381,
+      "completion_tokens": 179,
+      "cached_tokens": 512,
+      "cost_usd": 0.0005170234608
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 3779,
+     "cached_tokens": 2304,
+     "completion_tokens": 46,
+     "total_tokens": 3825,
+     "cost_usd": 0.0003599325576,
+     "usage": {
+      "prompt_tokens": 3779,
+      "completion_tokens": 46,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0003599325576
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"navigate_back\"}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 5459,
+     "cached_tokens": 0,
+     "completion_tokens": 83,
+     "total_tokens": 5542,
+     "cost_usd": 0.001218338352,
+     "usage": {
+      "prompt_tokens": 5459,
+      "completion_tokens": 83,
+      "cached_tokens": 0,
+      "cost_usd": 0.001218338352
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 6822,
+     "cached_tokens": 5376,
+     "completion_tokens": 39,
+     "total_tokens": 6861,
+     "cost_usd": 0.0003701235384,
+     "usage": {
+      "prompt_tokens": 6822,
+      "completion_tokens": 39,
+      "cached_tokens": 5376,
+      "cost_usd": 0.0003701235384
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 8707,
+     "cached_tokens": 6656,
+     "completion_tokens": 233,
+     "total_tokens": 8940,
+     "cost_usd": 0.0006321745584,
+     "usage": {
+      "prompt_tokens": 8707,
+      "completion_tokens": 233,
+      "cached_tokens": 6656,
+      "cost_usd": 0.0006321745584
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 12971,
+     "cached_tokens": 6656,
+     "completion_tokens": 63,
+     "total_tokens": 13034,
+     "cost_usd": 0.0014334433344,
+     "usage": {
+      "prompt_tokens": 12971,
+      "completion_tokens": 63,
+      "cached_tokens": 6656,
+      "cost_usd": 0.0014334433344
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 17235,
+     "cached_tokens": 12800,
+     "completion_tokens": 143,
+     "total_tokens": 17378,
+     "cost_usd": 0.001125121536,
+     "usage": {
+      "prompt_tokens": 17235,
+      "completion_tokens": 143,
+      "cached_tokens": 12800,
+      "cost_usd": 0.001125121536
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 21796,
+     "cached_tokens": 17152,
+     "completion_tokens": 132,
+     "total_tokens": 21928,
+     "cost_usd": 0.0011922438528,
+     "usage": {
+      "prompt_tokens": 21796,
+      "completion_tokens": 132,
+      "cached_tokens": 17152,
+      "cost_usd": 0.0011922438528
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 26051,
+     "cached_tokens": 17152,
+     "completion_tokens": 83,
+     "total_tokens": 26134,
+     "cost_usd": 0.0020690718048,
+     "usage": {
+      "prompt_tokens": 26051,
+      "completion_tokens": 83,
+      "cached_tokens": 17152,
+      "cost_usd": 0.0020690718048
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 30612,
+     "cached_tokens": 25856,
+     "completion_tokens": 247,
+     "total_tokens": 30859,
+     "cost_usd": 0.0013489001064,
+     "usage": {
+      "prompt_tokens": 30612,
+      "completion_tokens": 247,
+      "cached_tokens": 25856,
+      "cost_usd": 0.0013489001064
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 34867,
+     "cached_tokens": 30464,
+     "completion_tokens": 49,
+     "total_tokens": 34916,
+     "cost_usd": 0.0011780634096,
+     "usage": {
+      "prompt_tokens": 34867,
+      "completion_tokens": 49,
+      "cached_tokens": 30464,
+      "cost_usd": 0.0011780634096
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 39428,
+     "cached_tokens": 30464,
+     "completion_tokens": 272,
+     "total_tokens": 39700,
+     "cost_usd": 0.0022943755296,
+     "usage": {
+      "prompt_tokens": 39428,
+      "completion_tokens": 272,
+      "cached_tokens": 30464,
+      "cost_usd": 0.0022943755296
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 4525,
+      "completion_tokens": 11712,
+      "cached_tokens": 0,
+      "cost_usd": 0.008465402484
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 1
+  },
+  {
+   "status": "ok",
+   "cause": "The phone number was never entered into the phone field; it was typed into the wrong element and the contact was saved without a number. The final screen shows \"Add phone number,\" so the oracle rejected the result.",
+   "calls": [
+    {
+     "usage": {
+      "prompt_tokens": 1081,
+      "completion_tokens": 1383,
+      "cached_tokens": 0,
+      "cost_usd": 0.00111631212
+     }
+    },
+    {
+     "step": 1,
+     "call": 1,
+     "first_call": true,
+     "prompt_tokens": 2381,
+     "cached_tokens": 0,
+     "completion_tokens": 295,
+     "total_tokens": 2676,
+     "cost_usd": 0.000697108104,
+     "usage": {
+      "prompt_tokens": 2381,
+      "completion_tokens": 295,
+      "cached_tokens": 0,
+      "cost_usd": 0.000697108104
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":2}"
+    },
+    {
+     "step": 2,
+     "call": 2,
+     "first_call": false,
+     "prompt_tokens": 3742,
+     "cached_tokens": 2304,
+     "completion_tokens": 54,
+     "total_tokens": 3796,
+     "cost_usd": 0.0003571577856,
+     "usage": {
+      "prompt_tokens": 3742,
+      "completion_tokens": 54,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0003571577856
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":1}"
+    },
+    {
+     "step": 3,
+     "call": 3,
+     "first_call": false,
+     "prompt_tokens": 5627,
+     "cached_tokens": 2304,
+     "completion_tokens": 125,
+     "total_tokens": 5752,
+     "cost_usd": 0.0008049632976,
+     "usage": {
+      "prompt_tokens": 5627,
+      "completion_tokens": 125,
+      "cached_tokens": 2304,
+      "cost_usd": 0.0008049632976
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"click\",\"index\":7}"
+    },
+    {
+     "step": 4,
+     "call": 4,
+     "first_call": false,
+     "prompt_tokens": 9883,
+     "cached_tokens": 3584,
+     "completion_tokens": 58,
+     "total_tokens": 9941,
+     "cost_usd": 0.0014059633896,
+     "usage": {
+      "prompt_tokens": 9883,
+      "completion_tokens": 58,
+      "cached_tokens": 3584,
+      "cost_usd": 0.0014059633896
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":7,\"text\":\"Nikola\"}"
+    },
+    {
+     "step": 5,
+     "call": 5,
+     "first_call": false,
+     "prompt_tokens": 14147,
+     "cached_tokens": 9728,
+     "completion_tokens": 118,
+     "total_tokens": 14265,
+     "cost_usd": 0.0010848349512,
+     "usage": {
+      "prompt_tokens": 14147,
+      "completion_tokens": 118,
+      "cached_tokens": 9728,
+      "cost_usd": 0.0010848349512
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"input_text\",\"index\":8,\"text\":\"Fernandez\"}"
+    },
+    {
+     "step": 6,
+     "call": 6,
+     "first_call": false,
+     "prompt_tokens": 18411,
+     "cached_tokens": 5376,
+     "completion_tokens": 45,
+     "total_tokens": 18456,
+     "cost_usd": 0.0028475680464,
+     "usage": {
+      "prompt_tokens": 18411,
+      "completion_tokens": 45,
+      "cached_tokens": 5376,
+      "cost_usd": 0.0028475680464
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 7,
+     "call": 7,
+     "first_call": false,
+     "prompt_tokens": 22972,
+     "cached_tokens": 14080,
+     "completion_tokens": 60,
+     "total_tokens": 23032,
+     "cost_usd": 0.00203198688,
+     "usage": {
+      "prompt_tokens": 22972,
+      "completion_tokens": 60,
+      "cached_tokens": 14080,
+      "cost_usd": 0.00203198688
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 8,
+     "call": 8,
+     "first_call": false,
+     "prompt_tokens": 27227,
+     "cached_tokens": 18176,
+     "completion_tokens": 57,
+     "total_tokens": 27284,
+     "cost_usd": 0.0020918210544,
+     "usage": {
+      "prompt_tokens": 27227,
+      "completion_tokens": 57,
+      "cached_tokens": 18176,
+      "cost_usd": 0.0020918210544
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 9,
+     "call": 9,
+     "first_call": false,
+     "prompt_tokens": 31788,
+     "cached_tokens": 27136,
+     "completion_tokens": 170,
+     "total_tokens": 31958,
+     "cost_usd": 0.0012860893584,
+     "usage": {
+      "prompt_tokens": 31788,
+      "completion_tokens": 170,
+      "cached_tokens": 27136,
+      "cost_usd": 0.0012860893584
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 10,
+     "call": 10,
+     "first_call": false,
+     "prompt_tokens": 36043,
+     "cached_tokens": 22784,
+     "completion_tokens": 442,
+     "total_tokens": 36485,
+     "cost_usd": 0.0032678159976,
+     "usage": {
+      "prompt_tokens": 36043,
+      "completion_tokens": 442,
+      "cached_tokens": 22784,
+      "cost_usd": 0.0032678159976
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "step": 11,
+     "call": 11,
+     "first_call": false,
+     "prompt_tokens": 40604,
+     "cached_tokens": 27136,
+     "completion_tokens": 132,
+     "total_tokens": 40736,
+     "cost_usd": 0.0031434790464,
+     "usage": {
+      "prompt_tokens": 40604,
+      "completion_tokens": 132,
+      "cached_tokens": 27136,
+      "cost_usd": 0.0031434790464
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"up\"}"
+    },
+    {
+     "step": 12,
+     "call": 12,
+     "first_call": false,
+     "prompt_tokens": 44859,
+     "cached_tokens": 40448,
+     "completion_tokens": 142,
+     "total_tokens": 45001,
+     "cost_usd": 0.0013071271752,
+     "usage": {
+      "prompt_tokens": 44859,
+      "completion_tokens": 142,
+      "cached_tokens": 40448,
+      "cost_usd": 0.0013071271752
+     },
+     "stage": "react_resume",
+     "action": "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    },
+    {
+     "usage": {
+      "prompt_tokens": 7839,
+      "completion_tokens": 161469,
+      "cached_tokens": 0,
+      "cost_usd": 0.127920474
+     }
+    }
+   ],
+   "resume_success": false,
+   "seed": 1,
+   "round": 2
+  }
+ ],
+ "usage": {
+  "reused_translation_builder": {
+   "source_record": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt2/compile.json",
+   "translator": null,
+   "builder_initial": {
+    "k1_code": {
+     "k": 1,
+     "artifact": "code",
+     "prompt_tokens": 2091,
+     "cached_tokens": 0,
+     "completion_tokens": 6107,
+     "cost_usd": 0.0044457336,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 2091,
+       "cached_tokens": 0,
+       "completion_tokens": 6107,
+       "total_tokens": 8198,
+       "cost_usd": 0.0044457336,
+       "usage": {
+        "prompt_tokens": 2091,
+        "completion_tokens": 6107,
+        "cached_tokens": 0,
+        "cost_usd": 0.0044457336
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k1_doc": {
+     "k": 1,
+     "artifact": "doc",
+     "prompt_tokens": 1913,
+     "cached_tokens": 0,
+     "completion_tokens": 1736,
+     "cost_usd": 0.0031019076,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 1913,
+       "cached_tokens": 0,
+       "completion_tokens": 1736,
+       "total_tokens": 3649,
+       "cost_usd": 0.0031019076,
+       "usage": {
+        "prompt_tokens": 1913,
+        "completion_tokens": 1736,
+        "cached_tokens": 0,
+        "cost_usd": 0.0031019076
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_code": {
+     "k": 2,
+     "artifact": "code",
+     "prompt_tokens": 3184,
+     "cached_tokens": 0,
+     "completion_tokens": 4320,
+     "cost_usd": 0.0070323264,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3184,
+       "cached_tokens": 0,
+       "completion_tokens": 4320,
+       "total_tokens": 7504,
+       "cost_usd": 0.0070323264,
+       "usage": {
+        "prompt_tokens": 3184,
+        "completion_tokens": 4320,
+        "cached_tokens": 0,
+        "cost_usd": 0.0070323264
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k2_doc": {
+     "k": 2,
+     "artifact": "doc",
+     "prompt_tokens": 3112,
+     "cached_tokens": 0,
+     "completion_tokens": 2931,
+     "cost_usd": 0.00254105082,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 3112,
+       "cached_tokens": 0,
+       "completion_tokens": 2931,
+       "total_tokens": 6043,
+       "cost_usd": 0.00254105082,
+       "usage": {
+        "prompt_tokens": 3112,
+        "completion_tokens": 2931,
+        "cached_tokens": 0,
+        "cost_usd": 0.00254105082
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_code": {
+     "k": 3,
+     "artifact": "code",
+     "prompt_tokens": 4244,
+     "cached_tokens": 0,
+     "completion_tokens": 6768,
+     "cost_usd": 0.0106931088,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4244,
+       "cached_tokens": 0,
+       "completion_tokens": 6768,
+       "total_tokens": 11012,
+       "cost_usd": 0.0106931088,
+       "usage": {
+        "prompt_tokens": 4244,
+        "completion_tokens": 6768,
+        "cached_tokens": 0,
+        "cost_usd": 0.0106931088
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    },
+    "k3_doc": {
+     "k": 3,
+     "artifact": "doc",
+     "prompt_tokens": 4172,
+     "cached_tokens": 4171,
+     "completion_tokens": 1854,
+     "cost_usd": 0.00124052643,
+     "calls_detail": [
+      {
+       "step": 1,
+       "call": 1,
+       "first_call": true,
+       "prompt_tokens": 4172,
+       "cached_tokens": 4171,
+       "completion_tokens": 1854,
+       "total_tokens": 6026,
+       "cost_usd": 0.00124052643,
+       "usage": {
+        "prompt_tokens": 4172,
+        "completion_tokens": 1854,
+        "cached_tokens": 4171,
+        "cost_usd": 0.00124052643
+       },
+       "stage": "builder",
+       "accepted": true
+      }
+     ],
+     "attempts": 1,
+     "api_failures": []
+    }
+   }
+  },
+  "new_extraction": {
+   "calls": 3,
+   "prompt_tokens": 588,
+   "cached_tokens": 0,
+   "completion_tokens": 119,
+   "total_tokens": 707,
+   "cost_usd": 0.0002509
+  },
+  "new_repair": {
+   "calls": 28,
+   "prompt_tokens": 483161,
+   "cached_tokens": 328448,
+   "completion_tokens": 205691,
+   "total_tokens": 688852,
+   "cost_usd": 0.20881246
+  },
+  "reconciliation": {
+   "reconciled": true,
+   "new_calls": 31,
+   "new_cost_usd": 0.20906336,
+   "call_source": "extractions[].calls plus repairs[].calls"
+  }
+ },
+ "deployment": {
+  "status": "not_required_repeat",
+  "reuse_justification": null,
+  "historical_program_sha256": null,
+  "final_program_sha256": "d5926e6bf524bd927e4fd3aec75caa08cf56f1556de6dc1a0be329cfbfc2a18e",
+  "program_hash_equal": null,
+  "execution_protocol_equal": null,
+  "input_protocol_equal": null,
+  "record_paths": [],
+  "reason": "repeat_study_ends_after_compilation_verification"
+ },
+ "timing": {
+  "attempt_wall_s": 1560.914
+ },
+ "final_program_source": "PARAMS_SCHEMA = {\n    \"name\": {\n        \"type\": \"string\",\n        \"description\": \"Full contact name, exactly two words (first and last).\"\n    },\n    \"number\": {\n        \"type\": \"string\",\n        \"description\": \"Phone number, copied verbatim.\"\n    }\n}\n\n\ndef program(device, binding: dict) -> bool:\n    name = binding[\"name\"]\n    number = binding[\"number\"]\n    parts = name.split()\n    if len(parts) < 2:\n        raise ValueError(\"Name must contain at least two words: %r\" % (name,))\n    first_name = parts[0]\n    last_name = parts[1]\n\n    # ------------------------------------------------------------------ #\n    # small helpers\n    # ------------------------------------------------------------------ #\n    def txt(el, *keys):\n        return \" \".join(str(el.get(k) or \"\") for k in keys)\n\n    def digits_of(s):\n        return \"\".join(c for c in s if c.isdigit())\n\n    def try_click(*args, **kwargs):\n        idx = device.find(*args, **kwargs)\n        if idx is not None:\n            device.click(index=idx)\n            device.settle(1.0)\n            return True\n        return False\n\n    def editor_open():\n        for probe in (\n            {\"hint\": \"First name\", \"editable\": True},\n            {\"text\": \"First name\", \"editable\": True},\n            {\"hint\": \"Last name\", \"editable\": True},\n            {\"text\": \"Last name\", \"editable\": True},\n        ):\n            if device.find(**probe) is not None:\n                return True\n        return False\n\n    # ------------------------------------------------------------------ #\n    # phone field discovery\n    #\n    # On some builds the phone row exposes its label dropdown with\n    # hint/text/description == 'Label' and the actual number input carries\n    # no phone hint at all, so a plain hint/text lookup for 'Phone'/'Mobile'\n    # finds nothing.  In that case we walk to the editable element that\n    # follows the label dropdown.\n    # ------------------------------------------------------------------ #\n    def find_phone_input():\n        exact_patterns = [\n            {\"hint\": \"Phone\", \"editable\": True},\n            {\"hint\": \"Mobile\", \"editable\": True},\n            {\"hint\": \"Phone number\", \"editable\": True},\n            {\"text\": \"Phone\", \"editable\": True},\n            {\"text\": \"Mobile\", \"editable\": True},\n            {\"text\": \"Phone number\", \"editable\": True},\n            {\"description\": \"Phone\", \"editable\": True},\n            {\"description\": \"Mobile\", \"editable\": True},\n            {\"description\": \"Phone number\", \"editable\": True},\n            {\"contains\": \"Phone\", \"editable\": True},\n            {\"contains\": \"Mobile\", \"editable\": True},\n        ]\n        for p in exact_patterns:\n            idx = device.find(**p)\n            if idx is not None:\n                return idx\n\n        elements = device.elements() or []\n\n        # (a) locate the phone \"Label\" dropdown and take the next editable\n        label_pos = None\n        for i, el in enumerate(elements):\n            vals = [str(el.get(k) or \"\").strip().lower()\n                    for k in (\"hint\", \"text\", \"description\")]\n            if \"label\" in vals:\n                label_pos = i\n                break\n        if label_pos is None:\n            for i, el in enumerate(elements):\n                low = txt(el, \"hint\", \"text\", \"description\").lower()\n                if \"label\" in low:\n                    label_pos = i\n                    break\n        if label_pos is not None:\n            for j in range(label_pos + 1, len(elements)):\n                if elements[j].get(\"editable\"):\n                    return elements[j][\"index\"]\n            for j in range(label_pos - 1, -1, -1):\n                if elements[j].get(\"editable\"):\n                    return elements[j][\"index\"]\n\n        # (b) editable that mentions phone/mobile but is not another field\n        label_words = {\"mobile\", \"home\", \"work\", \"phone\", \"other\",\n                       \"custom\", \"label\", \"fax\", \"main\"}\n        for el in elements:\n            if not el.get(\"editable\"):\n                continue\n            low_hint = str(el.get(\"hint\") or \"\").lower()\n            low_text = str(el.get(\"text\") or \"\").strip().lower()\n            low_desc = str(el.get(\"description\") or \"\").lower()\n            low = low_hint + \" \" + low_text + \" \" + low_desc\n            if any(t in low for t in\n                   (\"first name\", \"last name\", \"email\", \"address\", \"label\")):\n                continue\n            # a bare label selector (e.g. text \"Mobile\") is not the number box\n            if low_text in label_words and \"phone\" not in low_hint:\n                continue\n            if \"phone\" in low or \"mobile\" in low:\n                return el[\"index\"]\n\n        return None\n\n    def field_has_number(index, value):\n        want = digits_of(value)\n        if not want:\n            return False\n        for el in device.elements() or []:\n            if el.get(\"index\") == index:\n                have = digits_of(str(el.get(\"text\") or \"\"))\n                return want in have or (len(want) >= 4 and want[-4:] in have)\n        return False\n\n    def number_on_screen(value):\n        want = digits_of(value)\n        if len(want) < 4:\n            return False\n        tail = want[-6:]\n        for el in device.elements() or []:\n            have = digits_of(str(el.get(\"text\") or \"\") + \" \" +\n                             str(el.get(\"description\") or \"\"))\n            if tail in have:\n                return True\n        return False\n\n    def type_number(index):\n        try:\n            device.click(index=index)\n            device.settle(0.4)\n            device.input_text(number, index=index)\n            device.settle(0.6)\n        except Exception:\n            return False\n        return field_has_number(index, number) or number_on_screen(number)\n\n    def enter_phone_number():\n        for _ in range(8):\n            idx = find_phone_input()\n            if idx is not None and type_number(idx):\n                return True\n            # Reveal an \"Add phone number\" row if one is offered.\n            clicked = False\n            for kwargs in [\n                {\"text\": \"Add phone number\"},\n                {\"contains\": \"Add phone number\"},\n                {\"description\": \"Add phone number\"},\n                {\"text\": \"Add phone number\", \"clickable\": True},\n                {\"contains\": \"Add phone number\", \"clickable\": True},\n                {\"description\": \"Add phone number\", \"clickable\": True},\n                {\"text\": \"Add phone\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    clicked = True\n                    device.settle(1.0)\n                    break\n            if not clicked:\n                device.scroll(\"down\")\n                device.settle(0.5)\n        return False\n\n    # ------------------------------------------------------------------ #\n    # 1. open the contact editor\n    # ------------------------------------------------------------------ #\n    opened = False\n    try:\n        device.open_app(\"Contacts\")\n        device.settle(2.0)\n    except Exception:\n        pass\n\n    if editor_open():\n        opened = True\n    else:\n        for kwargs in [\n            {\"description\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Create contact\", \"clickable\": True},\n            {\"contains\": \"Create contact\", \"clickable\": True},\n            {\"text\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add contact\", \"clickable\": True},\n            {\"description\": \"Add\", \"clickable\": True},\n            {\"text\": \"Add\", \"clickable\": True},\n        ]:\n            if try_click(**kwargs):\n                if editor_open():\n                    opened = True\n                    break\n\n    if not opened:\n        try:\n            device.open_app(\"Phone\")\n            device.settle(2.0)\n        except Exception:\n            pass\n\n        if editor_open():\n            opened = True\n        else:\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"description\": \"Create new contact\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            for kwargs in [\n                {\"description\": \"Favorites\", \"clickable\": True},\n                {\"text\": \"Favorites\", \"clickable\": True},\n                {\"contains\": \"Favorites\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n            for kwargs in [\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n                {\"description\": \"Add a favorite\", \"clickable\": True},\n                {\"contains\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    if editor_open():\n                        opened = True\n                        break\n\n        if not opened:\n            for kwargs in [\n                {\"description\": \"Contacts\", \"clickable\": True},\n                {\"text\": \"Contacts\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    device.settle(1.0)\n                    break\n            for kwargs in [\n                {\"text\": \"Create new contact\", \"clickable\": True},\n                {\"contains\": \"Create new contact\", \"clickable\": True},\n                {\"text\": \"Add a favorite\", \"clickable\": True},\n            ]:\n                if try_click(**kwargs):\n                    if editor_open():\n                        opened = True\n                        break\n\n    if not opened or not editor_open():\n        raise RuntimeError(\"Could not open the contact editor (First name field not found)\")\n\n    # ------------------------------------------------------------------ #\n    # 2. fill in the name fields\n    # ------------------------------------------------------------------ #\n    first_idx = device.find(hint=\"First name\", editable=True)\n    if first_idx is None:\n        first_idx = device.find(text=\"First name\", editable=True)\n    if first_idx is None:\n        raise RuntimeError(\"First name field not found\")\n    device.input_text(first_name, index=first_idx)\n    device.settle(0.5)\n\n    last_idx = device.find(hint=\"Last name\", editable=True)\n    if last_idx is None:\n        last_idx = device.find(text=\"Last name\", editable=True)\n    if last_idx is None:\n        raise RuntimeError(\"Last name field not found\")\n    device.input_text(last_name, index=last_idx)\n    device.settle(0.5)\n\n    # ------------------------------------------------------------------ #\n    # 3. fill in the phone number\n    # ------------------------------------------------------------------ #\n    enter_phone_number()\n\n    # ------------------------------------------------------------------ #\n    # 4. save\n    # ------------------------------------------------------------------ #\n    def click_save():\n        save_idx = device.find(text=\"Save\", clickable=True)\n        if save_idx is None:\n            save_idx = device.find(description=\"Save\", clickable=True)\n        if save_idx is None:\n            save_idx = device.find(contains=\"Save\", clickable=True)\n        if save_idx is None:\n            for _ in range(6):\n                device.scroll(\"up\")\n                device.settle(0.3)\n                save_idx = device.find(text=\"Save\", clickable=True)\n                if save_idx is None:\n                    save_idx = device.find(description=\"Save\", clickable=True)\n                if save_idx is not None:\n                    break\n        if save_idx is None:\n            return False\n        device.click(index=save_idx)\n        device.settle(1.5)\n        return True\n\n    if not click_save():\n        raise RuntimeError(\"Save button not found\")\n\n    # ------------------------------------------------------------------ #\n    # 5. verify the number landed; if not, repair via the detail screen\n    # ------------------------------------------------------------------ #\n    device.settle(0.5)\n    for _ in range(4):\n        if number_on_screen(number):\n            break\n        reopened = False\n        for kwargs in [\n            {\"description\": \"Edit contact\", \"clickable\": True},\n            {\"text\": \"Edit contact\", \"clickable\": True},\n            {\"text\": \"Add phone number\"},\n            {\"contains\": \"Add phone number\"},\n            {\"description\": \"Add phone number\"},\n        ]:\n            if try_click(**kwargs):\n                reopened = True\n                break\n        if not reopened:\n            break\n        device.settle(1.0)\n        if not editor_open() and find_phone_input() is None:\n            break\n        enter_phone_number()\n        if not click_save():\n            break\n        device.settle(1.0)\n\n    if not number_on_screen(number):\n        raise RuntimeError(\"Phone number was not saved on the contact\")\n\n    return True\n",
+ "phase": "finished",
+ "provenance_audits": [
+  {
+   "kind": "source_cell_relative_trajectory_alias_resolution",
+   "model_calls": 0,
+   "path_source_kind": "compile_json_building_trajectories",
+   "source_record_path": "/home/yulong/app/guiexp/android/experimental-results/guiexp_android/t19_repeated/deepseek_deepseek-v4-flash-vision-exp/ContactsAddContact/attempt2/compile.json",
+   "source_record_sha256": "8ad2e0efcd7161b8a1cd2c5bfced19189f9bfffa8e1a9c3f5e812ebeb5ad5703",
+   "translation_path": null,
+   "translation_sha256": null,
+   "resolved_trajectory_sha256": {
+    "1": "3cb18713b754e1041951b4fcabc9a4a5a31ae079938a7d33e429bacffd8b0e48",
+    "2": "b9cc8f99b8f9e2ab80fa8992869d833c440a7afdd4565da5af82fb7e0e2bd2e2",
+    "3": "d4ff6ed16121e18a13828d4ebbdd5135eff4477a996716c0649dab643dadcdb7"
+   },
+   "prompt_equality_with_completed_extractions": true
+  }
+ ]
+}

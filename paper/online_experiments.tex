@@ -2,71 +2,77 @@
 \label{sec:eval}
 
 We evaluate the savings available under PACE's cumulative budget, its comparison with published decision rules, and the contribution of each component.
-The study uses measured cost profiles on synthetic streams and recorded arrival orders.
+We simulate task execution and compilation using measured cost profiles on synthetic streams and recorded arrival orders.
 
-\paragraph{Setup.}
-We run two grids of $300$ conditions, each crossing three models, four verification settings, five arrival patterns, and five cost or environment settings, with eight paired repetitions per condition.
-The second grid changes seeds and parameters after the first study.
-We also use Sepsis and BPI 2019 process logs \citep{mannhardt2016sepsis,vandongen2019bpi} and two Wikipedia edit streams, giving twelve model--log conditions with ten paired repetitions.
-The logs supply recurrence and order, not live GUI tasks.
+The evaluation uses two grids of $300$ conditions, each crossing three models, four verification settings, five arrival patterns, and five cost or environment settings, with eight paired runs per condition.
+The second grid uses its own seeds and parameters.
+We also use Sepsis and BPI 2019 process logs \citep{mannhardt2016sepsis,vandongen2019bpi} and two Wikipedia edit streams, giving twelve combinations of models and logs with ten paired runs.
+The logs give task frequencies and arrival order, not live GUI tasks.
 We shuffle measured cost profiles onto families and assign verification probabilities independently of initial compilation outcomes.
-Unobserved successful or failed costs require substitutions, whose effect we test below.
-The policies receive family labels and failure parameters, including detected-break status.
-Appendix~\ref{app:simulation-details} specifies the grids, mappings, substitutions, and shared outcome sequences.
+We estimate costs for successful or failed outcomes that were not observed and test how these estimates affect the results below.
+The policies receive family labels, failure parameters, and an indication of detected GUI drift.
+Appendix~\ref{app:simulation-details} specifies the grids, mappings, estimates for missing costs, and shared outcome sequences.
 
 We compare PACE with ReAct \citep{yao2023react} and decision-rule adaptations of AutoRPA \citep{chen2026autorpa} and ToolPro \citep{liu2026toolpro} under the same compiler and cost model.
 ReAct serves every arrival with the agent.
 AutoRPA makes one compilation attempt when enough source traces are available and does not retry a rejected attempt.
-ToolPro compares the compilation price with the saving available from the current task, without projecting later uses.
-These adaptations isolate when to invoke the shared compiler.
-All policies pay the same routing, extraction, fallback, and realized compilation charges, so the comparison does not attribute differences in compiler quality to the decision rule.
-A condition's ratio divides mean policy cost by mean ReAct cost.
-Aggregate results average these ratios equally.
-We use $2000$ paired repetition-bootstrap draws, conditional on the tested conditions and supplied profiles.
-These are development comparisons rather than independent confirmation after protocol selection.
+ToolPro compares the compilation cost with the saving available from the current task, without projecting future reuse.
+These adaptations differ only in when they call the same compiler.
+All policies pay the same routing, extraction, fallback, and actual compilation charges, so differences in compiler quality do not affect this comparison of decision rules.
+Each table ratio divides a policy's mean cost by PACE's mean cost in the same condition.
+Overall results average these ratios with equal weights.
+Reported percentage savings are the equally weighted means of $100(1-K_{\mathrm{PACE}}/K_{\mathrm{baseline}})$ across conditions, using each condition's mean costs.
+We use $2000$ paired bootstrap resamples of runs, conditional on the tested conditions and given profiles.
+We used these grids while developing PACE, so the comparisons are not independent confirmation.
 The main tables give point estimates, with complete conditional intervals in Appendix~\ref{app:full-comparisons}.
 
-\subsection{Cost protection and savings}
-\label{sec:regimes}
-\label{sec:realstreams}
+\subsection{Savings}
+\label{sec:savings}
 
-Across the grids, PACE's mean ratios are $0.910$ and $0.907$, with largest condition means of $1.2492$ and $1.2494$ (Table~\ref{tab:policysim}).
-No saved prefix exceeds the implemented $1.25$ bound over $4800$ grid runs and $120$ log runs.
+Across the grids, ReAct costs $1.107$ and $1.130$ times PACE on average (Table~\ref{tab:policysim}).
+Across $4800$ grid runs and $120$ log runs, every recorded cumulative cost ratio to the agent reference stays within the implemented $1.25$ bound.
 This checks the implementation on those runs.
-Theorem~\ref{thm:cost-protection} covers all histories allowed by the model.
-AutoRPA's largest grid ratios are $14.085$ and $19.269$, while ToolPro stays near agent-only cost by allowing no reuse beyond one task in its compilation criterion.
+Theorem~\ref{thm:cost-bound} covers all histories allowed by the model.
+AutoRPA's largest grid ratios to PACE are $19.314$ and $26.538$.
+ToolPro matches ReAct cost in these conditions because its compilation rule counts savings from only one task.
 
 \input{online_results_tables}
 
-On the recorded logs, PACE averages $0.781$ of agent-only cost, with a conditional $95\%$ interval of $[0.759,0.803]$ (Table~\ref{tab:realstreams}).
-It saves cost in ten of twelve conditions.
-Its largest ratio is $1.029$, and its lowest is $0.398$.
-AutoRPA and ToolPro average $1.062$ and $0.995$, respectively, although they cost less than PACE in one and two conditions.
+\looseness=-1
+On the recorded logs, PACE reduces token costs by $17.34\%$ relative to ReAct, with a conditional $95\%$ interval of $[14.96,19.61]\%$ (Table~\ref{tab:realstreams}).
+It reduces cost in nine of twelve conditions.
+Its largest cost ratio to ReAct is $1.030$, and its lowest is $0.578$.
+Relative to PACE, AutoRPA and ToolPro have mean cost ratios of $1.362$ and $1.262$, respectively.
+AutoRPA costs more in every condition, while ToolPro costs less in three.
 The comparison concerns the stated decision-rule adaptations, rather than the original systems end to end.
+Cost-aware proposals under the same budget have similar costs (Appendix~\ref{sec:matched-budget}).
 
 \subsection{Component effects}
 \label{sec:ablation}
 
-Table~\ref{tab:ablation} reports percentage cost changes from full PACE.
-\emph{No savings test} compiles whenever eligible while retaining the budget.
-\emph{No cost budget} removes reservations and budget-triggered manifest clearing.
-\emph{Eager retry} removes both, and \emph{Equal attempt prices} substitutes $C/\hat p$ for $\hat B$ while retaining actual charges and reservations.
+\looseness=-1
+Table~\ref{tab:ablation} reports cost ratios relative to full PACE.
+\emph{No savings test} compiles whenever eligible while keeping the budget.
+\emph{No cost budget} removes reservations and budget-triggered program list clearing.
+\emph{Eager retry} removes both, and \emph{Equal attempt costs} uses $C/\hat p$ in place of $\hat B$ while keeping actual charges and reservations.
 
 \input{online_ablation_table}
 
-Removing the savings test raises paired mean log cost by $46.46\%$ (conditional $95\%$ interval $[41.60,51.74]\%$).
-Ignoring failed-attempt prices raises it by $13.36\%$ ($[12.05,15.04]\%$).
-The GLM log effect of equal prices is exactly zero because those profiles already set $C^{\mathrm{fail}}=C$.
-Both variants keep the budget, so their largest grid ratios remain near the same $1.25$ limit despite higher mean costs.
-Removing the budget changes mean log cost by only $-0.014\%$, yet raises the largest tested grid ratio from $1.2494$ to $1.8387$, or $47.2\%$.
-Thus the near-zero log effect concerns average cost, while the budget's measured contribution is protection against larger losses.
-Appendix~\ref{app:ablation-absolute} gives the absolute costs and paired intervals, including conditions where an ablation is cheaper.
+\looseness=-1
+Removing the savings test raises mean cost on the recorded logs by $52.68\%$ (conditional $95\%$ interval $[48.25,58.36]\%$).
+Using the same estimated cost for successful and failed attempts raises it by $23.34\%$ ($[19.18,28.06]\%$).
+The equal-cost variant raises mean cost for all three models.
+Both variants keep the budget, so their largest grid ratios to ReAct remain near the same $1.25$ limit despite higher mean costs.
+Removing the budget changes mean cost on the recorded logs by only $0.0013\%$, yet raises the largest tested grid ratio to ReAct from $1.2468$ to $1.7563$, or $40.9\%$.
+Thus the near-zero effect on the recorded logs concerns average cost, while the budget's measured contribution is protection against larger losses.
+Appendix~\ref{app:ablation-absolute} gives the cost ratios and paired intervals, including conditions where an ablation is cheaper.
 
 \paragraph{Cost assumptions.}
-Varying the missing failed/successful-price ratio over $0.5,1,2,5$ gives PACE mean log ratios from $0.788$ to $0.830$.
-Assigning high compilation prices to frequent families with low verification probability raises the mean to $0.997$, nearly removing the saving while preserving the cost constraint.
-This assignment makes the families with the most reuse opportunities costly to acquire.
-The resulting loss of savings shows why recurrence alone is insufficient to select compilations.
-The budget still limits extra spending, but it cannot create savings when the available compilation prices and useful lifetimes make reuse unprofitable.
-Appendix~\ref{app:cost-sensitivity} retains all seventy-two sensitivity conditions.
+For missing costs, we vary the assumed ratio of failed to successful compilation costs over $0.5,1,2,5$.
+This gives mean PACE-to-ReAct cost ratios from $0.833$ to $0.866$ on the recorded logs.
+Assigning high compilation costs to frequent families with low verification probability raises the mean to $1.015$, about $1.5\%$ above ReAct, while preserving the cost constraint.
+This assignment makes programs costly to produce for the families with the most reuse opportunities.
+The resulting loss of savings shows why task frequency alone is not enough to decide when to compile.
+The budget still limits extra spending, but it cannot create savings when the available compilation costs and useful lifetimes make reuse unprofitable.
+Appendix~\ref{app:cost-sensitivity} reports all seventy-two sensitivity conditions.
 Appendix~\ref{app:live} reports a separate live GUI component study.

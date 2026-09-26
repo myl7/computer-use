@@ -1,0 +1,25 @@
+{
+  "route_id": "qwen-official-payg-v1",
+  "provider": "Alibaba Model Studio official PAYG",
+  "base_url": "https://maas.qianwenaiapi.com/compatible-mode/v1",
+  "canonical_model": "qwen/qwen3.8-flash",
+  "served_model": "qwen3.8-flash",
+  "request_defaults": {
+    "temperature": 0.0,
+    "max_tokens": "provider_default",
+    "top_p": "provider_default"
+  },
+  "rates_cny_per_million": {
+    "input": 0.8,
+    "output": 2.7,
+    "cache_read": 0.1
+  },
+  "pricing_source": "https://help.aliyun.com/en/model-studio/qwen3-8-flash",
+  "pricing_note": "Nominal official rates; account discounts must be reconciled from the provider bill"
+  ,
+  "budget": {
+    "cap_cny": 20.0,
+    "max_call_reservation_cny": 1.2,
+    "ledger_path": "experimental-results/trace_verifier_20260925/desktop/official_qwen_budget_cny.json"
+  }
+}

@@ -1,32 +1,36 @@
 \section{Problem Formulation}
 \label{sec:formulation}
 
-We study when to compile recurring computer-use tasks while limiting cumulative cost relative to continued agent service.
-Tasks in one family share a GUI procedure but differ in their inputs, such as event titles and dates.
-We define costs for the current family and omit family indices.
+We study when to compile GUI procedures that agents execute repeatedly while limiting cumulative cost relative to continued agent execution.
+Tasks in one family share a GUI procedure but differ in their inputs, e.g., event titles and dates.
 
-\paragraph{Execution and compilation.}
-An \emph{agent run} uses repeated model calls and GUI actions, with calibrated mean cost $c$.
-A \emph{program run} extracts the task inputs, or \emph{binding}, then executes a parameterized program without further model calls.
+We consider two ways to execute, or \emph{serve}, a task.
+In \emph{agent execution}, the model selects GUI actions step by step, with mean cost $c$.
+In \emph{program execution}, a model call extracts the parameter values from the task prompt, i.e., a \emph{binding}.
+The program then executes the shared procedure with these values, without further model calls.
 Its model cost $c^{\mathrm{prog}}$ is the extraction cost.
-We use weighted tokens: one unit costs as much as one uncached input token for that model, with cached-input and output tokens weighted by their relative prices.
-Appendix~\ref{app:accounting} gives the accounting formula and calibrations.
+We use weighted tokens: one unit corresponds to one uncached input token at the model's reference price, with cached-input and output tokens weighted by their relative prices.
+Appendix~\ref{app:accounting} explains how we calculate these costs.
 
-A compilation attempt uses $k$ completed agent traces and includes translation, construction, and bounded repair.
-Let $p$ be its verification probability, with conditional mean costs $C$ on success and $C^{\mathrm{fail}}$ on failure.
-A failed attempt pays its cost without producing a program.
-In the online model, these calibrated costs become fixed charges for the corresponding outcomes.
-Historical means alone do not bound future real bills.
+A compilation attempt uses $k$ completed agent traces.
+The attempt charge includes all model calls made during compilation.
+Let $p$ be the probability that compilation succeeds, $C$ the mean cost of a successful attempt, and $C^{\mathrm{fail}}$ the mean cost of a failed attempt.
+A failed attempt still consumes tokens.
+In the online model, these cost values become fixed charges for the corresponding outcomes.
+Historical means alone do not bound future actual costs.
 
-\paragraph{Failures and routing.}
-Without GUI drift, a program run fails with probability $q$ and incurs one agent fallback of cost $c$.
-GUI drift breaks a program with probability $h$ per use, requiring fallback and invalidation.
-Ordinary failure occurs with probability $q$ conditional on no break.
+\looseness=-1
+On each program execution, GUI drift makes the program stop working with probability $h$.
+If there is no GUI drift, execution fails with probability $q$.
+Either event requires one agent fallback of cost $c$, but only GUI drift stops further program reuse.
+The total fallback probability is $h+(1-h)q$, reducing to $q$ when $h=0$.
 The cost model assumes detected failures and reports task success separately.
-Routing costs $\tau_0+m\ell_t$ when $\ell_t$ programs are listed, where $\tau_0$ is the empty-manifest charge and $m$ is the per-entry charge.
+Routing selects an available program or the agent for the current task.
+It costs $\tau_0+m\ell_t$ when $\ell_t$ programs are listed, where $\tau_0$ is the cost with an empty list and $m$ is the cost per entry.
 
-\paragraph{Objective and available information.}
-For arrival $t$, define the agent-only reference charge $a_t=\tau_0+c$ using that family's supplied cost, and let
+\paragraph{Objective.}
+We compare PACE with serving every arrival through agent execution, without compiling or reusing programs.
+For arrival $t$, define this agent execution reference charge as $a_t=\tau_0+c$ using that family's given cost, and let
 \begin{equation}
 A_t=\sum_{i=1}^{t}a_i.
 \label{eq:agent-reference}
@@ -42,10 +46,10 @@ K_t^\pi\leq(1+\epsilon)A_t,\quad t=1,\ldots,n.
 \label{eq:objective}
 \end{equation}
 The constraint holds for every history allowed by the cost model, while the expectation uses the arrival and outcome model evaluated in the experiments.
-The class $\Pi_{\mathrm{online}}$ contains policies that serve each arrival through an agent or an available program, using only the current task, supplied parameters, and past observations.
-We supply family identities, cost profiles, routing charges, and $q,h$.
-The policy estimates recurrence and verification online.
-Artifact lookup and manifest removal incur no token charge.
-Savings can fund compilation across families, but unobserved future arrivals add no budget.
+The set $\Pi_{\mathrm{online}}$ contains policies that serve each arrival through an agent or an available program, using only the current task, given parameters, and past observations.
+We give the policy family labels, cost profiles, routing charges, and $q,h$.
+The policy estimates future arrivals of each task family and the probability of successful compilation online.
+Looking up a program or removing its list entry costs no tokens.
+Savings can fund compilation across families, but future tasks that have not arrived add no budget.
 The margin is $\epsilon=0.25$ in the main evaluation.
 This objective constrains cost, without imposing a task-success guarantee.

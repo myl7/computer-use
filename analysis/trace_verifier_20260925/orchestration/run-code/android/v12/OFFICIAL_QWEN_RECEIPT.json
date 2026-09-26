@@ -1,0 +1,32 @@
+{
+  "record_type": "official_qwen_text_image_receipt",
+  "successful_call_count": 1,
+  "request": {
+    "content": ["text", "deterministic_16x16_png_image_url"],
+    "canonical_model": "qwen/qwen3.8-flash",
+    "wire_model": "qwen3.8-flash",
+    "requested_temperature": 0.0,
+    "provider_defaults_left_unset": ["max_tokens", "max_completion_tokens", "top_p", "seed"]
+  },
+  "response": {
+    "finish_reason": "stop",
+    "response_id": "chatcmpl-e45d79b1-6d96-98b2-ba04-8f168b5e7226",
+    "response_model": "qwen3.8-flash",
+    "prompt_tokens": 121,
+    "cached_tokens": 0,
+    "completion_tokens": 44
+  },
+  "route": {
+    "route_id": "qwen-official-payg-v1",
+    "provider": "Alibaba Model Studio official PAYG",
+    "base_url": "https://maas.qianwenaiapi.com/compatible-mode/v1",
+    "rates_cny_per_million": {"input": 0.8, "output": 2.7, "cache_read": 0.1},
+    "pricing_source": "https://help.aliyun.com/en/model-studio/qwen3-8-flash",
+    "cost_cny": 0.0002156
+  },
+  "bundle": {
+    "path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v5",
+    "manifest_id": "f3b0c11889d7842f"
+  },
+  "credential": "private mode-0600 file; value excluded"
+}

@@ -1,0 +1,193 @@
+{
+  "attempts": [
+    {
+      "attempt_id": "initial",
+      "family": "WriterMemoSave",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/deepseek_deepseek-v4-flash-vision-exp/WriterMemoSave/attempts/initial/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v1",
+          "evidence_path": "result.json",
+          "phase": "verification_repair_deployment",
+          "reason": "immutable v1 launch",
+          "sequence": 1
+        }
+      ]
+    },
+    {
+      "attempt_id": "initial",
+      "family": "WriterMemoSave",
+      "model": "z-ai/glm-5.3-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/z-ai_glm-5.3-flash/WriterMemoSave/attempts/initial/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v1",
+          "evidence_path": "result.json",
+          "phase": "verification_repair_deployment",
+          "reason": "immutable v1 launch",
+          "sequence": 1
+        }
+      ]
+    },
+    {
+      "attempt_id": "initial",
+      "family": "CalcTableSave",
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/deepseek_deepseek-v4-flash-vision-exp/CalcTableSave/attempts/initial/result.json",
+      "segments": [
+        {
+          "bundle_id": "legacy_mutable_unknown",
+          "evidence_path": "result.pre-resume-implementation-error.json",
+          "phase": "pre-resume",
+          "reason": "pre-bundle implementation interruption",
+          "sequence": 1
+        },
+        {
+          "bundle_id": "desktop-v1",
+          "evidence_path": "result.json",
+          "phase": "resume_repair_deployment",
+          "reason": "immutable v1 resume",
+          "sequence": 2
+        }
+      ]
+    },
+    {
+      "attempt_id": "initial",
+      "family": "CalcTableSave",
+      "model": "z-ai/glm-5.3-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/z-ai_glm-5.3-flash/CalcTableSave/attempts/initial/result.json",
+      "segments": [
+        {
+          "bundle_id": "legacy_mutable_unknown",
+          "evidence_path": "result.pre-resume-implementation-error.json",
+          "phase": "pre-resume",
+          "reason": "pre-bundle implementation interruption",
+          "sequence": 1
+        },
+        {
+          "bundle_id": "desktop-v1",
+          "evidence_path": "result.json",
+          "phase": "resume_repair",
+          "reason": "immutable v1 resume",
+          "sequence": 2
+        }
+      ]
+    },
+    {
+      "attempt_id": "serial-rate-retry1",
+      "events": [
+        {
+          "candidate_hash": "e0f65d",
+          "completed_repairs": 2,
+          "evidence_path": "result.pre-operator-interruption-20260925T180745Z.json",
+          "kind": "operator_interruption",
+          "timestamp": "2026-09-25T18:07:45Z"
+        }
+      ],
+      "family": "CalcTableSave",
+      "limitations": [
+        "canonical wall_s=3117.004 excludes provider-error and operator-interrupted resume durations because v3 adds resumed elapsed time only on normal return; successful-response costs remain recorded and no elapsed-gap cost is inferred"
+      ],
+      "model": "qwen/qwen3.8-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/CalcTableSave/attempts/serial-rate-retry1/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v3",
+          "evidence_path": "result.pre-resume-health-probe.json",
+          "phase": "initial_verification_and_provider_recovery",
+          "reason": "serialized exact-model availability recovery with cached evidence",
+          "sequence": 1
+        },
+        {
+          "bundle_id": "desktop-v3",
+          "evidence_path": "result.pre-operator-interruption-20260925T180745Z.json",
+          "phase": "repair_rounds_1_2_then_operator_interruption",
+          "reason": "targeted parent TERM also terminated the healthy child; canonical checkpoint preserved",
+          "sequence": 2
+        },
+        {
+          "bundle_id": "desktop-v3",
+          "evidence_path": "result.json",
+          "phase": "cached_resume_repair_round_3_terminal",
+          "reason": "same immutable bundle resumed cached evidence to terminal replay-timeout rejection",
+          "sequence": 3
+        }
+      ]
+    },
+    {
+      "attempt_id": "serial1",
+      "family": "WriterMemoSave",
+      "model": "qwen/qwen3.8-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/WriterMemoSave/attempts/serial1/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v3",
+          "evidence_path": "result.json",
+          "phase": "provider_interruption_before_extraction",
+          "reason": "serialized Qwen immutable v3",
+          "sequence": 1
+        }
+      ]
+    },
+    {
+      "attempt_id": "serial2",
+      "family": "WriterMemoSave",
+      "model": "qwen/qwen3.8-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/WriterMemoSave/attempts/serial2/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v3",
+          "evidence_path": "result.json",
+          "phase": "fresh_serial_retry_after_calc_terminal",
+          "reason": "serialized Qwen immutable v3",
+          "sequence": 1
+        }
+      ]
+    },
+    {
+      "attempt_id": "initial",
+      "family": "WriterMemoSave",
+      "model": "qwen/qwen3.8-flash",
+      "result_path": "experimental-results/trace_verifier_20260925/desktop/qwen_qwen3.8-flash/WriterMemoSave/attempts/initial/result.json",
+      "segments": [
+        {
+          "bundle_id": "desktop-v6",
+          "evidence_path": "result.json",
+          "phase": "official_route_verification_and_30_use_deployment",
+          "reason": "authorized official PAYG route with hard shared CNY20 ledger",
+          "sequence": 1
+        }
+      ]
+    }
+  ],
+  "bundles": {
+    "desktop-v1": {
+      "manifest_path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v1/MANIFEST.sha256",
+      "manifest_sha256": "9b4226cb545700840c1e1eff6bf184170de3efdae457c4aa9bc626b0b5a56d63",
+      "path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v1"
+    },
+    "desktop-v2": {
+      "manifest_path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v2/MANIFEST.sha256",
+      "manifest_sha256": "78ac11e9b45afa8b31ca25017bca621a5211fd4a19096b613ee961db136e27e8",
+      "path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v2"
+    },
+    "desktop-v3": {
+      "manifest_path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v3/MANIFEST.sha256",
+      "manifest_sha256": "e2f75b6e4f9015dae2de61361580cfc52a8f53a202d2fbda05179d84e933a39e",
+      "path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v3"
+    },
+    "desktop-v6": {
+      "manifest_path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v6/MANIFEST.sha256",
+      "manifest_sha256": "e49e65137ddf7c3073a9f155d5abc73834f1008a473cb9c91320e00fe76e69ee",
+      "path": "analysis/trace_verifier_20260925/orchestration/run-code/desktop/v6"
+    }
+  },
+  "generated_at": "2026-09-25T08:55:00Z",
+  "notes": [
+    "Qwen pilot UUID and initial diagnostics remain legacy_mutable_unknown and are not assigned v1 retroactively.",
+    "This sidecar records code provenance only; canonical selection remains hash-pinned in results/evidence-selection.json."
+  ],
+  "platform": "desktop",
+  "protocol_id": "three-building-model-extracted-v1"
+}

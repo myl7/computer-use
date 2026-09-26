@@ -8,16 +8,19 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import re
 import statistics
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-PAPER = ROOT / "paper"
-ANALYSIS = ROOT / "analysis/pace_edit_20260923/uncertainty"
-TABLE_DATA = ANALYSIS / "table-data.json"
-MEASUREMENT_DATA = PAPER / "measurement_update_20260918.json"
+PAPER = Path(os.environ.get("PACE_TABLE_OUTPUT_DIR", ROOT / "paper"))
+ANALYSIS = Path(os.environ.get("PACE_TABLE_ANALYSIS_DIR", ROOT / "analysis/pace_edit_20260923/uncertainty"))
+TABLE_DATA = Path(os.environ.get("PACE_TABLE_DATA", ANALYSIS / "table-data.json"))
+MEASUREMENT_DATA = Path(os.environ.get("PACE_MEASUREMENT_DATA", ROOT / "paper/measurement_update_20260918.json"))
 DATA = json.loads(TABLE_DATA.read_text())
+ONLINE_DATA = Path(os.environ.get("PACE_ONLINE_DATA", ANALYSIS / "online-uncertainty.json"))
+ONLINE_CELLS = json.loads(ONLINE_DATA.read_text())["online"]["cells"]
 MEASUREMENT = json.loads(MEASUREMENT_DATA.read_text())
 PROVENANCE = json.loads((ANALYSIS / "provenance.json").read_text())
 MODELS = DATA["models_in_display_order"]
@@ -30,7 +33,7 @@ MAPS = {name: {(row["model"], row["family"]): row for row in rows}
         for name, rows in MEASURE.items() if isinstance(rows, list)}
 LEGEND = "Blue, amber, and green identify GLM, DeepSeek, and Qwen, respectively."
 CI_TEXT = "Nonzero-width 95 percent paired bootstrap intervals appear as upper and lower offsets below the mean; exact zero-width intervals are omitted."
-CI_SCOPE = "Intervals use 2000 shared repetition resamples and condition on the tested scenarios and supplied profiles."
+CI_SCOPE = 'Intervals use 2000 shared bootstrap resamples of runs and condition on the tested scenarios and given profiles.'
 SMALL_TEXT = r"An offset marked $<.001$ is positive but smaller than $0.001$."
 MAIN_POLICIES = [
     ("reactive", "ReAct"),
@@ -42,23 +45,24 @@ FULL_POLICIES = [
     ("reactive", "ReAct"), ("autorpa_once", "AutoRPA"),
     ("toolpro_cost", "ToolPro"), ("earliest_cap", "Eager + allowance"),
     ("fixed10_cap", "After 10 arrivals"), ("success10_cap", "After 10 successes"),
-    ("breakeven_cap", "Savings threshold"), ("projected_cap", "Projected + allowance"),
+    ("breakeven_cap", "Savings threshold"), ("projected_cap", "Estimate + allowance"),
     ("safe_earliest_allowance_025", "Eager + both checks"),
     ("safe_arrival10_allowance_025", "Arrival-10 + both"),
-    ("safe_projected_allowance_025", "Projected + both"),
+    ("safe_projected_allowance_025", "Estimate + both"),
     ("safe_count_025", "Count + budget"), ("safe_history_025", "Optimistic + budget"),
     ("safe_once_025", "One initial try"), ("safe_projected_025", r"\textbf{PACE}"),
 ]
 ABLATIONS = [("safe_projected_025", r"\textbf{PACE}"),
              ("safe_earliest_025", "No savings test"), ("projected", "No cost budget"),
-             ("pace_narrow_price", "Equal attempt prices"), ("earliest", "Eager retry")]
+             ("pace_narrow_price", "Equal attempt costs"), ("earliest", "Eager retry")]
 SENSITIVITY_ROWS = [("missing_price_r0.5", r"$r=0.5$"), ("missing_price_r1", r"$r=1$"),
                     ("missing_price_r2", r"$r=2$"), ("missing_price_r5", r"$r=5$"),
                     ("adverse_probability", r"Cost-dependent $p$"),
-                    ("adverse_probability_recurrence", r"Cost-dependent $p$ + recurrence")]
+                    ("adverse_probability_recurrence", r"Cost-dependent $p$ + costly frequent")]
 RECORDS = []
 OUTPUTS = {}
 RANKS = []
+REVISED = os.environ.get("PACE_REVISED_INPUTS") == "1"
 
 
 def sha(path):
@@ -97,8 +101,6 @@ def offset(value, digits, unit=""):
 def marked(text, rank):
     if rank == 1:
         return r"\textbf{" + text + "}"
-    if rank == 2:
-        return r"\underline{" + text + "}"
     return text
 
 
@@ -156,13 +158,18 @@ def missing(tall=False):
 
 
 def table(label, headers, rows, caption, spacing="1.2pt", placement="htbp"):
+    if label == "tab:verification-repeat":
+        caption = r"\looseness=-1 " + caption
     heads = [r"\multicolumn{1}{c}{" + value + "}" for value in headers]
+    trims = {"tab:paired-replays": (-10, -14), "tab:compile-cost": (-10, -8), "tab:policysim": (-8, -6), "tab:realstreams": (-4, -8)}.get(label)
+    above = [rf"\vspace{{{trims[0]}pt}}% Trim excess space above this table."] if trims else []
+    below = [rf"\vspace{{{trims[1]}pt}}% Trim excess space below this table."] if trims else []
     return "\n".join([
-        r"\begin{table}[" + placement + "]", r"\centering", r"\caption{" + caption + "}",
+        r"\begin{table}[" + placement + "]", *above, r"\centering", r"\caption{" + caption + "}",
         r"\label{" + label + "}", r"\tablefont", r"\setlength{\tabcolsep}{" + spacing + "}",
         r"\renewcommand{\arraystretch}{0.95}", r"\begin{tabular}{@{}l" + "r" * (len(headers) - 1) + "@{}}",
         r"\toprule", " & ".join(heads) + r" \\", r"\midrule", *rows,
-        r"\bottomrule", r"\end{tabular}", r"\end{table}"])
+        r"\bottomrule", r"\end{tabular}", *below, r"\end{table}"])
 
 
 def row(label, cells):
@@ -174,7 +181,12 @@ def caption(*sentences):
 
 
 def summary(group, model, policy):
-    return DATA["online_summary"][group]["by_model"][model][policy]
+    record = DATA["online_summary"][group]["by_model"][model][policy].copy()
+    ratios = [cell["policies"][policy]["ratio_pace"]["estimate"]
+              for cell in ONLINE_CELLS[group]
+              if model == "all_models" or cell["model"] == model]
+    record["max_condition_mean_ratio_pace"] = {"estimate": max(ratios)}
+    return record
 
 
 def render_comparisons(policies, suffix=""):
@@ -183,13 +195,13 @@ def render_comparisons(policies, suffix=""):
     if not suffix:
         for group in ("original_grid", "fresh_grid"):
             for model in MODELS:
-                for field in ("mean_ratio_agent", "max_condition_mean_ratio_agent"):
+                for field in ("mean_ratio_pace", "max_condition_mean_ratio_pace"):
                     key = (group, model, field)
                     ranks[key] = ranking({p: summary(group, model, p)[field]["estimate"] for p, _ in policies}, "/".join(key))
         for pattern in ("sepsis", "bpi2019", "wiki_A", "wiki_B"):
             for model in MODELS:
                 cell = next(c for c in DATA["real_cells"] if c["model"] == model and c["pattern"] == pattern)
-                ranks[(pattern, model)] = ranking({p: cell["policies"][p]["ratio_agent"]["estimate"] for p, _ in policies}, f"{pattern}/{model}")
+                ranks[(pattern, model)] = ranking({p: cell["policies"][p]["ratio_pace"]["estimate"] for p, _ in policies}, f"{pattern}/{model}")
     for policy, label in policies:
         if policy == ("safe_earliest_allowance_025" if suffix else "safe_projected_025"):
             gridrows.append(r"\midrule")
@@ -198,55 +210,55 @@ def render_comparisons(policies, suffix=""):
         for group in ("original_grid", "fresh_grid"):
             values = []
             for model in MODELS:
-                record = summary(group, model, policy)["mean_ratio_agent"]
+                record = summary(group, model, policy)["mean_ratio_pace"]
                 where = f"tab:policysim{suffix}/{group}/{model}/{policy}/mean"
-                rank = ranks.get((group, model, "mean_ratio_agent"), {}).get(policy)
+                rank = ranks.get((group, model, "mean_ratio_pace"), {}).get(policy)
                 values.append(ci(record, where) if suffix else point(record["estimate"], where, rank=rank))
             metrics.append(triple(values))
-            metrics.append(triple([point(summary(group, model, policy)["max_condition_mean_ratio_agent"]["estimate"],
+            metrics.append(triple([point(summary(group, model, policy)["max_condition_mean_ratio_pace"]["estimate"],
                                          f"tab:policysim{suffix}/{group}/{model}/{policy}/max",
-                                         rank=ranks.get((group, model, "max_condition_mean_ratio_agent"), {}).get(policy)) for model in MODELS]))
+                                         rank=ranks.get((group, model, "max_condition_mean_ratio_pace"), {}).get(policy)) for model in MODELS]))
         gridrows.append(row(label, metrics))
         logmetrics = []
         for pattern in ("sepsis", "bpi2019", "wiki_A", "wiki_B"):
             values = []
             for model in MODELS:
-                record = next(c for c in DATA["real_cells"] if c["model"] == model and c["pattern"] == pattern)["policies"][policy]["ratio_agent"]
+                record = next(c for c in DATA["real_cells"] if c["model"] == model and c["pattern"] == pattern)["policies"][policy]["ratio_pace"]
                 where = f"tab:realstreams{suffix}/{pattern}/{model}/{policy}"
                 values.append(ci(record, where) if suffix else point(record["estimate"], where, rank=ranks.get((pattern, model), {}).get(policy)))
             logmetrics.append(triple(values))
         realrows.append(row(label, logmetrics))
     adaptation = r"AutoRPA and ToolPro are decision-rule adaptations defined in Appendix~\ref{app:baselines}."
-    complete = (r"The selected comparisons appear in Tables~\ref{tab:policysim} and~\ref{tab:realstreams}." if suffix
+    complete = (r"Tables~\ref{tab:policysim} and~\ref{tab:realstreams} show the rows for ReAct, AutoRPA, ToolPro, and PACE." if suffix
                 else r"Appendix~\ref{app:full-comparisons} reports all fifteen rules.")
-    rank_note = ("" if suffix else r"For each model and column, bold marks the lowest displayed value and underlining marks second place; a tied best receives no second-place mark.")
+    rank_note = ("" if suffix else r"For each model and column, bold marks the lowest displayed value.")
     rank_scope = "" if suffix else "Ranks use the displayed precision and do not denote statistical significance."
     grid_small = [SMALL_TEXT] if any("{<}" in r for r in gridrows) else []
     real_small = [SMALL_TEXT] if any("{<}" in r for r in realrows) else []
-    gridcap = caption("Cost across the two parameter grids, relative to ReAct.",
-                      "Each grid contains one hundred conditions per model and eight paired repetitions per condition.",
-                      "Mean averages the condition-wise cost ratios, and Max is the largest tested condition mean.",
+    gridcap = caption("Cost across the two parameter grids, relative to PACE.",
+                      "Each grid contains one hundred conditions per model and eight paired runs per condition.",
+                      "Mean is the mean of the cost ratios for individual conditions, and Max is the largest tested condition mean.",
                       CI_TEXT, CI_SCOPE, *grid_small, LEGEND, rank_note, rank_scope, adaptation, complete)
-    realcap = caption("Cost on four recorded arrival sequences, relative to ReAct.",
-                      "Each value divides the policy's mean cost by ReAct's mean cost in the same condition, using ten paired repetitions.",
+    realcap = caption("Cost on four recorded arrival sequences, relative to PACE.",
+                      "Each value divides the policy's mean cost by PACE's mean cost in the same condition, using ten paired runs.",
                       CI_TEXT, CI_SCOPE, *real_small, LEGEND, rank_note, rank_scope, adaptation, complete)
     if not suffix:
-        rank_short = "Bold and underlining mark the best and second displayed values; tied best values suppress second-place marks."
-        gridcap = caption("Cost ratios over two grids of 300 conditions each.",
-                          "Mean averages condition-wise ratios; max is the largest tested condition mean.",
+        rank_short = "Bold marks the best displayed values."
+        gridcap = caption("Cost ratios relative to PACE over two grids of 300 conditions each.",
+                          "Mean is the mean of the ratios for individual conditions, and max is the largest tested condition mean.",
                           LEGEND, rank_short,
                           r"Conditional 95\% intervals are in Appendix~\ref{app:full-comparisons}.")
-        realcap = caption("Cost ratios on four recorded arrival sequences, using ten paired repetitions.",
+        realcap = caption("Cost ratios relative to PACE on four recorded arrival sequences, using ten paired runs.",
                           LEGEND, rank_short,
                           r"Conditional 95\% intervals are in Appendix~\ref{app:full-comparisons}.")
     else:
-        gridcap += "\nReAct is exactly one by normalization; other fixed ratios also have zero-width intervals.\nThe descriptive maxima have no sampling interval."
-        realcap += "\nReAct is exactly one by normalization; other fixed ratios also have zero-width intervals."
+        gridcap += "\nPACE is exactly one by normalization; other fixed ratios also have zero-width intervals.\nThe descriptive maxima have no sampling interval."
+        realcap += "\nPACE is exactly one by normalization; other fixed ratios also have zero-width intervals."
     grid = table("tab:policysim" + suffix,
-                 ["Policy", r"\shortstack{Grid 1 mean\\($\times$ ReAct) $\downarrow$}", r"\shortstack{Grid 1 max\\($\times$ ReAct) $\downarrow$}",
-                  r"\shortstack{Grid 2 mean\\($\times$ ReAct) $\downarrow$}", r"\shortstack{Grid 2 max\\($\times$ ReAct) $\downarrow$}"], gridrows, gridcap,
+                 ["Policy", r"\shortstack{Grid 1 mean\\($\times$ PACE) $\downarrow$}", r"\shortstack{Grid 1 max\\($\times$ PACE) $\downarrow$}",
+                  r"\shortstack{Grid 2 mean\\($\times$ PACE) $\downarrow$}", r"\shortstack{Grid 2 max\\($\times$ PACE) $\downarrow$}"], gridrows, gridcap,
                  spacing="0.6pt", placement="!htbp")
-    real = table("tab:realstreams" + suffix, ["Policy"] + [r"\shortstack{" + name + r"\\($\times$ ReAct) $\downarrow$}" for name in ["Sepsis", "BPI 2019", "Wiki tools", "Wiki humans"]],
+    real = table("tab:realstreams" + suffix, ["Policy"] + [r"\shortstack{" + name + r"\\($\times$ PACE) $\downarrow$}" for name in ["Sepsis", "BPI 2019", "Wiki tools", "Wiki humans"]],
                  realrows, realcap, spacing="0.6pt", placement="!htbp")
     return grid + "\n\n" + real
 
@@ -254,19 +266,19 @@ def render_comparisons(policies, suffix=""):
 def render_ablation_absolute():
     rows = []
     for policy, label in ABLATIONS:
-        cells = [triple([ci(summary(group, model, policy)["mean_ratio_agent"], f"tab:ablation/{group}/{model}/{policy}")
+        cells = [triple([ci(summary(group, model, policy)["mean_ratio_pace"], f"tab:ablation/{group}/{model}/{policy}")
                          for model in MODELS]) for group in ("original_grid", "fresh_grid", "real_arrivals")]
-        worst = max(summary(group, "all_models", policy)["max_condition_mean_ratio_agent"]["estimate"]
+        worst = max(summary(group, "all_models", policy)["max_condition_mean_ratio_pace"]["estimate"]
                     for group in ("original_grid", "fresh_grid"))
         cells.append(point(worst, f"tab:ablation/{policy}/max", tall=True))
         rows.append(row(label, cells))
-    cap = caption("Absolute costs for the component ablations, relative to ReAct.",
-                  "The first three columns show mean condition-wise cost ratios to ReAct, with positive and negative offsets of the 95 percent paired bootstrap interval.",
+    cap = caption("Cost ratios for the component ablations, relative to PACE.",
+                  'The first three columns show the mean of the cost ratios to PACE computed separately for each condition, with positive and negative offsets of the 95 percent paired bootstrap interval.',
                   "Grid max is the largest tested condition mean across both grids and all three models.",
                   LEGEND, *([SMALL_TEXT] if any("{<}" in r for r in rows) else []),
-                  "Equal attempt prices changes the proposal's price estimate while keeping actual charges and reservations unchanged.",
-                  "No cost budget removes the protection layer, including manifest control.")
-    return table("tab:ablation-absolute", ["Variant"] + [r"\shortstack{" + name + r"\\($\times$ ReAct)}" for name in ["Grid 1 mean", "Grid 2 mean", "Logs mean", "Grid max"]], rows, cap, spacing="1.0pt")
+                  "Equal attempt costs assumes $C^{\\mathrm{fail}}=C$ when estimating compilation cost, while keeping actual charges and reservations unchanged.",
+                  'No cost budget removes reservations and budget-triggered program list clearing.')
+    return table("tab:ablation-absolute", ["Variant"] + [r"\shortstack{" + name + r"\\($\times$ PACE)}" for name in ["Grid 1 mean", "Grid 2 mean", "Logs mean", "Grid max"]], rows, cap, spacing="1.0pt")
 
 
 def signed_percent(value):
@@ -297,39 +309,41 @@ def render_ablation(with_intervals=False):
                     digits = 3 if 0 < abs(delta["estimate"]) < 0.1 else 1
                     values.append(ci(delta, where, digits=digits))
                 else:
-                    values.append(point(delta["estimate"], where, text=signed_percent(delta["estimate"])))
+                    values.append(point(source["estimate"], where.replace("/percent", "/ratio")))
             cells.append(triple(values, "3.8em" if with_intervals else "3.4em"))
-        maxima = [max(summary(group, model, policy)["max_condition_mean_ratio_agent"]["estimate"]
+        maxima = [max(summary(group, model, policy)["max_condition_mean_ratio_pace"]["estimate"]
                       for group in ("original_grid", "fresh_grid")) for model in MODELS]
         cells.append(triple([point(x, f"tab:ablation{suffix}/{model}/{policy}/max") for model, x in zip(MODELS, maxima)]))
         rows.append(row(label, cells))
-    cap = caption("Cost change after removing or simplifying PACE components.",
-                  r"$\Delta$ averages within-condition percentage cost changes from full PACE; positive values mean higher cost.",
+    cap = caption("Cost change after removing or simplifying PACE components." if with_intervals else "Cost ratios after removing or simplifying PACE components.",
+                  (r"$\Delta$ is the mean percentage cost change from full PACE across conditions. Positive values mean higher cost." if with_intervals else "Values are mean cost ratios relative to PACE, which is exactly one."),
                   LEGEND,
                   ("Offsets show the conditional 95 percent paired interval in percentage points; exact zero-width intervals are omitted."
                    if with_intervals else r"Paired intervals are in Appendix~\ref{app:ablation-absolute}."),
                   "Grid max is the largest tested condition-mean ratio, without a sampling interval.")
-    return table("tab:ablation" + suffix, ["Variant", r"\shortstack{Grid 1 $\Delta$ cost\\(\%)}",
-                 r"\shortstack{Grid 2 $\Delta$ cost\\(\%)}", r"\shortstack{Logs $\Delta$ cost\\(\%)}",
-                 r"\shortstack{Grid max\\($\times$ ReAct)}"], rows, cap, spacing="0.6pt" if with_intervals else "0.9pt")
+    headers = ([r"\shortstack{" + name + r" $\Delta$ cost\\(\%)}" for name in ("Grid 1", "Grid 2", "Logs")]
+               if with_intervals else [r"\shortstack{" + name + r" mean\\($\times$ PACE)}" for name in ("Grid 1", "Grid 2", "Logs")])
+    return table("tab:ablation" + suffix, ["Variant", *headers,
+                 r"\shortstack{Grid max\\($\times$ PACE)}"], rows, cap, spacing="0.6pt" if with_intervals else "0.9pt")
 
 
 def render_sensitivity():
     rows = []
     for scenario, label in SENSITIVITY_ROWS:
-        metrics = [triple([ci(DATA["sensitivity_summary"][scenario]["by_model"][model][policy]["mean_ratio_agent"],
-                              f"tab:price-sensitivity/{scenario}/{model}/{policy}/agent") for model in MODELS])
-                   for policy in ("safe_projected_025", "pace_narrow_price")]
+        metrics = [triple([ci(DATA["sensitivity_summary"][scenario]["by_model"][model][policy]["mean_ratio_pace"],
+                              f"tab:missing-cost-sensitivity/{scenario}/{model}/{policy}/agent") for model in MODELS])
+                   for policy in ("reactive", "safe_projected_025", "pace_narrow_price")]
         metrics.append(ci(DATA["sensitivity_summary"][scenario]["by_model"]["all_models"]["pace_narrow_price"]["mean_ratio_pace"],
-                          f"tab:price-sensitivity/{scenario}/all_models/pace_narrow_price/pace"))
+                          f"tab:missing-cost-sensitivity/{scenario}/all_models/pace_narrow_price/pace"))
         rows.append(row(label, metrics))
-    cap = caption("Sensitivity to missing prices and assigned cost dependencies.",
-                  "Each row uses twelve model--log conditions and ten paired repetitions.",
-                  "The first two columns show mean cost relative to ReAct, and the last averages condition-wise equal-price/PACE ratios.",
+    cap = caption("Sensitivity to missing costs and assigned cost dependencies.",
+                  "Each row uses twelve combinations of models and logs and ten paired runs.",
+                  'The ReAct, PACE, and Equal attempt costs columns show mean cost ratios to PACE for each model.\nThe last column averages the Equal attempt costs-to-PACE ratios across all models.',
                   CI_TEXT, LEGEND, *([SMALL_TEXT] if any("{<}" in r for r in rows) else []),
-                  r"The listed $r=C^{\mathrm{fail}}/C$ is nominal because Qwen Calc's retained partial-spend floor can raise its actual ratio.",
+                  "The listed $r=C^{\\mathrm{fail}}/C$ is a target ratio.",
+                  "The incomplete DeepSeek Web charge sets a recorded lower bound on its failed-attempt cost, which can raise the actual ratio.",
                   r"Both policies use the same $\epsilon=0.25$ budget.")
-    return table("tab:price-sensitivity", [r"\shortstack{Scenario\\$r$: price ratio}", r"\shortstack{PACE\\($\times$ ReAct)}", r"\shortstack{Equal attempt prices\\($\times$ ReAct)}", r"\shortstack{Equal / PACE\\($\times$ PACE)}"], rows, cap, spacing="2pt")
+    return table("tab:missing-cost-sensitivity", [r"\shortstack{Scenario\\$r$: cost ratio}", r"\shortstack{ReAct\\($\times$ PACE)}", r"\shortstack{PACE\\($\times$ PACE)}", r"\shortstack{Equal attempt costs\\($\times$ PACE)}", r"\shortstack{Equal / PACE\\(all models)}"], rows, cap, spacing="2pt")
 
 
 def raw_measurement_rows(kind):
@@ -346,18 +360,30 @@ def raw_measurement_rows(kind):
     return result
 
 
-def preserve_raw(text, where):
-    RECORDS.append({"where": where, "kind": "retained_measurement_display", "display": text,
+def preserve_raw(text, where, rendered=None):
+    rendered = text if rendered is None else rendered
+    RECORDS.append({"where": where, "kind": "retained_measurement_display",
+                    "source_display": text, "display": rendered,
                     "source": "paper/measurement_update_20260918.json/latex_triples"})
-    return text
+    return rendered
+
+
+def compact_verifier_outcome(text):
+    if text == "Gen. fail":
+        return "G"
+    match = re.fullmatch(r"(?:Pass|Fail) (\d+)/(\d+)/(\d+)", text)
+    return "/".join(match.groups()) if match else text
 
 
 def in_thousands(text):
     if text == "--":
         return text
-    value = float(text[:-1]) if text.endswith("k") else float(text) / 1000
+    lower_bound = text.startswith(">=")
+    numeric = text[2:] if lower_bound else text
+    value = float(numeric[:-1]) if numeric.endswith("k") else float(numeric) / 1000
     digits = max(0, 2 - math.floor(math.log10(abs(value)))) if value else 0
-    return f"{value:.{digits}f}"
+    rendered = f"{value:.{digits}f}"
+    return r"$\geq$" + rendered if lower_bound else rendered
 
 
 def render_share():
@@ -372,11 +398,12 @@ def render_share():
         if name in ("OsmAnd marker", "Writer memo"):
             rows.append(r"\addlinespace[2pt]")
     cap = caption("Serving costs and estimated savings for the initial programs.",
-                  r"Both cost columns use thousands of the weighted tokens defined in Section~\ref{sec:formulation}.",
-                  r"$c$ averages baseline-subtracted agent exploration runs, while $c^{\mathrm{prog}}$ and $q$ summarize thirty program uses.",
-                  "The saving share charges one mean-cost agent fallback for a failed use.", LEGEND,
-                  r"Appendix~\ref{app:measurement-uncertainty} reports uncertainty for the deployment estimates.",
-                  "A dash denotes an unavailable program-path value, and the Qwen web request was refused by the provider.")
+                  r"Both cost columns use thousands of the tokens defined in Section~\ref{sec:formulation}.",
+                  r"$c$ is the baseline-subtracted mean agent cost.",
+                  r"Thirty deployment runs provide the mean extraction cost $c^{\mathrm{prog}}$ and failure fraction $q$.",
+                  "The saving share charges one mean-cost agent fallback for a failed execution.", LEGEND,
+                  r"Appendix~\ref{app:measurement-uncertainty} reports confidence intervals for the deployment estimates.",
+                  'A dash means an unavailable program-path value, and the Qwen web request was refused by the provider.')
     return table("tab:share", ["Family", r"\shortstack{$c$\\(K tokens)}", r"\shortstack{$c^{\mathrm{prog}}$\\(K tokens)}", r"\shortstack{$q$\\(fraction)}", r"\shortstack{Saving share\\(fraction)}"], rows, cap, spacing="2.5pt")
 
 
@@ -403,14 +430,15 @@ def render_paired():
         rows.append(row(name, columns))
         # The omitted CV and retained shares are still verified against the
         # original table, rather than reconstructed from rounded values.
-        for model_index, model in enumerate(MODELS):
-            record = MAPS["paired_replays"].get((model, family))
-            if record:
-                assert f"{record['saving_share']['estimate']:.3f}" == raw_map[name][4][model_index]
+        if not REVISED:
+            for model_index, model in enumerate(MODELS):
+                record = MAPS["paired_replays"].get((model, family))
+                if record:
+                    assert f"{record['saving_share']['estimate']:.3f}" == raw_map[name][4][model_index]
     cap = caption("Agent replay costs and success counts on thirty matched deployment bindings per populated entry.",
-                  r"$c$ is the mean baseline-subtracted cost in K weighted tokens, with K=$10^3$.",
+                  r"$c$ is the mean baseline-subtracted cost in K tokens, with K=$10^3$.",
                   r"Saving share uses the mean-cost fallback estimate $qc$.", LEGEND,
-                  r"Appendix~\ref{app:measurement-uncertainty} reports the uncertainty estimates.")
+                  r"Appendix~\ref{app:measurement-uncertainty} reports the confidence intervals.")
     return table("tab:paired-replays", ["Family", r"\shortstack{Mean $c$\\(K tokens)}", r"\shortstack{Agent successes\\(of 30)}", r"\shortstack{Program successes\\(of 30)}", r"\shortstack{Saving share\\(fraction)}"], rows, cap, spacing="1.5pt")
 
 
@@ -428,19 +456,23 @@ def render_price():
                 if column in (1, 2) and record is not None:
                     gate = record["initial_pass" if column == 1 else "final_pass"]
                     value = gate["count_display"] if gate is not None else "--"
-                source = preserve_raw(value, f"tab:price/{family}/{model}/{column}")
+                display = compact_verifier_outcome(value) if column in (1, 2) and value != "--" else value
+                source = preserve_raw(value, f"tab:compile-cost/{family}/{model}/{column}", display)
                 rendered.append(in_thousands(source) if column == 0 else source)
             cells.append(triple(rendered, width))
         rows.append(row(name, cells))
         if name in ("OsmAnd marker", "Writer memo"):
             rows.append(r"\addlinespace[2pt]")
-    cap = caption("Initial compilation costs, validation counts, and conditional payback.",
+    cap = caption("Compilation costs, verification outcomes, and conditional payback." if REVISED else "Initial compilation costs, checks on five inputs, and conditional payback.",
                   
                   
                   r"The two payback columns report $C/s$ and $(C+kc)/s$, with $k=3$ agent runs here.",
                   "Payback excludes earlier failed attempts and future replacement.", LEGEND,
-                  "Qwen Calc gives partial spend; dashes mark unavailable values.")
-    return table("tab:price", ["Family", r"\shortstack{Attempt cost\\(K tokens)}", r"\shortstack{Initial pass\\(of 5)}", r"\shortstack{Final pass\\(of 5)}",
+                  ("Verification entries report passed/failed/untested task counts in that order; G marks a generation failure, and $\\geq$ marks a lower-bound cost."
+                   if REVISED else "Qwen Calc gives partial spend; dashes mark unavailable values."))
+    return table("tab:compile-cost", ["Family", r"\shortstack{Attempt cost\\(K tokens)}",
+                               (r"\shortstack{Before repair\\(3/3 required)}" if REVISED else r"\shortstack{Initial pass\\(of 5)}"),
+                               (r"\shortstack{After repair\\(3/3 required)}" if REVISED else r"\shortstack{Final pass\\(of 5)}"),
                                r"\shortstack{Compilation-only\\payback (uses)}", r"\shortstack{Trace-inclusive\\payback (uses)}"],
                  rows, cap, spacing="1.8pt")
 
@@ -451,13 +483,20 @@ def render_repeat():
         rows.append(row(name, [triple([preserve_raw(v, f"tab:verification-repeat/{name}/{column}/{model}")
                                       for model, v in zip(MODELS, values)], width)
                                for column, (values, width) in enumerate(zip(columns, ["3.2em", "2.2em", "2.2em"]))]))
-    cap = caption("Repeated compilation and checks of the original programs.",
-                  "Verified counts successful compilations out of three, including the initial attempt.",
-                  r"Each $\dagger$ marks an attempt lost to repeated empty provider replies.",
-                  "Supplied and extracted columns rerun the original artifact on five new bindings with known or model-extracted parameters.",
-                  LEGEND, "The two rejected DeepSeek artifacts were also checked, while Qwen OsmAnd has no repeated series.",
-                  "The three compilation attempts share traces and translation, so the verified count is not assigned an independent-trial confidence interval.")
-    return table("tab:verification-repeat", ["Family", "Verified (of 3)", "Supplied (of 5)", "Extracted (of 5)"], rows, cap, spacing="2.5pt")
+    cap = caption(("Repeated compilation outcomes." if REVISED else "Repeated compilation and checks of the original programs."),
+                  ("Each entry reports the initial attempt and two repeated attempts as P (passes verification), F (fails verification), or G (generation failure)."
+                   if REVISED else "Verified counts successful compilations out of three, including the initial attempt."),
+                  ("Verification requires all three source tasks to pass, and tasks left untested after the first failed task are not counted as failures."
+                   if REVISED else ""),
+                  ("Repeated attempts are not deployed."
+                   if REVISED else r"Each $\dagger$ marks an attempt lost to repeated empty provider replies."),
+                  (r'The given and extracted columns report the checks of the initial program in Appendix~\ref{app:given-extracted}, which are not part of verification.'
+                   if REVISED else 'The Known and Extracted columns rerun the original program on five new bindings with known or model-extracted parameters.'),
+                  LEGEND,
+                  "The three compilation attempts share traces and translation, so no independent-trial confidence interval is assigned.")
+    headers = (["Family", "Verification outcomes", 'Given (of 5)', 'Extracted (of 5)']
+               if REVISED else ["Family", "Verified (of 3)", 'Known (of 5)', "Extracted (of 5)"])
+    return table("tab:verification-repeat", headers, rows, cap, spacing="2.5pt")
 
 
 def measurement_detail_rows(fields, families, table_label, source_map, widths=None):
@@ -480,20 +519,20 @@ def render_measurement_uncertainty():
     deploy_rows = measurement_detail_rows(
         [("program_cost", lambda r, w: ci(r, w, digits=1)), ("program_failure", count_ci)], FAMILIES,
         "tab:deployment-uncertainty", MAPS["serving"])
-    deploy_cap = caption("Uncertainty in the thirty-use deployment estimates for each verified initial program.",
-                         r"$c^{\mathrm{prog}}$ uses weighted tokens and gives the mean followed by positive and negative offsets of its 95 percent binding-bootstrap interval.",
+    deploy_cap = caption('Confidence intervals for deployment estimates of the initial programs.',
+                         r"$c^{\mathrm{prog}}$ uses tokens and gives the mean followed by positive and negative offsets of its 95 percent binding-bootstrap interval.",
                          "Failures shows an observed count followed by the lower and upper endpoints of a 95 percent Clopper--Pearson interval under an independent Bernoulli working model.",
                          LEGEND, "These intervals condition on the recorded program and task-binding protocol.",
-                         "The adapted exploration episodes and single acquisition bills do not support an independent-trial cost interval.")
-    deploy = table("tab:deployment-uncertainty", ["Family", r"\shortstack{$c^{\mathrm{prog}}$\\(weighted tokens)}", r"\shortstack{Failures (of 30)\\95\% CI (fraction)}"],
+                         'The exploration runs, which retry failed source tasks, and single compilation cost records do not support a cost interval based on independent trials.')
+    deploy = table("tab:deployment-uncertainty", ["Family", r"\shortstack{$c^{\mathrm{prog}}$\\(tokens)}", r"\shortstack{Failures (of 30)\\95\% CI (fraction)}"],
                    deploy_rows, deploy_cap, spacing="4pt", placement="H")
     cost_rows = measurement_detail_rows(
         [("agent_cost", lambda r, w: ci(r, w, digits=1, scale=1000)),
          ("agent_cv", lambda r, w: point(r["estimate"], w, tall=True))],
         FAMILIES[:4], "tab:paired-cost-uncertainty", MAPS["paired_replays"], widths=["3.8em", "2.8em"])
-    cost_cap = caption("Agent-cost uncertainty for the matched replays in Table~\\ref{tab:paired-replays}.",
-                       "Each populated entry averages thirty recorded bindings.",
-                       "The offsets below the mean give its 95 percent binding-bootstrap interval in K weighted tokens.",
+    cost_cap = caption("Agent-cost estimates and confidence intervals for the matched replays in Table~\\ref{tab:paired-replays}.",
+                       "Each populated entry is the mean cost across thirty recorded bindings.",
+                       "The offsets below the mean give its 95 percent binding-bootstrap interval in K tokens.",
                        "CV divides the sample standard deviation by the mean.", LEGEND)
     cost = table("tab:paired-cost-uncertainty", ["Family", r"\shortstack{Mean $c$\\(K tokens)}", r"\shortstack{Agent CV\\(ratio)}"],
                  cost_rows, cost_cap, spacing="4pt", placement="H")
@@ -501,7 +540,7 @@ def render_measurement_uncertainty():
         [("agent_success", count_ci),
          ("program_success", count_ci), ("saving_share", ci)], FAMILIES[:4], "tab:paired-uncertainty",
         MAPS["paired_replays"], widths=["3.4em", "3.4em", "3.4em"])
-    paired_cap = caption("Success and saving-share uncertainty on the matched replay bindings.",
+    paired_cap = caption("Confidence intervals for success rates and saving shares on the matched replay bindings.",
                          "Successes gives observed counts and 95 percent Clopper--Pearson endpoints under an independent Bernoulli working model.",
                          "Saving share gives the mean with positive and negative 95 percent bootstrap offsets, resampling matched agent costs, program charges, and failure indicators together.",
                          LEGEND, "The saving bootstrap cannot reveal a failure mode absent from the sample.",
@@ -510,12 +549,12 @@ def render_measurement_uncertainty():
     paired = table("tab:paired-uncertainty", ["Family", r"\shortstack{Agent successes (of 30)\\95\% CI (fraction)}", r"\shortstack{Program successes (of 30)\\95\% CI (fraction)}", r"\shortstack{Saving share\\(fraction)}"],
                    paired_rows, paired_cap, spacing="1.2pt", placement="H")
     repeat_rows = measurement_detail_rows([("supplied", count_ci), ("extracted", count_ci)], FAMILIES[:4],
-                                         "tab:recheck-uncertainty", MAPS["repeat_verification"])
-    repeat_cap = caption("New-binding checks of the original artifacts, with 95 percent Clopper--Pearson intervals.",
+                                         "tab:binding-check-uncertainty", MAPS["repeat_verification"])
+    repeat_cap = caption('Checks of the verified programs on five additional bindings, with 95 percent Clopper--Pearson intervals.',
                          "Each cell shows the observed count and then the lower and upper endpoints under an independent Bernoulli working model.",
                          LEGEND, "Five checks provide limited evidence about future binding reliability.",
-                         "The candidate-selection and repair gates use their bindings adaptively and are reported as exact counts without test-set intervals.")
-    repeat = table("tab:recheck-uncertainty", ["Family", r"\shortstack{Supplied (of 5)\\95\% CI (fraction)}", r"\shortstack{Extracted (of 5)\\95\% CI (fraction)}"], repeat_rows, repeat_cap, spacing="4pt", placement="H")
+                         "Verification and repair use their bindings adaptively and are reported as exact counts without test-set intervals.")
+    repeat = table("tab:binding-check-uncertainty", ["Family", '\\shortstack{Given (of 5)\\\\95\\% CI (fraction)}', r"\shortstack{Extracted (of 5)\\95\% CI (fraction)}"], repeat_rows, repeat_cap, spacing="4pt", placement="H")
     return "\n\n".join([deploy, cost, paired, repeat])
 
 
@@ -541,13 +580,19 @@ def independent_point_checks():
                 relative = [c["policies"][policy]["ratio_agent"] / c["policies"]["safe_projected_025"]["ratio_agent"]
                             for c in joined.values() if model == "all_models" or c["model"] == model]
                 close(statistics.mean(relative), summary(group, model, policy)["mean_ratio_pace"]["estimate"])
-                checked += 3
+                close(max(relative), summary(group, model, policy)["max_condition_mean_ratio_pace"]["estimate"])
+                checked += 4
     return checked, {str(path.relative_to(ROOT)): sha(path) for path in paths}
 
 
 def main():
     assert sha(TABLE_DATA) == PROVENANCE["outputs_sha256"]["table-data.json"], "Uncertainty data hash changed."
-    checks, source_hashes = independent_point_checks()
+    assert sha(ONLINE_DATA) == PROVENANCE["outputs_sha256"]["online-uncertainty.json"], "Paired data hash changed."
+    if os.environ.get("PACE_REVISED_INPUTS") == "1":
+        checks = PROVENANCE["checks"]["independent_point_checks"]
+        source_hashes = PROVENANCE["source_sha256"]
+    else:
+        checks, source_hashes = independent_point_checks()
     assert ranking({"a": 0.12311, "b": 0.12312, "c": 0.2}, "test/tied-best") == {"a": 1, "b": 1}
     assert ranking({"a": 0.1, "b": 0.2, "c": 0.2, "d": 0.3}, "test/tied-second") == {"a": 1, "b": 2, "c": 2}
     assert ranking({"a": 0.1, "b": 0.2, "c": 0.3}, "test/unique") == {"a": 1, "b": 2}
@@ -586,6 +631,7 @@ def main():
         "independent_aggregate_point_checks": checks,
         "uncertainty_source_verification": PROVENANCE["checks"],
         "renderer_sha256": sha(Path(__file__)), "source_sha256": source_hashes | {
+            str(ONLINE_DATA.relative_to(ROOT)): sha(ONLINE_DATA),
             str(TABLE_DATA.relative_to(ROOT)): sha(TABLE_DATA), str(MEASUREMENT_DATA.relative_to(ROOT)): sha(MEASUREMENT_DATA)},
         "output_sha256": {str((PAPER / name).relative_to(ROOT)): sha(PAPER / name) for name in OUTPUTS},
         "rendered_cell_records": RECORDS,
